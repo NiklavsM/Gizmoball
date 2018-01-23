@@ -3,6 +3,8 @@ package strath.cs308.gizmo;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import strath.cs308.gizmo.model.interfaces.IPhysicsWorld;
+import strath.cs308.gizmo.model.physics.PhysicsWorld;
 import strath.cs308.gizmo.view.MainView;
 
 public class Main extends Application

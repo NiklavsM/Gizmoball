@@ -2,8 +2,9 @@ package strath.cs308.gizmo.view;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import strath.cs308.gizmo.controller.GameController;
+import strath.cs308.gizmo.model.interfaces.IPhysicsWorld;
 
 import java.io.IOException;
 import java.util.Observable;
@@ -13,11 +14,18 @@ public class GameView implements Observer
 {
     private Pane root;
 
-    public GameView()
+    public GameView(IPhysicsWorld world)
     {
         try
         {
-            this.root = FXMLLoader.load(this.getClass().getResource("/game.fxml"));
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/game.fxml"));
+            this.root = loader.load();
+            GameController controller = loader.getController();
+            controller.setWorld(world);
+            controller.setView(this);
+
+            world.addObserver(this);
+
         }
         catch (IOException e)
         {
