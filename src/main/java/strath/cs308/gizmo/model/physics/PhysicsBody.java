@@ -1,5 +1,7 @@
 package strath.cs308.gizmo.model.physics;
 
-public abstract class PhysicsBody
+import strath.cs308.gizmo.model.interfaces.IPhysicsBody;
+
+public abstract class PhysicsBody implements IPhysicsBody
 {
 }

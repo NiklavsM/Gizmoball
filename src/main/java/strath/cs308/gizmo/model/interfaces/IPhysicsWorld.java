@@ -7,4 +7,7 @@ import java.util.Observer;
 public interface IPhysicsWorld
 {
     void addObserver(Observer gameView);
+
+    IPhysicsBody body();
+
 }
