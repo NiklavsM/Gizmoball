@@ -3,12 +3,15 @@ package strath.cs308.gizmo.view;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 
-public class GameView
+public class GameView implements Observer
 {
-    private BorderPane root;
+    private Pane root;
 
     public GameView()
     {
@@ -28,5 +31,9 @@ public class GameView
     }
 
 
+    @Override
+    public void update(Observable observable, Object o)
+    {
 
+    }
 }
