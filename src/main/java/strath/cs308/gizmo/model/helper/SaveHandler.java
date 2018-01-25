@@ -14,7 +14,6 @@ public class SaveHandler implements ISaveHandler
         Ball ball = new Ball();
         Circle circle = new Circle();
         Rectangle rectangle = new Rectangle();
-        RightFlipper flipper = new RightFlipper();
-        LeftFlipper flipper1 = new LeftFlipper();
+        Flipper flipper1 = new Flipper();
     }
 }
