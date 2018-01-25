@@ -1,9 +1,15 @@
 package strath.cs308.gizmo.view;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import strath.cs308.gizmo.controller.EditController;
+import strath.cs308.gizmo.controller.editstates.AddAbsorber;
+import strath.cs308.gizmo.controller.editstates.AddGizmo;
+import strath.cs308.gizmo.controller.editstates.DeleteGizmo;
+import strath.cs308.gizmo.controller.editstates.RotateGizmo;
 import strath.cs308.gizmo.model.interfaces.IPhysicsWorld;
 
 import java.io.IOException;
@@ -26,6 +32,12 @@ public class EditView implements Observer
             controller.setView(this);
 
             world.addObserver(this);
+
+            EventHandler<MouseEvent> event1 = new AddAbsorber();
+            EventHandler<MouseEvent> event2 = new AddGizmo();
+            EventHandler<MouseEvent> event3 = new DeleteGizmo();
+            EventHandler<MouseEvent> event4 = new RotateGizmo();
+
 
         } catch (IOException e)
         {
