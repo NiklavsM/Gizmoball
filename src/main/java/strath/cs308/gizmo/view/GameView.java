@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import strath.cs308.gizmo.controller.GameController;
 import strath.cs308.gizmo.model.interfaces.IPhysicsWorld;
+import strath.cs308.gizmo.view.helper.ShapeFactory;
 
 import java.io.IOException;
 import java.util.Observable;
@@ -26,6 +27,8 @@ public class GameView implements Observer
             controller.setView(this);
 
             world.addObserver(this);
+
+            ShapeFactory factory = new ShapeFactory();
         }
         catch (IOException e)
         {

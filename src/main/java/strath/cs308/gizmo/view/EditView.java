@@ -11,6 +11,7 @@ import strath.cs308.gizmo.controller.editstates.AddGizmo;
 import strath.cs308.gizmo.controller.editstates.DeleteGizmo;
 import strath.cs308.gizmo.controller.editstates.RotateGizmo;
 import strath.cs308.gizmo.model.interfaces.IPhysicsWorld;
+import strath.cs308.gizmo.view.helper.ShapeFactory;
 
 import java.io.IOException;
 import java.util.Observable;
@@ -32,6 +33,8 @@ public class EditView implements Observer
             controller.setView(this);
 
             world.addObserver(this);
+
+            ShapeFactory factory = new ShapeFactory();
 
             EventHandler<MouseEvent> event1 = new AddAbsorber();
             EventHandler<MouseEvent> event2 = new AddGizmo();
