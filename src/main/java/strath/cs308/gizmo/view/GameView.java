@@ -2,6 +2,7 @@ package strath.cs308.gizmo.view;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import strath.cs308.gizmo.controller.GameController;
 import strath.cs308.gizmo.model.interfaces.IPhysicsWorld;
@@ -25,7 +26,6 @@ public class GameView implements Observer
             controller.setView(this);
 
             world.addObserver(this);
-
         }
         catch (IOException e)
         {

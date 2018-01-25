@@ -1,5 +1,6 @@
 package strath.cs308.gizmo.model.physics;
 
+import strath.cs308.gizmo.model.interfaces.IPhysicsBody;
 import strath.cs308.gizmo.model.interfaces.IPhysicsWorld;
 
 import java.util.List;
@@ -13,5 +14,11 @@ public class PhysicsWorld extends Observable implements IPhysicsWorld
     public PhysicsWorld()
     {
         this.bodies = new Vector<>();
+    }
+
+    @Override
+    public IPhysicsBody body()
+    {
+        return null;
     }
 }
