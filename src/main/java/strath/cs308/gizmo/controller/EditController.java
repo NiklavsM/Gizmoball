@@ -30,5 +30,6 @@ public class EditController implements Controller
     @Override
     public void handle(Event event)
     {
+        ISaveHandler saveHandler = new SaveHandler();
     }
 }
