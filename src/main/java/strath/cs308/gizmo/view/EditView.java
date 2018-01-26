@@ -12,14 +12,16 @@ import strath.cs308.gizmo.controller.editstates.DeleteGizmo;
 import strath.cs308.gizmo.controller.editstates.RotateGizmo;
 import strath.cs308.gizmo.model.interfaces.IPhysicsWorld;
 import strath.cs308.gizmo.view.helper.ShapeFactory;
+import strath.cs308.gizmo.view.interfaces.IEditView;
 
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
-public class EditView implements Observer
+public class EditView implements IEditView, Observer
 {
     private Pane root;
+    private EventHandler eventHandler;
 
     public EditView(IPhysicsWorld world)
     {
@@ -28,11 +30,9 @@ public class EditView implements Observer
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/edit.fxml"));
             this.root = loader.load();
 
-            EditController controller = loader.getController();
-            controller.setWorld(world);
-            controller.setView(this);
-
             world.addObserver(this);
+
+            this.eventHandler = new EditController(world, this);
 
             ShapeFactory factory = new ShapeFactory();
 

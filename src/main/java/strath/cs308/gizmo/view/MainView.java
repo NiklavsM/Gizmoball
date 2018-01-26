@@ -1,19 +1,24 @@
 package strath.cs308.gizmo.view;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import strath.cs308.gizmo.controller.MainController;
+import strath.cs308.gizmo.controller.interfaces.Controller;
 import strath.cs308.gizmo.model.helper.SaveHandler;
 import strath.cs308.gizmo.model.interfaces.IPhysicsWorld;
 import strath.cs308.gizmo.model.interfaces.ISaveHandler;
 import strath.cs308.gizmo.model.physics.PhysicsWorld;
+import strath.cs308.gizmo.view.interfaces.IMainView;
+import strath.cs308.gizmo.view.interfaces.View;
 
 import java.io.IOException;
 
-public class MainView
+public class MainView implements IMainView
 {
     private BorderPane root;
+    private EventHandler eventHandler;
 
     public MainView()
     {
@@ -22,16 +27,11 @@ public class MainView
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/main.fxml"));
             this.root = loader.load();
 
-            MainController controller = loader.getController();
-            controller.setView(this);
-
             IPhysicsWorld world = new PhysicsWorld();
 
-            GameView gameView = new GameView(world);
-            EditView editView = new EditView(world);
+            this.eventHandler = new MainController(this);
 
-
-            this.root.setCenter(gameView.getParent());
+            View editView = new EditView(world);
 
         }
         catch (IOException e)

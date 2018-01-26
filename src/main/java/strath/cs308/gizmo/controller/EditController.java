@@ -1,22 +1,33 @@
 package strath.cs308.gizmo.controller;
 
+import javafx.event.Event;
+import strath.cs308.gizmo.controller.interfaces.Controller;
 import strath.cs308.gizmo.model.interfaces.IPhysicsBody;
 import strath.cs308.gizmo.model.interfaces.IPhysicsWorld;
-import strath.cs308.gizmo.view.EditView;
+import strath.cs308.gizmo.view.interfaces.IEditView;
+import strath.cs308.gizmo.view.interfaces.View;
 
-public class EditController
+public class EditController implements Controller
 {
     private IPhysicsWorld world;
-    private EditView view;
+    private IEditView view;
 
-    public void setWorld(IPhysicsWorld world)
+
+    public EditController(IPhysicsWorld world, IEditView view)
     {
         this.world = world;
-        IPhysicsBody body = this.world.body();
+        this.view = view;
     }
 
-    public void setView(EditView view)
+    @Override
+    public void setView(View view)
     {
-        this.view = view;
+        this.view = (IEditView) view;
+    }
+
+    @Override
+    public void handle(Event event)
+    {
+
     }
 }

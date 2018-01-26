@@ -8,8 +8,7 @@ public class ShapeFactory
     public Shape create(IPhysicsBody body)
     {
 
-        // factory to convert the model classes to drawable
-        // javafx shapes like square and stuff
+        // create shapes based in circles and line Segments
 
         return null;
     }

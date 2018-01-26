@@ -1,22 +1,33 @@
 package strath.cs308.gizmo.controller;
 
+import javafx.event.Event;
+import strath.cs308.gizmo.controller.interfaces.Controller;
 import strath.cs308.gizmo.model.interfaces.IPhysicsBody;
 import strath.cs308.gizmo.model.interfaces.IPhysicsWorld;
 import strath.cs308.gizmo.view.GameView;
+import strath.cs308.gizmo.view.interfaces.IGameView;
+import strath.cs308.gizmo.view.interfaces.View;
 
-public class GameController
+public class GameController implements Controller
 {
     private IPhysicsWorld world;
-    private GameView view;
+    private IGameView view;
 
-    public void setWorld(IPhysicsWorld world)
+    public GameController(IPhysicsWorld world, GameView view)
     {
         this.world = world;
-        IPhysicsBody body = this.world.body();
+        this.view = view;
     }
 
-    public void setView(GameView view)
+    @Override
+    public void setView(View view)
     {
-        this.view = view;
+        this.view = (IGameView) view;
+    }
+
+    @Override
+    public void handle(Event event)
+    {
+
     }
 }

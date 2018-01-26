@@ -1,19 +1,32 @@
 package strath.cs308.gizmo.controller;
 
+import javafx.event.Event;
+import strath.cs308.gizmo.controller.interfaces.Controller;
 import strath.cs308.gizmo.model.helper.SaveHandler;
 import strath.cs308.gizmo.model.interfaces.ISaveHandler;
 import strath.cs308.gizmo.view.MainView;
+import strath.cs308.gizmo.view.interfaces.IMainView;
+import strath.cs308.gizmo.view.interfaces.View;
 
-public class MainController
+public class MainController implements Controller
 {
-    private MainView view;
+    private IMainView view;
 
-    public void setView(MainView view)
+
+    public MainController(MainView view)
     {
         this.view = view;
+    }
 
+    @Override
+    public void setView(View view)
+    {
+        this.view = (IMainView) view;
+    }
 
-        ISaveHandler handler = new SaveHandler();
+    @Override
+    public void handle(Event event)
+    {
 
     }
 }
