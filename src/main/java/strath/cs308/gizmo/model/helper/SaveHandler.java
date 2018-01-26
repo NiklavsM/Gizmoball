@@ -11,9 +11,6 @@ public class SaveHandler implements ISaveHandler
 
     public void load()
     {
-        Ball ball = new Ball();
-        Circle circle = new Circle();
-        Rectangle rectangle = new Rectangle();
-        Flipper flipper1 = new Flipper();
+        PhysicsBodyFactory factory = new PhysicsBodyFactory();
     }
 }
