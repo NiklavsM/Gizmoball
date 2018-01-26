@@ -8,6 +8,5 @@ public class AddGizmo implements EventHandler<MouseEvent>
     @Override
     public void handle(MouseEvent mouseEvent)
     {
-
     }
 }
