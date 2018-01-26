@@ -19,34 +19,10 @@ public class RunHandler<ActionEvent extends Event> implements EventHandler<Actio
 		model = m;
 		gameRunning = false;
 
+		setup();
 	}
 
-	@Override
-	public final void handle(final ActionEvent e) {
-
-		Button button = (Button) e.getSource();
-		if (e.getSource() instanceof Button) {
-			button = (Button) e.getSource();
-		}
-
-		if (button != null) {
-			switch (button.getText()) {
-				case "Start":
-					gameRunning = true;
-					break;
-				case "Stop":
-					gameRunning = false;
-					System.out.println(gameRunning);
-					break;
-				case "Tick":
-					model.moveBall();
-					break;
-				case "Quit":
-					System.exit(0);
-					break;
-			}
-		}
-
+	private void setup() {
 		gameThread = new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -64,7 +40,36 @@ public class RunHandler<ActionEvent extends Event> implements EventHandler<Actio
 
 			}
 		});
-		gameThread.start();
+	}
+
+	@Override
+	public final void handle(final ActionEvent e) {
+
+		Button button = (Button) e.getSource();
+		if (e.getSource() instanceof Button) {
+			button = (Button) e.getSource();
+		}
+
+		if (button != null) {
+			switch (button.getText()) {
+				case "Start":
+					gameRunning = true;
+					gameThread.start();
+					break;
+				case "Stop":
+					gameRunning = false;
+					gameThread.stop();
+					break;
+				case "Tick":
+					model.moveBall();
+					break;
+				case "Quit":
+					System.exit(0);
+					break;
+			}
+		}
+
+
 
 	}
 }
