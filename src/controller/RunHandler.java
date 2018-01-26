@@ -5,42 +5,30 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import model.Model;
 
-import javax.management.timer.Timer;
+import javax.swing.*;
+import java.awt.event.ActionListener;
 
 
 public class RunHandler<ActionEvent extends Event> implements EventHandler<ActionEvent> {
 
-	private Timer timer;
+	private static Timer timer;
 	private Model model;
-	private static boolean gameRunning;
-	private Thread gameThread;
+	private javafx.event.ActionEvent timerEvent;
 
 	public RunHandler(Model m) {
 		model = m;
-		gameRunning = false;
-
 		setup();
 	}
 
 	private void setup() {
-		gameThread = new Thread(new Runnable() {
+		timer = new Timer(50, new ActionListener() {
 			@Override
-			public void run() {
-
-				while (gameRunning) {
-					System.out.println(gameRunning);
-					model.moveBall();
-
-					try {
-						Thread.sleep(50);
-					} catch (InterruptedException e1) {
-						e1.printStackTrace();
-					}
-				}
-
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				model.moveBall();
 			}
 		});
 	}
+
 
 	@Override
 	public final void handle(final ActionEvent e) {
@@ -53,12 +41,11 @@ public class RunHandler<ActionEvent extends Event> implements EventHandler<Actio
 		if (button != null) {
 			switch (button.getText()) {
 				case "Start":
-					gameRunning = true;
-					gameThread.start();
+					timer.start();
 					break;
 				case "Stop":
-					gameRunning = false;
-					gameThread.stop();
+					timer.stop();
+					System.out.println(timer.isRunning());
 					break;
 				case "Tick":
 					model.moveBall();
@@ -68,8 +55,6 @@ public class RunHandler<ActionEvent extends Event> implements EventHandler<Actio
 					break;
 			}
 		}
-
-
-
 	}
+
 }
