@@ -3,7 +3,7 @@ Label, .menu .label {
 }
 
 MenuBar {
-    -fx-background-color: #607D8B;
+    -fx-background-color: #263238;
     -fx-border-width: 0px 0px 2px 0px;
     -fx-border-color: #37474F;
 }
@@ -16,6 +16,10 @@ BorderPane {
 
 Canvas {
     -fx-background-color: white;
+}
+
+.statusbar {
+    -fx-background-color: #263238;
 }
 
 ToolBar, .GizmoPane {

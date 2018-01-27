@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -22,55 +23,63 @@ public class GizmoView extends Application {
 
     private static final double APP_HEIGHT = 800;
     private static final double APP_WIDTH = 1000;
+    private final String STYLESHEET_PATH;
 
 
+    public GizmoView() {
+        STYLESHEET_PATH = this.getClass().getResource("/assets/style.css").toExternalForm();
+    }
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         BorderPane root = new BorderPane();
+        Scene scene = new Scene(root, 800, 500);
 
-        // menu bar
+        // Top
         MenuBar menuBar = makeMenubar();
-
-        // Tools
         ToolBar toolbar = makeToolbar();
 
-        // Side tools
+        VBox menuBars = new VBox();
+        menuBars.getChildren().addAll(menuBar, toolbar);
+
+        // Left
         ToolBar sideToolbar = makeSideToolbar();
 
-        // Gizmos
+        // Right
         VBox rigthSideBar = new VBox();
 
         ScrollPane gizmoSideBarscrollPane = makeGizmoScrollPane();
         rigthSideBar.getChildren().add(gizmoSideBarscrollPane);
 
-
-        // Canvas
+        // Center
         Canvas canvas = new BoardCanvasView(500, 500);
 
-
-        root.getChildren().addAll(menuBar);
-
-        VBox menuBars = new VBox();
-        menuBars.getChildren().addAll(menuBar, toolbar);
-
+        // bottom
+        Node statusBar = makeStatusBar();
 
         root.setTop(menuBars);
         root.setCenter(canvas);
         root.setLeft(sideToolbar);
         root.setRight(rigthSideBar);
+        root.setBottom(statusBar);
 
-
-
-        Scene scene = new Scene(root, 800, 500);
-        String stylesheeyLocation = this.getClass().getResource("/assets/style.css").toExternalForm();
-        scene.getStylesheets().add(stylesheeyLocation);
-
+        scene.getStylesheets().add(STYLESHEET_PATH);
 
         primaryStage.setMinHeight(APP_HEIGHT);
         primaryStage.setMinWidth(APP_WIDTH);
         primaryStage.setScene(scene);
         primaryStage.setTitle(APPLICATION_NAME);
         primaryStage.show();
+    }
+
+    private Node makeStatusBar() {
+        HBox container = new HBox();
+        container.getStyleClass().add("statusbar");
+        container.setPadding(new Insets(2, 2, 2, 16));
+        Label label = new Label("Add some Gizmos to the map");
+
+        container.getChildren().add(label);
+        return container;
     }
 
     private MenuBar makeMenubar() {
@@ -163,7 +172,6 @@ public class GizmoView extends Application {
     private Node makeToolItem(Node symbol, String text) {
 
         Button button = new Button();
-        button.setStyle("-fx-background-color: none");
 
         Tooltip tooltip = new Tooltip(text);
         button.setTooltip(tooltip);
@@ -185,6 +193,9 @@ public class GizmoView extends Application {
         Circle circleShape = new Circle(12.5, Color.RED);
         gizmoSideBar.addGizmo(circleShape, "Circle");
 
+        Circle ballShape = new Circle(9, Color.ORANGE);
+        gizmoSideBar.addGizmo(ballShape, "Ball");
+
         ScrollPane gizmoSideBarscrollPane = new ScrollPane();
         gizmoSideBarscrollPane.getStyleClass().add("GizmoPane");
 
@@ -193,10 +204,6 @@ public class GizmoView extends Application {
         return gizmoSideBarscrollPane;
     }
 
-
-    private void leftPanel(String title) {
-
-    }
 
 
     public static void main(String[] args) {
