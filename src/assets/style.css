@@ -1,0 +1,37 @@
+
+Label {
+    -fx-stroke: white;
+}
+
+BorderPane {
+    -fx-background-color: #37474F;
+    -fx-stroke: white;
+    -fx-effect: dropshadow(gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+
+Canvas {
+    -fx-background-color: white;
+}
+
+ToolBar, .GizmoPane {
+    -fx-background-color: #607D8B;
+    -fx-effect: dropshadow(three-pass-box , rgba(0, 0, 0, 0.8), 10,0,5,5 );
+}
+
+ToolBar Button {
+    -fx-background-color: none;
+}
+
+Seperator {
+    -fx-stroke: white;
+}
+
+/** Hack for changing background colour of ScollPane */
+ScrollPane > .viewport {
+    -fx-background-color: transparent;
+}
+
+/**
+-fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: white;
+ */
