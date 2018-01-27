@@ -1,6 +1,11 @@
+Label, .menu .label {
+    -fx-text-fill: white;
+}
 
-Label {
-    -fx-stroke: white;
+MenuBar {
+    -fx-background-color: #607D8B;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-color: #37474F;
 }
 
 BorderPane {
@@ -23,7 +28,7 @@ ToolBar Button {
 }
 
 Seperator {
-    -fx-stroke: white;
+    -fx-stroke: #37474F;
 }
 
 /** Hack for changing background colour of ScollPane */

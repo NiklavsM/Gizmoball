@@ -28,10 +28,13 @@ public class GizmoView extends Application {
     public void start(Stage primaryStage) throws Exception {
         BorderPane root = new BorderPane();
 
+        // menu bar
+        MenuBar menuBar = makeMenubar();
+
         // Tools
         ToolBar toolbar = makeToolbar();
 
-        // Tools
+        // Side tools
         ToolBar sideToolbar = makeSideToolbar();
 
         // Gizmos
@@ -44,20 +47,46 @@ public class GizmoView extends Application {
         // Canvas
         Canvas canvas = new BoardCanvasView(500, 500);
 
-        root.setTop(toolbar);
+
+        root.getChildren().addAll(menuBar);
+
+        VBox menuBars = new VBox();
+        menuBars.getChildren().addAll(menuBar, toolbar);
+
+
+        root.setTop(menuBars);
         root.setCenter(canvas);
         root.setLeft(sideToolbar);
         root.setRight(rigthSideBar);
 
+
+
         Scene scene = new Scene(root, 800, 500);
         String stylesheeyLocation = this.getClass().getResource("/assets/style.css").toExternalForm();
         scene.getStylesheets().add(stylesheeyLocation);
+
 
         primaryStage.setMinHeight(APP_HEIGHT);
         primaryStage.setMinWidth(APP_WIDTH);
         primaryStage.setScene(scene);
         primaryStage.setTitle(APPLICATION_NAME);
         primaryStage.show();
+    }
+
+    private MenuBar makeMenubar() {
+        MenuBar menuBar = new MenuBar();
+
+        Menu fileMenu = new Menu("File");
+
+        Menu editMenu = new Menu("Edit");
+
+        Menu viewMenu = new Menu("View");
+
+        Menu helpMenu = new Menu("Help");
+
+        menuBar.getMenus().addAll(fileMenu, editMenu, viewMenu, helpMenu);
+
+        return menuBar;
     }
 
     private ToolBar makeToolbar() {
