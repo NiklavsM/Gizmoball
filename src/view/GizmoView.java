@@ -1,21 +1,16 @@
 package view;
 
 import controller.RunHandler;
-import controller.RunListener;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Model;
 import model.VerticalLine;
-
-import java.awt.event.ActionListener;
 
 
 public class GizmoView extends Application {
@@ -57,6 +52,7 @@ public class GizmoView extends Application {
 
         root.getChildren().add(borderPane);
 
+        primaryStage.setOnCloseRequest(e -> System.exit(0));
         primaryStage.setScene(scene);
         primaryStage.setTitle(APPLICATION_NAME);
         primaryStage.show();
