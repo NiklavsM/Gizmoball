@@ -32,14 +32,16 @@ public class GizmoView extends Application {
         VBox sidePanel = new VBox();
         sidePanel.setMinWidth(100);
 
+        RunHandler<javafx.event.ActionEvent> runHandler = new RunHandler<>(model);
+
         Button startButton = new Button("Start");
-        startButton.setOnAction(new RunHandler<>(model));
+        startButton.setOnAction(runHandler);
         Button stopButton = new Button("Stop");
-        stopButton.setOnAction(new RunHandler<>(model));
+        stopButton.setOnAction(runHandler);
         Button tickButton = new Button("Tick");
-        tickButton.setOnAction(new RunHandler<>(model));
+        tickButton.setOnAction(runHandler);
         Button quitButton = new Button("Quit");
-        quitButton.setOnAction(new RunHandler<>(model));
+        quitButton.setOnAction(runHandler);
 
         sidePanel.getChildren().add(startButton);
         sidePanel.getChildren().add(stopButton);
