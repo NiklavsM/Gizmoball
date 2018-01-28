@@ -90,3 +90,31 @@ ScrollPane > .viewport {
 -fx-border-width: 0px 0px 1px 0px;
     -fx-border-color: white;
  */
+
+.load-button {
+    -fx-background-image: url("/assets/icons/load.png");
+}
+
+.save-button {
+    -fx-background-image: url("/assets/icons/save.png");
+}
+.saveas-button {
+    -fx-background-image: url("/assets/icons/save.png");
+}
+
+.clear-button {
+    -fx-background-image: url("/assets/icons/clear.png");
+}
+
+.undo-button {
+    -fx-background-image: url("/assets/icons/undo.png");
+}
+
+.redo-button {
+    -fx-background-image: url("/assets/icons/redo.png");
+}
+
+.grid-button {
+    -fx-background-image: url("/assets/icons/grid.png");
+}
+

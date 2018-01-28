@@ -102,32 +102,31 @@ public class GizmoView extends Application {
 
     private ToolBar makeToolbar() {
         Rectangle rectangle = new Rectangle(10, 10, Theme.Colors.WHITE);
-        Node load = makeToolbarItem(rectangle, "Load");
-        Node save = makeToolbarItem(rectangle, "Save");
-        Node saveAs = makeToolbarItem(rectangle, "Save As");
-        Node clearBoard = makeToolbarItem(rectangle, "Clear Board");
-        Node redo = makeToolbarItem(rectangle, "Redo");
-        Node undo = makeToolbarItem(rectangle, "Undo");
-        Node grid = makeToolbarItem(rectangle, "Show/Hide Grid");
+        Node load = makeToolbarItem(rectangle, "Load", "load-button");
+        Node save = makeToolbarItem(rectangle, "Save", "save-button");
+        Node saveAs = makeToolbarItem(rectangle, "Save As", "saveas-button");
+        Node clearBoard = makeToolbarItem(rectangle, "Clear Board", "clear-button");
+        Node redo = makeToolbarItem(rectangle, "Redo", "redo-button");
+        Node undo = makeToolbarItem(rectangle, "Undo", "undo-button");
+
+        Node grid = makeToolbarItem(rectangle, "Toggle Grid", "grid-button");
 
         ToolBar toolBar = new ToolBar(
-                load, save, saveAs, clearBoard, redo, undo, grid
+                load, save, saveAs, clearBoard, undo, redo, grid
         );
-
+        toolBar.setPadding(Theme.DEFAULT_PADDING);
         return toolBar;
     }
 
-    private Node makeToolbarItem(Node symbol, String text) {
+    private Node makeToolbarItem(Node symbol, String text, String cssClass) {
         VBox box = new VBox();
         box.setAlignment(Pos.CENTER);
         box.setSpacing(10);
 
         Button button = new Button();
-        button.setMinSize(25, 25);
-
-        // Image
-        WritableImage image = symbol.snapshot(new SnapshotParameters(), null);
-        button.setGraphic(new ImageView(image));
+        button.setMaxSize(24, 24);
+        button.setMinSize(24, 24);
+        button.getStyleClass().add(cssClass);
 
         Label label = new Label(text);
         label.setFont(Theme.Fonts.REGULAR_FONT);
@@ -162,7 +161,7 @@ public class GizmoView extends Application {
         box.setSpacing(10);
 
         Button button = new Button();
-        button.setMinSize(25, 25);
+        button.setMinSize(30, 30);
 
         ToolBar toolBar = new ToolBar(
                 rec, del, con, dis, rot
