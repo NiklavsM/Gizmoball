@@ -10,12 +10,11 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import view.GizmoPane;
-import view.Kit;
+import view.GizmoGrid;
+import view.Theme;
 
 public class GizmoView extends Application {
 
@@ -24,11 +23,13 @@ public class GizmoView extends Application {
     private static final double APP_HEIGHT = 800;
     private static final double APP_WIDTH = 1000;
     private final String STYLESHEET_PATH;
+    private Label statusBarLabel;
 
 
     public GizmoView() {
         STYLESHEET_PATH = this.getClass().getResource("/assets/style.css").toExternalForm();
     }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -47,9 +48,9 @@ public class GizmoView extends Application {
 
         // Right
         VBox rigthSideBar = new VBox();
+        VBox gizmoPanel = makeGizmoPanel();
 
-        ScrollPane gizmoSideBarscrollPane = makeGizmoScrollPane();
-        rigthSideBar.getChildren().add(gizmoSideBarscrollPane);
+        rigthSideBar.getChildren().add(gizmoPanel);
 
         // Center
         Canvas canvas = new BoardCanvasView(500, 500);
@@ -76,11 +77,12 @@ public class GizmoView extends Application {
         HBox container = new HBox();
         container.getStyleClass().add("statusbar");
         container.setPadding(new Insets(2, 2, 2, 16));
-        Label label = new Label("Add some Gizmos to the map");
+        statusBarLabel = new Label("Add some Gizmos to the map");
 
-        container.getChildren().add(label);
+        container.getChildren().add(statusBarLabel);
         return container;
     }
+
 
     private MenuBar makeMenubar() {
         MenuBar menuBar = new MenuBar();
@@ -99,14 +101,13 @@ public class GizmoView extends Application {
     }
 
     private ToolBar makeToolbar() {
-
-        Rectangle rectangle = new Rectangle(10, 10, Color.WHITE);
+        Rectangle rectangle = new Rectangle(10, 10, Theme.Colors.WHITE);
         Node load = makeToolbarItem(rectangle, "Load");
         Node save = makeToolbarItem(rectangle, "Save");
         Node saveAs = makeToolbarItem(rectangle, "Save As");
 
         ToolBar toolBar = new ToolBar(
-            load, save, saveAs
+                load, save, saveAs
         );
 
         return toolBar;
@@ -125,7 +126,7 @@ public class GizmoView extends Application {
         button.setGraphic(new ImageView(image));
 
         Label label = new Label(text);
-        label.setFont(Kit.REGULAR_FONT);
+        label.setFont(Theme.Fonts.REGULAR_FONT);
 
         box.getChildren().addAll(button, label);
 
@@ -135,20 +136,20 @@ public class GizmoView extends Application {
 
     private ToolBar makeSideToolbar() {
 
-        Rectangle rectangle = new Rectangle(10, 10, Color.ROYALBLUE);
+        Rectangle rectangle = new Rectangle(10, 10, Theme.Colors.BLUE);
         Node rec = makeToolItem(rectangle, "Add Tool");
 
-        Rectangle deleteTool = new Rectangle(10, 10, Color.RED);
+        Rectangle deleteTool = new Rectangle(10, 10, Theme.Colors.RED);
         Node del = makeToolItem(deleteTool, "Delete Tool");
 
-        Circle connectTool = new Circle(5, Color.LIME);
+        Circle connectTool = new Circle(5, Theme.Colors.GREEN);
         Node con = makeToolItem(connectTool, "Connect tool");
 
-        Circle disconnectionTool = new Circle(5, Color.DEEPPINK);
+        Circle disconnectionTool = new Circle(5, Theme.Colors.PINK);
         Node dis = makeToolItem(disconnectionTool, "Disconnect tool");
 
 
-        Circle rotateTool = new Circle(5, Color.ORANGE);
+        Circle rotateTool = new Circle(5, Theme.Colors.ORANGE);
         Node rot = makeToolItem(rotateTool, "Rotate Tool");
 
 
@@ -184,29 +185,43 @@ public class GizmoView extends Application {
     }
 
 
-    private ScrollPane makeGizmoScrollPane() {
-        GizmoPane gizmoSideBar = new GizmoPane();
+    private VBox makeGizmoPanel() {
+        VBox box = new VBox();
+        box.setSpacing(16);
+        box.setPadding(Theme.DEFAULT_PADDING);
 
-        Rectangle squareShape = new Rectangle(25, 25, Color.ROYALBLUE);
-        gizmoSideBar.addGizmo(squareShape, "Square");
 
-        Circle circleShape = new Circle(12.5, Color.RED);
-        gizmoSideBar.addGizmo(circleShape, "Circle");
+        // Heading
+        Label titleLabel = new Label("Gizmos");
+        titleLabel.setFont(Theme.Fonts.TITLE_FONT);
 
-        Circle ballShape = new Circle(9, Color.ORANGE);
-        gizmoSideBar.addGizmo(ballShape, "Ball");
+        // Content
+        ScrollPane scrollpane = new ScrollPane();
+        GizmoGrid gizmogrid = new GizmoGrid();
 
-        ScrollPane gizmoSideBarscrollPane = new ScrollPane();
-        gizmoSideBarscrollPane.getStyleClass().add("GizmoPane");
+        Rectangle squareShape = new Rectangle(25, 25, Theme.Colors.BLUE);
+        gizmogrid.addGizmo(squareShape, "Square");
 
-        gizmoSideBarscrollPane.setContent(gizmoSideBar);
-        gizmoSideBarscrollPane.setMaxHeight(250);
-        return gizmoSideBarscrollPane;
+        Circle circleShape = new Circle(12.5, Theme.Colors.RED);
+        gizmogrid.addGizmo(circleShape, "Circle");
+
+        Circle ballShape = new Circle(9, Theme.Colors.ORANGE);
+        gizmogrid.addGizmo(ballShape, "Ball");
+
+
+        Rectangle absorber = new Rectangle(25, 15, Theme.Colors.PURPLE);
+        gizmogrid.addGizmo(absorber, "Absorber");
+
+
+        scrollpane.setContent(gizmogrid);
+        scrollpane.setMaxHeight(250);
+
+        box.getStyleClass().add("GizmoPane");
+        box.getChildren().addAll(titleLabel, scrollpane);
+        return box;
     }
 
-
-
-    public static void main(String[] args) {
-        GizmoView.launch(args);
+    public void setStatusBarText(String statusBarText) {
+        statusBarLabel.setText(statusBarText);
     }
 }

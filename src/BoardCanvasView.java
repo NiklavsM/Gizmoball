@@ -1,6 +1,6 @@
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
+import view.Theme;
 
 public class BoardCanvasView extends Canvas {
 
@@ -13,10 +13,10 @@ public class BoardCanvasView extends Canvas {
     private void setup() {
         GraphicsContext gc = this.getGraphicsContext2D();
 
-        gc.setFill(Color.WHITE);
+        gc.setFill(Theme.Colors.WHITE);
         gc.strokeRect(0, 0, super.getWidth(), super.getHeight());
 
-        gc.setFill(Color.WHITE);
+        gc.setFill(Theme.Colors.WHITE);
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < 20; j++) {
                 gc.strokeRect(i*25, j*25, 25, 25);

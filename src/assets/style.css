@@ -1,9 +1,25 @@
+/**
+Focus Colour: #37474F
+ */
+
+
+.root {
+    -fx-base: #607D8B;
+    -fx-accent: #37474F;
+    -fx-default-button:  #607D8B;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: #37474F;
+    -fx-focused-mark-color : -fx-focused-text-base-color ;
+    -fx-font-family: verdana;
+}
+
+
 Label, .menu .label {
     -fx-text-fill: white;
 }
 
 MenuBar {
-    -fx-background-color: #263238;
+    -fx-background-color: #607D8B;
     -fx-border-width: 0px 0px 2px 0px;
     -fx-border-color: #37474F;
 }
@@ -22,6 +38,14 @@ Canvas {
     -fx-background-color: #263238;
 }
 
+
+.GizmoPane {
+    -fx-base: rgba(255,255,255,0.0); /* Makes sure that ScrollView has no color */
+    -fx-accent: rgba(255,255,255,0.0);
+    -fx-faint-focus-color: rgba(255,255,255,0.0);
+}
+
+
 ToolBar, .GizmoPane {
     -fx-background-color: #607D8B;
     -fx-effect: dropshadow(three-pass-box , rgba(0, 0, 0, 0.8), 10,0,5,5 );
@@ -35,9 +59,14 @@ Seperator {
     -fx-stroke: #37474F;
 }
 
+
 /** Hack for changing background colour of ScollPane */
 ScrollPane > .viewport {
     -fx-background-color: transparent;
+
+    -fx-base: rgba(255,255,255,0.0); /* Makes sure that ScrollView has no color */
+    -fx-accent: rgba(255,255,255,0.0);
+    -fx-faint-focus-color: rgba(255,255,255,0.0);
 }
 
 /**
