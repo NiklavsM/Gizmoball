@@ -14,12 +14,16 @@ Focus Colour: #37474F
 }
 
 
-Label, .menu .label {
+Label {
     -fx-text-fill: white;
 }
 
+Label, .menu .label {
+    -fx-text-fill: #B0BEC5;
+}
+
 MenuBar {
-    -fx-background-color: #607D8B;
+    -fx-background-color: #455A64;
     -fx-border-width: 0px 0px 2px 0px;
     -fx-border-color: #37474F;
 }
@@ -30,8 +34,10 @@ BorderPane {
     -fx-effect: dropshadow(gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
 }
 
+/* FIXME: canvas Styles arne't working :( */
 Canvas {
     -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
 }
 
 .statusbar {
@@ -43,12 +49,23 @@ Canvas {
     -fx-base: rgba(255,255,255,0.0); /* Makes sure that ScrollView has no color */
     -fx-accent: rgba(255,255,255,0.0);
     -fx-faint-focus-color: rgba(255,255,255,0.0);
+    -fx-background-color: #455A64;
+    -fx-effect: dropshadow(three-pass-box , rgba(0, 0, 0, 0.5), 10,0,5,5 );
+
 }
 
+ToolBar {
+    -fx-background-color: #455A64;
 
-ToolBar, .GizmoPane {
-    -fx-background-color: #607D8B;
-    -fx-effect: dropshadow(three-pass-box , rgba(0, 0, 0, 0.8), 10,0,5,5 );
+    -fx-effect: dropshadow(three-pass-box , rgba(0, 0, 0, 0.1), 10,0,5,5 );
+}
+
+.toolbar {
+    -fx-background-color: #455A64;
+
+    -fx-border-width: 0px 2px 0px 0px;
+    -fx-border-color: #37474F;
+    -fx-effect: dropshadow(three-pass-box , rgba(0, 0, 0, 0.1), 10,0,5,5 );
 }
 
 ToolBar Button {

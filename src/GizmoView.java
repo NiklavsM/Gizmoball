@@ -44,7 +44,7 @@ public class GizmoView extends Application {
         menuBars.getChildren().addAll(menuBar, toolbar);
 
         // Left
-        ToolBar sideToolbar = makeSideToolbar();
+        ToolBar sideToolbar = makeMouseModeToolbar();
 
         // Right
         VBox rigthSideBar = new VBox();
@@ -105,9 +105,13 @@ public class GizmoView extends Application {
         Node load = makeToolbarItem(rectangle, "Load");
         Node save = makeToolbarItem(rectangle, "Save");
         Node saveAs = makeToolbarItem(rectangle, "Save As");
+        Node clearBoard = makeToolbarItem(rectangle, "Clear Board");
+        Node redo = makeToolbarItem(rectangle, "Redo");
+        Node undo = makeToolbarItem(rectangle, "Undo");
+        Node grid = makeToolbarItem(rectangle, "Show/Hide Grid");
 
         ToolBar toolBar = new ToolBar(
-                load, save, saveAs
+                load, save, saveAs, clearBoard, redo, undo, grid
         );
 
         return toolBar;
@@ -134,22 +138,22 @@ public class GizmoView extends Application {
     }
 
 
-    private ToolBar makeSideToolbar() {
+    private ToolBar makeMouseModeToolbar() {
 
-        Rectangle rectangle = new Rectangle(10, 10, Theme.Colors.BLUE);
+        Rectangle rectangle = new Rectangle(10, 10, Theme.Colors.WHITE);
         Node rec = makeToolItem(rectangle, "Add Tool");
 
-        Rectangle deleteTool = new Rectangle(10, 10, Theme.Colors.RED);
+        Rectangle deleteTool = new Rectangle(10, 10, Theme.Colors.WHITE);
         Node del = makeToolItem(deleteTool, "Delete Tool");
 
-        Circle connectTool = new Circle(5, Theme.Colors.GREEN);
+        Circle connectTool = new Circle(5, Theme.Colors.WHITE);
         Node con = makeToolItem(connectTool, "Connect tool");
 
-        Circle disconnectionTool = new Circle(5, Theme.Colors.PINK);
+        Circle disconnectionTool = new Circle(5, Theme.Colors.WHITE);
         Node dis = makeToolItem(disconnectionTool, "Disconnect tool");
 
 
-        Circle rotateTool = new Circle(5, Theme.Colors.ORANGE);
+        Circle rotateTool = new Circle(5, Theme.Colors.WHITE);
         Node rot = makeToolItem(rotateTool, "Rotate Tool");
 
 
@@ -193,7 +197,7 @@ public class GizmoView extends Application {
 
         // Heading
         Label titleLabel = new Label("Gizmos");
-        titleLabel.setFont(Theme.Fonts.TITLE_FONT);
+        titleLabel.setFont(Theme.Fonts.CARD_TITLE);
 
         // Content
         ScrollPane scrollpane = new ScrollPane();
@@ -208,7 +212,6 @@ public class GizmoView extends Application {
         Circle ballShape = new Circle(9, Theme.Colors.ORANGE);
         gizmogrid.addGizmo(ballShape, "Ball");
 
-
         Rectangle absorber = new Rectangle(25, 15, Theme.Colors.PURPLE);
         gizmogrid.addGizmo(absorber, "Absorber");
 
@@ -220,6 +223,43 @@ public class GizmoView extends Application {
         box.getChildren().addAll(titleLabel, scrollpane);
         return box;
     }
+
+
+//    private VBox makePropertiesPanel() {
+//        VBox box = new VBox();
+//        box.setSpacing(16);
+//        box.setPadding(Theme.DEFAULT_PADDING);
+//
+//
+//        // Heading
+//        Label titleLabel = new Label("Gizmos");
+//        titleLabel.setFont(Theme.Fonts.CARD_TITLE);
+//
+//        // Content
+//        ScrollPane scrollpane = new ScrollPane();
+//        GizmoGrid gizmogrid = new GizmoGrid();
+//
+//        Rectangle squareShape = new Rectangle(25, 25, Theme.Colors.BLUE);
+//        gizmogrid.addGizmo(squareShape, "Square");
+//
+//        Circle circleShape = new Circle(12.5, Theme.Colors.RED);
+//        gizmogrid.addGizmo(circleShape, "Circle");
+//
+//        Circle ballShape = new Circle(9, Theme.Colors.ORANGE);
+//        gizmogrid.addGizmo(ballShape, "Ball");
+//
+//
+//        Rectangle absorber = new Rectangle(25, 15, Theme.Colors.PURPLE);
+//        gizmogrid.addGizmo(absorber, "Absorber");
+//
+//
+//        scrollpane.setContent(gizmogrid);
+//        scrollpane.setMaxHeight(250);
+//
+//        box.getStyleClass().add("GizmoPane");
+//        box.getChildren().addAll(titleLabel, scrollpane);
+//        return box;
+//    }
 
     public void setStatusBarText(String statusBarText) {
         statusBarLabel.setText(statusBarText);
