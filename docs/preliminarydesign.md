@@ -13,6 +13,14 @@ Gizmoball is an arcade game very similar to pinball. The aim is to keep a ball m
 
 - Add a ball to the playing area, specifying its position 
 
+- Move an existing ball to a different position
+
+- Edit the velocity and the diameter of an existing ball
+
+- Remove a ball from tge playing area
+
+- Set custom values for gravity and friction
+
 - Move a gizmo from one cell to another  
 
 - Rotate a gizmo 90° clockwise  
@@ -201,7 +209,7 @@ Postconditions: an existing ball is removed from the playing area
 
 ### Edit Ball
 
-Description: Edit friction and gravity of a ball on the board
+Description: Edit the velocity and the diameter of a ball on the board
 
 Preconditions: Editor mode selected 
 
