@@ -23,6 +23,8 @@ Editor mode:
 
 - Make a key press trigger a particular gizmo's action 
 
+- Clear the playing area
+
 - Save the configurations to a file 
 
 - Load particular configurations from a file and display it on the screen 
@@ -267,6 +269,24 @@ Paths:
     2. Go back to 2. 
 
 --- 
+
+###Clear playing area
+
+Precondition: Editor mode selected and at least one action performed
+
+Triggers: "Clear Board" button selected
+
+Paths:
+
+1. User clicks "Clear Board" button
+
+2. All gizmos are removed from the playing area
+
+Postconditions: The playing area is empty and ready for editing
+
+All gizmos are cleared from the board
+
+---
 
 ### Save configurations 
 
