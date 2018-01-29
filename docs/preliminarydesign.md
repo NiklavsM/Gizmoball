@@ -179,9 +179,54 @@ Postconditions: a new ball is now added to the playing area.
 
 ### Remove Ball
 
+Description: Remove a ball that is already placed in the playing area
+
+Preconditions: Editor mode selected and in remove mode
+
+Triggers: Ball in the playing area selected 
+
+Paths: 
+
+* Main: 
+
+    1. User selects "Remove" button from the edit toolbar and is in remove mode
+    
+    2. If user clics on ball, it is removed from the board, otherwise go back to M1. 
+    
+
+Postconditions: an existing ball is removed from the playing area
+
+
 ---
 
 ### Edit Ball
+
+Description: Edit friction and gravity of a ball on the board
+
+Preconditions: Editor mode selected 
+
+Triggers: Ball in the playing area clicked and Properties tab selected  
+
+Paths: 
+
+* Main: 
+
+    1. User cicks on ball 
+    
+    2. User selects Properties tab
+  
+    3. User enters new values in the input fields for the velocity and the diameter. 
+
+    4. Ball is updated with new values
+    
+* A1:  
+
+    1. Values are in the wrong format, notify user. 
+
+    2. Go back to M3. 
+
+Postconditions: An existing ball is updated with new values
+
 
 ---
 
@@ -211,6 +256,21 @@ Postconditions: a new ball is now added to the playing area.
 
 ### Rotate Gizmo
 
+**Precondition:** Editor mode selected and in rotate mode
+
+**Triggers:** Gizmo selected and delete button has been clicked 
+
+**Paths:**
+
+1. User clicks on gizmo 
+
+2. User Clicks delete button 
+
+3. Gizmo is removed from the map 
+
+**Postconditions:** Gizmo has been removed from the map  
+
+
 ---
 
 ### Edit gravity and friction 
@@ -228,6 +288,11 @@ Postconditions: a new ball is now added to the playing area.
     
     3. User clicks the apply button.  
 
+* A1: 
+
+    1. If the value is in the wrong format, notify user. 
+
+    2. Go back to 2. 
 
 --- 
 
