@@ -42,9 +42,24 @@ public class GizmoView extends Application {
 
         // Right
         VBox rigthSideBar = new VBox();
+
         VBox gizmoPanel = makeGizmoPanel();
 
-        rigthSideBar.getChildren().add(gizmoPanel);
+        TabPane tabPane = new TabPane();
+
+        Tab gizmoTab = new Tab();
+        gizmoTab.setText("Gizmos");
+        gizmoTab.setContent(gizmoPanel);
+        gizmoTab.setClosable(false);
+
+        Tab propertiesTab = new Tab();
+        propertiesTab.setText("Properties");
+        propertiesTab.setClosable(false);
+
+        tabPane.getTabs().add(gizmoTab);
+        tabPane.getTabs().add(propertiesTab);
+
+        rigthSideBar.getChildren().add(tabPane);
 
         // Center
         Canvas canvas = new BoardCanvasView(500, 500);

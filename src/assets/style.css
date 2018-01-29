@@ -43,6 +43,27 @@ Canvas {
     -fx-background-color: #263238;
 }
 
+/* tabs */
+
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-background-radius: 0;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0; /* Make tab header transparent */
+}
+
+
+.tab{
+    -fx-background-color: #263238;
+    -fx-padding: 0 30 0 30;
+
+}
+.tab:selected {
+    -fx-background-color: #455A64;
+}
+
+
 .GizmoPane {
     -fx-base: rgba(255, 255, 255, 0.0); /* Makes sure that ScrollView has no color */
     -fx-accent: rgba(255, 255, 255, 0.0);
