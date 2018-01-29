@@ -1,4 +1,4 @@
-package view;
+package view.editor;
 
 import javafx.geometry.Insets;
 import javafx.scene.paint.Color;

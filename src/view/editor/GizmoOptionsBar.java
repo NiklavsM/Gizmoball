@@ -1,13 +1,6 @@
-package view;
+package view.editor;
 
-import controller.toolbar.ClearButtonHandler;
-import controller.toolbar.LoadButtonHandler;
-import controller.toolbar.PlayButtonEventHandler;
-import controller.toolbar.RedoButtonHandler;
-import controller.toolbar.SaveAsButtonHandler;
-import controller.toolbar.SaveButtonHandler;
-import controller.toolbar.ToggleGridButtonHandler;
-import controller.toolbar.UndoButtonHandler;
+import controller.options.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
