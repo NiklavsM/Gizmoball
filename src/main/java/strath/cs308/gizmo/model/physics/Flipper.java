@@ -8,7 +8,7 @@ import strath.cs308.gizmo.model.interfaces.ITriggerable;
 
 import java.util.List;
 
-public class Flipper extends PhysicsBody
+public class Flipper extends PhysicsBody implements ITriggerable
 {
     private final FlipperDirection direction;
 
@@ -37,12 +37,6 @@ public class Flipper extends PhysicsBody
 
     @Override
     public void onTrigger()
-    {
-
-    }
-
-    @Override
-    public void linkTrigger(ITriggerable other)
     {
 
     }
