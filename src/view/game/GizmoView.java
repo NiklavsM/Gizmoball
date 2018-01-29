@@ -31,7 +31,7 @@ public class GizmoView extends Application {
 
         // Center
         Canvas canvas = new BoardCanvasView(500, 500);
-        GameBar gameBar = new GameBar(Pos.BOTTOM_LEFT);
+        GameBar gameBar = new GameBar(Pos.BOTTOM_LEFT, root);
 
         StackPane stackPane = new StackPane();
         stackPane.setMaxHeight(APP_HEIGHT);
