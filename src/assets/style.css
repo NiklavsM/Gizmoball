@@ -160,6 +160,10 @@ Button:hover {
     -fx-background-image: url("/assets/icons/tick.png");
 }
 
-.menu-button {
+.pause-screen-button {
     -fx-background-image: url("/assets/icons/menu.png");
+}
+
+.game-bar {
+    -fx-background-color: rgba(55,71,79,0.5);
 }

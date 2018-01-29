@@ -7,25 +7,12 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ToolBar;
-import javafx.scene.layout.GridPane;
+import view.GizmoHorizontalToolBar;
 
-public class GizmoOptionsBar extends ToolBar {
-
-    private GridPane gridPane;
-    private int columnIndex;
+public class GizmoOptionsBar extends GizmoHorizontalToolBar {
 
     public GizmoOptionsBar() {
-        gridPane = new GridPane();
-        columnIndex = 0;
-
-        gridPane.setVgap(5);
-        gridPane.setHgap(16);
-        gridPane.setAlignment(Pos.CENTER);
-
-        super.getItems().add(gridPane);
-        super.setPadding(Theme.DEFAULT_PADDING);
-
+        super.setAlignment(Pos.CENTER);
         setup();
     }
 
@@ -38,7 +25,6 @@ public class GizmoOptionsBar extends ToolBar {
         addItem("Undo", "undo-button", new UndoButtonHandler());
         addItem("Redo", "redo-button", new RedoButtonHandler());
         addItem("Toggle Grid", "grid-button", new ToggleGridButtonHandler());
-
     }
 
 
@@ -52,7 +38,6 @@ public class GizmoOptionsBar extends ToolBar {
         Label label = new Label(text);
         label.setFont(Theme.Fonts.REGULAR_FONT);
 
-        gridPane.add(button, columnIndex, 0);
-        gridPane.add(label, columnIndex++, 1);
+        super.add(button, label);
     }
 }

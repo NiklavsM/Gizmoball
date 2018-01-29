@@ -1,4 +1,4 @@
-package view.game;
+package controller.game;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
