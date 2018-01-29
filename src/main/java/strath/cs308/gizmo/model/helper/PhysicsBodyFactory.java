@@ -12,5 +12,6 @@ public class PhysicsBodyFactory
         Rectangle rectangle = new Rectangle();
         Flipper flipper1 = new Flipper(FlipperDirection.LEFT);
         Absorber absorber = new Absorber();
+        Wall wall = new Wall();
     }
 }
