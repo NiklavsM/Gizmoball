@@ -26,7 +26,6 @@ public class GizmoView extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, 800, 500);
 

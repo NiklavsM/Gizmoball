@@ -1,6 +1,6 @@
 package view;
 
-import controller.toolbar.*;
+import controller.options.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
