@@ -1,13 +1,13 @@
 package strath.cs308.gizmo.controller;
 
 import javafx.event.Event;
-import strath.cs308.gizmo.controller.interfaces.Controller;
+import javafx.event.EventHandler;
 import strath.cs308.gizmo.model.helper.SaveHandler;
 import strath.cs308.gizmo.model.interfaces.IPhysicsWorld;
 import strath.cs308.gizmo.model.interfaces.ISaveHandler;
 import strath.cs308.gizmo.view.interfaces.IEditView;
 
-public class EditController implements Controller
+public class EditController implements EventHandler
 {
     private IPhysicsWorld world;
     private IEditView view;

@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import strath.cs308.gizmo.controller.GameController;
-import strath.cs308.gizmo.controller.interfaces.Controller;
 import strath.cs308.gizmo.model.interfaces.IPhysicsWorld;
 import strath.cs308.gizmo.view.helper.ShapeFactory;
 import strath.cs308.gizmo.view.interfaces.IGameView;
