@@ -3,6 +3,7 @@ package view;
 import controller.toolbar.AddToolEventHandler;
 import controller.toolbar.ConnectToolEventHandler;
 import controller.toolbar.RotateToolEventHandler;
+import controller.toolbar.SelectEventHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
@@ -34,6 +35,7 @@ public class GizmoToolbar extends ToolBar {
     private void setup() {
         addItem("Add Tool", "add-button", new AddToolEventHandler());
         addItem("Connect Tool", "connect-button", new ConnectToolEventHandler());
+        addItem("Select Tool", "select-button", new SelectEventHandler());
         addItem("Rotate tool", "rotate-button", new RotateToolEventHandler());
     }
 
@@ -41,8 +43,10 @@ public class GizmoToolbar extends ToolBar {
     private void addItem(String toolname, String className, EventHandler<ActionEvent> actionEventEventHandler) {
         Button button = new Button();
         button.setOnAction(actionEventEventHandler);
-        button.setScaleX(0.8);
-        button.setScaleY(0.8);
+        button.setMinWidth(24);
+        button.setMinHeight(24);
+        button.setScaleX(0.7);
+        button.setScaleY(0.7);
 
         Tooltip tooltip = new Tooltip(toolname);
         button.setTooltip(tooltip);

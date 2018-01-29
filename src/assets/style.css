@@ -84,6 +84,7 @@ Button:hover {
     -fx-background-color: #37474F;
 }
 
+/* Options bar */
 .play-button {
     -fx-background-image: url("/assets/icons/play.png");
 }
@@ -116,12 +117,17 @@ Button:hover {
     -fx-background-image: url("/assets/icons/grid.png");
 }
 
+/* Toolbar */
 .add-button {
     -fx-background-image: url("/assets/icons/cursor.png");
 }
 
 .connect-button {
     -fx-background-image: url("/assets/icons/connect.png");
+}
+
+.select-button {
+    -fx-background-image: url("/assets/icons/select.png");
 }
 
 .rotate-button {
