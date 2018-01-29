@@ -1,51 +1,53 @@
 package view;
 
+import controller.toolbar.AddToolEventHandler;
+import controller.toolbar.ConnectToolEventHandler;
+import controller.toolbar.RotateToolEventHandler;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ToolBar;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
 
 public class GizmoToolbar extends ToolBar {
 
+    private int rowIndex;
     private GridPane gridPane;
-    private int columnIndex;
 
     public GizmoToolbar() {
         gridPane = new GridPane();
-        gridPane.setVgap(5);
-        gridPane.setHgap(16);
+        rowIndex = 0;
+
         gridPane.setAlignment(Pos.CENTER);
-        columnIndex = 0;
+        gridPane.setVgap(16);
+
+        super.setPadding(Theme.DEFAULT_PADDING);
+        super.setOrientation(Orientation.VERTICAL);
+        super.getItems().add(gridPane);
+
         setup();
     }
 
     private void setup() {
-        addItem("Play", "play-button");
-        addItem("Load", "load-button");
-        addItem("Save", "save-button");
-        addItem("Save As", "saveas-button");
-        addItem("Clear Board", "clear-button");
-        addItem("Undo", "undo-button");
-        addItem("Redo", "redo-button");
-
-        addItem("Toggle Grid", "grid-button");
-
-        super.getItems().add(gridPane);
-        super.setPadding(Theme.DEFAULT_PADDING);
+        addItem("Add Tool", "add-button", new AddToolEventHandler());
+        addItem("Connect Tool", "connect-button", new ConnectToolEventHandler());
+        addItem("Rotate tool", "rotate-button", new RotateToolEventHandler());
     }
 
 
-    private void addItem(String text, String cssClass) {
+    private void addItem(String toolname, String className, EventHandler<ActionEvent> actionEventEventHandler) {
         Button button = new Button();
-        button.setMaxSize(24, 24);
-        button.setMinSize(24, 24);
-        button.getStyleClass().add(cssClass);
+        button.setOnAction(actionEventEventHandler);
+        button.setScaleX(0.8);
+        button.setScaleY(0.8);
 
-        Label label = new Label(text);
-        label.setFont(Theme.Fonts.REGULAR_FONT);
+        Tooltip tooltip = new Tooltip(toolname);
+        button.setTooltip(tooltip);
+        button.getStyleClass().add(className);
 
-        gridPane.add(button, columnIndex, 0);
-        gridPane.add(label, columnIndex++, 1);
+        gridPane.add(button, 0, rowIndex++);
     }
 }

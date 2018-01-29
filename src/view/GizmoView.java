@@ -20,7 +20,6 @@ public class GizmoView extends Application {
     private final String STYLESHEET_PATH;
     private Label statusBarLabel;
 
-
     public GizmoView() {
         STYLESHEET_PATH = this.getClass().getResource("/assets/style.css").toExternalForm();
     }
@@ -33,13 +32,13 @@ public class GizmoView extends Application {
 
         // Top
         MenuBar menuBar = makeMenubar();
-        ToolBar toolbar = new GizmoToolbar();
+        ToolBar optionsBar = new GizmoOptionsBar();
 
-        VBox menuBars = new VBox();
-        menuBars.getChildren().addAll(menuBar, toolbar);
+        VBox topComponents = new VBox();
+        topComponents.getChildren().addAll(menuBar, optionsBar);
 
         // Left
-        ToolBar sideToolbar = new MouseToolbar();
+        ToolBar toolbar = new GizmoToolbar();
 
         // Right
         VBox rigthSideBar = new VBox();
@@ -50,12 +49,12 @@ public class GizmoView extends Application {
         // Center
         Canvas canvas = new BoardCanvasView(500, 500);
 
-        // bottom
+        // Bottom
         Node statusBar = makeStatusBar();
 
-        root.setTop(menuBars);
+        root.setTop(topComponents);
         root.setCenter(canvas);
-        root.setLeft(sideToolbar);
+        root.setLeft(toolbar);
         root.setRight(rigthSideBar);
         root.setBottom(statusBar);
 
@@ -92,11 +91,11 @@ public class GizmoView extends Application {
         return menuBar;
     }
 
+    // TODO: Put this into a class
     private VBox makeGizmoPanel() {
         VBox box = new VBox();
         box.setSpacing(16);
         box.setPadding(Theme.DEFAULT_PADDING);
-
 
         // Heading
         Label titleLabel = new Label("Gizmos");
@@ -118,7 +117,6 @@ public class GizmoView extends Application {
         Rectangle absorber = new Rectangle(25, 15, Theme.Colors.PURPLE);
         gizmogrid.addGizmo(absorber, "Absorber");
 
-
         scrollpane.setContent(gizmogrid);
         scrollpane.setMaxHeight(250);
 
@@ -127,42 +125,6 @@ public class GizmoView extends Application {
         return box;
     }
 
-
-//    private VBox makePropertiesPanel() {
-//        VBox box = new VBox();
-//        box.setSpacing(16);
-//        box.setPadding(Theme.DEFAULT_PADDING);
-//
-//
-//        // Heading
-//        Label titleLabel = new Label("Gizmos");
-//        titleLabel.setFont(Theme.Fonts.CARD_TITLE);
-//
-//        // Content
-//        ScrollPane scrollpane = new ScrollPane();
-//        GizmoGrid gizmogrid = new GizmoGrid();
-//
-//        Rectangle squareShape = new Rectangle(25, 25, Theme.Colors.BLUE);
-//        gizmogrid.addGizmo(squareShape, "Square");
-//
-//        Circle circleShape = new Circle(12.5, Theme.Colors.RED);
-//        gizmogrid.addGizmo(circleShape, "Circle");
-//
-//        Circle ballShape = new Circle(9, Theme.Colors.ORANGE);
-//        gizmogrid.addGizmo(ballShape, "Ball");
-//
-//
-//        Rectangle absorber = new Rectangle(25, 15, Theme.Colors.PURPLE);
-//        gizmogrid.addGizmo(absorber, "Absorber");
-//
-//
-//        scrollpane.setContent(gizmogrid);
-//        scrollpane.setMaxHeight(250);
-//
-//        box.getStyleClass().add("GizmoPane");
-//        box.getChildren().addAll(titleLabel, scrollpane);
-//        return box;
-//    }
 
     public void setStatusBarText(String statusBarText) {
         statusBarLabel.setText(statusBarText);
