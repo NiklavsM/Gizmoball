@@ -177,9 +177,9 @@ Postconditions: a new ball is now added to the playing area.
 
 2. User drags gizmo to the new location 
 
-3.1. If location is already occupied go back to step 1. 
+3. If location is already occupied go back to step 1. 
 
-3.2 If location is free the gizmo moves to the new location 
+4. If location is free the gizmo moves to the new location 
 
 **Postconditions:** Gizmo has changed its location 
 
@@ -197,17 +197,13 @@ Postconditions: a new ball is now added to the playing area.
 
 **Paths:**  
 
-* **Main**
 
     1. User enters a new value in the field or leaves the field unchanged 
+    
+    2. If the value is in the wrong format, notify user and go back to step 1.
+    
+    3. User clicks the apply button.  
 
-    2. User clicks the apply button.  
-
-* **A1**
-
-    1. If the value is in the wrong format, notify user. 
-
-    2. Go back to 2. 
 
 --- 
 
