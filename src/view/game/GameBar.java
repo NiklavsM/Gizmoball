@@ -7,6 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import view.editor.MenuButtonEventHandler;
 import view.editor.Theme;
 
@@ -14,17 +15,16 @@ import view.editor.Theme;
 
 public class GameBar extends HBox {
 
-
-    public GameBar(Pos position) {
+    public GameBar(Pos position, Pane gui) {
         super.setPadding(Theme.DEFAULT_PADDING);
         super.setAlignment(position);
-        setup();
+        setup(gui);
     }
 
-    private void setup() {
+    private void setup(Pane gui) {
         addItem("Play", "play-button", new PlayButtonEventHandler());
         addItem("Tick", "tick-button", new TickButtonEventHandler());
-        addItem("Menu", "menu-button", new MenuButtonEventHandler());
+        addItem("Menu", "menu-button", new MenuButtonEventHandler(gui));
     }
 
     private void addItem(String name, String cssStylesheet, EventHandler<ActionEvent> eventEventHandler) {
