@@ -288,16 +288,16 @@ for every tick
 
     Calculate collision time for all gizmos (and balls if added) inside the map.  
     
-    If estimated time until nearest collision is greater than 0.05sec (time until next frame is drawn), 
-        set balls new coordinates where ball will be after this time passes. 
+    If estimated time until nearest collision is greater than 0.05sec (time until next frame is drawn) then
+        Set balls new coordinates where ball will be after this time passes. 
         Apply gravity and friction for that time period. 
     
-    If time until next collision is smaller than 0.05,
+    If time until next collision is smaller than 0.05, then
         update the balls coordinates taking into account time and velocity, 
         calculate and set the balls velocity after the collision taking into account friction and gravity for that time period. 
         
-        If gizmo that ball collides with have trigger 
-            then trigger the action.   
+        If gizmo that ball collides with have trigger then
+            trigger the action.   
     
     Redraw the screen
     
