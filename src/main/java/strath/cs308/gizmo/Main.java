@@ -3,11 +3,8 @@ package strath.cs308.gizmo;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import strath.cs308.gizmo.controller.interfaces.Controller;
-import strath.cs308.gizmo.model.interfaces.IPhysicsWorld;
-import strath.cs308.gizmo.model.physics.PhysicsWorld;
 import strath.cs308.gizmo.view.MainView;
-import strath.cs308.gizmo.view.interfaces.View;
+import strath.cs308.gizmo.view.interfaces.IMainView;
 
 public class Main extends Application
 {
@@ -20,10 +17,8 @@ public class Main extends Application
     @Override
     public void start(Stage primaryStage)
     {
-        View view = new MainView();
+        IMainView view = new MainView(primaryStage);
 
-        Scene scene = new Scene(view.getParent());
-        primaryStage.setScene(scene);
         primaryStage.show();
     }
 }

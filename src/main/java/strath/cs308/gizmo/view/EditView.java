@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import strath.cs308.gizmo.controller.EditController;
 import strath.cs308.gizmo.controller.editstates.AddGizmo;
@@ -23,12 +24,14 @@ public class EditView implements IEditView, Observer
     private Pane root;
     private EventHandler eventHandler;
 
-    public EditView(IPhysicsWorld world)
+    public EditView(BorderPane parent, IPhysicsWorld world)
     {
         try
         {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/edit.fxml"));
             this.root = loader.load();
+
+            parent.setCenter(this.root);
 
             world.addObserver(this);
 

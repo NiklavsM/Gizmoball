@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import strath.cs308.gizmo.controller.GameController;
 import strath.cs308.gizmo.controller.interfaces.Controller;
@@ -20,12 +21,14 @@ public class GameView implements IGameView, Observer
     private Pane root;
     private EventHandler eventHandler;
 
-    public GameView(IPhysicsWorld world)
+    public GameView(BorderPane parent, IPhysicsWorld world)
     {
         try
         {
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/game.fxml"));
             this.root = loader.load();
+
+            parent.setCenter(this.root);
 
             this.eventHandler = new GameController(world, this);
 
