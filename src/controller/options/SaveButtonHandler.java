@@ -1,4 +1,4 @@
-package controller.toolbar;
+package controller.options;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
