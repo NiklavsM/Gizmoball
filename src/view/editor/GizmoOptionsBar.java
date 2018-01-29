@@ -1,5 +1,6 @@
 package view.editor;
 
+
 import controller.editor.options.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
