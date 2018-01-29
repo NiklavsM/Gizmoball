@@ -1,5 +1,6 @@
+import gui.editor.view.GizmoEditorView;
+import gui.game.view.GizmoView;
 import javafx.application.Application;
-import view.game.GizmoView;
 
 public class Driver {
 
