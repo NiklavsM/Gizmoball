@@ -1,9 +1,9 @@
 package view.editor;
 
-import controller.toolbar.AddToolEventHandler;
-import controller.toolbar.ConnectToolEventHandler;
-import controller.toolbar.RotateToolEventHandler;
-import controller.toolbar.SelectEventHandler;
+import controller.editor.toolbar.AddToolEventHandler;
+import controller.editor.toolbar.ConnectToolEventHandler;
+import controller.editor.toolbar.RotateToolEventHandler;
+import controller.editor.toolbar.SelectEventHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Orientation;

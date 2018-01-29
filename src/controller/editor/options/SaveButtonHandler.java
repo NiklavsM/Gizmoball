@@ -1,9 +1,9 @@
-package controller.options;
+package controller.editor.options;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public class LoadButtonHandler implements EventHandler<ActionEvent> {
+public class SaveButtonHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
 

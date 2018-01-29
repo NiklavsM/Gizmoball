@@ -1,9 +1,9 @@
-package controller.options;
+package controller.editor.toolbar;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public class RedoButtonHandler implements EventHandler<ActionEvent> {
+public class RotateToolEventHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
 

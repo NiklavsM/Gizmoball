@@ -1,9 +1,9 @@
-package controller.toolbar;
+package controller.editor.options;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public class ConnectToolEventHandler implements EventHandler<ActionEvent> {
+public class ToggleGridButtonHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
 

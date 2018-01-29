@@ -1,4 +1,4 @@
-package controller.options;
+package controller.editor.options;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

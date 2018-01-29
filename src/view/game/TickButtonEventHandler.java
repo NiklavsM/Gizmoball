@@ -1,9 +1,9 @@
-package controller.options;
+package view.game;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public class SaveAsButtonHandler implements EventHandler<ActionEvent> {
+public class TickButtonEventHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
 

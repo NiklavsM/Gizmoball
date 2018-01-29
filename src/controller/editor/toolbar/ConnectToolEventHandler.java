@@ -1,9 +1,9 @@
-package controller.options;
+package controller.editor.toolbar;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public class SaveButtonHandler implements EventHandler<ActionEvent> {
+public class ConnectToolEventHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
 

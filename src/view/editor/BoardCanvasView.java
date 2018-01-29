@@ -13,15 +13,15 @@ public class BoardCanvasView extends Canvas {
     private void setup() {
         GraphicsContext gc = this.getGraphicsContext2D();
 
-        gc.setFill(Theme.Colors.WHITE);
+        gc.setFill(Theme.Colors.DEEP_BLUE);
         gc.fillRect(0, 0, super.getWidth(), super.getHeight());
 
-        gc.setFill(Theme.Colors.BLUE);
-        for (int i = 0; i < 20; i++) {
-            for (int j = 0; j < 20; j++) {
-                gc.strokeRect(i*25, j*25, 25, 25);
-            }
-        }
+//        gc.setStroke(Theme.Colors.WHITE);
+//        for (int i = 0; i < 20; i++) {
+//            for (int j = 0; j < 20; j++) {
+//                gc.strokeRect(i*25, j*25, 25, 25);
+//            }
+//        }
 
     }
 }

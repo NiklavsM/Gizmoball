@@ -1,6 +1,6 @@
 package view.editor;
 
-import controller.options.*;
+import controller.editor.options.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;

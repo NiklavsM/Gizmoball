@@ -155,4 +155,11 @@ Button:hover {
     -fx-background-image: url("/assets/icons/rotate.png");
 }
 
+/* Game bar */
+.tick-button {
+    -fx-background-image: url("/assets/icons/tick.png");
+}
 
+.menu-button {
+    -fx-background-image: url("/assets/icons/menu.png");
+}

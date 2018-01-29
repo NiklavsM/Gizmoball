@@ -24,7 +24,12 @@ public class Theme {
         public static final Color WHITE = Color.rgb(255,255,255);
         public static final Color PINK = Color.rgb(233,30,99);
         public static final Color GREEN = Color.rgb(139,195,74);
-        public static final Color GRAY = Color.rgb(139,195,74);
+        public static final Color GRAY = Color.rgb(97,97,97);
+        public static final Color BLACK = Color.rgb(0,0,0);
+        public static final Color DARK_PURPLE = Color.rgb(49,27,146);
+        public static final Color DEEP_BLUE = Color.rgb(84,110,122);
+        public static final Color DEEP_BLUE_DARK = Color.rgb(55,71,79);
+        public static final Color DEEPER_BLUE = Color.rgb(38,50,56);
     }
 
     public static final Insets DEFAULT_PADDING = new Insets(16, 16 ,16, 16);

@@ -1,9 +1,9 @@
-package controller.toolbar;
+package controller.editor.options;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public class SelectEventHandler implements EventHandler<ActionEvent> {
+public class UndoButtonHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
 
