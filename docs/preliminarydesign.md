@@ -52,11 +52,11 @@ Gizmoball is an arcade game very similar to pinball. The aim is to keep a ball m
 
 ### Add Gizmo
 
-Preconditions: Editor mode selected 
+**Preconditions:** Editor mode selected 
 
-Triggers: Gizmo type selected by clicking the button with gizmo shape written on it. 
+**Triggers:** Gizmo type selected by clicking the button with gizmo shape written on it. 
 
-Paths: 
+**Paths:**
 
 1. User clicks on gizmo type. 
 
@@ -78,7 +78,7 @@ Paths:
 
 **Triggers:** Gizmo selected and delete button has been clicked 
 
-Paths: 
+**Paths:**
 
 1. User clicks on gizmo 
 
@@ -100,7 +100,7 @@ Paths:
 
 **Paths:**
 
-Main
+**Main**
 
 1. User selects a gizmo G0 from the grid, the gizmo then becomes highlighted. 
 
@@ -110,7 +110,8 @@ Main
 
 4. Go to 3 or stop. 
 
-A3
+
+**A3**
 
 1.  If Gi doesn't have an action, notify user and go back to M3. 
 
@@ -308,12 +309,11 @@ Things to address: time will slow down when the collisions happen, because while
 ---
 ## Questions: 
 
-How detailed the requirements should be: 
+* How detailed the requirements should be: 
+(Example: 1. Create your own map or 1. Add gizmos to map 2. Delete gizmos to the map 3. Flip gizmos)
 
-Example: 1. Create your own map or 1. Add gizmos to map 2. Delete gizmos to the map 3. Flip gizmos 
+* Save game and/or save map? 
 
-Save game and/or save map? 
+* Bonus stuff we could add: 
 
-Bonus stuff we could add: 
-
-Config game 
+* Config game 
