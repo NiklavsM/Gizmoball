@@ -1,4 +1,4 @@
-package view;
+package view.editor;
 
 import controller.options.*;
 import javafx.event.ActionEvent;

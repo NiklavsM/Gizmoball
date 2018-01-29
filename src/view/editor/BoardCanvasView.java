@@ -1,8 +1,7 @@
-package view;
+package view.editor;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import view.Theme;
 
 public class BoardCanvasView extends Canvas {
 

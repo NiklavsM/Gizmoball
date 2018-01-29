@@ -1,5 +1,5 @@
 import javafx.application.Application;
-import view.GizmoView;
+import view.game.GizmoView;
 
 public class Driver {
 

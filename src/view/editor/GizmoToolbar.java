@@ -1,4 +1,4 @@
-package view;
+package view.editor;
 
 import controller.toolbar.AddToolEventHandler;
 import controller.toolbar.ConnectToolEventHandler;

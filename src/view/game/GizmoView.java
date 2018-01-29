@@ -1,4 +1,4 @@
-package view;
+package view.game;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -6,10 +6,13 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import view.editor.*;
 
 public class GizmoView extends Application {
 
@@ -29,48 +32,10 @@ public class GizmoView extends Application {
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, 800, 500);
 
-        // Top
-        MenuBar menuBar = makeMenubar();
-        ToolBar optionsBar = new GizmoOptionsBar();
-
-        VBox topComponents = new VBox();
-        topComponents.getChildren().addAll(menuBar, optionsBar);
-
-        // Left
-        ToolBar toolbar = new GizmoToolbar();
-
-        // Right
-        VBox rigthSideBar = new VBox();
-
-        VBox gizmoPanel = makeGizmoPanel();
-
-        TabPane tabPane = new TabPane();
-
-        Tab gizmoTab = new Tab();
-        gizmoTab.setText("Gizmos");
-        gizmoTab.setContent(gizmoPanel);
-        gizmoTab.setClosable(false);
-
-        Tab propertiesTab = new Tab();
-        propertiesTab.setText("Properties");
-        propertiesTab.setClosable(false);
-
-        tabPane.getTabs().add(gizmoTab);
-        tabPane.getTabs().add(propertiesTab);
-
-        rigthSideBar.getChildren().add(tabPane);
-
         // Center
         Canvas canvas = new BoardCanvasView(500, 500);
-
-        // Bottom
-        Node statusBar = makeStatusBar();
-
-        root.setTop(topComponents);
+        
         root.setCenter(canvas);
-        root.setLeft(toolbar);
-        root.setRight(rigthSideBar);
-        root.setBottom(statusBar);
 
         scene.getStylesheets().add(STYLESHEET_PATH);
 
