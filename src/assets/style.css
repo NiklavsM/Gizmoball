@@ -4,11 +4,12 @@ Focus Colour: #37474F
 
 
 .root {
-    -fx-base: #607D8B;
-    -fx-accent: #37474F;
-    -fx-default-button:  #607D8B;
+    -fx-base: transparent;
+    -fx-accent: transparent;
+    -fx-default-button:  transparent;
     -fx-focus-color: transparent;
-    -fx-faint-focus-color: #37474F;
+    -fx-faint-focus-color: transparent;
+    -fx-focused-text-base-color: transparent;
     -fx-focused-mark-color : -fx-focused-text-base-color ;
     -fx-font-family: verdana;
 }
@@ -54,23 +55,25 @@ Canvas {
 
 }
 
-ToolBar {
+.tool-bar {
     -fx-background-color: #455A64;
-
     -fx-effect: dropshadow(three-pass-box , rgba(0, 0, 0, 0.1), 10,0,5,5 );
 }
 
-.toolbar {
-    -fx-background-color: #455A64;
+/*.tool-bar button {*/
+    /*-fx-background-color: #455A64;*/
+    /*-fx-effect: dropshadow(three-pass-box , rgba(0, 0, 0, 0.1), 10,0,5,5 );*/
+/*}*/
 
-    -fx-border-width: 0px 2px 0px 0px;
-    -fx-border-color: #37474F;
-    -fx-effect: dropshadow(three-pass-box , rgba(0, 0, 0, 0.1), 10,0,5,5 );
-}
 
-ToolBar Button {
-    -fx-background-color: none;
-}
+/*.toolbar {*/
+    /*-fx-background-color: #455A64;*/
+
+    /*-fx-border-width: 0px 2px 0px 0px;*/
+    /*-fx-border-color: #37474F;*/
+    /*-fx-effect: dropshadow(three-pass-box , rgba(0, 0, 0, 0.1), 10,0,5,5 );*/
+/*}*/
+
 
 Seperator {
     -fx-stroke: #37474F;
@@ -90,6 +93,19 @@ ScrollPane > .viewport {
 -fx-border-width: 0px 0px 1px 0px;
     -fx-border-color: white;
  */
+
+/* Buttons */
+Button {
+    -fx-background-color: transparent;
+}
+
+Button:hover {
+    -fx-background-color: #37474F;
+}
+
+.play-button {
+    -fx-background-image: url("/assets/icons/play.png");
+}
 
 .load-button {
     -fx-background-image: url("/assets/icons/load.png");
@@ -117,4 +133,20 @@ ScrollPane > .viewport {
 .grid-button {
     -fx-background-image: url("/assets/icons/grid.png");
 }
+
+
+
+.add-button {
+    -fx-background-image: url("/assets/icons/cursor.png");
+}
+
+
+.connect-button {
+    -fx-background-image: url("/assets/icons/connect.png");
+}
+
+.rotate-button {
+    -fx-background-image: url("/assets/icons/rotate.png");
+}
+
 

@@ -1,24 +1,19 @@
+package view;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import view.GizmoGrid;
-import view.Theme;
 
 public class GizmoView extends Application {
 
-    private static final String APPLICATION_NAME = "Gizmoball";
+    private static final String APPLICATION_NAME = "Gizmoball - Editor";
 
     private static final double APP_HEIGHT = 800;
     private static final double APP_WIDTH = 1000;
@@ -31,20 +26,20 @@ public class GizmoView extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
 
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, 800, 500);
 
         // Top
         MenuBar menuBar = makeMenubar();
-        ToolBar toolbar = makeToolbar();
+        ToolBar toolbar = new GizmoToolbar();
 
         VBox menuBars = new VBox();
         menuBars.getChildren().addAll(menuBar, toolbar);
 
         // Left
-        ToolBar sideToolbar = makeMouseModeToolbar();
+        ToolBar sideToolbar = new MouseToolbar();
 
         // Right
         VBox rigthSideBar = new VBox();
@@ -88,105 +83,14 @@ public class GizmoView extends Application {
         MenuBar menuBar = new MenuBar();
 
         Menu fileMenu = new Menu("File");
-
         Menu editMenu = new Menu("Edit");
-
         Menu viewMenu = new Menu("View");
-
         Menu helpMenu = new Menu("Help");
 
         menuBar.getMenus().addAll(fileMenu, editMenu, viewMenu, helpMenu);
 
         return menuBar;
     }
-
-    private ToolBar makeToolbar() {
-        Rectangle rectangle = new Rectangle(10, 10, Theme.Colors.WHITE);
-        Node load = makeToolbarItem(rectangle, "Load", "load-button");
-        Node save = makeToolbarItem(rectangle, "Save", "save-button");
-        Node saveAs = makeToolbarItem(rectangle, "Save As", "saveas-button");
-        Node clearBoard = makeToolbarItem(rectangle, "Clear Board", "clear-button");
-        Node redo = makeToolbarItem(rectangle, "Redo", "redo-button");
-        Node undo = makeToolbarItem(rectangle, "Undo", "undo-button");
-
-        Node grid = makeToolbarItem(rectangle, "Toggle Grid", "grid-button");
-
-        ToolBar toolBar = new ToolBar(
-                load, save, saveAs, clearBoard, undo, redo, grid
-        );
-        toolBar.setPadding(Theme.DEFAULT_PADDING);
-        return toolBar;
-    }
-
-    private Node makeToolbarItem(Node symbol, String text, String cssClass) {
-        VBox box = new VBox();
-        box.setAlignment(Pos.CENTER);
-        box.setSpacing(10);
-
-        Button button = new Button();
-        button.setMaxSize(24, 24);
-        button.setMinSize(24, 24);
-        button.getStyleClass().add(cssClass);
-
-        Label label = new Label(text);
-        label.setFont(Theme.Fonts.REGULAR_FONT);
-
-        box.getChildren().addAll(button, label);
-
-        return box;
-    }
-
-
-    private ToolBar makeMouseModeToolbar() {
-
-        Rectangle rectangle = new Rectangle(10, 10, Theme.Colors.WHITE);
-        Node rec = makeToolItem(rectangle, "Add Tool");
-
-        Rectangle deleteTool = new Rectangle(10, 10, Theme.Colors.WHITE);
-        Node del = makeToolItem(deleteTool, "Delete Tool");
-
-        Circle connectTool = new Circle(5, Theme.Colors.WHITE);
-        Node con = makeToolItem(connectTool, "Connect tool");
-
-        Circle disconnectionTool = new Circle(5, Theme.Colors.WHITE);
-        Node dis = makeToolItem(disconnectionTool, "Disconnect tool");
-
-
-        Circle rotateTool = new Circle(5, Theme.Colors.WHITE);
-        Node rot = makeToolItem(rotateTool, "Rotate Tool");
-
-
-        VBox box = new VBox();
-        box.setAlignment(Pos.CENTER);
-        box.setSpacing(10);
-
-        Button button = new Button();
-        button.setMinSize(30, 30);
-
-        ToolBar toolBar = new ToolBar(
-                rec, del, con, dis, rot
-        );
-        toolBar.setOrientation(Orientation.VERTICAL);
-
-        toolBar.getStyleClass().add("toolbar");
-
-        return toolBar;
-    }
-
-    private Node makeToolItem(Node symbol, String text) {
-
-        Button button = new Button();
-
-        Tooltip tooltip = new Tooltip(text);
-        button.setTooltip(tooltip);
-
-        WritableImage image = symbol.snapshot(new SnapshotParameters(), null);
-        button.setGraphic(new ImageView(image));
-
-
-        return button;
-    }
-
 
     private VBox makeGizmoPanel() {
         VBox box = new VBox();

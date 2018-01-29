@@ -14,10 +14,8 @@ public class GizmoGrid extends MenuPanel {
 
     public GizmoGrid() {
         gridPane = new GridPane();
-        gridPane = new GridPane();
 
         getChildren().add(gridPane);
-
         setup();
     }
 
