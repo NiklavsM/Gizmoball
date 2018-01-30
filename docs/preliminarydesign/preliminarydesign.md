@@ -89,137 +89,114 @@
 
 [^1]: triangle, square and circle bumpers
 
-**Precondition** -- Editor mode enabled 
+**Precondition:**  Editor mode enabled
 
-**Trigger** -- Gizmo type selected from the gizmos panel
-
-**Path** -- 
-1. The `20L x 20L` layout grid becomes highlighted.
-2. The status label informs the user that he needs to select one grid location.
-3. The user selects a grid square from the layout by clicking it.
-4. If the grid square is occupied by another gizmo, go to `3`.
-. The status label informs the user that he can now add more gizmos of the same type animated for 2 seconds, go to `2`.
-
-**Postcondition** -- One or more gizmos of the same type have been added to the layout.
-
----
-
-### Add Absorber
-
-**Precondition** -- Editor mode enabled 
-
-**Trigger** -- Absorber shape selected from the gizmos panel
-
-**Path** -- 
-1. The `20L x 20L` layout grid becomes highlighted.
-2. The status label informs the user that he needs to select one grid location representing the right top corner of the absorber.
-3. The user selects a grid square from the layout by clicking it.
-4. If the grid square is occupied by another gizmo, go to `3`.
-5. The status label informs the user that he needs to select one grid location representing the left bottom corner of the absorber, do `3 - 4`and go to `6`.
-6. The status label informs the user that he can now add more gizmos of the same type, go to `2`.
-
-**Postcondition** -- One or more absorbers of the same type have been added to the layout.
-
-### Remove Gizmo
-
-**Precondition:** Editor mode selected 
-**Triggers:** Gizmo selected and delete button has been clicked 
-**Paths:**
-
-1. User clicks on gizmo 
-
-2. User Clicks delete button 
-
-3. Gizmo is removed from the map 
-
-**Postconditions:** Gizmo has been removed from the map  
-
----
-
-### Connect Gizmos
-
-**Description:** Connects a gizmo trigger to a gizmo action. 
-
-**Preconditions:** Editor mode selected 
-
-**Triggers:** Connect switch has been toggled 
-
-**Paths:**
-
-**Main**
-
-1. The user selects a gizmo G0 from the grid, the gizmo then becomes highlighted. 
-
-2. ??? Status label "<gizmoID> trigger selected, now connect to an action". ??? 
-
-3. The user selects a gizmo Gi from the grid, the gizmo becomes highlighted in a different way.  
-
-4. Go to 3 or stop. 
-
-
-**A3**
-
-1.  If Gi doesn't have an action, notify the user and go back to M3. 
-
-**Postconditions: the ** G0 trigger is now connected to Gi action where i is in [1..39]. 
-
-
---- 
-
-### Clear playing area
-
-**Precondition:** Editor mode selected and at least one action performed
-
-**Triggers:** "Clear Board" button selected
+**Trigger:** Gizmo type selected from the gizmos panel
 
 **Path:**
 
-1. User clicks "Clear Board" button
+1. The `20L x 20L` layout grid becomes highlighted.
+
+2. The status label informs the user that he needs to select one grid location.
+
+3. The user selects a grid square from the layout by clicking it.
+
+4. If the grid square is occupied by another gizmo, go to `3`.
+. The status label informs the user that he can now add more gizmos of the same type animated for 2 seconds, go to `2`.
+
+**Postcondition:** One or more gizmos of the same type have been added to the layout.
+
+### Add Absorber
+
+**Precondition:** Editor mode enabled
+
+**Trigger:** Absorber shape selected from the gizmos panel
+
+**Path:**
+
+1. The `20L x 20L` layout grid becomes highlighted.
+
+2. The status label informs the user that he needs to select one grid location representing the right top corner of the absorber.
+
+3. The user selects a grid square from the layout by clicking it.
+
+4. If the grid square is occupied by another gizmo, go to `3`.
+
+5. The status label informs the user that he needs to select one grid location representing the left bottom corner of the absorber, do `3 - 4`and go to `6`.
+
+6. The status label informs the user that he can now add more gizmos of the same type, go to `2`.
+
+**Postcondition**: One or more absorbers of the same type have been added to the layout.
+
+### Remove Gizmo
+
+**Precondition:** Editor mode enabled
+
+**Trigger:** Gizmo selected
+
+**Path:**
+
+1. User clicks delete button.
+
+2. Gizmo is removed from the grid layout.
+
+**Postcondition:** The grid layout does not contain the removed gizmo.
+
+### Connect Gizmos[^2]
+
+[^2]: connects a gizmo trigger to a gizmo action
+
+**Precondition:** Editor mode enabled
+
+**Trigger:** Connect switch has been toggled
+
+**Path:**
+
+1. The user selects a gizmo from the grid, the gizmo then becomes highlighted. If the gizmo 
+cannot trigger then notify user through the status label, go to `1`.
+
+1. The user selects a second gizmo from the grid which then becomes highlighted in a different way. If the selected gizmo
+doesn't have an action then notify user through the status label, go to `2`.
+
+**Postcondition:** The first gizmo's trigger is now connected to the second gizmo's action.
+
+
+
+### Clear playing area
+
+**Precondition:** Editor mode enabled and at least one edit action performed
+
+**Trigger:** "Clear Board" button selected
+
+**Path:**
+
+1. User clicks the "Clear Board" button
 
 1. All gizmos are removed from the playing area
 
-**Postconditions:** The playing area is empty and ready for editing
-
-All gizmos are cleared from the board
-
----
+**Postconditions:** All gizmos are cleared from the grid layout. Physics properties 
+like gravity and friction are preserved.
 
 
----
+### Adding a new ball[^3]
 
-### Adding New Ball 
+[^3]: placing a new ball in the playing area 
 
-**Description:** Placing a new ball in the playing area 
+**Precondition:** Editor mode enabled, a ball does not exist in the current grid layout
 
-**Preconditions:** Editor mode selected, ball have not yet been added
+**Trigger:** "New ball" button clicked 
 
-**Triggers:** "New ball" button clicked 
+**Path:**
 
-**Paths:**
+1. The user enters values in the input fields for the velocity (0L/sec to 200L/sec), diameter (default is 0.5L) 
+or chooses to go with the default values. 
 
-* **Main:** 
+1. The user selects a grid location to place the ball at. If the grid location
+is occupied, go to `2`, else `end`. If The user clicks on an absorber go to `3`.
 
-1. Ball details input modal appears on the screen, displaying editable default values. 
+3. The ball is placed in the right bottom corner of the absorber. 
 
-2. The user enters values in the input fields for the velocity (0L/sec to 200L/sec), diameter (default is 0.5L) or chooses to go with the default values. 
-
-3. The user selects a grid point to place the ball at. 
-
-* **A2:** 
-
-1. Values are in the wrong format, notify the user. 
-
-2. Go back to M2. 
-
-* **A3:**
-
-1. User clicks on an absorber. 
-
-2. The ball is placed in the right bottom corner of the absorber. 
-
-Postconditions: a new ball is now added to the playing area. 
-
---- 
+**Postcondition:** A new ball is now added to the playing area.
 
 ### Remove Ball
 
@@ -240,8 +217,6 @@ Paths:
 
 Postconditions: an existing ball is removed from the playing area
 
-
----
 
 ### Edit Ball
 
@@ -302,7 +277,7 @@ Postconditions: an existing ball is removed from the playing area
 
 **Precondition:** Editor mode selected and in rotate mode
 
-**Triggers:** Gizmo selected and delete button has been clicked 
+**Triggers:** Gizmo selected and rotate button has been clicked
 
 **Paths:**
 
