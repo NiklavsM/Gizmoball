@@ -1,36 +1,39 @@
 # Preliminary Design 
 
-**Gizmoball** is an arcade game very similar to pinball. The aim is to keep a ball moving around the playing area and not let it touch the bottom using different types of gizmos. Gizmos can be static objects, such as circles, squares and triangles or flippers which can hit the ball if it is in their reach. The final system would include a graphical user interface with 2 modes - editor mode and play mode. Below is the list of revised specifications in each mode: 
+**Gizmoball** is an arcade game very similar to pinball. The aim is to keep a ball moving around the playing area and not let it touch the bottom using different types of gizmos. Gizmos[^1] can be static objects, such as circles, squares and triangles or flippers which can hit the ball if it is in their reach. The final system would include a graphical user interface with 2 modes - editor mode and play mode. Below is the list of revised specifications in each mode: 
+
+[^1]:triangle, square and circle bumpers 
 
 ## Table of Contents
 
 <!-- toc -->
 
 - [Revised Specification](#revised-specification)
+  * [Editor mode](#editor-mode)
+  * [Play mode](#play-mode)
 - [Use cases](#use-cases)
-  * [Add Gizmo](#add-gizmo)
+  * [Add Gizmos](#add-gizmos)
+  * [Add Absorber](#add-absorber)
   * [Remove Gizmo](#remove-gizmo)
   * [Connect Gizmos](#connect-gizmos)
   * [Clear playing area](#clear-playing-area)
-  * [New Ball](#new-ball)
-  * [Remove Ball](#remove-ball)
-  * [Edit Ball](#edit-ball)
+  * [Adding a new ball](#adding-a-new-ball)
   * [Move Gizmo](#move-gizmo)
   * [Rotate Gizmo](#rotate-gizmo)
-  * [Edit gravity and friction](#edit-gravity-and-friction)
+  * [Edit ball physics properties](#edit-ball-physics-properties)
   * [Save configurations](#save-configurations)
   * [Load configurations](#load-configurations)
   * [Stop game](#stop-game)
   * [Run game](#run-game)
-- [Physics loop (high level):](#physics-loop-high-level)
+- [Physics loop (high level)](#physics-loop-high-level)
 - [Questions](#questions)
 
 <!-- tocstop -->
 
 ## Revised Specification 
 
-**Editor mode**
-- Initialise an empty area where layout can be build   
+### Editor mode
+- Initialise an empty area where the layout can be built
 
 - Re-configure an already constructed layout 
 
@@ -42,7 +45,7 @@
 
 - Edit the velocity and the diameter of an existing ball
 
-- Remove a ball from tge playing area
+- Remove a ball from the playing area
 
 - Set custom values for gravity and friction
 
@@ -67,7 +70,7 @@
 - Exit the application 
 
 
-**Play mode**
+### Play mode
 
 - Start a game (release the ball in the playing area) 
 
@@ -85,249 +88,186 @@
 
 ## Use cases
 
-### Add Gizmo
+### Add Gizmos
 
-**Preconditions:** Editor mode selected 
+**Precondition:**  Editor mode enabled
 
-**Triggers:** Gizmo type selected by clicking the button with gizmo shape written on it. 
-
-**Paths:**
-
-1. User clicks on gizmo type. 
-
-2. Select grid position by clicking on the map where gizmo should be added. 
-
-3. If new gizmo overlaps then go to step 2. 
-
-4. Gizmo is added to the map. 
-
-5. Goes to step 2. 
-
-**Postconditions:** New gizmo has been added and is visible on the map.
-
----
-
-### Remove Gizmo
-
-**Precondition:** Editor mode selected 
-
-**Triggers:** Gizmo selected and delete button has been clicked 
-
-**Paths:**
-
-1. User clicks on gizmo 
-
-2. User Clicks delete button 
-
-3. Gizmo is removed from the map 
-
-**Postconditions:** Gizmo has been removed from the map  
-
----
-
-### Connect Gizmos
-
-**Description:** Connects a gizmo trigger to a gizmo action. 
-
-**Preconditions:** Editor mode selected 
-
-**Triggers:** Connect switch has been toggled 
-
-**Paths:**
-
-**Main**
-
-1. User selects a gizmo G0 from the grid, the gizmo then becomes highlighted. 
-
-2. ??? Status label "<gizmoID> trigger selected, now connect to an action". ??? 
-
-3. User selects a gizmo Gi from the grid, the gizmo becomes highlighted in a different way.  
-
-4. Go to 3 or stop. 
-
-
-**A3**
-
-1.  If Gi doesn't have an action, notify user and go back to M3. 
-
-**Postconditions:** G0 trigger is now connected to Gi action where i is in [1..39]. 
-
-
---- 
-
-### Clear playing area
-
-**Precondition:** Editor mode selected and at least one action performed
-
-**Triggers:** "Clear Board" button selected
+**Trigger:** Gizmo type selected from the gizmos panel
 
 **Path:**
 
-1. User clicks "Clear Board" button
+1. The `20L x 20L` layout grid becomes highlighted.
+
+2. The status label informs the user that he needs to select one grid location.
+
+3. The user selects a grid square from the layout by clicking it.
+
+4. If the grid square is occupied by another gizmo, go to `3`.
+. The status label informs the user that he can now add more gizmos of the same type animated for 2 seconds, go to `2`.
+
+**Postcondition:** One or more gizmos of the same type have been added to the layout.
+
+### Add Absorber
+
+**Precondition:** Editor mode enabled
+
+**Trigger:** Absorber shape selected from the gizmos panel
+
+**Path:**
+
+1. The `20L x 20L` layout grid becomes highlighted.
+
+2. The status label informs the user that he needs to select one grid location representing the right top corner of the absorber.
+
+3. The user selects a grid square from the layout by clicking it.
+
+4. If the grid square is occupied by another gizmo, go to `3`.
+
+5. The status label informs the user that he needs to select one grid location representing the left bottom corner of the absorber, do `3 - 4`and go to `6`.
+
+6. The status label informs the user that he can now add more gizmos of the same type, go to `2`.
+
+**Postcondition**: One or more absorbers of the same type have been added to the layout.
+
+### Remove Gizmo
+
+Or an already existing ball 
+
+**Precondition:** Editor mode enabled
+
+**Trigger:** Gizmo selected
+
+**Path:**
+
+1. User clicks delete button.
+
+2. Gizmo is removed from the grid layout.
+
+**Postcondition:** The grid layout does not contain the removed gizmo.
+
+### Connect Gizmos
+
+Connects a gizmo trigger to a gizmo action
+
+**Precondition:** Editor mode enabled
+
+**Trigger:** Connect switch has been toggled
+
+**Path:**
+
+1. The user selects a gizmo from the grid, the gizmo then becomes highlighted. If the gizmo 
+cannot trigger then notify user through the status label, go to `1`.
+
+1. The user selects a second gizmo from the grid which then becomes highlighted in a different way. If the selected gizmo
+doesn't have an action then notify user through the status label, go to `2`.
+
+**Postcondition:** The first gizmo's trigger is now connected to the second gizmo's action.
+
+
+
+### Clear playing area
+
+**Precondition:** Editor mode enabled and at least one edit action performed
+
+**Trigger:** "Clear Board" button selected
+
+**Path:**
+
+1. User clicks the "Clear Board" button
 
 1. All gizmos are removed from the playing area
 
-**Postconditions:** The playing area is empty and ready for editing
-
-All gizmos are cleared from the board
-
----
+**Postconditions:** All gizmos are cleared from the grid layout. Physics properties 
+like gravity and friction are preserved.
 
 
----
+### Adding a new ball
 
-### New Ball 
+Placing a new ball in the playing area 
 
-**Description:** Placing a new ball in the playing area 
+**Precondition:** Editor mode enabled, a ball does not exist in the current grid layout
 
-**Preconditions:** Editor mode selected 
+**Trigger:** "New ball" button clicked 
 
-**Triggers:** "New ball" button clicked 
+**Path:**
 
-**Paths:**
+1. The user enters values in the input fields for the velocity (0L/sec to 200L/sec), diameter (default is 0.5L) 
+or chooses to go with the default values.[^4]
 
-* **Main:** 
+1. The user selects a grid location to place the ball at. If the grid location
+is occupied, go to `2`, else go to `4`. If The user clicks on an absorber go to `3`.
 
-1. Ball details input modal appears on the screen, displaying editable default values. 
+3. The ball is placed in the right bottom corner of the absorber. 
 
-2. User enters values in the input fields for the velocity (0L/sec to 200L/sec), diameter (default is 0.5L) or chooses to go with the default values. 
+4. The properties panel shows up and user can adjust the velocity[^4] by dragging a slider. 
 
-3. User selects a grid point to place the ball at. 
+**Postcondition:** A new ball is now added to the playing area.
 
-* **A2:** 
+[^4]: ball velocities range from `0L/sec` to `200L/sec`
 
-1. Values are in the wrong format, notify user. 
-
-2. Go back to M2. 
-
-* **A3:**
-
-1. User clicks on an absorber. 
-
-2. Ball is placed in the right bottom corner of the absorber. 
-
-Postconditions: a new ball is now added to the playing area. 
-
---- 
-
-### Remove Ball
-
-Description: Remove a ball that is already placed in the playing area
-
-Preconditions: Editor mode selected and in remove mode
-
-Triggers: Ball in the playing area selected 
-
-Paths: 
-
-* Main: 
-
-    1. User selects "Remove" button from the edit toolbar and is in remove mode
-    
-    2. If user clics on ball, it is removed from the board, otherwise go back to M1. 
-    
-
-Postconditions: an existing ball is removed from the playing area
-
-
----
-
-### Edit Ball
-
-**Description:** Edit the velocity and the diameter of a ball on the board
-
-**Preconditions:** Editor mode selected 
-
-**Triggers:** Ball in the playing area clicked and Properties tab selected  
-
-**Paths:**
-
-* **Main Path:** 
-
-    1. User cicks on ball 
-    
-    2. User selects Properties tab
-    
-    3. User enters new values in the input fields for the velocity and the diameter. 
-    
-    4. Ball is updated with new values
-    
-* **Alternative Path 1:**  
-
-    1. Values are in the wrong format, notify user. 
-    
-    2. Go back to M3. 
-
-**Postconditions:** An existing ball is updated with new values
-
-
----
 
 ### Move Gizmo
 
----
+**Precondition:** Editor mode selected 
 
-**Description:** Moving a gizmo from one location to another 
+**Trigger:** "Move gizmo" button clicked 
 
-**Preconditions:** Editor mode selected 
-
-**Triggers:** "Move gizmo" button clicked 
-
-**Paths:**
+**Path:**
 
 1. User clicks on the gizmo to be moved 
 
 2. User drags gizmo to the new location 
 
-3. If location is already occupied go back to step 1. 
+3. If location is already occupied go to step `2`. 
 
-4. If location is free the gizmo moves to the new location 
+**Postcondition:** Gizmo has changed its location;
 
-**Postconditions:** Gizmo has changed its location 
 
----
 
 ### Rotate Gizmo
 
-**Precondition:** Editor mode selected and in rotate mode
+**Precondition:** Editor mode enabled 
 
-**Triggers:** Gizmo selected and delete button has been clicked 
+**Trigger:** Rotate button has been toggled 
 
-**Paths:**
+**Path:**
 
-1. User clicks on gizmo 
+1. The user clicks on a gizmo.
 
-2. User Clicks delete button 
+1. If the gizmo doesn't support rotation, go to `1`.
 
-3. Gizmo is removed from the map 
+1. The selected gizmo rotates 90 degrees clockwise.
 
-**Postconditions:** Gizmo has been removed from the map  
+1. Go to `1`.
+
+**Postcondition:** The gizmo/gizmos that the 
+user clicked on have been rotated by `n * 90` degrees
+clockwise, where `n` is the number of clicks 
+on each gizmo.
 
 
----
+### Edit ball physics properties
 
-### Edit gravity and friction 
+Edit physics properties[^6]
 
-**Preconditions:** Editor mode selected 
+**Precondition:** Editor mode selected 
 
-**Triggers:** Focus any of the g, mu or mu2 fields. 
+**Trigger:** Focus any of the g, mu or mu2 fields. 
 
-**Paths:**  
+**Path:**  
 
-* **Main**
 1. User enters a new value in the field or leaves the field unchanged 
 
 2. If the value is in the wrong format, notify user and go back to step 1.
 
 3. User clicks the apply button.  
 
-* **A1:** 
-
 1. If the value is in the wrong format, notify user. 
 
 2. Go back to 2. 
 
---- 
+[^6]: gravity, friction, etc.
+
 
 ### Save configurations 
 
@@ -345,7 +285,7 @@ Postconditions: an existing ball is removed from the playing area
 
 4. A status label shows that the game configurations have been successfully saved 
 
-Postconditions: Playing area is shown ready for new actions; Game configurations have been saved to a file 
+**Postconditions:** Playing area is shown ready for new actions; Game configurations have been saved to a file 
 
 --- 
 
@@ -374,7 +314,7 @@ Game configurations have been loaded from a file and displayed on the screen
 
 ### Stop game 
 
-**Preconditions:** Play mode selected, game is running. 
+**Preconditions:** Play mode selected, the game is running. 
 
 **Triggers:** “Stop” button pressed. 
 
@@ -390,7 +330,7 @@ Postconditions: Ball stops (game has been paused)
 
 ### Run game 
 
-**Preconditions:** Play mode selected, game has been stopped or new game has been loaded. 
+**Preconditions:** Play mode selected, the game has been stopped or new game has been loaded. 
 
 **Triggers:** “Run” button pressed 
 
@@ -398,31 +338,30 @@ Postconditions: Ball stops (game has been paused)
 
 1. User presses “Run” button 
 
-2. Ball starts to move with the previous velocity and direction. 
+2. The ball starts to move with the previous velocity and direction. 
 
 **Postconditions:** Game is running. 
 
 
-## Physics loop (high level):  
+## Physics loop (high level)
 
 ```
 for every tick  
 
-    Calculate collision time for all gizmos (and balls if added) inside the map.  
+    Calculate collision time for all gizmos (and balls if added) inside the map. The method that does the calculation also returns an object that the ball will collide next.
     
     If estimated time until nearest collision is greater than 0.05sec (time until next frame is drawn) then
-        Set balls new coordinates where ball will be after this time passes. 
+        Set balls new coordinates where the ball will be after this time passes. 
         Apply gravity and friction for that time period. 
     
     If time until next collision is smaller than 0.05, then
-        update the balls coordinates taking into account time and velocity, 
-        calculate and set the balls velocity after the collision taking into account friction and gravity for that time period. 
+        update the coordinates of the ball taking into account time and velocity, 
+        calculate and set the velocity of the ball after the collision taking into account friction and gravity for that time period. 
         
         If gizmo that ball collides with have trigger then
-            trigger the action.   
+            trigger the action(calls the trigered() method on the object returned by calculate collisions method).   
     
     Redraw the screen
-    
 ```
 
 **Things to address:** Time will slow down when the collisions happen, because while ball will be displayed as it would have moved for time < 0.05, the next frame will be drawn after 0.05 no matter what. 
