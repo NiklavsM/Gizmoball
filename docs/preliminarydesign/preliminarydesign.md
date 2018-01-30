@@ -1,6 +1,6 @@
 # Preliminary Design 
 
-**Gizmoball** is an arcade game very similar to pinball. The aim is to keep a ball moving around the playing area and not let it touch the bottom using different types of gizmos. Gizmos[^1] can be static objects, such as circles, squares and triangles or flippers which can hit the ball if it is in their reach. The final system would include a graphical user interface with 2 modes - editor mode and play mode. Below is the list of revised specifications in each mode: 
+**Gizmoball** is an arcade game very similar to pinball. The aim is to keep a ball moving around the playing area and not let it touch the bottom using different types of gizmos. Gizmos[^1] can be static objects, such as circles, squares and triangles or flippers which can hit the ball if it is within their reach. The final system would include a graphical user interface with 2 modes - editor mode and play mode. Below is the list of revised specifications in each mode: 
 
 [^1]:triangle, square and circle bumpers 
 
@@ -192,10 +192,10 @@ Connects a gizmo trigger to a gizmo action
 **Path:**
 
 1. The user selects a gizmo from the grid, the gizmo then becomes highlighted. If the gizmo 
-cannot trigger then notify user through the status label, go to `1`.
+cannot trigger then notify the user through the status label, go to `1`.
 
 1. The user selects a second gizmo from the grid which then becomes highlighted in a different way. If the selected gizmo
-doesn't have an action then notify user through the status label, go to `2`.
+doesn't have an action then notify the user through the status label, go to `2`.
 
 **Postcondition:** The first gizmo's trigger is now connected to the second gizmo's action.
 
@@ -235,7 +235,7 @@ is occupied, go to `2`, else go to `4`. If The user clicks on an absorber go to 
 
 3. The ball is placed in the right bottom corner of the absorber. 
 
-4. The properties panel shows up and user can adjust the velocity by dragging a slider. 
+4. The properties panel shows up and the user can adjust the velocity by dragging a slider. 
 
 **Postcondition:** A new ball is now added to the playing area.
 
@@ -291,15 +291,15 @@ on each gizmo.
 
 **Path:**
 
-1. A file explorer that only shows gizmoball files pops up.
+1. A file explorer that only shows Gizmoball files pops up.
 
-1. User selects the desired location and clicks "Save".  
+1. The user selects the desired location and clicks "Save".  
 
-1. If saving fails, notify user and then go to `1`.
+1. If saving fails, notify the user and then go to `1`.
 
 1. A status label shows that the game configurations have been successfully saved.
 
-**Postcondition:** Game configuration have been saved to a gizmoball file on the disk.
+**Postcondition:** Game configuration has been saved to a Gizmoball file on the disk.
 
 
 ### Load configuration 
@@ -310,9 +310,9 @@ on each gizmo.
 
 1. A file picker that only shows gizmoball files pops up.
 
-1. User selects the desired file and clicks "Load".
+1. The user selects the desired file and clicks "Load".
 
-1. If loading fails, notify user, go to `1`.
+1. If loading fails, notify the user, go to `1`.
 
 1. Game configurations are loaded and displayed on the screen.
 
@@ -331,7 +331,7 @@ on each gizmo.
 
 1. User presses “Stop” button. 
 
-2. Game has been stopped and main menu appears on the screen.
+2. The game has been stopped and the main menu appears on the screen.
 
 **Postcondition**: Ball stops (game has been paused). Main menu displayed on the screen.
 
@@ -371,16 +371,40 @@ for every tick
         
         If gizmo that ball collides with have trigger then
            trigger the action
-           (calls the trigered() method on the object returned by calculate collisions method).   
+           (calls the triggered() method on the object returned by calculating collisions method).   
     
     Redraw the screen
 ```
     
 ## Triggering System
 
-**Things to address:** Time will slow down when the collisions happen, because while ball will be displayed as it would have moved for time < 0.05, the next frame will be drawn after 0.05 no matter what. 
+### `ITriggarable`
+ * An interface that describes the ability of gizmos to perform an action when they are triggered.
+ 
+### `ITrigger`
+ * An interface that describes the ability of gizmos to trigger other gizmos, calling their actions. 
+ * In a system where all the gizmos can trigger, then an `AbstractGizmo` class can implement this interface. 
+ * Alternatively, the interface can be implemented by particular concrete gizmo implementations so that this ability remains specific to
+only a few gizmos.
 
----
+### Rationale
+
+Not all the gizmos have to be `Itriggarable` and not all the gizmos need to be `ITrigger`.
+
+Every `Itrigger` needs to mantain a `Set<Itriggerable> toBeTriggeredGizmos` as part of their implementation.
+However, this set can be empty as a trigger may not have any triggarable elements connected to it.
+
+As part of the model, a `Set<Itrigger> hitByBallTriggers` will contain all the triggers that can call actions 
+on other gizmos when the ball collides with them. In the physics loop, whenever the ball collides with a gizmo,
+if the gizmo is part of the `hitByBallTriggers` set, then the `trigger()` method of it is called. Internally, the 
+`trigger()` method will call the `doAction()` method of every `Itriggarable` in the `toBeTriggeredGizmos` set.
+
+In addition, a `Map<Key, ITriggarable> keyStrokeToITriggarable` such that 
+when a key is hit by the user, `keyStrokeToItriggarable.get(key).doAction()` is called.
+
+The `doAction()` method can be implemented in various ways for different concrete implementations
+of gizmos such that flippers can flip, absorbers can shoot the ball upwards, circles can change color etc.
+
 
 \newpage
 
@@ -391,9 +415,9 @@ for every tick
 ### View hierarchy
 
 Some view contains sub-views.
-Each view has it's own interface.
-Each view has it's own controller class.
-The view Controllers are only handles the events
+Each view has its own interface.
+Each view has its own controller class.
+The view Controllers only handle the events
 fired from the actual view and not from it's sub-views.
 
 * Main view
@@ -406,10 +430,10 @@ fired from the actual view and not from it's sub-views.
 This class is the starting point of the FX application.
 
 ### ShapeFactory
-This class is responsible to create the representation of a PhysicalBody on the view.
+This class is responsible to create the representation of a `PhysicalBody` on the view.
 
 ### MainView
-This is where the main window and those elements what are presented in all view
+This is where the main window and those elements that are presented in all view
 are implemented.
 
 ### EditView
@@ -458,12 +482,12 @@ Handles the user interaction with the playing area of the game mode view.
 
 ### IngameMenuController
 This controller's task is to respond to the events generated by the
-playmode's in-game menu.
+play modes in-game menu.
 
 ### EventHandler
 Interface from the javafx package.
 Main purpose to hide controller implementation and provide
-bridge between Controllers and Views.
+a bridge between Controllers and Views.
 View -> Controller.
 
 ### IPhysicsBody, ISaveHandler, IPhysicsWorld
@@ -489,7 +513,7 @@ Factory for generating proper object representation from
 strings which are contained in the config files.
 
 ### PhysicsWorld
-The PhysicsWorld class meant to coordinate a world which is built up by PhysicsBodys.
+The PhysicsWorld class meant to coordinate a world which is built up by PhysicsBody.
 This is where the physics loop takes place.
 This class is an Observable class, which meant to provide a way for the Model
 to communicate with another part of the application
@@ -524,11 +548,11 @@ Subclass of the PhysicsBody.
 Enum class for representing the possible flipper directions.
 
 ### Rectangle
-Class for modelling the rectangle gizmo.
+Class for modeling the rectangle gizmo.
 Subclass of the PhysicsBody.
 
 ### Triangle
-Class for modelling the triangle gizmo.
+Class for modeling the triangle gizmo.
 Subclass of the PhysicsBody.
 
 ### Wall
@@ -536,16 +560,6 @@ Class in the model for representing the walls which are
 building up the boundaries of the physical world's boundaries.
 Subclass of the PhysicsBody.
 
----
-
-## Questions 
-
-1. How detailed the requirements should be: 
-(Example: 1. Create your own map or 1. Add gizmos to map 2. Delete gizmos to the map 3. Flip gizmos)
-
-1. Save game and/or save map? 
-
-1. Bonus stuff we could add: 
 ## UI screenshots
 
 ## Planning
