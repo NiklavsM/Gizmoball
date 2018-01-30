@@ -429,6 +429,160 @@ for every tick
 
 ---
 
+## Class diagram
+
+<insert picture here>
+
+### View hierarchy
+
+Some view contains sub-views.
+Each view has it's own interface.
+Each view has it's own controller class.
+The view Controllers are only handles the events
+fired from the actual view and not from it's sub-views.
+
+* Main view
+    * Game view
+        * Play view
+        * Ingame menu view
+    * Edit view
+
+### Main
+This class is the starting point of the FX application.
+
+### ShapeFactory
+This class is responsible to create the representation of a PhysicalBody on the view.
+
+### MainView
+This is where the main window and those elements what are presented on all view
+are implemented.
+
+### EditView
+Contains the UI implementation of the editing mode.
+
+### GameView
+Contains the UI implementation of the play mode.
+Build up by the PlayView and the InGameMenuView.
+
+### PlayView
+This is where the game are presented by drawing out the PhyisicalWorld.
+This is also an Observer to the PhysicalWorld, to make sure it's always
+representing the current state of the world.
+ 
+### IngameMenuView
+This class implementing the menu which can be brought up while the user
+is playing in play mode.
+
+### View Interfaces
+IEditView, IGameView, IIngameMenuView, IMainView, IPLayView.
+These interfaces are for hiding the actuall implementations of the view from
+the other part of the application.
+Controller -> View
+
+### MainController
+This is an implementation of EventHandler interface.
+This class required to handle all the events caused by interaction with the MainView.
+
+### EditController
+This is an implementation of EvnetHandler interface.
+This class handles all the event coming from the EditView.
+And also changing the state of the editing area.
+
+### Edit area states
+AddGizmo, ConnectGizmo, DeleteGizmo, RotateGizmo.
+These event handlers specifing that how the edit area should behave in the givem state
+which was set by the EditController (trough an interaction of the EditView).
+This contains clicking and drawing events.
+
+### GameController
+This controller handles the events coming from the GameView.
+And just the GameView itself.
+
+### PlayController
+Handles the user interaction with the playing area of the game mode view.
+
+### IngameMenuController
+This controller's task is to respond to the events generated with the
+playmode's ingame menu.
+
+### EventHandler
+Interface from the javafx package.
+Main purpose to hide controller implementation and provide
+bridge between Controllers and Views.
+View -> Controller.
+
+### IPhysicsBody, ISaveHandler, IPhysicsWorld
+These three interface meant to represent the Model in other part
+of the application, also hiding the implementation behind them.
+View -> Model
+Controller -> Model
+
+### ITriggerable
+This interface is provides details for those objects
+which can be triggered by triggers.
+
+### ITrigger
+This interface provides unified functions accross all trigger objects
+to be able to link triggerable objects to itself which can be triggerd by
+the trigger objects.
+
+### SaveHandler
+This class purpose to handle the config file IO operations.
+
+### PhysicsBodyFactory
+Factory for generating proper object representation from
+strings which are contained in the config files.
+
+### PhysicsWorld
+The PhysicsWorld class meant to coordinate a world which is built up by PhysicsBodys.
+This is where the physics loop takes place.
+This class is an Observable class, which meant to provide a way for the Model
+to communicate with other part of the application
+Model (Observable) -> View (Observer) //Mainly in our case.
+
+### PhysicsBody
+Abstract class which provides the implementation of the common
+traits of an entity which meant to be placed in our game world
+and used in physics simulation.
+
+### Absorber
+The entity class which represents an Absorber gizmo with all its own
+functionality and traits.
+Subclass of the PhysicsBody.
+
+### Ball
+The entity class for the game ball.
+Subclass of the PhysicsBody.
+
+### Circle
+Class for Circle gizmo representation in our Model.
+Subclass of the PhysicsBody.
+
+### Flipper
+Representation of the Flippers in our Model.
+Single flipper class used for both left and right flipper.
+The difference between the two was separated with the
+FlipperDirection enum class.
+Subclass of the PhysicsBody.
+
+### FlipperDirection
+Enum class for represeting the posible flipper directions.
+
+### Rectangle
+Class for modeling the rectangle gizmo.
+Subclass of the PhysicsBody.
+
+### Triangle
+Class for modeling the triangle gizmo.
+Subclass of the PhysicsBody.
+
+### Wall
+Class in the model for representing the walls which are 
+building up the boundaries of the physical worlds's boundaries.
+Subclass of the PhysicsBody.
+
+---
+
 ## Questions 
 
 1. How detailed the requirements should be: 
