@@ -2,6 +2,15 @@
 
 CS308 Semester 2 Group Project
 
+## Build
+
+Markdown to PDF
+
+```
+pandoc -s file.md -o output.pdf
+```
+
+
 ## Group Members
 
 Bence Sebestyen CSM2015 @xsb15143
