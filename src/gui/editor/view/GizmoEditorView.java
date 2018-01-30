@@ -1,7 +1,5 @@
 package gui.editor.view;
 
-import javax.imageio.ImageIO;
-
 import gui.Theme;
 import javafx.application.Application;
 import javafx.geometry.Insets;
