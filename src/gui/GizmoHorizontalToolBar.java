@@ -19,7 +19,7 @@ public class GizmoHorizontalToolBar extends ToolBar {
         gridPane.setHgap(16);
 
         super.getItems().add(gridPane);
-        super.setPadding(Theme.DEFAULT_PADDING);
+        super.setPadding(Theme.Padding.DEFAULT_PADDING);
     }
 
     public void setAlignment(Pos position) {

@@ -113,7 +113,7 @@ public class GizmoEditorView extends Application {
     private VBox makeGizmoPanel() {
         VBox box = new VBox();
         box.setSpacing(16);
-        box.setPadding(Theme.DEFAULT_PADDING);
+        box.setPadding(Theme.Padding.DEFAULT_PADDING);
 
         // Heading
         Label titleLabel = new Label("Gizmos");

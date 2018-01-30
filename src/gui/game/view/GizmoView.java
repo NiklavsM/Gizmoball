@@ -38,7 +38,7 @@ public class GizmoView extends Application {
 
         // Score
         scoreLabel = new Label("1337");
-        scoreLabel.setPadding(Theme.DEFAULT_PADDING);
+        scoreLabel.setPadding(Theme.Padding.DEFAULT_PADDING);
         scoreLabel.setFont(Theme.Fonts.TITLE_FONT);
 
         StackPane.setAlignment(scoreLabel, Pos.TOP_RIGHT);

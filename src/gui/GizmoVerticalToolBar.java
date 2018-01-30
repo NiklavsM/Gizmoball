@@ -1,5 +1,6 @@
 package gui;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -19,7 +20,7 @@ public class GizmoVerticalToolBar extends ToolBar {
         gridPane.setHgap(16);
 
         super.getItems().add(gridPane);
-        super.setPadding(Theme.DEFAULT_PADDING);
+        super.setPadding(Theme.Padding.DEFAULT_PADDING);
     }
 
     public void setAlignment(Pos position) {
@@ -35,6 +36,10 @@ public class GizmoVerticalToolBar extends ToolBar {
         gridPane.add(label, 1, rowIndex++);
     }
 
+
+    public void setGridPadding(Insets insets) {
+        gridPane.setPadding(insets);
+    }
 
     public void setVGap(double value) {
         gridPane.setVgap(value);

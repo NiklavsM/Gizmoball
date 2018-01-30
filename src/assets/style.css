@@ -170,8 +170,7 @@ Button:hover {
 /* Pause Menu */
 
 .PauseMenu {
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0, 5, 5);
-    -fx-text-fill: rgba(55, 71, 79, 0.5);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 5, 5);
 }
 
 .exit-game-button {
