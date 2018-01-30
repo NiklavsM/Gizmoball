@@ -20,13 +20,47 @@
   * [Adding a new ball](#adding-a-new-ball)
   * [Move Gizmo](#move-gizmo)
   * [Rotate Gizmo](#rotate-gizmo)
-  * [Edit ball physics properties](#edit-ball-physics-properties)
-  * [Save configurations](#save-configurations)
-  * [Load configurations](#load-configurations)
+  * [Save configuration](#save-configuration)
+  * [Load configuration](#load-configuration)
   * [Stop game](#stop-game)
   * [Run game](#run-game)
 - [Physics loop (high level)](#physics-loop-high-level)
+- [Triggering System](#triggering-system)
+- [Class diagram](#class-diagram)
+  * [View hierarchy](#view-hierarchy)
+  * [Main](#main)
+  * [ShapeFactory](#shapefactory)
+  * [MainView](#mainview)
+  * [EditView](#editview)
+  * [GameView](#gameview)
+  * [PlayView](#playview)
+  * [IngameMenuView](#ingamemenuview)
+  * [View Interfaces](#view-interfaces)
+  * [MainController](#maincontroller)
+  * [EditController](#editcontroller)
+  * [Edit area states](#edit-area-states)
+  * [GameController](#gamecontroller)
+  * [PlayController](#playcontroller)
+  * [IngameMenuController](#ingamemenucontroller)
+  * [EventHandler](#eventhandler)
+  * [IPhysicsBody, ISaveHandler, IPhysicsWorld](#iphysicsbody-isavehandler-iphysicsworld)
+  * [ITriggerable](#itriggerable)
+  * [ITrigger](#itrigger)
+  * [SaveHandler](#savehandler)
+  * [PhysicsBodyFactory](#physicsbodyfactory)
+  * [PhysicsWorld](#physicsworld)
+  * [PhysicsBody](#physicsbody)
+  * [Absorber](#absorber)
+  * [Ball](#ball)
+  * [Circle](#circle)
+  * [Flipper](#flipper)
+  * [FlipperDirection](#flipperdirection)
+  * [Rectangle](#rectangle)
+  * [Triangle](#triangle)
+  * [Wall](#wall)
 - [Questions](#questions)
+- [UI screenshots](#ui-screenshots)
+- [Planning](#planning)
 
 <!-- tocstop -->
 
@@ -336,7 +370,8 @@ for every tick
         friction and gravity for that time period. 
         
         If gizmo that ball collides with have trigger then
-           trigger the action(calls the trigered() method on the object returned by calculate collisions method).   
+           trigger the action
+           (calls the trigered() method on the object returned by calculate collisions method).   
     
     Redraw the screen
 ```
@@ -346,6 +381,8 @@ for every tick
 **Things to address:** Time will slow down when the collisions happen, because while ball will be displayed as it would have moved for time < 0.05, the next frame will be drawn after 0.05 no matter what. 
 
 ---
+
+\newpage
 
 ## Class diagram
 
