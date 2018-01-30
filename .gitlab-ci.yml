@@ -3,5 +3,4 @@ before_script:
 
 build_docs:
   script:
-    -
     - pandoc -s docs/preliminarydesign/preliminarydesign.md -o preliminarydesign.pdf
