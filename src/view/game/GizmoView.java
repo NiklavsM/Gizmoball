@@ -4,11 +4,12 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import view.editor.*;
+import view.editor.BoardCanvasView;
+import view.editor.Theme;
 
 public class GizmoView extends Application {
 
@@ -31,11 +32,13 @@ public class GizmoView extends Application {
 
         // Center
         Canvas canvas = new BoardCanvasView(500, 500);
-        GameBar gameBar = new GameBar(Pos.BOTTOM_LEFT, root);
+//        GameBar gameBar = new GameBar(Pos.BOTTOM_LEFT, root);
 
         StackPane stackPane = new StackPane();
         stackPane.setMaxHeight(APP_HEIGHT);
         stackPane.setMaxWidth(APP_WIDTH);
+        
+        GameBar gameBar = new GameBar(Pos.BOTTOM_LEFT, stackPane);
 
         // Score
         scoreLabel = new Label("1337");

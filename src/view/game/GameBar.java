@@ -7,8 +7,8 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
-import view.GizmoHorizontalToolBar;
 import javafx.scene.layout.Pane;
+import view.GizmoHorizontalToolBar;
 import view.editor.MenuButtonEventHandler;
 
 public class GameBar extends GizmoHorizontalToolBar {
@@ -17,7 +17,6 @@ public class GameBar extends GizmoHorizontalToolBar {
         super.setMaxWidth(150);
         super.setAlignment(position);
         super.getStyleClass().add("game-bar");
-
         setup(gui);
     }
 

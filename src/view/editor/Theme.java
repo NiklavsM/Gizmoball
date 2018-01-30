@@ -2,7 +2,6 @@ package view.editor;
 
 import javafx.geometry.Insets;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 
 public class Theme {
