@@ -386,7 +386,7 @@ for every tick
 
 ## Class diagram
 
-<insert picture here>
+![Class Diagram](class-diagram.png)
 
 ### View hierarchy
 
