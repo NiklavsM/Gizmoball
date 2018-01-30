@@ -564,6 +564,12 @@ Subclass of the PhysicsBody.
 
 ## GUI screenshots
 
+![Editor Mode](editormode1.png)
+![Editor Mode](editormode2.png)
+![Play Mode](playmode1.png)
+![Play Mode](playmode2.png)
+![Play Mode](playmode3.png)
+
 
 \newpage
 
