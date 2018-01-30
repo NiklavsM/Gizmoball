@@ -1,6 +1,8 @@
 # Preliminary Design 
 
-**Gizmoball** is an arcade game very similar to pinball. The aim is to keep a ball moving around the playing area and not let it touch the bottom using different types of gizmos. Gizmos can be static objects, such as circles, squares and triangles or flippers which can hit the ball if it is in their reach. The final system would include a graphical user interface with 2 modes - editor mode and play mode. Below is the list of revised specifications in each mode: 
+**Gizmoball** is an arcade game very similar to pinball. The aim is to keep a ball moving around the playing area and not let it touch the bottom using different types of gizmos. Gizmos[^1] can be static objects, such as circles, squares and triangles or flippers which can hit the ball if it is in their reach. The final system would include a graphical user interface with 2 modes - editor mode and play mode. Below is the list of revised specifications in each mode: 
+
+[^1]:triangle, square and circle bumpers 
 
 ## Table of Contents
 
@@ -10,17 +12,15 @@
   * [Editor mode](#editor-mode)
   * [Play mode](#play-mode)
 - [Use cases](#use-cases)
-  * [Add Gizmos[^1]](#add-gizmos1)
+  * [Add Gizmos](#add-gizmos)
   * [Add Absorber](#add-absorber)
   * [Remove Gizmo](#remove-gizmo)
-  * [Connect Gizmos[^2]](#connect-gizmos2)
+  * [Connect Gizmos](#connect-gizmos)
   * [Clear playing area](#clear-playing-area)
-  * [Adding a new ball[^3]](#adding-a-new-ball3)
-  * [Remove Ball](#remove-ball)
-  * [Edit Ball](#edit-ball)
+  * [Adding a new ball](#adding-a-new-ball)
   * [Move Gizmo](#move-gizmo)
   * [Rotate Gizmo](#rotate-gizmo)
-  * [Edit gravity and friction](#edit-gravity-and-friction)
+  * [Edit ball physics properties](#edit-ball-physics-properties)
   * [Save configurations](#save-configurations)
   * [Load configurations](#load-configurations)
   * [Stop game](#stop-game)
@@ -88,9 +88,7 @@
 
 ## Use cases
 
-### Add Gizmos[^1] 
-
-[^1]: triangle, square and circle bumpers
+### Add Gizmos
 
 **Precondition:**  Editor mode enabled
 
@@ -131,9 +129,9 @@
 
 **Postcondition**: One or more absorbers of the same type have been added to the layout.
 
-### Remove Gizmo[^5]
+### Remove Gizmo
 
-[^5]: or an already existing ball 
+Or an already existing ball 
 
 **Precondition:** Editor mode enabled
 
@@ -147,9 +145,9 @@
 
 **Postcondition:** The grid layout does not contain the removed gizmo.
 
-### Connect Gizmos[^2]
+### Connect Gizmos
 
-[^2]: connects a gizmo trigger to a gizmo action
+Connects a gizmo trigger to a gizmo action
 
 **Precondition:** Editor mode enabled
 
@@ -183,9 +181,9 @@ doesn't have an action then notify user through the status label, go to `2`.
 like gravity and friction are preserved.
 
 
-### Adding a new ball[^3]
+### Adding a new ball
 
-[^3]: placing a new ball in the playing area 
+Placing a new ball in the playing area 
 
 **Precondition:** Editor mode enabled, a ball does not exist in the current grid layout
 
@@ -194,7 +192,7 @@ like gravity and friction are preserved.
 **Path:**
 
 1. The user enters values in the input fields for the velocity (0L/sec to 200L/sec), diameter (default is 0.5L) 
-or chooses to go with the default values. 
+or chooses to go with the default values.[^4]
 
 1. The user selects a grid location to place the ball at. If the grid location
 is occupied, go to `2`, else go to `4`. If The user clicks on an absorber go to `3`.
@@ -248,9 +246,9 @@ clockwise, where `n` is the number of clicks
 on each gizmo.
 
 
-### Edit physic properties[^6]
+### Edit ball physics properties
 
-[^6]: gravity, friction, etc.
+Edit physics properties[^6]
 
 **Precondition:** Editor mode selected 
 
@@ -267,6 +265,8 @@ on each gizmo.
 1. If the value is in the wrong format, notify user. 
 
 2. Go back to 2. 
+
+[^6]: gravity, friction, etc.
 
 
 ### Save configurations 
@@ -285,7 +285,7 @@ on each gizmo.
 
 4. A status label shows that the game configurations have been successfully saved 
 
-Postconditions: Playing area is shown ready for new actions; Game configurations have been saved to a file 
+**Postconditions:** Playing area is shown ready for new actions; Game configurations have been saved to a file 
 
 --- 
 
