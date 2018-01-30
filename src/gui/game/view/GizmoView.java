@@ -37,7 +37,7 @@ public class GizmoView extends Application {
         GameBar gameBar = new GameBar(Pos.BOTTOM_LEFT, stackPane);
 
         // Score
-        scoreLabel = new Label("1337");
+        scoreLabel = new Label("Score: 1337");
         scoreLabel.setPadding(Theme.Padding.DEFAULT_PADDING);
         scoreLabel.setFont(Theme.Fonts.TITLE_FONT);
 
