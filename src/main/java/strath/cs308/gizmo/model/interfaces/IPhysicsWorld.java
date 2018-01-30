@@ -8,6 +8,5 @@ public interface IPhysicsWorld
 {
     void addObserver(Observer gameView);
 
-    IPhysicsBody body();
 
 }
