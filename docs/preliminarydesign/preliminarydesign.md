@@ -184,11 +184,11 @@ All gizmos are cleared from the board
 
 ---
 
-### New Ball 
+### Adding New Ball 
 
 **Description:** Placing a new ball in the playing area 
 
-**Preconditions:** Editor mode selected 
+**Preconditions:** Editor mode selected, ball have not yet been added
 
 **Triggers:** "New ball" button clicked 
 
@@ -431,11 +431,6 @@ for every tick
     
     Redraw the screen
     
-```
-
-**Things to address:** Time will slow down when the collisions happen, because while ball will be displayed as it would have moved for time < 0.05, the next frame will be drawn after 0.05 no matter what. 
-
----
 
 ## Questions 
 
