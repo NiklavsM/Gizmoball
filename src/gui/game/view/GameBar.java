@@ -1,7 +1,7 @@
 package gui.game.view;
 
 import gui.editor.controller.options.PlayButtonEventHandler;
-import gui.editor.view.GizmoHorizontalToolBar;
+import gui.GizmoHorizontalToolBar;
 import gui.editor.view.MenuButtonEventHandler;
 import gui.game.controller.TickButtonEventHandler;
 import javafx.event.ActionEvent;
@@ -17,7 +17,6 @@ public class GameBar extends GizmoHorizontalToolBar {
         super.setMaxWidth(150);
         super.setAlignment(position);
         super.getStyleClass().add("game-bar");
-
         setup(gui);
     }
 

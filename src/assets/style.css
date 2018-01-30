@@ -53,16 +53,15 @@ Canvas {
     -fx-opacity: 0; /* Make tab header transparent */
 }
 
-
-.tab{
+.tab {
     -fx-background-color: #263238;
     -fx-padding: 0 30 0 30;
 
 }
+
 .tab:selected {
     -fx-background-color: #455A64;
 }
-
 
 .GizmoPane {
     -fx-base: rgba(255, 255, 255, 0.0); /* Makes sure that ScrollView has no color */
@@ -165,5 +164,32 @@ Button:hover {
 }
 
 .game-bar {
-    -fx-background-color: rgba(55,71,79,0.5);
+    -fx-background-color: rgba(55, 71, 79, 0.5);
 }
+
+/* Pause Menu */
+
+.PauseMenu {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 5, 5);
+}
+
+.exit-game-button {
+    -fx-graphic: url("/assets/icons/exit.png");
+}
+
+.save-progress-button {
+    -fx-graphic: url("/assets/icons/save.png");
+}
+
+.load-game-button {
+    -fx-graphic: url("/assets/icons/load.png");
+}
+
+.back-button {
+    -fx-graphic: url("/assets/icons/back.png");
+}
+
+.to-editor-button {
+    -fx-graphic: url("/assets/icons/editor.png");
+}
+

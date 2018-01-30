@@ -1,12 +1,20 @@
 package gui.editor.view;
 
+import gui.GizmoHorizontalToolBar;
+import gui.Theme;
+import gui.editor.controller.options.ClearButtonHandler;
+import gui.editor.controller.options.LoadButtonHandler;
+import gui.editor.controller.options.PlayButtonEventHandler;
+import gui.editor.controller.options.RedoButtonHandler;
+import gui.editor.controller.options.SaveAsButtonHandler;
+import gui.editor.controller.options.SaveButtonHandler;
+import gui.editor.controller.options.ToggleGridButtonHandler;
+import gui.editor.controller.options.UndoButtonHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import gui.Theme;
-import gui.editor.controller.options.*;
 
 public class GizmoOptionsBar extends GizmoHorizontalToolBar {
 

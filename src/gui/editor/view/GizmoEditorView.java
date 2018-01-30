@@ -5,8 +5,16 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.ToolBar;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -18,12 +26,7 @@ public class GizmoEditorView extends Application {
 
     private static final double APP_HEIGHT = 800;
     private static final double APP_WIDTH = 1000;
-    private final String STYLESHEET_PATH;
     private Label statusBarLabel;
-
-    public GizmoEditorView() {
-        STYLESHEET_PATH = this.getClass().getResource("/assets/style.css").toExternalForm();
-    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -73,7 +76,7 @@ public class GizmoEditorView extends Application {
         root.setRight(rigthSideBar);
         root.setBottom(statusBar);
 
-        scene.getStylesheets().add(STYLESHEET_PATH);
+        scene.getStylesheets().add(Theme.STYLESHEET_PATH);
 
         primaryStage.setMinHeight(APP_HEIGHT);
         primaryStage.setMinWidth(APP_WIDTH);
@@ -110,7 +113,7 @@ public class GizmoEditorView extends Application {
     private VBox makeGizmoPanel() {
         VBox box = new VBox();
         box.setSpacing(16);
-        box.setPadding(Theme.DEFAULT_PADDING);
+        box.setPadding(Theme.Padding.DEFAULT_PADDING);
 
         // Heading
         Label titleLabel = new Label("Gizmos");

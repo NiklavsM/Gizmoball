@@ -1,4 +1,4 @@
-package editor.controller.toolbar;
+package gui.editor.controller.toolbar;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

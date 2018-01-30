@@ -1,9 +1,9 @@
-package gui.editor.controller.toolbar;
+package gui.game.controller;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public class AddToolEventHandler implements EventHandler<ActionEvent> {
+public class LoadProgressHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
 

@@ -2,9 +2,9 @@ package gui.editor.view;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.Pane;
+import gui.game.view.PauseMenu;
 
 public class MenuButtonEventHandler implements EventHandler<ActionEvent> {
 	private Pane gui;
@@ -15,9 +15,8 @@ public class MenuButtonEventHandler implements EventHandler<ActionEvent> {
 	
     @Override
     public void handle(ActionEvent event) {
-    	ColorAdjust adj = new ColorAdjust(0, 0, 0, 0); // keep same color scheme
-        GaussianBlur blur = new GaussianBlur(10); // blur it a little
-        adj.setInput(blur);
-        gui.setEffect(adj);
+        gui.getChildren().forEach(e -> e.setEffect(new GaussianBlur(10))); //blur it a little
+        PauseMenu menu = new PauseMenu();
+        gui.getChildren().add(menu);
     }
 }

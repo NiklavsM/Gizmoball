@@ -5,7 +5,7 @@ public class Driver {
 
     public static void main(String[] args) {
 
-        System.out.println("Gizmoball!!");
+        System.out.println("Welcome to Gizmoball");
 //        Application.launch(GizmoEditorView.class, args);
         Application.launch(GizmoView.class, args);
     }
