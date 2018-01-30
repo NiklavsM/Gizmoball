@@ -86,6 +86,8 @@
 
 - Exit the application 
 
+\newpage
+
 ## Use cases
 
 ### Add Gizmos
@@ -314,6 +316,7 @@ on each gizmo.
 
 **Postcondition:** Game is running, play mode enabled.
 
+\newpage
 
 ## Physics loop (high level)
 
