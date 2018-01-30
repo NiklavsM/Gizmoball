@@ -199,7 +199,7 @@ is occupied, go to `2`, else go to `4`. If The user clicks on an absorber go to 
 
 3. The ball is placed in the right bottom corner of the absorber. 
 
-4. The properties panel shows up and user can adjust the velocity[^4] by dragging a slider. 
+4. The properties panel shows up and user can adjust the velocity by dragging a slider. 
 
 **Postcondition:** A new ball is now added to the playing area.
 
