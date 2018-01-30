@@ -131,7 +131,9 @@
 
 **Postcondition**: One or more absorbers of the same type have been added to the layout.
 
-### Remove Gizmo
+### Remove Gizmo[^5]
+
+[^5]: or an already existing ball 
 
 **Precondition:** Editor mode enabled
 
@@ -195,128 +197,77 @@ like gravity and friction are preserved.
 or chooses to go with the default values. 
 
 1. The user selects a grid location to place the ball at. If the grid location
-is occupied, go to `2`, else `end`. If The user clicks on an absorber go to `3`.
+is occupied, go to `2`, else go to `4`. If The user clicks on an absorber go to `3`.
 
 3. The ball is placed in the right bottom corner of the absorber. 
 
+4. The properties panel shows up and user can adjust the velocity[^4] by dragging a slider. 
+
 **Postcondition:** A new ball is now added to the playing area.
 
-### Remove Ball
+[^4]: ball velocities range from `0L/sec` to `200L/sec`
 
-Description: Remove a ball that is already placed in the playing area
-
-Preconditions: Editor mode selected and in remove mode
-
-Triggers: Ball in the playing area selected 
-
-Paths: 
-
-* Main: 
-
-    1. User selects "Remove" button from the edit toolbar and is in remove mode
-    
-    2. If the user clicks on the ball, it is removed from the board, otherwise go back to M1. 
-    
-
-Postconditions: an existing ball is removed from the playing area
-
-
-### Edit Ball
-
-**Description:** Edit the velocity and the diameter of a ball on the board
-
-**Preconditions:** Editor mode selected 
-
-**Triggers:** Ball in the playing area clicked and Properties tab selected  
-
-**Paths:**
-
-* **Main Path:** 
-
-    1. User cicks on ball 
-    
-    2. User selects Properties tab
-  
-    3. The user enters new values in the input fields for the velocity and the diameter. 
-
-    4. Ball is updated with new values
-    
-* **Alternative Path 1:**  
-
-    1. Values are in the wrong format, notify the user. 
-
-    2. Go back to M3. 
-
-**Postconditions:** An existing ball is updated with new values
-
-
----
 
 ### Move Gizmo
 
----
+**Precondition:** Editor mode selected 
 
-**Description:** Moving a gizmo from one location to another 
+**Trigger:** "Move gizmo" button clicked 
 
-**Preconditions:** Editor mode selected 
-
-**Triggers:** "Move gizmo" button clicked 
-
-**Paths:**
+**Path:**
 
 1. User clicks on the gizmo to be moved 
 
 2. User drags gizmo to the new location 
 
-3. If location is already occupied go back to step 1. 
+3. If location is already occupied go to step `2`. 
 
-4. If location is free the gizmo moves to the new location 
+**Postcondition:** Gizmo has changed its location;
 
-**Postconditions:** Gizmo has changed its location 
 
----
 
 ### Rotate Gizmo
 
-**Precondition:** Editor mode selected and in rotate mode
+**Precondition:** Editor mode enabled 
 
-**Triggers:** Gizmo selected and rotate button has been clicked
+**Trigger:** Rotate button has been toggled 
 
-**Paths:**
+**Path:**
 
-1. User clicks on gizmo 
+1. The user clicks on a gizmo.
 
-2. User Clicks delete button 
+1. If the gizmo doesn't support rotation, go to `1`.
 
-3. Gizmo is removed from the map 
+1. The selected gizmo rotates 90 degrees clockwise.
 
-**Postconditions:** Gizmo has been removed from the map  
+1. Go to `1`.
+
+**Postcondition:** The gizmo/gizmos that the 
+user clicked on have been rotated by `n * 90` degrees
+clockwise, where `n` is the number of clicks 
+on each gizmo.
 
 
----
+### Edit physic properties[^6]
 
-### Edit gravity and friction 
+[^6]: gravity, friction, etc.
 
-**Preconditions:** Editor mode selected 
+**Precondition:** Editor mode selected 
 
-**Triggers:** Focus any of the g, mu or mu2 fields. 
+**Trigger:** Focus any of the g, mu or mu2 fields. 
 
-**Paths:**  
+**Path:**  
 
-* **Main**
 1. User enters a new value in the field or leaves the field unchanged 
 
 2. If the value is in the wrong format, notify user and go back to step 1.
 
 3. User clicks the apply button.  
 
-* **A1:** 
-
 1. If the value is in the wrong format, notify user. 
 
 2. Go back to 2. 
 
---- 
 
 ### Save configurations 
 
