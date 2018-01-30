@@ -246,101 +246,73 @@ clockwise, where `n` is the number of clicks
 on each gizmo.
 
 
-### Edit ball physics properties
 
-Edit physics properties[^6]
+### Save configuration 
 
-**Precondition:** Editor mode selected 
+**Precondition:** Editor mode selected  
 
-**Trigger:** Focus any of the g, mu or mu2 fields. 
+**Trigger:** "Save" button selected  
 
-**Path:**  
+**Path:**
 
-1. User enters a new value in the field or leaves the field unchanged 
+1. A file explorer that only shows gizmoball files pops up.
 
-2. If the value is in the wrong format, notify user and go back to step 1.
+1. User selects the desired location and clicks "Save".  
 
-3. User clicks the apply button.  
+1. If saving fails, notify user and then go to `1`.
 
-1. If the value is in the wrong format, notify user. 
+1. A status label shows that the game configurations have been successfully saved.
 
-2. Go back to 2. 
-
-[^6]: gravity, friction, etc.
+**Postcondition:** Game configuration have been saved to a gizmoball file on the disk.
 
 
-### Save configurations 
+### Load configuration 
 
-**Preconditions:** Editor mode selected  
+**Trigger:** "Load" button clicked  
 
-**Triggers:** "Save" button selected  
+**Path:**
 
-**Paths:**
+1. A file picker that only shows gizmoball files pops up.
 
-1. User clicks "Save" button 
+1. User selects the desired file and clicks "Load".
 
-2. A dialog box appears to specify the save location 
+1. If loading fails, notify user, go to `1`.
 
-3. User selects the desired location and clicks "Save"  
+1. Game configurations are loaded and displayed on the screen.
 
-4. A status label shows that the game configurations have been successfully saved 
+1. The status label shows that the game configurations have been successfully loaded.
 
-**Postconditions:** Playing area is shown ready for new actions; Game configurations have been saved to a file 
+**Postcondition:** The saved playing area is shown ready for further editing.
 
---- 
-
-### Load configurations 
-
-**Preconditions:** Editor mode selected  
-
-**Triggers:** "Load" button selected  
-
-**Paths:**
-
-1. User clicks "Load" button 
-
-2. A dialog box appears to specify where to load the configurations from 
-
-3. User selects the desired location and clicks "Load" 
-
-4. Game configurations are loaded and displayed on the screen;
-A status label shows that the game configurations have been successfully loaded 
-
-**Postconditions:** The saved playing area is shown ready for further editing  
-
-Game configurations have been loaded from a file and displayed on the screen 
-
---- 
 
 ### Stop game 
 
-**Preconditions:** Play mode selected, the game is running. 
+**Precondition:** Play mode selected, the game is running. 
 
-**Triggers:** “Stop” button pressed. 
+**Trigger:** “Stop” button pressed. 
 
-**Paths:**
+**Path:**
 
 1. User presses “Stop” button. 
 
-2. Game has been stopped 
+2. Game has been stopped and main menu appears on the screen.
 
-Postconditions: Ball stops (game has been paused) 
+**Postcondition**: Ball stops (game has been paused). Main menu displayed on the screen.
 
---- 
 
 ### Run game 
 
-**Preconditions:** Play mode selected, the game has been stopped or new game has been loaded. 
+**Precondition:** Play mode enabled, the game has been stopped or new game has been loaded. 
 
-**Triggers:** “Run” button pressed 
+**Trigger:** “Run” button pressed 
 
-**Paths:**
+**Path:**
 
 1. User presses “Run” button 
 
 2. The ball starts to move with the previous velocity and direction. 
 
-**Postconditions:** Game is running. 
+**Postcondition:** Game is running, play mode enabled.
 
 
 ## Physics loop (high level)
@@ -363,14 +335,9 @@ for every tick
     
     Redraw the screen
 ```
+    
+## Triggering System
 
-## Questions 
+## UI screenshots
 
-1. How detailed the requirements should be: 
-(Example: 1. Create your own map or 1. Add gizmos to map 2. Delete gizmos to the map 3. Flip gizmos)
-
-1. Save game and/or save map? 
-
-1. Bonus stuff we could add: 
-
-1. Config game
+## Planning
