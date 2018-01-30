@@ -31,21 +31,18 @@ public class PauseMenu extends GizmoVerticalToolBar {
         setMaxHeight(250);
         setPadding(Theme.DEFAULT_PADDING);
 
+        addItem("Back", "back-button", new BackToGameHandler(this));
         addItem("Save", "save-progress-button", new SaveProgressHandler());
         addItem("Load", "load-game-button", new LoadProgressHandler());
         addItem("Editor", "to-editor-button", new ToEditorModeHandler());
-        addItem("Back", "back-button", new BackToGameHandler(this));
         addItem("Exit", "exit-game-button", new ExitGameHandler());
     }
 
     private void addItem(String text, String cssClass, EventHandler<ActionEvent> eventEventHandler) {
-        Label label = new Label(text);
-        label.setFont(Theme.Fonts.PAUSE_MENU_FONT);
-
         Button button = new Button(text);
         button.setOnAction(eventEventHandler);
         button.getStyleClass().add(cssClass);
 
-        super.add(button, label);
+        super.add(button);
     }
 }
