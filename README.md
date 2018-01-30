@@ -4,7 +4,7 @@ CS308 Semester 2 Group Project
 
 ## Docs
 
-[Premilinary Design](docs/preliminarydesign/preliminarydesign.md)
+[Preliminary Design](docs/preliminarydesign/preliminarydesign.md)
 
 ## Build
 
