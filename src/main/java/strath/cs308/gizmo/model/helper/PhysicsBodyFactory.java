@@ -1,9 +1,6 @@
 package strath.cs308.gizmo.model.helper;
 
-import strath.cs308.gizmo.model.physics.Ball;
-import strath.cs308.gizmo.model.physics.Circle;
-import strath.cs308.gizmo.model.physics.Flipper;
-import strath.cs308.gizmo.model.physics.Rectangle;
+import strath.cs308.gizmo.model.physics.*;
 
 public class PhysicsBodyFactory
 {
@@ -14,5 +11,7 @@ public class PhysicsBodyFactory
         Circle circle = new Circle();
         Rectangle rectangle = new Rectangle();
         Flipper flipper1 = new Flipper(FlipperDirection.LEFT);
+        Absorber absorber = new Absorber();
+        Wall wall = new Wall();
     }
 }

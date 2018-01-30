@@ -2,11 +2,12 @@ package strath.cs308.gizmo.model.physics;
 
 import physics.LineSegment;
 import strath.cs308.gizmo.model.interfaces.IPhysicsBody;
+import strath.cs308.gizmo.model.interfaces.ITrigger;
 import strath.cs308.gizmo.model.interfaces.ITriggerable;
 
 import java.util.List;
 
-public class Circle extends PhysicsBody
+public class Circle extends PhysicsBody implements ITriggerable, ITrigger
 {
     @Override
     public void onCollision(IPhysicsBody body)
@@ -26,6 +27,7 @@ public class Circle extends PhysicsBody
         return null;
     }
 
+
     @Override
     public void onTrigger()
     {
@@ -33,8 +35,15 @@ public class Circle extends PhysicsBody
     }
 
     @Override
-    public void linkTrigger(ITriggerable other)
+    public void trigger()
     {
 
     }
+
+    @Override
+    public boolean addTriggerTarget(ITriggerable target)
+    {
+        return false;
+    }
+
 }

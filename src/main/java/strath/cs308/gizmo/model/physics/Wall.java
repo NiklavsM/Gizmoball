@@ -8,10 +8,10 @@ import strath.cs308.gizmo.model.interfaces.ITriggerable;
 
 import java.util.List;
 
-public class Ball extends PhysicsBody implements ITriggerable, ITrigger
+public class Wall extends PhysicsBody implements ITrigger
 {
     @Override
-    public void onCollision(IPhysicsBody body)
+    public void onCollusion(IPhysicsBody collusion)
     {
 
     }
@@ -38,11 +38,5 @@ public class Ball extends PhysicsBody implements ITriggerable, ITrigger
     public boolean addTriggerTarget(ITriggerable target)
     {
         return false;
-    }
-
-    @Override
-    public void onTrigger()
-    {
-
     }
 }

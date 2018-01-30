@@ -1,11 +1,11 @@
 package strath.cs308.gizmo.controller;
 
 import javafx.event.Event;
-import strath.cs308.gizmo.controller.interfaces.Controller;
+import javafx.event.EventHandler;
 import strath.cs308.gizmo.view.MainView;
 import strath.cs308.gizmo.view.interfaces.IMainView;
 
-public class MainController implements Controller
+public class MainController implements EventHandler
 {
     private IMainView view;
 
