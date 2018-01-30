@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
-public class GameView implements IGameView, Observer
+public class GameView implements IGameView
 {
     private StackPane root;
     private EventHandler eventHandler;
@@ -34,9 +34,6 @@ public class GameView implements IGameView, Observer
 
             this.eventHandler = new GameController(world, this);
 
-            world.addObserver(this);
-
-
             IIngameMenuView ingameMenuView = new IngameMenuView(this.root, world);
             IPlayView playView = new PlayView(this.root, world);
         }
@@ -51,10 +48,4 @@ public class GameView implements IGameView, Observer
         return this.root;
     }
 
-
-    @Override
-    public void update(Observable observable, Object o)
-    {
-
-    }
 }
