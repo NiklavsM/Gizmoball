@@ -403,6 +403,7 @@ for every tick
 Things to address: time will slow down when the collisions happen, because while ball will be displayed as it would have moved for time < 0.05, the next frame will be drawn after 0.05 no matter what. 
 
 ---
+
 ## Questions: 
 
 * How detailed the requirements should be: 
