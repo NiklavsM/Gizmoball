@@ -1,5 +1,8 @@
 package gui.editor.view;
 
+import javax.imageio.ImageIO;
+
+import gui.Theme;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -12,13 +15,14 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.ToolBar;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import gui.Theme;
 
 public class GizmoEditorView extends Application {
 
@@ -133,12 +137,26 @@ public class GizmoEditorView extends Application {
 
         Circle circleShape = new Circle(12.5, Theme.Colors.RED);
         gizmogrid.addGizmo(circleShape, "Circle");
-
-        Circle ballShape = new Circle(9, Theme.Colors.ORANGE);
-        gizmogrid.addGizmo(ballShape, "Ball");
+        
+        Image triangleShape = new Image(getClass().getClassLoader().getResourceAsStream("assets/icons/tri.png"));
+        ImageView triangle = new ImageView();
+        triangle.setFitWidth(25);
+        triangle.setFitHeight(25);
+        triangle.setImage(triangleShape);
+        gizmogrid.addGizmo(triangle, "Triangle");
 
         Rectangle absorber = new Rectangle(25, 15, Theme.Colors.PURPLE);
         gizmogrid.addGizmo(absorber, "Absorber");
+        
+        Image flipperShape = new Image(getClass().getClassLoader().getResourceAsStream("assets/icons/flipper.png"));
+        ImageView flipper = new ImageView();
+        flipper.setFitWidth(30);
+        flipper.setFitHeight(30);
+        flipper.setImage(flipperShape);
+        gizmogrid.addGizmo(flipper, "Flipper");
+        
+        Circle ballShape = new Circle(9, Theme.Colors.ORANGE);
+        gizmogrid.addGizmo(ballShape, "Ball");
 
         scrollpane.setContent(gizmogrid);
         scrollpane.setMaxHeight(250);

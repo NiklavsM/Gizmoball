@@ -1,10 +1,11 @@
 package gui.editor.view;
 
+import gui.Theme;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Shape;
-import gui.Theme;
 
 public class GizmoGrid extends MenuPanel {
 
@@ -15,7 +16,6 @@ public class GizmoGrid extends MenuPanel {
 
     public GizmoGrid() {
         gridPane = new GridPane();
-
         getChildren().add(gridPane);
         setup();
     }
@@ -39,6 +39,19 @@ public class GizmoGrid extends MenuPanel {
         label.getStyleClass().add("gizmogrid");
         label.setFont(Theme.Fonts.REGULAR_FONT);
 
+        gridPane.add(symbol, colindex, rowIndex);
+        gridPane.add(label, colindex++, rowIndex+1);
+        if (colindex == 3) {
+            rowIndex+=2;
+            colindex = 0;
+        }
+    }
+    
+    public void addGizmo(ImageView symbol, String gizmoName) {
+
+        Label label = new Label(gizmoName);
+        label.getStyleClass().add("gizmogrid");
+        label.setFont(Theme.Fonts.REGULAR_FONT);
 
         gridPane.add(symbol, colindex, rowIndex);
         gridPane.add(label, colindex++, rowIndex+1);
@@ -46,6 +59,5 @@ public class GizmoGrid extends MenuPanel {
             rowIndex+=2;
             colindex = 0;
         }
-
     }
 }

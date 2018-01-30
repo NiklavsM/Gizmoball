@@ -1,4 +1,4 @@
-import gui.game.view.GizmoView;
+import gui.editor.view.GizmoEditorView;
 import javafx.application.Application;
 
 public class Driver {
@@ -7,6 +7,6 @@ public class Driver {
 
         System.out.println("Gizmoball!!");
 //        Application.launch(GizmoEditorView.class, args);
-        Application.launch(GizmoView.class, args);
+        Application.launch(GizmoEditorView.class, args);
     }
 }
