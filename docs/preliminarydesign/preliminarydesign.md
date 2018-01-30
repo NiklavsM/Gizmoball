@@ -8,10 +8,10 @@
 
 <!-- toc -->
 
-- [Revised Specification](#revised-specification)
+* [Revised Specification](#revised-specification)
   * [Editor mode](#editor-mode)
   * [Play mode](#play-mode)
-- [Use cases](#use-cases)
+* [Use cases](#use-cases)
   * [Add Gizmos](#add-gizmos)
   * [Add Absorber](#add-absorber)
   * [Remove Gizmo](#remove-gizmo)
@@ -24,9 +24,12 @@
   * [Load configuration](#load-configuration)
   * [Stop game](#stop-game)
   * [Run game](#run-game)
-- [Physics loop (high level)](#physics-loop-high-level)
-- [Triggering System](#triggering-system)
-- [Class diagram](#class-diagram)
+* [Physics loop (high level)](#physics-loop-high-level)
+* [Triggering System](#triggering-system)
+  * [`ITriggarable`](#itriggarable)
+  * [`ITrigger`](#itrigger)
+  * [Rationale](#rationale)
+* [Class diagram](#class-diagram)
   * [View hierarchy](#view-hierarchy)
   * [Main](#main)
   * [ShapeFactory](#shapefactory)
@@ -58,9 +61,8 @@
   * [Rectangle](#rectangle)
   * [Triangle](#triangle)
   * [Wall](#wall)
-- [Questions](#questions)
-- [UI screenshots](#ui-screenshots)
-- [Planning](#planning)
+* [UI screenshots](#ui-screenshots)
+* [Planning](#planning)
 
 <!-- tocstop -->
 
@@ -356,22 +358,22 @@ on each gizmo.
 
 ```
 for every tick  
-
-    Calculate collision time for all gizmos (and balls if added) inside the map.
-    The method that does the calculation also returns an object that the ball will collide next.
     
-    If estimated time until nearest collision is greater than 0.05sec (time until next frame is drawn) then
-        Set balls new coordinates where the ball will be after this time passes. 
+    # The method that does the calculation also returns an object that the ball will collide next.
+    Calculate collision time for all gizmos (and balls if added) inside the map.
+    
+    # Time until next frame is drawn
+    if estimated time until nearest collision > 0.05 seconds then
+        Set balls new coordinates where the ball will be after this time passes
         Apply gravity and friction for that time period. 
     
-    If time until next collision is smaller than 0.05, then
-        update the coordinates of the ball taking into account time and velocity, 
-        calculate and set the velocity of the ball after the collision taking into account
-        friction and gravity for that time period. 
+    if time until next collision < 0.05 then
+        update the coordinates of the ball
+        calculate and set the velocity of the ball after the collision
         
-        If gizmo that ball collides with have trigger then
+        # Calls the triggered() method on the object returned by calculating collisions method   
+        if gizmo that ball collides with have trigger then
            trigger the action
-           (calls the triggered() method on the object returned by calculating collisions method).   
     
     Redraw the screen
 ```
@@ -560,6 +562,33 @@ Class in the model for representing the walls which are
 building up the boundaries of the physical world's boundaries.
 Subclass of the PhysicsBody.
 
-## UI screenshots
+## GUI screenshots
+
+
+\newpage
 
 ## Planning
+
+| Tasks                                              | Start Date | Duration (days) |
+|----------------------------------------------------|------------|-----------------|
+| Key-press triggering (Lyubomir, Bence)             | 1/31/2018  | 10              |
+| Working absorber and adding forces (Niklavs)       | 1/31/2018  | 10              |
+| Ball motion and collisions(Martin)                 | 1/31/2018  | 10              |
+| Loading from file (Ioan)                           | 1/31/2018  | 10              |
+| Finished class diagram (Bence)                     | 2/10/2018  | 2               |
+| Validation testing strategy (Niklavs)              | 2/12/2018  | 4               |
+| Describe JUnit testing strategy (Ioan)             | 2/12/2018  | 4               |
+| Updated Project Plan (Niklavs)                     | 2/13/2018  | 1               |
+| Saving a file (Ioan)                               | 2/15/2018  | 6               |
+| Adding gizmos to the board (Lyubomir)              | 2/21/2018  | 6               |
+| GUI styling/designing/implementing (Martin)        | 2/21/2018  | 8               |
+| Flipper collisions (Bence, Lyubomir)               | 2/21/2018  | 12              |
+| Fully working edit mode (All group members)        | 2/21/2018  | 12              |
+| Fully working play mode (All group members)        | 2/21/2018  | 12              |
+| Testing the basic requirements (All group members) | 3/5/2018   | 2               |
+| Implementing extra features (All group members)    | 3/7/2018   | 12              |
+| Final testing (All group members)                  | 3/16/2018  | 3               |
+| Preparing for the demo (All group members)         | 3/19/2018  | 1               |
+
+
+![Gantt Chart](ganttchart.png)

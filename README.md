@@ -21,6 +21,8 @@ Generate table of contents
 npm install -g markdown-toc
 
 markdown-toc -i file.md
+
+pandoc preliminarydesign.md -o preliminarydesign.pdf --from markdown --template eisvogel --listings
 ```
 
 ## Group Members
