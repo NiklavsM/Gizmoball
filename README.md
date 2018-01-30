@@ -2,6 +2,10 @@
 
 CS308 Semester 2 Group Project
 
+## Docs
+
+[Premilinary Design](docs/preliminarydesign/preliminarydesign.md)
+
 ## Build
 
 Markdown to PDF
