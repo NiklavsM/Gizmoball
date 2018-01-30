@@ -378,9 +378,33 @@ for every tick
     
 ## Triggering System
 
-**Things to address:** Time will slow down when the collisions happen, because while ball will be displayed as it would have moved for time < 0.05, the next frame will be drawn after 0.05 no matter what. 
+### `Itriggarable`
+ * an interface that describes the abilty of gizmos to perform an action when they are triggered.
+ 
+### `Itrigger`
+ * an interface that describes the ability of gizmos to trigger other gizmos, calling their actions. 
+ * in a system where all the gizmos can trigger, then an `AbstractGizmo` class can implement this interface. 
+ * alternatively, the interface can be implemented by particular concrete gizmo implementations so that this ability remains specific to
+only a few gizmos.
 
----
+### Rationale
+
+Not all the gizmos have to be `Itriggarable` and not all the gizmos need to be `Itrigger`.
+
+Every `Itrigger` needs to mantain a `Set<Itriggerable> toBeTriggeredGizmos` as part of their implementation.
+However, this set can be empty as a trigger may not have any triggarable elements connected to it.
+
+As part of the model, a `Set<Itrigger> hitByBallTriggers` will contain all the triggers that can call actions 
+on other gizmos when the ball collides with them. In the physics loop, whenever the ball collides with a gizmo,
+if the gizmo is part of the `hitByBallTriggers` set, then the `trigger()` method of it is called. Internally, the 
+`trigger()` method will call the `doAction()` method of every `Itriggarable` in the `toBeTriggeredGizmos` set.
+
+In addition, a `Map<Key, ITriggarable> keyStrokeToITriggarable` such that 
+when a key is hit by the user, `keyStrokeToItriggarable.get(key).doAction()` is called.
+
+The `doAction()` method can be implemented in various ways for different concrete implementations
+of gizmos such that flippers can flip, absorbers can shoot the ball upwards, circles can change color etc.
+
 
 \newpage
 
@@ -536,16 +560,6 @@ Class in the model for representing the walls which are
 building up the boundaries of the physical world's boundaries.
 Subclass of the PhysicsBody.
 
----
-
-## Questions 
-
-1. How detailed the requirements should be: 
-(Example: 1. Create your own map or 1. Add gizmos to map 2. Delete gizmos to the map 3. Flip gizmos)
-
-1. Save game and/or save map? 
-
-1. Bonus stuff we could add: 
 ## UI screenshots
 
 ## Planning
