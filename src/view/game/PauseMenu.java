@@ -5,12 +5,13 @@ import controller.game.ExitGameHandler;
 import controller.game.LoadProgressHandler;
 import controller.game.SaveProgressHandler;
 import controller.game.ToEditorModeHandler;
+import gui.Theme;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-import view.editor.Theme;
+
 
 public class PauseMenu extends VBox {
 
@@ -20,7 +21,7 @@ public class PauseMenu extends VBox {
 		setup();
 	}
 	
-	private void setup() {
+	private void setup() {	
         setMinWidth(200);
         setMaxWidth(200);
         setMinHeight(200);
