@@ -18,12 +18,8 @@ public class GizmoView extends Application {
 
     private static final double APP_HEIGHT = 500;
     private static final double APP_WIDTH = 500;
-    private final String STYLESHEET_PATH;
     private Label scoreLabel;
 
-    public GizmoView() {
-        STYLESHEET_PATH = this.getClass().getResource("/assets/style.css").toExternalForm();
-    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -42,7 +38,7 @@ public class GizmoView extends Application {
 
         // Score
         scoreLabel = new Label("1337");
-        scoreLabel.setPadding(Theme.DEFAULT_PADDING);
+        scoreLabel.setPadding(Theme.Padding.DEFAULT_PADDING);
         scoreLabel.setFont(Theme.Fonts.TITLE_FONT);
 
         StackPane.setAlignment(scoreLabel, Pos.TOP_RIGHT);
@@ -53,7 +49,7 @@ public class GizmoView extends Application {
         stackPane.getChildren().add(gameBar);
 
         root.setCenter(stackPane);
-        scene.getStylesheets().add(STYLESHEET_PATH);
+        scene.getStylesheets().add(Theme.STYLESHEET_PATH);
 
         primaryStage.setMinHeight(APP_HEIGHT);
         primaryStage.setMinWidth(APP_WIDTH);

@@ -30,12 +30,7 @@ public class GizmoEditorView extends Application {
 
     private static final double APP_HEIGHT = 800;
     private static final double APP_WIDTH = 1000;
-    private final String STYLESHEET_PATH;
     private Label statusBarLabel;
-
-    public GizmoEditorView() {
-        STYLESHEET_PATH = this.getClass().getResource("/assets/style.css").toExternalForm();
-    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -85,7 +80,7 @@ public class GizmoEditorView extends Application {
         root.setRight(rigthSideBar);
         root.setBottom(statusBar);
 
-        scene.getStylesheets().add(STYLESHEET_PATH);
+        scene.getStylesheets().add(Theme.STYLESHEET_PATH);
 
         primaryStage.setMinHeight(APP_HEIGHT);
         primaryStage.setMinWidth(APP_WIDTH);
@@ -122,7 +117,7 @@ public class GizmoEditorView extends Application {
     private VBox makeGizmoPanel() {
         VBox box = new VBox();
         box.setSpacing(16);
-        box.setPadding(Theme.DEFAULT_PADDING);
+        box.setPadding(Theme.Padding.DEFAULT_PADDING);
 
         // Heading
         Label titleLabel = new Label("Gizmos");
