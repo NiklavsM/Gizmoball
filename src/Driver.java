@@ -1,4 +1,3 @@
-import gui.editor.view.GizmoEditorView;
 import gui.game.view.GizmoView;
 import javafx.application.Application;
 

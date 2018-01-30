@@ -1,6 +1,7 @@
 package gui.editor.view;
 
 
+import gui.GizmoVerticalToolBar;
 import gui.Theme;
 import gui.editor.controller.toolbar.AddToolEventHandler;
 import gui.editor.controller.toolbar.ConnectToolEventHandler;
@@ -11,26 +12,15 @@ import javafx.event.EventHandler;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ToolBar;
 import javafx.scene.control.Tooltip;
-import javafx.scene.layout.GridPane;
 
-public class GizmoToolbar extends ToolBar {
+public class GizmoToolbar extends GizmoVerticalToolBar {
 
-    private int rowIndex;
-    private GridPane gridPane;
 
     public GizmoToolbar() {
-        gridPane = new GridPane();
-        rowIndex = 0;
+        super.setAlignment(Pos.CENTER);
 
-        gridPane.setAlignment(Pos.CENTER);
-        gridPane.setVgap(16);
-
-        super.setPadding(Theme.DEFAULT_PADDING);
         super.setOrientation(Orientation.VERTICAL);
-        super.getItems().add(gridPane);
-
         setup();
     }
 
@@ -54,6 +44,6 @@ public class GizmoToolbar extends ToolBar {
         button.setTooltip(tooltip);
         button.getStyleClass().add(className);
 
-        gridPane.add(button, 0, rowIndex++);
+        super.add(button);
     }
 }

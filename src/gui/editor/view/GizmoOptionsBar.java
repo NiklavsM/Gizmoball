@@ -1,5 +1,6 @@
 package gui.editor.view;
 
+import gui.GizmoHorizontalToolBar;
 import gui.Theme;
 import gui.editor.controller.options.ClearButtonHandler;
 import gui.editor.controller.options.LoadButtonHandler;

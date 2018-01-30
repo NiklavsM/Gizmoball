@@ -1,11 +1,10 @@
-package gui.editor.view;
+package gui;
 
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.GridPane;
-import gui.Theme;
 
 public class GizmoHorizontalToolBar extends ToolBar {
 
@@ -37,6 +36,15 @@ public class GizmoHorizontalToolBar extends ToolBar {
     public void add(Node node, Label label) {
         gridPane.add(node, columnIndex, 0);
         gridPane.add(label, columnIndex++, 1);
+    }
+
+    public void setVGap(double value) {
+        gridPane.setVgap(value);
+
+    }
+
+    public void setHGap(double value) {
+        gridPane.setHgap(value);
     }
 
 }
