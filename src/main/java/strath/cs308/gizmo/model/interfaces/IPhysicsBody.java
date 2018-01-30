@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface IPhysicsBody
 {
-    List<Circle> getCircles();
-    List<LineSegment> getLines();
 }
