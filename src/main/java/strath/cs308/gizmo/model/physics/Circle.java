@@ -10,7 +10,7 @@ import java.util.List;
 public class Circle extends PhysicsBody implements ITriggerable, ITrigger
 {
     @Override
-    public void onCollusion(IPhysicsBody body)
+    public void onCollision(IPhysicsBody body)
     {
 
     }

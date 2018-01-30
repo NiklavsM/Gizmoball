@@ -11,7 +11,7 @@ import java.util.List;
 public class Rectangle extends PhysicsBody implements ITrigger, ITriggerable
 {
     @Override
-    public void onCollusion(IPhysicsBody body)
+    public void onCollision(IPhysicsBody body)
     {
 
     }

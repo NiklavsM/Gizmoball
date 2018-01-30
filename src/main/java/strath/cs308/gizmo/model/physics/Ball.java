@@ -11,7 +11,7 @@ import java.util.List;
 public class Ball extends PhysicsBody implements ITriggerable, ITrigger
 {
     @Override
-    public void onCollusion(IPhysicsBody body)
+    public void onCollision(IPhysicsBody body)
     {
 
     }
