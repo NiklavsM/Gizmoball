@@ -17,6 +17,6 @@ public class BackToGameHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
         box.toBack();
-        box.getParent().setEffect(new GaussianBlur(0)); // remove blur from menu
+        box.getParent().getChildrenUnmodifiable().forEach(e -> e.setEffect(new GaussianBlur(0))); // remove blur from menu
     }
 }
