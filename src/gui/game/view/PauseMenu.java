@@ -1,17 +1,16 @@
-package view.game;
+package gui.game.view;
 
-import controller.game.BackToGameHandler;
-import controller.game.ExitGameHandler;
-import controller.game.LoadProgressHandler;
-import controller.game.SaveProgressHandler;
-import controller.game.ToEditorModeHandler;
+import gui.game.controller.BackToGameHandler;
+import gui.game.controller.ExitGameHandler;
+import gui.game.controller.LoadProgressHandler;
+import gui.game.controller.SaveProgressHandler;
+import gui.game.controller.ToEditorModeHandler;
 import gui.GizmoVerticalToolBar;
 import gui.Theme;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 
 
 public class PauseMenu extends GizmoVerticalToolBar {
@@ -40,6 +39,7 @@ public class PauseMenu extends GizmoVerticalToolBar {
 
     private void addItem(String text, String cssClass, EventHandler<ActionEvent> eventEventHandler) {
         Button button = new Button(text);
+        button.setFont(Theme.Fonts.PAUSE_MENU_FONT);
         button.setOnAction(eventEventHandler);
         button.getStyleClass().add(cssClass);
 

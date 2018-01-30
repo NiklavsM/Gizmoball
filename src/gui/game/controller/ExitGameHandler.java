@@ -1,4 +1,4 @@
-package controller.game;
+package gui.game.controller;
 
 import java.util.Optional;
 

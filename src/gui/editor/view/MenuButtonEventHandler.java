@@ -2,11 +2,9 @@ package gui.editor.view;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import view.game.PauseMenu;
+import gui.game.view.PauseMenu;
 
 public class MenuButtonEventHandler implements EventHandler<ActionEvent> {
 	private Pane gui;

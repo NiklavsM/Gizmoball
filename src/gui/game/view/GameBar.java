@@ -11,8 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 
-
-
 public class GameBar extends GizmoHorizontalToolBar {
 
     public GameBar(Pos position, Pane gui) {

@@ -6,13 +6,15 @@ import javafx.scene.text.Font;
 
 public class Theme {
 
+    public static final String STYLESHEET_PATH = Theme.class.getClass().getResource("/assets/style.css").toExternalForm();
+
     public static class Fonts {
         public static final Font HEADING_FONT = new Font("Arial", 25);
         public static final Font CARD_TITLE = new Font("Arial", 15);
         public static final Font TITLE_FONT = new Font("Arial", 25);
         public static final Font SUBTITLE_FONT = new Font("Arial", 16);
         public static final Font REGULAR_FONT = new Font("Arial", 14);
-        public static final Font PAUSE_MENU_FONT = new Font("Arial", 20);
+        public static final Font PAUSE_MENU_FONT = new Font("Verdana", 18);
     }
 
 
