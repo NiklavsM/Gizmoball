@@ -18,7 +18,7 @@ public class Flipper extends PhysicsBody
     }
 
     @Override
-    public void onCollusion(IPhysicsBody body)
+    public void onCollision(IPhysicsBody body)
     {
 
     }

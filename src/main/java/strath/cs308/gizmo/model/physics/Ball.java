@@ -10,7 +10,7 @@ import java.util.List;
 public class Ball extends PhysicsBody
 {
     @Override
-    public void onCollusion(IPhysicsBody body)
+    public void onCollision(IPhysicsBody body)
     {
 
     }
