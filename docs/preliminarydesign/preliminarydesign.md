@@ -7,12 +7,15 @@
 <!-- toc -->
 
 - [Revised Specification](#revised-specification)
+  * [Editor mode](#editor-mode)
+  * [Play mode](#play-mode)
 - [Use cases](#use-cases)
-  * [Add Gizmo](#add-gizmo)
+  * [Add Gizmos[^1]](#add-gizmos1)
+  * [Add Absorber](#add-absorber)
   * [Remove Gizmo](#remove-gizmo)
-  * [Connect Gizmos](#connect-gizmos)
+  * [Connect Gizmos[^2]](#connect-gizmos2)
   * [Clear playing area](#clear-playing-area)
-  * [New Ball](#new-ball)
+  * [Adding a new ball[^3]](#adding-a-new-ball3)
   * [Remove Ball](#remove-ball)
   * [Edit Ball](#edit-ball)
   * [Move Gizmo](#move-gizmo)
@@ -22,14 +25,14 @@
   * [Load configurations](#load-configurations)
   * [Stop game](#stop-game)
   * [Run game](#run-game)
-- [Physics loop (high level):](#physics-loop-high-level)
+- [Physics loop (high level)](#physics-loop-high-level)
 - [Questions](#questions)
 
 <!-- tocstop -->
 
 ## Revised Specification 
 
-**Editor mode**
+### Editor mode
 - Initialise an empty area where the layout can be built
 
 - Re-configure an already constructed layout 
@@ -67,7 +70,7 @@
 - Exit the application 
 
 
-**Play mode**
+### Play mode
 
 - Start a game (release the ball in the playing area) 
 
@@ -389,7 +392,7 @@ Postconditions: Ball stops (game has been paused)
 **Postconditions:** Game is running. 
 
 
-## Physics loop (high level):  
+## Physics loop (high level)
 
 ```
 for every tick  
@@ -408,7 +411,7 @@ for every tick
             trigger the action(calls the trigered() method on the object returned by calculate collisions method).   
     
     Redraw the screen
-    
+```
 
 ## Questions 
 
