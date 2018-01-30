@@ -1,7 +1,32 @@
 
 # Preliminary Design 
 
-Gizmoball is an arcade game very similar to pinball. The aim is to keep a ball moving around the playing area and not let it touch the bottom using different types of gizmos. Gizmos can be static objects, such as circles, squares and triangles or flippers which can hit the ball if it is within their reach. The final system would include a graphical user interface with 2 modes - editor mode and play mode. Below is the list of revised specifications in each mode: 
+**Gizmoball** is an arcade game very similar to pinball. The aim is to keep a ball moving around the playing area and not let it touch the bottom using different types of gizmos. Gizmos can be static objects, such as circles, squares and triangles or flippers which can hit the ball if it is in their reach. The final system would include a graphical user interface with 2 modes - editor mode and play mode. Below is the list of revised specifications in each mode: 
+
+## Table of Contents
+
+<!-- toc -->
+
+- [Revised Specification](#revised-specification)
+- [Use cases](#use-cases)
+  * [Add Gizmo](#add-gizmo)
+  * [Remove Gizmo](#remove-gizmo)
+  * [Connect Gizmos](#connect-gizmos)
+  * [Clear playing area](#clear-playing-area)
+  * [New Ball](#new-ball)
+  * [Remove Ball](#remove-ball)
+  * [Edit Ball](#edit-ball)
+  * [Move Gizmo](#move-gizmo)
+  * [Rotate Gizmo](#rotate-gizmo)
+  * [Edit gravity and friction](#edit-gravity-and-friction)
+  * [Save configurations](#save-configurations)
+  * [Load configurations](#load-configurations)
+  * [Stop game](#stop-game)
+  * [Run game](#run-game)
+- [Physics loop (high level):](#physics-loop-high-level)
+- [Questions](#questions)
+
+<!-- tocstop -->
 
 ## Revised Specification 
 
@@ -140,17 +165,17 @@ Gizmoball is an arcade game very similar to pinball. The aim is to keep a ball m
 
 ### Clear playing area
 
-Precondition: Editor mode selected and at least one action performed
+**Precondition:** Editor mode selected and at least one action performed
 
-Triggers: "Clear Board" button selected
+**Triggers:** "Clear Board" button selected
 
-Paths:
+**Path:**
 
 1. User clicks "Clear Board" button
 
-2. All gizmos are removed from the playing area
+1. All gizmos are removed from the playing area
 
-Postconditions: The playing area is empty and ready for editing
+**Postconditions:** The playing area is empty and ready for editing
 
 All gizmos are cleared from the board
 
@@ -217,15 +242,15 @@ Postconditions: an existing ball is removed from the playing area
 
 ### Edit Ball
 
-Description: Edit the velocity and the diameter of a ball on the board
+**Description:** Edit the velocity and the diameter of a ball on the board
 
-Preconditions: Editor mode selected 
+**Preconditions:** Editor mode selected 
 
-Triggers: Ball in the playing area clicked and Properties tab selected  
+**Triggers:** Ball in the playing area clicked and Properties tab selected  
 
-Paths: 
+**Paths:**
 
-* Main: 
+* **Main Path:** 
 
     1. User cicks on ball 
     
@@ -235,13 +260,13 @@ Paths:
 
     4. Ball is updated with new values
     
-* A1:  
+* **Alternative Path 1:**  
 
     1. Values are in the wrong format, notify the user. 
 
     2. Go back to M3. 
 
-Postconditions: An existing ball is updated with new values
+**Postconditions:** An existing ball is updated with new values
 
 
 ---
@@ -297,18 +322,18 @@ Postconditions: An existing ball is updated with new values
 
 **Paths:**  
 
+* **Main**
+1. User enters a new value in the field or leaves the field unchanged 
 
-    1. User enters a new value in the field or leaves the field unchanged 
-    
-    2. If the value is in the wrong format, notify the user and go back to step 1.
-    
-    3. User clicks the apply button.  
+2. If the value is in the wrong format, notify user and go back to step 1.
 
-* A1: 
+3. User clicks the apply button.  
 
-    1. If the value is in the wrong format, notify the user. 
+* **A1:** 
 
-    2. Go back to 2. 
+1. If the value is in the wrong format, notify user. 
+
+2. Go back to 2. 
 
 --- 
 
@@ -391,7 +416,7 @@ Postconditions: Ball stops (game has been paused)
 ```
 for every tick  
 
-    Calculate collision time for all gizmos (and balls if added) inside the map.  
+    Calculate collision time for all gizmos (and balls if added) inside the map. The method that does the calculation also returns an object that the ball will collide next.
     
     If estimated time until nearest collision is greater than 0.05sec (time until next frame is drawn) then
         Set balls new coordinates where the ball will be after this time passes. 
@@ -402,23 +427,23 @@ for every tick
         calculate and set the velocity of the ball after the collision taking into account friction and gravity for that time period. 
         
         If gizmo that ball collides with have trigger then
-            trigger the action.   
+            trigger the action(calls the trigered() method on the object returned by calculate collisions method).   
     
     Redraw the screen
     
 ```
 
-Things to address: time will slow down when the collisions happen, because while the ball will be displayed as it would have moved for time < 0.05, the next frame will be drawn after 0.05 no matter what. 
+**Things to address:** Time will slow down when the collisions happen, because while ball will be displayed as it would have moved for time < 0.05, the next frame will be drawn after 0.05 no matter what. 
 
 ---
 
-## Questions: 
+## Questions 
 
-* How detailed the requirements should be: 
+1. How detailed the requirements should be: 
 (Example: 1. Create your own map or 1. Add gizmos to map 2. Delete gizmos to the map 3. Flip gizmos)
 
-* Save game and/or save map? 
+1. Save game and/or save map? 
 
-* Bonus stuff we could add: 
+1. Bonus stuff we could add: 
 
-* Config game 
+1. Config game
