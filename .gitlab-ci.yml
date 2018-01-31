@@ -1,6 +1,6 @@
-before_script:
-  - sudo apt-get install pandoc
-
-build_docs:
-  script:
-    - pandoc -s docs/preliminarydesign/preliminarydesign.md -o preliminarydesign.pdf
+#before_script:
+#  - sudo apt-get install pandoc
+#
+#build_docs:
+#  script:
+#    - pandoc -s docs/preliminarydesign/preliminarydesign.md -o preliminarydesign.pdf
