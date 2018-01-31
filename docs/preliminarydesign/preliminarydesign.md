@@ -1,6 +1,6 @@
 # Preliminary Design 
 
-**Gizmoball** is an arcade game very similar to pinball. The aim is to keep a ball moving around the playing area and not let it touch the bottom using different types of gizmos. Gizmos[^1] can be static objects, such as circles, squares and triangles or flippers which can hit the ball if it is within their reach. The final system would include a graphical user interface with two modes - editor mode and play mode. Below is the list of revised specifications in each mode: 
+**Gizmoball** is an arcade game very similar to pinball. The aim is to keep a ball moving around the playing area and not let it touch an absorber (usually placed at the bottom) using different types of gizmos. Gizmos [^1] can be static objects, such as circles, squares and triangles or flippers which can hit the ball if it is within their reach. The final system would include a graphical user interface with two modes - editor mode and play mode. Below is the list of revised specifications in each mode: 
 
 [^1]: Gizmos include squares, circles, triangles, absorbers and flippers.
 
@@ -142,6 +142,7 @@ Niklavs Meiers @isb15151
 
 ## Use cases
 
+
 ### Add Gizmos
 
 **Precondition:**  Editor mode enabled
@@ -160,6 +161,7 @@ Niklavs Meiers @isb15151
 . The status label informs the user that he can now add more gizmos of the same type animated for 2 seconds, go to `2`.
 
 **Postcondition:** One or more gizmos of the same type have been added to the layout.
+
 
 ### Add Absorber
 
@@ -183,6 +185,7 @@ Niklavs Meiers @isb15151
 
 **Postcondition**: One or more absorbers of the same type have been added to the layout.
 
+
 ### Remove Gizmo
 
 Or an already existing ball 
@@ -198,6 +201,7 @@ Or an already existing ball
 2. Gizmo is removed from the grid layout.
 
 **Postcondition:** The grid layout does not contain the removed gizmo.
+
 
 ### Connect Gizmos
 
@@ -216,7 +220,6 @@ cannot trigger then notify the user through the status label, go to `1`.
 doesn't have an action then notify the user through the status label, go to `2`.
 
 **Postcondition:** The first gizmo's trigger is now connected to the second gizmo's action.
-
 
 
 ### Clear playing area
@@ -257,7 +260,7 @@ is occupied, go to `2`, else go to `4`. If The user clicks on an absorber go to 
 
 **Postcondition:** A new ball is now added to the playing area.
 
-[^4]: ball velocities range from `0L/sec` to `200L/sec`
+[^4]: Ball velocity ranges from `0L/sec` to `200L/sec`
 
 
 ### Move Gizmo
@@ -275,7 +278,6 @@ is occupied, go to `2`, else go to `4`. If The user clicks on an absorber go to 
 3. If location is already occupied go to step `2`. 
 
 **Postcondition:** Gizmo has changed its location;
-
 
 
 ### Rotate Gizmo
@@ -298,7 +300,6 @@ is occupied, go to `2`, else go to `4`. If The user clicks on an absorber go to 
 user clicked on have been rotated by `n * 90` degrees
 clockwise, where `n` is the number of clicks 
 on each gizmo.
-
 
 
 ### Save configuration 
@@ -393,6 +394,7 @@ for every tick
     
     Redraw the screen
 ```
+
     
 ## Triggering System
 
