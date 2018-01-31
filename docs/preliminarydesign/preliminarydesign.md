@@ -1,6 +1,6 @@
 # Preliminary Design 
 
-**Gizmoball** is an arcade game very similar to pinball. The aim is to keep a ball moving around the playing area and not let it touch an absorber (usually placed at the bottom) using different types of gizmos. Gizmos [^1] can be static objects, such as circles, squares and triangles or flippers which can hit the ball if it is within their reach. The final system would include a graphical user interface with two modes - editor mode and play mode. Below is the list of revised specifications in each mode: 
+**Gizmoball** is an arcade game very similar to pinball. The aim is to keep a ball moving around the playing area and not let it touch an absorber (usually placed at the bottom) using different types of gizmos. Gizmos [^1](#appendix) can be static objects, such as circles, squares and triangles or flippers which can hit the ball if it is within their reach. The final system would include a graphical user interface with two modes - editor mode and play mode. Below is the list of revised specifications in each mode: 
 
 [^1]: Gizmos include squares, circles, triangles, absorbers and flippers.
 
@@ -249,7 +249,7 @@ Placing a new ball in the playing area
 **Path:**
 
 1. The user enters values in the input fields for the velocity (0L/sec to 200L/sec), diameter (default is 0.5L) 
-or chooses to go with the default values.[^4]
+or chooses to go with the default values. [^4]
 
 1. The user selects a grid location to place the ball at. If the grid location
 is occupied, go to `2`, else go to `4`. If The user clicks on an absorber go to `3`.
@@ -260,7 +260,7 @@ is occupied, go to `2`, else go to `4`. If The user clicks on an absorber go to 
 
 **Postcondition:** A new ball is now added to the playing area.
 
-[^4]: Ball velocity ranges from `0L/sec` to `200L/sec`
+[^4]: Ball velocity ranges from `0L/sec` to `200L/sec`.
 
 
 ### Move Gizmo
