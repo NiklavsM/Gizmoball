@@ -79,6 +79,7 @@ Niklavs Meiers @isb15151
   * [Wall](#wall)
 * [GUI screenshots](#gui-screenshots)
 * [Planning](#planning)
+* [Appendix](#appendix)
 
 <!-- tocstop -->
 
@@ -620,3 +621,6 @@ Subclass of the PhysicsBody.
 
 
 ![Gantt Chart](ganttchart.png)
+
+
+## Appendix
