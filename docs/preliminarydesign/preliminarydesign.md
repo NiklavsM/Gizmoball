@@ -392,7 +392,7 @@ for every tick
         if gizmo that ball collides with have trigger then
            trigger the action
     
-    Redraw the screen
+    Notifies the observers (redraws the screen)
 ```
 
     
