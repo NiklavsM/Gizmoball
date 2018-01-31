@@ -78,7 +78,7 @@ Niklavs Meiers @isb15151
   * [Triangle](#triangle)
   * [Wall](#wall)
 * [GUI screenshots](#gui-screenshots)
-* [Planning](#planning)
+* [Project Plan](#project-plan)
 * [Appendix](#appendix)
 
 <!-- tocstop -->
@@ -598,7 +598,7 @@ Subclass of the PhysicsBody.
 
 
 
-## Planning
+## Project Plan
 
 | Tasks                                              | Start Date | Duration (days) |
 |----------------------------------------------------|------------|-----------------|
