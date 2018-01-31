@@ -1,6 +1,6 @@
 # Preliminary Design 
 
-**Gizmoball** is an arcade game very similar to pinball. The aim is to keep a ball moving around the playing area and not let it touch the bottom using different types of gizmos. Gizmos[^1] can be static objects, such as circles, squares and triangles or flippers which can hit the ball if it is within their reach. The final system would include a graphical user interface with 2 modes - editor mode and play mode. Below is the list of revised specifications in each mode: 
+**Gizmoball** is an arcade game very similar to pinball. The aim is to keep a ball moving around the playing area and not let it touch the bottom using different types of gizmos. Gizmos[^1] can be static objects, such as circles, squares and triangles or flippers which can hit the ball if it is within their reach. The final system would include a graphical user interface with two modes - editor mode and play mode. Below is the list of revised specifications in each mode: 
 
 ## Group Members
 
@@ -17,7 +17,6 @@ Martin Kollie @vib15168
 Niklavs Meiers @isb15151
 
 
-[^1]:triangle, square and circle bumpers 
 
 ## Table of Contents
 
@@ -129,15 +128,14 @@ Niklavs Meiers @isb15151
 
 - Press keys that trigger gizmos' actions 
 
-- Save the current state of a stopped game (maybe not???) 
+- Save the current state of a stopped game  
 
-- Load and display a saved game state (maybe not???) 
+- Load and display a saved game state 
 
 - Go to editor mode 
 
 - Exit the application 
 
-\newpage
 
 ## Use cases
 
@@ -367,7 +365,7 @@ on each gizmo.
 
 **Postcondition:** Game is running, play mode enabled.
 
-\newpage
+
 
 ## Physics loop (high level)
 
@@ -423,7 +421,6 @@ The `doAction()` method can be implemented in various ways for different concret
 of gizmos such that flippers can flip, absorbers can shoot the ball upwards, circles can change color etc.
 
 
-\newpage
 
 ## Class diagram
 
@@ -595,8 +592,6 @@ Subclass of the PhysicsBody.
 ![Play Mode - Play View](playmode2.png)
 
 
-
-\newpage
 
 ## Planning
 
