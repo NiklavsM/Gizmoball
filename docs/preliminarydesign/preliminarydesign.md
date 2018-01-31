@@ -2,7 +2,7 @@
 
 **Gizmoball** is an arcade game very similar to pinball. The aim is to keep a ball moving around the playing area and not let it touch the bottom using different types of gizmos. Gizmos[^1] can be static objects, such as circles, squares and triangles or flippers which can hit the ball if it is within their reach. The final system would include a graphical user interface with two modes - editor mode and play mode. Below is the list of revised specifications in each mode: 
 
-[^4]: Gizmos include squares, circles, triangles, absorbers and flippers.
+[^1]: Gizmos include squares, circles, triangles, absorbers and flippers.
 
 ## Group Members
 
