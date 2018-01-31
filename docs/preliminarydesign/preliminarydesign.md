@@ -2,6 +2,21 @@
 
 **Gizmoball** is an arcade game very similar to pinball. The aim is to keep a ball moving around the playing area and not let it touch the bottom using different types of gizmos. Gizmos[^1] can be static objects, such as circles, squares and triangles or flippers which can hit the ball if it is within their reach. The final system would include a graphical user interface with 2 modes - editor mode and play mode. Below is the list of revised specifications in each mode: 
 
+## Group Members
+
+**Group:** PR_Th1
+
+Bence Sebestyen @xsb15143
+
+Ioan Luca @xqb16141
+
+Lyubomir Ivanov @kwb15150
+
+Martin Kollie @vib15168
+
+Niklavs Meiers @isb15151
+
+
 [^1]:triangle, square and circle bumpers 
 
 ## Table of Contents
@@ -26,8 +41,8 @@
   * [Run game](#run-game)
 * [Physics loop (high level)](#physics-loop-high-level)
 * [Triggering System](#triggering-system)
-  * [`ITriggarable`](#itriggarable)
-  * [`ITrigger`](#itrigger)
+  * [ITriggarable](#itriggarable)
+  * [ITrigger](#itrigger)
   * [Rationale](#rationale)
 * [Class diagram](#class-diagram)
   * [View hierarchy](#view-hierarchy)
@@ -61,7 +76,7 @@
   * [Rectangle](#rectangle)
   * [Triangle](#triangle)
   * [Wall](#wall)
-* [UI screenshots](#ui-screenshots)
+* [GUI screenshots](#gui-screenshots)
 * [Planning](#planning)
 
 <!-- tocstop -->
@@ -380,10 +395,10 @@ for every tick
     
 ## Triggering System
 
-### `ITriggarable`
+### ITriggarable
  * An interface that describes the ability of gizmos to perform an action when they are triggered.
  
-### `ITrigger`
+### ITrigger
  * An interface that describes the ability of gizmos to trigger other gizmos, calling their actions. 
  * In a system where all the gizmos can trigger, then an `AbstractGizmo` class can implement this interface. 
  * Alternatively, the interface can be implemented by particular concrete gizmo implementations so that this ability remains specific to
@@ -564,11 +579,21 @@ Subclass of the PhysicsBody.
 
 ## GUI screenshots
 
-![Editor Mode](editormode1.png)
+### Editor Mode
+
 ![Editor Mode](editormode2.png)
-![Play Mode](playmode1.png)
-![Play Mode](playmode2.png)
-![Play Mode](playmode3.png)
+
+![Editor Mode - Grid toggled](editormode1.png)
+
+
+### Play Mode
+
+![Play Mode - Menu](playmode1.png)
+
+![Play Mode - Menu Resized](playmode3.png)
+
+![Play Mode - Play View](playmode2.png)
+
 
 
 \newpage
