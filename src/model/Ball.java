@@ -1,6 +1,7 @@
 package model;
 
 
+import gui.Theme;
 import javafx.scene.paint.Color;
 import physics.Circle;
 import physics.Vect;
@@ -23,7 +24,7 @@ public class Ball {
 	public Ball(double x, double y, double xv, double yv) {
 		xpos = x; // Centre coordinates
 		ypos = y;
-		colour = Color.BLUE;
+		colour = Theme.Colors.WHITE;
 		velocity = new Vect(xv, yv);
 		radius = 10;
 		stopped = false;
