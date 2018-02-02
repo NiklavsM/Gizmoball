@@ -26,8 +26,6 @@ public class PlayButtonEventHandler implements EventHandler<ActionEvent> {
                 model.moveBall();
             }
         });
-
-
     }
 
 

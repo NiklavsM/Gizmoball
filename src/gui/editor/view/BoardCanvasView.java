@@ -38,7 +38,6 @@ public class BoardCanvasView extends Canvas implements Observer {
         gc.setFill(Theme.Colors.DEEP_BLUE);
         gc.fillRect(0, 0, super.getWidth(), super.getHeight());
 
-
         // Draw all the vertical lines
         gc.setFill(javafx.scene.paint.Color.BLACK);
         for (VerticalLine vl : gm.getLines()) {

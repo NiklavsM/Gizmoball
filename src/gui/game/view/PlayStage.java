@@ -12,7 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import model.Model;
 import model.VerticalLine;
-import view.GizmoView;
+import gui.GizmoView;
 
 
 public class PlayStage extends Stage {
@@ -32,20 +32,18 @@ public class PlayStage extends Stage {
     }
 
     private void setup() {
-        Model model = makeModel();
-
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, 500, 500);
 
         // Center
-        Canvas canvas = new BoardCanvasView(500, 500, model);
+        Canvas canvas = new BoardCanvasView(500, 500, gizmoView.getModel());
 //        GameBar gameBar = new GameBar(Pos.BOTTOM_LEFT, root);
 
         stackPane = new StackPane();
         stackPane.setMaxHeight(APP_HEIGHT);
         stackPane.setMaxWidth(APP_WIDTH);
 
-        GameBar gameBar = new GameBar(Pos.BOTTOM_LEFT, this, model);
+        GameBar gameBar = new GameBar(Pos.BOTTOM_LEFT, this, gizmoView.getModel());
 
         // Score
         scoreLabel = new Label("Score: 1337");
@@ -70,19 +68,7 @@ public class PlayStage extends Stage {
     }
 
 
-    private Model makeModel() {
-        Model model = new Model();
 
-        model.setBallSpeed(200, 200);
-
-        // Vertical line at (100,100), width 300
-        model.addLine(new VerticalLine(100, 100, 300));
-        model.addLine(new VerticalLine(100, 200, 300));
-        model.addLine(new VerticalLine(100, 300, 300));
-        model.addLine(new VerticalLine(100, 400, 300));
-
-        return model;
-    }
 
     public void showPauseMenu() {
         stackPane.getChildren().forEach(e -> e.setEffect(new GaussianBlur(10))); //blur it a little

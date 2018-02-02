@@ -1,7 +1,6 @@
 package gui.editor.view;
 
 import gui.Theme;
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -22,7 +21,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import model.Model;
-import view.GizmoView;
+import gui.GizmoView;
 
 public class EditorStage extends Stage {
 
@@ -42,14 +41,13 @@ public class EditorStage extends Stage {
 
 
     private void setup() {
-        Model model = new Model(); //TODO: Fix
 
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, 800, 500);
 
         // Top
         MenuBar menuBar = makeMenubar();
-        ToolBar optionsBar = new GizmoOptionsBar(model);
+        ToolBar optionsBar = new GizmoOptionsBar(gizmoView.getModel());
 
         VBox topComponents = new VBox();
         topComponents.getChildren().addAll(menuBar, optionsBar);
@@ -79,7 +77,7 @@ public class EditorStage extends Stage {
         rigthSideBar.getChildren().add(tabPane);
 
         // Center
-        Canvas canvas = new BoardCanvasView(500, 500, model);
+        Canvas canvas = new BoardCanvasView(500, 500, gizmoView.getModel());
 
         // Bottom
         Node statusBar = makeStatusBar();

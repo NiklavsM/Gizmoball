@@ -1,6 +1,5 @@
-import gui.game.view.PlayStage;
 import javafx.application.Application;
-import view.GizmoView;
+import gui.GizmoView;
 
 public class Driver {
 
