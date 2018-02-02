@@ -15,20 +15,22 @@ import model.Model;
 public class GameBar extends GizmoHorizontalToolBar {
 
     private final Model model;
+    private final PlayStage playStage;
 
-    public GameBar(Pos position, Pane gui, Model model) {
+    public GameBar(Pos position, PlayStage playStage, Model model) {
         super.setMaxWidth(150);
         super.setAlignment(position);
         super.getStyleClass().add("game-bar");
         this.model = model;
+        this.playStage = playStage;
 
-        setup(gui);
+        setup();
     }
 
-    private void setup(Pane gui) {
+    private void setup() {
         addItem("Play", "play-button", new PlayButtonEventHandler(model));
         addItem("Tick", "tick-button", new TickButtonEventHandler());
-        addItem("Menu", "pause-screen-button", new MenuButtonEventHandler(gui));
+        addItem("Menu", "pause-screen-button", new MenuButtonEventHandler(playStage));
     }
 
     private void addItem(String name, String className, EventHandler<ActionEvent> eventEventHandler) {

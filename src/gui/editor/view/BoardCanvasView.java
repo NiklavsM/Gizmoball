@@ -18,13 +18,6 @@ public class BoardCanvasView extends Canvas implements Observer {
     private static final long serialVersionUID = 1L;
     protected Model gm;
 
-    public BoardCanvasView(int width, int height) {
-        super(width, height);
-        // Observe changes in Model
-//        this.setBorder(BorderFactory.createLineBorder(java.awt.Color.black));
-        redraw();
-    }
-
     public BoardCanvasView(int width, int height, Model model) {
         super(width, height);
         // Observe changes in Model

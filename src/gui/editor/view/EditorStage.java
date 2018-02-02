@@ -22,17 +22,26 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import model.Model;
+import view.GizmoView;
 
-public class GizmoEditorView extends Application {
+public class EditorStage extends Stage {
 
     private static final String APPLICATION_NAME = "Gizmoball - Editor";
 
     private static final double APP_HEIGHT = 800;
     private static final double APP_WIDTH = 1000;
+
+    private GizmoView gizmoView;
     private Label statusBarLabel;
 
-    @Override
-    public void start(Stage primaryStage) {
+    public EditorStage(GizmoView gizmoView) {
+        this.gizmoView = gizmoView;
+
+        setup();
+    }
+
+
+    private void setup() {
         Model model = new Model(); //TODO: Fix
 
         BorderPane root = new BorderPane();
@@ -70,7 +79,7 @@ public class GizmoEditorView extends Application {
         rigthSideBar.getChildren().add(tabPane);
 
         // Center
-        Canvas canvas = new BoardCanvasView(500, 500);
+        Canvas canvas = new BoardCanvasView(500, 500, model);
 
         // Bottom
         Node statusBar = makeStatusBar();
@@ -83,11 +92,11 @@ public class GizmoEditorView extends Application {
 
         scene.getStylesheets().add(Theme.STYLESHEET_PATH);
 
-        primaryStage.setMinHeight(APP_HEIGHT);
-        primaryStage.setMinWidth(APP_WIDTH);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle(APPLICATION_NAME);
-        primaryStage.show();
+        super.setMinHeight(APP_HEIGHT);
+        super.setMinWidth(APP_WIDTH);
+        super.setScene(scene);
+        super.setTitle(APPLICATION_NAME);
+//        super.show();
     }
 
     private Node makeStatusBar() {

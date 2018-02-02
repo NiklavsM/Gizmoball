@@ -1,6 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### JetBrains template
 .idea
+.iml
 
 # CMake
 cmake-build-debug/

@@ -1,5 +1,6 @@
 package gui.editor.view;
 
+import gui.game.view.PlayStage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.effect.GaussianBlur;
@@ -7,16 +8,14 @@ import javafx.scene.layout.Pane;
 import gui.game.view.PauseMenu;
 
 public class MenuButtonEventHandler implements EventHandler<ActionEvent> {
-	private Pane gui;
+	private PlayStage playStage;
 	
-	public MenuButtonEventHandler(Pane gui) {
-		this.gui = gui;
+	public MenuButtonEventHandler(PlayStage playStage) {
+		this.playStage = playStage;
 	}
 	
     @Override
     public void handle(ActionEvent event) {
-        gui.getChildren().forEach(e -> e.setEffect(new GaussianBlur(10))); //blur it a little
-        PauseMenu menu = new PauseMenu();
-        gui.getChildren().add(menu);
+        playStage.showPauseMenu();
     }
 }
