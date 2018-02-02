@@ -2,14 +2,8 @@ package gui.editor.view;
 
 import gui.GizmoHorizontalToolBar;
 import gui.Theme;
-import gui.editor.controller.options.ClearButtonHandler;
-import gui.editor.controller.options.LoadButtonHandler;
-import gui.editor.controller.options.PlayButtonEventHandler;
-import gui.editor.controller.options.RedoButtonHandler;
-import gui.editor.controller.options.SaveAsButtonHandler;
-import gui.editor.controller.options.SaveButtonHandler;
-import gui.editor.controller.options.ToggleGridButtonHandler;
-import gui.editor.controller.options.UndoButtonHandler;
+import gui.editor.controller.options.*;
+import gui.game.view.PlayStage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -19,18 +13,20 @@ import model.Model;
 
 public class GizmoOptionsBar extends GizmoHorizontalToolBar {
 
+    private final EditorStage editorStage;
     private Model model;
 
 
-    public GizmoOptionsBar(Model model) {
+    public GizmoOptionsBar(Model model, EditorStage editorStage) {
         super.setAlignment(Pos.CENTER);
         this.model = model;
+        this.editorStage = editorStage;
 
         setup();
     }
 
     private void setup() {
-        addItem("Play", "play-button", new PlayButtonEventHandler(model));
+        addItem("Play", "play-button", new PlayModeButtonHandler(editorStage));
         addItem("Load", "load-button", new LoadButtonHandler());
         addItem("Save", "save-button", new SaveButtonHandler());
         addItem("Save As", "saveas-button", new SaveAsButtonHandler());

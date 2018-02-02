@@ -20,7 +20,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import model.Model;
 import gui.GizmoView;
 
 public class EditorStage extends Stage {
@@ -47,13 +46,13 @@ public class EditorStage extends Stage {
 
         // Top
         MenuBar menuBar = makeMenubar();
-        ToolBar optionsBar = new GizmoOptionsBar(gizmoView.getModel());
+        ToolBar optionsBar = new GizmoOptionsBar(gizmoView.getModel(), this);
 
         VBox topComponents = new VBox();
         topComponents.getChildren().addAll(menuBar, optionsBar);
 
         // Left
-        ToolBar toolbar = new GizmoToolbar();
+        ToolBar toolbar = new GizmoToolBar();
 
         // Right
         VBox rigthSideBar = new VBox();
@@ -172,5 +171,9 @@ public class EditorStage extends Stage {
 
     public void setStatusBarText(String statusBarText) {
         statusBarLabel.setText(statusBarText);
+    }
+
+    public void openPlayMode() {
+        gizmoView.switchModes();
     }
 }

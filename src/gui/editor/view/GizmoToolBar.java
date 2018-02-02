@@ -14,13 +14,13 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 
-public class GizmoToolbar extends GizmoVerticalToolBar {
+public class GizmoToolBar extends GizmoVerticalToolBar {
 
 
-    public GizmoToolbar() {
+    public GizmoToolBar() {
         super.setAlignment(Pos.CENTER);
-
         super.setOrientation(Orientation.VERTICAL);
+
         setup();
     }
 
