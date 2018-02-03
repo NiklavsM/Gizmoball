@@ -30,11 +30,11 @@ public class Ball {
 		stopped = false;
 	}
 
-	public Vector getVeolcity() {
+	public Vector getVelocity() {
 		return velocity;
 	}
 
-	public void setVelo(Vector v) {
+	public void setVelocity(Vector v) {
 		velocity = v;
 	}
 

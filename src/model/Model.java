@@ -53,7 +53,7 @@ public class Model extends Observable {
 				// We've got a collision in tuc
 				ball = movelBallForTime(ball, tuc);
 				// Post collision velocity ...
-				ball.setVelo(cd.getVelo());
+				ball.setVelocity(cd.getVelo());
 			}
 
 			// Notify observers ... redraw updated view
@@ -67,8 +67,8 @@ public class Model extends Observable {
 
 		double newX = 0.0;
 		double newY = 0.0;
-		double xVel = ball.getVeolcity().x();
-		double yVel = ball.getVeolcity().y();
+		double xVel = ball.getVelocity().x();
+		double yVel = ball.getVelocity().y();
 		newX = ball.getExactX() + (xVel * time);
 		newY = ball.getExactY() + (yVel * time);
 		ball.setExactX(newX);
@@ -80,7 +80,7 @@ public class Model extends Observable {
 		// Find Time Until Collision and also, if there is a collision, the new speed vector.
 		// Create a physics.Circle from Ball
 		Circle ballCircle = ball.getCircle();
-		Vector ballVelocity = ball.getVeolcity();
+		Vector ballVelocity = ball.getVelocity();
 		Vector newVelo = new Vector(0, 0);
 
 		// Now find shortest time to hit a vertical line or a wall line
@@ -93,7 +93,7 @@ public class Model extends Observable {
 			time = Geometry.timeUntilWallCollision(line, ballCircle, ballVelocity);
 			if (time < shortestTime) {
 				shortestTime = time;
-				newVelo = Geometry.reflectWall(line, ball.getVeolcity(), 1.0);
+				newVelo = Geometry.reflectWall(line, ball.getVelocity(), 1.0);
 			}
 		}
 
@@ -103,7 +103,7 @@ public class Model extends Observable {
 			time = Geometry.timeUntilWallCollision(ls, ballCircle, ballVelocity);
 			if (time < shortestTime) {
 				shortestTime = time;
-				newVelo = Geometry.reflectWall(ls, ball.getVeolcity(), 1.0);
+				newVelo = Geometry.reflectWall(ls, ball.getVelocity(), 1.0);
 			}
 		}
 		return new CollisionDetails(shortestTime, newVelo);
@@ -122,7 +122,7 @@ public class Model extends Observable {
 	}
 
 	public void setBallSpeed(int x, int y) {
-		ball.setVelo(new Vector(x, y));
+		ball.setVelocity(new Vector(x, y));
 	}
 
 	public Timer getTimer(){
