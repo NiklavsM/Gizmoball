@@ -1,12 +1,13 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Observable;
-
 import physics.Circle;
 import physics.Geometry;
 import physics.LineSegment;
 import physics.Vect;
+
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Observable;
 
 /**
  * @author Murray Wood Demonstration of MVC and MIT Physics Collisions 2014
@@ -17,6 +18,7 @@ public class Model extends Observable {
 	private ArrayList<VerticalLine> lines;
 	private Ball ball;
 	private Walls gws;
+	private Timer timer;
 
 	public Model() {
 
@@ -28,6 +30,11 @@ public class Model extends Observable {
 
 		// Lines added in Main
 		lines = new ArrayList<VerticalLine>();
+		setupTimer();
+	}
+
+	private void setupTimer(){
+		timer = new Timer(50, e -> moveBall());
 	}
 
 	public void moveBall() {
@@ -116,5 +123,9 @@ public class Model extends Observable {
 
 	public void setBallSpeed(int x, int y) {
 		ball.setVelo(new Vect(x, y));
+	}
+
+	public Timer getTimer(){
+		return timer;
 	}
 }

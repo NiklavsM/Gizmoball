@@ -5,7 +5,6 @@ import javafx.event.EventHandler;
 import model.Model;
 
 import javax.swing.*;
-import java.awt.event.ActionListener;
 
 public class PlayButtonEventHandler implements EventHandler<ActionEvent> {
 
@@ -15,21 +14,10 @@ public class PlayButtonEventHandler implements EventHandler<ActionEvent> {
 
     public PlayButtonEventHandler(Model model) {
         this.model = model;
-        setup();
     }
-
-    private void setup() {
-        timer = new Timer(50, new ActionListener() {
-            @Override
-            public void actionPerformed(java.awt.event.ActionEvent e) {
-                model.moveBall();
-            }
-        });
-    }
-
 
     @Override
     public void handle(ActionEvent event) {
-        timer.start();
+        model.getTimer().start();
     }
 }

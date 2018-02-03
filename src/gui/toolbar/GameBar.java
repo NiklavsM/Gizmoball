@@ -1,6 +1,7 @@
 package gui.toolbar;
 
 import controller.editor.PlayButtonEventHandler;
+import controller.play.StopButtonEventHandler;
 import gui.PlayStage;
 import controller.editor.MenuButtonEventHandler;
 import controller.play.TickButtonEventHandler;
@@ -17,7 +18,7 @@ public class GameBar extends GizmoHorizontalToolBar {
     private final PlayStage playStage;
 
     public GameBar(Pos position, PlayStage playStage, Model model) {
-        super.setMaxWidth(150);
+        super.setMaxWidth(200);
         super.setAlignment(position);
         super.getStyleClass().add("game-bar");
         this.model = model;
@@ -28,7 +29,8 @@ public class GameBar extends GizmoHorizontalToolBar {
 
     private void setup() {
         addItem("Play", "play-button", new PlayButtonEventHandler(model));
-        addItem("Tick", "tick-button", new TickButtonEventHandler());
+        addItem("Stop", "stop-button", new StopButtonEventHandler(model));
+        addItem("Tick", "tick-button", new TickButtonEventHandler(model));
         addItem("Menu", "pause-screen-button", new MenuButtonEventHandler(playStage));
     }
 

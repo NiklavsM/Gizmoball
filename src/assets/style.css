@@ -193,3 +193,7 @@ Button:hover {
     -fx-graphic: url("/assets/icons/editor.png");
 }
 
+.stop-button {
+    -fx-graphic: url("/assets/icons/stop.png");
+}
+
