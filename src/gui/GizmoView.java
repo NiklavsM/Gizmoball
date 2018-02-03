@@ -1,7 +1,6 @@
 package gui;
 
-import gui.editor.view.EditorStage;
-import gui.game.view.PlayStage;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.Model;
