@@ -1,6 +1,6 @@
 package model;
 
-import physics.Vect;
+import physics.Vector;
 
 /**
  * @author Murray Wood Demonstration of MVC and MIT Physics Collisions 2014
@@ -8,9 +8,9 @@ import physics.Vect;
 
 public  class CollisionDetails {
 	private double tuc;
-	private Vect velo;
+	private Vector velo;
 
-	public CollisionDetails(double t, Vect v) {
+	public CollisionDetails(double t, Vector v) {
 		tuc = t;
 		velo = v;
 	}
@@ -19,7 +19,7 @@ public  class CollisionDetails {
 		return tuc;
 	}
 	
-	public Vect getVelo() {
+	public Vector getVelo() {
 		return velo;
 	}
 

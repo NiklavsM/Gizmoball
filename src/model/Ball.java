@@ -4,7 +4,7 @@ package model;
 import gui.Theme;
 import javafx.scene.paint.Color;
 import physics.Circle;
-import physics.Vect;
+import physics.Vector;
 
 /**
  * @author Murray Wood Demonstration of MVC and MIT Physics Collisions 2014
@@ -12,7 +12,7 @@ import physics.Vect;
 
 public class Ball {
 
-	private Vect velocity;
+	private Vector velocity;
 	private double radius;
 	private double xpos;
 	private double ypos;
@@ -25,16 +25,16 @@ public class Ball {
 		xpos = x; // Centre coordinates
 		ypos = y;
 		colour = Theme.Colors.WHITE;
-		velocity = new Vect(xv, yv);
+		velocity = new Vector(xv, yv);
 		radius = 10;
 		stopped = false;
 	}
 
-	public Vect getVelo() {
+	public Vector getVeolcity() {
 		return velocity;
 	}
 
-	public void setVelo(Vect v) {
+	public void setVelo(Vector v) {
 		velocity = v;
 	}
 

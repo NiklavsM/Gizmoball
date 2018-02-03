@@ -1,7 +1,7 @@
 package gui.toolbar;
 
-import controller.editor.PlayButtonEventHandler;
 import controller.play.StopButtonEventHandler;
+import controller.play.PlayButtonEventHandler;
 import gui.PlayStage;
 import controller.editor.MenuButtonEventHandler;
 import controller.play.TickButtonEventHandler;

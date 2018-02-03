@@ -3,7 +3,7 @@ package model;
 import physics.Circle;
 import physics.Geometry;
 import physics.LineSegment;
-import physics.Vect;
+import physics.Vector;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -67,8 +67,8 @@ public class Model extends Observable {
 
 		double newX = 0.0;
 		double newY = 0.0;
-		double xVel = ball.getVelo().x();
-		double yVel = ball.getVelo().y();
+		double xVel = ball.getVeolcity().x();
+		double yVel = ball.getVeolcity().y();
 		newX = ball.getExactX() + (xVel * time);
 		newY = ball.getExactY() + (yVel * time);
 		ball.setExactX(newX);
@@ -80,8 +80,8 @@ public class Model extends Observable {
 		// Find Time Until Collision and also, if there is a collision, the new speed vector.
 		// Create a physics.Circle from Ball
 		Circle ballCircle = ball.getCircle();
-		Vect ballVelocity = ball.getVelo();
-		Vect newVelo = new Vect(0, 0);
+		Vector ballVelocity = ball.getVeolcity();
+		Vector newVelo = new Vector(0, 0);
 
 		// Now find shortest time to hit a vertical line or a wall line
 		double shortestTime = Double.MAX_VALUE;
@@ -93,7 +93,7 @@ public class Model extends Observable {
 			time = Geometry.timeUntilWallCollision(line, ballCircle, ballVelocity);
 			if (time < shortestTime) {
 				shortestTime = time;
-				newVelo = Geometry.reflectWall(line, ball.getVelo(), 1.0);
+				newVelo = Geometry.reflectWall(line, ball.getVeolcity(), 1.0);
 			}
 		}
 
@@ -103,7 +103,7 @@ public class Model extends Observable {
 			time = Geometry.timeUntilWallCollision(ls, ballCircle, ballVelocity);
 			if (time < shortestTime) {
 				shortestTime = time;
-				newVelo = Geometry.reflectWall(ls, ball.getVelo(), 1.0);
+				newVelo = Geometry.reflectWall(ls, ball.getVeolcity(), 1.0);
 			}
 		}
 		return new CollisionDetails(shortestTime, newVelo);
@@ -122,7 +122,7 @@ public class Model extends Observable {
 	}
 
 	public void setBallSpeed(int x, int y) {
-		ball.setVelo(new Vect(x, y));
+		ball.setVelo(new Vector(x, y));
 	}
 
 	public Timer getTimer(){

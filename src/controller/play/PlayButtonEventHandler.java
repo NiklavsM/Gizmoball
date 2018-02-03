@@ -1,4 +1,4 @@
-package controller.editor;
+package controller.play;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,9 +8,7 @@ import javax.swing.*;
 
 public class PlayButtonEventHandler implements EventHandler<ActionEvent> {
 
-    private static Timer timer;
     private Model model;
-    private javafx.event.ActionEvent timerEvent;
 
     public PlayButtonEventHandler(Model model) {
         this.model = model;
