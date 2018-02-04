@@ -68,12 +68,16 @@ public class PlayStage extends Stage {
 
     public void showPauseMenu(EventHandler<ActionEvent> stop) {
         stackPane.getChildren().forEach(e -> e.setEffect(new GaussianBlur(10))); //blur it a little
-        PauseMenu menu = new PauseMenu(this, stop);
+        PauseMenu menu = new PauseMenu(this, stop, !gizmoView.getModel().getBall().stopped());
         stackPane.getChildren().add(menu);
-        gameBar.enabled(true);
+        gameBar.disabled(true);
     }
 
     public void openEditor() {
         gizmoView.switchModes();
+    }
+    
+    public GameBar getGameBar() {
+    	return gameBar;
     }
 }

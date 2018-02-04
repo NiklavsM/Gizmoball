@@ -38,13 +38,12 @@ public class GameBar extends GizmoHorizontalToolBar {
         button.setMinSize(24, 24);
         button.setOnAction(eventEventHandler);
         button.getStyleClass().add(className);
-
         Tooltip tooltip = new Tooltip(name);
         button.setTooltip(tooltip);
         add(button);
     }
     
-    public void enabled(boolean value) {
+    public void disabled(boolean value) {
     	this.getChildren().forEach(e -> e.setDisable(value));
     }
 }
