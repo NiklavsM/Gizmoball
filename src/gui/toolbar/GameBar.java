@@ -12,7 +12,7 @@ import javafx.scene.control.Tooltip;
 import model.Model;
 
 public class GameBar extends GizmoHorizontalToolBar {
-
+	private final EventHandler<ActionEvent> stop;
     private final Model model;
     private final PlayStage playStage;
 
@@ -22,14 +22,14 @@ public class GameBar extends GizmoHorizontalToolBar {
         super.getStyleClass().add("game-bar");
         this.model = model;
         this.playStage = playStage;
-
+        stop = new PlayButtonEventHandler(model);
         setup();
     }
 
     private void setup() {
-        addItem("Play", "play-button", new PlayButtonEventHandler(model));
+        addItem("Play", "play-button", stop);
         addItem("Tick", "tick-button", new TickButtonEventHandler(model));
-        addItem("Menu", "pause-screen-button", new MenuButtonEventHandler(playStage));
+        addItem("Menu", "pause-screen-button", new MenuButtonEventHandler(playStage, stop));
     }
 
     private void addItem(String name, String className, EventHandler<ActionEvent> eventEventHandler) {
