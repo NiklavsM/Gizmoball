@@ -15,5 +15,6 @@ public class StopButtonEventHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent event) {
         model.getTimer().stop();
         model.getBall().stop();
+        System.out.println(model.getBall().stopped());
     }
 }

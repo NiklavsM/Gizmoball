@@ -15,5 +15,6 @@ public class PlayButtonEventHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent event) {
         model.getTimer().start();
         model.getBall().start();
+        System.out.println(model.getBall().stopped());
     }
 }
