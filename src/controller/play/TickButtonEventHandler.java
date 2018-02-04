@@ -10,9 +10,13 @@ public class TickButtonEventHandler implements EventHandler<ActionEvent> {
     public TickButtonEventHandler(Model model) {
         this.model = model;
     }
-	
+
     @Override
     public void handle(ActionEvent event) {
-        model.moveBall();  
+        if (model.getBall().stopped()) {
+            model.getBall().start();
+            model.moveBall();
+            model.getBall().stop();
+        }
     }
 }

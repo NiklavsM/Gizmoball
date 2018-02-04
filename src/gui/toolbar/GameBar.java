@@ -1,6 +1,7 @@
 package gui.toolbar;
 
-import controller.editor.PlayButtonEventHandler;
+import controller.play.StopButtonEventHandler;
+import controller.play.PlayButtonEventHandler;
 import gui.PlayStage;
 import controller.editor.MenuButtonEventHandler;
 import controller.play.TickButtonEventHandler;
@@ -13,21 +14,25 @@ import model.Model;
 
 public class GameBar extends GizmoHorizontalToolBar {
 	private final EventHandler<ActionEvent> stop;
+	private final EventHandler<ActionEvent> start;
     private final Model model;
     private final PlayStage playStage;
 
     public GameBar(Pos position, PlayStage playStage, Model model) {
-        super.setMaxWidth(150);
+        super.setMaxWidth(200);
         super.setAlignment(position);
         super.getStyleClass().add("game-bar");
         this.model = model;
         this.playStage = playStage;
-        stop = new PlayButtonEventHandler(model);
+
+        stop = new StopButtonEventHandler(model);
+        start = new PlayButtonEventHandler(model);
         setup();
     }
 
     private void setup() {
-        addItem("Play", "play-button", stop);
+        addItem("Play", "play-button", new PlayButtonEventHandler(model));
+        addItem("Stop", "stop-button", new StopButtonEventHandler(model));
         addItem("Tick", "tick-button", new TickButtonEventHandler(model));
         addItem("Menu", "pause-screen-button", new MenuButtonEventHandler(playStage, stop));
     }
@@ -38,10 +43,16 @@ public class GameBar extends GizmoHorizontalToolBar {
         button.setMinSize(24, 24);
         button.setOnAction(eventEventHandler);
         button.getStyleClass().add(className);
-
         Tooltip tooltip = new Tooltip(name);
         button.setTooltip(tooltip);
-
         add(button);
+    }
+    
+    public void disabled(boolean value) {
+    	this.getChildren().forEach(e -> e.setDisable(value));
+    }
+    
+    public EventHandler<ActionEvent> getPlayHandler() {
+    	return start;
     }
 }

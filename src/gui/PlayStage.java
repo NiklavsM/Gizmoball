@@ -22,6 +22,7 @@ public class PlayStage extends Stage {
     private static final double APP_WIDTH = 500;
     private Label scoreLabel;
     private StackPane stackPane;
+    private GameBar gameBar;
 
     public PlayStage(GizmoView gizmoView) {
         this.gizmoView = gizmoView;
@@ -40,7 +41,7 @@ public class PlayStage extends Stage {
         stackPane.setMaxHeight(APP_HEIGHT);
         stackPane.setMaxWidth(APP_WIDTH);
 
-        GameBar gameBar = new GameBar(Pos.BOTTOM_LEFT, this, gizmoView.getModel());
+        gameBar = new GameBar(Pos.BOTTOM_LEFT, this, gizmoView.getModel());
 
         // Score
         scoreLabel = new Label("Score: 1337");
@@ -66,11 +67,16 @@ public class PlayStage extends Stage {
 
     public void showPauseMenu() {
         stackPane.getChildren().forEach(e -> e.setEffect(new GaussianBlur(10))); //blur it a little
-        PauseMenu menu = new PauseMenu(this);
+        PauseMenu menu = new PauseMenu(this, !gizmoView.getModel().getBall().stopped());
         stackPane.getChildren().add(menu);
+        gameBar.disabled(true);
     }
 
     public void openEditor() {
         gizmoView.switchModes();
+    }
+
+    public GameBar getGameBar() {
+        return gameBar;
     }
 }
