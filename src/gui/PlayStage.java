@@ -25,7 +25,6 @@ public class PlayStage extends Stage {
 
     public PlayStage(GizmoView gizmoView) {
         this.gizmoView = gizmoView;
-
         setup();
     }
 

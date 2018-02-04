@@ -11,7 +11,6 @@ public class PlayButtonEventHandler implements EventHandler<ActionEvent> {
 
     private static Timer timer;
     private Model model;
-    private javafx.event.ActionEvent timerEvent;
 
     public PlayButtonEventHandler(Model model) {
         this.model = model;
@@ -27,9 +26,11 @@ public class PlayButtonEventHandler implements EventHandler<ActionEvent> {
         });
     }
 
-
     @Override
     public void handle(ActionEvent event) {
-        timer.start();
-    }
+    	if (event.getSource().toString().contains("play") && !timer.isRunning()) 
+    		timer.start();
+    	else
+    		timer.stop();
+    }	
 }
