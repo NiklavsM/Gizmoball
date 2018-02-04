@@ -65,9 +65,6 @@ public class PlayStage extends Stage {
         super.show();
     }
 
-
-
-
     public void showPauseMenu() {
         stackPane.getChildren().forEach(e -> e.setEffect(new GaussianBlur(10))); //blur it a little
         PauseMenu menu = new PauseMenu(this);

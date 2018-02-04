@@ -28,7 +28,7 @@ public class GameBar extends GizmoHorizontalToolBar {
 
     private void setup() {
         addItem("Play", "play-button", new PlayButtonEventHandler(model));
-        addItem("Tick", "tick-button", new TickButtonEventHandler());
+        addItem("Tick", "tick-button", new TickButtonEventHandler(model));
         addItem("Menu", "pause-screen-button", new MenuButtonEventHandler(playStage));
     }
 
