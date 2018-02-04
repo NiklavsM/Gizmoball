@@ -4,10 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import model.Model;
 
-import javax.swing.*;
-
 public class PlayButtonEventHandler implements EventHandler<ActionEvent> {
-
     private Model model;
 
     public PlayButtonEventHandler(Model model) {

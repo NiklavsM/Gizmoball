@@ -17,6 +17,5 @@ public class MenuButtonEventHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent event) {
     	stop.handle(event);
         playStage.showPauseMenu();
-        stop.handle(event);
     }
 }

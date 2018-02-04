@@ -15,7 +15,7 @@ public class BackToGameHandler implements EventHandler<ActionEvent> {
     public BackToGameHandler(ToolBar box, GameBar bar, boolean wasMoving) {
         this.box = box;
         this.bar = bar;
-        this.start = bar.getPlayHandler();
+        start = bar.getPlayHandler();
         this.wasMoving = wasMoving;
     }
 

@@ -1,10 +1,10 @@
 package gui.toolbar;
 
-import controller.play.StopButtonEventHandler;
-import controller.play.PlayButtonEventHandler;
-import gui.PlayStage;
 import controller.editor.MenuButtonEventHandler;
+import controller.play.PlayButtonEventHandler;
+import controller.play.StopButtonEventHandler;
 import controller.play.TickButtonEventHandler;
+import gui.PlayStage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -24,7 +24,6 @@ public class GameBar extends GizmoHorizontalToolBar {
         super.getStyleClass().add("game-bar");
         this.model = model;
         this.playStage = playStage;
-
         stop = new StopButtonEventHandler(model);
         start = new PlayButtonEventHandler(model);
         setup();
