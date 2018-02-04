@@ -3,6 +3,8 @@ package gui;
 import gui.menu.PauseMenu;
 import gui.panel.BoardCanvasView;
 import gui.toolbar.GameBar;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -16,7 +18,6 @@ import javafx.stage.Stage;
 public class PlayStage extends Stage {
 
     private static final String APPLICATION_NAME = "Gizmoball - Play";
-
     private GizmoView gizmoView;
     private static final double APP_HEIGHT = 500;
     private static final double APP_WIDTH = 500;
@@ -64,9 +65,9 @@ public class PlayStage extends Stage {
         super.show();
     }
 
-    public void showPauseMenu() {
+    public void showPauseMenu(EventHandler<ActionEvent> stop) {
         stackPane.getChildren().forEach(e -> e.setEffect(new GaussianBlur(10))); //blur it a little
-        PauseMenu menu = new PauseMenu(this);
+        PauseMenu menu = new PauseMenu(this, stop);
         stackPane.getChildren().add(menu);
     }
 
