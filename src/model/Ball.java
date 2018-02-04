@@ -17,7 +17,6 @@ public class Ball {
 	private double xpos;
 	private double ypos;
 	private Color colour;
-
 	private boolean stopped;
 
 	// x, y coordinates and x,y velocity
@@ -27,7 +26,7 @@ public class Ball {
 		colour = Theme.Colors.WHITE;
 		velocity = new Vector(xv, yv);
 		radius = 10;
-		stopped = false;
+		stopped = true;
 	}
 
 	public Vector getVeolcity() {
