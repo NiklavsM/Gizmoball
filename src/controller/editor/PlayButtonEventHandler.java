@@ -29,9 +29,12 @@ public class PlayButtonEventHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
     	System.out.println(event.getSource().toString());
-    	if ((event.getSource().toString().contains("play") && !timer.isRunning()) || event.getSource().toString().contains("back")) 
+    	if ((event.getSource().toString().contains("back")) || (event.getSource().toString().contains("play") && !timer.isRunning())) { 
     		timer.start();
-    	else
+    		model.getBall().start();
+    	} else {
     		timer.stop();
+    		model.getBall().stop();
+    	}
     }	
 }

@@ -36,8 +36,6 @@ public class GizmoView extends Application {
         return model;
     }
 
-
-
     private Model makeModel() {
         Model model = new Model();
 

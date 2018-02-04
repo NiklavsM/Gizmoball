@@ -16,6 +16,7 @@ public class MenuButtonEventHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
     	stop.handle(event);
+    	
         playStage.showPauseMenu(stop);
     }
 }

@@ -27,7 +27,6 @@ public class PauseMenu extends GizmoVerticalToolBar {
         this.stop = stop;
         super.setPadding(Theme.Padding.NONE);
         super.setVGap(15);
-
         setup();
     }
 
