@@ -17,17 +17,14 @@ import javafx.scene.text.TextAlignment;
 
 
 public class PauseMenu extends GizmoVerticalToolBar {
-
     private PlayStage playStage;
 
     public PauseMenu(PlayStage playStage) {
         this.setAlignment(Pos.CENTER);
         this.playStage = playStage;
         this.getStyleClass().add("PauseMenu");
-
         super.setPadding(Theme.Padding.NONE);
         super.setVGap(15);
-
         setup();
     }
 
@@ -38,7 +35,7 @@ public class PauseMenu extends GizmoVerticalToolBar {
         setMaxHeight(250);
         setPadding(Theme.Padding.DEFAULT_PADDING);
 
-        addItem("Back", "back-button", new BackToGameHandler(this));
+        addItem("Back", "back-button", new BackToGameHandler(this, playStage.getGameBar()));
         addItem("Save", "save-progress-button", new SaveProgressHandler());
         addItem("Load", "load-game-button", new LoadProgressHandler());
         addItem("Editor", "to-editor-button", new ToEditorModeHandler(playStage));
@@ -54,7 +51,6 @@ public class PauseMenu extends GizmoVerticalToolBar {
         button.setFont(Theme.Fonts.PAUSE_MENU_FONT);
         button.setOnAction(eventEventHandler);
         button.getStyleClass().add(cssClass);
-
         super.add(button);
     }
 

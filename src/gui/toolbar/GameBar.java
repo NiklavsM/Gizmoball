@@ -23,7 +23,6 @@ public class GameBar extends GizmoHorizontalToolBar {
         super.getStyleClass().add("game-bar");
         this.model = model;
         this.playStage = playStage;
-
         setup();
     }
 
@@ -40,10 +39,12 @@ public class GameBar extends GizmoHorizontalToolBar {
         button.setMinSize(24, 24);
         button.setOnAction(eventEventHandler);
         button.getStyleClass().add(className);
-
         Tooltip tooltip = new Tooltip(name);
         button.setTooltip(tooltip);
-
         add(button);
+    }
+    
+    public void disabled(boolean value) {
+    	this.getChildren().forEach(e -> e.setDisable(value));
     }
 }
