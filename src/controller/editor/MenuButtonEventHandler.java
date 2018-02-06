@@ -3,19 +3,20 @@ package controller.editor;
 import gui.PlayStage;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import model.Model;
 
 public class MenuButtonEventHandler implements EventHandler<ActionEvent> {
-	private PlayStage playStage;
-	private EventHandler<ActionEvent> stop;
-	
-	public MenuButtonEventHandler(PlayStage playStage, EventHandler<ActionEvent> stop) {
-		this.playStage = playStage;
-		this.stop = stop;
-	}
-	
+    private Model model;
+    private PlayStage playStage;
+
+    public MenuButtonEventHandler(PlayStage playStage, Model model) {
+        this.model = model;
+        this.playStage = playStage;
+    }
+
     @Override
     public void handle(ActionEvent event) {
-    	playStage.showPauseMenu();
-    	stop.handle(event);
+        playStage.showPauseMenu();
+        model.stopTimer();
     }
 }

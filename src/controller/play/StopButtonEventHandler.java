@@ -13,8 +13,6 @@ public class StopButtonEventHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
-        model.getTimer().stop();
-        model.getBall().stop();
-        System.out.println(model.getBall().stopped());
+        model.stopTimer();
     }
 }

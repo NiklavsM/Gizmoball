@@ -42,8 +42,7 @@ public class Model extends Observable {
 
         double moveTime = 0.05; // 0.05 = 20 times per second as per Gizmoball
 
-        if (ball != null && !ball.stopped()) {
-
+        if (ball != null) {
             //Time until collision
             CollisionDetails cd = timeUntilCollision();
             double tuc = cd.getTuc();
@@ -126,7 +125,15 @@ public class Model extends Observable {
         ball.setVelo(new Vect(x, y));
     }
 
-    public Timer getTimer() {
-        return timer;
+    public void startTimer() {
+        timer.start();
+    }
+
+    public void stopTimer() {
+        timer.stop();
+    }
+
+    public boolean timerIsRunning() {
+        return timer.isRunning();
     }
 }

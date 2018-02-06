@@ -13,10 +13,8 @@ public class TickButtonEventHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
-        if (model.getBall().stopped()) {
-            model.getBall().start();
+        if (!model.timerIsRunning()) {
             model.moveBall();
-            model.getBall().stop();
         }
     }
 }

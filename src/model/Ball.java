@@ -17,7 +17,6 @@ public class Ball {
     private double xpos;
     private double ypos;
     private Color colour;
-    private boolean stopped;
 
     // x, y coordinates and x,y velocity
     public Ball(double x, double y, double xv, double yv) {
@@ -26,7 +25,6 @@ public class Ball {
         colour = Theme.Colors.WHITE;
         velocity = new Vect(xv, yv);
         radius = 10;
-        stopped = true;
     }
 
     public Vect getVelo() {
@@ -61,18 +59,6 @@ public class Ball {
 
     public void setExactY(double y) {
         ypos = y;
-    }
-
-    public void stop() {
-        stopped = true;
-    }
-
-    public void start() {
-        stopped = false;
-    }
-
-    public boolean stopped() {
-        return stopped;
     }
 
     public Color getColour() {

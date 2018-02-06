@@ -13,8 +13,6 @@ public class PlayButtonEventHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
-        model.getTimer().start();
-        model.getBall().start();
-        System.out.println(model.getBall().stopped());
+        model.startTimer();
     }
 }
