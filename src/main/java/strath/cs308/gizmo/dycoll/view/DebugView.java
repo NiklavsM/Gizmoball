@@ -49,6 +49,9 @@ public class DebugView implements Observer
 
     private void drawBodies()
     {
+        ShapeFactory shapeFactory = new ShapeFactory(this.canvas.getGraphicsContext2D());
+
+        this.world.getBodies().stream().forEach(shapeFactory::drawBody);
     }
 
     private void drawBackground()
