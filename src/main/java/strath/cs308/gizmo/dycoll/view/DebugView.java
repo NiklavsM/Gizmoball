@@ -11,8 +11,10 @@ import javafx.stage.Stage;
 import strath.cs308.gizmo.dycoll.model.IPhysicalWorld;
 
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 
-public class DebugView
+public class DebugView implements Observer
 {
     private BorderPane root;
     private Canvas canvas;
@@ -26,6 +28,8 @@ public class DebugView
             this.canvas = (Canvas) this.root.lookup("#canvas");
 
             this.redraw();
+
+            this.world.addObserver(this);
 
             Scene scene = new Scene(this.root);
             primaryStage.setScene(scene);
@@ -54,4 +58,9 @@ public class DebugView
         graphicsContext.fillRect(0, 0, this.canvas.getWidth(), this.canvas.getHeight());
     }
 
+    @Override
+    public void update(Observable observable, Object o)
+    {
+
+    }
 }
