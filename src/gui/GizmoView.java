@@ -41,13 +41,13 @@ public class GizmoView extends Application {
     private Model makeModel() {
         Model model = new Model();
 
-        model.setBallSpeed(200, 200);
+        model.setBallSpeed(8, 8);
 
         // Vertical line at (100,100), width 300
-        model.addLine(new VerticalLine(100, 100, 300));
-        model.addLine(new VerticalLine(100, 200, 300));
-        model.addLine(new VerticalLine(100, 300, 300));
-        model.addLine(new VerticalLine(100, 400, 300));
+        model.addLine(new VerticalLine(4, 4, 12));
+        model.addLine(new VerticalLine(4, 8, 12));
+        model.addLine(new VerticalLine(4, 12, 12));
+        model.addLine(new VerticalLine(4, 16, 12));
 
         return model;
     }

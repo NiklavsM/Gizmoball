@@ -5,6 +5,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import model.Ball;
+import model.Constants;
 import model.Model;
 import model.VerticalLine;
 
@@ -41,15 +42,15 @@ public class BoardCanvasView extends Canvas implements Observer {
         // Draw all the vertical lines
         gc.setFill(javafx.scene.paint.Color.BLACK);
         for (VerticalLine vl : gm.getLines()) {
-            gc.fillRect(vl.getX(), vl.getY(), vl.getWidth(), 1);
+            gc.fillRect(vl.getX() * Constants.pxPerL, vl.getY() * Constants.pxPerL, vl.getWidth() * Constants.pxPerL, 1);
         }
 
         Ball b = gm.getBall();
         if (b != null) {
             gc.setFill(b.getColour());
-            int x = (int) (b.getExactX() - b.getRadius());
-            int y = (int) (b.getExactY() - b.getRadius());
-            int width = (int) (2 * b.getRadius());
+            int x = (int) ((b.getExactX() - b.getRadius()) * Constants.pxPerL);
+            int y = (int) ((b.getExactY() - b.getRadius()) * Constants.pxPerL);
+            int width = (int) (2 * b.getRadius() * Constants.pxPerL);
             gc.fillOval(x, y, width, width);
         }
     }

@@ -23,11 +23,11 @@ public class Model extends Observable {
 
     public Model() {
 
-        // Ball position (25, 25) in pixels. Ball velocity (100, 100) pixels per tick
-        ball = new Ball(25, 25, 100, 100);
+        // Ball position (1, 1) in L. Ball velocity (4, 4) L per tick
+        ball = new Ball(1, 1, 4, 4);
 
-        // Wall size 500 x 500 pixels
-        gws = new Walls(0, 0, 500, 500);
+        // Wall size 20 x 20 L
+        gws = new Walls(0, 0, 20, 20);
 
         // Lines added in Main
         lines = new ArrayList<VerticalLine>();
@@ -48,10 +48,10 @@ public class Model extends Observable {
             double tuc = cd.getTuc();
             if (tuc > moveTime) {
                 // No collision ...
-                ball = movelBallForTime(ball, moveTime);
+                ball = moveBallForTime(ball, moveTime);
             } else {
                 // We've got a collision in tuc
-                ball = movelBallForTime(ball, tuc);
+                ball = moveBallForTime(ball, tuc);
                 // Post collision velocity ...
                 ball.setVelo(cd.getVelo());
             }
@@ -63,7 +63,7 @@ public class Model extends Observable {
 
     }
 
-    private Ball movelBallForTime(Ball ball, double time) {
+    private Ball moveBallForTime(Ball ball, double time) {
 
         double newX = 0.0;
         double newY = 0.0;

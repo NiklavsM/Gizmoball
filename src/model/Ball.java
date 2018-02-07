@@ -24,7 +24,7 @@ public class Ball {
         ypos = y;
         colour = Theme.Colors.WHITE;
         velocity = new Vect(xv, yv);
-        radius = 10;
+        radius = 0.5;
     }
 
     public Vect getVelo() {
