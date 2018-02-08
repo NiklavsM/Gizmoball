@@ -1,0 +1,905 @@
+commit c04a65e1a751c881e2b22f11be5f7156ba7c5423
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Thu Feb 8 15:06:40 2018 +0000
+
+    Add report3 pdf
+
+commit 56f77d8e819b28e219862851dcb41edc86ae8526
+Author: Niklavs Meiers CSM2015 <niklavs.meiers.2015@uni.strath.ac.uk>
+Date:   Thu Feb 8 10:54:48 2018 +0000
+
+    Upload New File
+
+commit b0d2408a98a3c768ea0f73fa15916bf12f1db878
+Author: Niklavs Meiers <niklavs@burti.lv>
+Date:   Wed Feb 7 20:57:11 2018 +0000
+
+    Moved from pixels to using L.
+
+commit 04e2dc997942b63f05570320ff6f7aee71cd4ba2
+Author: Niklavs Meiers <niklavs@burti.lv>
+Date:   Tue Feb 6 18:11:54 2018 +0000
+
+    Restructured button handlers to ensure information would not be duplicated.
+
+commit a5ed5dd5c332118d6e609673e4134528178152c1
+Author: Lyubomir Ivanov <kwb15150@uni.strath.ac.uk>
+Date:   Sun Feb 4 22:09:26 2018 +0000
+
+    small bug fixed
+
+commit aaf0cacb64dbc3b59c6fbd22bff83231810efc2f
+Author: Lyubomir Ivanov <kwb15150@uni.strath.ac.uk>
+Date:   Sun Feb 4 21:55:03 2018 +0000
+
+    refactor
+
+commit dac5d0bc834a219a8d5206e2b853022a8bfd0d3f
+Merge: 96b0b16 42ce079
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Sun Feb 4 20:07:53 2018 +0000
+
+    Merge branch 'master' into proto/gui
+
+commit 42ce07978f944bf2e1529ba9f879acb97fc0bf6e
+Merge: d67c904 0e8f673
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Sun Feb 4 20:01:49 2018 +0000
+
+    Refactor
+
+commit 0e8f6734a1c3f6521bc0b2a99778682795d6afe0
+Author: Lyubomir Ivanov <kwb15150@uni.strath.ac.uk>
+Date:   Sun Feb 4 19:51:38 2018 +0000
+
+    refactor
+
+commit 837073e58a39fe458cf2133dce51592de3c2a76f
+Author: Lyubomir Ivanov <kwb15150@uni.strath.ac.uk>
+Date:   Sun Feb 4 19:49:22 2018 +0000
+
+    stop/restart ball movement on/after pause
+
+commit 20c978714174028d704194e6f4217b2ede88f5fb
+Author: Lyubomir Ivanov <kwb15150@uni.strath.ac.uk>
+Date:   Sun Feb 4 19:14:50 2018 +0000
+
+    disable/enable gameBar on PauseMenu
+
+commit 96b0b1695b3cf48d1489ef3cfc0d2b47878bd4d3
+Author: Lyubomir Ivanov <kwb15150@uni.strath.ac.uk>
+Date:   Sun Feb 4 17:14:30 2018 +0000
+
+    run/stop ball
+
+commit a0e01f308d2207f3f17aece12c7e88f7c31b9788
+Author: Lyubomir Ivanov <kwb15150@uni.strath.ac.uk>
+Date:   Sun Feb 4 16:41:11 2018 +0000
+
+    tick functionality added in play mode
+
+commit 6723982a9cee613141d8c6717a6344240aae38c1
+Author: Niklavs Meiers <niklavs@burti.lv>
+Date:   Sat Feb 3 15:21:47 2018 +0000
+
+    Auto formatted so from now on could use ctrl+alt+l without changing all the file.
+
+commit d67c904bba2fefb9af3c00524e4a05723b51fc15
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Sat Feb 3 15:04:19 2018 +0000
+
+    Fix typo
+
+commit 24c13cf7b6df1421915520201d250a8f246c48b8
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Sat Feb 3 14:59:13 2018 +0000
+
+    Refactor
+
+commit c698a5bec013808532b858a2bebbf5aa8fe70fd4
+Author: Niklavs Meiers <niklavs@burti.lv>
+Date:   Sat Feb 3 14:33:18 2018 +0000
+
+    Added stop and tick functionality
+
+commit ef845e57232e0e663e1a2fcb4cd78f055f2d29c1
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Sat Feb 3 13:18:51 2018 +0000
+
+    Improve packaging
+
+commit b8784fb3a463a50266318ec07d94115461882515
+Author: Niklavs Meiers CSM2015 <niklavs.meiers.2015@uni.strath.ac.uk>
+Date:   Sat Feb 3 12:44:31 2018 +0000
+
+    Delete gizmoball.iml
+
+commit 9c89a0a4882298a06df0c50f671f13407cb69c78
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Fri Feb 2 17:11:36 2018 +0000
+
+    Can now switch back to play mode from editor
+
+commit 75c0c298ba2eb4d3715002f7981d68be9699f1e9
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Fri Feb 2 17:03:15 2018 +0000
+
+    Fix #18
+    
+    Fixed it by creating creating a new object when switching between modes
+
+commit 7c0d14d9d4eabe370e22b22b9515580cb0b0ec40
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Fri Feb 2 16:33:23 2018 +0000
+
+    Now possible to switch between editor mode and play mode
+
+commit 27f219d4e2795a899c054243e132a840f526ef25
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Thu Feb 1 22:03:30 2018 +0000
+
+    Remove unnecessary files
+
+commit 6832799082cc5b2a7e60a4062b34679872be8493
+Merge: 97f85ac 927f490
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Thu Feb 1 15:54:21 2018 +0000
+
+    Port demo to GUI
+
+commit 927f490a4e1861a2b6c731987debd7367d3b98a6
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Thu Feb 1 14:53:51 2018 +0000
+
+    Add report2 pdf
+
+commit ded8a1cb7dbd72b63b5cde77767464d42d456e79
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Thu Feb 1 14:51:22 2018 +0000
+
+    Update report2.md
+
+commit 0f75658dbd3530b819fe4f9cca77db077dd847ba
+Author: Niklavs Meiers CSM2015 <niklavs.meiers.2015@uni.strath.ac.uk>
+Date:   Wed Jan 31 17:28:50 2018 +0000
+
+    Report 2 document
+
+commit d93667d9ae54014c4ae32a20d64395595a0a070b
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Wed Jan 31 11:26:38 2018 +0000
+
+    Remove CI config
+
+commit ed00a7138cb3f09992bb896d785aefc527d8c6c2
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Wed Jan 31 11:24:42 2018 +0000
+
+    Disable ci
+
+commit 7497093cfc17fe7f35e3b26df20b9b78ff115cb4
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Wed Jan 31 11:14:31 2018 +0000
+
+    Generate preliminarydesign pdf
+
+commit 275e9ba47cff1bb39451c40aac4107a0262226c4
+Author: Niklavs Meiers CSM2015 <niklavs.meiers.2015@uni.strath.ac.uk>
+Date:   Wed Jan 31 11:06:26 2018 +0000
+
+    Update preliminarydesign.md
+
+commit 5cfb80164428ef163fce20544524157e1838fcf5
+Author: Lyubomir Ivanov CS2015 <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Wed Jan 31 10:58:24 2018 +0000
+
+    Update preliminarydesign.md
+
+commit 3689f782298dfab5e2573ade7307991eaf4020c9
+Author: Lyubomir Ivanov CS2015 <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Wed Jan 31 10:57:25 2018 +0000
+
+    Update preliminarydesign.md
+
+commit 6f33a69be4bd65a6241bb1702854b353070d2467
+Author: Lyubomir Ivanov CS2015 <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Wed Jan 31 10:55:47 2018 +0000
+
+    Update preliminarydesign.md
+
+commit eea3b0caa5d7491f4b34a775621fa14410ee275d
+Author: Lyubomir Ivanov CS2015 <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Wed Jan 31 10:52:09 2018 +0000
+
+    Update preliminarydesign.md
+
+commit f7561078c044c06ed9b087448262f2650d14e59f
+Author: Lyubomir Ivanov CS2015 <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Wed Jan 31 10:50:04 2018 +0000
+
+    Update preliminarydesign.md
+
+commit c16f910f6ef0c5f501ff0e27c11e938f7e4001f6
+Author: Lyubomir Ivanov CS2015 <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Wed Jan 31 10:47:37 2018 +0000
+
+    Update preliminarydesign.md
+
+commit fa80317e94892231f235b172ad507d03d73b58d4
+Author: Lyubomir Ivanov CS2015 <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Wed Jan 31 10:46:54 2018 +0000
+
+    Update preliminarydesign.md
+
+commit 0c575593935484dadcc3c1ad81afd132dd784497
+Author: Lyubomir Ivanov CS2015 <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Wed Jan 31 10:44:21 2018 +0000
+
+    Update preliminarydesign.md
+
+commit 0d02da7d7923a0754f1972b98c6ed53f96c71286
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Wed Jan 31 03:31:00 2018 +0000
+
+    Add group members to preliminarydesign doc
+
+commit 738ad88529b6ac002d935f0953aabd4d75aeb92a
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Wed Jan 31 03:20:53 2018 +0000
+
+    Add .gitkeep
+
+commit 71e87dcb02304dbc0176b1f1ba6beee709ab0ada
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Wed Jan 31 03:18:41 2018 +0000
+
+    Add Bug template
+
+commit 1cb955c7c6f3c5ef19885e9cc58eefeb6646d0b6
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 19:56:59 2018 +0000
+
+    Add screenshots of GUI
+
+commit 24d0ef0abd6e04e219153800aba200f83415b68f
+Merge: ac0dc9f 1cb886c
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 19:52:29 2018 +0000
+
+    Merge branch 'master' into proto/gui
+
+commit 1cb886ca03697af7a1612de52301ac58679f1e56
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 19:52:03 2018 +0000
+
+    Update preliminary design
+
+commit ac0dc9f79875422f294d658986e0a47af253ae98
+Author: Lyubomir Ivanov <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Tue Jan 30 19:51:45 2018 +0000
+
+    screenshots
+
+commit 35f5c5a672baf4f9c2267d2aef7c1546cd0e58f5
+Author: Lyubomir Ivanov <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Tue Jan 30 19:49:06 2018 +0000
+
+    enoughForTuesday
+
+commit 6bcc1af46672003ca75e939cddb840c2377d6222
+Author: Lyubomir Ivanov <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Tue Jan 30 19:31:44 2018 +0000
+
+    all gizmos
+
+commit 72cd45c827d5d696e32043ff812c6071d57efe55
+Merge: ee50d2d c04a5c1
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 19:28:06 2018 +0000
+
+    Merge branch 'master' of https://gitlab.cis.strath.ac.uk/isb15151/Gizmoball
+
+commit ee50d2da951912294305ba5185ec77b12ac53fe0
+Merge: 4f1a19a c24ff81
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 19:28:01 2018 +0000
+
+    Merge branch 'proto/gui'
+
+commit c04a5c121c8fb8952889eab2f2dd404d8deadd87
+Author: Ioan Luca <ioan.luca.2016@uni.strath.ac.uk>
+Date:   Tue Jan 30 19:27:30 2018 +0000
+
+    Grammarly checking
+
+commit 7ca6b37e956fa91a5bd6cfc893725465b6dee550
+Merge: ad5001e c24ff81
+Author: Lyubomir Ivanov <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Tue Jan 30 19:27:29 2018 +0000
+
+    Merge branch 'proto/gui' of https://gitlab.cis.strath.ac.uk/isb15151/Gizmoball into proto/gui
+
+commit ad5001ead3f20a60bb0a0077c1eb19cc2a9b369e
+Author: Lyubomir Ivanov <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Tue Jan 30 19:27:08 2018 +0000
+
+    all gizmos
+
+commit c24ff81771a2951443a9d2c2f548244c2b9e2deb
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 19:15:45 2018 +0000
+
+    Improve design and refactor
+
+commit d9559d1d86711079812fb152158c1bc0fbaba77a
+Author: Ioan Luca <ioan.luca.2016@uni.strath.ac.uk>
+Date:   Tue Jan 30 19:11:06 2018 +0000
+
+    Add triggering system
+
+commit 08b4f7bf904197b05d9caf34c1ac4f3dbf953af0
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 19:06:02 2018 +0000
+
+    Refactor
+
+commit 13b41d68422322a8b1c2c0369b59df19a62ab34f
+Author: Lyubomir Ivanov <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Tue Jan 30 18:50:59 2018 +0000
+
+    pauseMenu refactor
+
+commit 939a3d5f78208fb57c819d8e156bc6ad23137d24
+Author: Lyubomir Ivanov <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Tue Jan 30 18:47:41 2018 +0000
+
+    exit confirmation
+
+commit 6f588a6d7d0a94a976b1db1d9e53e56e56f1b969
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 18:46:55 2018 +0000
+
+    Refactor
+
+commit b2f25c5bdef81563bd0d936b8cfbac418ace6866
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 18:45:43 2018 +0000
+
+    Refactor
+
+commit 6e446dffb00265f1e8f47e2bd281571cb9eae9f5
+Author: Lyubomir Ivanov <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Tue Jan 30 18:28:55 2018 +0000
+
+    backToGame+icons
+
+commit 3f98002e7cef3beeb222f8133a033a645ee47edc
+Merge: 70e8442 dc071c2
+Author: Lyubomir Ivanov <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Tue Jan 30 18:25:31 2018 +0000
+
+    PauseMenu+blur
+
+commit 70e8442c3ee7ab301a3be1206cc7603d417323e3
+Author: Lyubomir Ivanov <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Tue Jan 30 18:20:11 2018 +0000
+
+    PauseMenu+blur
+
+commit 4f1a19ac7b3195f727a180233ef819805ed0c355
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 17:41:23 2018 +0000
+
+    Add class diagram to preliminarydesign
+
+commit 60bf75918bcbdba8fe06a7f05a9907ced65001c8
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 17:37:30 2018 +0000
+
+    Add pdf
+
+commit 5633aab38d89636681f5f40ffc0fdf1e7562adcb
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 17:27:07 2018 +0000
+
+    Fixes
+
+commit 6cbf503adb3fa74cad3e8a29c667a70f5f1d7b9f
+Merge: 4d1254c 7d45757
+Author: Ioan Luca <ioan.luca.2016@uni.strath.ac.uk>
+Date:   Tue Jan 30 17:26:26 2018 +0000
+
+    Merge branch 'master' of ssh://gitlab.cis.strath.ac.uk:23/isb15151/Gizmoball
+
+commit 4d1254c3cbef310f19cce077f92e8d1b631ec39b
+Author: Ioan Luca <ioan.luca.2016@uni.strath.ac.uk>
+Date:   Tue Jan 30 17:26:16 2018 +0000
+
+    make pseudocode fit
+
+commit 7d45757a84387f263987ef2187c18c02b71a11be
+Author: Sebestyén Bence <sebestyen.bence.125@gmail.com>
+Date:   Tue Jan 30 17:25:04 2018 +0000
+
+    typo fixes
+
+commit 81cd68ac6d99797832d90a4852261a068254d206
+Author: Sebestyén Bence <sebestyen.bence.125@gmail.com>
+Date:   Tue Jan 30 17:17:50 2018 +0000
+
+    class diagram added
+
+commit d04fa268c9f15b7c43ad7899b03625da4235818a
+Merge: a8110d6 948e9c8
+Author: Sebestyén Bence <sebestyen.bence.125@gmail.com>
+Date:   Tue Jan 30 17:15:40 2018 +0000
+
+    Merge branch 'master' of ssh://gitlab.cis.strath.ac.uk:23/isb15151/Gizmoball
+
+commit a8110d6d787cbf31d9b21fd4fd87ad00b997cd8b
+Merge: a644afb e0a6b62
+Author: Sebestyén Bence <sebestyen.bence.125@gmail.com>
+Date:   Tue Jan 30 17:15:34 2018 +0000
+
+    merg conf fixed
+
+commit 948e9c8329902a8dfb309ef5afd4d62ab3ccf3b7
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 17:14:13 2018 +0000
+
+    Fix
+
+commit a644afb5dcd1bcfe51976a16bc1251979ee66fe7
+Merge: a2949ab 627969a
+Author: Sebestyén Bence <sebestyen.bence.125@gmail.com>
+Date:   Tue Jan 30 17:14:05 2018 +0000
+
+    merge conflict fixed
+
+commit e0a6b62349d539837ca82cd5163c4745aa48b053
+Author: Ioan Luca <ioan.luca.2016@uni.strath.ac.uk>
+Date:   Tue Jan 30 17:12:59 2018 +0000
+
+    Uses cases done
+
+commit a2949ab7b0eea09d4f51b1a9c9cb71b6a079890e
+Author: Sebestyén Bence <sebestyen.bence.125@gmail.com>
+Date:   Tue Jan 30 17:09:15 2018 +0000
+
+    Class diagram bref expl.
+
+commit 627969a831e05d0afc1c18e26241f625f7a6b2b7
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 16:57:26 2018 +0000
+
+    Fix preliminarydesign markdown
+
+commit bce92c4bbce146b1a71e52d3702fbf4caa7da3f5
+Merge: 7f5a1f9 802c189
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 16:52:38 2018 +0000
+
+    Merge branch 'master' of https://gitlab.cis.strath.ac.uk/isb15151/Gizmoball
+
+commit 7f5a1f92d3727de4204f8c0867b20a1cdfdd164c
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 16:52:32 2018 +0000
+
+    Regenerate TOS
+
+commit 802c189600bd59ce0ca45aa6b7c2edee73af7604
+Merge: c45415a 461af3d
+Author: Ioan Luca <ioan.luca.2016@uni.strath.ac.uk>
+Date:   Tue Jan 30 16:52:06 2018 +0000
+
+    Merge branch 'master' of ssh://gitlab.cis.strath.ac.uk:23/isb15151/Gizmoball
+
+commit c45415a0ec2741479b51fed5c82a90fdb3a360a5
+Author: Ioan Luca <ioan.luca.2016@uni.strath.ac.uk>
+Date:   Tue Jan 30 16:51:55 2018 +0000
+
+    More use case editing@
+
+commit 461af3d3829e451961a3a4d31154fb0559bbf34f
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 16:39:22 2018 +0000
+
+    Fix CI config
+
+commit d47ad49c422ab844701197f14e574f968d50bb66
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 16:38:49 2018 +0000
+
+    Add ci config
+
+commit 5633c4efe5ff5b11b07ae7167681c7c91a13b11d
+Author: Ioan Luca <ioan.luca.2016@uni.strath.ac.uk>
+Date:   Tue Jan 30 16:29:29 2018 +0000
+
+    Edit a few use cases
+
+commit 59bc90852f050a9c20f80c136cfe0b4ccaabb99a
+Author: Ioan Luca CS2015 <ioan.luca.2016@uni.strath.ac.uk>
+Date:   Tue Jan 30 12:46:52 2018 +0000
+
+    Update preliminarydesign.md
+
+commit b2f1610f02e60780aca06edd4ae86279d4664809
+Merge: 8647f95 c7776d9
+Author: Ioan Luca <ioan.luca.2016@uni.strath.ac.uk>
+Date:   Tue Jan 30 12:41:40 2018 +0000
+
+    Merge branch 'master' of ssh://gitlab.cis.strath.ac.uk:23/isb15151/Gizmoball
+
+commit 8647f956e44652be43de96e8babb5d9bb6844fec
+Merge: 00c590d 5dab51b
+Author: Ioan Luca <ioan.luca.2016@uni.strath.ac.uk>
+Date:   Tue Jan 30 12:41:31 2018 +0000
+
+    Merge preliminarydesign.md
+
+commit c7776d913e687395d9be86918ea7d47b32e12d92
+Author: Niklavs Meiers CSM2015 <niklavs.meiers.2015@uni.strath.ac.uk>
+Date:   Tue Jan 30 12:41:24 2018 +0000
+
+    Update preliminarydesign.md
+
+commit 00c590d97dccebfe4abf8dea0b63dd46146102b9
+Author: Ioan Luca <ioan.luca.2016@uni.strath.ac.uk>
+Date:   Tue Jan 30 12:36:41 2018 +0000
+
+    Add use case for absorber
+
+commit 5dab51b45a25f4decd5430900eb2065dcb5b4366
+Author: Niklavs Meiers CSM2015 <niklavs.meiers.2015@uni.strath.ac.uk>
+Date:   Tue Jan 30 12:32:17 2018 +0000
+
+    Update preliminarydesign.md
+
+commit 12c47b8eb39faf4792a1ca5dc8ce733fbe9b78e3
+Merge: dc071c2 6b87bdc
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 12:08:52 2018 +0000
+
+    Merge branch 'master' of https://gitlab.cis.strath.ac.uk/isb15151/Gizmoball
+
+commit dc071c247fe49d4508501c2ab6727a204a81c8cd
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 12:07:53 2018 +0000
+
+    Add TOC and fix docs
+
+commit 6e31d4eea578a26f60d968afd198d2985266cf08
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 00:24:27 2018 +0000
+
+    Add screenshot
+
+commit 6b87bdc29051c7a1b52adf1aa9fb958cc654641e
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 00:23:06 2018 +0000
+
+    Update README.md
+
+commit d4fa3fdbd6fb1130da15523495a3ea68e7878714
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 00:22:35 2018 +0000
+
+    Update README.md
+
+commit c5ad91a2aab53cb329b664d242df1ff1b4aee7b3
+Merge: 3dcf107 01bf8ca
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 00:17:52 2018 +0000
+
+    Merge branch 'master' into proto/gui
+
+commit 01bf8ca5c06966e881168a960db7435ef98bc7c7
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 00:00:57 2018 +0000
+
+    Update README.md
+
+commit 763d79a211dc90a0feb55275c22f8ea4f6fe7348
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Tue Jan 30 00:00:17 2018 +0000
+
+    Update README.md
+
+commit db94bd6565486cb555c40f289b57b05364f9e2ed
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 23:50:14 2018 +0000
+
+    Move docs to folders
+
+commit 9f4343cd5607f5533443ba3501bf04b673601a87
+Author: Niklavs Meiers CSM2015 <niklavs.meiers.2015@uni.strath.ac.uk>
+Date:   Mon Jan 29 20:40:38 2018 +0000
+
+    Upload New File
+
+commit 3dcf1074e168853c883351e74ebec9e4cd280199
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 20:03:32 2018 +0000
+
+    Refactor
+
+commit dfd764e0f0aa6f45c702ddc0c050d852d8dabc3e
+Merge: 99cff39 012f502
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 19:06:14 2018 +0000
+
+    Merge branch 'proto/gui' of https://gitlab.cis.strath.ac.uk/isb15151/Gizmoball into proto/gui
+
+commit 99cff39a30e3f2ca3bb80063813125a54be30294
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 19:03:38 2018 +0000
+
+    Add icons to game bar
+
+commit 012f5026299be3cc91b06802df21454e33ee684c
+Author: Lyubomir Ivanov <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Mon Jan 29 19:03:30 2018 +0000
+
+    blur effect on game paused
+
+commit f6122af827c2df4ee43657f3ab6d1cde2896a0ea
+Merge: d45fa34 75c7269
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 18:30:10 2018 +0000
+
+    Merge branch 'proto/gui' of https://gitlab.cis.strath.ac.uk/isb15151/Gizmoball into proto/gui
+
+commit d45fa3444ecb85fac12afa5a94121a5ead01fa95
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 18:26:18 2018 +0000
+
+    Start gui for play mode
+
+commit 75c726900119b39ca9ff4136bf763a3114ad224e
+Author: Lyubomir Ivanov <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Mon Jan 29 18:25:54 2018 +0000
+
+    packages fixed
+
+commit 9493374d89c83b4dcb9612c4bd5f8f89d8d1f2b7
+Merge: 5cddfb8 e106189
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 18:25:21 2018 +0000
+
+    Merge branch 'master' into proto/gui
+
+commit afbf302baf774816a4ed416bceed04185cdce8f6
+Author: Lyubomir Ivanov <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Mon Jan 29 18:23:04 2018 +0000
+
+    play mode icons
+
+commit e106189484903b5af90d87b30a5089e140f04f6a
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 16:54:50 2018 +0000
+
+    Fix iml
+
+commit 9195c931b1769ffc12dc42e2ce97cbf280aacb58
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 16:46:09 2018 +0000
+
+    fix
+
+commit 92d4b2d6cac579de5fcd1cd7f37c26342e0f3043
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 16:44:37 2018 +0000
+
+    iml file
+
+commit e90499237bd3ee9e34bd07e3a48d65b4f3759ec7
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 16:28:22 2018 +0000
+
+    Fix options
+
+commit 8ae358e115ae18ceacb1564638577bc74798076e
+Merge: 36538ab 8d271e3
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 16:25:58 2018 +0000
+
+    Merge branch 'master' of https://gitlab.cis.strath.ac.uk/isb15151/Gizmoball
+
+commit 5cddfb8b416f1bff9666d10221b2352d9ca40c1b
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 16:23:53 2018 +0000
+
+    Import some stuff
+
+commit 8d271e33913e5f4e1b13ac485387eff59fcde2a9
+Author: Lyubomir Ivanov CS2015 <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Mon Jan 29 16:10:07 2018 +0000
+
+    Update preliminarydesign.md
+
+commit 3739216a9b86ef50a48fc80d6e7eabc95a23404f
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 16:08:38 2018 +0000
+
+    Update preliminarydesign.md
+
+commit 752016745a53c2ebd4e4574b22043fef25baa41b
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 16:07:09 2018 +0000
+
+    Update preliminarydesign.md
+
+commit e57dd5b9d6bd000ec5660ef249afad477dc5146c
+Author: Lyubomir Ivanov CS2015 <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Mon Jan 29 16:01:34 2018 +0000
+
+    Update preliminarydesign.md
+
+commit fa22ac075dbae5c9c832e3c3fd6b25ee372261f0
+Author: Lyubomir Ivanov CS2015 <lyubomir.ivanov.2015@uni.strath.ac.uk>
+Date:   Mon Jan 29 15:57:48 2018 +0000
+
+    Update preliminarydesign.md
+
+commit ef6880b337650a363edca11f0b142e96a1bb45be
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 15:55:24 2018 +0000
+
+    Update preliminarydesign.md
+
+commit a5e6efcadc8453a86efc7f1712d2fb22ca2bad00
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 15:54:06 2018 +0000
+
+    Update preliminarydesign.md
+
+commit 8426e53ada86be62a0fcc50e77aae89525d52c08
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 15:53:21 2018 +0000
+
+    Update preliminarydesign.md
+
+commit 864f9f3490f25eea7c7c934b3dbc0c49bee1c770
+Author: Niklavs Meiers CSM2015 <niklavs.meiers.2015@uni.strath.ac.uk>
+Date:   Mon Jan 29 15:52:28 2018 +0000
+
+    Update preliminarydesign.md
+
+commit a60f95e765d6942e62024e72b0cf3c130d8ba79f
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 15:46:35 2018 +0000
+
+    Update preliminarydesign.md
+
+commit 7123855fbc22ba43b7d127d75a3d0e30cb62f7d5
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 15:39:22 2018 +0000
+
+    Update preliminarydesign.md
+
+commit 36538ab9b78e5822210a5a44d3846ac212449a74
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 13:33:02 2018 +0000
+
+    Add tab pane
+
+commit 03dddbe2d90a4eb0395e5f218d6d784105cbf568
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 12:33:44 2018 +0000
+
+    Fix toolbar icons and add select button
+
+commit fa80308a3dd5a675cc714139f5c04d8426f54128
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 12:28:10 2018 +0000
+
+    Create EventHandler templates for buttons
+
+commit 1ee8ca35f67a6aede04b672b2883e5d415eb0cee
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Mon Jan 29 12:05:56 2018 +0000
+
+    Add icons and refactor code
+
+commit b0ad26fc4da7ab2790b90a6e37f75263c70b6e22
+Author: Ioan Luca <ioan.luca.2016@uni.strath.ac.uk>
+Date:   Mon Jan 29 10:53:07 2018 +0000
+
+    Add markdown version for the Preliminary Design
+
+commit 1d0884a832e4dec790af09c713db3f144dd680b7
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Sun Jan 28 18:56:17 2018 +0000
+
+    Add icons for toolbar items
+
+commit 2c7307918f5b2a2e980c8b59ae8199704ad26190
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Sun Jan 28 10:33:44 2018 +0000
+
+    Improve design
+
+commit fefeeb3468e9c937bc632a37e4184019f264eb65
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Sun Jan 28 01:11:38 2018 +0000
+
+    Improve Gizmo layout and update Theme class
+
+commit f786176b5a90e4d46aa68b0768c72d089b0b9b27
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Sat Jan 27 23:59:35 2018 +0000
+
+    Add status bar
+
+commit 788486b339609a0a11dd542bae0a09ca75981bfe
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Sat Jan 27 23:29:19 2018 +0000
+
+    Add menubar
+
+commit acf1b90cc987701478756eac0fdf542326dce65f
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Sat Jan 27 23:13:10 2018 +0000
+
+    Make layout nicer
+
+commit 97f85ac8e32ae05bc7424b2f7b8c5c0bff91adb3
+Author: Niklavs Meiers <niklavs@burti.lv>
+Date:   Sat Jan 27 19:08:53 2018 +0000
+
+    Pass in the same RunHandler instead of creating 4 new ones.
+
+commit 7e81b8d6e5fed77fc13c2805b289f97c76c4ba90
+Author: Niklavs Meiers <niklavs@burti.lv>
+Date:   Sat Jan 27 14:32:28 2018 +0000
+
+    Exit on close
+
+commit df5f44f45a9c43e8de6add37898d7cde7c193e51
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Fri Jan 26 17:21:54 2018 +0000
+
+    Rewrite using Timer and fix Play button bug
+
+commit f33e0c424b38e0d8087fb6c68c84c3be99cffca9
+Author: Martin Kollie <martinkollie@gmail.com>
+Date:   Fri Jan 26 16:38:36 2018 +0000
+
+    Refactor
+
+commit af4916e660d87743d65b237a3f4546affeec492d
+Author: Martin Kollie <martinkollie@gmail.com>
+Date:   Fri Jan 26 16:24:26 2018 +0000
+
+    JavaFX prototype
+
+commit b862a308d910fa3fad83afbbe4ad5708f2037cd1
+Author: Martin Kollie <martinkollie@gmail.com>
+Date:   Fri Jan 26 15:08:23 2018 +0000
+
+    Initial commmit
+
+commit 8cb6bed9695d34477774696e3895b4d8f735cad8
+Author: Martin Kollie <martinkollie@gmail.com>
+Date:   Thu Jan 25 17:19:30 2018 +0000
+
+    Add .gitignore
+
+commit f82b55a390ab8def65932418ead7d833b1358147
+Author: Martin Kollie <martinkollie@gmail.com>
+Date:   Thu Jan 25 15:57:53 2018 +0000
+
+    Add report 1
+
+commit e23d0abb0c22514ee9efd558c3f7b9ddebf039e1
+Author: Martin Kollie <vib15168@uni.strath.ac.uk>
+Date:   Thu Jan 18 18:00:37 2018 +0000
+
+    Add README
+
+commit 5b543ee14edd402db49eb5df7b8d0571b900450d
+Author: Niklavs Meiers <niklavs@burti.lv>
+Date:   Wed Jan 17 17:54:53 2018 +0000
+
+    Setting up project

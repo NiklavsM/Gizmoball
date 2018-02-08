@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Created by .ignore support plugin (hsz.mobi)
 ### JetBrains template
 .idea
@@ -61,3 +62,8 @@ hs_err_pid*
 .classpath
 .project
 .DS_Store
+
+build/
+.gradle/
+
+*.swp
