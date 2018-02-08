@@ -8,9 +8,11 @@ public class Ball extends PhysicalBody
     public Ball(double positionX, double positionY, double radius)
     {
         super();
-        
+
         Vect midlePoint = new Vect(positionX, positionY);
         Circle circle = new Circle(midlePoint, radius);
+
+        this.circles.add(circle);
     }
 
     @Override

@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
+import strath.cs308.gizmo.dycoll.model.Ball;
 import strath.cs308.gizmo.dycoll.model.IPhysicalWorld;
 import strath.cs308.gizmo.dycoll.model.PhysicalWorld;
 import strath.cs308.gizmo.dycoll.view.DebugView;
@@ -19,7 +20,11 @@ public class Main extends Application
     @Override
     public void start(Stage primaryStage)
     {
+
+        Ball ball = new Ball(10, 10, 1);
+
         IPhysicalWorld world = new PhysicalWorld();
+        world.getBodies().add(ball);
         DebugView view = new DebugView(primaryStage, world);
 
         primaryStage.setFullScreen(true);

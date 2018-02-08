@@ -27,9 +27,11 @@ public class DebugView implements Observer
             this.root = FXMLLoader.load(this.getClass().getResource("/debugview.fxml"));
             this.canvas = (Canvas) this.root.lookup("#canvas");
 
-            this.redraw();
 
+            this.world = world;
             this.world.addObserver(this);
+
+            this.redraw();
 
             Scene scene = new Scene(this.root);
             primaryStage.setScene(scene);
