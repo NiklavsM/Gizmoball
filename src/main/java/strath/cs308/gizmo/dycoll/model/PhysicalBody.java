@@ -41,5 +41,5 @@ public abstract class PhysicalBody implements IPhysicalBody
         this.velocity = velocity;
     }
 
-    abstract public void move(long time);
+    abstract public void move(double time);
 }

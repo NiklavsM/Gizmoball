@@ -13,4 +13,6 @@ public interface IPhysicalBody
 
     List<LineSegment> getLineSegments();
     List<Circle> getCircles();
+
+    void move(double time);
 }

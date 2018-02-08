@@ -1,5 +1,6 @@
 package strath.cs308.gizmo.dycoll.view;
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -66,6 +67,6 @@ public class DebugView implements Observer
     @Override
     public void update(Observable observable, Object o)
     {
-        this.redraw();
+        Platform.runLater(this::redraw);
     }
 }

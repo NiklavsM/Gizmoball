@@ -9,7 +9,7 @@ public class Flipper extends PhysicalBody
     }
 
     @Override
-    public void move(long time)
+    public void move(double time)
     {
 
     }

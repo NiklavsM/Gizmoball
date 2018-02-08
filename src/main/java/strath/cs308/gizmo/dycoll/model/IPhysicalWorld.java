@@ -9,4 +9,6 @@ public interface IPhysicalWorld
     List<IPhysicalBody> getBodies();
     void addObserver(Observer observer);
     void deleteObserver(Observer observer);
+
+    void tick(double time);
 }
