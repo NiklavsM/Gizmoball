@@ -25,7 +25,6 @@ public class Ball extends PhysicalBody
 
         Circle temp = new Circle(newMidlePoint, this.circle.getRadius());
 
-        System.out.println(temp.getCenter().x() + " / " + temp.getCenter().y() );
 
         this.circle = temp;
 

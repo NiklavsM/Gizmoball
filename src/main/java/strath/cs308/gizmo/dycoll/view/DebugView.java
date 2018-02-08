@@ -1,14 +1,15 @@
 package strath.cs308.gizmo.dycoll.view;
 
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import strath.cs308.gizmo.dycoll.controller.DebugController;
 import strath.cs308.gizmo.dycoll.model.IPhysicalWorld;
 
 import java.io.IOException;
@@ -28,6 +29,7 @@ public class DebugView implements Observer
             this.root = FXMLLoader.load(this.getClass().getResource("/debugview.fxml"));
             this.canvas = (Canvas) this.root.lookup("#canvas");
 
+            EventHandler controller = new DebugController(world);
 
             this.world = world;
             this.world.addObserver(this);
@@ -35,6 +37,8 @@ public class DebugView implements Observer
             this.redraw();
 
             Scene scene = new Scene(this.root);
+            scene.setOnKeyPressed(controller);
+
             primaryStage.setScene(scene);
 
         }

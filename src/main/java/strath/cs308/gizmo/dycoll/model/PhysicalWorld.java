@@ -21,8 +21,6 @@ public class PhysicalWorld extends Observable implements IPhysicalWorld
 
     public void tick(double time)
     {
-        System.out.println("hellio");
-
         this.bodies.forEach(body -> body.move(time));
 
         this.setChanged();

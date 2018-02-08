@@ -32,18 +32,9 @@ public class Main extends Application
         world.getBodies().add(ball);
         DebugView view = new DebugView(primaryStage, world);
 
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask()
-        {
-            @Override
-            public void run()
-            {
-                world.tick(1 / 60.0);
-            }
-        }, 0, 1000 /60);
 
-        primaryStage.setFullScreen(true);
-        primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+//        primaryStage.setFullScreen(true);
+//        primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         primaryStage.show();
     }
 }
