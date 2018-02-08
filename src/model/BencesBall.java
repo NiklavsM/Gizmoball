@@ -4,18 +4,27 @@ import physics.Circle;
 import physics.Vect;
 
 public class BencesBall extends Gizmo implements IMovable {
+
     private Circle circle;
     private Vect velocity;
 
-    public BencesBall(String name, double centerX, double centerY, double radius) {
+    public BencesBall(double centerX, double centerY, double radius, String name) {
         super(name);
         circle = new Circle(centerX, centerY, radius);
         circles.add(this.circle);
         velocity = new Vect(0, 20);
     }
 
+    public BencesBall(double centerX, double centerY, String name) {
+        this(centerX, centerY, 0.5, name);
+    }
+
+    public BencesBall(double centerX, double centerY) {
+        this(centerX, centerY, "Undefined"); //FIXME
+    }
+
     public BencesBall(double centerX, double centerY, double radius) {
-        this("undefined", centerX, centerY, radius);
+        this(centerX, centerY, radius, "Undefined"); // FIXME
     }
 
     @Override
