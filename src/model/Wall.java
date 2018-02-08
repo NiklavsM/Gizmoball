@@ -1,5 +1,6 @@
 package model;
 
+import physics.Angle;
 import physics.Circle;
 import physics.LineSegment;
 import physics.Vect;
@@ -24,7 +25,7 @@ public class Wall extends Gizmo {
 
 
     @Override
-    public void rotate(int degrees) {
+    public void rotate(Angle angle) {
 
     }
 

@@ -1,7 +1,6 @@
 package model;
 
-import physics.Circle;
-import physics.LineSegment;
+import physics.*;
 
 public class Triangle extends Gizmo {
 
@@ -16,8 +15,11 @@ public class Triangle extends Gizmo {
     }
 
     @Override
-    public void rotate(int degrees) {
-
+    public void rotate(Angle angle) { // FIXME not tested
+        lines
+                .forEach(line -> line = Geometry.rotateAround(line,
+                        line.p2().minus(line.p1()).times(0.5),
+                        angle));
     }
 
     @Override

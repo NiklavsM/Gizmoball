@@ -1,5 +1,6 @@
 package model;
 
+import physics.Angle;
 import physics.Circle;
 import physics.Vect;
 
@@ -51,7 +52,7 @@ public class Ball extends Gizmo implements IMovable {
     }
 
     @Override
-    public void rotate(int degrees) {
+    public void rotate(Angle angle) {
 
     }
 

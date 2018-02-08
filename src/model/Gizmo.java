@@ -1,5 +1,6 @@
 package model;
 
+import physics.Angle;
 import physics.Circle;
 import physics.LineSegment;
 
@@ -30,7 +31,7 @@ public abstract class Gizmo implements IGizmo {
         return lines;
     }
 
-    public abstract void rotate(int degrees);
+    public abstract void rotate(Angle angle);
 
     public abstract Gizmo.Type getType();
 
