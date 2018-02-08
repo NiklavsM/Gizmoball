@@ -13,14 +13,14 @@ import javax.swing.Timer;
 public class Model extends Observable {
 
     private ArrayList<VerticalLine> lines;
-    private Ball ball;
+    private MITBall MITBall;
     private Walls gws;
     private Timer timer;
 
     public Model() {
 
-        // BencesBall position (1, 1) in L. BencesBall velocity (4, 4) L per tick
-        ball = new Ball(1, 1, 4, 4);
+        // Ball position (1, 1) in L. Ball velocity (4, 4) L per tick
+        MITBall = new MITBall(1, 1, 4, 4);
 
         // Wall size 20 x 20 L
         gws = new Walls(0, 0, 20, 20);
@@ -38,18 +38,18 @@ public class Model extends Observable {
 
         double moveTime = 0.05; // 0.05 = 20 times per second as per Gizmoball
 
-        if (ball != null) {
+        if (MITBall != null) {
             //Time until collision
             CollisionDetails cd = timeUntilCollision();
             double tuc = cd.getTuc();
             if (tuc > moveTime) {
                 // No collision ...
-                ball = moveBallForTime(ball, moveTime);
+                MITBall = moveBallForTime(MITBall, moveTime);
             } else {
                 // We've got a collision in tuc
-                ball = moveBallForTime(ball, tuc);
+                MITBall = moveBallForTime(MITBall, tuc);
                 // Post collision velocity ...
-                ball.setVelo(cd.getVelo());
+                MITBall.setVelo(cd.getVelo());
 
             }
 
@@ -60,24 +60,24 @@ public class Model extends Observable {
 
     }
 
-    private Ball moveBallForTime(Ball ball, double time) {
+    private MITBall moveBallForTime(MITBall MITBall, double time) {
 
         double newX = 0.0;
         double newY = 0.0;
-        double xVel = ball.getVelo().x();
-        double yVel = ball.getVelo().y();
-        newX = ball.getExactX() + (xVel * time);
-        newY = ball.getExactY() + (yVel * time);
-        ball.setExactX(newX);
-        ball.setExactY(newY);
-        return ball;
+        double xVel = MITBall.getVelo().x();
+        double yVel = MITBall.getVelo().y();
+        newX = MITBall.getExactX() + (xVel * time);
+        newY = MITBall.getExactY() + (yVel * time);
+        MITBall.setExactX(newX);
+        MITBall.setExactY(newY);
+        return MITBall;
     }
 
     private CollisionDetails timeUntilCollision() {
         // Find Time Until Collision and also, if there is a collision, the new speed vector.
-        // Create a physics.Circle from BencesBall
-        Circle ballCircle = ball.getCircle();
-        Vect ballVelocity = ball.getVelo();
+        // Create a physics.Circle from Ball
+        Circle ballCircle = MITBall.getCircle();
+        Vect ballVelocity = MITBall.getVelo();
         Vect newVelo = new Vect(0, 0);
 
         // Now find shortest time to hit a vertical line or a wall line
@@ -90,7 +90,7 @@ public class Model extends Observable {
             time = Geometry.timeUntilWallCollision(line, ballCircle, ballVelocity);
             if (time < shortestTime) {
                 shortestTime = time;
-                newVelo = Geometry.reflectWall(line, ball.getVelo(), 1.0);
+                newVelo = Geometry.reflectWall(line, MITBall.getVelo(), 1.0);
             }
         }
 
@@ -100,14 +100,14 @@ public class Model extends Observable {
             time = Geometry.timeUntilWallCollision(ls, ballCircle, ballVelocity);
             if (time < shortestTime) {
                 shortestTime = time;
-                newVelo = Geometry.reflectWall(ls, ball.getVelo(), 1.0);
+                newVelo = Geometry.reflectWall(ls, MITBall.getVelo(), 1.0);
             }
         }
         return new CollisionDetails(shortestTime, newVelo);
     }
 
-    public Ball getBall() {
-        return ball;
+    public MITBall getMITBall() {
+        return MITBall;
     }
 
     public ArrayList<VerticalLine> getLines() {
@@ -119,7 +119,7 @@ public class Model extends Observable {
     }
 
     public void setBallSpeed(int x, int y) {
-        ball.setVelo(new Vect(x, y));
+        MITBall.setVelo(new Vect(x, y));
     }
 
     public void startTimer() {

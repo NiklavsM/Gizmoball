@@ -18,8 +18,8 @@ public class Wall extends Gizmo {
         Circle closingCircle1 = new Circle(startPoint, 0);
         Circle closingCircle2 = new Circle(endPoint, 0);
 
-        this.circles.add(closingCircle1);
-        this.circles.add(closingCircle2);
+        circles.add(closingCircle1);
+        circles.add(closingCircle2);
     }
 
 

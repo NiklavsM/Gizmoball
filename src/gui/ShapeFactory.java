@@ -3,7 +3,7 @@ package gui;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import model.BencesBall;
+import model.Ball;
 import physics.Circle;
 import physics.LineSegment;
 import model.IGizmo;
@@ -21,7 +21,7 @@ public class ShapeFactory {
     }
 
     public void drawBody(IGizmo body) {
-        if (body instanceof BencesBall)
+        if (body instanceof Ball)
             this.drawBall(body);
 
         if (body instanceof Wall)

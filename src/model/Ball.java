@@ -1,68 +1,63 @@
 package model;
 
-
-import gui.Theme;
-import javafx.scene.paint.Color;
 import physics.Circle;
 import physics.Vect;
 
-/**
- * @author Murray Wood Demonstration of MVC and MIT Physics Collisions 2014
- */
+public class Ball extends Gizmo implements IMovable {
 
-public class Ball {
-
+    private Circle circle;
     private Vect velocity;
-    private double radius;
-    private double xpos;
-    private double ypos;
-    private Color colour;
 
-    // x, y coordinates and x,y velocity
-    public Ball(double x, double y, double xv, double yv) {
-        xpos = x; // Centre coordinates
-        ypos = y;
-        colour = Theme.Colors.WHITE;
-        velocity = new Vect(xv, yv);
-        radius = 0.5;
+    public Ball(double centerX, double centerY, double radius, String name) {
+        super(name);
+        circle = new Circle(centerX, centerY, radius);
+        circles.add(this.circle);
+        velocity = new Vect(0, 20);
     }
 
-    public Vect getVelo() {
+    public Ball(double centerX, double centerY, String name) {
+        this(centerX, centerY, 0.5, name);
+    }
+
+    public Ball(double centerX, double centerY) {
+        this(centerX, centerY, "Undefined"); //FIXME
+    }
+
+    public Ball(double centerX, double centerY, double radius) {
+        this(centerX, centerY, radius, "Undefined"); // FIXME
+    }
+
+    @Override
+    public void move(double time) {
+        Vect newMidlePoint = new Vect(this.circle.getCenter().x() + (this.getVelocity().x() * time),
+                this.circle.getCenter().y() + (this.getVelocity().y() * time));
+
+        Circle temp = new Circle(newMidlePoint, this.circle.getRadius());
+
+        circle = temp;
+
+        getCircles().clear();
+        getCircles().add(circle);
+    }
+
+    @Override
+    public Vect getVelocity() {
         return velocity;
     }
 
-    public void setVelo(Vect v) {
-        velocity = v;
+    @Override
+    public void setVelocity(Vect velocity) {
+        this.velocity = velocity;
     }
 
-    public double getRadius() {
-        return radius;
-    }
-
-    public Circle getCircle() {
-        return new Circle(xpos, ypos, radius);
+    @Override
+    public void rotate(int degrees) {
 
     }
 
-    // BencesBall specific methods that deal with double precision.
-    public double getExactX() {
-        return xpos;
-    }
-
-    public double getExactY() {
-        return ypos;
-    }
-
-    public void setExactX(double x) {
-        xpos = x;
-    }
-
-    public void setExactY(double y) {
-        ypos = y;
-    }
-
-    public Color getColour() {
-        return colour;
+    @Override
+    public Type getType() {
+        return Type.Ball;
     }
 
 }

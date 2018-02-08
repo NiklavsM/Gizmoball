@@ -1,8 +1,7 @@
 import gui.DebugView;
 import javafx.application.Application;
-import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
-import model.BencesBall;
+import model.Ball;
 import model.GameModel;
 import model.IGameModel;
 import model.Wall;
@@ -22,7 +21,7 @@ public class Main extends Application {
         Wall wall3 = new Wall(20, 20, 20, 0);
         Wall wall4 = new Wall(20, 20, 0, 20);
 
-        BencesBall ball = new BencesBall(10, 10, 1);
+        Ball ball = new Ball(10, 10, 1);
         ball.setVelocity(new Vect(1, 20));
 
         IGameModel world = new GameModel();

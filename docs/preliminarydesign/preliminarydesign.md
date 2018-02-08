@@ -1,6 +1,6 @@
 # Preliminary Design 
 
-**Gizmoball** is an arcade game very similar to pinball. The aim is to keep a ball moving around the playing area and not let it touch an absorber (usually placed at the bottom) using different types of gizmos. Gizmos [^1] can be static objects, such as circles, squares and triangles or flippers which can hit the ball if it is within their reach. The final system would include a graphical user interface with two modes - editor mode and play mode. Below is the list of revised specifications in each mode: 
+**Gizmoball** is an arcade game very similar to pinball. The aim is to keep a MITBall moving around the playing area and not let it touch an absorber (usually placed at the bottom) using different types of gizmos. Gizmos [^1] can be static objects, such as circles, squares and triangles or flippers which can hit the MITBall if it is within their reach. The final system would include a graphical user interface with two modes - editor mode and play mode. Below is the list of revised specifications in each mode: 
 
 [^1]: Gizmos include squares, circles, triangles, absorbers and flippers.
 
@@ -33,7 +33,7 @@ Niklavs Meiers @isb15151
   * [Remove Gizmo](#remove-gizmo)
   * [Connect Gizmos](#connect-gizmos)
   * [Clear playing area](#clear-playing-area)
-  * [Adding a new ball](#adding-a-new-ball)
+  * [Adding a new MITBall](#adding-a-new-MITBall)
   * [Move Gizmo](#move-gizmo)
   * [Rotate Gizmo](#rotate-gizmo)
   * [Save configuration](#save-configuration)
@@ -70,7 +70,7 @@ Niklavs Meiers @isb15151
   * [PhysicsWorld](#physicsworld)
   * [PhysicsBody](#physicsbody)
   * [Absorber](#absorber)
-  * [Ball](#ball)
+  * [Ball](#MITBall)
   * [Circle](#circle)
   * [Flipper](#flipper)
   * [FlipperDirection](#flipperdirection)
@@ -92,13 +92,13 @@ Niklavs Meiers @isb15151
 
 - Add any chosen type of gizmo to the playing area 
 
-- Add a ball to the playing area, specifying its position 
+- Add a MITBall to the playing area, specifying its position 
 
-- Move an existing ball to a different position
+- Move an existing MITBall to a different position
 
-- Edit the velocity and the diameter of an existing ball
+- Edit the velocity and the diameter of an existing MITBall
 
-- Remove a ball from the playing area
+- Remove a MITBall from the playing area
 
 - Set custom values for gravity and friction
 
@@ -125,9 +125,9 @@ Niklavs Meiers @isb15151
 
 ### Play mode
 
-- Start a game (release the ball in the playing area) 
+- Start a game (release the MITBall in the playing area) 
 
-- Stop a game (stop the ball in its current position) 
+- Stop a game (stop the MITBall in its current position) 
 
 - Press keys that trigger gizmos' actions 
 
@@ -188,7 +188,7 @@ Niklavs Meiers @isb15151
 
 ### Remove Gizmo
 
-Or an already existing ball 
+Or an already existing MITBall 
 
 **Precondition:** Editor mode enabled
 
@@ -238,27 +238,27 @@ doesn't have an action then notify the user through the status label, go to `2`.
 like gravity and friction are preserved.
 
 
-### Adding a new ball
+### Adding a new MITBall
 
-Placing a new ball in the playing area 
+Placing a new MITBall in the playing area 
 
-**Precondition:** Editor mode enabled, a ball does not exist in the current grid layout
+**Precondition:** Editor mode enabled, a MITBall does not exist in the current grid layout
 
-**Trigger:** "New ball" button clicked 
+**Trigger:** "New MITBall" button clicked 
 
 **Path:**
 
 1. The user enters values in the input fields for the velocity (0L/sec to 200L/sec), diameter (default is 0.5L) 
 or chooses to go with the default values. [^4]
 
-1. The user selects a grid location to place the ball at. If the grid location
+1. The user selects a grid location to place the MITBall at. If the grid location
 is occupied, go to `2`, else go to `4`. If The user clicks on an absorber go to `3`.
 
-3. The ball is placed in the right bottom corner of the absorber. 
+3. The MITBall is placed in the right bottom corner of the absorber. 
 
 4. The properties panel shows up and the user can adjust the velocity by dragging a slider. 
 
-**Postcondition:** A new ball is now added to the playing area.
+**Postcondition:** A new MITBall is now added to the playing area.
 
 [^4]: Ball velocity ranges from `0L/sec` to `200L/sec`.
 
@@ -365,7 +365,7 @@ on each gizmo.
 
 1. User presses “Run” button 
 
-2. The ball starts to move with the previous velocity and direction. 
+2. The MITBall starts to move with the previous velocity and direction. 
 
 **Postcondition:** Game is running, play mode enabled.
 
@@ -376,20 +376,20 @@ on each gizmo.
 ```
 for every tick  
     
-    # The method that does the calculation also returns an object that the ball will collide next.
+    # The method that does the calculation also returns an object that the MITBall will collide next.
     Calculate collision time for all gizmos (and balls if added) inside the map.
     
     # Time until next frame is drawn
     if estimated time until nearest collision > 0.05 seconds then
-        Set balls new coordinates where the ball will be after this time passes
+        Set balls new coordinates where the MITBall will be after this time passes
         Apply gravity and friction for that time period. 
     
     if time until next collision < 0.05 then
-        update the coordinates of the ball
-        calculate and set the velocity of the ball after the collision
+        update the coordinates of the MITBall
+        calculate and set the velocity of the MITBall after the collision
         
         # Calls the triggered() method on the object returned by calculating collisions method   
-        if gizmo that ball collides with have trigger then
+        if gizmo that MITBall collides with have trigger then
            trigger the action
     
     Notifies the observers (redraws the screen)
@@ -415,7 +415,7 @@ Every `Itrigger` needs to mantain a `Set<Itriggerable> toBeTriggeredGizmos` as p
 However, this set can be empty as a trigger may not have any triggarable elements connected to it.
 
 As part of the model, a `Set<Itrigger> hitByBallTriggers` will contain all the triggers that can call actions 
-on other gizmos when the ball collides with them. In the physics loop, whenever the ball collides with a gizmo,
+on other gizmos when the MITBall collides with them. In the physics loop, whenever the MITBall collides with a gizmo,
 if the gizmo is part of the `hitByBallTriggers` set, then the `trigger()` method of it is called. Internally, the 
 `trigger()` method will call the `doAction()` method of every `Itriggarable` in the `toBeTriggeredGizmos` set.
 
@@ -423,7 +423,7 @@ In addition, a `Map<Key, ITriggarable> keyStrokeToITriggarable` such that
 when a key is hit by the user, `keyStrokeToItriggarable.get(key).doAction()` is called.
 
 The `doAction()` method can be implemented in various ways for different concrete implementations
-of gizmos such that flippers can flip, absorbers can shoot the ball upwards, circles can change color etc.
+of gizmos such that flippers can flip, absorbers can shoot the MITBall upwards, circles can change color etc.
 
 
 
@@ -549,7 +549,7 @@ functionality and traits.
 Subclass of the PhysicsBody.
 
 ### Ball
-The entity class for the game ball.
+The entity class for the game MITBall.
 Subclass of the PhysicsBody.
 
 ### Circle

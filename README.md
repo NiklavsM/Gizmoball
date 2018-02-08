@@ -2,7 +2,7 @@
 
 CS308 Semester 2 Group Project
 
-**Gizmoball** is an arcade game very similar to pinball. The aim is to keep a ball moving around the playing area and not let it touch the bottom using different types of gizmos. 
+**Gizmoball** is an arcade game very similar to pinball. The aim is to keep a MITBall moving around the playing area and not let it touch the bottom using different types of gizmos. 
 
 ## Docs
 

@@ -160,7 +160,7 @@ public class EditorStage extends Stage {
         gizmogrid.addGizmo(flipper, "Flipper");
         
         Circle ballShape = new Circle(9, Theme.Colors.ORANGE);
-        gizmogrid.addGizmo(ballShape, "BencesBall");
+        gizmogrid.addGizmo(ballShape, "Ball");
 
         scrollpane.setContent(gizmogrid);
         scrollpane.setMaxHeight(250);

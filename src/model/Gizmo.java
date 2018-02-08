@@ -1,39 +1,42 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import physics.Circle;
 import physics.LineSegment;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public abstract class Gizmo implements IGizmo {
 
-    public enum Type {
-        Triangle, Wall, Ball
-    }
-
     private final String name;
-
-    protected List<Circle> circles;
-    protected List<LineSegment> lines;
+    protected Set<Circle> circles;
+    protected Set<LineSegment> lines;
 
     public Gizmo(String name) {
-        this.circles = new ArrayList<>();
-        this.lines = new ArrayList<>();
+        this.circles = new HashSet<>();
+        this.lines = new HashSet<>();
         this.name = name;
     }
 
-    public List<Circle> getCircles() {
+    public Gizmo() {
+        this("randomName"); // FIXME
+    }
+
+    public Set<Circle> getCircles() {
         return circles;
     }
 
-    public List<LineSegment> getLines() {
+    public Set<LineSegment> getLines() {
         return lines;
     }
 
     public abstract void rotate(int degrees);
 
     public abstract Gizmo.Type getType();
+
+    public enum Type {
+        Triangle, Wall, Ball, Square
+    }
 
 }
 

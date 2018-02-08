@@ -1,15 +1,14 @@
 package model;
 
-import java.util.List;
+import java.util.Set;
 
 import physics.Circle;
 import physics.LineSegment;
-import physics.Vect;
 
 public interface IGizmo {
 
-    List<LineSegment> getLines();
+    Set<LineSegment> getLines();
 
-    List<Circle> getCircles();
+    Set<Circle> getCircles();
 
 }

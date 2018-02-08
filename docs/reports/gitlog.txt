@@ -58,7 +58,7 @@ commit 837073e58a39fe458cf2133dce51592de3c2a76f
 Author: Lyubomir Ivanov <kwb15150@uni.strath.ac.uk>
 Date:   Sun Feb 4 19:49:22 2018 +0000
 
-    stop/restart ball movement on/after pause
+    stop/restart MITBall movement on/after pause
 
 commit 20c978714174028d704194e6f4217b2ede88f5fb
 Author: Lyubomir Ivanov <kwb15150@uni.strath.ac.uk>
@@ -70,7 +70,7 @@ commit 96b0b1695b3cf48d1489ef3cfc0d2b47878bd4d3
 Author: Lyubomir Ivanov <kwb15150@uni.strath.ac.uk>
 Date:   Sun Feb 4 17:14:30 2018 +0000
 
-    run/stop ball
+    run/stop MITBall
 
 commit a0e01f308d2207f3f17aece12c7e88f7c31b9788
 Author: Lyubomir Ivanov <kwb15150@uni.strath.ac.uk>

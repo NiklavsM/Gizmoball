@@ -4,7 +4,7 @@ import gui.Theme;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import model.Ball;
+import model.MITBall;
 import model.Constants;
 import model.Model;
 import model.VerticalLine;
@@ -45,7 +45,7 @@ public class BoardCanvasView extends Canvas implements Observer {
             gc.fillRect(vl.getX() * Constants.pxPerL, vl.getY() * Constants.pxPerL, vl.getWidth() * Constants.pxPerL, 1);
         }
 
-        Ball b = gm.getBall();
+        MITBall b = gm.getMITBall();
         if (b != null) {
             gc.setFill(b.getColour());
             int x = (int) ((b.getExactX() - b.getRadius()) * Constants.pxPerL);
