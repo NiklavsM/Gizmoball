@@ -8,11 +8,7 @@ import physics.Geometry;
 import physics.LineSegment;
 import physics.Vect;
 
-import javax.swing.*;
-
-/**
- * @author Murray Wood Demonstration of MVC and MIT Physics Collisions 2014
- */
+import javax.swing.Timer;
 
 public class Model extends Observable {
 
@@ -23,7 +19,7 @@ public class Model extends Observable {
 
     public Model() {
 
-        // Ball position (1, 1) in L. Ball velocity (4, 4) L per tick
+        // BencesBall position (1, 1) in L. BencesBall velocity (4, 4) L per tick
         ball = new Ball(1, 1, 4, 4);
 
         // Wall size 20 x 20 L
@@ -54,6 +50,7 @@ public class Model extends Observable {
                 ball = moveBallForTime(ball, tuc);
                 // Post collision velocity ...
                 ball.setVelo(cd.getVelo());
+
             }
 
             // Notify observers ... redraw updated view
@@ -78,7 +75,7 @@ public class Model extends Observable {
 
     private CollisionDetails timeUntilCollision() {
         // Find Time Until Collision and also, if there is a collision, the new speed vector.
-        // Create a physics.Circle from Ball
+        // Create a physics.Circle from BencesBall
         Circle ballCircle = ball.getCircle();
         Vect ballVelocity = ball.getVelo();
         Vect newVelo = new Vect(0, 0);

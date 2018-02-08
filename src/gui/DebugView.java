@@ -10,7 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import controller.DebugController;
-import model.IPhysicalWorld;
+import model.IGameModel;
 
 import java.io.IOException;
 import java.util.Observable;
@@ -19,9 +19,9 @@ import java.util.Observer;
 public class DebugView implements Observer {
     private BorderPane root;
     private Canvas canvas;
-    private IPhysicalWorld world;
+    private IGameModel world;
 
-    public DebugView(Stage primaryStage, IPhysicalWorld world) {
+    public DebugView(Stage primaryStage, IGameModel world) {
         try {
             this.root = FXMLLoader.load(this.getClass().getResource("/debugview.fxml"));
             this.canvas = (Canvas) this.root.lookup("#canvas");
@@ -51,7 +51,7 @@ public class DebugView implements Observer {
     private void drawBodies() {
         ShapeFactory shapeFactory = new ShapeFactory(this.canvas);
 
-        this.world.getBodies().stream().forEach(shapeFactory::drawBody);
+        this.world.getGizmos().stream().forEach(shapeFactory::drawBody);
     }
 
     private void drawBackground() {

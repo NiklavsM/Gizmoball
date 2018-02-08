@@ -1,6 +1,6 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
-import gui.Ball;
+import model.BencesBall;
 import model.Wall;
 
 public class Main extends Application {
@@ -17,15 +17,15 @@ public class Main extends Application {
         Wall wall3 = new Wall(20, 20, 20, 0);
         Wall wall4 = new Wall(20, 20, 0, 20);
 
-        Ball ball = new Ball(10, 10, 1);
+        BencesBall ball = new BencesBall(10, 10, 1);
 //        ball.setVelocity(new Vect(1, 1));
 
-//        IPhysicalWorld world = new PhysicalWorld();
-//        world.addBody(ball);
-//        world.addBody(wall1);
-//        world.addBody(wall2);
-//        world.addBody(wall3);
-//        world.addBody(wall4);
+//        IGameModel world = new GameModel();
+//        world.addGizmo(ball);
+//        world.addGizmo(wall1);
+//        world.addGizmo(wall2);
+//        world.addGizmo(wall3);
+//        world.addGizmo(wall4);
 
 
 //        DebugView view = new DebugView(primaryStage, world);

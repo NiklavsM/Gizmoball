@@ -3,15 +3,15 @@ package model;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class WorldTimer implements IWorldTimer {
+public class GameTimer implements IGameTimer {
 
-    private IPhysicalWorld world;
+    private IGameModel world;
     private Timer timer;
     private TimerTask task;
 
     private boolean isRunning;
 
-    public WorldTimer(IPhysicalWorld world) {
+    public GameTimer(IGameModel world) {
         this.world = world;
         this.isRunning = false;
     }

@@ -3,19 +3,19 @@ package controller;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
-import model.IPhysicalWorld;
-import model.IWorldTimer;
-import model.WorldTimer;
+import model.IGameModel;
+import model.IGameTimer;
+import model.GameTimer;
 
 
 public class DebugController implements EventHandler {
 
-    private final IPhysicalWorld world;
-    private final IWorldTimer timer;
+    private final IGameModel world;
+    private final IGameTimer timer;
 
-    public DebugController(IPhysicalWorld world) {
+    public DebugController(IGameModel world) {
         this.world = world;
-        this.timer = new WorldTimer(this.world);
+        this.timer = new GameTimer(this.world);
     }
 
     @Override

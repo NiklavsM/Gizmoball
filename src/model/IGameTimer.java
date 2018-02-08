@@ -1,6 +1,6 @@
 package model;
 
-public interface IWorldTimer {
+public interface IGameTimer {
     void toggle();
 
     boolean isRunning();

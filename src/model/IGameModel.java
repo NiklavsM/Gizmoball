@@ -3,15 +3,15 @@ package model;
 import java.util.List;
 import java.util.Observer;
 
-public interface IPhysicalWorld {
+public interface IGameModel {
 
-    List<IPhysicalBody> getBodies();
+    List<IGizmo> getGizmos();
 
     void addObserver(Observer observer);
 
     void deleteObserver(Observer observer);
 
-    void addBody(IPhysicalBody body);
+    void addGizmo(IGizmo gizmo);
 
     void tick(double time);
 }

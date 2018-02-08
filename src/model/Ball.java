@@ -44,7 +44,7 @@ public class Ball {
 
     }
 
-    // Ball specific methods that deal with double precision.
+    // BencesBall specific methods that deal with double precision.
     public double getExactX() {
         return xpos;
     }

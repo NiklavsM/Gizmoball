@@ -3,9 +3,10 @@ package gui;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import model.BencesBall;
 import physics.Circle;
 import physics.LineSegment;
-import model.IPhysicalBody;
+import model.IGizmo;
 import model.Wall;
 
 public class ShapeFactory {
@@ -19,16 +20,16 @@ public class ShapeFactory {
         this.lScreenRatio = canvas.getWidth() / 20.0;
     }
 
-    public void drawBody(IPhysicalBody body) {
-        if (body instanceof Ball)
+    public void drawBody(IGizmo body) {
+        if (body instanceof BencesBall)
             this.drawBall(body);
 
         if (body instanceof Wall)
             this.drawWall(body);
     }
 
-    private void drawWall(IPhysicalBody body) {
-        LineSegment lineSegment = body.getLineSegments().get(0);
+    private void drawWall(IGizmo body) {
+        LineSegment lineSegment = body.getLines().get(0);
 
         this.graphicsContext.setStroke(Color.BLUE);
         this.graphicsContext.setLineWidth(0.5);
@@ -38,7 +39,7 @@ public class ShapeFactory {
                 , lineSegment.p2().y() * this.lScreenRatio);
     }
 
-    private void drawBall(IPhysicalBody body) {
+    private void drawBall(IGizmo body) {
         this.graphicsContext.setFill(Color.GREEN);
 
         Circle circle = body.getCircles().get(0);
