@@ -64,6 +64,6 @@ public class DebugView implements Observer
     @Override
     public void update(Observable observable, Object o)
     {
-
+        this.redraw();
     }
 }
