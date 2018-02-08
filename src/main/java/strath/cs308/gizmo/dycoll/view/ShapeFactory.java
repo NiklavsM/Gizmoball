@@ -4,8 +4,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import mit.physics.Circle;
+import mit.physics.LineSegment;
 import strath.cs308.gizmo.dycoll.model.Ball;
 import strath.cs308.gizmo.dycoll.model.IPhysicalBody;
+import strath.cs308.gizmo.dycoll.model.Wall;
 
 public class ShapeFactory
 {
@@ -24,6 +26,21 @@ public class ShapeFactory
     {
         if (body instanceof Ball)
            this.drawBall(body);
+
+        if (body instanceof Wall)
+            this.drawWall(body);
+    }
+
+    private void drawWall(IPhysicalBody body)
+    {
+        LineSegment lineSegment = body.getLineSegments().get(0);
+
+        this.graphicsContext.setStroke(Color.BLUE);
+        this.graphicsContext.setLineWidth(0.5);
+        this.graphicsContext.strokeLine(lineSegment.p1().x() * this.lScreenRatio
+                , lineSegment.p1().y() * this.lScreenRatio
+                , lineSegment.p2().x() * this.lScreenRatio
+                , lineSegment.p2().y() * this.lScreenRatio);
     }
 
     private void drawBall(IPhysicalBody body)
