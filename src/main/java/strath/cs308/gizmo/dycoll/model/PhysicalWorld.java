@@ -19,6 +19,14 @@ public class PhysicalWorld extends Observable implements IPhysicalWorld
         return this.bodies;
     }
 
+    public void addBody(IPhysicalBody body)
+    {
+        this.bodies.add(body);
+
+        this.setChanged();
+        this.notifyObservers();
+    }
+
     public void tick(double time)
     {
         this.bodies.forEach(body -> body.move(time));

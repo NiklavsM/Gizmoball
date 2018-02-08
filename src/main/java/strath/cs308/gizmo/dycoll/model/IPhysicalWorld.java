@@ -10,5 +10,7 @@ public interface IPhysicalWorld
     void addObserver(Observer observer);
     void deleteObserver(Observer observer);
 
+    void addBody(IPhysicalBody body);
+
     void tick(double time);
 }
