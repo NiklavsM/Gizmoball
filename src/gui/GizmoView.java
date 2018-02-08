@@ -43,7 +43,6 @@ public class GizmoView extends Application {
 
         model.setBallSpeed(8, 8);
 
-        // Vertical line at (100,100), width 300
         model.addLine(new VerticalLine(4, 4, 12));
         model.addLine(new VerticalLine(4, 8, 12));
         model.addLine(new VerticalLine(4, 12, 12));

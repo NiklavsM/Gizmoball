@@ -1,5 +1,5 @@
-import javafx.application.Application;
 import gui.GizmoView;
+import javafx.application.Application;
 
 public class Driver {
 
