@@ -18,7 +18,7 @@ public abstract class PhysicalBody implements IPhysicalBody
     {
         this.circles = new ArrayList<>();
         this.lineSegments = new ArrayList<>();
-        this.velocity = new Vect(Angle.ZERO, 0.0);
+        this.velocity = Vect.ZERO;
     }
 
     public List<Circle> getCircles()
