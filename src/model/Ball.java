@@ -1,8 +1,8 @@
 package model;
 
-import physics.Angle;
-import physics.Circle;
-import physics.Vect;
+import mit.physics.Angle;
+import mit.physics.Circle;
+import mit.physics.Vect;
 
 public class Ball extends Gizmo implements IMovable {
 

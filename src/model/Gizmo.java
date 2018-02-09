@@ -1,8 +1,8 @@
 package model;
 
-import physics.Angle;
-import physics.Circle;
-import physics.LineSegment;
+import mit.physics.Angle;
+import mit.physics.Circle;
+import mit.physics.LineSegment;
 
 import java.util.HashSet;
 import java.util.Set;

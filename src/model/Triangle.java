@@ -1,6 +1,9 @@
 package model;
 
-import physics.*;
+import mit.physics.Angle;
+import mit.physics.Circle;
+import mit.physics.Geometry;
+import mit.physics.LineSegment;
 
 public class Triangle extends Gizmo {
 

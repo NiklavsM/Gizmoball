@@ -1,9 +1,9 @@
 package model;
 
-import physics.Angle;
-import physics.Circle;
-import physics.LineSegment;
-import physics.Vect;
+import mit.physics.Angle;
+import mit.physics.Circle;
+import mit.physics.LineSegment;
+import mit.physics.Vect;
 
 public class Wall extends Gizmo {
 

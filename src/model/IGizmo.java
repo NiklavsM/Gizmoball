@@ -1,9 +1,9 @@
 package model;
 
-import java.util.Set;
+import mit.physics.Circle;
+import mit.physics.LineSegment;
 
-import physics.Circle;
-import physics.LineSegment;
+import java.util.Set;
 
 public interface IGizmo {
 

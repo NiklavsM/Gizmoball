@@ -1,8 +1,8 @@
 package model;
 
-import physics.Angle;
-import physics.Circle;
-import physics.LineSegment;
+import mit.physics.Angle;
+import mit.physics.Circle;
+import mit.physics.LineSegment;
 
 public class Square extends Gizmo {
 

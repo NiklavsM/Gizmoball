@@ -1,6 +1,6 @@
 package model;
 
-import physics.Vect;
+import mit.physics.Vect;
 
 public interface IMovable {
 
