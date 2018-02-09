@@ -26,7 +26,7 @@
                         <Button GridPane.columnIndex="0" GridPane.rowIndex="0"
                                 minWidth="24" minHeight="24"
                                 maxHeight="24" maxWidth="24"
-                                styleClass="play-button" >
+                                styleClass="play-button" fx:id="playButton" >
                            <tooltip>
                                <Tooltip text="Play" />
                            </tooltip>
@@ -36,7 +36,7 @@
                         <Button GridPane.columnIndex="1" GridPane.rowIndex="0"
                                 minWidth="24" minHeight="24"
                                 maxHeight="24" maxWidth="24"
-                                styleClass="stop-button" >
+                                styleClass="stop-button" fx:id="stopButton" >
                             <tooltip>
                                 <Tooltip text="Stop" />
                             </tooltip>
@@ -46,7 +46,7 @@
                         <Button GridPane.columnIndex="2" GridPane.rowIndex="0"
                                 minWidth="24" minHeight="24"
                                 maxHeight="24" maxWidth="24"
-                                styleClass="tick-button"  >
+                                styleClass="tick-button" fx:id="tickButton" >
                             <tooltip>
                                 <Tooltip text="Tick" />
                             </tooltip>
@@ -55,7 +55,7 @@
                         <Button GridPane.columnIndex="3" GridPane.rowIndex="0"
                                 minWidth="24" minHeight="24"
                                 maxHeight="24" maxWidth="24"
-                                styleClass="pause-screen-button">
+                                styleClass="pause-screen-button" fx:id="menuButton">
                             <tooltip>
                                 <Tooltip text="Menu" />
                             </tooltip>

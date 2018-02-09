@@ -1,13 +1,21 @@
 package gui;
 
+import controller.PlayButtonEventHandler;
+import controller.StopButtonEventHandler;
+import controller.TickButtonEventHandler;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.GameTimer;
 import model.IGameModel;
+import model.IGameTimer;
 
 import java.io.IOException;
 import java.util.Observable;
@@ -25,22 +33,29 @@ public class PlayView implements Observer {
         try {
             root = FXMLLoader.load(getClass().getResource("/playview.fxml"));
             canvas = (Canvas) root.lookup("#playCanvas");
+            this.gameModel = gameModel;
+            this.gameModel.addObserver(this);
 
+            clearGameArea();
+            redraw();
 
             Scene scene = new Scene(root, 500, 500);
 
             stage.setTitle("Gizmoball - Play");
             stage.setScene(scene);
 
-            this.gameModel = gameModel;
-            this.gameModel.addObserver(this);
-
-            clearGameArea();
-            redraw();
+            Platform.runLater(this::addEventHandlers);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+
+    private void addEventHandlers() {
+        IGameTimer gameTimer = new GameTimer(gameModel);
+        ((Button) root.lookup("#playButton")).setOnAction(new PlayButtonEventHandler(gameTimer));
+        ((Button) root.lookup("#stopButton")).setOnAction(new StopButtonEventHandler(gameTimer));
+        ((Button) root.lookup("#tickButton")).setOnAction(new TickButtonEventHandler(gameModel));
     }
 
     @Override
