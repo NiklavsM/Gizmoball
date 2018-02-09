@@ -11,4 +11,6 @@ public interface IGizmo {
 
     Set<Circle> getCircles();
 
+    Gizmo.Type getType();
+
 }
