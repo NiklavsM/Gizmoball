@@ -197,3 +197,12 @@ Button:hover {
     -fx-graphic: url("/assets/icons/stop.png");
 }
 
+
+/* =================== */
+.title-font {
+    -fx-font: 25px Arial;
+}
+
+.default-padding {
+    -fx-padding: 16px;
+}

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.canvas.Canvas?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            stylesheets="assets/style.css"
+            prefHeight="500.0" prefWidth="500.0">
+
+    <center>
+        <StackPane maxWidth="500" maxHeight="500">
+
+            <Canvas width="500" height="500" fx:id="playCanvas" />
+
+            <Label StackPane.alignment="TOP_RIGHT"
+                   styleClass="default-padding, title-font">Score: 1337</Label>
+
+            <ToolBar StackPane.alignment="BOTTOM_LEFT" styleClass="game-bar, default-padding" maxWidth="200">
+                <items>
+                    <GridPane vgap="5" hgap="16">
+                        <Button GridPane.columnIndex="0" GridPane.rowIndex="0"
+                                minWidth="24" minHeight="24"
+                                maxHeight="24" maxWidth="24"
+                                styleClass="play-button" >
+                           <tooltip>
+                               <Tooltip text="Play" />
+                           </tooltip>
+                        </Button>
+
+
+                        <Button GridPane.columnIndex="1" GridPane.rowIndex="0"
+                                minWidth="24" minHeight="24"
+                                maxHeight="24" maxWidth="24"
+                                styleClass="stop-button" >
+                            <tooltip>
+                                <Tooltip text="Stop" />
+                            </tooltip>
+
+                        </Button>
+
+                        <Button GridPane.columnIndex="2" GridPane.rowIndex="0"
+                                minWidth="24" minHeight="24"
+                                maxHeight="24" maxWidth="24"
+                                styleClass="tick-button"  >
+                            <tooltip>
+                                <Tooltip text="Tick" />
+                            </tooltip>
+                        </Button>
+
+                        <Button GridPane.columnIndex="3" GridPane.rowIndex="0"
+                                minWidth="24" minHeight="24"
+                                maxHeight="24" maxWidth="24"
+                                styleClass="pause-screen-button">
+                            <tooltip>
+                                <Tooltip text="Menu" />
+                            </tooltip>
+                        </Button>
+
+                    </GridPane>
+                </items>
+            </ToolBar>
+
+        </StackPane>
+    </center>
+
+</BorderPane>
