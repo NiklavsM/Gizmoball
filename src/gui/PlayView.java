@@ -26,8 +26,6 @@ public class PlayView implements Observer {
             root = FXMLLoader.load(getClass().getResource("/playview.fxml"));
             canvas = (Canvas) root.lookup("#playCanvas");
 
-            clearGameArea();
-            redraw();
 
             Scene scene = new Scene(root, 500, 500);
 
@@ -37,6 +35,8 @@ public class PlayView implements Observer {
             this.gameModel = gameModel;
             this.gameModel.addObserver(this);
 
+            clearGameArea();
+            redraw();
         } catch (IOException e) {
             e.printStackTrace();
         }
