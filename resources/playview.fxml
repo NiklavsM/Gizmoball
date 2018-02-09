@@ -16,11 +16,11 @@
         <StackPane maxWidth="500" maxHeight="500" fx:id="playStack">
 
             <ToolBar styleClass="PauseMenu, default-padding"
-                     maxWidth="200" minWidth="200"
+                     maxWidth="215" minWidth="200"
                      maxHeight="250" minHeight="200" fx:id="pauseMenu">
 
                 <items>
-                    <GridPane vgap="15" hgap="16">
+                    <GridPane vgap="15" hgap="16" fx:id="pauseMenuHolder">
 
                         <Button GridPane.rowIndex="0" GridPane.columnIndex="0"
                                 styleClass="pause-menu-button, back-button"

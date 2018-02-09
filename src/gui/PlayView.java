@@ -1,9 +1,6 @@
 package gui;
 
-import controller.MenuButtonEventHandler;
-import controller.PlayButtonEventHandler;
-import controller.StopButtonEventHandler;
-import controller.TickButtonEventHandler;
+import controller.*;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -44,7 +42,6 @@ public class PlayView implements IPlayView, Observer {
             this.gameModel = gameModel;
             this.gameModel.addObserver(this);
 
-            pauseMenu.toBack();
 
             clearGameArea();
             redraw();
@@ -67,6 +64,9 @@ public class PlayView implements IPlayView, Observer {
         ((Button) root.lookup("#stopButton")).setOnAction(new StopButtonEventHandler(gameTimer));
         ((Button) root.lookup("#tickButton")).setOnAction(new TickButtonEventHandler(gameModel));
         ((Button) root.lookup("#menuButton")).setOnAction(new MenuButtonEventHandler(this, gameTimer));
+
+        ((Button) root.lookup("#menuBackButton")).setOnAction(new BackToGameHandler(this, gameTimer));
+
     }
 
     @Override
@@ -95,7 +95,11 @@ public class PlayView implements IPlayView, Observer {
                 .filter(node -> !node.equals(this.pauseMenu))
                 .forEach(node -> node.setEffect(new GaussianBlur(10)));
 
+    }
 
-
+    public void hidePauseMenu () {
+        this.pauseMenu.toBack();
+        this.stackPane.getChildren()
+                .forEach(node -> node.setEffect(new GaussianBlur(0)));
     }
 }

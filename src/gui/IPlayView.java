@@ -4,4 +4,6 @@ public interface IPlayView {
 
     void showPauseMenu();
 
+    void hidePauseMenu();
+
 }
