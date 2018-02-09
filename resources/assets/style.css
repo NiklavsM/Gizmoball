@@ -203,6 +203,15 @@ Button:hover {
     -fx-font: 25px Arial;
 }
 
+.pause-menu-button {
+    -fx-font: 18px Verdana;
+    -fx-padding: 6px 80px 6px 6px;
+}
+
 .default-padding {
     -fx-padding: 16px;
+}
+
+.no-padding {
+    -fx-padding: 0px 0px 0px 0px;
 }
