@@ -7,14 +7,19 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.IGameModel;
 
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 
-public class PlayView {
+public class PlayView implements Observer {
 
     private BorderPane root;
+    private IGameModel gameModel;
 
-    public PlayView(Stage stage) {
+    public PlayView(Stage stage, IGameModel gameModel) {
+
 
         try {
             root = FXMLLoader.load(getClass().getResource("/playview.fxml"));
@@ -30,9 +35,17 @@ public class PlayView {
             stage.setTitle("Gizmoball - Play");
             stage.setScene(scene);
 
+            this.gameModel = gameModel;
+            this.gameModel.addObserver(this);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public void update(Observable observable, Object o) {
+        // canvas update
     }
 }
