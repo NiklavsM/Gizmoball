@@ -371,7 +371,7 @@ commit 6e446dffb00265f1e8f47e2bd281571cb9eae9f5
 Author: Lyubomir Ivanov <lyubomir.ivanov.2015@uni.strath.ac.uk>
 Date:   Tue Jan 30 18:28:55 2018 +0000
 
-    backToGame+icons
+    backToGame+assets.icons
 
 commit 3f98002e7cef3beeb222f8133a033a645ee47edc
 Merge: 70e8442 dc071c2
@@ -635,7 +635,7 @@ commit 99cff39a30e3f2ca3bb80063813125a54be30294
 Author: Martin Kollie <vib15168@uni.strath.ac.uk>
 Date:   Mon Jan 29 19:03:38 2018 +0000
 
-    Add icons to game bar
+    Add assets.icons to game bar
 
 commit 012f5026299be3cc91b06802df21454e33ee684c
 Author: Lyubomir Ivanov <lyubomir.ivanov.2015@uni.strath.ac.uk>
@@ -673,7 +673,7 @@ commit afbf302baf774816a4ed416bceed04185cdce8f6
 Author: Lyubomir Ivanov <lyubomir.ivanov.2015@uni.strath.ac.uk>
 Date:   Mon Jan 29 18:23:04 2018 +0000
 
-    play mode icons
+    play mode assets.icons
 
 commit e106189484903b5af90d87b30a5089e140f04f6a
 Author: Martin Kollie <vib15168@uni.strath.ac.uk>
@@ -788,7 +788,7 @@ commit 03dddbe2d90a4eb0395e5f218d6d784105cbf568
 Author: Martin Kollie <vib15168@uni.strath.ac.uk>
 Date:   Mon Jan 29 12:33:44 2018 +0000
 
-    Fix toolbar icons and add select button
+    Fix toolbar assets.icons and add select button
 
 commit fa80308a3dd5a675cc714139f5c04d8426f54128
 Author: Martin Kollie <vib15168@uni.strath.ac.uk>
@@ -800,7 +800,7 @@ commit 1ee8ca35f67a6aede04b672b2883e5d415eb0cee
 Author: Martin Kollie <vib15168@uni.strath.ac.uk>
 Date:   Mon Jan 29 12:05:56 2018 +0000
 
-    Add icons and refactor code
+    Add assets.icons and refactor code
 
 commit b0ad26fc4da7ab2790b90a6e37f75263c70b6e22
 Author: Ioan Luca <ioan.luca.2016@uni.strath.ac.uk>
@@ -812,7 +812,7 @@ commit 1d0884a832e4dec790af09c713db3f144dd680b7
 Author: Martin Kollie <vib15168@uni.strath.ac.uk>
 Date:   Sun Jan 28 18:56:17 2018 +0000
 
-    Add icons for toolbar items
+    Add assets.icons for toolbar items
 
 commit 2c7307918f5b2a2e980c8b59ae8199704ad26190
 Author: Martin Kollie <vib15168@uni.strath.ac.uk>

@@ -29,25 +29,11 @@ public class ShapeFactory {
     }
 
     private void drawWall(IGizmo body) {
-        LineSegment lineSegment = body.getLines().get(0);
 
-        this.graphicsContext.setStroke(Color.BLUE);
-        this.graphicsContext.setLineWidth(0.5);
-        this.graphicsContext.strokeLine(lineSegment.p1().x() * this.lScreenRatio
-                , lineSegment.p1().y() * this.lScreenRatio
-                , lineSegment.p2().x() * this.lScreenRatio
-                , lineSegment.p2().y() * this.lScreenRatio);
     }
 
     private void drawBall(IGizmo body) {
-        this.graphicsContext.setFill(Color.GREEN);
 
-        Circle circle = body.getCircles().get(0);
-
-        this.graphicsContext.fillOval((circle.getCenter().x() - circle.getRadius()) * this.lScreenRatio
-                , (circle.getCenter().y() - circle.getRadius()) * this.lScreenRatio
-                , circle.getRadius() * this.lScreenRatio
-                , circle.getRadius() * this.lScreenRatio);
     }
 
 
