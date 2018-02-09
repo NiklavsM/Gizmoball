@@ -17,18 +17,17 @@ public class PlayView implements Observer {
 
     private BorderPane root;
     private IGameModel gameModel;
+    private Canvas canvas;
 
     public PlayView(Stage stage, IGameModel gameModel) {
 
 
         try {
             root = FXMLLoader.load(getClass().getResource("/playview.fxml"));
+            canvas = (Canvas) root.lookup("#playCanvas");
 
-            Canvas canvas = (Canvas) root.lookup("#playCanvas");
-            GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
-            graphicsContext.setFill(Color.rgb(84, 110, 122));
-            graphicsContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-
+            clearGameArea();
+            redraw();
 
             Scene scene = new Scene(root, 500, 500);
 
@@ -46,6 +45,19 @@ public class PlayView implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        // canvas update
+        clearGameArea();
+        redraw();
+    }
+
+    private void redraw() {
+        GizmoDrawer shapeDrawer = new GizmoDrawer(canvas);
+        gameModel.getGizmos().forEach(shapeDrawer::drawGizmo);
+    }
+
+    private void clearGameArea()
+    {
+        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
+        graphicsContext.setFill(Color.rgb(84, 110, 122));
+        graphicsContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 }
