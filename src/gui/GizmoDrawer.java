@@ -30,8 +30,7 @@ public class GizmoDrawer
         }
     }
 
-    private void drawPoly(IGizmo gizmo)
-    {
+    private void drawPoly(IGizmo gizmo) {
         graphicsContext.setFill(Color.PURPLE);
         gizmo.getCircles().forEach(circle -> {
             graphicsContext.fillOval((circle.getCenter().x() - circle.getRadius()) * lPixelRatio

@@ -1,9 +1,6 @@
 package model;
 
-import mit.physics.Angle;
-import mit.physics.Circle;
-import mit.physics.LineSegment;
-import mit.physics.Vect;
+import mit.physics.*;
 
 public class Flipper extends Gizmo implements IMovable {
 
@@ -52,20 +49,30 @@ public class Flipper extends Gizmo implements IMovable {
     }
 
     @Override
-    public void move(double time)
-    {
+    public void move(double time) {
+        Circle rotated = Geometry.rotateAround(endPoint, new Vect(startPoint.getCenter().x(), startPoint.getCenter().y()), new Angle(-1.57079633 * time));
 
+
+        circles.remove(endPoint);
+        endPoint = rotated;
+        circles.add(endPoint);
+        lines.remove(connector1);
+        lines.remove(connector2);
+
+        connector1 = Geometry.rotateAround(connector1, new Vect(startPoint.getCenter().x(), startPoint.getCenter().y()), new Angle(-1.57079633 * time));
+        connector2 = Geometry.rotateAround(connector2, new Vect(startPoint.getCenter().x(), startPoint.getCenter().y()), new Angle(-1.57079633 * time));
+
+        lines.add(connector1);
+        lines.add(connector2);
     }
 
     @Override
-    public Vect getVelocity()
-    {
+    public Vect getVelocity() {
         return velocity;
     }
 
     @Override
-    public void setVelocity(Vect velocity)
-    {
+    public void setVelocity(Vect velocity) {
         this.velocity = velocity;
     }
 }
