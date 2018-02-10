@@ -36,7 +36,7 @@ public abstract class Gizmo implements IGizmo {
     public abstract Gizmo.Type getType();
 
     public enum Type {
-        Triangle, Wall, Ball, Square
+        Triangle, Wall, Ball, Flipper, Square
     }
 
 }

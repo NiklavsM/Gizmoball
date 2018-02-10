@@ -23,7 +23,31 @@ public class GizmoDrawer
             case Ball:
                 drawBall(gizmo);
             break;
+
+            default:
+                drawPoly(gizmo);
+            break;
         }
+    }
+
+    private void drawPoly(IGizmo gizmo)
+    {
+        graphicsContext.setFill(Color.PURPLE);
+        gizmo.getCircles().forEach(circle -> {
+            graphicsContext.fillOval((circle.getCenter().x() - circle.getRadius()) * lPixelRatio
+                , (circle.getCenter().y() - circle.getRadius() ) *lPixelRatio
+                , circle.getRadius() * 2 * lPixelRatio
+                , circle.getRadius() * 2 * lPixelRatio);
+        });
+
+        graphicsContext.setLineWidth(1);
+        gizmo.getLines().forEach(lineSegment -> {
+            graphicsContext.strokeLine(lineSegment.p1().x() * lPixelRatio
+                    , lineSegment.p1().y() * lPixelRatio
+                    , lineSegment.p2().x() * lPixelRatio
+                    , lineSegment.p2().y() * lPixelRatio);
+        });
+
     }
 
     private void drawBall(IGizmo gizmo) {

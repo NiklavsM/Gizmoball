@@ -3,6 +3,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import mit.physics.Vect;
 import model.Ball;
+import model.Flipper;
 import model.GameModel;
 import model.IGameModel;
 
@@ -15,11 +16,13 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        Ball ball = new Ball(10, 10, 0.5);
-        ball.setVelocity(new Vect(0, 10));
+//        Ball ball = new Ball(10, 10, 0.5);
+//        ball.setVelocity(new Vect(0, 10));
+
+        Flipper flipper = new Flipper("laci", 5, 5);
 
         IGameModel gameModel = new GameModel();
-        gameModel.addGizmo(ball);
+        gameModel.addGizmo(flipper);
         PlayView playView = new PlayView(stage, gameModel);
 
         stage.show();
