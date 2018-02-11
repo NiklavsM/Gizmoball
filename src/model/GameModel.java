@@ -72,8 +72,8 @@ public class GameModel extends Observable {
         this.notifyObservers();
 
         if (nextGizmo != null && cd.getGizmo().getType() == IGizmo.Type.Absorber) {
-            ball.setExactX(nextGizmo.getEndCircle().getX() - ball.getRadius());
-            ball.setExactY(nextGizmo.getRootCircle().getY());
+            ball.setExactX(20 - ball.getRadius());
+            ball.setExactY(19);
             ball.setVelo(new Vect(0.0, -50.0));
         }
     }

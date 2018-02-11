@@ -1,5 +1,6 @@
 package model;
 
+import java.util.List;
 import java.util.Set;
 
 public interface IGizmo {
@@ -9,11 +10,7 @@ public interface IGizmo {
 
     Set<Line> getLines();
 
-    Set<Circle> getCircles();
-
-    Circle getRootCircle();
-
-    Circle getEndCircle();
+    List<Circle> getCircles();
 
     Type getType();
 }

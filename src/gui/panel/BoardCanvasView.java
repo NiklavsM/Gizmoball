@@ -4,10 +4,7 @@ import gui.Theme;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import model.Ball;
-import model.Constants;
-import model.GameModel;
-import model.IGizmo;
+import model.*;
 
 import java.awt.*;
 import java.util.Observable;
@@ -35,6 +32,7 @@ public class BoardCanvasView extends Canvas implements Observer {
 
     public void redraw() {
         GraphicsContext gc = this.getGraphicsContext2D();
+        int i;
 
         gc.setFill(Theme.Colors.DEEP_BLUE);
         gc.fillRect(0, 0, super.getWidth(), super.getHeight());
@@ -43,24 +41,22 @@ public class BoardCanvasView extends Canvas implements Observer {
         gc.setFill(javafx.scene.paint.Color.BLACK);
 
         for (IGizmo gizmo : gm.getIGizmos()) {
-            double gizmoStartX;
-            double gizmoStartY;
-            double gizmoEndX;
-            double gizmoEndY;
             if (gizmo.getType() == IGizmo.Type.Square) {
-                gizmoStartX = gizmo.getRootCircle().getCenter().x();
-                gizmoStartY = gizmo.getRootCircle().getCenter().y();
                 gc.setFill(Theme.Colors.RED);
-                gc.fillRect(gizmoStartX * Constants.pxPerL, gizmoStartY * Constants.pxPerL, 1 * Constants.pxPerL, 1 * Constants.pxPerL);
-            }
-            if (gizmo.getType() == IGizmo.Type.Absorber) {
-                gizmoStartX = gizmo.getRootCircle().getCenter().x();
-                gizmoStartY = gizmo.getRootCircle().getCenter().y();
-                gizmoEndX = gizmo.getEndCircle().getX();
-                gizmoEndY = gizmo.getEndCircle().getY();
+            } else if (gizmo.getType() == IGizmo.Type.Absorber) {
                 gc.setFill(Theme.Colors.PINK);
-                gc.fillRect(gizmoStartX * Constants.pxPerL, gizmoStartY * Constants.pxPerL, (gizmoEndX - gizmoStartX) * Constants.pxPerL, (gizmoEndY - gizmoStartY) * Constants.pxPerL);
+            } else if (gizmo.getType() == IGizmo.Type.Triangle) {
+                gc.setFill(Theme.Colors.BLUE);
             }
+            double xPoints[] = new double[10];
+            double yPoints[] = new double[10];
+            i = 0;
+            for (Circle circle : gizmo.getCircles()) {
+                xPoints[i] = circle.getX() * Constants.pxPerL;
+                yPoints[i] = circle.getY() * Constants.pxPerL;
+                i++;
+            }
+            gc.fillPolygon(xPoints, yPoints, i);
         }
 
         Ball b = gm.getBall();

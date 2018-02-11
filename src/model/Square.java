@@ -11,9 +11,9 @@ public class Square extends Gizmo {
         lines.add(new Line(x, y + 1, x + 1, y + 1));
 
         circles.add(new Circle(x, y, 0));
-        circles.add(new Circle(x, y + 1, 0));
         circles.add(new Circle(x + 1, y, 0));
-        circles.add(new Circle(x + 1, y + 1, 0));
+        circles.add(new Circle(x + 1, y+1, 0));
+        circles.add(new Circle(x, y + 1, 0));
     }
 
     @Override
