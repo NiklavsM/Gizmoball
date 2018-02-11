@@ -24,8 +24,10 @@ public abstract class Gizmo implements IGizmo {
         return lines;
     }
 
+    public String getId() {
+        return id;
+    }
 
     public abstract Type getType();
-
 
 }

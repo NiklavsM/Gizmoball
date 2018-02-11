@@ -61,6 +61,7 @@ public class GameModel extends Observable {
             } else {
                 // We've got a collision in tuc
                 nextGizmo = cd.getGizmo();
+                System.out.println("Collision with gizmo:  " + nextGizmo.getId());
                 ball = moveBallForTime(ball, tuc);
                 // Post collision velocity ...
                 applyForces(cd.getVelo(), tuc);
@@ -112,7 +113,6 @@ public class GameModel extends Observable {
         Vect newVelo = new Vect(0, 0);
         IGizmo nextGizmo = null;
 
-        // Now find shortest time to hit a vertical line or a wall line
         double shortestTime = Double.MAX_VALUE;
         double time = 0.0;
         for (IGizmo gizmo : gizmos) {
@@ -132,7 +132,7 @@ public class GameModel extends Observable {
                 if (time < shortestTime) {
                     shortestTime = time;
                     nextGizmo = gizmo;
-                    newVelo = Geometry.reflectCircle(circle.getCenter(), ball.getCircle().getCenter(), ball.getVelo());
+                    newVelo = Geometry.reflectCircle(tempCircle.getCenter(), ball.getCircle().getCenter(), ball.getVelo());
                 }
 
             }

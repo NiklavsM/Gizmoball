@@ -56,7 +56,12 @@ public class BoardCanvasView extends Canvas implements Observer {
                 yPoints[i] = circle.getY() * Constants.pxPerL;
                 i++;
             }
-            gc.fillPolygon(xPoints, yPoints, i);
+            if (gizmo.getType() == IGizmo.Type.Circle) {
+                gc.setFill(Theme.Colors.GREEN);
+                gc.fillOval(xPoints[0] - 0.5 * Constants.pxPerL, yPoints[0] - 0.5 * Constants.pxPerL, Constants.pxPerL, Constants.pxPerL);
+            } else {
+                gc.fillPolygon(xPoints, yPoints, i);
+            }
         }
 
         Ball b = gm.getBall();
