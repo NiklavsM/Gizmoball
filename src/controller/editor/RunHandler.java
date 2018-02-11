@@ -3,7 +3,7 @@ package controller.editor;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import model.Model;
+import model.GameModel;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -12,11 +12,11 @@ import java.awt.event.ActionListener;
 public class RunHandler<ActionEvent extends Event> implements EventHandler<ActionEvent> {
 
 	private static Timer timer;
-	private Model model;
+	private GameModel gameModel;
 	private javafx.event.ActionEvent timerEvent;
 
-	public RunHandler(Model m) {
-		model = m;
+	public RunHandler(GameModel m) {
+		gameModel = m;
 		setup();
 	}
 
@@ -24,7 +24,7 @@ public class RunHandler<ActionEvent extends Event> implements EventHandler<Actio
 		timer = new Timer(50, new ActionListener() {
 			@Override
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				model.moveBall();
+				gameModel.moveBall();
 			}
 		});
 	}
@@ -48,7 +48,7 @@ public class RunHandler<ActionEvent extends Event> implements EventHandler<Actio
 					System.out.println(timer.isRunning());
 					break;
 				case "Tick":
-					model.moveBall();
+					gameModel.moveBall();
 					break;
 				case "Quit":
 					System.exit(0);

@@ -14,19 +14,19 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.text.TextAlignment;
-import model.Model;
+import model.GameModel;
 
 
 public class PauseMenu extends GizmoVerticalToolBar {
     private PlayStage playStage;
-    private Model model;
+    private GameModel gameModel;
 
 
-    public PauseMenu(PlayStage playStage, Model model) { //NMS: added model as it will be required for save load to edit handlers (bonus can get rid of wasMoving bool) and just use model
+    public PauseMenu(PlayStage playStage, GameModel gameModel) { //NMS: added model as it will be required for save load to edit handlers (bonus can get rid of wasMoving bool) and just use model
         this.setAlignment(Pos.CENTER);
         this.playStage = playStage;
         this.getStyleClass().add("PauseMenu");
-        this.model = model;
+        this.gameModel = gameModel;
         super.setPadding(Theme.Padding.NONE);
         super.setVGap(15);
         setup();
@@ -39,7 +39,7 @@ public class PauseMenu extends GizmoVerticalToolBar {
         setMaxHeight(250);
         setPadding(Theme.Padding.DEFAULT_PADDING);
 
-        addItem("Back", "back-button", new BackToGameHandler(this, playStage.getGameBar(), model));
+        addItem("Back", "back-button", new BackToGameHandler(this, playStage.getGameBar(), gameModel));
         addItem("Save", "save-progress-button", new SaveProgressHandler());
         addItem("Load", "load-game-button", new LoadProgressHandler());
         addItem("Editor", "to-editor-button", new ToEditorModeHandler(playStage));

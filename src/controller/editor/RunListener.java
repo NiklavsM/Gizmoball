@@ -3,7 +3,8 @@ package controller.editor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
-import model.Model;
+
+import model.GameModel;
 
 /**
  * @author Murray Wood Demonstration of MVC and MIT Physics Collisions 2014
@@ -12,10 +13,10 @@ import model.Model;
 public class RunListener implements ActionListener {
 
 	private Timer timer;
-	private Model model;
+	private GameModel gameModel;
 
-	public RunListener(Model m) {
-		model = m;
+	public RunListener(GameModel m) {
+		gameModel = m;
 		timer = new Timer(50, this);
 	}
 
@@ -23,7 +24,7 @@ public class RunListener implements ActionListener {
 	public final void actionPerformed(final ActionEvent e) {
 
 		if (e.getSource() == timer) {
-			model.moveBall();
+			gameModel.moveBall();
 		} else
 			switch (e.getActionCommand()) {
 			case "Start":
@@ -33,7 +34,7 @@ public class RunListener implements ActionListener {
 				timer.stop();
 				break;
 			case "Tick":
-				model.moveBall();
+				gameModel.moveBall();
 				break;
 			case "Quit":
 				System.exit(0);

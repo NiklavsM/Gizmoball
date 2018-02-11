@@ -5,17 +5,17 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.ToolBar;
 import javafx.scene.effect.GaussianBlur;
-import model.Model;
+import model.GameModel;
 
 public class BackToGameHandler implements EventHandler<ActionEvent> {
     private ToolBar box;
     private GameBar bar;
-    private Model model;
+    private GameModel gameModel;
 
-    public BackToGameHandler(ToolBar box, GameBar bar, Model model) {
+    public BackToGameHandler(ToolBar box, GameBar bar, GameModel gameModel) {
         this.box = box;
         this.bar = bar;
-        this.model = model;
+        this.gameModel = gameModel;
     }
 
     @Override
@@ -23,6 +23,6 @@ public class BackToGameHandler implements EventHandler<ActionEvent> {
         box.toBack();
         box.getParent().getChildrenUnmodifiable().forEach(e -> e.setEffect(new GaussianBlur(0))); // remove blur from toolbar
         bar.disabled(false);
-        model.startTimer();
+        gameModel.startTimer();
     }
 }

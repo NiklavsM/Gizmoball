@@ -6,8 +6,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import model.Ball;
 import model.Constants;
-import model.Model;
-import model.VerticalLine;
+import model.GameModel;
+import model.IGizmo;
 
 import java.awt.*;
 import java.util.Observable;
@@ -17,13 +17,13 @@ public class BoardCanvasView extends Canvas implements Observer {
 
 
     private static final long serialVersionUID = 1L;
-    protected Model gm;
+    protected GameModel gm;
 
-    public BoardCanvasView(int width, int height, Model model) {
+    public BoardCanvasView(int width, int height, GameModel gameModel) {
         super(width, height);
         // Observe changes in Model
-        model.addObserver(this);
-        gm = model;
+        gameModel.addObserver(this);
+        gm = gameModel;
 //        this.setBorder(BorderFactory.createLineBorder(java.awt.Color.black));
         redraw();
     }
@@ -41,8 +41,26 @@ public class BoardCanvasView extends Canvas implements Observer {
 
         // Draw all the vertical lines
         gc.setFill(javafx.scene.paint.Color.BLACK);
-        for (VerticalLine vl : gm.getLines()) {
-            gc.fillRect(vl.getX() * Constants.pxPerL, vl.getY() * Constants.pxPerL, vl.getWidth() * Constants.pxPerL, 1);
+
+        for (IGizmo gizmo : gm.getIGizmos()) {
+            double gizmoStartX;
+            double gizmoStartY;
+            double gizmoEndX;
+            double gizmoEndY;
+            if (gizmo.getType() == IGizmo.Type.Square) {
+                gizmoStartX = gizmo.getRootCircle().getCenter().x();
+                gizmoStartY = gizmo.getRootCircle().getCenter().y();
+                gc.setFill(Theme.Colors.RED);
+                gc.fillRect(gizmoStartX * Constants.pxPerL, gizmoStartY * Constants.pxPerL, 1 * Constants.pxPerL, 1 * Constants.pxPerL);
+            }
+            if (gizmo.getType() == IGizmo.Type.Absorber) {
+                gizmoStartX = gizmo.getRootCircle().getCenter().x();
+                gizmoStartY = gizmo.getRootCircle().getCenter().y();
+                gizmoEndX = gizmo.getEndCircle().getX();
+                gizmoEndY = gizmo.getEndCircle().getY();
+                gc.setFill(Theme.Colors.PINK);
+                gc.fillRect(gizmoStartX * Constants.pxPerL, gizmoStartY * Constants.pxPerL, (gizmoEndX - gizmoStartX) * Constants.pxPerL, (gizmoEndY - gizmoStartY) * Constants.pxPerL);
+            }
         }
 
         Ball b = gm.getBall();
@@ -53,6 +71,7 @@ public class BoardCanvasView extends Canvas implements Observer {
             int width = (int) (2 * b.getRadius() * Constants.pxPerL);
             gc.fillOval(x, y, width, width);
         }
+
     }
 
     @Override

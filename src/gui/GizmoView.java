@@ -3,16 +3,18 @@ package gui;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import model.Model;
-import model.VerticalLine;
+import model.Absorber;
+import model.GameModel;
+import model.Square;
+import model.Triangle;
 
 public class GizmoView extends Application {
 
-    private final Model model;
+    private final GameModel gameModel;
     private Stage currentStage;
 
     public GizmoView() {
-        this.model = makeModel();
+        this.gameModel = makeModel();
     }
 
     @Override
@@ -32,23 +34,30 @@ public class GizmoView extends Application {
     }
 
 
-    public Model getModel() {
-        return model;
+    public GameModel getGameModel() {
+        return gameModel;
     }
 
 
+    private GameModel makeModel() {
+        GameModel gameModel = new GameModel();
 
-    private Model makeModel() {
-        Model model = new Model();
+        gameModel.setBallSpeed(8, 8);
 
-        model.setBallSpeed(8, 8);
+        gameModel.addGizmo(new Square(0, 5, "id1"));
+        gameModel.addGizmo(new Square(1, 5, "id1"));
+        gameModel.addGizmo(new Square(2, 5, "id1"));
+        gameModel.addGizmo(new Square(3, 5, "id1"));
+        gameModel.addGizmo(new Square(4, 5, "id1"));
+        gameModel.addGizmo(new Square(5, 7, "id1"));
+        gameModel.addGizmo(new Square(6, 8, "id1"));
+        gameModel.addGizmo(new Square(15, 7, "id1"));
+        gameModel.addGizmo(new Square(14, 7, "id1"));
+        gameModel.addGizmo(new Square(13, 7, "id1"));
 
-        // Vertical line at (100,100), width 300
-        model.addLine(new VerticalLine(4, 4, 12));
-        model.addLine(new VerticalLine(4, 8, 12));
-        model.addLine(new VerticalLine(4, 12, 12));
-        model.addLine(new VerticalLine(4, 16, 12));
+        gameModel.addGizmo(new Triangle(19, 0, "id1")); // this is invisible currently
+        gameModel.addGizmo(new Absorber(0, 19, 20, 20, "id1"));
 
-        return model;
+        return gameModel;
     }
 }

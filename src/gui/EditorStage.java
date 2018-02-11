@@ -48,7 +48,7 @@ public class EditorStage extends Stage {
 
         // Top
         MenuBar menuBar = makeMenubar();
-        ToolBar optionsBar = new GizmoOptionsBar(gizmoView.getModel(), this);
+        ToolBar optionsBar = new GizmoOptionsBar(gizmoView.getGameModel(), this);
 
         VBox topComponents = new VBox();
         topComponents.getChildren().addAll(menuBar, optionsBar);
@@ -78,7 +78,7 @@ public class EditorStage extends Stage {
         rigthSideBar.getChildren().add(tabPane);
 
         // Center
-        Canvas canvas = new BoardCanvasView(500, 500, gizmoView.getModel());
+        Canvas canvas = new BoardCanvasView(500, 500, gizmoView.getGameModel());
 
         // Bottom
         Node statusBar = makeStatusBar();
