@@ -32,6 +32,7 @@ public class BoardCanvasView extends Canvas implements Observer {
 
     public void redraw() {
         GraphicsContext gc = this.getGraphicsContext2D();
+        int pxPerL = Constants.pxPerL;
         int i;
 
         gc.setFill(Theme.Colors.DEEP_BLUE);
@@ -53,13 +54,13 @@ public class BoardCanvasView extends Canvas implements Observer {
             double yPoints[] = new double[10];
             i = 0;
             for (Dot dot : gizmo.getDots()) {
-                xPoints[i] = dot.getX() * Constants.pxPerL;
-                yPoints[i] = dot.getY() * Constants.pxPerL;
+                xPoints[i] = dot.getX() * pxPerL;
+                yPoints[i] = dot.getY() * pxPerL;
                 i++;
             }
             if (gizmo.getType() == IGizmo.Type.Circle) {
                 gc.setFill(Theme.Colors.GREEN);
-                gc.fillOval(xPoints[0] - 0.5 * Constants.pxPerL, yPoints[0] - 0.5 * Constants.pxPerL, Constants.pxPerL, Constants.pxPerL);
+                gc.fillOval(xPoints[0] - 0.5 * pxPerL, yPoints[0] - 0.5 * pxPerL, pxPerL, pxPerL);
             } else {
                 gc.fillPolygon(xPoints, yPoints, i);
             }
@@ -68,9 +69,9 @@ public class BoardCanvasView extends Canvas implements Observer {
         Ball b = gm.getBall(); // could get rid of this if the ball implements IGizmo
         if (b != null) {
             gc.setFill(b.getColour());
-            int x = (int) ((b.getExactX() - b.getRadius()) * Constants.pxPerL);
-            int y = (int) ((b.getExactY() - b.getRadius()) * Constants.pxPerL);
-            int width = (int) (2 * b.getRadius() * Constants.pxPerL);
+            int x = (int) ((b.getExactX() - b.getRadius()) * pxPerL);
+            int y = (int) ((b.getExactY() - b.getRadius()) * pxPerL);
+            int width = (int) (2 * b.getRadius() * pxPerL);
             gc.fillOval(x, y, width, width);
         }
 
