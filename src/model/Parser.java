@@ -2,10 +2,7 @@ package model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Parser {
@@ -53,57 +50,79 @@ public class Parser {
 
     private void parse() throws IllegalAccessException {
         while (scanner.hasNextLine()) {
+
             String line = scanner.nextLine();
-            String[] tokens = line.split("\\s+");
-            processTokens(tokens);
-        }
-    }
+            Queue<String> tokens = Arrays.stream(line.split("\\s+")).collect(Collectors.toCollection(LinkedList::new));
+            String command = tokens.poll();
 
-    private void processTokens(String[] tokens) throws IllegalAccessException {
-        String commmand = tokens[0];
+            if (nameCommands.contains(command)) {
+                nameCommands(command, tokens.poll(), tokens);
+            } else {
+                if (command.equals(KEY_CONNECT_COMMAND)) {
+                    tokens.poll();
+                    double keyNumber = toValidNumber(tokens.poll());
+                    String keyMode = tokens.poll();
+                    String name = tokens.poll();
+                    //TODO
+                }
 
-        if (Arrays
-                .stream(IGizmo.Type.values())
-                .map(IGizmo.Type::toString)
-                .anyMatch(gizmo -> gizmo.equals(commmand))) {
-            String name = tokens[1];
-            if (name.equals(WALLS_NAME)) {
-                throw new IllegalAccessException(WALLS_NAME + "is not a valid name.");
+                double val1 = toValidCoordinate(tokens.poll());
+
+                if (command.equals(FRICTION_COMMAND)) {
+                    //TODO
+                    return;
+                }
+                if (command.equals(GRAVITY_COMMAND)) {
+                    double val2 = toValidCoordinate(tokens.poll());
+                    //TODO
+                    return;
+                }
             }
-
-            double x = toValidCoordinate(tokens[2]);
-            double y = toValidCoordinate(tokens[3]);
-
-            //TODO
-            //create gizmo from factory
-            //add gizmo to model
-
-            return;
         }
-
-        if (commmand.equals(ROTATE_COMMAND)) {
-            String name = tokens[0];
-            //TODO get gizmo rotate gizmo if it has been referenced before
-            return;
-        }
-
-        if (commmand.equals(MOVE_COMMAND)) {
-
-        }
-
-
     }
 
-    private double toValidCoordinate(String stringCoordinate) {
+    private double toValidNumber(String stringNumber) {
         try {
-            double coordinate = Integer.parseInt(stringCoordinate);
-            if (coordinate >= 0 && coordinate <= 19) {
-                return coordinate;
-            }
+            return Double.parseDouble(stringNumber);
         } catch (NumberFormatException ex) {
             throw ex;
         }
-        return -1; // unreachable
+    }
+
+    private void nameCommands(String command, String name, Queue<String> tokens) throws IllegalAccessException {
+        if (command.equals(DELETE_COMMAND)) {
+            //TODO delete using name
+            return;
+        }
+        if (command.equals(ROTATE_COMMAND)) {
+            //TODO rotate using name
+            return;
+        }
+        if (command.equals(CONNECT_COMMAND)) {
+            String name2 = tokens.poll();
+            //TODO connect name to name2
+            return;
+        }
+        if (nameCoordCoordCommands.contains(command)) {
+            nameCoordCoordCommands(command, name, toValidCoordinate(tokens.poll()), toValidCoordinate(tokens.poll()), tokens);
+        }
+    }
+
+    private void nameCoordCoordCommands(String command, String name, double x, double y, Queue<String> tokens) {
+        if (command.equals(MOVE_COMMAND)) {
+            //TODO MOVE using name x and y
+        }
+        if (gizmoCreationCommands.contains(command)) {
+            //TODO create gizmo
+        }
+    }
+
+    private double toValidCoordinate(String stringCoordinate) {
+        double coordinate = toValidNumber(stringCoordinate);
+        if (coordinate >= 0 && coordinate <= 19) {
+            return coordinate;
+        }
+        throw new NumberFormatException("Coordinate is not in range [0,19].");
     }
 
     public static void main(String[] args) {
