@@ -1,7 +1,5 @@
 package model;
 
-import physics.Vect;
-
 public class Dot {
     private double x;
     private double y;

@@ -1,98 +1,76 @@
 package model;
 
 
-import gui.Theme;
-import javafx.scene.paint.Color;
+import model.gizmo.Gizmo;
 import model.gizmo.IGizmo;
 import physics.Circle;
 import physics.Vect;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
-public class Ball implements IGizmo {
+public class Ball extends Gizmo implements IGizmo {
 
     private Vect velocity;
     private double radius;
-    private double xpos;
-    private double ypos;
-    private Color colour;
+    private Circle circle;
 
-    // x, y coordinates and x,y velocity
     public Ball(double x, double y, double xv, double yv) {
-        xpos = x; // Centre coordinates
-        ypos = y;
-        colour = Theme.Colors.WHITE;
-        velocity = new Vect(xv, yv);
-        radius = 0.25;
+        this(x, y, xv, yv, generateID());
     }
 
-    public Vect getVelo() {
+    public Ball(double x, double y, double xv, double yv, String id) {
+        super(id);
+        radius = 0.25;
+        circle = new Circle(x, y, radius);
+        circles.add(circle);
+        velocity = new Vect(xv, yv);
+
+    }
+
+    Vect getVelo() {
         return velocity;
     }
 
-    public void setVelo(Vect v) {
+    void setVelo(Vect v) {
         velocity = v;
     }
 
-    public double getRadius() {
-        return radius;
-    }
-
     public Circle getCircle() {
-        // Walls are the enclosing Rectangle - defined by top left corner and bottom
-        // right
-        return new Circle(xpos, ypos, radius);
-
+        return circle;
     }
 
-    // Ball specific methods that deal with double precision.
-    public double getExactX() {
-        return xpos;
+    double getExactX() {
+        return circle.getCenter().x();
     }
 
-    public double getExactY() {
-        return ypos;
+    double getExactY() {
+        return circle.getCenter().y();
     }
 
-    public void setExactX(double x) {
-        xpos = x;
+    void setExactX(double x) {
+        circle = new Circle(x, getExactY(), radius);
     }
 
-    public void setExactY(double y) {
-        ypos = y;
-    }
-
-    public Color getColour() {
-        return colour;
-    }
-
-    public Set<Dot> getDot() {
-        return null;
+    void setExactY(double y) {
+        circle = new Circle(getExactX(), y, radius);
     }
 
     @Override
-    public List<Dot> getDots() {
-        List<Dot> dot = new LinkedList<>();
-        dot.add(new Dot(getCircle().getCenter().x(),
-                getCircle().getCenter().y(),
-                getCircle().getRadius()));
-        return dot;
+    public List<Circle> getCircles() {
+        circles = new LinkedList<>();
+        circles.add(circle);
+        return circles;
     }
 
     @Override
     public Type getType() {
-        return null;
+        return Type.Ball;
     }
 
     @Override
     public String getId() {
-        return null;
+        return id;
     }
 
-    @Override
-    public void rotate() {
-
-    }
 }

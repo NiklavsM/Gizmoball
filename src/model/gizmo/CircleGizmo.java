@@ -8,7 +8,7 @@ public class CircleGizmo extends Gizmo {
     public CircleGizmo(double x, double y, String id) {
         super(id);
         Circle circle = new Circle(x + 0.5, y + 0.5, 0.5);
-        circles.add(circle);
+        circles.add(new Circle(x + 0.5, y + 0.5, 0.5));
         rotatingPoint = circle.getCenter();
     }
 
