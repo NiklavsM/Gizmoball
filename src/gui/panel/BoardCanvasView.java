@@ -4,10 +4,7 @@ import gui.Theme;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import model.Ball;
-import model.Constants;
-import model.Model;
-import model.VerticalLine;
+import model.*;
 
 import java.awt.*;
 import java.util.Observable;
@@ -17,13 +14,13 @@ public class BoardCanvasView extends Canvas implements Observer {
 
 
     private static final long serialVersionUID = 1L;
-    protected Model gm;
+    protected GameModel gm;
 
-    public BoardCanvasView(int width, int height, Model model) {
+    public BoardCanvasView(int width, int height, GameModel gameModel) {
         super(width, height);
         // Observe changes in Model
-        model.addObserver(this);
-        gm = model;
+        gameModel.addObserver(this);
+        gm = gameModel;
 //        this.setBorder(BorderFactory.createLineBorder(java.awt.Color.black));
         redraw();
     }
@@ -35,14 +32,36 @@ public class BoardCanvasView extends Canvas implements Observer {
 
     public void redraw() {
         GraphicsContext gc = this.getGraphicsContext2D();
+        int i;
 
         gc.setFill(Theme.Colors.DEEP_BLUE);
         gc.fillRect(0, 0, super.getWidth(), super.getHeight());
 
         // Draw all the vertical lines
         gc.setFill(javafx.scene.paint.Color.BLACK);
-        for (VerticalLine vl : gm.getLines()) {
-            gc.fillRect(vl.getX() * Constants.pxPerL, vl.getY() * Constants.pxPerL, vl.getWidth() * Constants.pxPerL, 1);
+
+        for (IGizmo gizmo : gm.getIGizmos()) {
+            if (gizmo.getType() == IGizmo.Type.Square) {
+                gc.setFill(Theme.Colors.RED);
+            } else if (gizmo.getType() == IGizmo.Type.Absorber) {
+                gc.setFill(Theme.Colors.PINK);
+            } else if (gizmo.getType() == IGizmo.Type.Triangle) {
+                gc.setFill(Theme.Colors.BLUE);
+            }
+            double xPoints[] = new double[10];
+            double yPoints[] = new double[10];
+            i = 0;
+            for (Circle circle : gizmo.getCircles()) {
+                xPoints[i] = circle.getX() * Constants.pxPerL;
+                yPoints[i] = circle.getY() * Constants.pxPerL;
+                i++;
+            }
+            if (gizmo.getType() == IGizmo.Type.Circle) {
+                gc.setFill(Theme.Colors.GREEN);
+                gc.fillOval(xPoints[0] - 0.5 * Constants.pxPerL, yPoints[0] - 0.5 * Constants.pxPerL, Constants.pxPerL, Constants.pxPerL);
+            } else {
+                gc.fillPolygon(xPoints, yPoints, i);
+            }
         }
 
         Ball b = gm.getBall();
@@ -53,6 +72,7 @@ public class BoardCanvasView extends Canvas implements Observer {
             int width = (int) (2 * b.getRadius() * Constants.pxPerL);
             gc.fillOval(x, y, width, width);
         }
+
     }
 
     @Override

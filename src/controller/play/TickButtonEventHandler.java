@@ -2,19 +2,19 @@ package controller.play;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import model.Model;
+import model.GameModel;
 
 public class TickButtonEventHandler implements EventHandler<ActionEvent> {
-    private Model model;
+    private GameModel gameModel;
 
-    public TickButtonEventHandler(Model model) {
-        this.model = model;
+    public TickButtonEventHandler(GameModel gameModel) {
+        this.gameModel = gameModel;
     }
 
     @Override
     public void handle(ActionEvent event) {
-        if (!model.timerIsRunning()) {
-            model.moveBall();
+        if (!gameModel.timerIsRunning()) {
+            gameModel.moveBall();
         }
     }
 }

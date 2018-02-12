@@ -3,16 +3,15 @@ package gui;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import model.Model;
-import model.VerticalLine;
+import model.*;
 
 public class GizmoView extends Application {
 
-    private final Model model;
+    private final GameModel gameModel;
     private Stage currentStage;
 
     public GizmoView() {
-        this.model = makeModel();
+        this.gameModel = makeModel();
     }
 
     @Override
@@ -32,22 +31,33 @@ public class GizmoView extends Application {
     }
 
 
-    public Model getModel() {
-        return model;
+    public GameModel getGameModel() {
+        return gameModel;
     }
 
 
+    private GameModel makeModel() {
+        GameModel gameModel = new GameModel();
 
-    private Model makeModel() {
-        Model model = new Model();
+        gameModel.setBallSpeed(8, 8);
 
-        model.setBallSpeed(8, 8);
+        gameModel.addGizmo(new Square(0, 5, "1"));
+        gameModel.addGizmo(new CircleGizmo(1, 5, "2"));
+        gameModel.addGizmo(new CircleGizmo(2, 5, "3"));
+        gameModel.addGizmo(new CircleGizmo(3, 5, "4"));
+        gameModel.addGizmo(new CircleGizmo(4, 5, "5"));
+        gameModel.addGizmo(new CircleGizmo(5, 6, "5"));
+        gameModel.addGizmo(new CircleGizmo(5, 7, "6"));
+        gameModel.addGizmo(new CircleGizmo(6, 8, "7"));
+        gameModel.addGizmo(new Square(15, 8, "8"));
+        gameModel.addGizmo(new CircleGizmo(14, 8, "9"));
+        gameModel.addGizmo(new CircleGizmo(13, 8, "0"));
+        gameModel.addGizmo(new CircleGizmo(17, 6, "id1"));
 
-        model.addLine(new VerticalLine(4, 4, 12));
-        model.addLine(new VerticalLine(4, 8, 12));
-        model.addLine(new VerticalLine(4, 12, 12));
-        model.addLine(new VerticalLine(4, 16, 12));
+        gameModel.addGizmo(new CircleGizmo(7, 7, "id1"));
+        gameModel.addGizmo(new Triangle(19, 0, "id1")); // this is invisible currently
+        gameModel.addGizmo(new Absorber(0, 19, 20, 20, "id1"));
 
-        return model;
+        return gameModel;
     }
 }

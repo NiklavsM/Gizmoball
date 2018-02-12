@@ -10,26 +10,26 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
-import model.Model;
+import model.GameModel;
 
 public class GameBar extends GizmoHorizontalToolBar {
-    private final Model model;
+    private final GameModel gameModel;
     private final PlayStage playStage;
 
-    public GameBar(Pos position, PlayStage playStage, Model model) {
+    public GameBar(Pos position, PlayStage playStage, GameModel gameModel) {
         super.setMaxWidth(200);
         super.setAlignment(position);
         super.getStyleClass().add("game-bar");
-        this.model = model;
+        this.gameModel = gameModel;
         this.playStage = playStage;
         setup();
     }
 
     private void setup() {
-        addItem("Play", "play-button", new PlayButtonEventHandler(model));
-        addItem("Stop", "stop-button", new StopButtonEventHandler(model));
-        addItem("Tick", "tick-button", new TickButtonEventHandler(model));
-        addItem("Menu", "pause-screen-button", new MenuButtonEventHandler(playStage, model));
+        addItem("Play", "play-button", new PlayButtonEventHandler(gameModel));
+        addItem("Stop", "stop-button", new StopButtonEventHandler(gameModel));
+        addItem("Tick", "tick-button", new TickButtonEventHandler(gameModel));
+        addItem("Menu", "pause-screen-button", new MenuButtonEventHandler(playStage, gameModel));
     }
 
     private void addItem(String name, String className, EventHandler<ActionEvent> eventEventHandler) {

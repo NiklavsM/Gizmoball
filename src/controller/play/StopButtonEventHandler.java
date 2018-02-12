@@ -2,17 +2,17 @@ package controller.play;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import model.Model;
+import model.GameModel;
 
 public class StopButtonEventHandler implements EventHandler<ActionEvent> {
-    private Model model;
+    private GameModel gameModel;
 
-    public StopButtonEventHandler(Model model) {
-        this.model = model;
+    public StopButtonEventHandler(GameModel gameModel) {
+        this.gameModel = gameModel;
     }
 
     @Override
     public void handle(ActionEvent event) {
-        model.stopTimer();
+        gameModel.stopTimer();
     }
 }

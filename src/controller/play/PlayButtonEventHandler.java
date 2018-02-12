@@ -2,17 +2,17 @@ package controller.play;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import model.Model;
+import model.GameModel;
 
 public class PlayButtonEventHandler implements EventHandler<ActionEvent> {
-    private Model model;
+    private GameModel gameModel;
 
-    public PlayButtonEventHandler(Model model) {
-        this.model = model;
+    public PlayButtonEventHandler(GameModel gameModel) {
+        this.gameModel = gameModel;
     }
 
     @Override
     public void handle(ActionEvent event) {
-        model.startTimer();
+        gameModel.startTimer();
     }
 }
