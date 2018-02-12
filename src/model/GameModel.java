@@ -22,6 +22,7 @@ public class GameModel extends Observable implements IGameModel {
     public GameModel() {
         gizmos = new HashMap<>();
         ball = new Ball(1, 1, 4, 4);
+        addGizmo(ball);
         addGizmo(new Walls());
         setupTimer();
     }
@@ -35,7 +36,7 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     public Set<IGizmo> getGizmos() {
-        return gizmos.values().stream().collect(Collectors.toSet());
+        return new HashSet<>(gizmos.values());
     }
 
     public void moveBall() {
@@ -68,7 +69,7 @@ public class GameModel extends Observable implements IGameModel {
         this.notifyObservers();
 
         if (nextGizmo != null && cd.getGizmo().getType() == IGizmo.Type.Absorber) {
-            ball.setExactX(20 - ball.getRadius());
+            ball.setExactX(20 - ball.getCircle().getRadius());
             ball.setExactY(19);
             // changed the y coordinate of the velocity vector so when shooted out of the absorber it almost reaches the top of the screen
             ball.setVelo(new Vect(0.0, -50.0));
@@ -125,7 +126,7 @@ public class GameModel extends Observable implements IGameModel {
                 if (time < shortestTime) {
                     shortestTime = time;
                     nextGizmo = gizmo;
-                    newVelo = Geometry.reflectCircle(circle.getCenter(), ball.getCircle().getCenter(), ball.getVelo());
+                    newVelo = Geometry.reflectCircle(circle.getCenter(), ballCircle.getCenter(), ball.getVelo());
                 }
 
             }

@@ -137,6 +137,10 @@ Button:hover {
     -fx-background-image: url("/assets/icons/grid.png");
 }
 
+.console-button {
+    -fx-background-image: url("/assets/icons/console.png");
+}
+
 /* Toolbar */
 .add-button {
     -fx-background-image: url("/assets/icons/cursor.png");
