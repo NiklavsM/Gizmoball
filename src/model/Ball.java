@@ -1,6 +1,5 @@
 package model;
 
-
 import gui.Theme;
 import javafx.scene.paint.Color;
 import model.gizmo.IGizmo;
@@ -83,7 +82,7 @@ public class Ball implements IGizmo {
 
     @Override
     public Type getType() {
-        return null;
+        return Type.Ball;
     }
 
     @Override

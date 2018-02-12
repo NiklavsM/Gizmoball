@@ -11,9 +11,7 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import model.GameModel;
 import model.IGameModel;
-
 
 public class PlayStage extends Stage {
 

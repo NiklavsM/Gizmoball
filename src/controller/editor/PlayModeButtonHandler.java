@@ -8,7 +8,6 @@ public class PlayModeButtonHandler implements EventHandler<ActionEvent> {
 
     private EditorStage editorStage;
 
-
     public PlayModeButtonHandler(EditorStage editorStage) {
         this.editorStage = editorStage;
     }
