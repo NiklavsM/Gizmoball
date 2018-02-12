@@ -74,8 +74,19 @@ public abstract class Gizmo implements IGizmo {
 
     public void rotate() {
         rotateCount++;
-        lines.forEach(line -> Geometry.rotateAround(line, rotatingPoint, Angle.DEG_90));
-        circles.forEach(circle -> Geometry.rotateAround(circle, rotatingPoint, Angle.DEG_90));
+        Set<LineSegment> newLineList = new HashSet<>();
+        lines.forEach(line -> {
+            line = Geometry.rotateAround(line, rotatingPoint, Angle.DEG_90);
+            newLineList.add(line);
+        });
+        lines = newLineList;
+
+        List<Circle> newCircleList = new LinkedList<>();
+        circles.forEach(circle -> {
+            circle = Geometry.rotateAround(circle, rotatingPoint, Angle.DEG_90);
+            newCircleList.add(circle);
+        });
+        circles = newCircleList;
     }
 
 }
