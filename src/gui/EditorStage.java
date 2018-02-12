@@ -1,28 +1,23 @@
 package gui;
 
 import gui.panel.BoardCanvasView;
-import gui.panel.GizmoGrid;
+import gui.panel.GizmoPanel;
+import gui.panel.StatusBar;
 import gui.toolbar.GizmoOptionsBar;
 import gui.toolbar.GizmoToolBar;
-import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.ToolBar;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import model.EditorModel;
+import model.GameModel;
+import model.IGameModel;
 
 public class EditorStage extends Stage {
 
@@ -31,15 +26,20 @@ public class EditorStage extends Stage {
     private static final double APP_HEIGHT = 800;
     private static final double APP_WIDTH = 1000;
 
+    private final IGameModel gameModel;
+    private EditorModel editorModel;
+
     private GizmoView gizmoView;
-    private Label statusBarLabel;
+    private StatusBar statusBar;
 
     public EditorStage(GizmoView gizmoView) {
         this.gizmoView = gizmoView;
+        this.gameModel = gizmoView.getGameModel();
+
+        this.editorModel = new EditorModel(gizmoView);
 
         setup();
     }
-
 
     private void setup() {
 
@@ -48,7 +48,7 @@ public class EditorStage extends Stage {
 
         // Top
         MenuBar menuBar = makeMenubar();
-        ToolBar optionsBar = new GizmoOptionsBar(gizmoView.getGameModel(), this);
+        ToolBar optionsBar = new GizmoOptionsBar(this);
 
         VBox topComponents = new VBox();
         topComponents.getChildren().addAll(menuBar, optionsBar);
@@ -57,11 +57,35 @@ public class EditorStage extends Stage {
         ToolBar toolbar = new GizmoToolBar();
 
         // Right
-        VBox rigthSideBar = new VBox();
+        VBox rightSideBar = new VBox();
 
-        VBox gizmoPanel = makeGizmoPanel();
+        TabPane tabPane = makeTabPane();
+        rightSideBar.getChildren().add(tabPane);
 
+        // Center
+        Canvas canvas = new BoardCanvasView(500, 500, gameModel);
+
+        // Bottom
+        statusBar = new StatusBar();
+
+        root.setTop(topComponents);
+        root.setCenter(canvas);
+        root.setLeft(toolbar);
+        root.setRight(rightSideBar);
+        root.setBottom(statusBar);
+
+        scene.getStylesheets().add(Theme.STYLESHEET_PATH);
+
+        super.setMinHeight(APP_HEIGHT);
+        super.setMinWidth(APP_WIDTH);
+        super.setScene(scene);
+        super.setTitle(APPLICATION_NAME);
+    }
+
+    private TabPane makeTabPane() {
         TabPane tabPane = new TabPane();
+
+        GizmoPanel gizmoPanel = new GizmoPanel();
 
         Tab gizmoTab = new Tab();
         gizmoTab.setText("Gizmos");
@@ -75,37 +99,7 @@ public class EditorStage extends Stage {
         tabPane.getTabs().add(gizmoTab);
         tabPane.getTabs().add(propertiesTab);
 
-        rigthSideBar.getChildren().add(tabPane);
-
-        // Center
-        Canvas canvas = new BoardCanvasView(500, 500, gizmoView.getGameModel());
-
-        // Bottom
-        Node statusBar = makeStatusBar();
-
-        root.setTop(topComponents);
-        root.setCenter(canvas);
-        root.setLeft(toolbar);
-        root.setRight(rigthSideBar);
-        root.setBottom(statusBar);
-
-        scene.getStylesheets().add(Theme.STYLESHEET_PATH);
-
-        super.setMinHeight(APP_HEIGHT);
-        super.setMinWidth(APP_WIDTH);
-        super.setScene(scene);
-        super.setTitle(APPLICATION_NAME);
-//        super.show();
-    }
-
-    private Node makeStatusBar() {
-        HBox container = new HBox();
-        container.getStyleClass().add("statusbar");
-        container.setPadding(new Insets(2, 2, 2, 16));
-        statusBarLabel = new Label("Add some Gizmos to the map");
-
-        container.getChildren().add(statusBarLabel);
-        return container;
+        return tabPane;
     }
 
 
@@ -122,57 +116,14 @@ public class EditorStage extends Stage {
         return menuBar;
     }
 
-    // TODO: Put this into a class
-    private VBox makeGizmoPanel() {
-        VBox box = new VBox();
-        box.setSpacing(16);
-        box.setPadding(Theme.Padding.DEFAULT_PADDING);
-
-        // Heading
-        Label titleLabel = new Label("Gizmos");
-        titleLabel.setFont(Theme.Fonts.CARD_TITLE);
-
-        // Content
-        ScrollPane scrollpane = new ScrollPane();
-        GizmoGrid gizmogrid = new GizmoGrid();
-
-        Rectangle squareShape = new Rectangle(25, 25, Theme.Colors.BLUE);
-        gizmogrid.addGizmo(squareShape, "Square");
-
-        Circle circleShape = new Circle(12.5, Theme.Colors.RED);
-        gizmogrid.addGizmo(circleShape, "Circle");
-        
-        Image triangleShape = new Image(getClass().getClassLoader().getResourceAsStream("assets/icons/tri.png"));
-        ImageView triangle = new ImageView();
-        triangle.setFitWidth(25);
-        triangle.setFitHeight(25);
-        triangle.setImage(triangleShape);
-        gizmogrid.addGizmo(triangle, "Triangle");
-
-        Rectangle absorber = new Rectangle(25, 15, Theme.Colors.PURPLE);
-        gizmogrid.addGizmo(absorber, "Absorber");
-        
-        Image flipperShape = new Image(getClass().getClassLoader().getResourceAsStream("assets/icons/flipper.png"));
-        ImageView flipper = new ImageView();
-        flipper.setFitWidth(30);
-        flipper.setFitHeight(30);
-        flipper.setImage(flipperShape);
-        gizmogrid.addGizmo(flipper, "Flipper");
-        
-        Circle ballShape = new Circle(9, Theme.Colors.ORANGE);
-        gizmogrid.addGizmo(ballShape, "Ball");
-
-        scrollpane.setContent(gizmogrid);
-        scrollpane.setMaxHeight(250);
-
-        box.getStyleClass().add("GizmoPane");
-        box.getChildren().addAll(titleLabel, scrollpane);
-        return box;
-    }
-
 
     public void setStatusBarText(String statusBarText) {
-        statusBarLabel.setText(statusBarText);
+        statusBar.setText(statusBarText);
+
+    }
+
+    public IGameModel getGameModel() {
+        return gameModel;
     }
 
     public void openPlayMode() {

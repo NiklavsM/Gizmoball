@@ -3,14 +3,15 @@ package model;
 
 import gui.Theme;
 import javafx.scene.paint.Color;
+import model.gizmo.IGizmo;
 import physics.Circle;
 import physics.Vect;
 
-/**
- * @author Murray Wood Demonstration of MVC and MIT Physics Collisions 2014
- */
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
-public class Ball {
+public class Ball implements IGizmo {
 
     private Vect velocity;
     private double radius;
@@ -40,6 +41,8 @@ public class Ball {
     }
 
     public Circle getCircle() {
+        // Walls are the enclosing Rectangle - defined by top left corner and bottom
+        // right
         return new Circle(xpos, ypos, radius);
 
     }
@@ -65,4 +68,31 @@ public class Ball {
         return colour;
     }
 
+    public Set<Dot> getDot() {
+        return null;
+    }
+
+    @Override
+    public List<Dot> getDots() {
+        List<Dot> dot = new LinkedList<>();
+        dot.add(new Dot(getCircle().getCenter().x(),
+                getCircle().getCenter().y(),
+                getCircle().getRadius()));
+        return dot;
+    }
+
+    @Override
+    public Type getType() {
+        return null;
+    }
+
+    @Override
+    public String getId() {
+        return null;
+    }
+
+    @Override
+    public void rotate() {
+
+    }
 }

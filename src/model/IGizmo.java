@@ -1,5 +1,7 @@
 package model;
 
+import physics.Circle;
+
 import java.util.List;
 import java.util.Set;
 

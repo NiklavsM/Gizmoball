@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.GridPane;
 
-public class GizmoVerticalToolBar extends ToolBar {
+public abstract class GizmoVerticalToolBar extends ToolBar {
 
     private final GridPane gridPane;
     private int rowIndex;

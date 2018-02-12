@@ -1,5 +1,6 @@
 package model;
 
+import model.gizmo.IGizmo;
 import physics.Vect;
 
 /**

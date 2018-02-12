@@ -11,6 +11,8 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import model.GameModel;
+import model.IGameModel;
 
 
 public class PlayStage extends Stage {
@@ -18,6 +20,7 @@ public class PlayStage extends Stage {
     private static final String APPLICATION_NAME = "Gizmoball - Play";
 
     private GizmoView gizmoView;
+    private IGameModel gameModel;
     private static final double APP_HEIGHT = 500;
     private static final double APP_WIDTH = 500;
     private Label scoreLabel;
@@ -26,6 +29,7 @@ public class PlayStage extends Stage {
 
     public PlayStage(GizmoView gizmoView) {
         this.gizmoView = gizmoView;
+        this.gameModel = gizmoView.getGameModel();
         setup();
     }
 
@@ -67,9 +71,13 @@ public class PlayStage extends Stage {
 
     public void showPauseMenu() {
         stackPane.getChildren().forEach(e -> e.setEffect(new GaussianBlur(10))); //blur it a little
-        PauseMenu menu = new PauseMenu(this, gizmoView.getGameModel());
+        PauseMenu menu = new PauseMenu(this);
         stackPane.getChildren().add(menu);
         gameBar.disabled(true);
+    }
+
+    public IGameModel getGameModel() {
+        return gameModel;
     }
 
     public void openEditor() {

@@ -3,15 +3,13 @@ package gui;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import model.Absorber;
-import model.CircleGizmo;
+import model.IGameModel;
+import model.gizmo.*;
 import model.GameModel;
-import model.Square;
-import model.Triangle;
 
 public class GizmoView extends Application {
 
-    private final GameModel gameModel;
+    private IGameModel gameModel;
     private Stage currentStage;
 
     public GizmoView() {
@@ -35,39 +33,54 @@ public class GizmoView extends Application {
     }
 
 
-    public GameModel getGameModel() {
+    public void setGameModel(IGameModel gameModel) {
+        this.gameModel = gameModel;
+    }
+
+    public IGameModel getGameModel() {
         return gameModel;
     }
 
-
-    private GameModel makeModel() {
+    private IGameModel makeModel() {
         GameModel gameModel = new GameModel();
+        IGizmo triange;
 
         gameModel.setBallSpeed(8, 8);
 
-        gameModel.addGizmo(new Square(0, 5, "1"));
-        gameModel.addGizmo(new CircleGizmo(1, 5, "2"));
-        gameModel.addGizmo(new CircleGizmo(2, 5, "3"));
-        gameModel.addGizmo(new CircleGizmo(3, 5, "4"));
-        gameModel.addGizmo(new CircleGizmo(4, 5, "5"));
-        gameModel.addGizmo(new CircleGizmo(5, 6, "5"));
-        gameModel.addGizmo(new CircleGizmo(5, 7, "6"));
-        gameModel.addGizmo(new CircleGizmo(6, 8, "7"));
-        gameModel.addGizmo(new Square(15, 8, "8"));
-        gameModel.addGizmo(new CircleGizmo(14, 8, "9"));
-        gameModel.addGizmo(new CircleGizmo(13, 8, "0"));
-        gameModel.addGizmo(new CircleGizmo(17, 6, "id1"));
-        
-        gameModel.addGizmo(new CircleGizmo(10, 8, "x1"));
-        gameModel.addGizmo(new CircleGizmo(11, 9, "x2"));
-        gameModel.addGizmo(new CircleGizmo(12, 10, "x3"));
-        gameModel.addGizmo(new Square(3, 14, "s"));
-        gameModel.addGizmo(new Square(4, 14, "ss"));
-        gameModel.addGizmo(new Square(5, 14, "sss"));
-        
-        gameModel.addGizmo(new CircleGizmo(7, 7, "id1"));
-        gameModel.addGizmo(new Triangle(19, 0, "id1")); // this is invisible currently
-        gameModel.addGizmo(new Absorber(0, 19, 20, 20, "id1"));
+        gameModel.addGizmo(new Square(0, 5));
+        gameModel.addGizmo(new Square(18, 5));
+        gameModel.addGizmo(new Square(17, 5));
+        gameModel.addGizmo(new Square(16, 5));
+        gameModel.addGizmo(new Square(15, 5));
+        gameModel.addGizmo(new Square(14, 6));
+        gameModel.addGizmo(new Square(13, 7));
+        gameModel.addGizmo(new Square(12, 8));
+        gameModel.addGizmo(new Square(15, 8));
+        gameModel.addGizmo(new CircleGizmo(14, 8));
+        gameModel.addGizmo(new CircleGizmo(0, 8));
+
+        gameModel.addGizmo(new CircleGizmo(2, 8));
+        gameModel.addGizmo(new CircleGizmo(4, 8));
+        gameModel.addGizmo(new CircleGizmo(5, 8));
+        gameModel.addGizmo(new CircleGizmo(13, 8));
+        gameModel.addGizmo(new CircleGizmo(17, 6));
+
+        gameModel.addGizmo(new CircleGizmo(10, 8));
+        gameModel.addGizmo(new CircleGizmo(11, 9));
+        gameModel.addGizmo(new CircleGizmo(12, 10));
+        gameModel.addGizmo(new Square(3, 14));
+        gameModel.addGizmo(new Square(4, 14));
+        gameModel.addGizmo(new Square(5, 14));
+        triange = new Triangle(1, 14);
+        triange.rotate();
+        triange.rotate();
+        triange.rotate();
+        gameModel.addGizmo(triange);
+        gameModel.addGizmo(new CircleGizmo(7, 7));
+        triange = new Triangle(19, 0);
+        triange.rotate();
+        gameModel.addGizmo(triange);
+        gameModel.addGizmo(new Absorber(0, 19, 20, 20));
 
         return gameModel;
     }

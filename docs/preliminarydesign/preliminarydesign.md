@@ -71,7 +71,7 @@ Niklavs Meiers @isb15151
   * [PhysicsBody](#physicsbody)
   * [Absorber](#absorber)
   * [Ball](#ball)
-  * [Circle](#circle)
+  * [Circle](#dot)
   * [Flipper](#flipper)
   * [FlipperDirection](#flipperdirection)
   * [Rectangle](#rectangle)
