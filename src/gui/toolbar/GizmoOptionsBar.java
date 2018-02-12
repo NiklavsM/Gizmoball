@@ -9,11 +9,12 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import model.GameModel;
+import model.IGameModel;
 
 public class GizmoOptionsBar extends GizmoHorizontalToolBar {
 
     private final EditorStage editorStage;
-    private GameModel gameModel;
+    private IGameModel gameModel;
 
     public GizmoOptionsBar(EditorStage editorStage) {
         super.setAlignment(Pos.CENTER);

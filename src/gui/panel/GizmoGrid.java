@@ -1,11 +1,14 @@
 package gui.panel;
 
+import controller.editor.AddGizmoHandler;
 import gui.Theme;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+
 
 public class GizmoGrid extends Group {
 
@@ -38,7 +41,8 @@ public class GizmoGrid extends Group {
         Label label = new Label(gizmoName);
         label.getStyleClass().add("gizmogrid");
         label.setFont(Theme.Fonts.REGULAR_FONT);
-
+        label.addEventHandler(MouseEvent.MOUSE_CLICKED,new AddGizmoHandler());
+        symbol.addEventHandler(MouseEvent.MOUSE_CLICKED,new AddGizmoHandler());
         gridPane.add(symbol, colindex, rowIndex);
         gridPane.add(label, colindex++, rowIndex + 1);
         if (colindex == 3) {

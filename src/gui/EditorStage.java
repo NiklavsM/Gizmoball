@@ -16,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.GameModel;
+import model.IGameModel;
 
 public class EditorStage extends Stage {
 
@@ -23,7 +24,7 @@ public class EditorStage extends Stage {
 
     private static final double APP_HEIGHT = 800;
     private static final double APP_WIDTH = 1000;
-    private final GameModel gameModel;
+    private final IGameModel gameModel;
 
     private GizmoView gizmoView;
     private StatusBar statusBar;
@@ -116,7 +117,7 @@ public class EditorStage extends Stage {
 
     }
 
-    public GameModel getGameModel() {
+    public IGameModel getGameModel() {
         return gameModel;
     }
 

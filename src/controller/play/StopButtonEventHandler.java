@@ -3,11 +3,12 @@ package controller.play;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import model.GameModel;
+import model.IGameModel;
 
 public class StopButtonEventHandler implements EventHandler<ActionEvent> {
-    private GameModel gameModel;
+    private IGameModel gameModel;
 
-    public StopButtonEventHandler(GameModel gameModel) {
+    public StopButtonEventHandler(IGameModel gameModel) {
         this.gameModel = gameModel;
     }
 

@@ -12,6 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import model.GameModel;
+import model.IGameModel;
 
 
 public class PlayStage extends Stage {
@@ -19,7 +20,7 @@ public class PlayStage extends Stage {
     private static final String APPLICATION_NAME = "Gizmoball - Play";
 
     private GizmoView gizmoView;
-    private GameModel gameModel;
+    private IGameModel gameModel;
     private static final double APP_HEIGHT = 500;
     private static final double APP_WIDTH = 500;
     private Label scoreLabel;
@@ -75,7 +76,7 @@ public class PlayStage extends Stage {
         gameBar.disabled(true);
     }
 
-    public GameModel getGameModel() {
+    public IGameModel getGameModel() {
         return gameModel;
     }
 
