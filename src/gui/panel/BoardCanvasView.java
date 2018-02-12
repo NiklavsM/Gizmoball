@@ -12,7 +12,6 @@ import java.util.Observer;
 
 public class BoardCanvasView extends Canvas implements Observer {
 
-
     private static final long serialVersionUID = 1L;
     protected GameModel gm;
 

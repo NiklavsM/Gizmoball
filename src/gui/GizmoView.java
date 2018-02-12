@@ -3,7 +3,11 @@ package gui;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import model.*;
+import model.Absorber;
+import model.CircleGizmo;
+import model.GameModel;
+import model.Square;
+import model.Triangle;
 
 public class GizmoView extends Application {
 
@@ -53,11 +57,23 @@ public class GizmoView extends Application {
         gameModel.addGizmo(new CircleGizmo(14, 8, "9"));
         gameModel.addGizmo(new CircleGizmo(13, 8, "0"));
         gameModel.addGizmo(new CircleGizmo(17, 6, "id1"));
-
+        
+        gameModel.addGizmo(new CircleGizmo(10, 8, "x1"));
+        gameModel.addGizmo(new CircleGizmo(11, 9, "x2"));
+        gameModel.addGizmo(new CircleGizmo(12, 10, "x3"));
+        gameModel.addGizmo(new Square(3, 14, "s"));
+        gameModel.addGizmo(new Square(4, 14, "ss"));
+        gameModel.addGizmo(new Square(5, 14, "sss"));
+        
         gameModel.addGizmo(new CircleGizmo(7, 7, "id1"));
         gameModel.addGizmo(new Triangle(19, 0, "id1")); // this is invisible currently
         gameModel.addGizmo(new Absorber(0, 19, 20, 20, "id1"));
 
         return gameModel;
+    }
+    
+    @Override
+    public void stop() {
+    	gameModel.stopTimer();
     }
 }

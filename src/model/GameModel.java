@@ -75,7 +75,8 @@ public class GameModel extends Observable {
         if (nextGizmo != null && cd.getGizmo().getType() == IGizmo.Type.Absorber) {
             ball.setExactX(20 - ball.getRadius());
             ball.setExactY(19);
-            ball.setVelo(new Vect(0.0, -50.0));
+            // changed the y coordinate of the velocity vector so when shooted out of the absorber it almost reaches the top of the screen
+            ball.setVelo(new Vect(0.0, -38.0));
         }
     }
 
