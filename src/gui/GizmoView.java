@@ -12,7 +12,7 @@ import model.gizmo.Triangle;
 
 public class GizmoView extends Application {
 
-    private final IGameModel gameModel;
+    private IGameModel gameModel;
     private Stage currentStage;
 
     public GizmoView() {
@@ -36,10 +36,13 @@ public class GizmoView extends Application {
     }
 
 
+    public void setGameModel(IGameModel gameModel) {
+        this.gameModel = gameModel;
+    }
+
     public IGameModel getGameModel() {
         return gameModel;
     }
-
 
     private IGameModel makeModel() {
         GameModel gameModel = new GameModel();
