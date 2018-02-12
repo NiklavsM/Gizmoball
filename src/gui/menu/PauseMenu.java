@@ -22,22 +22,25 @@ public class PauseMenu extends GizmoVerticalToolBar {
     private GameModel gameModel;
 
 
-    public PauseMenu(PlayStage playStage, GameModel gameModel) { //NMS: added model as it will be required for save load to edit handlers (bonus can get rid of wasMoving bool) and just use model
-        this.setAlignment(Pos.CENTER);
+    public PauseMenu(PlayStage playStage) {
         this.playStage = playStage;
-        this.getStyleClass().add("PauseMenu");
-        this.gameModel = gameModel;
-        super.setPadding(Theme.Padding.NONE);
-        super.setVGap(15);
-        setup();
-    }
+        this.gameModel = playStage.getGameModel();//NMS: added model as it will be required for save load to edit handlers (bonus can get rid of wasMoving bool) and just use model
 
-    private void setup() {
+        this.setAlignment(Pos.CENTER);
+        this.getStyleClass().add("PauseMenu");
+        this.setPadding(Theme.Padding.NONE);
+        this.setVGap(15);
+
         setMinWidth(200);
         setMaxWidth(200);
         setMinHeight(200);
         setMaxHeight(250);
         setPadding(Theme.Padding.DEFAULT_PADDING);
+
+        setup();
+    }
+
+    private void setup() {
 
         addItem("Back", "back-button", new BackToGameHandler(this, playStage.getGameBar(), gameModel));
         addItem("Save", "save-progress-button", new SaveProgressHandler());

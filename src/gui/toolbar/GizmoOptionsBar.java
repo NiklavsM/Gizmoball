@@ -15,11 +15,10 @@ public class GizmoOptionsBar extends GizmoHorizontalToolBar {
     private final EditorStage editorStage;
     private GameModel gameModel;
 
-
-    public GizmoOptionsBar(GameModel gameModel, EditorStage editorStage) {
+    public GizmoOptionsBar(EditorStage editorStage) {
         super.setAlignment(Pos.CENTER);
-        this.gameModel = gameModel;
         this.editorStage = editorStage;
+        this.gameModel = editorStage.getGameModel();
 
         setup();
     }

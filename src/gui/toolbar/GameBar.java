@@ -17,11 +17,13 @@ public class GameBar extends GizmoHorizontalToolBar {
     private final PlayStage playStage;
 
     public GameBar(Pos position, PlayStage playStage, GameModel gameModel) {
-        super.setMaxWidth(200);
-        super.setAlignment(position);
-        super.getStyleClass().add("game-bar");
         this.gameModel = gameModel;
         this.playStage = playStage;
+
+        this.setMaxWidth(200);
+        this.setAlignment(position);
+        this.getStyleClass().add("game-bar");
+
         setup();
     }
 

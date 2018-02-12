@@ -15,6 +15,7 @@ import javafx.scene.control.ToolBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import model.GameModel;
 
 public class EditorStage extends Stage {
 
@@ -22,12 +23,14 @@ public class EditorStage extends Stage {
 
     private static final double APP_HEIGHT = 800;
     private static final double APP_WIDTH = 1000;
+    private final GameModel gameModel;
 
     private GizmoView gizmoView;
     private StatusBar statusBar;
 
     public EditorStage(GizmoView gizmoView) {
         this.gizmoView = gizmoView;
+        this.gameModel = gizmoView.getGameModel();
 
         setup();
     }
@@ -39,7 +42,7 @@ public class EditorStage extends Stage {
 
         // Top
         MenuBar menuBar = makeMenubar();
-        ToolBar optionsBar = new GizmoOptionsBar(gizmoView.getGameModel(), this);
+        ToolBar optionsBar = new GizmoOptionsBar(this);
 
         VBox topComponents = new VBox();
         topComponents.getChildren().addAll(menuBar, optionsBar);
@@ -48,11 +51,35 @@ public class EditorStage extends Stage {
         ToolBar toolbar = new GizmoToolBar();
 
         // Right
-        VBox rigthSideBar = new VBox();
+        VBox rightSideBar = new VBox();
+
+        TabPane tabPane = makeTabPane();
+        rightSideBar.getChildren().add(tabPane);
+
+        // Center
+        Canvas canvas = new BoardCanvasView(500, 500, gameModel);
+
+        // Bottom
+        statusBar = new StatusBar();
+
+        root.setTop(topComponents);
+        root.setCenter(canvas);
+        root.setLeft(toolbar);
+        root.setRight(rightSideBar);
+        root.setBottom(statusBar);
+
+        scene.getStylesheets().add(Theme.STYLESHEET_PATH);
+
+        super.setMinHeight(APP_HEIGHT);
+        super.setMinWidth(APP_WIDTH);
+        super.setScene(scene);
+        super.setTitle(APPLICATION_NAME);
+    }
+
+    private TabPane makeTabPane() {
+        TabPane tabPane = new TabPane();
 
         GizmoPanel gizmoPanel = new GizmoPanel();
-
-        TabPane tabPane = new TabPane();
 
         Tab gizmoTab = new Tab();
         gizmoTab.setText("Gizmos");
@@ -66,26 +93,7 @@ public class EditorStage extends Stage {
         tabPane.getTabs().add(gizmoTab);
         tabPane.getTabs().add(propertiesTab);
 
-        rigthSideBar.getChildren().add(tabPane);
-
-        // Center
-        Canvas canvas = new BoardCanvasView(500, 500, gizmoView.getGameModel());
-
-        // Bottom
-        statusBar = new StatusBar();
-
-        root.setTop(topComponents);
-        root.setCenter(canvas);
-        root.setLeft(toolbar);
-        root.setRight(rigthSideBar);
-        root.setBottom(statusBar);
-
-        scene.getStylesheets().add(Theme.STYLESHEET_PATH);
-
-        super.setMinHeight(APP_HEIGHT);
-        super.setMinWidth(APP_WIDTH);
-        super.setScene(scene);
-        super.setTitle(APPLICATION_NAME);
+        return tabPane;
     }
 
 
@@ -106,6 +114,10 @@ public class EditorStage extends Stage {
     public void setStatusBarText(String statusBarText) {
         statusBar.setText(statusBarText);
 
+    }
+
+    public GameModel getGameModel() {
+        return gameModel;
     }
 
     public void openPlayMode() {
