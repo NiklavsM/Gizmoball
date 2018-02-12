@@ -40,6 +40,7 @@ public class BoardCanvasView extends Canvas implements Observer {
         gc.setFill(javafx.scene.paint.Color.BLACK);
 
         for (IGizmo gizmo : gm.getIGizmos()) {
+
             if (gizmo.getType() == IGizmo.Type.Square) {
                 gc.setFill(Theme.Colors.RED);
             } else if (gizmo.getType() == IGizmo.Type.Absorber) {
