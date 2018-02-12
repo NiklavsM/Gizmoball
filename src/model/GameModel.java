@@ -1,8 +1,5 @@
 package model;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
 import model.gizmo.Gizmo;
 import model.gizmo.IGizmo;
 import model.gizmo.Walls;
@@ -12,6 +9,7 @@ import physics.LineSegment;
 import physics.Vect;
 
 import javax.swing.Timer;
+import java.util.*;
 
 public class GameModel extends Observable implements IGameModel {
 
@@ -44,7 +42,7 @@ public class GameModel extends Observable implements IGameModel {
         double moveTime = 0.05; // 0.05 = 20 times per second as per Gizmoball
         //Time until collision
         CollisionDetails cd = timeUntilCollision();
-        IGizmo nextGizmo = null;
+        Gizmo nextGizmo = null;
 
         if (ball != null) {
             double tuc = cd.getTuc();
@@ -91,8 +89,8 @@ public class GameModel extends Observable implements IGameModel {
 
     private Ball moveBallForTime(Ball ball, double time) {
 
-        double newX = 0.0;
-        double newY = 0.0;
+        double newX;
+        double newY;
         double xVel = ball.getVelo().x();
         double yVel = ball.getVelo().y();
         newX = ball.getExactX() + (xVel * time);
@@ -108,7 +106,7 @@ public class GameModel extends Observable implements IGameModel {
         Circle ballCircle = ball.getCircle();
         Vect ballVelocity = ball.getVelo();
         Vect newVelo = new Vect(0, 0);
-        IGizmo nextGizmo = null;
+        Gizmo nextGizmo = null;
 
         double shortestTime = Double.MAX_VALUE;
         double time = 0.0;
