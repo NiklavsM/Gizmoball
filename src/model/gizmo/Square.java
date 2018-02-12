@@ -9,7 +9,7 @@ public class Square extends Gizmo {
         this(x, y, generateID());
     }
 
-    public Square(int x, int y, String id) {
+    public Square(double x, double y, String id) {
         super(id);
         lines.add(new LineSegment(x, y, x + 1, y));
         lines.add(new LineSegment(x, y, x, y + 1));

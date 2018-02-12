@@ -7,7 +7,7 @@ import java.util.Set;
 
 public interface IGizmo {
     enum Type {
-        Triangle, Wall, Absorber, Square, Circle, LeftFlipper, RightFlipper
+        Triangle, Wall, Absorber, Square, Circle, LeftFlipper, RightFlipper, Ball;
     }
 
     Set<Line> getLines();

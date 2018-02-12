@@ -1,9 +1,15 @@
 package model;
 
+import model.gizmo.GizmoFactory;
+import model.gizmo.IGizmo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static model.IGizmo.Type.Absorber;
+import static model.IGizmo.Type.Ball;
 
 public class Parser {
 
@@ -22,16 +28,19 @@ public class Parser {
     public static final String MOVE_COMMAND = "Move";
     public static final String WALLS_NAME = "OuterWalls";
 
-    public Set<String> gizmoCreationCommands;
-    public Set<String> nameCoordCoordCommands;
-    public Set<String> nameCommands;
+    private Set<String> gizmoCreationCommands;
+    private Set<String> nameCoordCoordCommands;
+    private Set<String> gizmoCreationCommandsAdvanced;
+    private Set<String> nameCommands;
 
     private Scanner scanner;
     private GameModel gameModel;
+    private GizmoFactory gizmoFactory;
 
     public Parser(String path) throws FileNotFoundException {
         scanner = new Scanner(new File(path));
         gameModel = new GameModel();
+        gizmoFactory = GizmoFactory.getInstance();
 
         gizmoCreationCommands =
                 Arrays.stream(IGizmo.Type.values())
@@ -46,6 +55,18 @@ public class Parser {
 
         nameCoordCoordCommands = new HashSet<>(gizmoCreationCommands);
         nameCoordCoordCommands.add(MOVE_COMMAND);
+
+        gizmoCreationCommandsAdvanced = new HashSet<>();
+        gizmoCreationCommandsAdvanced.add(Absorber.toString());
+        gizmoCreationCommandsAdvanced.add(Ball.toString());
+    }
+
+    public static void main(String[] args) {
+        try {
+            Parser p = new Parser("resources/default.gizmo");
+        } catch (FileNotFoundException e) {
+            System.err.println("no such file");
+        }
     }
 
     private void parse() throws IllegalAccessException {
@@ -113,7 +134,14 @@ public class Parser {
             //TODO MOVE using name x and y
         }
         if (gizmoCreationCommands.contains(command)) {
-            //TODO create gizmo
+            if (gizmoCreationCommandsAdvanced.contains(command)) {
+                double x2 = toValidNumber(tokens.poll());
+                double y2 = toValidNumber(tokens.poll());
+                gameModel.addGizmo(gizmoFactory.createGizmo(IGizmo.Type.valueOf(command), x, y, x2, y2, name));
+                return;
+            }
+
+            gameModel.addGizmo(gizmoFactory.createGizmo(IGizmo.Type.valueOf(command), x, y, name));
         }
     }
 
@@ -123,14 +151,6 @@ public class Parser {
             return coordinate;
         }
         throw new NumberFormatException("Coordinate is not in range [0,19].");
-    }
-
-    public static void main(String[] args) {
-        try {
-            Parser p = new Parser("resources/default.gizmo");
-        } catch (FileNotFoundException e) {
-            System.err.println("no such file");
-        }
     }
 
 }
