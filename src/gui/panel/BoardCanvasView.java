@@ -52,9 +52,9 @@ public class BoardCanvasView extends Canvas implements Observer {
             double xPoints[] = new double[10];
             double yPoints[] = new double[10];
             i = 0;
-            for (Circle circle : gizmo.getCircles()) {
-                xPoints[i] = circle.getX() * Constants.pxPerL;
-                yPoints[i] = circle.getY() * Constants.pxPerL;
+            for (Dot dot : gizmo.getDots()) {
+                xPoints[i] = dot.getX() * Constants.pxPerL;
+                yPoints[i] = dot.getY() * Constants.pxPerL;
                 i++;
             }
             if (gizmo.getType() == IGizmo.Type.Circle) {

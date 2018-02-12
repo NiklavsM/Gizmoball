@@ -2,11 +2,11 @@ package model;
 
 import model.gizmo.IGizmo;
 
-import java.util.List;
 import java.util.Observer;
+import java.util.Set;
 
 public interface IGameModel {
-    List<IGizmo> getGizmos();
+    Set<IGizmo> getGizmos();
 
     void addGizmo(IGizmo gizmo);
 

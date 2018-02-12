@@ -67,7 +67,7 @@ public class GizmoView extends Application {
         gameModel.addGizmo(new Square(5, 14, "sss"));
 
         gameModel.addGizmo(new CircleGizmo(7, 7, "id1"));
-        gameModel.addGizmo(new Triangle(19, 0, "id1")); // this is invisible currently
+        gameModel.addGizmo(new Triangle(19, 0, "id1"));
         gameModel.addGizmo(new Absorber(0, 19, 20, 20, "id1"));
 
         return gameModel;

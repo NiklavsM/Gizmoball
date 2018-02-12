@@ -32,7 +32,7 @@ public class GizmoPanel extends VBox {
         gizmogrid.addGizmo(squareShape, "Square");
 
         Circle circleShape = new Circle(12.5, Theme.Colors.RED);
-        gizmogrid.addGizmo(circleShape, "Circle");
+        gizmogrid.addGizmo(circleShape, "Dot");
 
         Image triangleShape = new Image(getClass().getClassLoader().getResourceAsStream("assets/icons/tri.png"));
         ImageView triangle = new ImageView();
