@@ -3,6 +3,7 @@ package gui;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import model.IGameModel;
 import model.gizmo.Absorber;
 import model.gizmo.CircleGizmo;
 import model.GameModel;
@@ -11,7 +12,7 @@ import model.gizmo.Triangle;
 
 public class GizmoView extends Application {
 
-    private GameModel gameModel;
+    private IGameModel gameModel;
     private Stage currentStage;
 
     public GizmoView() {
@@ -35,16 +36,15 @@ public class GizmoView extends Application {
     }
 
 
-    public void setGameModel(GameModel gameModel) {
+    public void setGameModel(IGameModel gameModel) {
         this.gameModel = gameModel;
     }
 
-    public GameModel getGameModel() {
+    public IGameModel getGameModel() {
         return gameModel;
     }
 
-
-    private GameModel makeModel() {
+    private IGameModel makeModel() {
         GameModel gameModel = new GameModel();
 
         gameModel.setBallSpeed(8, 8);
@@ -61,14 +61,14 @@ public class GizmoView extends Application {
         gameModel.addGizmo(new CircleGizmo(14, 8, "9"));
         gameModel.addGizmo(new CircleGizmo(13, 8, "0"));
         gameModel.addGizmo(new CircleGizmo(17, 6, "id1"));
-        
+
         gameModel.addGizmo(new CircleGizmo(10, 8, "x1"));
         gameModel.addGizmo(new CircleGizmo(11, 9, "x2"));
         gameModel.addGizmo(new CircleGizmo(12, 10, "x3"));
         gameModel.addGizmo(new Square(3, 14, "s"));
         gameModel.addGizmo(new Square(4, 14, "ss"));
         gameModel.addGizmo(new Square(5, 14, "sss"));
-        
+
         gameModel.addGizmo(new CircleGizmo(7, 7, "id1"));
         gameModel.addGizmo(new Triangle(19, 0, "id1")); // this is invisible currently
         gameModel.addGizmo(new Absorber(0, 19, 20, 20, "id1"));

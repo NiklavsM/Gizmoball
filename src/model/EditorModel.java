@@ -14,11 +14,11 @@ public class EditorModel {
     }
 
     private final GizmoView gizmoView;
-    private GameModel gameModel;
+    private IGameModel gameModel;
     private EditorMode selectedAction;
     private List<IGizmo> selectedGizmos;
-    private Stack<GameModel> redoStack;
-    private Stack<GameModel> undoStack;
+    private Stack<IGameModel> redoStack;
+    private Stack<IGameModel> undoStack;
 
     public EditorModel(GizmoView gizmoView) {
         this.gizmoView = gizmoView;

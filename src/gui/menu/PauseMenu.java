@@ -15,11 +15,12 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.text.TextAlignment;
 import model.GameModel;
+import model.IGameModel;
 
 
 public class PauseMenu extends GizmoVerticalToolBar {
     private PlayStage playStage;
-    private GameModel gameModel;
+    private IGameModel gameModel;
 
 
     public PauseMenu(PlayStage playStage) {

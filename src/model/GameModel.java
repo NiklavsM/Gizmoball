@@ -17,7 +17,7 @@ import javax.swing.*;
  * @author Murray Wood Demonstration of MVC and MIT Physics Collisions 2014
  */
 
-public class GameModel extends Observable {
+public class GameModel extends Observable implements IGameModel {
 
     private Ball ball;
     private Timer timer;
@@ -39,11 +39,11 @@ public class GameModel extends Observable {
         timer = new Timer(50, e -> moveBall());
     }
 
-    public void addGizmo(IGizmo IGizmo) {
-        gizmos.add(IGizmo);
+    public void addGizmo(IGizmo gizmo) {
+        gizmos.add(gizmo);
     }
 
-    public List<IGizmo> getIGizmos() {
+    public List<IGizmo> getGizmos() {
         return gizmos;
     }
 
@@ -78,7 +78,7 @@ public class GameModel extends Observable {
             ball.setExactX(20 - ball.getRadius());
             ball.setExactY(19);
             // changed the y coordinate of the velocity vector so when shooted out of the absorber it almost reaches the top of the screen
-            ball.setVelo(new Vect(0.0, -38.0));
+            ball.setVelo(new Vect(0.0, -50.0));
         }
     }
 
@@ -160,7 +160,7 @@ public class GameModel extends Observable {
         timer.stop();
     }
 
-    public boolean timerIsRunning() {
+    public boolean isTimerRunning() {
         return timer.isRunning();
     }
 }

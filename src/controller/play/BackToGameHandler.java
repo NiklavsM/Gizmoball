@@ -6,13 +6,14 @@ import javafx.event.EventHandler;
 import javafx.scene.control.ToolBar;
 import javafx.scene.effect.GaussianBlur;
 import model.GameModel;
+import model.IGameModel;
 
 public class BackToGameHandler implements EventHandler<ActionEvent> {
     private ToolBar box;
     private GameBar bar;
-    private GameModel gameModel;
+    private IGameModel gameModel;
 
-    public BackToGameHandler(ToolBar box, GameBar bar, GameModel gameModel) {
+    public BackToGameHandler(ToolBar box, GameBar bar, IGameModel gameModel) {
         this.box = box;
         this.bar = bar;
         this.gameModel = gameModel;

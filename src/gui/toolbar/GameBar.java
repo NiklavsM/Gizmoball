@@ -11,12 +11,13 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 import model.GameModel;
+import model.IGameModel;
 
 public class GameBar extends GizmoHorizontalToolBar {
-    private final GameModel gameModel;
+    private final IGameModel gameModel;
     private final PlayStage playStage;
 
-    public GameBar(Pos position, PlayStage playStage, GameModel gameModel) {
+    public GameBar(Pos position, PlayStage playStage, IGameModel gameModel) {
         this.gameModel = gameModel;
         this.playStage = playStage;
 

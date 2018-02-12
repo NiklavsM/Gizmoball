@@ -14,9 +14,9 @@ import java.util.Observer;
 public class BoardCanvasView extends Canvas implements Observer {
 
     private static final long serialVersionUID = 1L;
-    protected GameModel gm;
+    protected IGameModel gm;
 
-    public BoardCanvasView(int width, int height, GameModel gameModel) {
+    public BoardCanvasView(int width, int height, IGameModel gameModel) {
         super(width, height);
         // Observe changes in Model
         gameModel.addObserver(this);
@@ -40,7 +40,7 @@ public class BoardCanvasView extends Canvas implements Observer {
         // Draw all the vertical lines
         gc.setFill(javafx.scene.paint.Color.BLACK);
 
-        for (IGizmo gizmo : gm.getIGizmos()) {
+        for (IGizmo gizmo : gm.getGizmos()) {
 
             if (gizmo.getType() == IGizmo.Type.Square) {
                 gc.setFill(Theme.Colors.RED);
@@ -65,7 +65,7 @@ public class BoardCanvasView extends Canvas implements Observer {
             }
         }
 
-        Ball b = gm.getBall();
+        Ball b = gm.getBall(); // could get rid of this if the ball implements IGizmo
         if (b != null) {
             gc.setFill(b.getColour());
             int x = (int) ((b.getExactX() - b.getRadius()) * Constants.pxPerL);
