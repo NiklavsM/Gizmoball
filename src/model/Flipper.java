@@ -10,13 +10,20 @@ public class Flipper extends Gizmo implements IMovable {
     private LineSegment connector2;
 
     private Vect velocity;
+    private boolean isMoving;
+
+    //FORTESTING
+    private double moveCooldown;
 
     public Flipper(String name, double startX, double startY) {
         super(name);
 
         double radius = 0.25;
 
-        velocity = Vect.ZERO;
+        isMoving = false;
+        moveCooldown = 2;
+
+        velocity = new Vect(new Angle(-1.57079633));
 
         startPoint = new Circle(startX + radius, startY + radius, radius);
         endPoint = new Circle(startX + radius, startY + radius + 1.5, radius);
@@ -50,7 +57,9 @@ public class Flipper extends Gizmo implements IMovable {
 
     @Override
     public void move(double time) {
-        Circle rotated = Geometry.rotateAround(endPoint, new Vect(startPoint.getCenter().x(), startPoint.getCenter().y()), new Angle(-1.57079633 * time));
+        Circle rotated = Geometry.rotateAround(endPoint
+                , startPoint.getCenter()
+                , new Angle(velocity.angle().radians() * time));
 
 
         circles.remove(endPoint);
@@ -59,8 +68,12 @@ public class Flipper extends Gizmo implements IMovable {
         lines.remove(connector1);
         lines.remove(connector2);
 
-        connector1 = Geometry.rotateAround(connector1, new Vect(startPoint.getCenter().x(), startPoint.getCenter().y()), new Angle(-1.57079633 * time));
-        connector2 = Geometry.rotateAround(connector2, new Vect(startPoint.getCenter().x(), startPoint.getCenter().y()), new Angle(-1.57079633 * time));
+        connector1 = Geometry.rotateAround(connector1
+                , startPoint.getCenter()
+                , new Angle(velocity.angle().radians() * time));
+        connector2 = Geometry.rotateAround(connector2
+                , startPoint.getCenter()
+                , new Angle(-1.57079633 * time));
 
         lines.add(connector1);
         lines.add(connector2);
@@ -74,5 +87,10 @@ public class Flipper extends Gizmo implements IMovable {
     @Override
     public void setVelocity(Vect velocity) {
         this.velocity = velocity;
+    }
+
+    public Circle getStartPoint()
+    {
+        return startPoint;
     }
 }

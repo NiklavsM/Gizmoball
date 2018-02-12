@@ -16,13 +16,14 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-//        Ball ball = new Ball(10, 10, 0.5);
-//        ball.setVelocity(new Vect(0, 10));
+        Ball ball = new Ball(6.5, 2, 0.5);
+        ball.setVelocity(new Vect(0, 1));
 
         Flipper flipper = new Flipper("laci", 5, 5);
 
         IGameModel gameModel = new GameModel();
         gameModel.addGizmo(flipper);
+        gameModel.addGizmo(ball);
         PlayView playView = new PlayView(stage, gameModel);
 
         stage.show();
