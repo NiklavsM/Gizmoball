@@ -11,7 +11,7 @@ import model.gizmo.Triangle;
 
 public class GizmoView extends Application {
 
-    private final GameModel gameModel;
+    private GameModel gameModel;
     private Stage currentStage;
 
     public GizmoView() {
@@ -34,6 +34,10 @@ public class GizmoView extends Application {
         currentStage.show();
     }
 
+
+    public void setGameModel(GameModel gameModel) {
+        this.gameModel = gameModel;
+    }
 
     public GameModel getGameModel() {
         return gameModel;
