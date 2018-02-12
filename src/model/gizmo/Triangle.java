@@ -1,4 +1,7 @@
-package model;
+package model.gizmo;
+
+import model.Circle;
+import model.Line;
 
 public class Triangle extends Gizmo {
 

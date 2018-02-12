@@ -1,4 +1,7 @@
-package model;
+package model.gizmo;
+
+import model.Circle;
+import model.Line;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -6,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 public abstract class Gizmo implements IGizmo {
+
     private final String id;
     List<Circle> circles;
     Set<Line> lines;

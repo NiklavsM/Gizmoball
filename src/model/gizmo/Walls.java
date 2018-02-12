@@ -1,11 +1,12 @@
-package model;
+package model.gizmo;
+
+import model.Line;
 
 /**
  * @author Murray Wood Demonstration of MVC and MIT Physics Collisions 2014
  */
 
 public class Walls extends Gizmo {
-
 
     // Walls are the enclosing Rectangle - defined by top left corner and bottom
     // right

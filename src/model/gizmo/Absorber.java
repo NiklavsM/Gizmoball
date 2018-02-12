@@ -1,7 +1,10 @@
-package model;
+package model.gizmo;
 
+import model.Circle;
+import model.Line;
 
 public class Absorber extends Gizmo {
+
     public Absorber(double x1, double y1, double x2, double y2, String id) {
         super(id);
         lines.add(new Line(x1,y1,x2,y1));

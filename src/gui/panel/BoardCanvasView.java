@@ -5,6 +5,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import model.*;
+import model.gizmo.IGizmo;
 
 import java.awt.*;
 import java.util.Observable;

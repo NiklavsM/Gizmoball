@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
 
+import model.gizmo.IGizmo;
+import model.gizmo.Walls;
 import physics.Circle;
 import physics.Geometry;
 import physics.LineSegment;

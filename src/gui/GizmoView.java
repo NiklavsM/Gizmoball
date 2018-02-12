@@ -3,11 +3,11 @@ package gui;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import model.Absorber;
-import model.CircleGizmo;
+import model.gizmo.Absorber;
+import model.gizmo.CircleGizmo;
 import model.GameModel;
-import model.Square;
-import model.Triangle;
+import model.gizmo.Square;
+import model.gizmo.Triangle;
 
 public class GizmoView extends Application {
 
