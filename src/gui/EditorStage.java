@@ -1,28 +1,19 @@
 package gui;
 
 import gui.panel.BoardCanvasView;
-import gui.panel.GizmoGrid;
 import gui.panel.GizmoPanel;
+import gui.panel.StatusBar;
 import gui.toolbar.GizmoOptionsBar;
 import gui.toolbar.GizmoToolBar;
-import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.ToolBar;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class EditorStage extends Stage {
@@ -33,14 +24,13 @@ public class EditorStage extends Stage {
     private static final double APP_WIDTH = 1000;
 
     private GizmoView gizmoView;
-    private Label statusBarLabel;
+    private StatusBar statusBar;
 
     public EditorStage(GizmoView gizmoView) {
         this.gizmoView = gizmoView;
 
         setup();
     }
-
 
     private void setup() {
 
@@ -82,7 +72,7 @@ public class EditorStage extends Stage {
         Canvas canvas = new BoardCanvasView(500, 500, gizmoView.getGameModel());
 
         // Bottom
-        Node statusBar = makeStatusBar();
+        statusBar = new StatusBar();
 
         root.setTop(topComponents);
         root.setCenter(canvas);
@@ -96,16 +86,6 @@ public class EditorStage extends Stage {
         super.setMinWidth(APP_WIDTH);
         super.setScene(scene);
         super.setTitle(APPLICATION_NAME);
-    }
-
-    private Node makeStatusBar() {
-        HBox container = new HBox();
-        container.getStyleClass().add("statusbar");
-        container.setPadding(new Insets(2, 2, 2, 16));
-        statusBarLabel = new Label("Add some Gizmos to the map");
-
-        container.getChildren().add(statusBarLabel);
-        return container;
     }
 
 
@@ -124,7 +104,8 @@ public class EditorStage extends Stage {
 
 
     public void setStatusBarText(String statusBarText) {
-        statusBarLabel.setText(statusBarText);
+        statusBar.setText(statusBarText);
+
     }
 
     public void openPlayMode() {
