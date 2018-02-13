@@ -51,7 +51,7 @@ public class GizmoView extends Application {
     
     private IGameModel makeModel() {
         GameModel gameModel = new GameModel();
-        IGizmo triange;
+        IGizmo triangle;
 
         gameModel.setBallSpeed(8, 8);
 
@@ -79,15 +79,17 @@ public class GizmoView extends Application {
         gameModel.addGizmo(new Square(3, 14));
         gameModel.addGizmo(new Square(4, 14));
         gameModel.addGizmo(new Square(5, 14));
-        triange = new Triangle(1, 14);
-        triange.rotate();
-        triange.rotate();
-        triange.rotate();
-        gameModel.addGizmo(triange);
+
+        triangle = new Triangle(1, 14);
+        triangle.rotate();
+        triangle.rotate();
+        triangle.rotate();
+        gameModel.addGizmo(triangle);
         //gameModel.addGizmo(new CircleGizmo(7, 7));
-        triange = new Triangle(19, 0);
-        triange.rotate();
-        gameModel.addGizmo(triange);
+        triangle = new Triangle(19, 0);
+        triangle.rotate();
+        gameModel.addGizmo(triangle);
+
         gameModel.addGizmo(new Absorber(0, 19, 20, 20));
 
         return gameModel;
