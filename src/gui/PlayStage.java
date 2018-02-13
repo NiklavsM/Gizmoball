@@ -36,7 +36,7 @@ public class PlayStage extends Stage {
         Scene scene = new Scene(root, 500, 500);
 
         // Center
-        Canvas canvas = new BoardCanvasView(500, 500, gizmoView.getGameModel());
+        Canvas canvas = new BoardCanvasView(1000, 1000, gizmoView.getGameModel());
 //        GameBar gameBar = new GameBar(Pos.BOTTOM_LEFT, root);
 
         stackPane = new StackPane();

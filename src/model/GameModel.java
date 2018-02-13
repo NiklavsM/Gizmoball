@@ -51,7 +51,7 @@ public class GameModel extends Observable implements IGameModel {
 		// absorber collision detected during the previous tick
 		if (absorberCollision) {
 			
-			ball.setVelo(new Vect (0.0, 0.0));
+			
 			ball.setExactX(ball.getExactX());
 			ball.setExactY(19.5);
 			this.setBallSpeed(0, 0);
