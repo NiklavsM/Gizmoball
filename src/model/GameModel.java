@@ -25,7 +25,7 @@ public class GameModel extends Observable implements IGameModel {
 
 	public GameModel() {
 		gizmos = new HashMap<>();
-		ball = new Ball(1, 1, 4, 4);
+		ball = new Ball(2, 1, 4, 4);
 		addGizmo(ball);
 		addGizmo(new Walls());
 		setupTimer();
@@ -51,10 +51,9 @@ public class GameModel extends Observable implements IGameModel {
 		// absorber collision detected during the previous tick
 		if (absorberCollision) {
 			this.stopTimer();
-			
 			ball.setExactX(19.5);
 			ball.setExactY(19.5);
-			ball.setVelo(new Vect(0, 0));
+			ball.setVelo(new Vect(0.0, -0.1));
 		}
 		
 		absorberCollision = false;
