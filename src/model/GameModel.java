@@ -80,7 +80,10 @@ public class GameModel extends Observable implements IGameModel {
 			ball.setVelo(new Vect(0.0, -50));
 		
 			ball.setExactX(19.5);
-			ball.setExactY(19.5);		
+			ball.setExactY(19.5);
+			
+			this.setBallSpeed(0, 0);
+			ball.setVelo(new Vect(0.0, -50));
 			
 		}
 	}
