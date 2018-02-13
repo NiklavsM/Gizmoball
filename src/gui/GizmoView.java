@@ -1,6 +1,9 @@
 package gui;
 
+import controller.play.ShootBallHandler;
 import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import model.GameModel;
 import model.IGameModel;
@@ -23,8 +26,9 @@ public class GizmoView extends Application {
     @Override
     public void start(Stage primaryStage) {
         currentStage = primaryStage;
-
+        
         currentStage = new PlayStage(this);
+        currentStage.addEventFilter(KeyEvent.KEY_PRESSED, new ShootBallHandler(gameModel));
         currentStage.show();
     }
 
@@ -44,7 +48,7 @@ public class GizmoView extends Application {
     public IGameModel getGameModel() {
         return gameModel;
     }
-
+    
     private IGameModel makeModel() {
         GameModel gameModel = new GameModel();
         IGizmo triangle;
@@ -81,7 +85,7 @@ public class GizmoView extends Application {
         triangle.rotate();
         triangle.rotate();
         gameModel.addGizmo(triangle);
-        //gameModel.addGizmo(new CircleGizmo(7, 7));
+        gameModel.addGizmo(new CircleGizmo(7, 7));
         triangle = new Triangle(19, 0);
         triangle.rotate();
         gameModel.addGizmo(triangle);
