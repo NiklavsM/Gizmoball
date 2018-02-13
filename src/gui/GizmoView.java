@@ -80,7 +80,7 @@ public class GizmoView extends Application {
         triange.rotate();
         triange.rotate();
         gameModel.addGizmo(triange);
-        gameModel.addGizmo(new CircleGizmo(7, 7));
+        //gameModel.addGizmo(new CircleGizmo(7, 7));
         triange = new Triangle(19, 0);
         triange.rotate();
         gameModel.addGizmo(triange);
