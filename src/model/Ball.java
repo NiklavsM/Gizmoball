@@ -34,6 +34,10 @@ public class Ball extends Gizmo {
     void setVelo(Vect v) {
         velocity = v;
     }
+    
+    double getRadius() {
+    	return radius;
+    }
 
     public Circle getCircle() {
         return circle;

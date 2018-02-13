@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.Timer;
 
@@ -71,12 +72,23 @@ public class GameModel extends Observable implements IGameModel {
         this.notifyObservers();
 
         if (nextGizmo != null && cd.getGizmo().getType() == IGizmo.Type.Absorber) {
-        	this.stopTimer();
         	
-//            ball.setExactX(20 - ball.getRadius());
-//            ball.setExactY(19);
-//            // changed the y coordinate of the velocity vector so when shooted out of the absorber it almost reaches the top of the screen
-//            ball.setVelo(new Vect(0.0, -50.0));
+        	// TO-FIX ---> ball stops one L before the absorber 
+        	ball.setExactX(ball.getExactX());
+            ball.setExactY(ball.getExactY()+0.1);
+            
+            ball.setExactX(19.5);
+            ball.setExactY(19.5);
+            ball.setVelo(new Vect(0,0));
+            
+            /*// wait for ball to stop completely before stoping timer
+            try {
+            TimeUnit.SECONDS.sleep(5);
+            } catch (InterruptedException ex) {
+            	ex.printStackTrace();
+            }
+            System.out.println("finished");
+            stopTimer();*/
         }
     }
 

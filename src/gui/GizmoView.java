@@ -75,15 +75,17 @@ public class GizmoView extends Application {
         gameModel.addGizmo(new Square(3, 14));
         gameModel.addGizmo(new Square(4, 14));
         gameModel.addGizmo(new Square(5, 14));
+
         triangle = new Triangle(1, 14);
         triangle.rotate();
         triangle.rotate();
         triangle.rotate();
         gameModel.addGizmo(triangle);
-        gameModel.addGizmo(new CircleGizmo(7, 7));
+        //gameModel.addGizmo(new CircleGizmo(7, 7));
         triangle = new Triangle(19, 0);
         triangle.rotate();
         gameModel.addGizmo(triangle);
+
         gameModel.addGizmo(new Absorber(0, 19, 20, 20));
 
         return gameModel;
