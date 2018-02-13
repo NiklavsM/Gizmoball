@@ -142,16 +142,16 @@ public class EditorStage extends Stage implements Observer {
 
         switch (editorMode) {
             case ADD:
-                setStatusBarText("ADD MODE - Click on a Gizmo and a location to add and right click to delete a gizmo");
+                setStatusBarText("Add Mode: Click on a Gizmo and a location to add and right click to delete a gizmo");
                 break;
             case CONNECT:
-                setStatusBarText("CONNECT MODE - Click on two gizmos to connect");
+                setStatusBarText("Connect Mode: Click on two gizmos to connect");
                 break;
             case SELECT:
-                setStatusBarText("SELECT MODE - Click on the gizmos you want to select");
+                setStatusBarText("Select mode: Click on the gizmos you want to select");
                 break;
             case ROTATE:
-                setStatusBarText("ROTATE MODE - Click on a gizmo to rotate it");
+                setStatusBarText("Rotate Mode: Click on a gizmo to rotate it");
                 break;
         }
     }
