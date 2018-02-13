@@ -21,6 +21,7 @@ public class GameModel extends Observable implements IGameModel {
 	private Ball ball;
 	private Timer timer;
 	private Map<String, Gizmo> gizmos;
+	private boolean absorberCollision;
 
 	public GameModel() {
 		gizmos = new HashMap<>();
@@ -28,6 +29,7 @@ public class GameModel extends Observable implements IGameModel {
 		addGizmo(ball);
 		addGizmo(new Walls());
 		setupTimer();
+		absorberCollision = false;
 	}
 
 	private void setupTimer() {
@@ -43,8 +45,20 @@ public class GameModel extends Observable implements IGameModel {
 	}
 
 	public void moveBall() {
-
+		
 		double moveTime = 0.05; // 0.05 = 20 times per second as per Gizmoball
+		
+		// absorber collision detected during the previous tick
+		if (absorberCollision) {
+			this.stopTimer();
+			
+			ball.setExactX(19.5);
+			ball.setExactY(19.5);
+			ball.setVelo(new Vect(0, 0));
+		}
+		
+		absorberCollision = false;
+		
 		// Time until collision
 		CollisionDetails cd = timeUntilCollision();
 		Gizmo nextGizmo = null;
@@ -70,16 +84,10 @@ public class GameModel extends Observable implements IGameModel {
 
 		// Notify observers ... redraw updated view
 		this.setChanged();
-		this.notifyObservers();
-
-		// TO-FIX ---> ball stops one L before the absorber
-		if (nextGizmo != null && cd.getGizmo().getType() == IGizmo.Type.Absorber) {
-			
-			//ball.setVelo(new Vect(0.0, -50));
+		this.notifyObservers();	
 		
-			ball.setVelo(new Vect(ball.getExactX(), -50));
-			ball.setExactX(19.5);
-			ball.setExactY(19.5);
+		if (nextGizmo != null && cd.getGizmo().getType() == IGizmo.Type.Absorber) {
+			absorberCollision = true;
 		}
 	}
 
@@ -168,7 +176,7 @@ public class GameModel extends Observable implements IGameModel {
 		
 		// checking needs to change
 		if (ball.getExactY()>19) {
-			ball.setExactX(ball.getExactX());
+			ball.setExactX(19.5);
 			ball.setExactY(19);
 			ball.setVelo(new Vect(0.0, -50.0));
 			this.startTimer();
