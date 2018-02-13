@@ -1,63 +1,65 @@
 package gui.panel;
 
+import controller.editor.gizmo.*;
 import gui.Theme;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
-public class GizmoPanel extends VBox {
+public class GizmoPanel extends GizmoGrid {
 
     public GizmoPanel() {
-
-        setSpacing(16);
-        setPadding(Theme.Padding.DEFAULT_PADDING);
 
         setup();
     }
 
     private void setup() {
-        // Heading
-        Label titleLabel = new Label("Gizmos");
-        titleLabel.setFont(Theme.Fonts.CARD_TITLE);
-
-        // Content
-        ScrollPane scrollpane = new ScrollPane();
-        GizmoGrid gizmogrid = new GizmoGrid();
-
         Rectangle squareShape = new Rectangle(25, 25, Theme.Colors.RED);
-        gizmogrid.addGizmo(squareShape, "Square");
+        addItem(squareShape, "Square", new SquareGizmoListener());
 
         Circle circleShape = new Circle(12.5, Theme.Colors.BLUE);
-        gizmogrid.addGizmo(circleShape, "Dot");
+        addItem(circleShape, "Dot", new DotGizmoHandler());
 
         Image triangleShape = new Image(getClass().getClassLoader().getResourceAsStream("assets/icons/tri.png"));
         ImageView triangle = new ImageView();
         triangle.setFitWidth(25);
         triangle.setFitHeight(25);
         triangle.setImage(triangleShape);
-        gizmogrid.addGizmo(triangle, "Triangle");
+        addItem(triangle, "Triangle", new TriangleGizmoHandler());
 
         Rectangle absorber = new Rectangle(25, 15, Theme.Colors.PINK);
-        gizmogrid.addGizmo(absorber, "Absorber");
+        addItem(absorber, "Absorber", new AbsorberGizmoHandler());
 
         Image flipperShape = new Image(getClass().getClassLoader().getResourceAsStream("assets/icons/flipper.png"));
         ImageView flipper = new ImageView();
         flipper.setFitWidth(30);
         flipper.setFitHeight(30);
         flipper.setImage(flipperShape);
-        gizmogrid.addGizmo(flipper, "Flipper");
+        addItem(flipper, "Flipper", new FlipperGizmoHandler());
 
         Circle ballShape = new Circle(9, Theme.Colors.ORANGE);
-        gizmogrid.addGizmo(ballShape, "Ball");
+        addItem(ballShape, "Ball", new BallGizmoHandler());
 
-        scrollpane.setContent(gizmogrid);
-        scrollpane.setMaxHeight(250);
 
         getStyleClass().add("GizmoPane");
-        getChildren().addAll(titleLabel, scrollpane);
+    }
+
+
+    private void addItem(Node graphic, String gizmoName, EventHandler<ActionEvent> eventEventHandler) {
+        Button button = new Button();
+        button.setGraphic(graphic);
+        button.setOnAction(eventEventHandler);
+
+        addGizmo(button, gizmoName);
     }
 }
