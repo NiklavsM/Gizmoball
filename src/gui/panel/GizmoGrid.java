@@ -13,7 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 
-public class GizmoGrid extends VBox {
+public abstract class GizmoGrid extends VBox {
 
 
     private GridPane gridPane;

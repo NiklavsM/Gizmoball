@@ -92,7 +92,7 @@ public class EditorStage extends Stage implements Observer {
     private TabPane makeTabPane() {
         TabPane tabPane = new TabPane();
 
-        GizmoPanel gizmoPanel = new GizmoPanel();
+        GizmoPanel gizmoPanel = new GizmoPanel(editorModel);
 
         Tab gizmoTab = new Tab();
         gizmoTab.setText("Gizmos");

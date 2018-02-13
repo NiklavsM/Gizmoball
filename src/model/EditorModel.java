@@ -17,6 +17,7 @@ public class EditorModel extends Observable {
     private List<IGizmo> selectedGizmos;
     private Stack<IGameModel> redoStack;
     private Stack<IGameModel> undoStack;
+    private IGizmo.Type gizmoGridItem;
     private String status;
 
     public EditorModel(GizmoView gizmoView) {
@@ -46,6 +47,13 @@ public class EditorModel extends Observable {
         notifyObservers();
     }
 
+    public void setGizmoGridItem(IGizmo.Type gizmoGridItem) {
+        this.gizmoGridItem = gizmoGridItem;
+    }
+
+    public IGizmo.Type selectedGizmoGridItem() {
+        return gizmoGridItem;
+    }
 
     public Mode getSelectedAction() {
         return selectedAction;

@@ -5,17 +5,16 @@ import javafx.event.EventHandler;
 import model.EditorModel;
 import model.gizmo.IGizmo;
 
-public class SquareGizmoListener implements EventHandler<ActionEvent> {
+public class CircleGizmoHandler implements EventHandler<ActionEvent> {
 
     private EditorModel editorModel;
 
-    public SquareGizmoListener(EditorModel editorModel) {
+    public CircleGizmoHandler(EditorModel editorModel) {
         this.editorModel = editorModel;
     }
 
-
     @Override
     public void handle(ActionEvent event) {
-        editorModel.setGizmoGridItem(IGizmo.Type.Square);
+        editorModel.setGizmoGridItem(IGizmo.Type.Circle);
     }
 }
