@@ -1,5 +1,6 @@
 package gui;
 
+import controller.editor.BoardMouseClickHandler;
 import gui.panel.BoardCanvasView;
 import gui.panel.GizmoPanel;
 import gui.panel.StatusBar;
@@ -67,6 +68,7 @@ public class EditorStage extends Stage implements Observer {
 
         // Center
         Canvas canvas = new BoardCanvasView(500, 500, gameModel);
+        canvas.setOnMouseClicked(new BoardMouseClickHandler());
 
         // Bottom
         statusBar = new StatusBar();
