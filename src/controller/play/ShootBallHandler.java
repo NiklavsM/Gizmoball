@@ -10,13 +10,11 @@ public class ShootBallHandler implements EventHandler<KeyEvent> {
 
     public ShootBallHandler(IGameModel gameModel) {
         this.gameModel = gameModel;
-        System.out.println("CREATED");
     }
 	
     @Override
     public void handle(KeyEvent event) {
     	if (event.getCode() == KeyCode.SPACE) {
-    		System.out.println("SPACEX");
     		gameModel.shootOut();
     	}
     }

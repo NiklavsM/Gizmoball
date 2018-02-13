@@ -21,7 +21,6 @@ public class GameModel extends Observable implements IGameModel {
 	private Ball ball;
 	private Timer timer;
 	private Map<String, Gizmo> gizmos;
-	private boolean inAbsorber = false;
 
 	public GameModel() {
 		gizmos = new HashMap<>();
@@ -73,20 +72,15 @@ public class GameModel extends Observable implements IGameModel {
 		this.setChanged();
 		this.notifyObservers();
 
+		// TO-FIX ---> ball stops one L before the absorber
 		if (nextGizmo != null && cd.getGizmo().getType() == IGizmo.Type.Absorber) {
 
-			ball.setVelo(new Vect(0, 0));
+			// collision with an absorber
 			this.setBallSpeed(0, 0);
-			// TO-FIX ---> ball stops one L before the absorber
-			ball.setExactX(ball.getExactX());
-			ball.setExactY(ball.getExactY() + 0.1);
-
+			ball.setVelo(new Vect(0.0, 0.1));
+			
 			ball.setExactX(19.5);
-			ball.setExactY(19.5);
-			ball.setVelo(new Vect(0, 0));
-			this.setBallSpeed(0, 0);
-
-			inAbsorber = true;
+			ball.setExactY(19.5);		
 		}
 	}
 
@@ -172,10 +166,13 @@ public class GameModel extends Observable implements IGameModel {
 	}
 
 	public void shootOut() {
-		if (inAbsorber) {
+		
+		// checking needs to change
+		if (ball.getExactY()>19) {
 			ball.setExactX(ball.getExactX());
 			ball.setExactY(19);
 			ball.setVelo(new Vect(0.0, -50.0));
+			this.startTimer();
 		}
 	}
 }
