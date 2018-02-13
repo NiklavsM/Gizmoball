@@ -37,6 +37,7 @@ public class GizmoView extends Application {
         currentStage = currentStage instanceof PlayStage
                 ? new EditorStage(this)
                 : new PlayStage(this);
+                currentStage.addEventFilter(KeyEvent.KEY_PRESSED, new ShootBallHandler(gameModel));
         currentStage.show();
     }
 

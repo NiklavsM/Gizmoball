@@ -75,16 +75,11 @@ public class GameModel extends Observable implements IGameModel {
 		// TO-FIX ---> ball stops one L before the absorber
 		if (nextGizmo != null && cd.getGizmo().getType() == IGizmo.Type.Absorber) {
 			
-			// collision with an absorber
-			this.setBallSpeed(0, 0);
-			ball.setVelo(new Vect(0.0, -50));
+			//ball.setVelo(new Vect(0.0, -50));
 		
+			ball.setVelo(new Vect(ball.getExactX(), -50));
 			ball.setExactX(19.5);
 			ball.setExactY(19.5);
-			
-			this.setBallSpeed(0, 0);
-			ball.setVelo(new Vect(0.0, -50));
-			
 		}
 	}
 
