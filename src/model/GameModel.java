@@ -1,11 +1,13 @@
 package model;
-
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Observable;
+import java.util.Set;
 
 import javax.swing.Timer;
 
+import model.gizmo.Gizmo;
 import model.gizmo.IGizmo;
 import model.gizmo.Walls;
 import physics.Circle;
@@ -13,25 +15,17 @@ import physics.Geometry;
 import physics.LineSegment;
 import physics.Vect;
 
-/**
- * @author Murray Wood Demonstration of MVC and MIT Physics Collisions 2014
- */
-
 public class GameModel extends Observable implements IGameModel {
 
     private Ball ball;
     private Timer timer;
-    private List<IGizmo> gizmos;
+    private Map<String, Gizmo> gizmos;
 
     public GameModel() {
-
-        gizmos = new LinkedList<>();
-        // Ball position (1, 1) in L. Ball velocity (4, 4) L per tick
+        gizmos = new HashMap<>();
         ball = new Ball(1, 1, 4, 4);
-
-        // Wall size 20 x 20 L
-        addGizmo(new Walls(0, 0, 20, 20, "wallId"));
-
+        addGizmo(ball);
+        addGizmo(new Walls());
         setupTimer();
     }
 
@@ -40,11 +34,11 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     public void addGizmo(IGizmo gizmo) {
-        gizmos.add(gizmo);
+        gizmos.put(gizmo.getId(), (Gizmo) gizmo);
     }
 
-    public List<IGizmo> getGizmos() {
-        return gizmos;
+    public Set<IGizmo> getGizmos() {
+        return new HashSet<>(gizmos.values());
     }
 
     public void moveBall() {
@@ -52,11 +46,13 @@ public class GameModel extends Observable implements IGameModel {
         double moveTime = 0.05; // 0.05 = 20 times per second as per Gizmoball
         //Time until collision
         CollisionDetails cd = timeUntilCollision();
-        IGizmo nextGizmo = null;
+        Gizmo nextGizmo = null;
 
         if (ball != null) {
             double tuc = cd.getTuc();
             if (tuc > moveTime) {
+                // Walls are the enclosing Rectangle - defined by top left corner and bottom
+                // right
                 // No collision ...
                 ball = moveBallForTime(ball, moveTime);
                 applyForces(ball.getVelo(), moveTime);
@@ -99,8 +95,8 @@ public class GameModel extends Observable implements IGameModel {
 
     private Ball moveBallForTime(Ball ball, double time) {
 
-        double newX = 0.0;
-        double newY = 0.0;
+        double newX;
+        double newY;
         double xVel = ball.getVelo().x();
         double yVel = ball.getVelo().y();
         newX = ball.getExactX() + (xVel * time);
@@ -112,32 +108,29 @@ public class GameModel extends Observable implements IGameModel {
 
     private CollisionDetails timeUntilCollision() {
         // Find Time Until Collision and also, if there is a collision, the new speed vector.
-        // Create a physics.Circle from Ball
+        // Create a physics.Dot from Ball
         Circle ballCircle = ball.getCircle();
         Vect ballVelocity = ball.getVelo();
         Vect newVelo = new Vect(0, 0);
-        IGizmo nextGizmo = null;
+        Gizmo nextGizmo = null;
 
         double shortestTime = Double.MAX_VALUE;
         double time = 0.0;
-        for (IGizmo gizmo : gizmos) {
-            for (Line line : gizmo.getLines()) {
-                LineSegment tempLine = new LineSegment(line.getP1(), line.getP2());
-                time = Geometry.timeUntilWallCollision(tempLine, ballCircle, ballVelocity);
+        for (Gizmo gizmo : gizmos.values()) {
+            for (LineSegment line : gizmo.getLines()) {
+                time = Geometry.timeUntilWallCollision(line, ballCircle, ballVelocity);
                 if (time < shortestTime) {
                     shortestTime = time;
                     nextGizmo = gizmo;
-                    newVelo = Geometry.reflectWall(tempLine, ball.getVelo(), 1.0);
+                    newVelo = Geometry.reflectWall(line, ball.getVelo(), 1.0);
                 }
             }
-            for (model.Circle circle : gizmo.getCircles()) {
-                Circle tempCircle;
-                tempCircle = new Circle(circle.getCenter(), circle.getRadius());
-                time = Geometry.timeUntilCircleCollision(tempCircle, ballCircle, ballVelocity);
+            for (Circle circle : gizmo.getCircles()) {
+                time = Geometry.timeUntilCircleCollision(circle, ballCircle, ballVelocity);
                 if (time < shortestTime) {
                     shortestTime = time;
                     nextGizmo = gizmo;
-                    newVelo = Geometry.reflectCircle(tempCircle.getCenter(), ball.getCircle().getCenter(), ball.getVelo());
+                    newVelo = Geometry.reflectCircle(circle.getCenter(), ballCircle.getCenter(), ball.getVelo());
                 }
 
             }

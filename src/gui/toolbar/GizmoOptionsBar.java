@@ -33,6 +33,7 @@ public class GizmoOptionsBar extends GizmoHorizontalToolBar {
         addItem("Undo", "undo-button", new UndoButtonHandler());
         addItem("Redo", "redo-button", new RedoButtonHandler());
         addItem("Toggle Grid", "grid-button", new ToggleGridButtonHandler());
+        addItem("Console", "console-button", new ToggleGridButtonHandler());
     }
 
 

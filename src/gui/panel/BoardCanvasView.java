@@ -4,7 +4,9 @@ import gui.Theme;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import model.*;
+import model.Constants;
+import model.Dot;
+import model.IGameModel;
 import model.gizmo.IGizmo;
 
 import java.awt.*;
@@ -15,6 +17,7 @@ public class BoardCanvasView extends Canvas implements Observer {
 
     private static final long serialVersionUID = 1L;
     protected IGameModel gm;
+    GraphicsContext gc = this.getGraphicsContext2D();
 
     public BoardCanvasView(int width, int height, IGameModel gameModel) {
         super(width, height);
@@ -31,8 +34,10 @@ public class BoardCanvasView extends Canvas implements Observer {
     }
 
     public void redraw() {
-        GraphicsContext gc = this.getGraphicsContext2D();
-        int i;
+
+        int i, pxPerL = Constants.pxPerL;
+        double radius = 0;
+        double xPoints[], yPoints[];
 
         gc.setFill(Theme.Colors.DEEP_BLUE);
         gc.fillRect(0, 0, super.getWidth(), super.getHeight());
@@ -41,39 +46,44 @@ public class BoardCanvasView extends Canvas implements Observer {
         gc.setFill(javafx.scene.paint.Color.BLACK);
 
         for (IGizmo gizmo : gm.getGizmos()) {
+            xPoints = new double[gizmo.getDots().size()];
+            yPoints = new double[gizmo.getDots().size()];
+            IGizmo.Type type = gizmo.getType();
+            setGizmoColor(type);
 
-            if (gizmo.getType() == IGizmo.Type.Square) {
-                gc.setFill(Theme.Colors.RED);
-            } else if (gizmo.getType() == IGizmo.Type.Absorber) {
-                gc.setFill(Theme.Colors.PINK);
-            } else if (gizmo.getType() == IGizmo.Type.Triangle) {
-                gc.setFill(Theme.Colors.BLUE);
-            }
-            double xPoints[] = new double[10];
-            double yPoints[] = new double[10];
             i = 0;
-            for (Circle circle : gizmo.getCircles()) {
-                xPoints[i] = circle.getX() * Constants.pxPerL;
-                yPoints[i] = circle.getY() * Constants.pxPerL;
+
+            for (Dot dot : gizmo.getDots()) {
+                xPoints[i] = dot.getX() * pxPerL;
+                yPoints[i] = dot.getY() * pxPerL;
+                radius = dot.getRadius();
                 i++;
             }
-            if (gizmo.getType() == IGizmo.Type.Circle) {
-                gc.setFill(Theme.Colors.GREEN);
-                gc.fillOval(xPoints[0] - 0.5 * Constants.pxPerL, yPoints[0] - 0.5 * Constants.pxPerL, Constants.pxPerL, Constants.pxPerL);
+            if (type == IGizmo.Type.Circle || type == IGizmo.Type.Ball) {
+                double width = radius * 2 * pxPerL;
+                gc.fillOval(xPoints[0] - radius * pxPerL, yPoints[0] - radius * pxPerL, width, width);
             } else {
                 gc.fillPolygon(xPoints, yPoints, i);
             }
         }
 
-        Ball b = gm.getBall(); // could get rid of this if the ball implements IGizmo
-        if (b != null) {
-            gc.setFill(b.getColour());
-            int x = (int) ((b.getExactX() - b.getRadius()) * Constants.pxPerL);
-            int y = (int) ((b.getExactY() - b.getRadius()) * Constants.pxPerL);
-            int width = (int) (2 * b.getRadius() * Constants.pxPerL);
-            gc.fillOval(x, y, width, width);
-        }
 
+
+    }
+
+    private void setGizmoColor(IGizmo.Type type) {
+
+        if (type == IGizmo.Type.Square) {
+            gc.setFill(Theme.Colors.RED);
+        } else if (type == IGizmo.Type.Absorber) {
+            gc.setFill(Theme.Colors.PINK);
+        } else if (type == IGizmo.Type.Triangle) {
+            gc.setFill(Theme.Colors.BLUE);
+        } else if (type == IGizmo.Type.Circle) {
+            gc.setFill(Theme.Colors.GREEN);
+        } else if (type == IGizmo.Type.Ball) {
+            gc.setFill(Theme.Colors.WHITE);
+        }
     }
 
     @Override

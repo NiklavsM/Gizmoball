@@ -28,11 +28,11 @@ public class GizmoPanel extends VBox {
         ScrollPane scrollpane = new ScrollPane();
         GizmoGrid gizmogrid = new GizmoGrid();
 
-        Rectangle squareShape = new Rectangle(25, 25, Theme.Colors.BLUE);
+        Rectangle squareShape = new Rectangle(25, 25, Theme.Colors.RED);
         gizmogrid.addGizmo(squareShape, "Square");
 
-        Circle circleShape = new Circle(12.5, Theme.Colors.RED);
-        gizmogrid.addGizmo(circleShape, "Circle");
+        Circle circleShape = new Circle(12.5, Theme.Colors.BLUE);
+        gizmogrid.addGizmo(circleShape, "Dot");
 
         Image triangleShape = new Image(getClass().getClassLoader().getResourceAsStream("assets/icons/tri.png"));
         ImageView triangle = new ImageView();
@@ -41,7 +41,7 @@ public class GizmoPanel extends VBox {
         triangle.setImage(triangleShape);
         gizmogrid.addGizmo(triangle, "Triangle");
 
-        Rectangle absorber = new Rectangle(25, 15, Theme.Colors.PURPLE);
+        Rectangle absorber = new Rectangle(25, 15, Theme.Colors.PINK);
         gizmogrid.addGizmo(absorber, "Absorber");
 
         Image flipperShape = new Image(getClass().getClassLoader().getResourceAsStream("assets/icons/flipper.png"));

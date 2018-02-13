@@ -1,68 +1,75 @@
 package model;
 
 
-import gui.Theme;
-import javafx.scene.paint.Color;
+import model.gizmo.Gizmo;
 import physics.Circle;
 import physics.Vect;
 
-/**
- * @author Murray Wood Demonstration of MVC and MIT Physics Collisions 2014
- */
+import java.util.LinkedList;
+import java.util.List;
 
-public class Ball {
+public class Ball extends Gizmo {
 
     private Vect velocity;
     private double radius;
-    private double xpos;
-    private double ypos;
-    private Color colour;
+    private Circle circle;
 
-    // x, y coordinates and x,y velocity
     public Ball(double x, double y, double xv, double yv) {
-        xpos = x; // Centre coordinates
-        ypos = y;
-        colour = Theme.Colors.WHITE;
-        velocity = new Vect(xv, yv);
-        radius = 0.25;
+        this(x, y, xv, yv, generateID());
     }
 
-    public Vect getVelo() {
+    public Ball(double x, double y, double xv, double yv, String id) {
+        super(id);
+        radius = 0.25;
+        circle = new Circle(x, y, radius);
+        circles.add(circle);
+        velocity = new Vect(xv, yv);
+
+    }
+
+    Vect getVelo() {
         return velocity;
     }
 
-    public void setVelo(Vect v) {
+    void setVelo(Vect v) {
         velocity = v;
     }
 
-    public double getRadius() {
-        return radius;
-    }
-
     public Circle getCircle() {
-        return new Circle(xpos, ypos, radius);
-
+        return circle;
     }
 
-    // Ball specific methods that deal with double precision.
-    public double getExactX() {
-        return xpos;
+    double getExactX() {
+        return circle.getCenter().x();
     }
 
-    public double getExactY() {
-        return ypos;
+    double getExactY() {
+        return circle.getCenter().y();
     }
 
-    public void setExactX(double x) {
-        xpos = x;
+    void setExactX(double x) {
+        circle = new Circle(x, getExactY(), radius);
     }
 
-    public void setExactY(double y) {
-        ypos = y;
+    void setExactY(double y) {
+        circle = new Circle(getExactX(), y, radius);
     }
 
-    public Color getColour() {
-        return colour;
+    @Override
+    public List<Circle> getCircles() {
+        circles = new LinkedList<>();
+        circles.add(circle);
+        return circles;
+    }
+
+    @Override
+    public Type getType() {
+        return Type.Ball;
+    }
+
+    @Override
+    public String getId() {
+        return id;
     }
 
 }

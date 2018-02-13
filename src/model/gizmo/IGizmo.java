@@ -1,22 +1,20 @@
 package model.gizmo;
 
-import model.Circle;
-import model.Line;
+import model.Dot;
 
 import java.util.List;
-import java.util.Set;
 
 public interface IGizmo {
 
     enum Type {
-        Triangle, Wall, Absorber, Square, Circle
+        Triangle, Absorber, Square, Ball, Walls, Circle
     }
 
-    Set<Line> getLines();
-
-    List<Circle> getCircles();
+    List<Dot> getDots();
 
     Type getType();
 
     String getId();
+
+    void rotate();
 }
