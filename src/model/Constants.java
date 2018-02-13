@@ -1,5 +1,5 @@
 package model;
 
 public class Constants {
-    public final static int pxPerL = 50;
+    public final static int pxPerL = 25;
 }

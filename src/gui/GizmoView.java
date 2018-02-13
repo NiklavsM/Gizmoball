@@ -18,7 +18,7 @@ public class GizmoView extends Application {
 	private Stage currentStage;
 
 	public GizmoView() {
-		this.gameModel = makeTestModel();
+		this.gameModel = makeModel();
 	}
 
 	@Override
