@@ -3,10 +3,10 @@ package gui;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import model.GameModel;
 import model.IGameModel;
 import model.gizmo.Absorber;
 import model.gizmo.CircleGizmo;
-import model.GameModel;
 import model.gizmo.Square;
 import model.gizmo.Triangle;
 
@@ -53,7 +53,7 @@ public class GizmoView extends Application {
         gameModel.addGizmo(new CircleGizmo(4, 5, "5"));
         gameModel.addGizmo(new CircleGizmo(5, 6, "5"));
         gameModel.addGizmo(new CircleGizmo(5, 7, "6"));
-        gameModel.addGizmo(new CircleGizmo(6, 8, "7"));
+        //gameModel.addGizmo(new CircleGizmo(6, 8, "7"));
         gameModel.addGizmo(new Square(15, 8, "8"));
         gameModel.addGizmo(new CircleGizmo(14, 8, "9"));
         gameModel.addGizmo(new CircleGizmo(13, 8, "0"));

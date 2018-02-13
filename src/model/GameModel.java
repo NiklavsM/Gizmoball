@@ -4,14 +4,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
 
+import javax.swing.Timer;
+
 import model.gizmo.IGizmo;
 import model.gizmo.Walls;
 import physics.Circle;
 import physics.Geometry;
 import physics.LineSegment;
 import physics.Vect;
-
-import javax.swing.*;
 
 /**
  * @author Murray Wood Demonstration of MVC and MIT Physics Collisions 2014
@@ -75,10 +75,12 @@ public class GameModel extends Observable implements IGameModel {
         this.notifyObservers();
 
         if (nextGizmo != null && cd.getGizmo().getType() == IGizmo.Type.Absorber) {
-            ball.setExactX(20 - ball.getRadius());
-            ball.setExactY(19);
-            // changed the y coordinate of the velocity vector so when shooted out of the absorber it almost reaches the top of the screen
-            ball.setVelo(new Vect(0.0, -50.0));
+        	this.stopTimer();
+        	
+//            ball.setExactX(20 - ball.getRadius());
+//            ball.setExactY(19);
+//            // changed the y coordinate of the velocity vector so when shooted out of the absorber it almost reaches the top of the screen
+//            ball.setVelo(new Vect(0.0, -50.0));
         }
     }
 
