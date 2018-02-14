@@ -16,12 +16,24 @@ public class KeyboardTriggerEventHandler implements EventHandler<KeyEvent> {
 
     @Override
     public void handle(KeyEvent keyEvent) {
-        gameModel.getGizmos()
-                .stream()
-                .filter(ITriggerable.class::isInstance)
-                .map(ITriggerable.class::cast)
-                .forEach(iTriggerable -> {
-                    iTriggerable.trigger(ITriggerable.Event.KEYBOARD_SPACE);
-                });
+        if (keyEvent.getCode().equals(KeyCode.K)) {
+            gameModel.getGizmos()
+                    .stream()
+                    .filter(ITriggerable.class::isInstance)
+                    .map(ITriggerable.class::cast)
+                    .forEach(iTriggerable -> {
+                        iTriggerable.trigger(ITriggerable.Event.KEY_K);
+                    });
+        }
+
+        if (keyEvent.getCode().equals(KeyCode.L)) {
+            gameModel.getGizmos()
+                    .stream()
+                    .filter(ITriggerable.class::isInstance)
+                    .map(ITriggerable.class::cast)
+                    .forEach(iTriggerable -> {
+                        iTriggerable.trigger(ITriggerable.Event.KEY_L);
+                    });
+        }
     }
 }

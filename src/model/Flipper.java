@@ -171,8 +171,13 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
 
     @Override
     public void trigger(Event event) {
-        if (event == Event.KEYBOARD_SPACE){
+        if (orientation == Orientation.RIGHT && event == Event.KEY_L){
             up();
         }
+
+        if (orientation == Orientation.LEFT && event == Event.KEY_K){
+            up();
+        }
+
     }
 }
