@@ -4,6 +4,7 @@ import controller.play.ShootBallHandler;
 import javafx.application.Application;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import model.Flipper;
 import model.GameModel;
 import model.IGameModel;
 import model.gizmo.Absorber;
@@ -51,15 +52,10 @@ public class GizmoView extends Application {
 
 		gameModel.setBallSpeed(8, 8);
 
-		gameModel.addGizmo(new Square(0, 5));
-		gameModel.addGizmo(new Square(18, 5));
-		gameModel.addGizmo(new Square(17, 5));
-		gameModel.addGizmo(new Square(16, 5));
+
 		gameModel.addGizmo(new Square(15, 5));
 		gameModel.addGizmo(new Square(14, 6));
-		gameModel.addGizmo(new Square(13, 7));
 		gameModel.addGizmo(new Square(12, 8));
-		gameModel.addGizmo(new Square(15, 8));
 		gameModel.addGizmo(new CircleGizmo(14, 8));
 		gameModel.addGizmo(new CircleGizmo(0, 8));
 
@@ -68,6 +64,23 @@ public class GizmoView extends Application {
 //		gameModel.addGizmo(new CircleGizmo(5, 8));
 //		gameModel.addGizmo(new CircleGizmo(13, 8));
 //		gameModel.addGizmo(new CircleGizmo(17, 6));
+
+		gameModel.addGizmo(new Flipper(2,2));
+        gameModel.addGizmo(new Flipper(2,4));
+
+
+        gameModel.addGizmo(new Flipper(2,8));
+        gameModel.addGizmo(new Flipper(4,4));
+        gameModel.addGizmo(new Flipper(8,4));
+        gameModel.addGizmo(new Flipper(10,4));
+        gameModel.addGizmo(new Flipper(16,16));
+
+//        gameModel.addGizmo(new Flipper(10,8));
+//        gameModel.addGizmo(new Flipper(14,8));
+//        gameModel.addGizmo(new Flipper(16,8));
+        gameModel.addGizmo(new Flipper(18,8));
+        gameModel.addGizmo(new Flipper(14,12));
+        gameModel.addGizmo(new Flipper(16,14));
 
 		gameModel.addGizmo(new CircleGizmo(10, 8));
 		gameModel.addGizmo(new CircleGizmo(11, 9));
@@ -98,17 +111,17 @@ public class GizmoView extends Application {
 		gameModel.setBallSpeed(8, 8);
 
 		for (int i=0; i<18; i++) {
-			
+
 			if (i < 10) {
 				triangle = new Triangle(i, i);
 				triangle.rotate();
 			} else {
 				triangle = new Triangle(i+1, 19-i);
 			}
-			
+
 			gameModel.addGizmo(triangle);
 		}
-		
+
 		// uncomment to block the ball between two gizmos
 		//gameModel.addGizmo(new Square(3,1));
 		gameModel.addGizmo(new CircleGizmo(13,5));

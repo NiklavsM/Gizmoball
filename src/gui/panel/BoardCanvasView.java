@@ -36,7 +36,7 @@ public class BoardCanvasView extends Canvas implements Observer {
     public void redraw() {
 
         int i, pxPerL = Constants.pxPerL;
-        double radius = 0;
+        double diameter = 0;
         double xPoints[], yPoints[];
 
         gc.setFill(Theme.Colors.DEEP_BLUE);
@@ -56,17 +56,20 @@ public class BoardCanvasView extends Canvas implements Observer {
             for (Dot dot : gizmo.getDots()) {
                 xPoints[i] = dot.getX() * pxPerL;
                 yPoints[i] = dot.getY() * pxPerL;
-                radius = dot.getRadius();
+                diameter = dot.getRadius() * 2 * pxPerL;
                 i++;
             }
-            if (type == IGizmo.Type.Circle || type == IGizmo.Type.Ball) {
-                double width = radius * 2 * pxPerL;
-                gc.fillOval(xPoints[0] - radius * pxPerL, yPoints[0] - radius * pxPerL, width, width);
+            if (type == IGizmo.Type.Flipper) {
+                for (int k = 0; k < i; k++) {
+                    gc.fillOval(xPoints[k] - diameter / 2, yPoints[k] - diameter / 2, diameter, diameter);
+                }
+            }
+            if (type == IGizmo.Type.Circle || type == IGizmo.Type.Ball || type == IGizmo.Type.Flipper) {
+                gc.fillOval(xPoints[0] - diameter / 2, yPoints[0] - diameter / 2, diameter, diameter);
             } else {
                 gc.fillPolygon(xPoints, yPoints, i);
             }
         }
-
 
 
     }
@@ -83,6 +86,8 @@ public class BoardCanvasView extends Canvas implements Observer {
             gc.setFill(Theme.Colors.GREEN);
         } else if (type == IGizmo.Type.Ball) {
             gc.setFill(Theme.Colors.WHITE);
+        } else if (type == IGizmo.Type.Flipper) {
+            gc.setFill(Theme.Colors.ORANGE);
         }
     }
 

@@ -1,13 +1,5 @@
 package model;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Observable;
-import java.util.Set;
-
-import javax.swing.Timer;
-
 import model.gizmo.Gizmo;
 import model.gizmo.IGizmo;
 import model.gizmo.Walls;
@@ -16,12 +8,15 @@ import physics.Geometry;
 import physics.LineSegment;
 import physics.Vect;
 
+import javax.swing.Timer;
+import java.util.*;
+
 public class GameModel extends Observable implements IGameModel {
 
     private Ball ball;
     private Timer timer;
     private Map<String, Gizmo> gizmos;
-    private boolean absorberCollision;
+    private boolean absorberCollision = false;
 
     public GameModel() {
         gizmos = new HashMap<>();
@@ -29,7 +24,6 @@ public class GameModel extends Observable implements IGameModel {
         addGizmo(ball);
         addGizmo(new Walls());
         setupTimer();
-        absorberCollision = false;
     }
 
     private void setupTimer() {
@@ -56,12 +50,10 @@ public class GameModel extends Observable implements IGameModel {
         if (ball != null) {
             double tuc = cd.getTuc();
             if (tuc > moveTime) {
-                // Walls are the enclosing Rectangle - defined by top left
-                // corner and bottom
-                // right
                 // No collision ...
                 ball = moveBallForTime(ball, moveTime);
                 applyForces(ball.getVelo(), moveTime);
+                moveMovables(moveTime);
             } else {
                 // We've got a collision in tuc
                 nextGizmo = cd.getGizmo();
@@ -80,8 +72,15 @@ public class GameModel extends Observable implements IGameModel {
         if (absorberCollision) {
             setBallInAbsorber();
         }
-
         absorberCollision = nextGizmo != null && cd.getGizmo().getType() == IGizmo.Type.Absorber;
+    }
+
+    private void moveMovables(Double time) {
+        gizmos.values().forEach(gizmo -> {
+            if (gizmo instanceof IMovable) {
+                ((IMovable) gizmo).move(time);
+            }
+        });
     }
 
     private void setBallInAbsorber() { // Need to set using absorber coordinates ask Phil
@@ -98,8 +97,6 @@ public class GameModel extends Observable implements IGameModel {
         // Vnew = Vold * (1 - mu * delta_t - mu2 * |Vold| * delta_t).
         velocityAfterFriction = new Vect(velocity.angle(),
                 velocity.length() * (1 - (0.025 * time) - (0.025 * velocity.length() * time)));
-        // System.out.println("gravity.y() " + gravity.y() + " velocity.y() " +
-        // velocity.y() + " new velo: " + velocityAfterFriction.plus(gravity));
         ball.setVelo(velocityAfterFriction.plus(gravity));
 
     }
@@ -118,33 +115,56 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     private CollisionDetails timeUntilCollision() {
-        // Find Time Until Collision and also, if there is a collision, the new
-        // speed vector.
-        // Create a physics.Dot from Ball
+
         Circle ballCircle = ball.getCircle();
         Vect ballVelocity = ball.getVelo();
         Vect newVelo = new Vect(0, 0);
         Gizmo nextGizmo = null;
-
         double shortestTime = Double.MAX_VALUE;
-        double time = 0.0;
-        for (Gizmo gizmo : gizmos.values()) {
-            for (LineSegment line : gizmo.getLines()) {
-                time = Geometry.timeUntilWallCollision(line, ballCircle, ballVelocity);
-                if (time < shortestTime) {
-                    shortestTime = time;
-                    nextGizmo = gizmo;
-                    newVelo = Geometry.reflectWall(line, ball.getVelo(), 1.0);
-                }
-            }
-            for (Circle circle : gizmo.getCircles()) {
-                time = Geometry.timeUntilCircleCollision(circle, ballCircle, ballVelocity);
-                if (time < shortestTime) {
-                    shortestTime = time;
-                    nextGizmo = gizmo;
-                    newVelo = Geometry.reflectCircle(circle.getCenter(), ballCircle.getCenter(), ball.getVelo());
-                }
+        double time;
 
+        for (Gizmo gizmo : gizmos.values()) {
+            Set<LineSegment> lines = gizmo.getLines();
+            List<Circle> circles = gizmo.getCircles();
+            if (gizmo instanceof Flipper) {
+                Flipper flipper = ((Flipper) gizmo);
+                Double angularVelo = flipper.getVelocity().angle().radians();
+                Vect rotationCentre = flipper.getStartPoint().getCenter();
+                for (LineSegment line : lines) {
+                    time = Geometry.timeUntilRotatingWallCollision(line, rotationCentre, angularVelo, ballCircle, ballVelocity);
+                    if (time < shortestTime) {
+                        shortestTime = time;
+                        nextGizmo = gizmo;
+                        newVelo = Geometry.reflectRotatingWall(line, rotationCentre, angularVelo, ballCircle, ballVelocity);
+                    }
+                }
+                for (Circle circle : circles) {
+                    time = Geometry.timeUntilRotatingCircleCollision(circle, rotationCentre, angularVelo, ballCircle, ballVelocity);
+                    if (time < shortestTime) {
+                        shortestTime = time;
+                        nextGizmo = gizmo;
+                        newVelo = Geometry.reflectRotatingCircle(circle, rotationCentre, angularVelo, ballCircle, ballVelocity);
+                    }
+
+                }
+            } else {
+                for (LineSegment line : lines) {
+                    time = Geometry.timeUntilWallCollision(line, ballCircle, ballVelocity);
+                    if (time < shortestTime) {
+                        shortestTime = time;
+                        nextGizmo = gizmo;
+                        newVelo = Geometry.reflectWall(line,ballVelocity, 1.0);
+                    }
+                }
+                for (Circle circle : circles) {
+                    time = Geometry.timeUntilCircleCollision(circle, ballCircle, ballVelocity);
+                    if (time < shortestTime) {
+                        shortestTime = time;
+                        nextGizmo = gizmo;
+                        newVelo = Geometry.reflectCircle(circle.getCenter(), ballCircle.getCenter(), ballVelocity);
+                    }
+
+                }
             }
         }
 

@@ -7,6 +7,4 @@ public interface IMovable {
 
     void move(double timeInSeconds);
 
-
-
 }
