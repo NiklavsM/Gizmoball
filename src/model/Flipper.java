@@ -124,7 +124,7 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
         this.velocity = velocity;
     }
 
-    public void up() {
+    private void up() {
         if (movementStatus == Movement.BACK && movedAngle != 0) {
             movementStatus = Movement.FORWARD;
             movedAngle = Angle.DEG_90.radians() - movedAngle ;
