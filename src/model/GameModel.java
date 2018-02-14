@@ -41,13 +41,14 @@ public class GameModel extends Observable implements IGameModel {
     public void moveBall() {
 
         double moveTime = 0.05; // 0.05 = 20 times per second as per Gizmoball
-
-
-        // Time until collision
-        CollisionDetails cd = timeUntilCollision();
         Gizmo nextGizmo = null;
 
+        // Time until collision
+
+
         if (ball != null) {
+            CollisionDetails cd = timeUntilCollision();
+
             double tuc = cd.getTuc();
             if (tuc > moveTime) {
                 // No collision ...
@@ -70,9 +71,10 @@ public class GameModel extends Observable implements IGameModel {
 
         // absorber collision detected during the previous tick
         if (absorberCollision) {
-            setBallInAbsorber();
+            gizmos.remove(ball.getId());
+            ball = null;
         }
-        absorberCollision = nextGizmo != null && cd.getGizmo().getType() == IGizmo.Type.Absorber;
+        absorberCollision = nextGizmo != null && nextGizmo.getType() == IGizmo.Type.Absorber;
     }
 
     private void moveMovables(Double time) {
@@ -81,12 +83,6 @@ public class GameModel extends Observable implements IGameModel {
                 ((IMovable) gizmo).move(time);
             }
         });
-    }
-
-    private void setBallInAbsorber() { // Need to set using absorber coordinates ask Phil
-        this.setBallSpeed(0, 0);
-        ball.setExactX(19.74);
-        ball.setExactY(19.55);
     }
 
     private void applyForces(Vect velocity, double time) {
@@ -194,10 +190,9 @@ public class GameModel extends Observable implements IGameModel {
     public void shootOut() {
 
         // checking needs to change
-        if (ball.getExactY() > 19) { // need to use absorber coordinates
-            ball.setExactX(19.74);
-            ball.setExactY(18.5);
-            ball.setVelo(new Vect(0.0, -50.0));
+        if (ball == null) { // need to use absorber coordinates
+            ball = new Ball(19.74,18.5,0, -50);
+            addGizmo(ball);
             this.startTimer();
         }
     }
