@@ -89,6 +89,7 @@ public class GameModel extends Observable implements IGameModel {
         if (absorberCollision) {
             setBallInAbsorber();
         }
+
         absorberCollision = nextGizmo != null && cd.getGizmo().getType() == IGizmo.Type.Absorber;
     }
 
@@ -103,7 +104,7 @@ public class GameModel extends Observable implements IGameModel {
     private void setBallInAbsorber() { // Need to set using absorber coordinates ask Phil
         this.setBallSpeed(0, 0);
         ball.setExactX(19.74);
-        ball.setExactY(19.55);
+        ball.setExactY(19.65);
     }
 
     private void applyForces(Vect velocity, double time) {
@@ -209,11 +210,18 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     public void shootOut() {
+        Gizmo absorber = null;
 
-        // checking needs to change
-        if (ball.getExactY() > 19) { // need to use absorber coordinates
-            ball.setExactX(19.74);
-            ball.setExactY(18.5);
+        for (Gizmo gizmo : gizmos.values()) {
+                // TO-DO: improve checking for ball in absorber
+                if (gizmo.getType() == IGizmo.Type.Absorber && gizmo.getXLocation() < ball.getExactX() && gizmo.getXLocation() < ball.getExactY() && gizmo.getYLocation() < ball.getExactX() && gizmo.getYLocation() < ball.getExactY()) {
+                    absorber = gizmo;
+                }
+        }
+
+        if (absorber != null) {
+            ball.setExactX(absorber.getCircles().get(1).getCenter().x() - 0.26);
+            ball.setExactY(absorber.getCircles().get(1).getCenter().y() - 0.01);
             ball.setVelo(new Vect(0.0, -50.0));
             this.startTimer();
         }
