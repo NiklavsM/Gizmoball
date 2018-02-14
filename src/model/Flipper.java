@@ -2,7 +2,7 @@ package model;
 
 import mit.physics.*;
 
-public class Flipper extends Gizmo implements IMovable {
+public class Flipper extends Gizmo implements IMovable, ITriggerable {
 
     enum Movement {
         BACK, FORWARD, STILL;
@@ -65,26 +65,14 @@ public class Flipper extends Gizmo implements IMovable {
         if (movementStatus == Movement.FORWARD) {
             rotationRadian *= -1;
         }
-        Angle rotationAngle = new Angle(rotationRadian);
-        movedAngle += Math.abs(rotationRadian) ;
 
-        if (movedAngle > Angle.DEG_90.radians()) {
-
-            switch (movementStatus) {
-                case FORWARD:
-                    movementStatus = Movement.BACK;
-                break;
-
-                case BACK:
-                    movementStatus = Movement.STILL;
-                break;
-            }
-
-            movedAngle = Angle.ZERO.radians();
+        if ((rotationRadian + movedAngle) > Angle.DEG_90.radians()) {
+            rotationRadian = Angle.DEG_90.radians() - movedAngle;
         }
 
-        if (movementStatus != Movement.STILL) {
+        Angle rotationAngle = new Angle(rotationRadian);
 
+        if (movementStatus != Movement.STILL) {
 
 
             Circle rotated = Geometry.rotateAround(endPoint
@@ -108,6 +96,23 @@ public class Flipper extends Gizmo implements IMovable {
             lines.add(connector1);
             lines.add(connector2);
         }
+
+        movedAngle += Math.abs(rotationRadian) ;
+
+        if (movedAngle > Angle.DEG_90.radians()) {
+
+            switch (movementStatus) {
+                case FORWARD:
+                    movementStatus = Movement.BACK;
+                break;
+
+                case BACK:
+                    movementStatus = Movement.STILL;
+                break;
+            }
+
+            movedAngle = Angle.ZERO.radians();
+        }
     }
 
     @Override
@@ -121,14 +126,25 @@ public class Flipper extends Gizmo implements IMovable {
     }
 
     public void up() {
-        movementStatus = Movement.FORWARD;
-        if (movedAngle != 0) {
-            movedAngle = Angle.DEG_90.radians() - movedAngle;
+        if (movementStatus == Movement.BACK && movedAngle != 0) {
+            movementStatus = Movement.FORWARD;
+            movedAngle = Angle.DEG_90.radians() - movedAngle ;
+        }
+
+        if (movementStatus == Movement.STILL) {
+            movedAngle = Angle.ZERO.radians();
+            movementStatus = Movement.FORWARD;
         }
     }
 
-    public Circle getStartPoint()
-    {
+    public Circle getStartPoint() {
         return startPoint;
+    }
+
+    @Override
+    public void trigger(Event event) {
+        if (event == Event.KEYBOARD_SPACE){
+            up();
+        }
     }
 }

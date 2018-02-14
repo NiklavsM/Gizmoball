@@ -2,7 +2,6 @@ package gui;
 
 import controller.*;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -11,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -47,6 +45,7 @@ public class PlayView implements IPlayView, Observer {
             redraw();
 
             Scene scene = new Scene(root, 500, 500);
+            scene.setOnKeyPressed(new KeyboardTriggerEventHandler(gameModel));
 
             stage.setTitle("Gizmoball - Play");
             stage.setScene(scene);

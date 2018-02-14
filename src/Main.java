@@ -23,7 +23,7 @@ public class Main extends Application {
 
         IGameModel gameModel = new GameModel();
         gameModel.addGizmo(flipper);
-        gameModel.addGizmo(ball);
+//        gameModel.addGizmo(ball);
         PlayView playView = new PlayView(stage, gameModel);
 
         stage.show();
