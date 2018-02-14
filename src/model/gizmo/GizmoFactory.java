@@ -22,6 +22,10 @@ public class GizmoFactory {
                 return new CircleGizmo(x, y, id);
             case Square:
                 return new Square(x, y, id);
+            case LeftFlipper:
+                return new CircleGizmo(x, y, id);
+            case RightFlipper:
+                return new CircleGizmo(x, y, id); //FIXME
         }
         throw new IllegalArgumentException("no absorber nor ball please");
     }

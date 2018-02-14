@@ -13,12 +13,6 @@ import static model.IGizmo.Type.Ball;
 
 public class Parser {
 
-//    private final String idRegex = "[\\da-zA-Z]+";
-//    private final String intRegex = "[1[0-9]?|[0-9]";
-//    private final String floatRegex = intRegex + "(\\." + "\\d+)?";
-//    private final String gizmoCreationRegex = "(Triangle|Square|Circle|RightFlipper|LeftFlipper)\\s+([\\da-zA-z]+)\\s+(1[0-9]?|[0-9])\\s+(1[0-9]?|[0-9])";
-//    private final String rotateRegex = "(Rotate)\\s+([\\da-zA-Z]+)";
-
     public static final String ROTATE_COMMAND = "Rotate";
     public static final String KEY_CONNECT_COMMAND = "KeyConnect";
     public static final String CONNECT_COMMAND = "Connect";
@@ -64,41 +58,63 @@ public class Parser {
     public static void main(String[] args) {
         try {
             Parser p = new Parser("resources/default.gizmo");
+            p.parse();
         } catch (FileNotFoundException e) {
             System.err.println("no such file");
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
         }
     }
 
     private void parse() throws IllegalAccessException {
-        while (scanner.hasNextLine()) {
 
-            String line = scanner.nextLine();
-            Queue<String> tokens = Arrays.stream(line.split("\\s+")).collect(Collectors.toCollection(LinkedList::new));
-            String command = tokens.poll();
+        Queue<String> tokens;
+        String command;
+        String line;
 
-            if (nameCommands.contains(command)) {
-                nameCommands(command, tokens.poll(), tokens);
-            } else {
-                if (command.equals(KEY_CONNECT_COMMAND)) {
-                    tokens.poll();
-                    double keyNumber = toValidNumber(tokens.poll());
-                    String keyMode = tokens.poll();
-                    String name = tokens.poll();
-                    //TODO
+        try {
+            while (scanner.hasNextLine()) {
+
+                line = scanner.nextLine();
+
+                if (line.equals("")) {
+                    System.out.println("empty line");
+                    continue;
                 }
 
-                double val1 = toValidCoordinate(tokens.poll());
+                tokens = Arrays.stream(line.split("\\s+")).collect(Collectors.toCollection(LinkedList::new));
+                command = tokens.poll();
 
-                if (command.equals(FRICTION_COMMAND)) {
-                    //TODO
-                    return;
-                }
-                if (command.equals(GRAVITY_COMMAND)) {
-                    double val2 = toValidCoordinate(tokens.poll());
-                    //TODO
-                    return;
+                if (nameCommands.contains(command)) {
+                    nameCommands(command, tokens.poll(), tokens);
+                } else {
+                    if (command.equals(KEY_CONNECT_COMMAND)) {
+                        tokens.poll();
+                        double keyNumber = toValidNumber(tokens.poll());
+                        String keyMode = tokens.poll();
+                        String name = tokens.poll();
+                        //TODO
+                        System.out.println("connected " + keyNumber + keyMode + " to " + name);
+                        return;
+                    }
+
+                    double val1 = toValidCoordinate(tokens.poll());
+
+                    if (command.equals(FRICTION_COMMAND)) {
+                        //TODO
+                        System.out.println("friction = " + val1);
+                        return;
+                    }
+                    if (command.equals(GRAVITY_COMMAND)) {
+                        double val2 = toValidCoordinate(tokens.poll());
+                        //TODO
+                        System.out.println("gravity = " + val1);
+                        return;
+                    }
                 }
             }
+        } catch (NumberFormatException ex) {
+            throw ex;
         }
     }
 
@@ -112,16 +128,18 @@ public class Parser {
 
     private void nameCommands(String command, String name, Queue<String> tokens) throws IllegalAccessException {
         if (command.equals(DELETE_COMMAND)) {
-            //TODO delete using name
+            System.out.println("deleted" + name);
             return;
         }
         if (command.equals(ROTATE_COMMAND)) {
             //TODO rotate using name
+            System.out.println("rotated " + name);
             return;
         }
         if (command.equals(CONNECT_COMMAND)) {
             String name2 = tokens.poll();
             //TODO connect name to name2
+            System.out.println("connected " + name + " to " + name2);
             return;
         }
         if (nameCoordCoordCommands.contains(command)) {
@@ -132,12 +150,14 @@ public class Parser {
     private void nameCoordCoordCommands(String command, String name, double x, double y, Queue<String> tokens) {
         if (command.equals(MOVE_COMMAND)) {
             //TODO MOVE using name x and y
+            System.out.println("moved" + name + " to " + x + ", " + y);
         }
         if (gizmoCreationCommands.contains(command)) {
             if (gizmoCreationCommandsAdvanced.contains(command)) {
                 double x2 = toValidNumber(tokens.poll());
                 double y2 = toValidNumber(tokens.poll());
                 gameModel.addGizmo(gizmoFactory.createGizmo(IGizmo.Type.valueOf(command), x, y, x2, y2, name));
+                System.out.println("created " + name);
                 return;
             }
 

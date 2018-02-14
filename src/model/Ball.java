@@ -3,10 +3,12 @@ package model;
 
 import model.gizmo.Gizmo;
 import physics.Circle;
+import physics.LineSegment;
 import physics.Vect;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class Ball extends Gizmo {
 
@@ -19,10 +21,7 @@ public class Ball extends Gizmo {
     }
 
     public Ball(double x, double y, double xv, double yv, String id) {
-        super(id);
-        radius = 0.25;
-        circle = new Circle(x, y, radius);
-        circles.add(circle);
+        super(x, y, x, y, id);
         velocity = new Vect(xv, yv);
 
     }
@@ -66,6 +65,7 @@ public class Ball extends Gizmo {
         return circles;
     }
 
+
     @Override
     public Type getType() {
         return Type.Ball;
@@ -74,6 +74,13 @@ public class Ball extends Gizmo {
     @Override
     public String getId() {
         return id;
+    }
+
+    @Override
+    public void draw(Set<LineSegment> lines, List<Circle> circles, double x, double y, double x2, double y2) {
+        radius = 0.25;
+        circle = new Circle(x, y, radius);
+        circles.add(circle);
     }
 
 }
