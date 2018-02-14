@@ -23,7 +23,7 @@ public class Flipper extends Gizmo implements IMovable {
 
         double radius = 0.25;
 
-        movementStatus = Movement.FORWARD;
+        movementStatus = Movement.STILL;
         movedAngle = Angle.ZERO.radians();
 
         velocity = new Vect(Angle.DEG_90);
@@ -118,6 +118,13 @@ public class Flipper extends Gizmo implements IMovable {
     @Override
     public void setVelocity(Vect velocity) {
         this.velocity = velocity;
+    }
+
+    public void up() {
+        movementStatus = Movement.FORWARD;
+        if (movedAngle != 0) {
+            movedAngle = Angle.DEG_90.radians() - movedAngle;
+        }
     }
 
     public Circle getStartPoint()
