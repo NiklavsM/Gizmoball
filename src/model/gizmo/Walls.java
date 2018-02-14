@@ -10,7 +10,7 @@ public class Walls extends Gizmo {
 
 
     public Walls() {
-        super(0, 0, 0, 0, "OuterWalls");
+        super(0, 0, 20, 20, "OuterWalls");
     }
 
 
