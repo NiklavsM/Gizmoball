@@ -8,29 +8,51 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
         BACK, FORWARD, STILL;
     }
 
+    public enum Orientation {
+        LEFT(1)
+        , RIGHT(-1);
+
+        private double mult;
+
+        Orientation(double mult) {
+            this.mult = mult;
+        }
+
+        public double getMult() {
+            return mult;
+        }
+    }
+
+
     private Circle startPoint;
     private Circle endPoint;
     private LineSegment connector1;
     private LineSegment connector2;
 
     private Vect velocity;
-    private boolean isMoving;
     private double movedAngle;
     private Movement movementStatus;
+    private Orientation orientation;
 
-    public Flipper(String name, double startX, double startY) {
+    public Flipper(String name, double startX, double startY, Orientation orientation) {
         super(name);
 
         double radius = 0.25;
+        this.orientation = orientation;
 
         movementStatus = Movement.STILL;
         movedAngle = Angle.ZERO.radians();
 
         velocity = new Vect(Angle.DEG_180);
 
+        if (orientation == Orientation.RIGHT) {
+            startX = (startX + 2) - radius ;
+        } else {
+            startX = startX + radius;
+        }
 
-        startPoint = new Circle(startX + radius, startY + radius, radius);
-        endPoint = new Circle(startX + radius, startY + radius + 1.5, radius);
+        startPoint = new Circle(startX, startY + radius, radius);
+        endPoint = new Circle(startX, startY + radius + 1.5, radius);
 
         connector1 = new LineSegment(startPoint.getCenter().x() - radius
                 , startPoint.getCenter().y()
@@ -47,6 +69,11 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
         lines.add(connector2);
         circles.add(startPoint);
         circles.add(endPoint);
+    }
+
+
+    public Flipper(String name, double startX, double startY) {
+        this(name, startX, startY, Orientation.LEFT);
     }
 
     @Override
@@ -99,7 +126,7 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
                 switch (movementStatus) {
                     case FORWARD:
                         movementStatus = Movement.BACK;
-                        velocity = new Vect(Angle.DEG_180);
+                        velocity = new Vect(new Angle(Angle.DEG_180.radians() * orientation.getMult()));
                     break;
 
                     case BACK:
@@ -121,20 +148,20 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
 
     @Override
     public void setVelocity(Vect velocity) {
-        this.velocity = velocity;
+        this.velocity = new Vect(new Angle(velocity.angle().radians() * orientation.getMult()));
     }
 
     private void up() {
         if (movementStatus == Movement.BACK && movedAngle != 0) {
             movementStatus = Movement.FORWARD;
             movedAngle = Angle.DEG_90.radians() - movedAngle ;
-            velocity = new Vect(new Angle(Angle.DEG_180.radians() * -1));
+            velocity = new Vect(new Angle(Angle.DEG_180.radians() * -1 * orientation.getMult()));
         }
 
         if (movementStatus == Movement.STILL) {
             movedAngle = Angle.ZERO.radians();
             movementStatus = Movement.FORWARD;
-            velocity = new Vect(new Angle(Angle.DEG_180.radians() * -1));
+            velocity = new Vect(new Angle(Angle.DEG_180.radians() * -1 * orientation.getMult()));
         }
     }
 
