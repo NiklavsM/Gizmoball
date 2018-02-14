@@ -12,38 +12,26 @@ public abstract class Gizmo implements IGizmo {
     protected List<Circle> circles;
     protected Set<LineSegment> lines;
     protected Vect rotatingPoint;
+    private double x1;
+    private double y1;
+    private double x2;
+    private double y2;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Gizmo gizmo = (Gizmo) o;
-
-        if (rotateCount != gizmo.rotateCount) return false;
-        if (!id.equals(gizmo.id)) return false;
-        if (!circles.equals(gizmo.circles)) return false;
-        return lines.equals(gizmo.lines);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + rotateCount;
-        result = 31 * result + circles.hashCode();
-        result = 31 * result + lines.hashCode();
-        return result;
-    }
-
-    public Gizmo(String id) {
+    public Gizmo(double x1, double y1, double x2, double y2, String id) {
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
         this.circles = new LinkedList<>();
         this.lines = new HashSet<>();
         this.id = id;
         rotateCount = 0;
+
+        draw(lines, circles, x1, y1, x2, y2);
     }
 
-    public Gizmo() {
-        this(generateID());
+    public Gizmo(double x1, double y1, double x2, double y2) {
+        this(x1,y1, x2, y2, generateID());
     }
 
     public List<Circle> getCircles() {
@@ -70,6 +58,8 @@ public abstract class Gizmo implements IGizmo {
         return id;
     }
 
+    public abstract void draw(Set<LineSegment> lines, List<Circle> circles, double x1, double y1, double x2, double y2);
+
     public abstract Type getType();
 
     public void rotate() {
@@ -88,5 +78,36 @@ public abstract class Gizmo implements IGizmo {
         });
         circles = newCircleList;
     }
+
+    public double getXLocation() {
+        return x1;
+    }
+
+    public double getYLocation() {
+        return y1;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Gizmo gizmo = (Gizmo) o;
+
+        if (rotateCount != gizmo.rotateCount) return false;
+        if (!id.equals(gizmo.id)) return false;
+        if (!circles.equals(gizmo.circles)) return false;
+        return lines.equals(gizmo.lines);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + rotateCount;
+        result = 31 * result + circles.hashCode();
+        result = 31 * result + lines.hashCode();
+        return result;
+    }
+
 
 }

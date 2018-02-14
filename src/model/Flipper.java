@@ -6,6 +6,7 @@ import physics.LineSegment;
 import physics.*;
 
 import java.util.List;
+import java.util.Set;
 
 public class Flipper extends Gizmo implements IMovable {
 
@@ -24,7 +25,7 @@ public class Flipper extends Gizmo implements IMovable {
     }
 
     public Flipper(double x, double y, String id) {
-        super(id);
+        super(x, y, x, y, id);
 
         double radius = 0.25;
         rotatingPoint = new Vect(x + 1, y + 1);
@@ -82,8 +83,13 @@ public class Flipper extends Gizmo implements IMovable {
     }
 
     @Override
-    public List<Circle> getCircles(){
+    public List<Circle> getCircles() {
         return circles;
+    }
+
+    @Override
+    public void draw(Set<LineSegment> lines, List<Circle> circles, double x1, double y1, double x2, double y2) {
+
     }
 
 

@@ -34,17 +34,33 @@ public class GameModel extends Observable implements IGameModel {
         gizmos.put(gizmo.getId(), (Gizmo) gizmo);
     }
 
+    @Override
+    public boolean remove(String id) {
+        if (gizmos.remove(id) != null) return true;
+        return false;
+    }
+
     public Set<IGizmo> getGizmos() {
         return new HashSet<>(gizmos.values());
+    }
+
+    public IGizmo getGizmo(int x, int y) {
+        for (Map.Entry<String, Gizmo> entrySet : gizmos.entrySet()) {
+            Gizmo gizmo = entrySet.getValue();
+
+            if (gizmo.getXLocation() == x && gizmo.getYLocation() == y) {
+                return gizmo;
+            }
+        }
+
+        return null;
     }
 
     public void moveBall() {
 
         double moveTime = 0.05; // 0.05 = 20 times per second as per Gizmoball
+
         Gizmo nextGizmo = null;
-
-        // Time until collision
-
 
         if (ball != null) {
             CollisionDetails cd = timeUntilCollision();
@@ -149,7 +165,7 @@ public class GameModel extends Observable implements IGameModel {
                     if (time < shortestTime) {
                         shortestTime = time;
                         nextGizmo = gizmo;
-                        newVelo = Geometry.reflectWall(line,ballVelocity, 1.0);
+                        newVelo = Geometry.reflectWall(line, ballVelocity, 1.0);
                     }
                 }
                 for (Circle circle : circles) {
@@ -196,4 +212,10 @@ public class GameModel extends Observable implements IGameModel {
             this.startTimer();
         }
     }
+
+    @Override
+    public void rotate(String id) {
+        gizmos.get(id).rotate();
+    }
+
 }

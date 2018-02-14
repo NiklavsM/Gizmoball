@@ -7,7 +7,7 @@ import java.util.List;
 public interface IGizmo {
 
     enum Type {
-        Triangle, Absorber, Square, Ball, Walls, Flipper, Circle
+        Triangle, Absorber, Square, Ball, Walls, Flipper, Circle, LeftFlipper, RightFlipper
     }
 
     List<Dot> getDots();
