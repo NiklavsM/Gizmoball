@@ -79,6 +79,13 @@ public abstract class Gizmo implements IGizmo {
         circles = newCircleList;
     }
 
+    public double getXLocation() {
+        return x1;
+    }
+
+    public double getYLocation() {
+        return y1;
+    }
 
     @Override
     public boolean equals(Object o) {
