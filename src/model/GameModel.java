@@ -13,15 +13,12 @@ import java.util.*;
 
 public class GameModel extends Observable implements IGameModel {
 
-    private Ball ball;
     private Timer timer;
     private Map<String, Gizmo> gizmos;
     private boolean absorberCollision = false;
 
     public GameModel() {
         gizmos = new HashMap<>();
-        ball = new Ball(2, 1, 4, 4);
-        addGizmo(ball);
         addGizmo(new Walls());
         setupTimer();
     }
@@ -36,8 +33,7 @@ public class GameModel extends Observable implements IGameModel {
 
     @Override
     public boolean remove(String id) {
-        if (gizmos.remove(id) != null) return true;
-        return false;
+        return gizmos.remove(id) != null;
     }
 
     public Set<IGizmo> getGizmos() {
@@ -57,7 +53,7 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     public void moveBall() {
-
+        Ball ball = getBall();
         double moveTime = 0.05; // 0.05 = 20 times per second as per Gizmoball
 
         Gizmo nextGizmo = null;
@@ -69,7 +65,7 @@ public class GameModel extends Observable implements IGameModel {
             if (tuc > moveTime) {
                 // No collision ...
                 ball = moveBallForTime(ball, moveTime);
-                applyForces(ball.getVelo(), moveTime);
+                applyForces(ball.getVelo(), moveTime, ball);
                 moveMovables(moveTime);
             } else {
                 // We've got a collision in tuc
@@ -77,8 +73,10 @@ public class GameModel extends Observable implements IGameModel {
                 System.out.println("Collision with gizmo:  " + nextGizmo.getId());
                 ball = moveBallForTime(ball, tuc);
                 // Post collision velocity ...
-                applyForces(cd.getVelo(), tuc);
+                applyForces(cd.getVelo(), tuc, ball);
             }
+        } else {
+            moveMovables(moveTime);
         }
 
         // Notify observers ... redraw updated view
@@ -88,7 +86,6 @@ public class GameModel extends Observable implements IGameModel {
         // absorber collision detected during the previous tick
         if (absorberCollision) {
             gizmos.remove(ball.getId());
-            ball = null;
         }
         absorberCollision = nextGizmo != null && nextGizmo.getType() == IGizmo.Type.Absorber;
     }
@@ -101,7 +98,7 @@ public class GameModel extends Observable implements IGameModel {
         });
     }
 
-    private void applyForces(Vect velocity, double time) {
+    private void applyForces(Vect velocity, double time, Ball ball) {
         Vect velocityAfterFriction;
         Vect gravity;
 
@@ -127,7 +124,7 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     private CollisionDetails timeUntilCollision() {
-
+        Ball ball = getBall();
         Circle ballCircle = ball.getCircle();
         Vect ballVelocity = ball.getVelo();
         Vect newVelo = new Vect(0, 0);
@@ -184,11 +181,10 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     public Ball getBall() {
-        return ball;
-    }
-
-    public void setBallSpeed(int x, int y) {
-        ball.setVelo(new Vect(x, y));
+        for (Gizmo gizmo : gizmos.values()) {
+            if (gizmo instanceof Ball) return ((Ball) gizmo);
+        }
+        return null;
     }
 
     public void startTimer() {
@@ -204,10 +200,9 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     public void shootOut() {
-
-        // checking needs to change
+        Ball ball = getBall();
         if (ball == null) { // need to use absorber coordinates
-            ball = new Ball(19.74,18.5,0, -50);
+            ball = new Ball(19.74, 18.5, 0, -50);
             addGizmo(ball);
             this.startTimer();
         }

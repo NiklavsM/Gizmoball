@@ -59,9 +59,6 @@ public class GizmoView extends Application {
         GameModel gameModel = new GameModel();
         IGizmo triangle;
 
-        gameModel.setBallSpeed(8, 8);
-
-
         gameModel.addGizmo(new Square(15, 5));
         gameModel.addGizmo(new Square(14, 6));
         gameModel.addGizmo(new Square(12, 8));
@@ -116,8 +113,6 @@ public class GizmoView extends Application {
     private IGameModel makeTestModel() {
         GameModel gameModel = new GameModel();
         IGizmo triangle;
-
-        gameModel.setBallSpeed(8, 8);
 
         for (int i = 0; i < 18; i++) {
 
