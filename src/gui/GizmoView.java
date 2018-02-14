@@ -63,11 +63,11 @@ public class GizmoView extends Application {
 		gameModel.addGizmo(new CircleGizmo(14, 8));
 		gameModel.addGizmo(new CircleGizmo(0, 8));
 
-		gameModel.addGizmo(new CircleGizmo(2, 8));
-		gameModel.addGizmo(new CircleGizmo(4, 8));
-		gameModel.addGizmo(new CircleGizmo(5, 8));
-		gameModel.addGizmo(new CircleGizmo(13, 8));
-		gameModel.addGizmo(new CircleGizmo(17, 6));
+//		gameModel.addGizmo(new CircleGizmo(2, 8));
+//		gameModel.addGizmo(new CircleGizmo(4, 8));
+//		gameModel.addGizmo(new CircleGizmo(5, 8));
+//		gameModel.addGizmo(new CircleGizmo(13, 8));
+//		gameModel.addGizmo(new CircleGizmo(17, 6));
 
 		gameModel.addGizmo(new CircleGizmo(10, 8));
 		gameModel.addGizmo(new CircleGizmo(11, 9));
