@@ -34,6 +34,12 @@ public class GameModel extends Observable implements IGameModel {
         gizmos.put(gizmo.getId(), (Gizmo) gizmo);
     }
 
+    @Override
+    public boolean remove(String id) {
+        if (gizmos.remove(id) != null) return true;
+        return false;
+    }
+
     public Set<IGizmo> getGizmos() {
         return new HashSet<>(gizmos.values());
     }
@@ -53,7 +59,6 @@ public class GameModel extends Observable implements IGameModel {
     public void moveBall() {
 
         double moveTime = 0.05; // 0.05 = 20 times per second as per Gizmoball
-
 
         // Time until collision
         CollisionDetails cd = timeUntilCollision();
@@ -213,4 +218,10 @@ public class GameModel extends Observable implements IGameModel {
             this.startTimer();
         }
     }
+
+    @Override
+    public void rotate(String id) {
+        gizmos.get(id).rotate();
+    }
+
 }

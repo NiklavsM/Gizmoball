@@ -1,6 +1,7 @@
 package model.gizmo;
 
 import model.Ball;
+import model.Flipper;
 
 public class GizmoFactory {
 
@@ -23,9 +24,9 @@ public class GizmoFactory {
             case Square:
                 return new Square(x, y, id);
             case LeftFlipper:
-                return new CircleGizmo(x, y, id);
+                return new Flipper(x, y, id);
             case RightFlipper:
-                return new CircleGizmo(x, y, id); //FIXME
+                return new Flipper(x, y, id); //FIXME
         }
         throw new IllegalArgumentException("no absorber nor ball please");
     }

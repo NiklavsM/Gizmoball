@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import static model.IGizmo.Type.Absorber;
 import static model.IGizmo.Type.Ball;
 
-public class Parser {
+public class GameLoader {
 
     public static final String ROTATE_COMMAND = "Rotate";
     public static final String KEY_CONNECT_COMMAND = "KeyConnect";
@@ -27,13 +27,12 @@ public class Parser {
     private Set<String> gizmoCreationCommandsAdvanced;
     private Set<String> nameCommands;
 
-    private Scanner scanner;
-    private GameModel gameModel;
     private GizmoFactory gizmoFactory;
+    private GameModel gameModel;
+    private String path;
 
-    public Parser(String path) throws FileNotFoundException {
-        scanner = new Scanner(new File(path));
-        gameModel = new GameModel();
+    public GameLoader(String path) {
+        this.path = path;
         gizmoFactory = GizmoFactory.getInstance();
 
         gizmoCreationCommands =
@@ -55,22 +54,14 @@ public class Parser {
         gizmoCreationCommandsAdvanced.add(Ball.toString());
     }
 
-    public static void main(String[] args) {
-        try {
-            Parser p = new Parser("resources/default.gizmo");
-            p.parse();
-        } catch (FileNotFoundException e) {
-            System.err.println("no such file");
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void parse() throws IllegalAccessException {
+    public GameModel load() throws IllegalAccessException, FileNotFoundException {
 
         Queue<String> tokens;
         String command;
         String line;
+
+        gameModel = new GameModel();
+        Scanner scanner = new Scanner(new File(path));
 
         try {
             while (scanner.hasNextLine()) {
@@ -95,7 +86,7 @@ public class Parser {
                         String name = tokens.poll();
                         //TODO
                         System.out.println("connected " + keyNumber + keyMode + " to " + name);
-                        return;
+                        continue;
                     }
 
                     double val1 = toValidCoordinate(tokens.poll());
@@ -103,19 +94,27 @@ public class Parser {
                     if (command.equals(FRICTION_COMMAND)) {
                         //TODO
                         System.out.println("friction = " + val1);
-                        return;
+                        continue;
                     }
                     if (command.equals(GRAVITY_COMMAND)) {
                         double val2 = toValidCoordinate(tokens.poll());
                         //TODO
                         System.out.println("gravity = " + val1);
-                        return;
+                        continue;
                     }
                 }
             }
         } catch (NumberFormatException ex) {
             throw ex;
         }
+        return gameModel;
+    }
+
+    public GameModel getGameModel() {
+        if (gameModel == null) {
+            throw new NullPointerException("game not loaded yet");
+        }
+        return gameModel;
     }
 
     private double toValidNumber(String stringNumber) {
@@ -128,11 +127,11 @@ public class Parser {
 
     private void nameCommands(String command, String name, Queue<String> tokens) throws IllegalAccessException {
         if (command.equals(DELETE_COMMAND)) {
-            System.out.println("deleted" + name);
+            gameModel.remove(name);
             return;
         }
         if (command.equals(ROTATE_COMMAND)) {
-            //TODO rotate using name
+            gameModel.rotate(name);
             System.out.println("rotated " + name);
             return;
         }
@@ -162,6 +161,7 @@ public class Parser {
             }
 
             gameModel.addGizmo(gizmoFactory.createGizmo(IGizmo.Type.valueOf(command), x, y, name));
+            System.out.println("created" + name);
         }
     }
 

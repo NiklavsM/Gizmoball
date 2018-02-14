@@ -8,11 +8,11 @@ import java.util.Set;
 
 public class Square extends Gizmo {
 
-    public Square(int x, int y) {
+    public Square(double x, double y) {
         this(x, y, generateID());
     }
 
-    public Square(int x, int y, String id) {
+    public Square(double x, double y, String id) {
         super(x, y, x, y, id);
     }
 
