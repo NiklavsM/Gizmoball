@@ -18,7 +18,7 @@ public class StatusBar extends HBox {
     }
 
     public StatusBar() {
-        this("Add some Gizmos to the map");
+        this("");
     }
 
     private void setup() {

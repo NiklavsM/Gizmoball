@@ -1,8 +1,5 @@
 package model;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
 import model.gizmo.Gizmo;
 import model.gizmo.IGizmo;
 import model.gizmo.Walls;
@@ -12,16 +9,18 @@ import physics.LineSegment;
 import physics.Vect;
 
 import javax.swing.Timer;
+import java.util.*;
 
 public class GameModel extends Observable implements IGameModel {
 
     private Ball ball;
     private Timer timer;
     private Map<String, Gizmo> gizmos;
+    private boolean absorberCollision = false;
 
     public GameModel() {
         gizmos = new HashMap<>();
-        ball = new Ball(1, 1, 4, 4);
+        ball = new Ball(2, 1, 4, 4);
         addGizmo(ball);
         addGizmo(new Walls());
         setupTimer();
@@ -42,18 +41,19 @@ public class GameModel extends Observable implements IGameModel {
     public void moveBall() {
 
         double moveTime = 0.05; // 0.05 = 20 times per second as per Gizmoball
-        //Time until collision
+
+
+        // Time until collision
         CollisionDetails cd = timeUntilCollision();
-        IGizmo nextGizmo = null;
+        Gizmo nextGizmo = null;
 
         if (ball != null) {
             double tuc = cd.getTuc();
             if (tuc > moveTime) {
-                // Walls are the enclosing Rectangle - defined by top left corner and bottom
-                // right
                 // No collision ...
                 ball = moveBallForTime(ball, moveTime);
                 applyForces(ball.getVelo(), moveTime);
+                moveMovables(moveTime);
             } else {
                 // We've got a collision in tuc
                 nextGizmo = cd.getGizmo();
@@ -68,14 +68,26 @@ public class GameModel extends Observable implements IGameModel {
         this.setChanged();
         this.notifyObservers();
 
-        if (nextGizmo != null && cd.getGizmo().getType() == IGizmo.Type.Absorber) {
-            ball.setExactX(20 - ball.getCircle().getRadius());
-            ball.setExactY(19);
-            // changed the y coordinate of the velocity vector so when shooted out of the absorber it almost reaches the top of the screen
-            ball.setVelo(new Vect(0.0, -50.0));
+        // absorber collision detected during the previous tick
+        if (absorberCollision) {
+            setBallInAbsorber();
         }
+        absorberCollision = nextGizmo != null && cd.getGizmo().getType() == IGizmo.Type.Absorber;
     }
 
+    private void moveMovables(Double time) {
+        gizmos.values().forEach(gizmo -> {
+            if (gizmo instanceof IMovable) {
+                ((IMovable) gizmo).move(time);
+            }
+        });
+    }
+
+    private void setBallInAbsorber() { // Need to set using absorber coordinates ask Phil
+        this.setBallSpeed(0, 0);
+        ball.setExactX(19.74);
+        ball.setExactY(19.55);
+    }
 
     private void applyForces(Vect velocity, double time) {
         Vect velocityAfterFriction;
@@ -83,16 +95,16 @@ public class GameModel extends Observable implements IGameModel {
 
         gravity = new Vect(0.0, 25 * 0.05);
         // Vnew = Vold * (1 - mu * delta_t - mu2 * |Vold| * delta_t).
-        velocityAfterFriction = new Vect(velocity.angle(), velocity.length() * (1 - (0.025 * time) - (0.025 * velocity.length() * time)));
-        // System.out.println("gravity.y()  " + gravity.y() + "  velocity.y()  " + velocity.y() + "  new velo: " + velocityAfterFriction.plus(gravity));
+        velocityAfterFriction = new Vect(velocity.angle(),
+                velocity.length() * (1 - (0.025 * time) - (0.025 * velocity.length() * time)));
         ball.setVelo(velocityAfterFriction.plus(gravity));
 
     }
 
     private Ball moveBallForTime(Ball ball, double time) {
 
-        double newX = 0.0;
-        double newY = 0.0;
+        double newX;
+        double newY;
         double xVel = ball.getVelo().x();
         double yVel = ball.getVelo().y();
         newX = ball.getExactX() + (xVel * time);
@@ -103,32 +115,56 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     private CollisionDetails timeUntilCollision() {
-        // Find Time Until Collision and also, if there is a collision, the new speed vector.
-        // Create a physics.Dot from Ball
+
         Circle ballCircle = ball.getCircle();
         Vect ballVelocity = ball.getVelo();
         Vect newVelo = new Vect(0, 0);
-        IGizmo nextGizmo = null;
-
+        Gizmo nextGizmo = null;
         double shortestTime = Double.MAX_VALUE;
-        double time = 0.0;
-        for (Gizmo gizmo : gizmos.values()) {
-            for (LineSegment line : gizmo.getLines()) {
-                time = Geometry.timeUntilWallCollision(line, ballCircle, ballVelocity);
-                if (time < shortestTime) {
-                    shortestTime = time;
-                    nextGizmo = gizmo;
-                    newVelo = Geometry.reflectWall(line, ball.getVelo(), 1.0);
-                }
-            }
-            for (Circle circle : gizmo.getCircles()) {
-                time = Geometry.timeUntilCircleCollision(circle, ballCircle, ballVelocity);
-                if (time < shortestTime) {
-                    shortestTime = time;
-                    nextGizmo = gizmo;
-                    newVelo = Geometry.reflectCircle(circle.getCenter(), ballCircle.getCenter(), ball.getVelo());
-                }
+        double time;
 
+        for (Gizmo gizmo : gizmos.values()) {
+            Set<LineSegment> lines = gizmo.getLines();
+            List<Circle> circles = gizmo.getCircles();
+            if (gizmo instanceof Flipper) {
+                Flipper flipper = ((Flipper) gizmo);
+                Double angularVelo = flipper.getVelocity().angle().radians();
+                Vect rotationCentre = flipper.getStartPoint().getCenter();
+                for (LineSegment line : lines) {
+                    time = Geometry.timeUntilRotatingWallCollision(line, rotationCentre, angularVelo, ballCircle, ballVelocity);
+                    if (time < shortestTime) {
+                        shortestTime = time;
+                        nextGizmo = gizmo;
+                        newVelo = Geometry.reflectRotatingWall(line, rotationCentre, angularVelo, ballCircle, ballVelocity);
+                    }
+                }
+                for (Circle circle : circles) {
+                    time = Geometry.timeUntilRotatingCircleCollision(circle, rotationCentre, angularVelo, ballCircle, ballVelocity);
+                    if (time < shortestTime) {
+                        shortestTime = time;
+                        nextGizmo = gizmo;
+                        newVelo = Geometry.reflectRotatingCircle(circle, rotationCentre, angularVelo, ballCircle, ballVelocity);
+                    }
+
+                }
+            } else {
+                for (LineSegment line : lines) {
+                    time = Geometry.timeUntilWallCollision(line, ballCircle, ballVelocity);
+                    if (time < shortestTime) {
+                        shortestTime = time;
+                        nextGizmo = gizmo;
+                        newVelo = Geometry.reflectWall(line,ballVelocity, 1.0);
+                    }
+                }
+                for (Circle circle : circles) {
+                    time = Geometry.timeUntilCircleCollision(circle, ballCircle, ballVelocity);
+                    if (time < shortestTime) {
+                        shortestTime = time;
+                        nextGizmo = gizmo;
+                        newVelo = Geometry.reflectCircle(circle.getCenter(), ballCircle.getCenter(), ballVelocity);
+                    }
+
+                }
             }
         }
 
@@ -153,5 +189,16 @@ public class GameModel extends Observable implements IGameModel {
 
     public boolean isTimerRunning() {
         return timer.isRunning();
+    }
+
+    public void shootOut() {
+
+        // checking needs to change
+        if (ball.getExactY() > 19) { // need to use absorber coordinates
+            ball.setExactX(19.74);
+            ball.setExactY(18.5);
+            ball.setVelo(new Vect(0.0, -50.0));
+            this.startTimer();
+        }
     }
 }

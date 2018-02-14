@@ -1,5 +1,6 @@
 package gui;
 
+import controller.editor.BoardMouseClickHandler;
 import gui.panel.BoardCanvasView;
 import gui.panel.GizmoPanel;
 import gui.panel.StatusBar;
@@ -16,10 +17,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.EditorModel;
-import model.GameModel;
 import model.IGameModel;
 
-public class EditorStage extends Stage {
+import java.util.Observable;
+import java.util.Observer;
+
+public class EditorStage extends Stage implements Observer {
 
     private static final String APPLICATION_NAME = "Gizmoball - Editor";
 
@@ -37,6 +40,7 @@ public class EditorStage extends Stage {
         this.gameModel = gizmoView.getGameModel();
 
         this.editorModel = new EditorModel(gizmoView);
+        this.editorModel.addObserver(this);
 
         setup();
     }
@@ -48,13 +52,13 @@ public class EditorStage extends Stage {
 
         // Top
         MenuBar menuBar = makeMenubar();
-        ToolBar optionsBar = new GizmoOptionsBar(this);
+        ToolBar optionsBar = new GizmoOptionsBar(editorModel, this);
 
         VBox topComponents = new VBox();
         topComponents.getChildren().addAll(menuBar, optionsBar);
 
         // Left
-        ToolBar toolbar = new GizmoToolBar();
+        ToolBar toolbar = new GizmoToolBar(editorModel);
 
         // Right
         VBox rightSideBar = new VBox();
@@ -64,6 +68,7 @@ public class EditorStage extends Stage {
 
         // Center
         Canvas canvas = new BoardCanvasView(500, 500, gameModel);
+        canvas.setOnMouseClicked(new BoardMouseClickHandler());
 
         // Bottom
         statusBar = new StatusBar();
@@ -76,6 +81,8 @@ public class EditorStage extends Stage {
 
         scene.getStylesheets().add(Theme.STYLESHEET_PATH);
 
+        refreshView();
+
         super.setMinHeight(APP_HEIGHT);
         super.setMinWidth(APP_WIDTH);
         super.setScene(scene);
@@ -85,7 +92,7 @@ public class EditorStage extends Stage {
     private TabPane makeTabPane() {
         TabPane tabPane = new TabPane();
 
-        GizmoPanel gizmoPanel = new GizmoPanel();
+        GizmoPanel gizmoPanel = new GizmoPanel(editorModel);
 
         Tab gizmoTab = new Tab();
         gizmoTab.setText("Gizmos");
@@ -102,7 +109,6 @@ public class EditorStage extends Stage {
         return tabPane;
     }
 
-
     private MenuBar makeMenubar() {
         MenuBar menuBar = new MenuBar();
 
@@ -116,10 +122,8 @@ public class EditorStage extends Stage {
         return menuBar;
     }
 
-
     public void setStatusBarText(String statusBarText) {
         statusBar.setText(statusBarText);
-
     }
 
     public IGameModel getGameModel() {
@@ -128,5 +132,29 @@ public class EditorStage extends Stage {
 
     public void openPlayMode() {
         gizmoView.switchModes();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        refreshView();
+    }
+
+    private void refreshView() {
+        EditorModel.Mode editorMode = editorModel.getSelectedAction();
+
+        switch (editorMode) {
+            case ADD:
+                setStatusBarText("Add Mode: Click on a Gizmo and a location to add and right click to delete a gizmo");
+                break;
+            case CONNECT:
+                setStatusBarText("Connect Mode: Click on two gizmos to connect");
+                break;
+            case SELECT:
+                setStatusBarText("Select mode: Click on the gizmos you want to select");
+                break;
+            case ROTATE:
+                setStatusBarText("Rotate Mode: Click on a gizmo to rotate it");
+                break;
+        }
     }
 }

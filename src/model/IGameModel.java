@@ -1,9 +1,9 @@
 package model;
 
-import model.gizmo.IGizmo;
-
 import java.util.Observer;
 import java.util.Set;
+
+import model.gizmo.IGizmo;
 
 public interface IGameModel {
     Set<IGizmo> getGizmos();
@@ -21,5 +21,7 @@ public interface IGameModel {
     void addObserver(Observer o);
 
     Ball getBall(); // Could get rid of this if make ball implement IGizmo
+    
+    void shootOut();
 
 }

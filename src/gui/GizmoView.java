@@ -1,91 +1,140 @@
 package gui;
 
+import controller.play.ShootBallHandler;
 import javafx.application.Application;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import model.IGameModel;
-import model.gizmo.*;
+import model.Flipper;
 import model.GameModel;
+import model.IGameModel;
+import model.gizmo.Absorber;
+import model.gizmo.CircleGizmo;
+import model.gizmo.IGizmo;
+import model.gizmo.Square;
+import model.gizmo.Triangle;
 
 public class GizmoView extends Application {
 
-    private IGameModel gameModel;
-    private Stage currentStage;
+	private IGameModel gameModel;
+	private Stage currentStage;
 
-    public GizmoView() {
-        this.gameModel = makeModel();
-    }
+	public GizmoView() {
+		this.gameModel = makeModel();
+	}
 
-    @Override
-    public void start(Stage primaryStage) {
-        currentStage = primaryStage;
+	@Override
+	public void start(Stage primaryStage) {
+		currentStage = primaryStage;
 
-        currentStage = new PlayStage(this);
-        currentStage.show();
-    }
+		currentStage = new PlayStage(this);
+		currentStage.addEventFilter(KeyEvent.KEY_PRESSED, new ShootBallHandler(gameModel));
+		currentStage.show();
+	}
 
-    public void switchModes() {
-        currentStage.close();
-        currentStage = currentStage instanceof PlayStage
-                ? new EditorStage(this)
-                : new PlayStage(this);
-        currentStage.show();
-    }
+	public void switchModes() {
+		currentStage.close();
+		currentStage = currentStage instanceof PlayStage ? new EditorStage(this) : new PlayStage(this);
+		currentStage.addEventFilter(KeyEvent.KEY_PRESSED, new ShootBallHandler(gameModel));
+		currentStage.show();
+	}
+
+	public void setGameModel(IGameModel gameModel) {
+		this.gameModel = gameModel;
+	}
+
+	public IGameModel getGameModel() {
+		return gameModel;
+	}
+
+	private IGameModel makeModel() {
+		GameModel gameModel = new GameModel();
+		IGizmo triangle;
+
+		gameModel.setBallSpeed(8, 8);
 
 
-    public void setGameModel(IGameModel gameModel) {
-        this.gameModel = gameModel;
-    }
+		gameModel.addGizmo(new Square(15, 5));
+		gameModel.addGizmo(new Square(14, 6));
+		gameModel.addGizmo(new Square(12, 8));
+		gameModel.addGizmo(new CircleGizmo(14, 8));
+		gameModel.addGizmo(new CircleGizmo(0, 8));
 
-    public IGameModel getGameModel() {
-        return gameModel;
-    }
+//		gameModel.addGizmo(new CircleGizmo(2, 8));
+//		gameModel.addGizmo(new CircleGizmo(4, 8));
+//		gameModel.addGizmo(new CircleGizmo(5, 8));
+//		gameModel.addGizmo(new CircleGizmo(13, 8));
+//		gameModel.addGizmo(new CircleGizmo(17, 6));
 
-    private IGameModel makeModel() {
-        GameModel gameModel = new GameModel();
-        IGizmo triange;
+		gameModel.addGizmo(new Flipper(2,2));
+        gameModel.addGizmo(new Flipper(2,4));
 
-        gameModel.setBallSpeed(8, 8);
 
-        gameModel.addGizmo(new Square(0, 5));
-        gameModel.addGizmo(new Square(18, 5));
-        gameModel.addGizmo(new Square(17, 5));
-        gameModel.addGizmo(new Square(16, 5));
-        gameModel.addGizmo(new Square(15, 5));
-        gameModel.addGizmo(new Square(14, 6));
-        gameModel.addGizmo(new Square(13, 7));
-        gameModel.addGizmo(new Square(12, 8));
-        gameModel.addGizmo(new Square(15, 8));
-        gameModel.addGizmo(new CircleGizmo(14, 8));
-        gameModel.addGizmo(new CircleGizmo(0, 8));
+        gameModel.addGizmo(new Flipper(2,8));
+        gameModel.addGizmo(new Flipper(4,4));
+        gameModel.addGizmo(new Flipper(8,4));
+        gameModel.addGizmo(new Flipper(10,4));
+        gameModel.addGizmo(new Flipper(16,16));
 
-        gameModel.addGizmo(new CircleGizmo(2, 8));
-        gameModel.addGizmo(new CircleGizmo(4, 8));
-        gameModel.addGizmo(new CircleGizmo(5, 8));
-        gameModel.addGizmo(new CircleGizmo(13, 8));
-        gameModel.addGizmo(new CircleGizmo(17, 6));
+//        gameModel.addGizmo(new Flipper(10,8));
+//        gameModel.addGizmo(new Flipper(14,8));
+//        gameModel.addGizmo(new Flipper(16,8));
+        gameModel.addGizmo(new Flipper(18,8));
+        gameModel.addGizmo(new Flipper(14,12));
+        gameModel.addGizmo(new Flipper(16,14));
 
-        gameModel.addGizmo(new CircleGizmo(10, 8));
-        gameModel.addGizmo(new CircleGizmo(11, 9));
-        gameModel.addGizmo(new CircleGizmo(12, 10));
-        gameModel.addGizmo(new Square(3, 14));
-        gameModel.addGizmo(new Square(4, 14));
-        gameModel.addGizmo(new Square(5, 14));
-        triange = new Triangle(1, 14);
-        triange.rotate();
-        triange.rotate();
-        triange.rotate();
-        gameModel.addGizmo(triange);
-        gameModel.addGizmo(new CircleGizmo(7, 7));
-        triange = new Triangle(19, 0);
-        triange.rotate();
-        gameModel.addGizmo(triange);
-        gameModel.addGizmo(new Absorber(0, 19, 20, 20));
+		gameModel.addGizmo(new CircleGizmo(10, 8));
+		gameModel.addGizmo(new CircleGizmo(11, 9));
+		gameModel.addGizmo(new CircleGizmo(12, 10));
+		gameModel.addGizmo(new Square(3, 14));
+		gameModel.addGizmo(new Square(4, 14));
+		gameModel.addGizmo(new Square(5, 14));
 
-        return gameModel;
-    }
-    
-    @Override
-    public void stop() {
-    	gameModel.stopTimer();
-    }
+		triangle = new Triangle(1, 14);
+		triangle.rotate();
+		triangle.rotate();
+		triangle.rotate();
+		gameModel.addGizmo(triangle);
+		gameModel.addGizmo(new CircleGizmo(7, 7));
+		triangle = new Triangle(19, 0);
+		triangle.rotate();
+		gameModel.addGizmo(triangle);
+
+		gameModel.addGizmo(new Absorber(0, 19, 20, 20));
+
+		return gameModel;
+	}
+
+	private IGameModel makeTestModel() {
+		GameModel gameModel = new GameModel();
+		IGizmo triangle;
+
+		gameModel.setBallSpeed(8, 8);
+
+		for (int i=0; i<18; i++) {
+
+			if (i < 10) {
+				triangle = new Triangle(i, i);
+				triangle.rotate();
+			} else {
+				triangle = new Triangle(i+1, 19-i);
+			}
+
+			gameModel.addGizmo(triangle);
+		}
+
+		// uncomment to block the ball between two gizmos
+		//gameModel.addGizmo(new Square(3,1));
+		gameModel.addGizmo(new CircleGizmo(13,5));
+		triangle = new Triangle(19, 0);
+		triangle.rotate();
+		gameModel.addGizmo(triangle);
+		gameModel.addGizmo(new Absorber(0, 19, 20, 20));
+
+		return gameModel;
+	}
+
+	@Override
+	public void stop() {
+		gameModel.stopTimer();
+	}
 }

@@ -2,14 +2,13 @@ package model;
 
 
 import model.gizmo.Gizmo;
-import model.gizmo.IGizmo;
 import physics.Circle;
 import physics.Vect;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class Ball extends Gizmo implements IGizmo {
+public class Ball extends Gizmo {
 
     private Vect velocity;
     private double radius;
@@ -34,6 +33,10 @@ public class Ball extends Gizmo implements IGizmo {
 
     void setVelo(Vect v) {
         velocity = v;
+    }
+    
+    double getRadius() {
+    	return radius;
     }
 
     public Circle getCircle() {

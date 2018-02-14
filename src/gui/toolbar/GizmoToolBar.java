@@ -10,11 +10,15 @@ import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
+import model.EditorModel;
 
 public class GizmoToolBar extends GizmoVerticalToolBar {
 
+    private EditorModel editorModel;
 
-    public GizmoToolBar() {
+    public GizmoToolBar(EditorModel editorModel) {
+        this.editorModel = editorModel;
+
         super.setAlignment(Pos.CENTER);
         super.setOrientation(Orientation.VERTICAL);
 
@@ -22,10 +26,10 @@ public class GizmoToolBar extends GizmoVerticalToolBar {
     }
 
     private void setup() {
-        addItem("Add Tool", "add-button", new AddToolEventHandler());
-        addItem("Connect Tool", "connect-button", new ConnectToolEventHandler());
-        addItem("Select Tool", "select-button", new SelectEventHandler());
-        addItem("Rotate tool", "rotate-button", new RotateToolEventHandler());
+        addItem("Add Tool", "add-button", new AddToolEventHandler(editorModel));
+        addItem("Connect Tool", "connect-button", new ConnectToolEventHandler(editorModel));
+        addItem("Select Tool", "select-button", new SelectEventHandler(editorModel));
+        addItem("Rotate tool", "rotate-button", new RotateToolEventHandler(editorModel));
     }
 
 
