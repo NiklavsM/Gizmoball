@@ -74,22 +74,22 @@ public class GizmoView extends Application {
 //		gameModel.addGizmo(new CircleGizmo(13, 8));
 //		gameModel.addGizmo(new CircleGizmo(17, 6));
 
-        gameModel.addGizmo(new Flipper(2, 2));
-        gameModel.addGizmo(new Flipper(2, 4));
+        gameModel.addGizmo(new Flipper(2, 2, Flipper.Orientation.RIGHT));
+        gameModel.addGizmo(new Flipper(2, 4, Flipper.Orientation.RIGHT));
 
 
-        gameModel.addGizmo(new Flipper(2, 8));
-        gameModel.addGizmo(new Flipper(4, 4));
-        gameModel.addGizmo(new Flipper(8, 4));
-        gameModel.addGizmo(new Flipper(10, 4));
-        gameModel.addGizmo(new Flipper(16, 16));
+        gameModel.addGizmo(new Flipper(2, 8, Flipper.Orientation.RIGHT));
+        gameModel.addGizmo(new Flipper(4, 4, Flipper.Orientation.RIGHT));
+        gameModel.addGizmo(new Flipper(8, 4, Flipper.Orientation.RIGHT));
+        gameModel.addGizmo(new Flipper(10, 4, Flipper.Orientation.RIGHT));
+        gameModel.addGizmo(new Flipper(16, 16, Flipper.Orientation.RIGHT));
 
 //        gameModel.addGizmo(new Flipper(10,8));
 //        gameModel.addGizmo(new Flipper(14,8));
 //        gameModel.addGizmo(new Flipper(16,8));
-        gameModel.addGizmo(new Flipper(18, 8));
-        gameModel.addGizmo(new Flipper(14, 12));
-        gameModel.addGizmo(new Flipper(16, 14));
+        gameModel.addGizmo(new Flipper(18, 8, Flipper.Orientation.RIGHT));
+        gameModel.addGizmo(new Flipper(14, 12, Flipper.Orientation.RIGHT));
+        gameModel.addGizmo(new Flipper(16, 14, Flipper.Orientation.RIGHT));
 
         gameModel.addGizmo(new CircleGizmo(10, 8));
         gameModel.addGizmo(new CircleGizmo(11, 9));
