@@ -6,9 +6,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import strath.cs308.gizmoball.view.GizmoDrawer ?>
+
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             stylesheets="/styles/style.css"
@@ -217,5 +221,122 @@
             <Label styleClass="statusbar-padding" />
         </HBox>
     </bottom>
+
+    <right>
+        <VBox>
+            <TabPane>
+                <Tab closable="false"
+                     text="Gizmos">
+                    <VBox spacing="16"
+                          styleClass="default-padding, GizmoPane">
+                        <Label text="Gizmos"
+                               styleClass="card-title" />
+                        <ScrollPane maxHeight="250">
+                            <GridPane hgap="16"
+                                      vgap="16"
+                                      maxHeight="100"
+                                      minWidth="200"
+                                      alignment="CENTER">
+
+                                <VBox GridPane.rowIndex="0"
+                                      GridPane.columnIndex="0"
+                                      spacing="16"
+                                      alignment="CENTER">
+                                    <Button>
+                                        <graphic>
+                                            <Rectangle width="25"
+                                                       height="25"
+                                                       fill="#f44336"/>
+                                        </graphic>
+                                    </Button>
+                                    <Label text="Rectangle"
+                                           styleClass="regular-font" />
+                                </VBox>
+
+                                <VBox GridPane.rowIndex="0"
+                                      GridPane.columnIndex="1"
+                                      spacing="16"
+                                      alignment="CENTER">
+                                    <Button>
+                                        <graphic>
+                                            <Circle fill="#03a9f4"
+                                                    radius="12.5" />
+                                        </graphic>
+                                    </Button>
+                                    <Label text="Dot"
+                                           styleClass="regular-font" />
+                                </VBox>
+
+                                <VBox GridPane.rowIndex="0"
+                                      GridPane.columnIndex="2"
+                                      spacing="16"
+                                      alignment="CENTER">
+                                    <Button>
+                                        <graphic>
+                                            <ImageView fitHeight="25"
+                                                       fitWidth="25">
+                                                <Image url="/icons/tri.png" />
+                                            </ImageView>
+                                        </graphic>
+                                    </Button>
+                                    <Label text="Triangle"
+                                           styleClass="regular-font" />
+                                </VBox>
+
+                                <VBox GridPane.rowIndex="1"
+                                      GridPane.columnIndex="0"
+                                      spacing="16"
+                                      alignment="CENTER">
+                                    <Button>
+                                        <graphic>
+                                            <Rectangle width="25"
+                                                       height="15"
+                                                       fill="#e91e63"/>
+                                        </graphic>
+                                    </Button>
+                                    <Label text="Absorber"
+                                           styleClass="regular-font" />
+                                </VBox>
+
+                                <VBox GridPane.rowIndex="1"
+                                      GridPane.columnIndex="1"
+                                      spacing="16"
+                                      alignment="CENTER">
+                                    <Button>
+                                        <graphic>
+                                            <ImageView fitWidth="30"
+                                                       fitHeight="30">
+                                                <Image url="/icons/flipper.png" />
+                                            </ImageView>
+                                        </graphic>
+                                    </Button>
+                                    <Label text="Flipper"
+                                           styleClass="regular-font" />
+                                </VBox>
+
+                                <VBox GridPane.rowIndex="1"
+                                      GridPane.columnIndex="2"
+                                      spacing="16"
+                                      alignment="CENTER">
+                                    <Button>
+                                        <graphic>
+                                             <Circle radius="9" fill="#ff9800" />
+                                        </graphic>
+                                    </Button>
+                                    <Label text="Ball"
+                                           styleClass="regular-font" />
+                                </VBox>
+
+                            </GridPane>
+                        </ScrollPane>
+                    </VBox>
+                </Tab>
+                <Tab closable="false"
+                     text="Properties">
+
+                </Tab>
+            </TabPane>
+        </VBox>
+    </right>
 
 </BorderPane>
