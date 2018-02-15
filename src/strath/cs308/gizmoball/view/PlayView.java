@@ -83,11 +83,11 @@ public class PlayView implements IPlayView, Observer{
     }
 
     public void hidePauseMenu() {
-        pauseMenu.toFront();
+        pauseMenu.toBack();
         stackPane.getChildren()
                 .stream()
                 .filter(node -> !node.equals(pauseMenu))
-                .forEach(node -> node.setEffect(new GaussianBlur(10)));
+                .forEach(node -> node.setEffect(new GaussianBlur(0)));
     }
 
     @Override

@@ -55,5 +55,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent>
     }
 
     private void closeMenu() {
+        playView.hidePauseMenu();
+        gameModel.startTimer();
     }
 }
