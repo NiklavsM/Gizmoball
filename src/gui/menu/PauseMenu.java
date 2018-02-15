@@ -10,7 +10,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.FileChooser;
 import model.IGameModel;
+
+import java.io.File;
 
 
 public class PauseMenu extends GizmoVerticalToolBar {
@@ -42,7 +45,12 @@ public class PauseMenu extends GizmoVerticalToolBar {
 
         addItem("Back", "back-button", new BackToGameHandler(gameModel, callback));
         addItem("Save", "save-progress-button", new SaveProgressHandler());
-        addItem("Load", "load-game-button", new LoadProgressHandler(gameModel, callback));
+        addItem("Load", "load-game-button", new LoadProgressHandler(gameModel, callback, () -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Gizmoball loading file");
+            fileChooser.setInitialFileName("hahahah");
+            return fileChooser.showOpenDialog(null);
+        }));
         addItem("Editor", "to-editor-button", new ToEditorModeHandler(playStage));
         addItem("Exit", "exit-game-button", new ExitGameHandler());
     }
