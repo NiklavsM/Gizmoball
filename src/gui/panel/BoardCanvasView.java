@@ -5,6 +5,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.StrokeLineCap;
 import model.Constants;
 import model.Dot;
 import model.IGameModel;
@@ -38,7 +39,7 @@ public class BoardCanvasView extends Canvas implements Observer {
         gc.fillRect(0, 0, super.getWidth(), super.getHeight());
 
         // Draw all the vertical lines
-        gc.setFill(javafx.scene.paint.Color.BLACK);
+        gc.setFill(Theme.Colors.BLACK);
 
         for (IGizmo gizmo : gm.getGizmos()) {
             xPoints = new double[gizmo.getDots().size()];
@@ -58,8 +59,12 @@ public class BoardCanvasView extends Canvas implements Observer {
                 for (int k = 0; k < i; k++) {
                     gc.fillOval(xPoints[k] - diameter / 2, yPoints[k] - diameter / 2, diameter, diameter);
                 }
+                gc.setLineWidth(diameter);
+                gc.setLineCap(StrokeLineCap.BUTT);
+                gc.setStroke(Theme.Colors.ORANGE);
+                gc.strokeLine(xPoints[0],yPoints[0],xPoints[1],yPoints[1]);
             }
-            if (type == IGizmo.Type.Circle || type == IGizmo.Type.Ball || type == IGizmo.Type.Flipper) {
+            if (type == IGizmo.Type.Circle || type == IGizmo.Type.Ball) {
                 gc.fillOval(xPoints[0] - diameter / 2, yPoints[0] - diameter / 2, diameter, diameter);
             } else {
                 gc.fillPolygon(xPoints, yPoints, i);
