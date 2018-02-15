@@ -35,11 +35,9 @@ public class PlayStage extends Stage {
     private void setup() {
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, 500, 500);
-        scene.setOnKeyPressed(new KeyboardTriggerEventHandler(gameModel));
 
         // Center
         Canvas canvas = new BoardCanvasView(500, 500, gizmoView.getGameModel());
-//        GameBar gameBar = new GameBar(Pos.BOTTOM_LEFT, root);
 
         stackPane = new StackPane();
         stackPane.setMaxHeight(APP_HEIGHT);

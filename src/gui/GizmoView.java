@@ -1,6 +1,6 @@
 package gui;
 
-import controller.play.ShootBallHandler;
+import controller.play.KeyboardTriggerEventHandler;
 import javafx.application.Application;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -34,14 +34,14 @@ public class GizmoView extends Application {
         currentStage = primaryStage;
 
         currentStage = new PlayStage(this);
-        currentStage.addEventFilter(KeyEvent.KEY_PRESSED, new ShootBallHandler(gameModel));
+        currentStage.addEventFilter(KeyEvent.KEY_PRESSED, new KeyboardTriggerEventHandler(gameModel));
         currentStage.show();
     }
 
     public void switchModes() {
         currentStage.close();
         currentStage = currentStage instanceof PlayStage ? new EditorStage(this) : new PlayStage(this);
-        currentStage.addEventFilter(KeyEvent.KEY_PRESSED, new ShootBallHandler(gameModel));
+        currentStage.addEventFilter(KeyEvent.KEY_PRESSED, new KeyboardTriggerEventHandler(gameModel));
         currentStage.show();
     }
 

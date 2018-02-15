@@ -35,6 +35,10 @@ public class KeyboardTriggerEventHandler implements EventHandler<KeyEvent> {
                         iTriggerable.trigger(ITriggerable.Event.KEY_L);
                     });
         }
+
+        if (keyEvent.getCode().equals(KeyCode.SPACE)) {
+            gameModel.shootOut();
+        }
     }
 }
 
