@@ -4,5 +4,6 @@ public interface IPlayView {
 
     void showPauseMenu();
     void hidePauseMenu();
+    boolean getCloseConFormation();
 
 }
