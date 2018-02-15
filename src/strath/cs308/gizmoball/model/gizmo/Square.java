@@ -31,7 +31,7 @@ public class Square extends Gizmo {
 
     @Override
     public Type getType() {
-        return Type.Square;
+        return Type.SQUARE;
     }
 
 }

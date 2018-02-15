@@ -83,7 +83,7 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
 
     @Override
     public Type getType() {
-                        return Gizmo.Type.Flipper;
+                        return Gizmo.Type.FLIPPER;
                                                   }
 
     @Override

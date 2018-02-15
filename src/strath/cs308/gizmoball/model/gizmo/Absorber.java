@@ -32,7 +32,7 @@ public class Absorber extends Gizmo {
 
     @Override
     public Type getType() {
-        return Type.Absorber;
+        return Type.ABSORBER;
     }
 
 }

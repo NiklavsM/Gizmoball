@@ -68,7 +68,7 @@ public class Ball extends Gizmo {
 
     @Override
     public Type getType() {
-        return Type.Ball;
+        return Type.BALL;
     }
 
     @Override
