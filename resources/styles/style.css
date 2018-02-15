@@ -224,3 +224,7 @@ i.pause-menu-font {
 .statusbar-padding {
     -fx-padding: 2px 2px 2px 16px;
 }
+
+.regular-font {
+    -fx-font: 14px Arial;
+}

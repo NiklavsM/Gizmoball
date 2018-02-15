@@ -7,6 +7,8 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             stylesheets="/styles/style.css"
@@ -21,6 +23,130 @@
                 <Menu text="View" />
                 <Menu text="Help" />
             </MenuBar>
+            <ToolBar>
+                <GridPane vgap="5"
+                          hgap="16"
+                          styleClass="default-padding">
+
+                    <VBox GridPane.columnIndex="0"
+                          GridPane.rowIndex="0"
+                          spacing="5"
+                          alignment="CENTER">
+                        <Button maxWidth="24"
+                                minWidth="24"
+                                minHeight="24"
+                                maxHeight="24"
+                                styleClass="play-button, regular-font">
+                        </Button>
+                        <Label text="Play" />
+                    </VBox>
+
+                    <VBox GridPane.columnIndex="1"
+                           GridPane.rowIndex="0"
+                          spacing="5"
+                          alignment="CENTER">
+                        <Button maxWidth="24"
+                                minWidth="24"
+                                minHeight="24"
+                                maxHeight="24"
+                                styleClass="load-button, regular-font">
+                        </Button>
+                        <Label text="Load" />
+                    </VBox>
+
+                    <VBox GridPane.columnIndex="2"
+                           GridPane.rowIndex="0"
+                          spacing="5"
+                          alignment="CENTER">
+                        <Button maxWidth="24"
+                                minWidth="24"
+                                minHeight="24"
+                                maxHeight="24"
+                                styleClass="save-button, regular-font">
+                        </Button>
+                        <Label text="Save" />
+                    </VBox>
+
+                    <VBox GridPane.columnIndex="4"
+                          GridPane.rowIndex="0"
+                          spacing="5"
+                          alignment="CENTER">
+                        <Button maxWidth="24"
+                                minWidth="24"
+                                minHeight="24"
+                                maxHeight="24"
+                                styleClass="saveas-button, regular-font">
+                        </Button>
+                        <Label text="Save As" />
+                    </VBox>
+
+                    <VBox GridPane.columnIndex="5"
+                          GridPane.rowIndex="0"
+                          spacing="5"
+                          alignment="CENTER">
+                        <Button maxWidth="24"
+                                minWidth="24"
+                                minHeight="24"
+                                maxHeight="24"
+                                styleClass="clear-button, regular-font">
+                        </Button>
+                        <Label text="Clear Board" />
+                    </VBox>
+
+                    <VBox GridPane.columnIndex="6"
+                          GridPane.rowIndex="0"
+                          spacing="5"
+                          alignment="CENTER">
+                        <Button maxWidth="24"
+                                minWidth="24"
+                                minHeight="24"
+                                maxHeight="24"
+                                styleClass="undo-button, regular-font">
+                        </Button>
+                        <Label text="Undo" />
+                    </VBox>
+
+                    <VBox GridPane.columnIndex="7"
+                          GridPane.rowIndex="0"
+                          spacing="5"
+                          alignment="CENTER">
+                        <Button maxWidth="24"
+                                minWidth="24"
+                                minHeight="24"
+                                maxHeight="24"
+                                styleClass="redo-button, regular-font">
+                        </Button>
+                        <Label text="Redo" />
+                    </VBox>
+
+                   <VBox GridPane.columnIndex="8"
+                          GridPane.rowIndex="0"
+                          spacing="5"
+                          alignment="CENTER">
+                        <Button maxWidth="24"
+                                minWidth="24"
+                                minHeight="24"
+                                maxHeight="24"
+                                styleClass="grid-button, regular-font">
+                        </Button>
+                        <Label text="Toggle Grid" />
+                    </VBox>
+
+                    <VBox GridPane.columnIndex="9"
+                          GridPane.rowIndex="0"
+                          spacing="5"
+                          alignment="CENTER">
+                        <Button maxWidth="24"
+                                minWidth="24"
+                                minHeight="24"
+                                maxHeight="24"
+                                styleClass="console-button, regular-font">
+                        </Button>
+                        <Label text="Console" />
+                    </VBox>
+
+                </GridPane>
+            </ToolBar>
         </VBox>
     </top>
 
