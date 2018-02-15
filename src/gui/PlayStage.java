@@ -1,5 +1,6 @@
 package gui;
 
+import controller.play.KeyboardTriggerEventHandler;
 import gui.menu.PauseMenu;
 import gui.panel.BoardCanvasView;
 import gui.toolbar.GameBar;
@@ -34,6 +35,7 @@ public class PlayStage extends Stage {
     private void setup() {
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, 500, 500);
+        scene.setOnKeyPressed(new KeyboardTriggerEventHandler(gameModel));
 
         // Center
         Canvas canvas = new BoardCanvasView(500, 500, gizmoView.getGameModel());

@@ -24,9 +24,9 @@ public class GizmoFactory {
             case Square:
                 return new Square(x, y, id);
             case LeftFlipper:
-                return new Flipper(x, y, id);
+                return new Flipper(x, y,Flipper.Orientation.LEFT, id);
             case RightFlipper:
-                return new Flipper(x, y, id); //FIXME
+                return new Flipper(x, y,Flipper.Orientation.RIGHT, id); //FIXME
         }
         throw new IllegalArgumentException("no absorber nor ball please");
     }
