@@ -45,7 +45,6 @@ public class BoardMouseClickHandler implements EventHandler<MouseEvent> {
 
 
         // TODO switch depending on mode
-
     }
 
     private void rotateMode() {
