@@ -24,6 +24,63 @@
         </VBox>
     </top>
 
+    <left>
+        <ToolBar styleClass="default-padding" orientation="VERTICAL">
+            <GridPane vgap="5"
+                      hgap="16"
+                      alignment="CENTER">
+                <Button minHeight="24"
+                        minWidth="24"
+                        scaleX="0.7"
+                        scaleY="0.7"
+                        GridPane.columnIndex="0"
+                        GridPane.rowIndex="0"
+                        styleClass="add-button">
+                    <tooltip>
+                        <Tooltip text="Add tool" />
+                    </tooltip>
+                </Button>
+
+                <Button minHeight="24"
+                        minWidth="24"
+                        scaleX="0.7"
+                        scaleY="0.7"
+                        GridPane.columnIndex="0"
+                        GridPane.rowIndex="1"
+                        styleClass="connect-button">
+                    <tooltip>
+                        <Tooltip text="Connect tool" />
+                    </tooltip>
+                </Button>
+
+                <Button minHeight="24"
+                        minWidth="24"
+                        scaleX="0.7"
+                        scaleY="0.7"
+                        GridPane.columnIndex="0"
+                        GridPane.rowIndex="2"
+                        styleClass="select-button">
+                    <tooltip>
+                        <Tooltip text="Select tool" />
+                    </tooltip>
+                </Button>
+
+                <Button minHeight="24"
+                        minWidth="24"
+                        scaleX="0.7"
+                        scaleY="0.7"
+                        GridPane.columnIndex="0"
+                        GridPane.rowIndex="3"
+                        styleClass="rotate-button">
+                    <tooltip>
+                        <Tooltip text="Rotate tool" />
+                    </tooltip>
+                </Button>
+
+            </GridPane>
+        </ToolBar>
+    </left>
+
     <center>
         <Canvas width="500"
                 height="500" />
