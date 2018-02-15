@@ -4,12 +4,12 @@ import gui.Theme;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import model.Constants;
 import model.Dot;
 import model.IGameModel;
 import model.gizmo.IGizmo;
 
-import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -76,19 +76,34 @@ public class BoardCanvasView extends Canvas implements Observer {
 
     private void setGizmoColor(IGizmo.Type type) {
 
-        if (type == IGizmo.Type.Square) {
-            gc.setFill(Theme.Colors.RED);
-        } else if (type == IGizmo.Type.Absorber) {
-            gc.setFill(Theme.Colors.PINK);
-        } else if (type == IGizmo.Type.Triangle) {
-            gc.setFill(Theme.Colors.BLUE);
-        } else if (type == IGizmo.Type.Circle) {
-            gc.setFill(Theme.Colors.GREEN);
-        } else if (type == IGizmo.Type.Ball) {
-            gc.setFill(Theme.Colors.WHITE);
-        } else if (type == IGizmo.Type.Flipper) {
-            gc.setFill(Theme.Colors.ORANGE);
+        Paint fill;
+
+        switch (type) {
+            case Square:
+                fill = Theme.Colors.RED;
+                break;
+            case Absorber:
+                fill = Theme.Colors.RED;
+                break;
+            case Triangle:
+                fill = Theme.Colors.RED;
+                break;
+            case Circle:
+                fill = Theme.Colors.RED;
+                break;
+            case Ball:
+                fill = Theme.Colors.RED;
+                break;
+            case Flipper:
+                fill = Theme.Colors.RED;
+                break;
+            default:
+                fill = Theme.Colors.WHITE;
+                break;
         }
+
+        gc.setFill(fill);
+
     }
 
     @Override
