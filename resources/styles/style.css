@@ -220,3 +220,7 @@ Button:hover {
 i.pause-menu-font {
     -fx-font: 18px Verdana;
 }
+
+.statusbar-padding {
+    -fx-padding: 2px 2px 2px 16px;
+}

@@ -35,7 +35,16 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent>
             case "menuExitButton":
                 exitGame();
                 break;
+
+            case "menuEditorButton":
+                openEditor();
+                break;
         }
+    }
+
+    private void openEditor() {
+        gameModel.stopTimer();
+        playView.switchToEditor();
     }
 
     private void exitGame()

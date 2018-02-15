@@ -6,4 +6,5 @@ public interface IPlayView {
     void hidePauseMenu();
     boolean getCloseConFormation();
 
+    void switchToEditor();
 }

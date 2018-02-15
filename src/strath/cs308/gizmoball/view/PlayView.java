@@ -124,4 +124,9 @@ public class PlayView implements IPlayView, Observer{
         }
         return false;
     }
+
+    @Override
+    public void switchToEditor() {
+        EditorView editorView = new EditorView((Stage) root.getScene().getWindow(), gameModel);
+    }
 }
