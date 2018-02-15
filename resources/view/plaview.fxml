@@ -10,12 +10,14 @@
             prefHeight="500.0" prefWidth="500.0">
     <center>
         <StackPane maxHeight="500"
-                   maxWidth="500">
+                   maxWidth="500"
+                   fx:id="stackPane">
 
             <ToolBar maxWidth="225"
                      minWidth="200"
                      minHeight="200"
                      maxHeight="250"
+                     fx:id="pauseMenu"
                      styleClass="default-padding, PauseMenu">
 
                 <GridPane hgap="16"
@@ -64,6 +66,7 @@
                      StackPane.alignment="BOTTOM_LEFT">
                 <GridPane vgap="5"
                           hgap="16"
+                          fx:id="gameMenu"
                           styleClass="default-padding">
 
 
@@ -73,6 +76,7 @@
                             minHeight="24"
                             maxWidth="24"
                             maxHeight="24"
+                            fx:id="playButton"
                             styleClass="play-button">
                         <tooltip>
                             <Tooltip text="Play"/>
@@ -85,6 +89,7 @@
                             minHeight="24"
                             maxWidth="24"
                             maxHeight="24"
+                            fx:id="stopButton"
                             styleClass="stop-button">
                         <tooltip>
                             <Tooltip text="Stop"/>
@@ -98,6 +103,7 @@
                             minHeight="24"
                             maxWidth="24"
                             maxHeight="24"
+                            fx:id="tickButton"
                             styleClass="tick-button">
                         <tooltip>
                             <Tooltip text="Tick"/>
@@ -110,6 +116,7 @@
                             minHeight="24"
                             maxWidth="24"
                             maxHeight="24"
+                            fx:id="menuButton"
                             styleClass="pause-screen-button">
                         <tooltip>
                             <Tooltip text="Menu"/>
