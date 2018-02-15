@@ -106,65 +106,65 @@ Button:hover {
 
 /* Options bar */
 .play-button {
-    -fx-background-image: url("/assets/icons/play.png");
+    -fx-background-image: url("/icons/play.png");
 }
 
 .load-button {
-    -fx-background-image: url("/assets/icons/load.png");
+    -fx-background-image: url("/icons/load.png");
 }
 
 .save-button {
-    -fx-background-image: url("/assets/icons/save.png");
+    -fx-background-image: url("/icons/save.png");
 }
 
 .saveas-button {
-    -fx-background-image: url("/assets/icons/save.png");
+    -fx-background-image: url("/icons/save.png");
 }
 
 .clear-button {
-    -fx-background-image: url("/assets/icons/clear.png");
+    -fx-background-image: url("/icons/clear.png");
 }
 
 .undo-button {
-    -fx-background-image: url("/assets/icons/undo.png");
+    -fx-background-image: url("/icons/undo.png");
 }
 
 .redo-button {
-    -fx-background-image: url("/assets/icons/redo.png");
+    -fx-background-image: url("/icons/redo.png");
 }
 
 .grid-button {
-    -fx-background-image: url("/assets/icons/grid.png");
+    -fx-background-image: url("/icons/grid.png");
 }
 
 .console-button {
-    -fx-background-image: url("/assets/icons/console.png");
+    -fx-background-image: url("/icons/console.png");
 }
 
 /* Toolbar */
 .add-button {
-    -fx-background-image: url("/assets/icons/cursor.png");
+    -fx-background-image: url("/icons/cursor.png");
 }
 
 .connect-button {
-    -fx-background-image: url("/assets/icons/connect.png");
+    -fx-background-image: url("/icons/connect.png");
 }
 
 .select-button {
-    -fx-background-image: url("/assets/icons/select.png");
+    -fx-background-image: url("/icons/select.png");
 }
 
 .rotate-button {
-    -fx-background-image: url("/assets/icons/rotate.png");
+    -fx-background-image: url("/icons/rotate.png");
 }
 
 /* Game bar */
 .tick-button {
-    -fx-background-image: url("/assets/icons/tick.png");
+    -fx-background-image: url("/icons/tick.png");
 }
 
 .pause-screen-button {
-    -fx-background-image: url("/assets/icons/menu.png");
+    -fx-background-image: url("/icons/menu.png");
 }
 
 .game-bar {
@@ -178,26 +178,26 @@ Button:hover {
 }
 
 .exit-game-button {
-    -fx-graphic: url("/assets/icons/exit.png");
+    -fx-graphic: url("/icons/exit.png");
 }
 
 .save-progress-button {
-    -fx-graphic: url("/assets/icons/save.png");
+    -fx-graphic: url("/icons/save.png");
 }
 
 .load-game-button {
-    -fx-graphic: url("/assets/icons/load.png");
+    -fx-graphic: url("/icons/load.png");
 }
 
 .back-button {
-    -fx-graphic: url("/assets/icons/back.png");
+    -fx-graphic: url("/icons/back.png");
 }
 
 .to-editor-button {
-    -fx-graphic: url("/assets/icons/editor.png");
+    -fx-graphic: url("/icons/editor.png");
 }
 
 .stop-button {
-    -fx-graphic: url("/assets/icons/stop.png");
+    -fx-graphic: url("/icons/stop.png");
 }
 
