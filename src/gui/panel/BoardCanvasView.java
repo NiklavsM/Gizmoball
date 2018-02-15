@@ -21,17 +21,12 @@ public class BoardCanvasView extends Canvas implements Observer {
 
     public BoardCanvasView(int width, int height, IGameModel gameModel) {
         super(width, height);
-        // Observe changes in Model
+
         gameModel.addObserver(this);
         gm = gameModel;
-//        this.setBorder(BorderFactory.createLineBorder(java.awt.Color.black));
         redraw();
     }
 
-    // Fix onscreen size
-    public Dimension getPreferredSize() {
-        return new Dimension((int) super.getWidth(), (int) super.getHeight());
-    }
 
     public void redraw() {
 
@@ -83,19 +78,19 @@ public class BoardCanvasView extends Canvas implements Observer {
                 fill = Theme.Colors.RED;
                 break;
             case Absorber:
-                fill = Theme.Colors.RED;
+                fill = Theme.Colors.PINK;
                 break;
             case Triangle:
-                fill = Theme.Colors.RED;
+                fill = Theme.Colors.BLUE;
                 break;
             case Circle:
-                fill = Theme.Colors.RED;
+                fill = Theme.Colors.GREEN;
                 break;
             case Ball:
-                fill = Theme.Colors.RED;
+                fill = Theme.Colors.WHITE;
                 break;
             case Flipper:
-                fill = Theme.Colors.RED;
+                fill = Theme.Colors.ORANGE;
                 break;
             default:
                 fill = Theme.Colors.WHITE;
