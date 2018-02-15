@@ -11,7 +11,6 @@ public class Absorber extends Gizmo {
 
     public Absorber(double x1, double y1, double x2, double y2, String id) {
         super(x1, y1, x2, y2, id);
-
     }
 
     public Absorber (double x1, double y1, double x2, double y2) {

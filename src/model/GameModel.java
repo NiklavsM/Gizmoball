@@ -60,11 +60,11 @@ public class GameModel extends Observable implements IGameModel {
 
         double moveTime = 0.05; // 0.05 = 20 times per second as per Gizmoball
 
-        // Time until collision
-        CollisionDetails cd = timeUntilCollision();
         Gizmo nextGizmo = null;
 
         if (ball != null) {
+            CollisionDetails cd = timeUntilCollision();
+
             double tuc = cd.getTuc();
             if (tuc > moveTime) {
                 // No collision ...
@@ -87,10 +87,12 @@ public class GameModel extends Observable implements IGameModel {
 
         // absorber collision detected during the previous tick
         if (absorberCollision) {
+//            gizmos.remove(ball.getId());
+//            ball = null;
             setBallInAbsorber();
         }
 
-        absorberCollision = nextGizmo != null && cd.getGizmo().getType() == IGizmo.Type.Absorber;
+        absorberCollision = nextGizmo != null && nextGizmo.getType() == IGizmo.Type.Absorber;
     }
 
     private void moveMovables(Double time) {
@@ -102,9 +104,10 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     private void setBallInAbsorber() { // Need to set using absorber coordinates ask Phil
-        this.setBallSpeed(0, 0);
+
         ball.setExactX(19.74);
         ball.setExactY(19.65);
+        this.setBallSpeed(0, 0);
     }
 
     private void applyForces(Vect velocity, double time) {
@@ -210,21 +213,42 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     public void shootOut() {
-        Gizmo absorber = null;
+        IGizmo absorber = null;
 
-        for (Gizmo gizmo : gizmos.values()) {
-                // TO-DO: improve checking for ball in absorber
-                if (gizmo.getType() == IGizmo.Type.Absorber && gizmo.getXLocation() < ball.getExactX() && gizmo.getXLocation() < ball.getExactY() && gizmo.getYLocation() < ball.getExactX() && gizmo.getYLocation() < ball.getExactY()) {
-                    absorber = gizmo;
-                }
+        for (IGizmo gizmo : gizmos.values()) {
+            if (gizmo.getType() == IGizmo.Type.Absorber && isBallInAbsorber(gizmo))
+                absorber = gizmo;
         }
 
         if (absorber != null) {
-            ball.setExactX(absorber.getCircles().get(1).getCenter().x() - 0.26);
-            ball.setExactY(absorber.getCircles().get(1).getCenter().y() - 0.01);
+            double x = absorber.getDots().get(1).getX() - 0.26;
+            double y = absorber.getDots().get(1).getY() - 0.01;
+            ball.setExactX(x);
+            ball.setExactY(y);
             ball.setVelo(new Vect(0.0, -50.0));
             this.startTimer();
         }
+    }
+
+    private boolean isBallInAbsorber(IGizmo absorber) {
+        int xCoordinate = 0;
+        int yCoordinate = 0;
+
+        for (Dot dot : absorber.getDots()) {
+            if(dot.getX() > ball.getExactX())
+                xCoordinate++;
+            else
+                xCoordinate--;
+
+            if(dot.getY() > ball.getExactY())
+                yCoordinate++;
+            else
+                yCoordinate--;
+        }
+
+        if (xCoordinate == yCoordinate && yCoordinate == 0)
+            return true;
+        return false;
     }
 
     @Override
