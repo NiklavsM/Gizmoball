@@ -47,6 +47,11 @@ public class EditorModel extends Observable {
         notifyObservers();
     }
 
+
+    public IGizmo.Type getGizmoGridItem() {
+        return gizmoGridItem;
+    }
+
     public void setGizmoGridItem(IGizmo.Type gizmoGridItem) {
         this.gizmoGridItem = gizmoGridItem;
         setChanged();

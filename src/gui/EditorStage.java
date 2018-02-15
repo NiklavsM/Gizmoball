@@ -68,7 +68,7 @@ public class EditorStage extends Stage implements Observer {
 
         // Center
         Canvas canvas = new BoardCanvasView(500, 500, gameModel);
-        canvas.setOnMouseClicked(new BoardMouseClickHandler());
+        canvas.setOnMouseClicked(new BoardMouseClickHandler(editorModel, gameModel));
 
         // Bottom
         statusBar = new StatusBar();

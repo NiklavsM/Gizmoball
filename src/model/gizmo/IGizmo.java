@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface IGizmo {
 
+
+
     enum Type {
         Triangle, Absorber, Square, Ball, Walls, Flipper, Circle, LeftFlipper, RightFlipper
     }
@@ -17,4 +19,8 @@ public interface IGizmo {
     String getId();
 
     void rotate();
+
+    double getXLocation();
+
+    double getYLocation();
 }
