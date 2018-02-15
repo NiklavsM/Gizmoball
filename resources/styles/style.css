@@ -201,3 +201,10 @@ Button:hover {
     -fx-graphic: url("/icons/stop.png");
 }
 
+.default-padding {
+    -fx-padding: 16px 16px 16px 16px;
+}
+
+.title-font {
+    -fx-font: 25px Arial;
+}
