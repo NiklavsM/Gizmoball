@@ -87,7 +87,7 @@ public class GameModel extends Observable implements IGameModel {
         if (absorberCollision) {
 //            gizmos.remove(ball.getId());
 //            ball = null;
-            ball.setVelo(new Vect(0.0, 5.0));
+            ball.setVelo(new Vect(0.0, 10.0));
             setBallInAbsorber();
         }
 
@@ -105,7 +105,7 @@ public class GameModel extends Observable implements IGameModel {
     private void setBallInAbsorber() { // Need to set using absorber coordinates ask Phil
         Ball ball = this.getBall();
         ball.setExactX(19.74);
-        ball.setExactY(19.26);
+        ball.setExactY(19.74);
         //this.stopTimer();
     }
 
