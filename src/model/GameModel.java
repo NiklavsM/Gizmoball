@@ -29,11 +29,21 @@ public class GameModel extends Observable implements IGameModel {
 
     public void addGizmo(IGizmo gizmo) {
         gizmos.put(gizmo.getId(), (Gizmo) gizmo);
+
+        this.setChanged();
+        this.notifyObservers();
+
     }
 
     @Override
     public boolean remove(String id) {
-        return gizmos.remove(id) != null;
+
+        Gizmo gizmo = gizmos.remove(id);
+
+        this.setChanged();
+        this.notifyObservers();
+
+        return gizmo != null;
     }
 
     public Set<IGizmo> getGizmos() {
@@ -42,7 +52,7 @@ public class GameModel extends Observable implements IGameModel {
 
     public IGizmo getGizmo(int x, int y) {
         for (Map.Entry<String, Gizmo> entrySet : gizmos.entrySet()) {
-            Gizmo gizmo = entrySet.getValue();
+            IGizmo gizmo = entrySet.getValue();
 
             if (gizmo.getXLocation() == x && gizmo.getYLocation() == y) {
                 return gizmo;
@@ -211,6 +221,22 @@ public class GameModel extends Observable implements IGameModel {
     @Override
     public void rotate(String id) {
         gizmos.get(id).rotate();
+
+        this.setChanged();
+        this.notifyObservers();
+    }
+
+    @Override
+    public boolean isOccupied(int x, int y) {
+        for (Map.Entry<String, Gizmo> entrySet : gizmos.entrySet()) {
+            Gizmo gizmo = entrySet.getValue();
+
+            if (gizmo.getXLocation() == x && gizmo.getYLocation() == y) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

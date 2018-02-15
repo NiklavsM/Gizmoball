@@ -35,4 +35,7 @@ public interface IGameModel {
 
     void rotate(String id);
 
+    boolean isOccupied(int squareX, int squareY);
+
+    IGizmo getGizmo(int squareX, int squareY);
 }
