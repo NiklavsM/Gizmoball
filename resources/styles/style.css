@@ -208,3 +208,15 @@ Button:hover {
 .title-font {
     -fx-font: 25px Arial;
 }
+
+.no-padding {
+    -fx-padding: 0px 0px 0px 0px;
+}
+
+.pause-menu-item-padding {
+    -fx-padding: 5px 80px 6px 5px;
+}
+
+i.pause-menu-font {
+    -fx-font: 18px Verdana;
+}
