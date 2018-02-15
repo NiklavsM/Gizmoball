@@ -414,7 +414,7 @@ Not all the gizmos have to be `Itriggarable` and not all the gizmos need to be `
 Every `Itrigger` needs to mantain a `Set<Itriggerable> toBeTriggeredGizmos` as part of their implementation.
 However, this set can be empty as a trigger may not have any triggarable elements connected to it.
 
-As part of the model, a `Set<Itrigger> hitByBallTriggers` will contain all the triggers that can call actions 
+As part of the strath.cs308.gizmoball.model, a `Set<Itrigger> hitByBallTriggers` will contain all the triggers that can call actions 
 on other gizmos when the ball collides with them. In the physics loop, whenever the ball collides with a gizmo,
 if the gizmo is part of the `hitByBallTriggers` set, then the `trigger()` method of it is called. Internally, the 
 `trigger()` method will call the `doAction()` method of every `Itriggarable` in the `toBeTriggeredGizmos` set.
@@ -575,7 +575,7 @@ Class for modeling the triangle gizmo.
 Subclass of the PhysicsBody.
 
 ### Wall
-Class in the model for representing the walls which are 
+Class in the strath.cs308.gizmoball.model for representing the walls which are 
 building up the boundaries of the physical world's boundaries.
 Subclass of the PhysicsBody.
 
