@@ -14,7 +14,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.text.TextAlignment;
-import model.GameModel;
 import model.IGameModel;
 
 
@@ -45,7 +44,7 @@ public class PauseMenu extends GizmoVerticalToolBar {
 
         addItem("Back", "back-button", new BackToGameHandler(this, playStage.getGameBar(), gameModel));
         addItem("Save", "save-progress-button", new SaveProgressHandler());
-        addItem("Load", "load-game-button", new LoadProgressHandler());
+        addItem("Load", "load-game-button", new LoadProgressHandler(gameModel));
         addItem("Editor", "to-editor-button", new ToEditorModeHandler(playStage));
         addItem("Exit", "exit-game-button", new ExitGameHandler());
     }

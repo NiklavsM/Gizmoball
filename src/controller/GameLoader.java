@@ -1,10 +1,11 @@
-package model;
+package controller;
 
+import jdk.internal.util.xml.impl.Input;
+import model.IGameModel;
 import model.gizmo.GizmoFactory;
 import model.gizmo.IGizmo;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -22,17 +23,18 @@ public class GameLoader {
     public static final String MOVE_COMMAND = "Move";
     public static final String WALLS_NAME = "OuterWalls";
 
-    private Set<String> gizmoCreationCommands;
-    private Set<String> nameCoordCoordCommands;
-    private Set<String> gizmoCreationCommandsAdvanced;
-    private Set<String> nameCommands;
+    private static Set<String> gizmoCreationCommands;
+    private static Set<String> nameCoordCoordCommands;
+    private static Set<String> gizmoCreationCommandsAdvanced;
+    private static Set<String> nameCommands;
 
-    private GizmoFactory gizmoFactory;
-    private GameModel gameModel;
-    private String path;
+    private final GizmoFactory gizmoFactory;
+    private final IGameModel gameModel;
+    private final InputStream source;
 
-    public GameLoader(String path) {
-        this.path = path;
+    public GameLoader(IGameModel gameModel, InputStream source) {
+        this.gameModel = gameModel;
+        this.source = source;
         gizmoFactory = GizmoFactory.getInstance();
 
         gizmoCreationCommands =
@@ -54,14 +56,13 @@ public class GameLoader {
         gizmoCreationCommandsAdvanced.add(Ball.toString());
     }
 
-    public GameModel load() throws IllegalAccessException, FileNotFoundException {
+    public void load() throws IllegalAccessException {
 
         Queue<String> tokens;
         String command;
         String line;
 
-        gameModel = new GameModel();
-        Scanner scanner = new Scanner(new File(path));
+        Scanner scanner = new Scanner(source);
 
         try {
             while (scanner.hasNextLine()) {
@@ -107,14 +108,6 @@ public class GameLoader {
         } catch (NumberFormatException ex) {
             throw ex;
         }
-        return gameModel;
-    }
-
-    public GameModel getGameModel() {
-        if (gameModel == null) {
-            throw new NullPointerException("game not loaded yet");
-        }
-        return gameModel;
     }
 
     private double toValidNumber(String stringNumber) {

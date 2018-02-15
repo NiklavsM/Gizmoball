@@ -15,7 +15,7 @@ public class GizmoFactory {
         return factory;
     }
 
-    public Gizmo createGizmo(IGizmo.Type type, double x, double y, String id) {
+    public IGizmo createGizmo(IGizmo.Type type, double x, double y, String id) {
         switch (type) {
             case Triangle:
                 return new Triangle(x, y, id);
@@ -31,7 +31,7 @@ public class GizmoFactory {
         throw new IllegalArgumentException("no absorber nor ball please");
     }
 
-    public Gizmo createGizmo(IGizmo.Type type, double x1, double y1, double x2, double y2, String id) {
+    public IGizmo createGizmo(IGizmo.Type type, double x1, double y1, double x2, double y2, String id) {
         switch (type) {
             case Ball:
                 return new Ball(x1, y1, x2, y2, id);

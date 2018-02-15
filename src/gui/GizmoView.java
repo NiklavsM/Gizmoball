@@ -12,21 +12,16 @@ import model.gizmo.CircleGizmo;
 import model.gizmo.IGizmo;
 import model.gizmo.Square;
 import model.gizmo.Triangle;
+
 import java.io.FileNotFoundException;
 
 public class GizmoView extends Application {
+
     private IGameModel gameModel;
     private Stage currentStage;
 
     public GizmoView() {
-//		this.gameModel = makeModel();
-        try {
-            this.gameModel = IGameModel.loadGame("resources/default.gizmo");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        this.gameModel = makeModel();
     }
 
     @Override

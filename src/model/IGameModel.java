@@ -4,14 +4,12 @@ import java.io.FileNotFoundException;
 import java.util.Observer;
 import java.util.Set;
 
+import controller.GameLoader;
 import model.gizmo.IGizmo;
 
 public interface IGameModel {
 
-    static IGameModel loadGame(String path) throws FileNotFoundException, IllegalAccessException {
-        GameLoader gameLoader = new GameLoader(path);
-        return gameLoader.load();
-    }
+    void reset();
 
     Set<IGizmo> getGizmos();
 

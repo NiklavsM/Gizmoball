@@ -15,12 +15,17 @@ public class GameModel extends Observable implements IGameModel {
 
     private Timer timer;
     private Map<String, Gizmo> gizmos;
-    private boolean absorberCollision = false;
+    private boolean absorberCollision;
 
     public GameModel() {
+        setup();
+    }
+
+    private void setup() {
         gizmos = new HashMap<>();
         addGizmo(new Walls());
         setupTimer();
+        absorberCollision = false;
     }
 
     private void setupTimer() {
@@ -29,10 +34,8 @@ public class GameModel extends Observable implements IGameModel {
 
     public void addGizmo(IGizmo gizmo) {
         gizmos.put(gizmo.getId(), (Gizmo) gizmo);
-
         this.setChanged();
         this.notifyObservers();
-
     }
 
     @Override
@@ -44,6 +47,11 @@ public class GameModel extends Observable implements IGameModel {
         this.notifyObservers();
 
         return gizmo != null;
+    }
+
+    @Override
+    public void reset() {
+        setup();
     }
 
     public Set<IGizmo> getGizmos() {
@@ -246,12 +254,12 @@ public class GameModel extends Observable implements IGameModel {
         int yCoordinate = 0;
 
         for (Dot dot : absorber.getDots()) {
-            if(dot.getX() > ball.getExactX())
+            if (dot.getX() > ball.getExactX())
                 xCoordinate++;
             else
                 xCoordinate--;
 
-            if(dot.getY() > ball.getExactY())
+            if (dot.getY() > ball.getExactY())
                 yCoordinate++;
             else
                 yCoordinate--;
