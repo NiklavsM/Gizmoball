@@ -4,19 +4,17 @@ import controller.play.ShootBallHandler;
 import javafx.application.Application;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import model.Flipper;
 import model.GameModel;
 import model.IGameModel;
+import model.Flipper;
 import model.gizmo.Absorber;
 import model.gizmo.CircleGizmo;
 import model.gizmo.IGizmo;
 import model.gizmo.Square;
 import model.gizmo.Triangle;
-
 import java.io.FileNotFoundException;
 
 public class GizmoView extends Application {
-
     private IGameModel gameModel;
     private Stage currentStage;
 

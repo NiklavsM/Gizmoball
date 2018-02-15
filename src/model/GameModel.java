@@ -95,8 +95,12 @@ public class GameModel extends Observable implements IGameModel {
 
         // absorber collision detected during the previous tick
         if (absorberCollision) {
-            gizmos.remove(ball.getId());
+//            gizmos.remove(ball.getId());
+//            ball = null;
+            ball.setVelo(new Vect(0.0, 5.0));
+            setBallInAbsorber();
         }
+
         absorberCollision = nextGizmo != null && nextGizmo.getType() == IGizmo.Type.Absorber;
     }
 
@@ -106,6 +110,13 @@ public class GameModel extends Observable implements IGameModel {
                 ((IMovable) gizmo).move(time);
             }
         });
+    }
+
+    private void setBallInAbsorber() { // Need to set using absorber coordinates ask Phil
+        Ball ball = this.getBall();
+        ball.setExactX(19.74);
+        ball.setExactY(19.26);
+        //this.stopTimer();
     }
 
     private void applyForces(Vect velocity, double time, Ball ball) {
@@ -210,12 +221,45 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     public void shootOut() {
-        Ball ball = getBall();
-        if (ball == null) { // need to use absorber coordinates
-            ball = new Ball(19.74, 18.5, 0, -50);
-            addGizmo(ball);
+        Ball ball = this.getBall();
+        IGizmo absorber = null;
+
+        for (IGizmo gizmo : gizmos.values()) {
+            if (gizmo.getType() == IGizmo.Type.Absorber && isBallInAbsorber(gizmo))
+                absorber = gizmo;
+        }
+
+        if (absorber != null) {
+            double x = absorber.getDots().get(1).getX() - 0.26;
+            double y = absorber.getDots().get(1).getY() - 0.01;
+            ball.setExactX(x);
+            ball.setExactY(y);
+            ball.setVelo(new Vect(0.0, -50.0));
             this.startTimer();
         }
+    }
+
+    private boolean isBallInAbsorber(IGizmo absorber) {
+        Ball ball = this.getBall();
+
+        int xCoordinate = 0;
+        int yCoordinate = 0;
+
+        for (Dot dot : absorber.getDots()) {
+            if(dot.getX() > ball.getExactX())
+                xCoordinate++;
+            else
+                xCoordinate--;
+
+            if(dot.getY() > ball.getExactY())
+                yCoordinate++;
+            else
+                yCoordinate--;
+        }
+
+        if (xCoordinate == yCoordinate && yCoordinate == 0)
+            return true;
+        return false;
     }
 
     @Override
