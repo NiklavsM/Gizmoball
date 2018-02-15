@@ -3,23 +3,29 @@ package strath.cs308.gizmoball.view;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameBarEventHandler;
 import strath.cs308.gizmoball.model.IGameModel;
 
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 
-public class PlayView implements IPlayView{
+public class PlayView implements IPlayView, Observer{
 
     private IGameModel gameModel;
     private BorderPane root;
     private ToolBar pauseMenu;
     private StackPane stackPane;
+    private Canvas canvas;
 
     public PlayView(Stage stage, IGameModel gameModel) {
 
@@ -29,8 +35,13 @@ public class PlayView implements IPlayView{
             this.gameModel = gameModel;
             pauseMenu = (ToolBar) root.lookup("#pauseMenu");
             stackPane = (StackPane) root.lookup("#stackPane");
+            canvas = (Canvas) root.lookup("#canvas");
+
+            drawBackground();
+            drawGizmos();
 
             pauseMenu.toBack();
+            gameModel.addObserver(this);
 
             Scene scene = new Scene(root, root.getWidth(), root.getHeight());
 
@@ -71,5 +82,23 @@ public class PlayView implements IPlayView{
                 .stream()
                 .filter(node -> !node.equals(pauseMenu))
                 .forEach(node -> node.setEffect(new GaussianBlur(10)));
+    }
+
+    @Override
+    public void update(Observable observable, Object o) {
+        drawBackground();
+        drawGizmos();
+    }
+
+    private void drawBackground() {
+        GraphicsContext graphics = canvas.getGraphicsContext2D();
+        graphics.setFill(GizmoDrawer.DEEP_BLUE);
+        graphics.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+
+    }
+
+    private void drawGizmos() {
+        GizmoDrawer drawer = new GizmoDrawer(canvas);
+        gameModel.getGizmos().forEach(drawer::drawGizmo);
     }
 }

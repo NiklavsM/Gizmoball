@@ -54,7 +54,8 @@
             </ToolBar>
 
             <Canvas width="500"
-                    height="500" />
+                    height="500"
+                    fx:id="canvas" />
 
             <Label StackPane.alignment="TOP_RIGHT"
                    styleClass="default-padding, title-font" >
