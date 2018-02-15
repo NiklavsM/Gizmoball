@@ -1,5 +1,6 @@
 package gui.panel;
 
+import gui.PlayStage;
 import gui.Theme;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -17,17 +18,16 @@ import java.util.Observer;
 public class BoardCanvasView extends Canvas implements Observer {
 
     private static final long serialVersionUID = 1L;
-    protected IGameModel gm;
+    protected IGameModel gameModel;
     GraphicsContext gc = this.getGraphicsContext2D();
 
     public BoardCanvasView(int width, int height, IGameModel gameModel) {
         super(width, height);
 
         gameModel.addObserver(this);
-        gm = gameModel;
+        this.gameModel = gameModel;
         redraw();
     }
-
 
     public void redraw() {
 
@@ -41,7 +41,7 @@ public class BoardCanvasView extends Canvas implements Observer {
         // Draw all the vertical lines
         gc.setFill(Theme.Colors.BLACK);
 
-        for (IGizmo gizmo : gm.getGizmos()) {
+        for (IGizmo gizmo : gameModel.getGizmos()) {
             xPoints = new double[gizmo.getDots().size()];
             yPoints = new double[gizmo.getDots().size()];
             IGizmo.Type type = gizmo.getType();

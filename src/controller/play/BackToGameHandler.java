@@ -9,21 +9,18 @@ import model.GameModel;
 import model.IGameModel;
 
 public class BackToGameHandler implements EventHandler<ActionEvent> {
-    private ToolBar box;
-    private GameBar bar;
-    private IGameModel gameModel;
 
-    public BackToGameHandler(ToolBar box, GameBar bar, IGameModel gameModel) {
-        this.box = box;
-        this.bar = bar;
+    private final IGameModel gameModel;
+    private Callback callback;
+
+    public BackToGameHandler(IGameModel gameModel, Callback callback) {
         this.gameModel = gameModel;
+        this.callback = callback;
     }
 
     @Override
     public void handle(ActionEvent event) {
-        box.toBack();
-        box.getParent().getChildrenUnmodifiable().forEach(e -> e.setEffect(new GaussianBlur(0))); // remove blur from toolbar
-        bar.disabled(false);
         gameModel.startTimer();
+        callback.call();
     }
 }

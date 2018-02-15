@@ -1,10 +1,6 @@
 package gui.menu;
 
-import controller.play.BackToGameHandler;
-import controller.play.ExitGameHandler;
-import controller.play.LoadProgressHandler;
-import controller.play.SaveProgressHandler;
-import controller.play.ToEditorModeHandler;
+import controller.play.*;
 import gui.PlayStage;
 import gui.Theme;
 import gui.toolbar.GizmoVerticalToolBar;
@@ -42,9 +38,11 @@ public class PauseMenu extends GizmoVerticalToolBar {
 
     private void setup() {
 
-        addItem("Back", "back-button", new BackToGameHandler(this, playStage.getGameBar(), gameModel));
+        Callback callback = new BackCallback(this, playStage.getGameBar());
+
+        addItem("Back", "back-button", new BackToGameHandler(gameModel, callback));
         addItem("Save", "save-progress-button", new SaveProgressHandler());
-        addItem("Load", "load-game-button", new LoadProgressHandler(gameModel));
+        addItem("Load", "load-game-button", new LoadProgressHandler(gameModel, callback));
         addItem("Editor", "to-editor-button", new ToEditorModeHandler(playStage));
         addItem("Exit", "exit-game-button", new ExitGameHandler());
     }

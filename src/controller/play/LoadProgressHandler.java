@@ -13,9 +13,11 @@ import java.io.FileNotFoundException;
 public class LoadProgressHandler implements EventHandler<ActionEvent> {
 
     private final IGameModel gameModel;
+    private Callback callback;
 
-    public LoadProgressHandler(IGameModel gameModel) {
+    public LoadProgressHandler(IGameModel gameModel, Callback callback) {
         this.gameModel = gameModel;
+        this.callback = callback;
     }
 
     @Override
@@ -29,6 +31,7 @@ public class LoadProgressHandler implements EventHandler<ActionEvent> {
             GameLoader gl = new GameLoader(gameModel, new FileInputStream(file));
             try {
                 gl.load();
+                callback.call();
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
