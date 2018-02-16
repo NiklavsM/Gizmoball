@@ -215,7 +215,8 @@
 
     <center>
         <Canvas width="500"
-                height="500" />
+                height="500"
+                fx:id="canvas"/>
     </center>
 
     <bottom>
