@@ -32,6 +32,9 @@ public class GameModel extends Observable implements IGameModel {
 
     public void addGizmo(IGizmo gizmo) {
         gizmos.put(gizmo.getId(), (Gizmo) gizmo);
+
+        setChanged();
+        notifyObservers();
     }
 
     @Override

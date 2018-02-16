@@ -1,15 +1,19 @@
 package strath.cs308.gizmoball.view;
 
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import strath.cs308.gizmoball.controller.GizmoSelectorEventHandler;
 import strath.cs308.gizmoball.controller.TopToolbarEventHandler;
 import strath.cs308.gizmoball.model.IGameModel;
+import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
 import java.io.IOException;
 import java.util.Observable;
@@ -28,6 +32,7 @@ public class EditorView implements IEditorView, Observer
             root = FXMLLoader.load(getClass().getResource("/view/editorview.fxml"));
             canvas = (Canvas) root.lookup("#canvas");
             this.gameModel = gameModel;
+            this.gameModel.addObserver(this);
 
             Scene scene = new Scene(root);
 
@@ -48,10 +53,15 @@ public class EditorView implements IEditorView, Observer
 
     private void attachHandlers() {
         Platform.runLater(() -> {
-        root.lookupAll(".top-toolbar-button")
-                .forEach(node -> {
-                    ((Button) node).setOnMouseClicked(new TopToolbarEventHandler(gameModel, this));
-                });
+            root.lookupAll(".top-toolbar-button")
+                    .forEach(node -> {
+                        node.setOnMouseClicked(new TopToolbarEventHandler(gameModel, this));
+                    });
+
+            root.lookupAll("#addGizmoOptions Button")
+                    .forEach(node -> {
+                        node.setOnMouseClicked(new GizmoSelectorEventHandler(gameModel,this));
+                    });
 
         });
     }
@@ -59,6 +69,16 @@ public class EditorView implements IEditorView, Observer
     @Override
     public void switchToPlay() {
         PlayView playView = new PlayView((Stage) root.getScene().getWindow(), gameModel);
+    }
+
+    @Override
+    public void setCanvasMode(EventHandler<MouseEvent> canvasStrategy) {
+        canvas.setOnMouseClicked(canvasStrategy);
+    }
+
+    @Override
+    public double getLPerPixelRatio() {
+        return canvas.getWidth() / 20.0;
     }
 
     @Override

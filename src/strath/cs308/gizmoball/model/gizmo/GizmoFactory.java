@@ -3,13 +3,12 @@ package strath.cs308.gizmoball.model.gizmo;
 import strath.cs308.gizmoball.model.Ball;
 import strath.cs308.gizmoball.model.Flipper;
 
-public class GizmoFactory {
+import java.rmi.server.UID;
+import java.util.UUID;
+
+public class GizmoFactory implements IGizmoFactory {
 
     private static final GizmoFactory factory = new GizmoFactory();
-
-    private GizmoFactory() {
-
-    }
 
     public static GizmoFactory getInstance() {
         return factory;
@@ -29,6 +28,10 @@ public class GizmoFactory {
                 return new Flipper(x, y,Flipper.Orientation.RIGHT, id); //FIXME
         }
         throw new IllegalArgumentException("no absorber nor ball please");
+    }
+
+    public Gizmo createGizmo(IGizmo.Type type, double x, double y) {
+        return createGizmo(type, x, y, UUID.randomUUID().toString());
     }
 
     public Gizmo createGizmo(IGizmo.Type type, double x1, double y1, double x2, double y2, String id) {

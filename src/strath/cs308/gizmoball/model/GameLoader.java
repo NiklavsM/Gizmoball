@@ -8,8 +8,8 @@ import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static strath.cs308.gizmoball.model.IGizmo.Type.ABSORBER;
-import static strath.cs308.gizmoball.model.IGizmo.Type.BALL;
+import static strath.cs308.gizmoball.model.gizmo.IGizmo.Type.ABSORBER;
+import static strath.cs308.gizmoball.model.gizmo.IGizmo.Type.BALL;
 
 public class GameLoader {
 
