@@ -77,8 +77,8 @@ public class EditorView implements IEditorView, Observer
     }
 
     @Override
-    public double getLPerPixelRatio() {
-        return canvas.getWidth() / 20.0;
+    public double getPixelRatioFor(double valueToComapre) {
+        return canvas.getWidth() / valueToComapre;
     }
 
     @Override

@@ -7,5 +7,5 @@ public interface IEditorView {
 
     void switchToPlay();
     void setCanvasMode(EventHandler<MouseEvent> canvasStrategy);
-    double getLPerPixelRatio();
+    double getPixelRatioFor(double valueToCompare);
 }

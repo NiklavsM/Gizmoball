@@ -19,8 +19,8 @@ public class RemoveGizmoStrategy implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent mouseEvent) {
 
-        double pointX = Math.floor(mouseEvent.getX() / editorView.getLPerPixelRatio());
-        double pointY = Math.floor(mouseEvent.getY() / editorView.getLPerPixelRatio());
+        double pointX = Math.floor(mouseEvent.getX() / editorView.getPixelRatioFor(20.0));
+        double pointY = Math.floor(mouseEvent.getY() / editorView.getPixelRatioFor(20.0));
 
         IGizmo gizmo = gameModel.getGizmo(pointX, pointY);
         gameModel.remove(gizmo.getId());
