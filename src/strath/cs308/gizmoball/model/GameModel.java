@@ -224,6 +224,9 @@ public class GameModel extends Observable implements IGameModel {
     @Override
     public void rotate(String id) {
         gizmos.get(id).rotate();
+
+        setChanged();
+        notifyObservers();
     }
 
 }
