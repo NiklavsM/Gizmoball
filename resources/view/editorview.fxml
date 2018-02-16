@@ -167,7 +167,8 @@
                         scaleY="0.7"
                         GridPane.columnIndex="0"
                         GridPane.rowIndex="0"
-                        styleClass="add-button">
+                        fx:id="addToolButton"
+                        styleClass="tool-button, add-button">
                     <tooltip>
                         <Tooltip text="Add tool" />
                     </tooltip>
@@ -179,7 +180,8 @@
                         scaleY="0.7"
                         GridPane.columnIndex="0"
                         GridPane.rowIndex="1"
-                        styleClass="connect-button">
+                        fx:id="connectToolButton"
+                        styleClass="tool-button, connect-button">
                     <tooltip>
                         <Tooltip text="Connect tool" />
                     </tooltip>
@@ -191,7 +193,8 @@
                         scaleY="0.7"
                         GridPane.columnIndex="0"
                         GridPane.rowIndex="2"
-                        styleClass="select-button">
+                        fx:id="selectToolButton"
+                        styleClass="tool-button, select-button">
                     <tooltip>
                         <Tooltip text="Select tool" />
                     </tooltip>
@@ -203,9 +206,23 @@
                         scaleY="0.7"
                         GridPane.columnIndex="0"
                         GridPane.rowIndex="3"
-                        styleClass="rotate-button">
+                        fx:id="rotateToolButton"
+                        styleClass="tool-button, rotate-button">
                     <tooltip>
                         <Tooltip text="Rotate tool" />
+                    </tooltip>
+                </Button>
+
+                <Button minHeight="24"
+                        minWidth="24"
+                        scaleX="0.7"
+                        scaleY="0.7"
+                        GridPane.columnIndex="0"
+                        GridPane.rowIndex="4"
+                        fx:id="removeToolButton"
+                        styleClass="tool-button, clear-button">
+                    <tooltip>
+                        <Tooltip text="Remove tool" />
                     </tooltip>
                 </Button>
 

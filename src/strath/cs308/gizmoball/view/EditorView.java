@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GizmoSelectorEventHandler;
+import strath.cs308.gizmoball.controller.ToolModeEventHandler;
 import strath.cs308.gizmoball.controller.TopToolbarEventHandler;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
@@ -54,14 +55,13 @@ public class EditorView implements IEditorView, Observer
     private void attachHandlers() {
         Platform.runLater(() -> {
             root.lookupAll(".top-toolbar-button")
-                    .forEach(node -> {
-                        node.setOnMouseClicked(new TopToolbarEventHandler(gameModel, this));
-                    });
+                    .forEach(node -> node.setOnMouseClicked(new TopToolbarEventHandler(gameModel, this)));
 
             root.lookupAll("#addGizmoOptions Button")
-                    .forEach(node -> {
-                        node.setOnMouseClicked(new GizmoSelectorEventHandler(gameModel,this));
-                    });
+                    .forEach(node -> node.setOnMouseClicked(new GizmoSelectorEventHandler(gameModel,this)));
+
+            root.lookupAll(".tool-button")
+                    .forEach(node -> node.setOnMouseClicked(new ToolModeEventHandler(gameModel, this)));
 
         });
     }

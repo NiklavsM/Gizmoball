@@ -39,7 +39,12 @@ public class GameModel extends Observable implements IGameModel {
 
     @Override
     public boolean remove(String id) {
-        if (gizmos.remove(id) != null) return true;
+        if (gizmos.remove(id) != null) {
+
+            setChanged();
+            notifyObservers();
+            return true;
+        }
         return false;
     }
 
@@ -47,7 +52,7 @@ public class GameModel extends Observable implements IGameModel {
         return new HashSet<>(gizmos.values());
     }
 
-    public IGizmo getGizmo(int x, int y) {
+    public IGizmo getGizmo(double x, double y) {
         for (Map.Entry<String, Gizmo> entrySet : gizmos.entrySet()) {
             Gizmo gizmo = entrySet.getValue();
 

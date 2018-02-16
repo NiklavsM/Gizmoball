@@ -15,6 +15,8 @@ public interface IGameModel {
 
     Set<IGizmo> getGizmos();
 
+    IGizmo getGizmo(double x, double y);
+
     void addGizmo(IGizmo gizmo);
 
     boolean remove(String id);
