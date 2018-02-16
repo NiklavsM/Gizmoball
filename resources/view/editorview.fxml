@@ -30,6 +30,7 @@
             <ToolBar>
                 <GridPane vgap="5"
                           hgap="16"
+                          fx:id="topToolbar"
                           styleClass="default-padding">
 
                     <VBox GridPane.columnIndex="0"
@@ -40,7 +41,8 @@
                                 minWidth="24"
                                 minHeight="24"
                                 maxHeight="24"
-                                styleClass="play-button, regular-font">
+                                fx:id="topPlayButton"
+                                styleClass="play-button, regular-font, top-toolbar-button">
                         </Button>
                         <Label text="Play" />
                     </VBox>
@@ -53,7 +55,7 @@
                                 minWidth="24"
                                 minHeight="24"
                                 maxHeight="24"
-                                styleClass="load-button, regular-font">
+                                styleClass="load-button, regular-font, top-toolbar-button">
                         </Button>
                         <Label text="Load" />
                     </VBox>
@@ -66,7 +68,7 @@
                                 minWidth="24"
                                 minHeight="24"
                                 maxHeight="24"
-                                styleClass="save-button, regular-font">
+                                styleClass="save-button, regular-font, top-toolbar-button">
                         </Button>
                         <Label text="Save" />
                     </VBox>
@@ -79,7 +81,7 @@
                                 minWidth="24"
                                 minHeight="24"
                                 maxHeight="24"
-                                styleClass="saveas-button, regular-font">
+                                styleClass="saveas-button, regular-font, top-toolbar-button">
                         </Button>
                         <Label text="Save As" />
                     </VBox>
@@ -92,7 +94,7 @@
                                 minWidth="24"
                                 minHeight="24"
                                 maxHeight="24"
-                                styleClass="clear-button, regular-font">
+                                styleClass="clear-button, regular-font, top-toolbar-button">
                         </Button>
                         <Label text="Clear Board" />
                     </VBox>
@@ -105,7 +107,7 @@
                                 minWidth="24"
                                 minHeight="24"
                                 maxHeight="24"
-                                styleClass="undo-button, regular-font">
+                                styleClass="undo-button, regular-font, top-toolbar-button">
                         </Button>
                         <Label text="Undo" />
                     </VBox>
@@ -118,7 +120,7 @@
                                 minWidth="24"
                                 minHeight="24"
                                 maxHeight="24"
-                                styleClass="redo-button, regular-font">
+                                styleClass="redo-button, regular-font, top-toolbar-button">
                         </Button>
                         <Label text="Redo" />
                     </VBox>
@@ -131,7 +133,7 @@
                                 minWidth="24"
                                 minHeight="24"
                                 maxHeight="24"
-                                styleClass="grid-button, regular-font">
+                                styleClass="grid-button, regular-font, top-toolbar-button">
                         </Button>
                         <Label text="Toggle Grid" />
                     </VBox>
@@ -144,7 +146,7 @@
                                 minWidth="24"
                                 minHeight="24"
                                 maxHeight="24"
-                                styleClass="console-button, regular-font">
+                                styleClass="console-button, regular-font, top-toolbar-button">
                         </Button>
                         <Label text="Console" />
                     </VBox>

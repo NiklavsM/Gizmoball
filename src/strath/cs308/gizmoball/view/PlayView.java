@@ -53,7 +53,6 @@ public class PlayView implements IPlayView, Observer{
             stage.setWidth(root.getWidth());
             stage.setHeight(root.getHeight());
             stage.setTitle("Gizmoball - Play");
-            stage.setScene(scene);
             stage.show();
 
             Platform.runLater(this::attachEventHandlers);
@@ -65,10 +64,13 @@ public class PlayView implements IPlayView, Observer{
     }
 
     private void attachEventHandlers() {
-        root.lookupAll("#gameMenu > Button")
-                .forEach(node -> ((Button) node).setOnAction(new GameBarEventHandler(gameModel, this)));
+        Platform.runLater(() -> {
+            root.lookupAll("#gameMenu > Button")
+                    .forEach(node -> ((Button) node).setOnAction(new GameBarEventHandler(gameModel, this)));
 
-        root.lookupAll("#pauseMenuItemHolder > Button").forEach(node -> ((Button) node).setOnAction(new PauseMenuEventHandler(gameModel, this)));
+            root.lookupAll("#pauseMenuItemHolder > Button").forEach(node -> ((Button) node).setOnAction(new PauseMenuEventHandler(gameModel, this)));
+
+        });
     }
 
     @Override
