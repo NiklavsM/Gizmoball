@@ -105,7 +105,7 @@ public class GameModel extends Observable implements IGameModel {
         if (absorberCollision) {
 //            gizmos.remove(ball.getId());
 //            ball = null;
-            ball.setVelo(new Vect(0.0, 10.0));
+            ball.setVelo(new Vect(0.0, -0.1));
             setBallInAbsorber();
         }
 
