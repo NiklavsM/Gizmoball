@@ -16,7 +16,7 @@ public class Ball extends Gizmo {
     private double radius;
     private Circle circle;
 
-    public Ball(double x, double y, double xv, double yv) {
+    public Ball(double x, double y,double xv, double yv) {
         this(x, y, xv, yv, generateID());
     }
 
