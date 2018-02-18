@@ -4,29 +4,19 @@ import controller.play.KeyboardTriggerEventHandler;
 import javafx.application.Application;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import model.Ball;
+import model.Flipper;
 import model.GameModel;
 import model.IGameModel;
-import model.Flipper;
-import model.gizmo.Absorber;
-import model.gizmo.CircleGizmo;
-import model.gizmo.IGizmo;
-import model.gizmo.Square;
-import model.gizmo.Triangle;
-import java.io.FileNotFoundException;
+import model.gizmo.*;
 
 public class GizmoView extends Application {
+
     private IGameModel gameModel;
     private Stage currentStage;
 
     public GizmoView() {
-//		this.gameModel = makeModel();
-        try {
-            this.gameModel = IGameModel.loadGame("resources/default.gizmo");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        this.gameModel = makeModel();
     }
 
     @Override
@@ -57,6 +47,7 @@ public class GizmoView extends Application {
         GameModel gameModel = new GameModel();
         IGizmo triangle;
 
+        gameModel.addGizmo(new Ball(1, 1, 4, 4));
         gameModel.addGizmo(new Square(15, 5));
         gameModel.addGizmo(new Square(14, 6));
         gameModel.addGizmo(new Square(12, 8));
@@ -126,11 +117,12 @@ public class GizmoView extends Application {
 
         // uncomment to block the ball between two gizmos
         //gameModel.addGizmo(new Square(3,1));
-        gameModel.addGizmo(new CircleGizmo(13, 5));
+        gameModel.addGizmo(new CircleGizmo(12, 6));
         triangle = new Triangle(19, 0);
         triangle.rotate();
         gameModel.addGizmo(triangle);
         gameModel.addGizmo(new Absorber(0, 19, 20, 20));
+        gameModel.addGizmo(new Ball(5, 1, 4, 4));
 
         return gameModel;
     }

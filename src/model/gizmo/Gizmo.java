@@ -16,6 +16,7 @@ public abstract class Gizmo implements IGizmo {
     private double y1;
     private double x2;
     private double y2;
+    private int scoreValue;
 
     public Gizmo(double x1, double y1, double x2, double y2, String id) {
         this.x1 = x1;
@@ -110,4 +111,7 @@ public abstract class Gizmo implements IGizmo {
     }
 
 
+    public int getScoreValue() {
+        return 1;
+    }
 }

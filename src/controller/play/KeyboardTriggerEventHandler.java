@@ -21,9 +21,7 @@ public class KeyboardTriggerEventHandler implements EventHandler<KeyEvent> {
                     .stream()
                     .filter(ITriggerable.class::isInstance)
                     .map(ITriggerable.class::cast)
-                    .forEach(iTriggerable -> {
-                        iTriggerable.trigger(ITriggerable.Event.KEY_K);
-                    });
+                    .forEach(iTriggerable -> iTriggerable.trigger(ITriggerable.Event.KEY_K));
         }
 
         if (keyEvent.getCode().equals(KeyCode.L)) {
@@ -31,9 +29,7 @@ public class KeyboardTriggerEventHandler implements EventHandler<KeyEvent> {
                     .stream()
                     .filter(ITriggerable.class::isInstance)
                     .map(ITriggerable.class::cast)
-                    .forEach(iTriggerable -> {
-                        iTriggerable.trigger(ITriggerable.Event.KEY_L);
-                    });
+                    .forEach(iTriggerable -> iTriggerable.trigger(ITriggerable.Event.KEY_L));
         }
 
         if (keyEvent.getCode().equals(KeyCode.SPACE)) {

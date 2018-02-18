@@ -60,7 +60,7 @@ public class BoardMouseClickHandler implements EventHandler<MouseEvent> {
         if (!gameModel.isOccupied(squareX, squareY)) {
             IGizmo.Type gizmoType = editorModel.getGizmoGridItem();
 
-            Gizmo gizmo = null;
+            IGizmo gizmo = null;
 
             switch (gizmoType) {
                 case Square:
