@@ -34,7 +34,7 @@ Niklavs Meiers @isb15151
  
  1. Starts at the "Editor mode"
  
- 2. Clicks the "Add tool" button in the option menu on the left then selects the icon with the gizmo to be added on the map (square, triangle, circle, flipper or ball)
+ 2. Clicks the "Add tool" button in the option menu on the left then selects the icon with the gizmo to be added on the map (square, triangle, circle or flipper)
  
  3. When user moves the mouse over the board the corresponding tile lights up green if the tile is free and red if the tile is already occupied by another gizmo
  
@@ -83,21 +83,99 @@ Niklavs Meiers @isb15151
  
 **Purpose:** Test whether connecting gizmo to an other gizmo or key press works
 
-**Test inputs:** User
+**Test inputs:** User:
 
+1. Starts at the "Editor mode"
 
+2. Clicks "Connect tool" button
 
-**Expected outputs:**
+3. When mouse moves over the board the corresponding tile lights up yellow
+
+4. When user presses on tile that is occupied by a gizmo it lights up green, at the bottom of the screen "Click on another gizmo or press a key to create a trigger"
+text appears.
+
+5. User then clicks on another gizmo or presses a key on the keyboard respectively
+
+6. User then launches the play mode by pressing the "Play mode" button. This takes user to the playmode screen that no longer have have all the editing tools
+
+7. User then presses the key that was liked for instance to the flipper gizmo and sees does it start to rotate or in case the gizmo was liked to another gizmo whether
+the gizmo performs an action when the liked gizmo is touched by the ball.
+
+**Expected outputs:** Whenever the liked key is pressed or linked gizmo is touched by ball the corresponding gizmo performs its action.
 
 ###Test 5
  
-**Purpose:**
+**Purpose:** Test whether clear playing area functionality works
 
-**Test inputs:**
+**Test inputs:** User:
 
-**Expected outputs:**
+1. Starts at the "Editor mode" 
 
-###Test 6
+2. Adds couple of gizmos on the map
+
+3. Clicks on "Clear playing area" button
+
+**Expected outputs:** All the gizmos are removed from the map leaving it completely empty.
+
+###Test 6 // Discuss this
+ 
+**Purpose:** Test whether adding a ball functionality works
+
+**Test inputs:** User:
+
+1. Starts at the "Editor mode" 
+
+2. Selects and ball gizmo icon
+
+3. User then clicks on the board where he wish the ball to be added. If the place is occupie by another gizmo the tile blinks red if not the ball is added to the board
+
+4. Next dialog box should appear asking the user to input the balls starting velocity by specifying the length of x and y vectors
+
+5. In special case when user clicks on the absorber the ball is placed in its lower right corner and no dialog box appears. The starting velocity is set to 50L/s upwards
+
+6. The user then clicks the "Playing mode" button and launches the game
+
+**Expected outputs:** Ball starts from the specified position with the correct velocity. In case ball was added inside the absorber in launches when the absorber is triggered
+with the velocity 50L/s upwards
+
+
+###Test 7
+ 
+**Purpose:** Test whether move gizmo functionality works
+
+**Test inputs:** User:
+
+1. Starts at the "Editor mode" 
+
+2. Adds couple of gizmos to the board
+
+3. Selects "Move gizmos tool" button
+
+4. Clicks on a gizmo he wishes to move the tiles that gizmo occupies turns yellow
+
+5. User then clicks on the tile that is occupied by another gizmo the tile turns read indicating the location is not available
+
+6. User clicks on a tile that is free, the gizmo disappears from the previous location and appears where the user had clicked
+
+**Expected outputs:** The gizmo has disappeared from the previous location ad no occupies the new location
+
+###Test 8
+ 
+**Purpose:** Test whether rotate gizmo functionality works
+
+**Test inputs:** User:
+
+1. Starts at the "Editor mode" 
+
+2. Adds all the possible gizmos on the board
+
+3. Selects "Rotate tool"
+
+4. Then clicks on each gizmo to see whether it rotates by 90° each click
+
+**Expected outputs:** Each click on the gizmo should rotate it by 90°
+
+###Test 9
  
 **Purpose:**
 
@@ -105,7 +183,7 @@ Niklavs Meiers @isb15151
 
 **Expected outputs:**
 
-###Test 7
+###Test 10
  
 **Purpose:**
 
