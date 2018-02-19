@@ -79,6 +79,7 @@ public class BoardCanvasView extends Canvas implements Observer {
         double[] xPoints = renderDetails.getxPoints();
         double[] yPoints = renderDetails.getyPoints();
 
+        gc.setFill(renderDetails.getFill());
         gc.fillOval(xPoints[0] - diameter / 2, yPoints[0] - diameter / 2, diameter, diameter);
     }
 
