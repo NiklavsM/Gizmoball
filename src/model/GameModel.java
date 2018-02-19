@@ -277,13 +277,12 @@ public class GameModel extends Observable implements IGameModel {
 
     @Override
     public void rotate(String id) {
-        if (entities instanceof Gizmo) {
-            ((Gizmo) entities.get(id)).rotate();
-
+        IEntity entity = entities.get(id);
+        if (entity instanceof Gizmo) {
+            ((Gizmo) entity).rotate();
             this.setChanged();
             this.notifyObservers();
         }
-
     }
 
     @Override

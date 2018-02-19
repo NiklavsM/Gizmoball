@@ -23,9 +23,15 @@ public class LoadProgressHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
-        gameModel.reset();
         File file = getFileCllbck.call();
+
+        if(file == null) {
+            System.out.println("Loading file dialog cancelled");
+            return;
+        }
+
         try {
+            gameModel.reset();
             GameLoader gl = new GameLoader(gameModel, new FileInputStream(file));
             try {
                 gl.load();
