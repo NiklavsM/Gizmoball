@@ -54,7 +54,7 @@ public class BoardCanvasView extends Canvas implements Observer {
 
             gc.setFill(renderDetails.getFill());
 
-            if (type == IEntity.Type.Flipper) {
+            if (type == IEntity.Type.FLIPPER) {
                 for (int k = 0; k < numberOfEdges; k++) {
                     gc.fillOval(xPoints[k] - diameter / 2, yPoints[k] - diameter / 2, diameter, diameter);
                 }
@@ -64,7 +64,7 @@ public class BoardCanvasView extends Canvas implements Observer {
                 gc.strokeLine(xPoints[0], yPoints[0], xPoints[1], yPoints[1]);
             }
 
-            if (type == IEntity.Type.Circle || type == IEntity.Type.Ball) {
+            if (type == IEntity.Type.CIRCLE || type == IEntity.Type.BALL) {
                 gc.fillOval(xPoints[0] - diameter / 2, yPoints[0] - diameter / 2, diameter, diameter);
             } else {
                 gc.fillPolygon(xPoints, yPoints, numberOfEdges);

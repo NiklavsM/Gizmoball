@@ -15,6 +15,6 @@ public class CircleGizmoHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
-        editorModel.setGizmoGridItem(IEntity.Type.Circle);
+        editorModel.setGizmoGridItem(IEntity.Type.CIRCLE);
     }
 }

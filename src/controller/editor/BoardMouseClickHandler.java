@@ -63,13 +63,13 @@ public class BoardMouseClickHandler implements EventHandler<MouseEvent> {
             IEntity gizmo = null;
 
             switch (gizmoType) {
-                case Square:
+                case SQUARE:
                     gizmo = new Square(squareX, squareY);
                     break;
-                case Triangle:
+                case TRIANGLE:
                     gizmo = new Triangle(squareX, squareY);
                     break;
-                case Circle:
+                case CIRCLE:
                     gizmo = new CircleGizmo(squareX, squareY);
                     break;
             }

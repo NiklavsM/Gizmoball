@@ -23,7 +23,7 @@ public class GizmoPanel extends GizmoGrid {
 
     private void setup() {
         Rectangle squareShape = new Rectangle(25, 25, Theme.Colors.RED);
-        addItem(squareShape, "Square", new SquareGizmoListener(editorModel));
+        addItem(squareShape, "SQUARE", new SquareGizmoListener(editorModel));
 
         Circle circleShape = new Circle(12.5, Theme.Colors.BLUE);
         addItem(circleShape, "Dot", new CircleGizmoHandler(editorModel));
@@ -33,20 +33,20 @@ public class GizmoPanel extends GizmoGrid {
         triangle.setFitWidth(25);
         triangle.setFitHeight(25);
         triangle.setImage(triangleShape);
-        addItem(triangle, "Triangle", new TriangleGizmoHandler(editorModel));
+        addItem(triangle, "TRIANGLE", new TriangleGizmoHandler(editorModel));
 
         Rectangle absorber = new Rectangle(25, 15, Theme.Colors.PINK);
-        addItem(absorber, "Absorber", new AbsorberGizmoHandler(editorModel));
+        addItem(absorber, "ABSORBER", new AbsorberGizmoHandler(editorModel));
 
         Image flipperShape = new Image(getClass().getClassLoader().getResourceAsStream("assets/icons/flipper.png"));
         ImageView flipper = new ImageView();
         flipper.setFitWidth(30);
         flipper.setFitHeight(30);
         flipper.setImage(flipperShape);
-        addItem(flipper, "Flipper", new FlipperGizmoHandler(editorModel));
+        addItem(flipper, "FLIPPER", new FlipperGizmoHandler(editorModel));
 
         Circle ballShape = new Circle(9, Theme.Colors.ORANGE);
-        addItem(ballShape, "Ball", new BallGizmoHandler());
+        addItem(ballShape, "BALL", new BallGizmoHandler());
 
 
         getStyleClass().add("GizmoPane");

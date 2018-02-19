@@ -86,7 +86,7 @@ import java.util.Set;
 
         @Override
         public IEntity.Type getType() {
-            return IEntity.Type.Flipper;
+            return IEntity.Type.FLIPPER;
         }
 
         @Override

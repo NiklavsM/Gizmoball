@@ -66,9 +66,9 @@ public class GizmoView extends Application {
         gameModel.addEntity(new Flipper(10, 4, Flipper.Orientation.RIGHT));
         gameModel.addEntity(new Flipper(16, 16, Flipper.Orientation.RIGHT));
 
-//        gameModel.addEntity(new Flipper(10,8));
-//        gameModel.addEntity(new Flipper(14,8));
-//        gameModel.addEntity(new Flipper(16,8));
+//        gameModel.addEntity(new FLIPPER(10,8));
+//        gameModel.addEntity(new FLIPPER(14,8));
+//        gameModel.addEntity(new FLIPPER(16,8));
         gameModel.addEntity(new Flipper(18, 8, Flipper.Orientation.RIGHT));
         gameModel.addEntity(new Flipper(14, 12, Flipper.Orientation.RIGHT));
         gameModel.addEntity(new Flipper(16, 14, Flipper.Orientation.RIGHT));
@@ -112,7 +112,7 @@ public class GizmoView extends Application {
         }
 
         // uncomment to block the ball between two gizmos
-        //gameModel.addEntity(new Square(3,1));
+        //gameModel.addEntity(new SQUARE(3,1));
         gameModel.addEntity(new CircleGizmo(12, 6));
         triangle = new Triangle(19, 0);
         triangle.rotate();

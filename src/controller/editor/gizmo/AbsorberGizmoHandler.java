@@ -15,6 +15,6 @@ public class AbsorberGizmoHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
-        editorModel.setGizmoGridItem(IEntity.Type.Triangle);
+        editorModel.setGizmoGridItem(IEntity.Type.TRIANGLE);
     }
 }

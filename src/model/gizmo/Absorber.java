@@ -30,7 +30,7 @@ public class Absorber extends Gizmo {
 
     @Override
     public IEntity.Type getType() {
-        return IEntity.Type.Absorber;
+        return IEntity.Type.ABSORBER;
     }
 
 }

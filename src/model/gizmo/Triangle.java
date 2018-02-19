@@ -32,7 +32,7 @@ public class Triangle extends Gizmo {
 
     @Override
     public IEntity.Type getType() {
-        return IEntity.Type.Triangle;
+        return IEntity.Type.TRIANGLE;
     }
 
 }

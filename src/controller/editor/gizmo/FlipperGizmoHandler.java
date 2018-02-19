@@ -15,6 +15,6 @@ public class FlipperGizmoHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
-        editorModel.setGizmoGridItem(IEntity.Type.Flipper);
+        editorModel.setGizmoGridItem(IEntity.Type.FLIPPER);
     }
 }

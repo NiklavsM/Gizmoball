@@ -80,7 +80,7 @@ public class Ball extends Entity {
 
     @Override
     public Type getType() {
-        return Type.Ball;
+        return Type.BALL;
     }
 
 

@@ -24,6 +24,6 @@ public class Walls extends Gizmo {
 
     @Override
     public IEntity.Type getType() {
-        return IEntity.Type.Walls;
+        return IEntity.Type.WALLS;
     }
 }

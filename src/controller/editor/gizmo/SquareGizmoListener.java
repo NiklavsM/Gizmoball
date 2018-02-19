@@ -16,6 +16,6 @@ public class SquareGizmoListener implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
-        editorModel.setGizmoGridItem(IEntity.Type.Square);
+        editorModel.setGizmoGridItem(IEntity.Type.SQUARE);
     }
 }

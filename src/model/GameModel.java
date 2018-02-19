@@ -1,6 +1,5 @@
 package model;
 
-import model.gizmo.Gizmo;
 import model.gizmo.IEntity;
 import model.gizmo.Walls;
 import physics.Circle;
@@ -112,7 +111,7 @@ public class GameModel extends Observable implements IGameModel {
             setBallInAbsorber();
         }
 
-        absorberCollision = nextIEntity != null && nextIEntity.getType() == IEntity.Type.Absorber;
+        absorberCollision = nextIEntity != null && nextIEntity.getType() == IEntity.Type.ABSORBER;
     }
 
     private void moveMovables(Double time) {
@@ -239,7 +238,7 @@ public class GameModel extends Observable implements IGameModel {
         IEntity absorber = null;
 
         for (IEntity gizmo : entities.values()) {
-            if (gizmo.getType() == IEntity.Type.Absorber && isBallInAbsorber(gizmo))
+            if (gizmo.getType() == IEntity.Type.ABSORBER && isBallInAbsorber(gizmo))
                 absorber = gizmo;
         }
 

@@ -22,7 +22,7 @@ public class RenderDetails {
     public RenderDetails(IEntity entity) {
         this.entity = entity;
 
-        if (entity.getType() == IEntity.Type.Ball) {
+        if (entity.getType() == IEntity.Type.BALL) {
             makeBall();
         } else {
             makeGizmo();
@@ -73,22 +73,22 @@ public class RenderDetails {
         Paint fill;
 
         switch (type) {
-            case Square:
+            case SQUARE:
                 fill = Theme.Colors.RED;
                 break;
-            case Absorber:
+            case ABSORBER:
                 fill = Theme.Colors.PINK;
                 break;
-            case Triangle:
+            case TRIANGLE:
                 fill = Theme.Colors.BLUE;
                 break;
-            case Circle:
+            case CIRCLE:
                 fill = Theme.Colors.GREEN;
                 break;
-            case Ball:
+            case BALL:
                 fill = Theme.Colors.WHITE;
                 break;
-            case Flipper:
+            case FLIPPER:
                 fill = Theme.Colors.ORANGE;
                 break;
             default:

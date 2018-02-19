@@ -8,8 +8,8 @@ import java.io.InputStream;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static model.gizmo.IEntity.Type.Absorber;
-import static model.gizmo.IEntity.Type.Ball;
+import static model.gizmo.IEntity.Type.ABSORBER;
+import static model.gizmo.IEntity.Type.BALL;
 
 public class GameLoader {
 
@@ -51,8 +51,8 @@ public class GameLoader {
         nameCoordCoordCommands.add(MOVE_COMMAND);
 
         gizmoCreationCommandsAdvanced = new HashSet<>();
-        gizmoCreationCommandsAdvanced.add(Absorber.toString());
-        gizmoCreationCommandsAdvanced.add(Ball.toString());
+        gizmoCreationCommandsAdvanced.add(ABSORBER.toString());
+        gizmoCreationCommandsAdvanced.add(BALL.toString());
     }
 
     public void load() throws IllegalAccessException {
@@ -148,7 +148,7 @@ public class GameLoader {
                 double x2 = toValidNumber(tokens.poll());
                 double y2 = toValidNumber(tokens.poll());
 
-                if (command == "Ball") {
+                if (command == "BALL") {
 
                 } else {
                     gameModel.addEntity(gizmoFactory.createEntity(IEntity.Type.valueOf(command), x, y, x2, y2, name));
