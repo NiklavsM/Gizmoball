@@ -7,7 +7,7 @@ import physics.*;
 
 import java.util.*;
 
-public abstract class Gizmo extends Entity implements IGizmo, IEntity {
+public abstract class Gizmo extends Entity implements IGizmo {
 
     protected final String id;
     protected int rotateCount;
