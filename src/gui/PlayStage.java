@@ -1,6 +1,5 @@
 package gui;
 
-import controller.play.KeyboardTriggerEventHandler;
 import gui.menu.PauseMenu;
 import gui.panel.BoardCanvasView;
 import gui.toolbar.GameBar;

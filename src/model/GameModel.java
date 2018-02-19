@@ -1,5 +1,6 @@
 package model;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import model.gizmo.IEntity;
 import model.gizmo.Walls;
 import physics.Circle;
@@ -73,12 +74,13 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     public void moveBall() {
+        boolean isAbsorbed = false;
         Ball ball = getBall();
         double moveTime = 0.05; // 0.05 = 20 times per second as per Gizmoball
 
         IEntity nextIEntity = null;
 
-        if (ball != null && !absorberCollision) {
+        if (ball != null && !isAbsorbed) {
             CollisionDetails cd = timeUntilCollision();
 
             double tuc = cd.getTuc();
@@ -107,7 +109,7 @@ public class GameModel extends Observable implements IGameModel {
         if (absorberCollision) {
 //            entities.remove(ball.getId());
 //            ball = null;
-//            ball.setVelo(new Vect(0.0, -0.1));
+            isAbsorbed = true;
             setBallInAbsorber();
         }
 
@@ -126,7 +128,7 @@ public class GameModel extends Observable implements IGameModel {
         Ball ball = this.getBall();
         ball.setExactX(19.74);
         ball.setExactY(19.74);
-        //this.stopTimer();
+        ball.setVelo(new Vect(1.0, 1.0));
     }
 
     private void applyForces(Vect velocity, double time, Ball ball) {
