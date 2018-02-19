@@ -4,6 +4,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.StrokeLineCap;
 import strath.cs308.gizmoball.model.Dot;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
@@ -45,6 +46,10 @@ public class GizmoDrawer {
             for (int k = 0; k < i; k++) {
                 gc.fillOval(xPoints[k] - diameter / 2, yPoints[k] - diameter / 2, diameter, diameter);
             }
+            gc.setLineWidth(diameter);
+            gc.setLineCap(StrokeLineCap.BUTT);
+            gc.setStroke(ORANGE);
+            gc.strokeLine(xPoints[0], yPoints[0], xPoints[1], yPoints[1]);
         }
         if (type == IGizmo.Type.CIRCLE || type == IGizmo.Type.BALL || type == IGizmo.Type.FLIPPER) {
             gc.fillOval(xPoints[0] - diameter / 2, yPoints[0] - diameter / 2, diameter, diameter);
