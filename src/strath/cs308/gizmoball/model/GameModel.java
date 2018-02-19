@@ -65,19 +65,17 @@ public class GameModel extends Observable implements IGameModel {
         if (ball != null) {
             CollisionDetails cd = timeUntilCollision();
 
-            double tuc = cd.getTuc();
-            if (tuc > time) {
+            if (cd.getTuc() > time) {
                 // No collision ...
-                ball = moveBallForTime(ball, time);
+                ball.move(time);
                 applyForces(ball.getVelo(), time);
                 moveMovables(time);
             } else {
                 // We've got a collision in tuc
                 nextGizmo = cd.getGizmo();
-                System.out.println("Collision with gizmo:  " + nextGizmo.getId());
-                ball = moveBallForTime(ball, tuc);
+                ball.move(cd.getTuc());
                 // Post collision velocity ...
-                applyForces(cd.getVelo(), tuc);
+                applyForces(cd.getVelo(), cd.getTuc());
             }
         }
 
@@ -94,11 +92,11 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     private void moveMovables(Double time) {
-        gizmos.values().forEach(gizmo -> {
-            if (gizmo instanceof IMovable) {
-                ((IMovable) gizmo).move(time);
-            }
-        });
+        gizmos.values()
+                .stream()
+                .filter(gizmo -> gizmo instanceof IMovable && !(gizmo instanceof Ball))
+                .forEach(gizmo -> ((IMovable) gizmo).move(time));
+
     }
 
     private void applyForces(Vect velocity, double time) {
@@ -113,19 +111,6 @@ public class GameModel extends Observable implements IGameModel {
 
     }
 
-    private Ball moveBallForTime(Ball ball, double time) {
-
-        double newX;
-        double newY;
-        double xVel = ball.getVelo().x();
-        double yVel = ball.getVelo().y();
-        newX = ball.getExactX() + (xVel * time);
-        newY = ball.getExactY() + (yVel * time);
-        ball.setExactX(newX);
-        ball.setExactY(newY);
-        return ball;
-    }
-
     private CollisionDetails timeUntilCollision() {
 
         Circle ballCircle = ball.getCircle();
@@ -138,7 +123,7 @@ public class GameModel extends Observable implements IGameModel {
         for (Gizmo gizmo : gizmos.values()) {
             Set<LineSegment> lines = gizmo.getLines();
             List<Circle> circles = gizmo.getCircles();
-            if (gizmo instanceof Flipper) {
+            if (gizmo instanceof Flipper && !((Flipper) gizmo).getVelocity().equals(Vect.ZERO)) {
                 Flipper flipper = ((Flipper) gizmo);
                 Double angularVelo = flipper.getVelocity().angle().radians();
                 Vect rotationCentre = flipper.getStartPoint().getCenter();

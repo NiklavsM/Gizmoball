@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-public class Ball extends Gizmo {
+public class Ball extends Gizmo implements IMovable {
 
     private Vect velocity;
     private double radius;
@@ -83,4 +83,16 @@ public class Ball extends Gizmo {
         circles.add(circle);
     }
 
+    @Override
+    public void move(double timeInSeconds) {
+        double newX;
+        double newY;
+        double xVel = getVelo().x();
+        double yVel = getVelo().y();
+        newX = getExactX() + (xVel * timeInSeconds);
+        newY = getExactY() + (yVel * timeInSeconds);
+        setExactX(newX);
+        setExactY(newY);
+
+    }
 }
