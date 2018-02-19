@@ -26,6 +26,10 @@ public class GameModel extends Observable implements IGameModel {
 
     public void addGizmo(IGizmo gizmo) {
         if (gizmo instanceof Ball) {
+            if (ball != null) {
+                remove(ball.getId());
+            }
+
             ball = (Ball) gizmo;
         }
 

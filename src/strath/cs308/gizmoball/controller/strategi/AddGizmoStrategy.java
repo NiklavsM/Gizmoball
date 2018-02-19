@@ -25,12 +25,17 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent mouseEvent) {
 
-        double pointX = Math.floor(mouseEvent.getX() / editorView.getPixelRatioFor(20.0));
-        double pointY = Math.floor(mouseEvent.getY() / editorView.getPixelRatioFor(20.0));
+        double pointX = mouseEvent.getX() / editorView.getPixelRatioFor(20.0);
+        double pointY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
+        if (!gizmoType.equals(IGizmo.Type.Ball)){
+            pointX = Math.floor(pointX);
+            pointY = Math.floor(pointY);
+        }
 
-        if (!gizmoType.equals(IGizmo.Type.Absorber) && !gizmoType.equals(IGizmo.Type.Ball)){
+        if (!gizmoType.equals(IGizmo.Type.Absorber)){
 
             IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, pointX, pointY);
+            System.out.println(gizmo);
             gameModel.addGizmo(gizmo);
         }
 
