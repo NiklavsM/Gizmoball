@@ -3,10 +3,6 @@ package strath.cs308.gizmoball.model;
 import mit.physics.Vect;
 import strath.cs308.gizmoball.model.gizmo.Gizmo;
 
-/**
- * @author Murray Wood Demonstration of MVC and MIT Physics Collisions 2014
- */
-
 public class CollisionDetails {
     private double tuc;
     private Vect velo;
