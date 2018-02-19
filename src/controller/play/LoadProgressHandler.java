@@ -35,9 +35,11 @@ public class LoadProgressHandler implements EventHandler<ActionEvent> {
             GameLoader gl = new GameLoader(gameModel, new FileInputStream(file));
             try {
                 gl.load();
-                backCllbck.call();
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
+            }
+            finally {
+                backCllbck.call();
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

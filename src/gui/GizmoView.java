@@ -1,5 +1,6 @@
 package gui;
 
+import controller.GameLoader;
 import controller.play.KeyboardTriggerEventHandler;
 import javafx.application.Application;
 import javafx.scene.input.KeyEvent;
@@ -7,13 +8,25 @@ import javafx.stage.Stage;
 import model.*;
 import model.gizmo.*;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 public class GizmoView extends Application {
 
     private IGameModel gameModel;
     private Stage currentStage;
 
     public GizmoView() {
-        this.gameModel = makeModel();
+        gameModel = new GameModel();
+        try {
+            GameLoader gameLoader = new GameLoader(gameModel, new FileInputStream(new File("maps/default.gizmo")));
+            gameLoader.load();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

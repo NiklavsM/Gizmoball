@@ -72,10 +72,9 @@ public class GameLoader {
         try {
             while (scanner.hasNextLine()) {
 
-                line = scanner.nextLine();
+                line = scanner.nextLine().trim();
 
                 if (line.equals("")) {
-                    System.out.println("empty line");
                     continue;
                 }
 
@@ -91,7 +90,7 @@ public class GameLoader {
                         String keyMode = tokens.poll();
                         String name = tokens.poll();
                         //TODO
-                        System.out.println("connected " + keyNumber + keyMode + " to " + name);
+                        System.out.println("connected " + keyNumber + " " + keyMode + " to " + name);
                         continue;
                     }
 
@@ -156,12 +155,12 @@ public class GameLoader {
 
                 gameModel.addEntity(gizmoFactory.createEntity(gizmoCommandToEnum.get(command), x, y, x2, y2, name));
 
-                System.out.println("created " + name);
+                System.out.println("created " + command + " " + name + " at " + x + ", " + y + " -- " + x2 + ", " + y2);
                 return;
             }
 
             gameModel.addEntity(gizmoFactory.createEntity(gizmoCommandToEnum.get(command), x, y, name));
-            System.out.println("created" + name);
+            System.out.println("created " + command + " " + name + " at " + x + ", " + y);
         }
     }
 
