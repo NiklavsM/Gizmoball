@@ -27,6 +27,6 @@ public class CircleGizmo extends Gizmo {
 
     @Override
     public Type getType() {
-        return Type.CIRCLE;
+        return Type.Circle;
     }
 }

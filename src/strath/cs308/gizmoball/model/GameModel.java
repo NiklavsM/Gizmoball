@@ -92,7 +92,7 @@ public class GameModel extends Observable implements IGameModel {
             gizmos.remove(ball.getId());
             ball = null;
         }
-        absorberCollision = nextGizmo != null && nextGizmo.getType() == IGizmo.Type.ABSORBER;
+        absorberCollision = nextGizmo != null && nextGizmo.getType() == IGizmo.Type.Absorber;
     }
 
     private void moveMovables(Double time) {

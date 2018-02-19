@@ -6,7 +6,6 @@ import javafx.scene.input.MouseEvent;
 import strath.cs308.gizmoball.controller.strategi.AddGizmoStrategy;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
-import strath.cs308.gizmoball.view.EditorView;
 import strath.cs308.gizmoball.view.IEditorView;
 
 public class GizmoSelectorEventHandler implements EventHandler<MouseEvent> {
@@ -22,31 +21,31 @@ public class GizmoSelectorEventHandler implements EventHandler<MouseEvent> {
     public void handle(MouseEvent mouseEvent) {
         switch (((Node) mouseEvent.getSource()).getId()) {
             case "addTriangleMode":
-                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.TRIANGLE));
+                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.Triangle));
                 break;
 
             case "addRectangleMode":
-                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.SQUARE));
+                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.Square));
                 break;
 
             case "addLeftFlipperMode":
-                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.LEFT_FLIPPER) );
+                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.LeftFlipper) );
                 break;
 
             case "addRightFlipperMode":
-                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.RIGHT_FLIPPER) );
+                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.RightFlipper) );
                 break;
 
             case "addCircleMode":
-                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.CIRCLE));
+                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.Circle));
                 break;
 
             case "addAbsorberMode":
-                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.ABSORBER));
+                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.Absorber));
                 break;
 
             case "addBallMode":
-                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.BALL));
+                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.Ball));
                 break;
         }
     }

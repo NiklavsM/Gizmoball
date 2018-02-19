@@ -67,7 +67,7 @@ public class Ball extends Gizmo implements IMovable
 
     @Override
     public Type getType() {
-        return Type.BALL;
+        return Type.Ball;
     }
 
     @Override

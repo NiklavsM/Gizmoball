@@ -24,6 +24,6 @@ public class Walls extends Gizmo {
 
     @Override
     public Type getType() {
-        return Type.WALLS;
+        return Type.Walls;
     }
 }

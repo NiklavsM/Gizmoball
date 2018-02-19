@@ -7,8 +7,8 @@ import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static strath.cs308.gizmoball.model.gizmo.IGizmo.Type.ABSORBER;
-import static strath.cs308.gizmoball.model.gizmo.IGizmo.Type.BALL;
+import static strath.cs308.gizmoball.model.gizmo.IGizmo.Type.Absorber;
+import static strath.cs308.gizmoball.model.gizmo.IGizmo.Type.Ball;
 
 public class GameLoader implements IGameLoader {
 
@@ -50,8 +50,7 @@ public class GameLoader implements IGameLoader {
         nameCoordCoordCommands.add(MOVE_COMMAND);
 
         gizmoCreationCommandsAdvanced = new HashSet<>();
-        gizmoCreationCommandsAdvanced.add(ABSORBER.toString());
-        gizmoCreationCommandsAdvanced.add(BALL.toString());
+        gizmoCreationCommandsAdvanced.add(Absorber.toString());
     }
 
     public void load() throws IllegalAccessException, FileNotFoundException {
