@@ -199,19 +199,19 @@ with the velocity 50L/s upwards
 
 1. Starts at the "Editor mode"
  
-2. Creates the layout they want 
+2. Add at least one gizmo of each type to the board
 
 3. Clicks "Save As" icon located in the top toolbar
 
 4. A file explorer pops up prompting the user to choose a desired location for the file 
 
-5. Can optionally change the default name of the file to be saved 
+5. Types in the name of the file to be saved, for example filename.gizmo
 
 6. Clicks "Save".  
 
 7. A status label shows that the game configuration has been successfully saved.
 
-**Expected outputs:** Game configuration has successfully been saved in the specified location
+**Expected outputs:** Game configuration has successfully been saved to filename.gizmo located in the specified directory
 
 
 ###Test 10 
@@ -220,9 +220,9 @@ with the velocity 50L/s upwards
 
 **Test inputs:** User: 
 
-1. Starts at the "Editor mode"
- 
-2. User has an already saved configuration displayed on the board 
+1. Does steps 1-7 described in Test 9
+
+2. Change the board layout
 
 3. Clicks "Save" icon located in the top toolbar
 
