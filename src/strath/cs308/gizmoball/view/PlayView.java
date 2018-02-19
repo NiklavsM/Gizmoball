@@ -42,14 +42,14 @@ public class PlayView implements IPlayView, Observer{
 
             root = FXMLLoader.load(getClass().getResource("/view/plaview.fxml"));
             this.gameModel = gameModel;
-//            pauseMenu = (ToolBar) root.lookup("#pauseMenu");
+            pauseMenu = (ToolBar) root.lookup("#pauseMenu");
             stackPane = (StackPane) root.lookup("#stackPane");
             canvas = (Canvas) root.lookup("#canvas");
 
             drawBackground();
             drawGizmos();
 
-//            pauseMenu.toBack();
+            pauseMenu.toBack();
             gameModel.addObserver(this);
 
             Scene scene = new Scene(root, root.getWidth(), root.getHeight());
@@ -62,7 +62,7 @@ public class PlayView implements IPlayView, Observer{
             stage.setTitle("Gizmoball - Play");
             stage.show();
 
-//            Platform.runLater(this::attachEventHandlers);
+            Platform.runLater(this::attachEventHandlers);
         } catch (IOException e) {
             e.printStackTrace();
         }

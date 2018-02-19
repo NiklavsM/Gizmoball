@@ -24,9 +24,6 @@ public class GizmoBall extends Application {
         gameModel.addGizmo(absorber);
         gameModel.addGizmo(ball);
 
-        GameTimer gameTimer =  new GameTimer(gameModel);
-        gameTimer.start();
-
         PlayView playView = new PlayView(stage, gameModel);
 
     }

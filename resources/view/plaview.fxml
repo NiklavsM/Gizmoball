@@ -13,51 +13,51 @@
                    maxWidth="500"
                    fx:id="stackPane">
 
-            <!--<ToolBar maxWidth="225"-->
-                     <!--minWidth="200"-->
-                     <!--minHeight="200"-->
-                     <!--maxHeight="250"-->
-                     <!--fx:id="pauseMenu"-->
-                     <!--styleClass="default-padding, PauseMenu">-->
+            <ToolBar maxWidth="225"
+                     minWidth="200"
+                     minHeight="200"
+                     maxHeight="250"
+                     fx:id="pauseMenu"
+                     styleClass="default-padding, PauseMenu">
 
-                <!--<GridPane hgap="16"-->
-                          <!--vgap="15"-->
-                          <!--alignment="CENTER"-->
-                          <!--fx:id="pauseMenuItemHolder"-->
-                          <!--styleClass="default-padding">-->
+                <GridPane hgap="16"
+                          vgap="15"
+                          alignment="CENTER"
+                          fx:id="pauseMenuItemHolder"
+                          styleClass="default-padding">
 
-                    <!--<Button text="Back"-->
-                            <!--GridPane.columnIndex="0"-->
-                            <!--GridPane.rowIndex="0"-->
-                            <!--fx:id="menuBackButton"-->
-                            <!--styleClass="back-button, pause-menu-item-padding, pause-menu-font" />-->
+                    <Button text="Back"
+                            GridPane.columnIndex="0"
+                            GridPane.rowIndex="0"
+                            fx:id="menuBackButton"
+                            styleClass="back-button, pause-menu-item-padding, pause-menu-font" />
 
-                    <!--<Button text="Save"-->
-                            <!--GridPane.columnIndex="0"-->
-                            <!--GridPane.rowIndex="1"-->
-                            <!--fx:id="menuSaveButton"-->
-                            <!--styleClass="save-progress-button, pause-menu-item-padding, pause-menu-font" />-->
+                    <Button text="Save"
+                            GridPane.columnIndex="0"
+                            GridPane.rowIndex="1"
+                            fx:id="menuSaveButton"
+                            styleClass="save-progress-button, pause-menu-item-padding, pause-menu-font" />
 
-                    <!--<Button text="Load"-->
-                            <!--GridPane.columnIndex="0"-->
-                            <!--GridPane.rowIndex="2"-->
-                            <!--fx:id="menuLoadButton"-->
-                            <!--styleClass="load-game-button, pause-menu-item-padding, pause-menu-font" />-->
+                    <Button text="Load"
+                            GridPane.columnIndex="0"
+                            GridPane.rowIndex="2"
+                            fx:id="menuLoadButton"
+                            styleClass="load-game-button, pause-menu-item-padding, pause-menu-font" />
 
-                    <!--<Button text="Editor"-->
-                            <!--GridPane.columnIndex="0"-->
-                            <!--GridPane.rowIndex="3"-->
-                            <!--fx:id="menuEditorButton"-->
-                            <!--styleClass="to-editor-button, pause-menu-item-padding, pause-menu-font" />-->
+                    <Button text="Editor"
+                            GridPane.columnIndex="0"
+                            GridPane.rowIndex="3"
+                            fx:id="menuEditorButton"
+                            styleClass="to-editor-button, pause-menu-item-padding, pause-menu-font" />
 
-                    <!--<Button text="Exit"-->
-                            <!--GridPane.columnIndex="0"-->
-                            <!--GridPane.rowIndex="4"-->
-                            <!--fx:id="menuExitButton"-->
-                            <!--styleClass="exit-game-button, pause-menu-item-padding, pause-menu-font" />-->
+                    <Button text="Exit"
+                            GridPane.columnIndex="0"
+                            GridPane.rowIndex="4"
+                            fx:id="menuExitButton"
+                            styleClass="exit-game-button, pause-menu-item-padding, pause-menu-font" />
 
-                <!--</GridPane>-->
-            <!--</ToolBar>-->
+                </GridPane>
+            </ToolBar>
 
             <Canvas width="500"
                     height="500"
@@ -68,54 +68,54 @@
                 Press J to shoot out the ball
             </Label>
 
-            <!--<ToolBar maxWidth="200"-->
-                     <!--styleClass="game-bar"-->
-                     <!--StackPane.alignment="BOTTOM_LEFT">-->
-                <!--<GridPane vgap="5"-->
-                          <!--hgap="16"-->
-                          <!--fx:id="gameMenu"-->
-                          <!--styleClass="default-padding">-->
+            <ToolBar maxWidth="200"
+                     styleClass="game-bar"
+                     StackPane.alignment="BOTTOM_LEFT">
+                <GridPane vgap="5"
+                          hgap="16"
+                          fx:id="gameMenu"
+                          styleClass="default-padding">
 
 
-                    <!--<Button GridPane.rowIndex="0"-->
-                            <!--GridPane.columnIndex="0"-->
-                            <!--minWidth="24"-->
-                            <!--minHeight="24"-->
-                            <!--maxWidth="24"-->
-                            <!--maxHeight="24"-->
-                            <!--fx:id="playButton"-->
-                            <!--styleClass="play-button">-->
-                        <!--<tooltip>-->
-                            <!--<Tooltip text="Play"/>-->
-                        <!--</tooltip>-->
-                    <!--</Button>-->
+                    <Button GridPane.rowIndex="0"
+                            GridPane.columnIndex="0"
+                            minWidth="24"
+                            minHeight="24"
+                            maxWidth="24"
+                            maxHeight="24"
+                            fx:id="playButton"
+                            styleClass="play-button">
+                        <tooltip>
+                            <Tooltip text="Play"/>
+                        </tooltip>
+                    </Button>
 
-                    <!--<Button GridPane.rowIndex="0"-->
-                            <!--GridPane.columnIndex="1"-->
-                            <!--minWidth="24"-->
-                            <!--minHeight="24"-->
-                            <!--maxWidth="24"-->
-                            <!--maxHeight="24"-->
-                            <!--fx:id="stopButton"-->
-                            <!--styleClass="stop-button">-->
-                        <!--<tooltip>-->
-                            <!--<Tooltip text="Stop"/>-->
-                        <!--</tooltip>-->
-                    <!--</Button>-->
+                    <Button GridPane.rowIndex="0"
+                            GridPane.columnIndex="1"
+                            minWidth="24"
+                            minHeight="24"
+                            maxWidth="24"
+                            maxHeight="24"
+                            fx:id="stopButton"
+                            styleClass="stop-button">
+                        <tooltip>
+                            <Tooltip text="Stop"/>
+                        </tooltip>
+                    </Button>
 
 
-                    <!--<Button GridPane.rowIndex="0"-->
-                            <!--GridPane.columnIndex="2"-->
-                            <!--minWidth="24"-->
-                            <!--minHeight="24"-->
-                            <!--maxWidth="24"-->
-                            <!--maxHeight="24"-->
-                            <!--fx:id="tickButton"-->
-                            <!--styleClass="tick-button">-->
-                        <!--<tooltip>-->
-                            <!--<Tooltip text="Tick"/>-->
-                        <!--</tooltip>-->
-                    <!--</Button>-->
+                    <Button GridPane.rowIndex="0"
+                            GridPane.columnIndex="2"
+                            minWidth="24"
+                            minHeight="24"
+                            maxWidth="24"
+                            maxHeight="24"
+                            fx:id="tickButton"
+                            styleClass="tick-button">
+                        <tooltip>
+                            <Tooltip text="Tick"/>
+                        </tooltip>
+                    </Button>
 
                     <!--<Button GridPane.rowIndex="0"-->
                             <!--GridPane.columnIndex="3"-->
@@ -130,8 +130,8 @@
                         <!--</tooltip>-->
                     <!--</Button>-->
 
-                <!--</GridPane>-->
-            <!--</ToolBar>-->
+                </GridPane>
+            </ToolBar>
 
         </StackPane>
     </center>
