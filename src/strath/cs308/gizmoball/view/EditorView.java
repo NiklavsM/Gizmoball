@@ -9,6 +9,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GizmoSelectorEventHandler;
 import strath.cs308.gizmoball.controller.ToolModeEventHandler;
@@ -16,6 +17,7 @@ import strath.cs308.gizmoball.controller.TopToolbarEventHandler;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
@@ -79,6 +81,14 @@ public class EditorView implements IEditorView, Observer
     @Override
     public double getPixelRatioFor(double valueToComapre) {
         return canvas.getWidth() / valueToComapre;
+    }
+
+    @Override
+    public File getLoadFile() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Gizmoball loading file");
+        fileChooser.setInitialFileName("hahahah");
+        return fileChooser.showOpenDialog(null);
     }
 
     @Override

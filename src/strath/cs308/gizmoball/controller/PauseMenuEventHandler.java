@@ -73,8 +73,6 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent>
         } catch (IllegalAccessException | FileNotFoundException e) {
             e.printStackTrace();
         }
-
-
     }
 
     private void saveGame()

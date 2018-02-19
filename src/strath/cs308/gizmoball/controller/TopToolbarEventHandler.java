@@ -3,8 +3,13 @@ package strath.cs308.gizmoball.controller;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
+import strath.cs308.gizmoball.model.GameLoader;
+import strath.cs308.gizmoball.model.IGameLoader;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.view.IEditorView;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class TopToolbarEventHandler implements EventHandler<MouseEvent>
 {
@@ -23,8 +28,22 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent>
             case "topPlayButton":
                 switchToPlayMode();
                 break;
+
+            case "topLoadButton":
+                loadGame();
+                break;
         }
 
+    }
+
+    private void loadGame() {
+        File fileToLoad = editView.getLoadFile();
+        IGameLoader gl = new GameLoader(gameModel, fileToLoad);
+        try {
+            gl.load();
+        } catch (IllegalAccessException | FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private void switchToPlayMode() {
