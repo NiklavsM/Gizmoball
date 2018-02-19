@@ -3,8 +3,8 @@ package strath.cs308.gizmoball.controller;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
-import strath.cs308.gizmoball.controller.strategi.RemoveGizmoStrategy;
-import strath.cs308.gizmoball.controller.strategi.RotateGizmoStrategy;
+import strath.cs308.gizmoball.controller.strategy.RemoveGizmoStrategy;
+import strath.cs308.gizmoball.controller.strategy.RotateGizmoStrategy;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.view.IEditorView;
 

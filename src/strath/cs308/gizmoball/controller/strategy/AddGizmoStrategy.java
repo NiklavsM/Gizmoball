@@ -1,4 +1,4 @@
-package strath.cs308.gizmoball.controller.strategi;
+package strath.cs308.gizmoball.controller.strategy;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
