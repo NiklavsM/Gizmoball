@@ -85,6 +85,7 @@ public class GameModel extends Observable implements IGameModel {
             if (tuc > moveTime) {
                 // No collision ...
                 ball = moveBallForTime(ball, moveTime);
+
                 applyForces(ball.getVelo(), moveTime, ball);
                 moveMovables(moveTime);
             } else {
@@ -134,10 +135,10 @@ public class GameModel extends Observable implements IGameModel {
         Vect gravity;
 
         gravity = new Vect(0.0, 25 * 0.05);
-        // Vnew = Vold * (1 - mu * delta_t - mu2 * |Vold| * delta_t).
-        velocityAfterFriction = new Vect(velocity.angle(),
-                velocity.length() * (1 - (0.025 * time) - (0.025 * velocity.length() * time)));
-        ball.setVelo(velocityAfterFriction.plus(gravity));
+//        // Vnew = Vold * (1 - mu * delta_t - mu2 * |Vold| * delta_t).
+//        velocityAfterFriction = new Vect(velocity.angle(),
+//                velocity.length() * (1 - (0.025 * time) - (0.025 * velocity.length() * time)));
+        ball.setVelo(velocity);
 
     }
 

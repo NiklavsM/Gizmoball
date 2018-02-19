@@ -20,7 +20,7 @@ public class GizmoView extends Application {
     public GizmoView() {
         gameModel = new GameModel();
         try {
-            GameLoader gameLoader = new GameLoader(gameModel, new FileInputStream(new File("maps/default.gizmo")));
+            GameLoader gameLoader = new GameLoader(gameModel, new FileInputStream(new File("maps/proto.gizmo")));
             gameLoader.load();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
