@@ -52,7 +52,7 @@ public abstract class GizmoGrid extends VBox {
         return "Gizmos";
     }
 
-    public void addGizmo(Node graphic, String gizmoName) {
+    public void addEntity(Node graphic, String gizmoName) {
 
         Label label = new Label(gizmoName);
         label.getStyleClass().add("gizmogrid");

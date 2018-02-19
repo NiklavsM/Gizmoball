@@ -3,7 +3,7 @@ package controller.editor.gizmo;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import model.EditorModel;
-import model.gizmo.IGizmo;
+import model.gizmo.IEntity;
 
 public class SquareGizmoListener implements EventHandler<ActionEvent> {
 
@@ -16,6 +16,6 @@ public class SquareGizmoListener implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
-        editorModel.setGizmoGridItem(IGizmo.Type.Square);
+        editorModel.setGizmoGridItem(IEntity.Type.Square);
     }
 }

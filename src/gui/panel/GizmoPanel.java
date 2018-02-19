@@ -58,6 +58,6 @@ public class GizmoPanel extends GizmoGrid {
         button.setGraphic(graphic);
         button.setOnAction(eventEventHandler);
 
-        addGizmo(button, gizmoName);
+        addEntity(button, gizmoName);
     }
 }

@@ -1,7 +1,7 @@
 package model;
 
 import gui.GizmoView;
-import model.gizmo.IGizmo;
+import model.gizmo.IEntity;
 
 import java.util.*;
 
@@ -14,10 +14,10 @@ public class EditorModel extends Observable {
     private final GizmoView gizmoView;
     private IGameModel gameModel;
     private Mode selectedAction;
-    private List<IGizmo> selectedGizmos;
+    private List<IEntity> selectedGizmos;
     private Stack<IGameModel> redoStack;
     private Stack<IGameModel> undoStack;
-    private IGizmo.Type gizmoGridItem;
+    private IEntity.Type gizmoGridItem;
     private String status;
 
     public EditorModel(GizmoView gizmoView) {
@@ -48,17 +48,17 @@ public class EditorModel extends Observable {
     }
 
 
-    public IGizmo.Type getGizmoGridItem() {
+    public IEntity.Type getGizmoGridItem() {
         return gizmoGridItem;
     }
 
-    public void setGizmoGridItem(IGizmo.Type gizmoGridItem) {
+    public void setGizmoGridItem(IEntity.Type gizmoGridItem) {
         this.gizmoGridItem = gizmoGridItem;
         setChanged();
         notifyObservers();
     }
 
-    public IGizmo.Type selectedGizmoGridItem() {
+    public IEntity.Type selectedGizmoGridItem() {
         return gizmoGridItem;
     }
 
@@ -72,11 +72,11 @@ public class EditorModel extends Observable {
         notifyObservers();
     }
 
-    public List<IGizmo> getSelectedGizmos() {
+    public List<IEntity> getSelectedGizmos() {
         return selectedGizmos;
     }
 
-    public void setSelectedGizmos(List<IGizmo> selectedGizmos) {
+    public void setSelectedGizmos(List<model.gizmo.IEntity> selectedGizmos) {
         this.selectedGizmos = selectedGizmos;
         setChanged();
         notifyObservers();

@@ -1,6 +1,6 @@
 package model;
 
-import model.gizmo.Gizmo;
+import model.gizmo.IEntity;
 import physics.Vect;
 
 /**
@@ -10,10 +10,10 @@ import physics.Vect;
 public class CollisionDetails {
     private double tuc;
     private Vect velo;
-    private Gizmo gizmo;
+    private IEntity entity;
 
-    public CollisionDetails(double t, Vect v, Gizmo gizmo) {
-        this.gizmo = gizmo;
+    public CollisionDetails(double t, Vect v, IEntity entity) {
+        this.entity = entity;
         tuc = t;
         velo = v;
     }
@@ -26,8 +26,8 @@ public class CollisionDetails {
         return velo;
     }
 
-    public Gizmo getGizmo(){
-        return gizmo;
+    public IEntity getEntity(){
+        return entity;
     }
 
 }

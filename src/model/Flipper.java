@@ -1,6 +1,7 @@
 package model;
 
 import model.gizmo.Gizmo;
+import model.gizmo.IEntity;
 import physics.Angle;
 import physics.LineSegment;
 import physics.*;
@@ -84,8 +85,8 @@ import java.util.Set;
         }
 
         @Override
-        public Type getType() {
-            return Gizmo.Type.Flipper;
+        public IEntity.Type getType() {
+            return IEntity.Type.Flipper;
         }
 
         @Override

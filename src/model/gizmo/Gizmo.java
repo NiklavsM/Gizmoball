@@ -1,11 +1,13 @@
 package model.gizmo;
 
 import model.Dot;
+import model.Entity;
+import model.IGizmo;
 import physics.*;
 
 import java.util.*;
 
-public abstract class Gizmo implements IGizmo {
+public abstract class Gizmo extends Entity implements IGizmo, IEntity {
 
     protected final String id;
     protected int rotateCount;
@@ -19,6 +21,7 @@ public abstract class Gizmo implements IGizmo {
     private int scoreValue;
 
     public Gizmo(double x1, double y1, double x2, double y2, String id) {
+        super(id);
         this.x1 = x1;
         this.y1 = y1;
         this.x2 = x2;
@@ -47,21 +50,20 @@ public abstract class Gizmo implements IGizmo {
         return dots;
     }
 
+    @Override
     public Set<LineSegment> getLines() {
         return lines;
     }
 
-    protected static String generateID() {
-        return UUID.randomUUID().toString();
-    }
+
+    @Override
+    public abstract IEntity.Type getType();
 
     public String getId() {
         return id;
     }
 
     public abstract void draw(Set<LineSegment> lines, List<Circle> circles, double x1, double y1, double x2, double y2);
-
-    public abstract Type getType();
 
     public void rotate() {
         rotateCount++;
@@ -93,12 +95,12 @@ public abstract class Gizmo implements IGizmo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Gizmo gizmo = (Gizmo) o;
+        Gizmo Gizmo = (Gizmo) o;
 
-        if (rotateCount != gizmo.rotateCount) return false;
-        if (!id.equals(gizmo.id)) return false;
-        if (!circles.equals(gizmo.circles)) return false;
-        return lines.equals(gizmo.lines);
+        if (rotateCount != Gizmo.rotateCount) return false;
+        if (!id.equals(Gizmo.id)) return false;
+        if (!circles.equals(Gizmo.circles)) return false;
+        return lines.equals(Gizmo.lines);
     }
 
     @Override

@@ -26,7 +26,7 @@ public class CircleGizmo extends Gizmo {
     }
 
     @Override
-    public Type getType() {
-        return Type.Circle;
+    public IEntity.Type getType() {
+        return IEntity.Type.Circle;
     }
 }

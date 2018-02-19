@@ -1,19 +1,15 @@
 package model;
 
-import java.io.FileNotFoundException;
 import java.util.Observer;
 import java.util.Set;
 
-import controller.GameLoader;
-import model.gizmo.IGizmo;
+import model.gizmo.IEntity;
 
 public interface IGameModel {
 
     void reset();
 
-    Set<IGizmo> getGizmos();
-
-    void addGizmo(IGizmo gizmo);
+    Set<model.gizmo.IEntity> getEntities();
 
     boolean remove(String id);
 
@@ -27,7 +23,7 @@ public interface IGameModel {
 
     void addObserver(Observer o);
 
-    Ball getBall(); // Could get rid of this if make ball implement IGizmo
+    Ball getBall(); // Could get rid of this if makeGizmo ball implement IEntity
 
     void shootOut();
 
@@ -35,5 +31,8 @@ public interface IGameModel {
 
     boolean isOccupied(int squareX, int squareY);
 
-    IGizmo getGizmo(int squareX, int squareY);
+    IEntity getGizmo(int squareX, int squareY);
+
+    void addEntity(IEntity entity);
+
 }

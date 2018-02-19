@@ -1,7 +1,7 @@
 package model;
 
 import model.gizmo.Gizmo;
-import model.gizmo.IGizmo;
+import model.gizmo.IEntity;
 import model.gizmo.Walls;
 import physics.Circle;
 import physics.Geometry;
@@ -14,7 +14,7 @@ import java.util.*;
 public class GameModel extends Observable implements IGameModel {
 
     private Timer timer;
-    private Map<String, Gizmo> gizmos;
+    private Map<String, IEntity> entities;
     private boolean absorberCollision;
 
     public GameModel() {
@@ -22,8 +22,8 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     private void setup() {
-        gizmos = new HashMap<>();
-        addGizmo(new Walls());
+        entities = new HashMap<>();
+        addEntity(new Walls());
         setupTimer();
         absorberCollision = false;
     }
@@ -32,8 +32,10 @@ public class GameModel extends Observable implements IGameModel {
         timer = new Timer(50, e -> moveBall());
     }
 
-    public void addGizmo(IGizmo gizmo) {
-        gizmos.put(gizmo.getId(), (Gizmo) gizmo);
+
+    @Override
+    public void addEntity(IEntity entity) {
+        entities.put(entity.getId(), entity);
         this.setChanged();
         this.notifyObservers();
     }
@@ -41,12 +43,12 @@ public class GameModel extends Observable implements IGameModel {
     @Override
     public boolean remove(String id) {
 
-        Gizmo gizmo = gizmos.remove(id);
+        IEntity IEntity = entities.remove(id);
 
         this.setChanged();
         this.notifyObservers();
 
-        return gizmo != null;
+        return IEntity != null;
     }
 
     @Override
@@ -54,18 +56,19 @@ public class GameModel extends Observable implements IGameModel {
         setup();
     }
 
-    public Set<IGizmo> getGizmos() {
-        return new HashSet<>(gizmos.values());
+    public Set<IEntity> getEntities() {
+        return new HashSet<>(entities.values());
     }
 
-    public IGizmo getGizmo(int x, int y) {
-        for (Map.Entry<String, Gizmo> entrySet : gizmos.entrySet()) {
-            IGizmo gizmo = entrySet.getValue();
-
-            if (gizmo.getXLocation() == x && gizmo.getYLocation() == y) {
-                return gizmo;
-            }
-        }
+    public IEntity getGizmo(int x, int y) {
+        //TODO: FIX
+//        for (Map.Entry<String, Gizmo> entrySet : entities.entrySet()) {
+//            Gizmo gizmo = entrySet.getValue();
+//
+//            if (gizmo.getXLocation() == x && gizmo.getYLocation() == y) {
+//                return gizmo;
+//            }
+//        }
 
         return null;
     }
@@ -74,7 +77,7 @@ public class GameModel extends Observable implements IGameModel {
         Ball ball = getBall();
         double moveTime = 0.05; // 0.05 = 20 times per second as per Gizmoball
 
-        Gizmo nextGizmo = null;
+        IEntity nextIEntity = null;
 
         if (ball != null) {
             CollisionDetails cd = timeUntilCollision();
@@ -87,8 +90,8 @@ public class GameModel extends Observable implements IGameModel {
                 moveMovables(moveTime);
             } else {
                 // We've got a collision in tuc
-                nextGizmo = cd.getGizmo();
-                System.out.println("Collision with gizmo:  " + nextGizmo.getId());
+                nextIEntity = cd.getEntity();
+                System.out.println("Collision with gizmo:  " + nextIEntity.getId());
                 ball = moveBallForTime(ball, tuc);
                 // Post collision velocity ...
                 applyForces(cd.getVelo(), tuc, ball);
@@ -103,17 +106,17 @@ public class GameModel extends Observable implements IGameModel {
 
         // absorber collision detected during the previous tick
         if (absorberCollision) {
-//            gizmos.remove(ball.getId());
+//            entities.remove(ball.getId());
 //            ball = null;
             ball.setVelo(new Vect(0.0, -0.1));
             setBallInAbsorber();
         }
 
-        absorberCollision = nextGizmo != null && nextGizmo.getType() == IGizmo.Type.Absorber;
+        absorberCollision = nextIEntity != null && nextIEntity.getType() == IEntity.Type.Absorber;
     }
 
     private void moveMovables(Double time) {
-        gizmos.values().forEach(gizmo -> {
+        entities.values().forEach(gizmo -> {
             if (gizmo instanceof IMovable) {
                 ((IMovable) gizmo).move(time);
             }
@@ -157,22 +160,25 @@ public class GameModel extends Observable implements IGameModel {
         Circle ballCircle = ball.getCircle();
         Vect ballVelocity = ball.getVelo();
         Vect newVelo = new Vect(0, 0);
-        Gizmo nextGizmo = null;
+        IEntity nextEntity = null;
         double shortestTime = Double.MAX_VALUE;
         double time;
 
-        for (Gizmo gizmo : gizmos.values()) {
-            Set<LineSegment> lines = gizmo.getLines();
-            List<Circle> circles = gizmo.getCircles();
-            if (gizmo instanceof Flipper) {
-                Flipper flipper = ((Flipper) gizmo);
+        for (IEntity entity : entities.values()) {
+
+            Set<LineSegment> lines = entity.getLines();
+            List<Circle> circles = entity.getCircles();
+
+
+            if (entity instanceof Flipper) {
+                Flipper flipper = ((Flipper) entity);
                 Double angularVelo = flipper.getVelocity().angle().radians();
                 Vect rotationCentre = flipper.getStartPoint().getCenter();
                 for (LineSegment line : lines) {
                     time = Geometry.timeUntilRotatingWallCollision(line, rotationCentre, angularVelo, ballCircle, ballVelocity);
                     if (time < shortestTime) {
                         shortestTime = time;
-                        nextGizmo = gizmo;
+                        nextEntity = entity;
                         newVelo = Geometry.reflectRotatingWall(line, rotationCentre, angularVelo, ballCircle, ballVelocity);
                     }
                 }
@@ -180,7 +186,7 @@ public class GameModel extends Observable implements IGameModel {
                     time = Geometry.timeUntilRotatingCircleCollision(circle, rotationCentre, angularVelo, ballCircle, ballVelocity);
                     if (time < shortestTime) {
                         shortestTime = time;
-                        nextGizmo = gizmo;
+                        nextEntity = entity;
                         newVelo = Geometry.reflectRotatingCircle(circle, rotationCentre, angularVelo, ballCircle, ballVelocity);
                     }
 
@@ -190,7 +196,7 @@ public class GameModel extends Observable implements IGameModel {
                     time = Geometry.timeUntilWallCollision(line, ballCircle, ballVelocity);
                     if (time < shortestTime) {
                         shortestTime = time;
-                        nextGizmo = gizmo;
+                        nextEntity = entity;
                         newVelo = Geometry.reflectWall(line, ballVelocity, 1.0);
                     }
                 }
@@ -198,7 +204,7 @@ public class GameModel extends Observable implements IGameModel {
                     time = Geometry.timeUntilCircleCollision(circle, ballCircle, ballVelocity);
                     if (time < shortestTime) {
                         shortestTime = time;
-                        nextGizmo = gizmo;
+                        nextEntity = entity;
                         newVelo = Geometry.reflectCircle(circle.getCenter(), ballCircle.getCenter(), ballVelocity);
                     }
 
@@ -206,12 +212,12 @@ public class GameModel extends Observable implements IGameModel {
             }
         }
 
-        return new CollisionDetails(shortestTime, newVelo, nextGizmo);
+        return new CollisionDetails(shortestTime, newVelo, nextEntity);
     }
 
     public Ball getBall() {
-        for (Gizmo gizmo : gizmos.values()) {
-            if (gizmo instanceof Ball) return ((Ball) gizmo);
+        for (IEntity entity : entities.values()) {
+            if (entity instanceof Ball) return ((Ball) entity);
         }
         return null;
     }
@@ -230,10 +236,10 @@ public class GameModel extends Observable implements IGameModel {
 
     public void shootOut() {
         Ball ball = this.getBall();
-        IGizmo absorber = null;
+        IEntity absorber = null;
 
-        for (IGizmo gizmo : gizmos.values()) {
-            if (gizmo.getType() == IGizmo.Type.Absorber && isBallInAbsorber(gizmo))
+        for (IEntity gizmo : entities.values()) {
+            if (gizmo.getType() == IEntity.Type.Absorber && isBallInAbsorber(gizmo))
                 absorber = gizmo;
         }
 
@@ -247,7 +253,7 @@ public class GameModel extends Observable implements IGameModel {
         }
     }
 
-    private boolean isBallInAbsorber(IGizmo absorber) {
+    private boolean isBallInAbsorber(model.gizmo.IEntity absorber) {
         Ball ball = this.getBall();
 
         int xCoordinate = 0;
@@ -272,23 +278,28 @@ public class GameModel extends Observable implements IGameModel {
 
     @Override
     public void rotate(String id) {
-        gizmos.get(id).rotate();
 
-        this.setChanged();
-        this.notifyObservers();
+        //FIXME: Fix rotate
+//        entities.get(id).rotate();
+//
+//        this.setChanged();
+//        this.notifyObservers();
     }
 
     @Override
     public boolean isOccupied(int x, int y) {
-        for (Map.Entry<String, Gizmo> entrySet : gizmos.entrySet()) {
-            Gizmo gizmo = entrySet.getValue();
 
-            if (gizmo.getXLocation() == x && gizmo.getYLocation() == y) {
-                return true;
-            }
-        }
+        //FIXME: Fix isOCcupied
+//        for (Map.Entry<String, IEntity> entrySet : entities.entrySet()) {
+//            IEntity IEntity = entrySet.getValue();
+//
+//            if (IEntity.getXLocation() == x && IEntity.getYLocation() == y) {
+//                return true;
+//            }
+//        }
 
         return false;
     }
+
 
 }

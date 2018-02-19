@@ -1,26 +1,20 @@
 package model.gizmo;
 
 import model.Dot;
+import model.IDrawable;
 
 import java.util.List;
 
-public interface IGizmo {
-
-
+public interface IEntity extends IDrawable {
 
     enum Type {
         Triangle, Absorber, Square, Ball, Walls, Flipper, Circle, LeftFlipper, RightFlipper
     }
 
-    List<Dot> getDots();
-
     Type getType();
 
     String getId();
 
-    void rotate();
+    List<Dot> getDots();
 
-    double getXLocation();
-
-    double getYLocation();
 }

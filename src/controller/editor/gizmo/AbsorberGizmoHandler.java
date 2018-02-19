@@ -3,7 +3,7 @@ package controller.editor.gizmo;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import model.EditorModel;
-import model.gizmo.IGizmo;
+import model.gizmo.IEntity;
 
 public class AbsorberGizmoHandler implements EventHandler<ActionEvent> {
 
@@ -15,6 +15,6 @@ public class AbsorberGizmoHandler implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent event) {
-        editorModel.setGizmoGridItem(IGizmo.Type.Triangle);
+        editorModel.setGizmoGridItem(IEntity.Type.Triangle);
     }
 }

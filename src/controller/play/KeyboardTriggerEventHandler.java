@@ -17,7 +17,7 @@ public class KeyboardTriggerEventHandler implements EventHandler<KeyEvent> {
     @Override
     public void handle(KeyEvent keyEvent) {
         if (keyEvent.getCode().equals(KeyCode.K)) {
-            gameModel.getGizmos()
+            gameModel.getEntities()
                     .stream()
                     .filter(ITriggerable.class::isInstance)
                     .map(ITriggerable.class::cast)
@@ -25,7 +25,7 @@ public class KeyboardTriggerEventHandler implements EventHandler<KeyEvent> {
         }
 
         if (keyEvent.getCode().equals(KeyCode.L)) {
-            gameModel.getGizmos()
+            gameModel.getEntities()
                     .stream()
                     .filter(ITriggerable.class::isInstance)
                     .map(ITriggerable.class::cast)

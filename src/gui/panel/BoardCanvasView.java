@@ -1,16 +1,12 @@
 package gui.panel;
 
-import gui.PlayStage;
 import gui.Theme;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.StrokeLineCap;
-import model.Constants;
-import model.Dot;
-import model.IGameModel;
-import model.gizmo.IGizmo;
+import model.*;
+import model.gizmo.IEntity;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -31,9 +27,6 @@ public class BoardCanvasView extends Canvas implements Observer {
 
     public void redraw() {
 
-        int i, pxPerL = Constants.pxPerL;
-        double diameter = 0;
-        double xPoints[], yPoints[];
 
         gc.setFill(Theme.Colors.DEEP_BLUE);
         gc.fillRect(0, 0, super.getWidth(), super.getHeight());
@@ -41,70 +34,54 @@ public class BoardCanvasView extends Canvas implements Observer {
         // Draw all the vertical lines
         gc.setFill(Theme.Colors.BLACK);
 
-        for (IGizmo gizmo : gameModel.getGizmos()) {
-            xPoints = new double[gizmo.getDots().size()];
-            yPoints = new double[gizmo.getDots().size()];
-            IGizmo.Type type = gizmo.getType();
-            setGizmoColor(type);
+        // Render Gizmos
+        renderGizmos();
 
-            i = 0;
+        renderBall();
+    }
 
-            for (Dot dot : gizmo.getDots()) {
-                xPoints[i] = dot.getX() * pxPerL;
-                yPoints[i] = dot.getY() * pxPerL;
-                diameter = dot.getRadius() * 2 * pxPerL;
-                i++;
-            }
-            if (type == IGizmo.Type.Flipper) {
-                for (int k = 0; k < i; k++) {
+    private void renderGizmos() {
+        for (IEntity gizmo : gameModel.getEntities()) {
+
+            IEntity.Type type = gizmo.getType();
+
+            RenderDetails renderDetails = new RenderDetails(gizmo);
+
+            int numberOfEdges = renderDetails.getNumberOfEdges();
+            double diameter = renderDetails.getDiameter();
+            double[] xPoints = renderDetails.getxPoints();
+            double[] yPoints = renderDetails.getyPoints();
+
+            gc.setFill(renderDetails.getFill());
+
+            if (type == IEntity.Type.Flipper) {
+                for (int k = 0; k < numberOfEdges; k++) {
                     gc.fillOval(xPoints[k] - diameter / 2, yPoints[k] - diameter / 2, diameter, diameter);
                 }
                 gc.setLineWidth(diameter);
                 gc.setLineCap(StrokeLineCap.BUTT);
                 gc.setStroke(Theme.Colors.ORANGE);
-                gc.strokeLine(xPoints[0],yPoints[0],xPoints[1],yPoints[1]);
+                gc.strokeLine(xPoints[0], yPoints[0], xPoints[1], yPoints[1]);
             }
-            if (type == IGizmo.Type.Circle || type == IGizmo.Type.Ball) {
+
+            if (type == IEntity.Type.Circle || type == IEntity.Type.Ball) {
                 gc.fillOval(xPoints[0] - diameter / 2, yPoints[0] - diameter / 2, diameter, diameter);
             } else {
-                gc.fillPolygon(xPoints, yPoints, i);
+                gc.fillPolygon(xPoints, yPoints, numberOfEdges);
             }
         }
-
-
     }
 
-    private void setGizmoColor(IGizmo.Type type) {
+    private void renderBall() {
+        Ball ball = gameModel.getBall();
+        RenderDetails renderDetails = new RenderDetails(ball);
+        double diameter = renderDetails.getDiameter();
+        double[] xPoints = renderDetails.getxPoints();
+        double[] yPoints = renderDetails.getyPoints();
 
-        Paint fill;
-
-        switch (type) {
-            case Square:
-                fill = Theme.Colors.RED;
-                break;
-            case Absorber:
-                fill = Theme.Colors.PINK;
-                break;
-            case Triangle:
-                fill = Theme.Colors.BLUE;
-                break;
-            case Circle:
-                fill = Theme.Colors.GREEN;
-                break;
-            case Ball:
-                fill = Theme.Colors.WHITE;
-                break;
-            case Flipper:
-                fill = Theme.Colors.ORANGE;
-                break;
-            default:
-                fill = Theme.Colors.WHITE;
-                break;
-        }
-
-        gc.setFill(fill);
-
+        gc.fillOval(xPoints[0] - diameter / 2, yPoints[0] - diameter / 2, diameter, diameter);
     }
+
 
     @Override
     public void update(Observable arg0, Object arg1) {

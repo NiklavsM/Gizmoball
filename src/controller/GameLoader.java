@@ -1,16 +1,15 @@
 package controller;
 
-import jdk.internal.util.xml.impl.Input;
+import model.gizmo.IEntity;
 import model.IGameModel;
 import model.gizmo.GizmoFactory;
-import model.gizmo.IGizmo;
 
 import java.io.InputStream;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static model.IGizmo.Type.Absorber;
-import static model.IGizmo.Type.Ball;
+import static model.gizmo.IEntity.Type.Absorber;
+import static model.gizmo.IEntity.Type.Ball;
 
 public class GameLoader {
 
@@ -38,8 +37,8 @@ public class GameLoader {
         gizmoFactory = GizmoFactory.getInstance();
 
         gizmoCreationCommands =
-                Arrays.stream(IGizmo.Type.values())
-                        .map(IGizmo.Type::toString)
+                Arrays.stream(IEntity.Type.values())
+                        .map(IEntity.Type::toString)
                         .collect(Collectors.toCollection(HashSet::new));
 
         nameCommands = new HashSet<>(gizmoCreationCommands);
@@ -148,12 +147,18 @@ public class GameLoader {
             if (gizmoCreationCommandsAdvanced.contains(command)) {
                 double x2 = toValidNumber(tokens.poll());
                 double y2 = toValidNumber(tokens.poll());
-                gameModel.addGizmo(gizmoFactory.createGizmo(IGizmo.Type.valueOf(command), x, y, x2, y2, name));
+
+                if (command == "Ball") {
+
+                } else {
+                    gameModel.addEntity(gizmoFactory.createEntity(IEntity.Type.valueOf(command), x, y, x2, y2, name));
+                }
+
                 System.out.println("created " + name);
                 return;
             }
 
-            gameModel.addGizmo(gizmoFactory.createGizmo(IGizmo.Type.valueOf(command), x, y, name));
+            gameModel.addEntity(gizmoFactory.createEntity(IEntity.Type.valueOf(command), x, y, name));
             System.out.println("created" + name);
         }
     }

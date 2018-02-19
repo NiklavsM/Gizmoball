@@ -49,18 +49,18 @@ public class BoardMouseClickHandler implements EventHandler<MouseEvent> {
 
     private void rotateMode() {
         if (gameModel.isOccupied(squareX, squareY)) {
-            IGizmo.Type gizmoType = editorModel.getGizmoGridItem();
+            IEntity.Type gizmoType = editorModel.getGizmoGridItem();
 
-            IGizmo gizmo = gameModel.getGizmo(squareX, squareY);
+            IEntity gizmo = gameModel.getGizmo(squareX, squareY);
             gameModel.rotate(gizmo.getId());
         }
     }
 
     private void addMode() {
         if (!gameModel.isOccupied(squareX, squareY)) {
-            IGizmo.Type gizmoType = editorModel.getGizmoGridItem();
+            IEntity.Type gizmoType = editorModel.getGizmoGridItem();
 
-            IGizmo gizmo = null;
+            IEntity gizmo = null;
 
             switch (gizmoType) {
                 case Square:
@@ -74,7 +74,7 @@ public class BoardMouseClickHandler implements EventHandler<MouseEvent> {
                     break;
             }
 
-            gameModel.addGizmo(gizmo);
+            gameModel.addEntity(gizmo);
         }
     }
 }

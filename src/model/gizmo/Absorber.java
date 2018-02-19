@@ -1,6 +1,5 @@
 package model.gizmo;
 
-
 import physics.Circle;
 import physics.LineSegment;
 
@@ -30,8 +29,8 @@ public class Absorber extends Gizmo {
     }
 
     @Override
-    public Type getType() {
-        return Type.Absorber;
+    public IEntity.Type getType() {
+        return IEntity.Type.Absorber;
     }
 
 }
