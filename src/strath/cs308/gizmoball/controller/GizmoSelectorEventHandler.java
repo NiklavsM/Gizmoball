@@ -30,7 +30,7 @@ public class GizmoSelectorEventHandler implements EventHandler<MouseEvent> {
                 break;
 
             case "addFlipperMode":
-                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.FLIPPER) );
+                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.LEFT_FLIPPER) );
                 break;
 
             case "addCircleMode":

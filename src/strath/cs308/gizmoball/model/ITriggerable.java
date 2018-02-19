@@ -1,11 +1,9 @@
 package strath.cs308.gizmoball.model;
 
+import java.util.Optional;
+
 public interface ITriggerable {
 
-    enum Event {
-        KEY_K, KEY_L;
-    }
-
-    void trigger(Event event);
+    void trigger(String triggerEvent);
 
 }

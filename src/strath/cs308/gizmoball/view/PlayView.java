@@ -15,6 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameBarEventHandler;
+import strath.cs308.gizmoball.controller.IngameKeyEventHandler;
 import strath.cs308.gizmoball.controller.PauseMenuEventHandler;
 import strath.cs308.gizmoball.model.IGameModel;
 
@@ -48,6 +49,8 @@ public class PlayView implements IPlayView, Observer{
             gameModel.addObserver(this);
 
             Scene scene = new Scene(root, root.getWidth(), root.getHeight());
+            scene.setOnKeyPressed(new IngameKeyEventHandler(gameModel));
+            scene.setOnKeyReleased(new IngameKeyEventHandler(gameModel));
 
             stage.setScene(scene);
             stage.setWidth(root.getWidth());

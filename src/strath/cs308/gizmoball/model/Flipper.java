@@ -1,5 +1,6 @@
 package strath.cs308.gizmoball.model;
 
+import com.sun.org.apache.xpath.internal.operations.Or;
 import mit.physics.*;
 import strath.cs308.gizmoball.model.gizmo.Gizmo;
 
@@ -9,7 +10,7 @@ import java.util.Set;
 public class Flipper extends Gizmo implements IMovable, ITriggerable {
 
     enum Movement {
-        BACK, FORWARD, STILL;
+        BACK, FORWARD, BOTTOM, TOP;
     }
 
     public enum Orientation {
@@ -23,8 +24,8 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
                                                 }
 
         public double getMult() {
-                              return mult;
-                                          }
+            return mult;
+        }
     }
 
 
@@ -46,10 +47,11 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
         double radius = 0.25;
         this.orientation = orientation;
 
-        movementStatus = Movement.STILL;
+        movementStatus = Movement.BOTTOM;
         movedAngle = Angle.ZERO.radians();
 
-        velocity = new Vect(Angle.DEG_180);
+//        velocity = new Vect(Angle.DEG_180);
+        velocity = Vect.ZERO;
 
         if (orientation == Orientation.RIGHT) {
             x = (x + 2) - radius ;
@@ -88,7 +90,7 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
 
     @Override
     public void move(double time) {
-        if (movementStatus != Movement.STILL) {
+        if (!velocity.equals(Vect.ZERO)) {
             double rotationRadian = velocity.angle().radians() * time;
 
             if ((rotationRadian + movedAngle) > Angle.DEG_90.radians()) {
@@ -96,7 +98,6 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
             }
 
             Angle rotationAngle = new Angle(rotationRadian);
-
 
 
             Circle rotated = Geometry.rotateAround(endPoint
@@ -123,19 +124,19 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
 
             if (movedAngle >= Angle.DEG_90.radians()) {
 
-                switch (movementStatus) {
-                    case FORWARD:
-                        movementStatus = Movement.BACK;
-                        velocity = new Vect(new Angle(Angle.DEG_180.radians() * orientation.getMult()));
-                        break;
 
-                    case BACK:
-                        movementStatus = Movement.STILL;
-                        velocity = new Vect(Angle.ZERO);
-                        break;
+                if (movementStatus.equals(Movement.FORWARD)) {
+                    movementStatus = Movement.TOP;
+                    velocity = Vect.ZERO;
+                    movedAngle = Angle.ZERO.radians();
                 }
 
-                movedAngle = Angle.ZERO.radians();
+                if (movementStatus.equals(Movement.BACK)) {
+                    movementStatus = Movement.BOTTOM;
+                    velocity = Vect.ZERO;
+                    movedAngle = Angle.ZERO.radians();
+                }
+
             }
         }
 
@@ -156,27 +157,45 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
             velocity = new Vect(new Angle(Angle.DEG_180.radians() * -1 * orientation.getMult()));
         }
 
-        if (movementStatus == Movement.STILL) {
+        if (movementStatus.equals(Movement.BOTTOM)) {
             movedAngle = Angle.ZERO.radians();
             movementStatus = Movement.FORWARD;
             velocity = new Vect(new Angle(Angle.DEG_180.radians() * -1 * orientation.getMult()));
         }
+
+    }
+
+    private void down() {
+
+        if (movementStatus.equals(Movement.TOP)) {
+            movementStatus = Movement.BACK;
+            movedAngle = Angle.ZERO.radians();
+            velocity = new Vect(new Angle(Angle.DEG_180.radians() * orientation.getMult()));
+        }
+
+        if (movementStatus == Movement.FORWARD && movedAngle != 0) {
+            movementStatus = Movement.BACK;
+            movedAngle = Angle.DEG_90.radians() - movedAngle ;
+            velocity = new Vect(new Angle(Angle.DEG_180.radians() * orientation.getMult()));
+        }
+
     }
 
     public Circle getStartPoint() {
-                                return startPoint;
-                                                  }
+        return startPoint;
+    }
 
     @Override
-    public void trigger(Event event) {
-        if (orientation == Orientation.RIGHT && event == Event.KEY_L){
+    public void trigger(String triggerEvent) {
+        triggerEvent = triggerEvent.toUpperCase();
+        String letter = (orientation.equals(Orientation.RIGHT))? "L" : "K";
+        if (triggerEvent.equals("KEY_PRESSED_"+letter)) {
             up();
         }
 
-        if (orientation == Orientation.LEFT && event == Event.KEY_K){
-            up();
+        if (triggerEvent.equals("KEY_RELEASED_"+letter)){
+           down();
         }
-
     }
 
 
@@ -184,7 +203,5 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
     public void draw(Set<LineSegment> lines, List<Circle> circles, double x1, double y1, double x2, double y2) {
 
     }
-
-
 
 }
