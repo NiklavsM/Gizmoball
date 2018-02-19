@@ -3,9 +3,9 @@ package strath.cs308.gizmoball.controller.strategi;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import strath.cs308.gizmoball.model.IGameModel;
-import strath.cs308.gizmoball.model.gizmo.GizmoFactory;
+import strath.cs308.gizmoball.model.GizmoFactory;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
-import strath.cs308.gizmoball.model.gizmo.IGizmoFactory;
+import strath.cs308.gizmoball.model.IGizmoFactory;
 import strath.cs308.gizmoball.view.IEditorView;
 
 public class AddGizmoStrategy implements EventHandler<MouseEvent> {

@@ -1,6 +1,5 @@
 package strath.cs308.gizmoball.model;
 
-import strath.cs308.gizmoball.model.gizmo.GizmoFactory;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
 import java.io.File;

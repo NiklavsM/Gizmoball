@@ -1,6 +1,6 @@
-package strath.cs308.gizmoball.model.gizmo;
+package strath.cs308.gizmoball.model;
 
-import strath.cs308.gizmoball.model.Flipper;
+import strath.cs308.gizmoball.model.gizmo.*;
 
 import java.util.UUID;
 

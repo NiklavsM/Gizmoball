@@ -4,10 +4,7 @@ import mit.physics.Circle;
 import mit.physics.Geometry;
 import mit.physics.LineSegment;
 import mit.physics.Vect;
-import strath.cs308.gizmoball.model.gizmo.Ball;
-import strath.cs308.gizmoball.model.gizmo.Gizmo;
-import strath.cs308.gizmoball.model.gizmo.IGizmo;
-import strath.cs308.gizmoball.model.gizmo.Walls;
+import strath.cs308.gizmoball.model.gizmo.*;
 
 import java.util.*;
 

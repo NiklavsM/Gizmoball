@@ -1,4 +1,7 @@
-package strath.cs308.gizmoball.model.gizmo;
+package strath.cs308.gizmoball.model;
+
+import strath.cs308.gizmoball.model.gizmo.Gizmo;
+import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
 public interface IGizmoFactory {
 
