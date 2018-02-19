@@ -73,7 +73,6 @@ public class GameModel extends Observable implements IGameModel {
                 // No collision ...
                 ball.move(time);
                 applyForces(ball.getVelocity(), time);
-                moveMovables(time);
             } else {
                 // We've got a collision in tuc
                 nextGizmo = cd.getGizmo();
@@ -83,6 +82,7 @@ public class GameModel extends Observable implements IGameModel {
             }
         }
 
+        moveMovables(time);
         // Notify observers ... redraw updated view
         this.setChanged();
         this.notifyObservers();
@@ -183,6 +183,9 @@ public class GameModel extends Observable implements IGameModel {
             ball = new Ball(19.74,18.5);
             ball.setVelocity(new Vect(0, -50));
             addGizmo(ball);
+
+            setChanged();
+            notifyObservers();
         }
     }
 

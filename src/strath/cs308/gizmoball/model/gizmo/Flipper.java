@@ -1,16 +1,13 @@
 package strath.cs308.gizmoball.model.gizmo;
 
-import com.sun.org.apache.xpath.internal.operations.Or;
 import mit.physics.*;
 import strath.cs308.gizmoball.model.IMovable;
 import strath.cs308.gizmoball.model.ITriggerable;
-import strath.cs308.gizmoball.model.gizmo.Gizmo;
 
 import java.util.List;
 import java.util.Set;
 
-public class Flipper extends Gizmo implements IMovable, ITriggerable
-{
+public class Flipper extends Gizmo implements IMovable, ITriggerable {
 
     enum Movement {
         BACK, FORWARD, BOTTOM, TOP;
