@@ -31,21 +31,13 @@ public class GameBarEventHandler implements EventHandler<ActionEvent> {
             break;
 
             case "playButton":
-                startGame();
+                gameTimer.start();
             break;
 
             case "stopButton":
-                stopGame();
+                gameTimer.stop();
             break;
         }
-    }
-
-    private void stopGame() {
-        gameTimer.stop();
-    }
-
-    private void startGame() {
-        gameTimer.start();
     }
 
     private void tick() {
