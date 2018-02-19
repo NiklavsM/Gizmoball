@@ -8,7 +8,21 @@ import java.util.List;
 public interface IEntity extends IDrawable {
 
     enum Type {
-        TRIANGLE, ABSORBER, SQUARE, BALL, WALLS, FLIPPER, CIRCLE, LEFT_FLIPPER, RIGHT_FLIPPER
+        TRIANGLE("Triangle"), ABSORBER("Absorber"), SQUARE("Square"), BALL("Ball"),
+        WALLS("Walls"), FLIPPER("Flipper"), CIRCLE("Circle"),
+        LEFT_FLIPPER("LeftFlipper"), RIGHT_FLIPPER("RightFlipper");
+
+        private String name;
+
+        Type(String name) {
+            this.name = name;
+        }
+
+
+        @Override
+        public String toString() {
+            return name;
+        }
     }
 
     Type getType();
