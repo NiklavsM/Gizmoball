@@ -78,7 +78,7 @@ public class GameModel extends Observable implements IGameModel {
 
         IEntity nextIEntity = null;
 
-        if (ball != null) {
+        if (ball != null && !absorberCollision) {
             CollisionDetails cd = timeUntilCollision();
 
             double tuc = cd.getTuc();
@@ -107,7 +107,7 @@ public class GameModel extends Observable implements IGameModel {
         if (absorberCollision) {
 //            entities.remove(ball.getId());
 //            ball = null;
-            ball.setVelo(new Vect(0.0, -0.1));
+//            ball.setVelo(new Vect(0.0, -0.1));
             setBallInAbsorber();
         }
 
@@ -133,7 +133,7 @@ public class GameModel extends Observable implements IGameModel {
         Vect velocityAfterFriction;
         Vect gravity;
 
-        gravity = new Vect(0.0, 25 * 0.05);
+        gravity = new Vect(0.0, 25 * time);
         // Vnew = Vold * (1 - mu * delta_t - mu2 * |Vold| * delta_t).
         velocityAfterFriction = new Vect(velocity.angle(),
                 velocity.length() * (1 - (0.025 * time) - (0.025 * velocity.length() * time)));
