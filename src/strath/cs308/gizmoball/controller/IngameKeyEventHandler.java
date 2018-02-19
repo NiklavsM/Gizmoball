@@ -16,9 +16,9 @@ public class IngameKeyEventHandler implements EventHandler<KeyEvent> {
     @Override
     public void handle(KeyEvent keyEvent) {
 
-        if (keyEvent.getText().toUpperCase().equals("J")) {
-            gameModel.shootOut();
-        }
+//        if (keyEvent.getText().toUpperCase().equals("J")) {
+//            gameModel.shootOut();
+//        }
 
         gameModel.getGizmos()
                 .stream()
