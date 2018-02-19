@@ -1,5 +1,6 @@
 package model;
 
+import model.gizmo.Gizmo;
 import model.gizmo.IEntity;
 import model.gizmo.Walls;
 import physics.Circle;
@@ -60,14 +61,13 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     public IEntity getGizmo(int x, int y) {
-        //TODO: FIX
-//        for (Map.Entry<String, Gizmo> entrySet : entities.entrySet()) {
-//            Gizmo gizmo = entrySet.getValue();
-//
-//            if (gizmo.getXLocation() == x && gizmo.getYLocation() == y) {
-//                return gizmo;
-//            }
-//        }
+        for (IEntity entity : entities.values()) {
+            Gizmo gizmo = (Gizmo) entity;
+
+            if (gizmo.getXLocation() == x && gizmo.getYLocation() == y) {
+                return gizmo;
+            }
+        }
 
         return null;
     }
@@ -277,26 +277,26 @@ public class GameModel extends Observable implements IGameModel {
 
     @Override
     public void rotate(String id) {
+        if (entities instanceof Gizmo) {
+            ((Gizmo) entities.get(id)).rotate();
 
-        //FIXME: Fix rotate
-//        entities.get(id).rotate();
-//
-//        this.setChanged();
-//        this.notifyObservers();
+            this.setChanged();
+            this.notifyObservers();
+        }
+
     }
 
     @Override
     public boolean isOccupied(int x, int y) {
-
-        //FIXME: Fix isOCcupied
-//        for (Map.Entry<String, IEntity> entrySet : entities.entrySet()) {
-//            IEntity IEntity = entrySet.getValue();
+//        for (IEntity entity : entities.values()) {
 //
-//            if (IEntity.getXLocation() == x && IEntity.getYLocation() == y) {
+//            if (entity.getXLocation() == x && entity.getYLocation() == y) {
 //                return true;
 //            }
+//
 //        }
 
+        //TODO: Fix method
         return false;
     }
 
