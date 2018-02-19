@@ -28,7 +28,7 @@ public class GizmoFactory {
             case RIGHT_FLIPPER:
                 return new Flipper(x, y,Flipper.Orientation.RIGHT, id); //FIXME
         }
-        throw new IllegalArgumentException("no absorber nor ball please");
+        throw new IllegalArgumentException("no absorber nor ball please " + type);
     }
 
     public IEntity createEntity(IEntity.Type type, double x1, double y1, double x2, double y2, String id) {

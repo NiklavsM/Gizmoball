@@ -74,6 +74,11 @@ public class BoardCanvasView extends Canvas implements Observer {
 
     private void renderBall() {
         Ball ball = gameModel.getBall();
+
+        if(ball == null) {
+            return;
+        }
+
         RenderDetails renderDetails = new RenderDetails(ball);
         double diameter = renderDetails.getDiameter();
         double[] xPoints = renderDetails.getxPoints();

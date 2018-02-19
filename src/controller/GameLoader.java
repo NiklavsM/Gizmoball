@@ -8,8 +8,7 @@ import java.io.InputStream;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static model.gizmo.IEntity.Type.ABSORBER;
-import static model.gizmo.IEntity.Type.BALL;
+import static model.gizmo.IEntity.Type.*;
 
 public class GameLoader {
 
@@ -22,10 +21,11 @@ public class GameLoader {
     public static final String MOVE_COMMAND = "Move";
     public static final String WALLS_NAME = "OuterWalls";
 
-    private static Set<String> gizmoCreationCommands;
-    private static Set<String> nameCoordCoordCommands;
-    private static Set<String> gizmoCreationCommandsAdvanced;
-    private static Set<String> nameCommands;
+    private Set<String> gizmoCreationCommands;
+    private Set<String> nameCoordCoordCommands;
+    private Set<String> gizmoCreationCommandsAdvanced;
+    private Set<String> nameCommands;
+    private Map<String, IEntity.Type> gizmoCommandToEnum;
 
     private final GizmoFactory gizmoFactory;
     private final IGameModel gameModel;
@@ -36,10 +36,16 @@ public class GameLoader {
         this.source = source;
         gizmoFactory = GizmoFactory.getInstance();
 
-        gizmoCreationCommands =
-                Arrays.stream(IEntity.Type.values())
-                        .map(IEntity.Type::toString)
-                        .collect(Collectors.toCollection(HashSet::new));
+        gizmoCommandToEnum = new HashMap<>();
+        gizmoCommandToEnum.put("Circle", CIRCLE);
+        gizmoCommandToEnum.put("Square", SQUARE);
+        gizmoCommandToEnum.put("Triangle", TRIANGLE);
+        gizmoCommandToEnum.put("LeftFlipper", LEFT_FLIPPER);
+        gizmoCommandToEnum.put("RightFlipper", RIGHT_FLIPPER);
+        gizmoCommandToEnum.put("Ball", BALL);
+        gizmoCommandToEnum.put("Absorber", ABSORBER);
+
+        gizmoCreationCommands = gizmoCommandToEnum.keySet();
 
         nameCommands = new HashSet<>(gizmoCreationCommands);
         nameCommands.add(CONNECT_COMMAND);
@@ -51,8 +57,8 @@ public class GameLoader {
         nameCoordCoordCommands.add(MOVE_COMMAND);
 
         gizmoCreationCommandsAdvanced = new HashSet<>();
-        gizmoCreationCommandsAdvanced.add(ABSORBER.toString());
-        gizmoCreationCommandsAdvanced.add(BALL.toString());
+        gizmoCreationCommandsAdvanced.add("Absorber");
+        gizmoCreationCommandsAdvanced.add("Ball");
     }
 
     public void load() throws IllegalAccessException {
@@ -148,17 +154,13 @@ public class GameLoader {
                 double x2 = toValidNumber(tokens.poll());
                 double y2 = toValidNumber(tokens.poll());
 
-                if (command == "BALL") {
-
-                } else {
-                    gameModel.addEntity(gizmoFactory.createEntity(IEntity.Type.valueOf(command), x, y, x2, y2, name));
-                }
+                gameModel.addEntity(gizmoFactory.createEntity(gizmoCommandToEnum.get(command), x, y, x2, y2, name));
 
                 System.out.println("created " + name);
                 return;
             }
 
-            gameModel.addEntity(gizmoFactory.createEntity(IEntity.Type.valueOf(command), x, y, name));
+            gameModel.addEntity(gizmoFactory.createEntity(gizmoCommandToEnum.get(command), x, y, name));
             System.out.println("created" + name);
         }
     }
