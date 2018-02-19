@@ -22,20 +22,22 @@ public class GameTimer implements IGameTimer {
     }
 
     public void start() {
-        this.isRunning = true;
+        if (!isRunning) {
+            this.isRunning = true;
 
-        TimerTask task = new TimerTask()
-        {
-            @Override
-            public void run()
+            TimerTask task = new TimerTask()
             {
-                gameModel.tick(1 / refreshRate);
-            }
-        };
+                @Override
+                public void run()
+                {
+                    gameModel.tick(1 / refreshRate);
+                }
+            };
 
 
-        this.timer = new Timer();
-        this.timer.schedule(task, 0, (long) (1000 / refreshRate));
+            this.timer = new Timer();
+            this.timer.schedule(task, 0, (long) (1000 / refreshRate));
+        }
     }
 
     public void stop() {

@@ -20,13 +20,15 @@ public class GameModel extends Observable implements IGameModel {
 
     private void setup() {
         gizmos = new HashMap<>();
-        ball = new Ball(2, 1);
-        addGizmo(ball);
         addGizmo(new Walls());
         absorberCollision = false;
     }
 
     public void addGizmo(IGizmo gizmo) {
+        if (gizmo instanceof Ball) {
+            ball = (Ball) gizmo;
+        }
+
         gizmos.put(gizmo.getId(), (Gizmo) gizmo);
 
         setChanged();
