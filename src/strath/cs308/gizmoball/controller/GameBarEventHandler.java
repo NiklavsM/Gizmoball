@@ -4,16 +4,19 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import strath.cs308.gizmoball.model.IGameModel;
+import strath.cs308.gizmoball.model.IGameTimer;
 import strath.cs308.gizmoball.view.IPlayView;
 
 public class GameBarEventHandler implements EventHandler<ActionEvent> {
 
-    private IGameModel gameModel;
-    private IPlayView playView;
+    private final IGameTimer gameTimer;
+    private final IGameModel gameModel;
+    private final IPlayView playView;
 
-    public GameBarEventHandler(IGameModel gameModel, IPlayView playView) {
+    public GameBarEventHandler(IGameModel gameModel, IGameTimer gameTimer, IPlayView playView) {
         this.gameModel = gameModel;
         this.playView = playView;
+        this.gameTimer = gameTimer;
     }
 
     @Override
@@ -38,21 +41,23 @@ public class GameBarEventHandler implements EventHandler<ActionEvent> {
     }
 
     private void stopGame() {
-        gameModel.stopTimer();
+        gameTimer.stop();
     }
 
     private void startGame() {
-        gameModel.startTimer();
+        gameTimer.start();
     }
 
     private void tick() {
-        if (!gameModel.isTimerRunning()) {
-            gameModel.moveBall();
+
+        if (!gameTimer.isRunning()) {
+            gameModel.tick(1/30.0);
         }
+
     }
 
     private void openMenu() {
-        gameModel.stopTimer();
+        gameTimer.stop();
         playView.showPauseMenu();
     }
 }

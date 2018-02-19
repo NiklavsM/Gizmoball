@@ -8,13 +8,12 @@ import strath.cs308.gizmoball.model.gizmo.Gizmo;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.model.gizmo.Walls;
 
-import javax.swing.Timer;
 import java.util.*;
+
 
 public class GameModel extends Observable implements IGameModel {
 
     private Ball ball;
-    private Timer timer;
     private Map<String, Gizmo> gizmos;
     private boolean absorberCollision = false;
 
@@ -23,11 +22,6 @@ public class GameModel extends Observable implements IGameModel {
         ball = new Ball(2, 1, 4, 4);
         addGizmo(ball);
         addGizmo(new Walls());
-        setupTimer();
-    }
-
-    private void setupTimer() {
-        timer = new Timer(50, e -> moveBall());
     }
 
     public void addGizmo(IGizmo gizmo) {
@@ -64,9 +58,7 @@ public class GameModel extends Observable implements IGameModel {
         return null;
     }
 
-    public void moveBall() {
-
-        double moveTime = 0.05; // 0.05 = 20 times per second as per Gizmoball
+    public void tick(double time) {
 
         Gizmo nextGizmo = null;
 
@@ -74,11 +66,11 @@ public class GameModel extends Observable implements IGameModel {
             CollisionDetails cd = timeUntilCollision();
 
             double tuc = cd.getTuc();
-            if (tuc > moveTime) {
+            if (tuc > time) {
                 // No collision ...
-                ball = moveBallForTime(ball, moveTime);
-                applyForces(ball.getVelo(), moveTime);
-                moveMovables(moveTime);
+                ball = moveBallForTime(ball, time);
+                applyForces(ball.getVelo(), time);
+                moveMovables(time);
             } else {
                 // We've got a collision in tuc
                 nextGizmo = cd.getGizmo();
@@ -199,25 +191,12 @@ public class GameModel extends Observable implements IGameModel {
         ball.setVelo(new Vect(x, y));
     }
 
-    public void startTimer() {
-        timer.start();
-    }
-
-    public void stopTimer() {
-        timer.stop();
-    }
-
-    public boolean isTimerRunning() {
-        return timer.isRunning();
-    }
-
     public void shootOut() {
 
         // checking needs to change
         if (ball == null) { // need to use absorber coordinates
             ball = new Ball(19.74,18.5,0, -50);
             addGizmo(ball);
-            this.startTimer();
         }
     }
 

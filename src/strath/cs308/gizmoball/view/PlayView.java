@@ -17,7 +17,9 @@ import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameBarEventHandler;
 import strath.cs308.gizmoball.controller.IngameKeyEventHandler;
 import strath.cs308.gizmoball.controller.PauseMenuEventHandler;
+import strath.cs308.gizmoball.model.GameTimer;
 import strath.cs308.gizmoball.model.IGameModel;
+import strath.cs308.gizmoball.model.IGameTimer;
 
 import java.io.IOException;
 import java.util.Observable;
@@ -68,10 +70,12 @@ public class PlayView implements IPlayView, Observer{
 
     private void attachEventHandlers() {
         Platform.runLater(() -> {
-            root.lookupAll("#gameMenu > Button")
-                    .forEach(node -> ((Button) node).setOnAction(new GameBarEventHandler(gameModel, this)));
+            IGameTimer gameTimer = new GameTimer(gameModel);
 
-            root.lookupAll("#pauseMenuItemHolder > Button").forEach(node -> ((Button) node).setOnAction(new PauseMenuEventHandler(gameModel, this)));
+            root.lookupAll("#gameMenu > Button")
+                    .forEach(node -> ((Button) node).setOnAction(new GameBarEventHandler(gameModel, gameTimer, this)));
+
+            root.lookupAll("#pauseMenuItemHolder > Button").forEach(node -> ((Button) node).setOnAction(new PauseMenuEventHandler(gameTimer, this)));
 
         });
     }

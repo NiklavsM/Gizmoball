@@ -21,13 +21,7 @@ public interface IGameModel {
 
     boolean remove(String id);
 
-    void startTimer();
-
-    void stopTimer();
-
-    boolean isTimerRunning();
-
-    void moveBall();
+    void tick(double time);
 
     void addObserver(Observer o);
 

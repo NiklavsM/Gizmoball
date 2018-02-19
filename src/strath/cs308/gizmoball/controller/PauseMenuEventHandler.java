@@ -5,16 +5,17 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import strath.cs308.gizmoball.model.IGameModel;
+import strath.cs308.gizmoball.model.IGameTimer;
 import strath.cs308.gizmoball.view.IPlayView;
 
 public class PauseMenuEventHandler implements EventHandler<ActionEvent>
 {
-    private IGameModel gameModel;
     private IPlayView playView;
+    private IGameTimer gameTimer;
 
-    public PauseMenuEventHandler(IGameModel gameModel, IPlayView playView) {
-        this.gameModel = gameModel;
+    public PauseMenuEventHandler(IGameTimer gameTimer, IPlayView playView) {
         this.playView = playView;
+        this.gameTimer = gameTimer;
     }
 
     @Override
@@ -43,7 +44,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent>
     }
 
     private void openEditor() {
-        gameModel.stopTimer();
+        gameTimer.stop();
         playView.switchToEditor();
     }
 
@@ -65,6 +66,6 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent>
 
     private void closeMenu() {
         playView.hidePauseMenu();
-        gameModel.startTimer();
+        gameTimer.start();
     }
 }
