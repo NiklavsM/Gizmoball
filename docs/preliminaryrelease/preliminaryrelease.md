@@ -191,17 +191,47 @@ with the velocity 50L/s upwards
 **Expected outputs:** Each click on the gizmo should rotate it by 90°
 
 
-###Test 9
+###Test 9 
  
-**Purpose:**
+**Purpose:** Test whether a newly configurated map can be properly saved   
 
-**Test inputs:**
+**Test inputs:** User: 
 
-**Expected outputs:**
+1. Starts at the "Editor mode"
+ 
+2. Creates the layout they want 
+
+3. Clicks "Save As" icon located in the top toolbar
+
+4. A file explorer pops up prompting the user to choose a desired location for the file 
+
+5. Can optionally change the default name of the file to be saved 
+
+6. Clicks "Save".  
+
+7. A status label shows that the game configuration has been successfully saved.
+
+**Expected outputs:** Game configuration has successfully been saved in the specified location
 
 
+###Test 10 
+ 
+**Purpose:** Test whether an already saved map can be saved (using "Save", not "Save As")    
 
-###Test 10
+**Test inputs:** User: 
+
+1. Starts at the "Editor mode"
+ 
+2. User has an already saved configuration displayed on the board 
+
+3. Clicks "Save" icon located in the top toolbar
+
+4. A status label shows that the game configuration have been successfully saved.
+
+**Expected outputs:** Game configuration has successfully been saved, overwriting the file with the new configurations 
+
+
+###Test 11
  
 **Purpose:**
 
