@@ -12,6 +12,7 @@ import javafx.scene.control.ToolBar;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameBarEventHandler;
@@ -21,6 +22,7 @@ import strath.cs308.gizmoball.model.GameTimer;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGameTimer;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
@@ -75,7 +77,7 @@ public class PlayView implements IPlayView, Observer{
             root.lookupAll("#gameMenu > Button")
                     .forEach(node -> ((Button) node).setOnAction(new GameBarEventHandler(gameModel, gameTimer, this)));
 
-            root.lookupAll("#pauseMenuItemHolder > Button").forEach(node -> ((Button) node).setOnAction(new PauseMenuEventHandler(gameTimer, this)));
+            root.lookupAll("#pauseMenuItemHolder > Button").forEach(node -> ((Button) node).setOnAction(new PauseMenuEventHandler(gameModel, gameTimer, this)));
 
         });
     }
@@ -137,5 +139,13 @@ public class PlayView implements IPlayView, Observer{
     @Override
     public void switchToEditor() {
         EditorView editorView = new EditorView((Stage) root.getScene().getWindow(), gameModel);
+    }
+
+    @Override
+    public File getLoadFile() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Gizmoball loading file");
+        fileChooser.setInitialFileName("hahahah");
+        return fileChooser.showOpenDialog(null);
     }
 }

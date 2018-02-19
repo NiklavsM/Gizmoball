@@ -15,13 +15,18 @@ public class GameModel extends Observable implements IGameModel {
 
     private Ball ball;
     private Map<String, Gizmo> gizmos;
-    private boolean absorberCollision = false;
+    private boolean absorberCollision;
 
     public GameModel() {
+        setup();
+    }
+
+    private void setup() {
         gizmos = new HashMap<>();
         ball = new Ball(2, 1, 4, 4);
         addGizmo(ball);
         addGizmo(new Walls());
+        absorberCollision = false;
     }
 
     public void addGizmo(IGizmo gizmo) {
@@ -193,4 +198,10 @@ public class GameModel extends Observable implements IGameModel {
         notifyObservers();
     }
 
+    public void clear() {
+        setup();
+
+        setChanged();
+        notifyObservers();
+    }
 }

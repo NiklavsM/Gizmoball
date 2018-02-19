@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import static strath.cs308.gizmoball.model.gizmo.IGizmo.Type.ABSORBER;
 import static strath.cs308.gizmoball.model.gizmo.IGizmo.Type.BALL;
 
-public class GameLoader {
+public class GameLoader implements IGameLoader {
 
     public static final String ROTATE_COMMAND = "Rotate";
     public static final String KEY_CONNECT_COMMAND = "KeyConnect";
@@ -21,6 +21,7 @@ public class GameLoader {
     public static final String DELETE_COMMAND = "Delete";
     public static final String MOVE_COMMAND = "Move";
     public static final String WALLS_NAME = "OuterWalls";
+    private final File fileToLoad;
 
     private Set<String> gizmoCreationCommands;
     private Set<String> nameCoordCoordCommands;
@@ -28,11 +29,11 @@ public class GameLoader {
     private Set<String> nameCommands;
 
     private GizmoFactory gizmoFactory;
-    private GameModel gameModel;
-    private String path;
+    private IGameModel gameModel;
 
-    public GameLoader(String path) {
-        this.path = path;
+    public GameLoader(IGameModel gameModel, File fileToLoad) {
+        this.fileToLoad = fileToLoad;
+        this.gameModel = gameModel;
         gizmoFactory = new GizmoFactory();
 
         gizmoCreationCommands =
@@ -54,14 +55,14 @@ public class GameLoader {
         gizmoCreationCommandsAdvanced.add(BALL.toString());
     }
 
-    public GameModel load() throws IllegalAccessException, FileNotFoundException {
+    public void load() throws IllegalAccessException, FileNotFoundException {
 
         Queue<String> tokens;
         String command;
         String line;
 
-        gameModel = new GameModel();
-        Scanner scanner = new Scanner(new File(path));
+        gameModel.clear();
+        Scanner scanner = new Scanner(fileToLoad);
 
         try {
             while (scanner.hasNextLine()) {
@@ -107,14 +108,6 @@ public class GameLoader {
         } catch (NumberFormatException ex) {
             throw ex;
         }
-        return gameModel;
-    }
-
-    public GameModel getGameModel() {
-        if (gameModel == null) {
-            throw new NullPointerException("game not loaded yet");
-        }
-        return gameModel;
     }
 
     private double toValidNumber(String stringNumber) {

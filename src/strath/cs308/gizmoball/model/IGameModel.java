@@ -8,11 +8,6 @@ import java.util.Set;
 
 public interface IGameModel {
 
-    static IGameModel loadGame(String path) throws FileNotFoundException, IllegalAccessException {
-        GameLoader gameLoader = new GameLoader(path);
-        return gameLoader.load();
-    }
-
     Set<IGizmo> getGizmos();
 
     IGizmo getGizmo(double x, double y);
@@ -31,4 +26,5 @@ public interface IGameModel {
 
     void rotate(String id);
 
+    void clear();
 }

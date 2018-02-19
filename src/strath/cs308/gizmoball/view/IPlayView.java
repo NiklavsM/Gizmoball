@@ -1,5 +1,7 @@
 package strath.cs308.gizmoball.view;
 
+import java.io.File;
+
 public interface IPlayView {
 
     void showPauseMenu();
@@ -7,4 +9,6 @@ public interface IPlayView {
     boolean getCloseConFormation();
 
     void switchToEditor();
+
+    File getLoadFile();
 }
