@@ -3,16 +3,9 @@ package strath.cs308.gizmoball.model.gizmo;
 import strath.cs308.gizmoball.model.Ball;
 import strath.cs308.gizmoball.model.Flipper;
 
-import java.rmi.server.UID;
 import java.util.UUID;
 
 public class GizmoFactory implements IGizmoFactory {
-
-    private static final GizmoFactory factory = new GizmoFactory();
-
-    public static GizmoFactory getInstance() {
-        return factory;
-    }
 
     public Gizmo createGizmo(IGizmo.Type type, double x, double y, String id) {
         switch (type) {

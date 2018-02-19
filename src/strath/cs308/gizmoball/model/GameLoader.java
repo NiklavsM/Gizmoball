@@ -33,7 +33,7 @@ public class GameLoader {
 
     public GameLoader(String path) {
         this.path = path;
-        gizmoFactory = GizmoFactory.getInstance();
+        gizmoFactory = new GizmoFactory();
 
         gizmoCreationCommands =
                 Arrays.stream(IGizmo.Type.values())
