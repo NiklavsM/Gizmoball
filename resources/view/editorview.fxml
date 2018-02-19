@@ -289,8 +289,8 @@
                                            styleClass="regular-font" />
                                 </VBox>
 
-                                <VBox GridPane.rowIndex="0"
-                                      GridPane.columnIndex="2"
+                                <VBox GridPane.rowIndex="1"
+                                      GridPane.columnIndex="0"
                                       spacing="16"
                                       alignment="CENTER">
                                     <Button fx:id="addTriangleMode">
@@ -306,7 +306,7 @@
                                 </VBox>
 
                                 <VBox GridPane.rowIndex="1"
-                                      GridPane.columnIndex="0"
+                                      GridPane.columnIndex="1"
                                       spacing="16"
                                       alignment="CENTER">
                                     <Button fx:id="addAbsorberMode">
@@ -320,11 +320,11 @@
                                            styleClass="regular-font" />
                                 </VBox>
 
-                                <VBox GridPane.rowIndex="1"
-                                      GridPane.columnIndex="1"
+                                <VBox GridPane.rowIndex="2"
+                                      GridPane.columnIndex="0"
                                       spacing="16"
                                       alignment="CENTER">
-                                    <Button fx:id="addFlipperMode">
+                                    <Button fx:id="addLeftFlipperMode">
                                         <graphic>
                                             <ImageView fitWidth="30"
                                                        fitHeight="30">
@@ -332,12 +332,28 @@
                                             </ImageView>
                                         </graphic>
                                     </Button>
-                                    <Label text="Flipper"
+                                    <Label text="Left Flipper"
                                            styleClass="regular-font" />
                                 </VBox>
 
-                                <VBox GridPane.rowIndex="1"
-                                      GridPane.columnIndex="2"
+                                <VBox GridPane.rowIndex="2"
+                                      GridPane.columnIndex="1"
+                                      spacing="16"
+                                      alignment="CENTER">
+                                    <Button fx:id="addRightFlipperMode">
+                                        <graphic>
+                                            <ImageView fitWidth="30"
+                                                       fitHeight="30">
+                                                <Image url="/icons/flipper.png" />
+                                            </ImageView>
+                                        </graphic>
+                                    </Button>
+                                    <Label text="Right Flipper"
+                                           styleClass="regular-font" />
+                                </VBox>
+
+                                <VBox GridPane.rowIndex="3"
+                                      GridPane.columnIndex="0"
                                       spacing="16"
                                       alignment="CENTER">
                                     <Button fx:id="addBallMode">
