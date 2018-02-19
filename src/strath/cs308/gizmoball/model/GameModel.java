@@ -4,12 +4,12 @@ import mit.physics.Circle;
 import mit.physics.Geometry;
 import mit.physics.LineSegment;
 import mit.physics.Vect;
+import strath.cs308.gizmoball.model.gizmo.Ball;
 import strath.cs308.gizmoball.model.gizmo.Gizmo;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.model.gizmo.Walls;
 
 import java.util.*;
-
 
 public class GameModel extends Observable implements IGameModel {
 
@@ -23,7 +23,7 @@ public class GameModel extends Observable implements IGameModel {
 
     private void setup() {
         gizmos = new HashMap<>();
-        ball = new Ball(2, 1, 4, 4);
+        ball = new Ball(2, 1);
         addGizmo(ball);
         addGizmo(new Walls());
         absorberCollision = false;
@@ -73,7 +73,7 @@ public class GameModel extends Observable implements IGameModel {
             if (cd.getTuc() > time) {
                 // No collision ...
                 ball.move(time);
-                applyForces(ball.getVelo(), time);
+                applyForces(ball.getVelocity(), time);
                 moveMovables(time);
             } else {
                 // We've got a collision in tuc
@@ -112,14 +112,14 @@ public class GameModel extends Observable implements IGameModel {
         // Vnew = Vold * (1 - mu * delta_t - mu2 * |Vold| * delta_t).
         velocityAfterFriction = new Vect(velocity.angle(),
                 velocity.length() * (1 - (0.025 * time) - (0.025 * velocity.length() * time)));
-        ball.setVelo(velocityAfterFriction.plus(gravity));
+        ball.setVelocity(velocityAfterFriction.plus(gravity));
 
     }
 
     private CollisionDetails timeUntilCollision() {
 
         Circle ballCircle = ball.getCircle();
-        Vect ballVelocity = ball.getVelo();
+        Vect ballVelocity = ball.getVelocity();
         Vect newVelo = new Vect(0, 0);
         Gizmo nextGizmo = null;
         double shortestTime = Double.MAX_VALUE;
@@ -177,15 +177,12 @@ public class GameModel extends Observable implements IGameModel {
         return ball;
     }
 
-    public void setBallSpeed(int x, int y) {
-        ball.setVelo(new Vect(x, y));
-    }
-
     public void shootOut() {
 
         // checking needs to change
         if (ball == null) { // need to use absorber coordinates
-            ball = new Ball(19.74,18.5,0, -50);
+            ball = new Ball(19.74,18.5);
+            ball.setVelocity(new Vect(0, -50));
             addGizmo(ball);
         }
     }

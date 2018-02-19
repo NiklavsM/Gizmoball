@@ -1,36 +1,35 @@
-package strath.cs308.gizmoball.model;
+package strath.cs308.gizmoball.model.gizmo;
 
 
 import mit.physics.Circle;
 import mit.physics.LineSegment;
 import mit.physics.Vect;
-import strath.cs308.gizmoball.model.gizmo.Gizmo;
+import strath.cs308.gizmoball.model.IMovable;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-public class Ball extends Gizmo implements IMovable {
+public class Ball extends Gizmo implements IMovable
+{
 
     private Vect velocity;
     private double radius;
     private Circle circle;
 
-    public Ball(double x, double y, double xv, double yv) {
-        this(x, y, xv, yv, generateID());
+    public Ball(double x, double y) {
+        this(x, y, generateID());
     }
 
-    public Ball(double x, double y, double xv, double yv, String id) {
+    public Ball(double x, double y, String id) {
         super(x, y, x, y, id);
-        velocity = new Vect(xv, yv);
-
     }
 
-    Vect getVelo() {
+    public Vect getVelocity() {
         return velocity;
     }
 
-    void setVelo(Vect v) {
+    public void setVelocity(Vect v) {
         velocity = v;
     }
     
@@ -81,18 +80,13 @@ public class Ball extends Gizmo implements IMovable {
         radius = 0.25;
         circle = new Circle(x, y, radius);
         circles.add(circle);
+        setVelocity(new Vect(4,4));
     }
 
     @Override
     public void move(double timeInSeconds) {
-        double newX;
-        double newY;
-        double xVel = getVelo().x();
-        double yVel = getVelo().y();
-        newX = getExactX() + (xVel * timeInSeconds);
-        newY = getExactY() + (yVel * timeInSeconds);
-        setExactX(newX);
-        setExactY(newY);
+        setExactX(getExactX() + (getVelocity().x() * timeInSeconds));
+        setExactY(getExactY() + (getVelocity().y() * timeInSeconds));
 
     }
 }
