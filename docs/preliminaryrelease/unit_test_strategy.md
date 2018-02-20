@@ -25,7 +25,7 @@ code implemented by someone else
 
 - test package will have the same structure as the source package
 
-- test naming converntion 
+- test naming conversion 
 
 - TDD? or something else
 
