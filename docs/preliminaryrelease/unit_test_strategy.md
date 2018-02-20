@@ -2,9 +2,9 @@
 
 During the development of the preliminary release, as a team, we have realized that
 the code base of this project will steadily increase in both size and complexity 
-as we keep adding new features. Therefore, we agreed to do unit testing using as this 
-practice will boost our confidence when either writing new, bug-free code
-or editing previously written code, this being especially important since the code base
+as we keep adding new features. Therefore, we agreed to do unit testing as this 
+practice will boost our confidence when either writing new code
+or editing previously written code. This is especially important since the code base
 is maintained by multiple developers. As a bonus, this will also help us 
 confidentely experiment with extra features without braking the basic functionality,
 in order to achieve bonus marks.
@@ -12,15 +12,14 @@ in order to achieve bonus marks.
 #### Test cases identification
 
 We will focus on writing unit tests for the domain specific code, that is code that 
-implements "business logic" (in this case, Gizmoball basic functionality) as this
- is very likely to change a lot and is also crucial in accurately implementing the 
- main requirements. Simple code is not going to change and will, most probably, going to be
- implemented correctly.
+implements "business logic" (in this case, Gizmoball core functionality) as this
+ is very likely to change often. Simple code is not going to change and will, most probably, going to be
+ implemented correctly from the first attempt.
  
- We are planning to identify test cases mostly based on the `model` side of our `MVC` as these
- classes are responsible to model the physical aspects and interactions of the game. Moreover, 
+ We are planning to identify test cases mostly based on the `model` side of our `MVC` design, as these
+ classes are responsible to model the physical aspects of the game. Moreover, 
  we decided to write good method specifications for the complex methods, as we can easily create
- uses cases based on them, including *edge cases*.
+ relevant uses cases based on them, including *edge cases*.
  
  We are going to have one `JUnit` test class for each of the `model` classes that we are 
  planning to test. The test classes will be placed in the `test` package which is going 
@@ -39,7 +38,7 @@ implements "business logic" (in this case, Gizmoball basic functionality) as thi
  
  - *file saving and loading* functionality
  
- - `Gizmo` uniqueness, deletion, rotation 
+ - `Gizmo` uniqueness, deletion and rotation 
  
  - the triggering system
  
@@ -48,7 +47,7 @@ implements "business logic" (in this case, Gizmoball basic functionality) as thi
  
  - collisions detection
  
- - whether checked exceptions being thrown accordingly
+ - whether checked exceptions are being thrown accordingly
  
  ##### What we won't test
  
@@ -63,22 +62,22 @@ implements "business logic" (in this case, Gizmoball basic functionality) as thi
 
 #### Approach
 
-We will use the `JUnit 5` framework for Java unit testing as it provides some nice features
+We will use the `JUnit 5` framework for Java as it provides some nice features
 like *Parametrized tests*, *grouped assertions, powerful exception expecting mechanism etc*. 
 Since we're all contributing to the source code of Gizmoball, we have decided that all of us will
 be responsible for unit testing as well. However, as individuals, we should try to test the code
 written by a different team member and not our own as we might be biased towards our own 
-implementation which may cause as us to miss some test cases, making it more difficult to find 
+implementation which may cause us to miss some test cases, making it more difficult to find 
 potential bugs. 
  
  As a lot of the code is already written, we won't be able to adhere to the 
  `Test Driven Development` practice. However, we plan to write tests incrementally, most likely
- after each piece of meaningful new code. A mix of *black box* and *white box* testing 
+ after each piece of meaningful new code is added. A mix of *black box* and *white box* testing 
  techniques will be useful in finding bugs more effectively. We can start with *black box* 
  test cases against a method's specifications and then switch to *white box* testing in order
  to get some more insights about the method's behaviour.
 
-###### Guidelines that we're going to follow
+##### Guidelines that we're going to follow
 
 - smart use of `setUp()`, `tearDown()`, `beforeEach()` and `beforeAll()` methods
 
@@ -87,7 +86,7 @@ potential bugs.
 - 100% line coverage is a must, but only run the coverage on what we mark as business critical
 code
 
-- only ene *assertion* per test, unless use the `JUnit 5` *grouped assertions* are used
+- only one *assertion* per test, unless the `JUnit 5` *grouped assertions* are used
 (they are placed in a lambda and the framework reports all the assertions that failed) in 
 which case they should be related
 
@@ -96,6 +95,7 @@ describes what went wrong
 
 - run the whole test suite frequently, especially when adding a new feature
 
-- set up a CI pipeline on *gitlab* to run the test suite whenever we push to the `master` branch
+- set up a Continuous Integration pipeline on *gitlab* to run the test suite whenever
+ we push code to the `master` branch
 
 
