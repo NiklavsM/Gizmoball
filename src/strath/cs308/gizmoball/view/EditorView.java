@@ -56,14 +56,17 @@ public class EditorView implements IEditorView, Observer
 
     private void attachHandlers() {
         Platform.runLater(() -> {
+            EventHandler topToolbarHandler = new TopToolbarEventHandler(gameModel, this);
             root.lookupAll(".top-toolbar-button")
-                    .forEach(node -> node.setOnMouseClicked(new TopToolbarEventHandler(gameModel, this)));
+                    .forEach(node -> node.setOnMouseClicked(topToolbarHandler));
 
+            EventHandler addGizmoEventHandler = new GizmoSelectorEventHandler(gameModel, this);
             root.lookupAll("#addGizmoOptions Button")
-                    .forEach(node -> node.setOnMouseClicked(new GizmoSelectorEventHandler(gameModel,this)));
+                    .forEach(node -> node.setOnMouseClicked(addGizmoEventHandler));
 
+            EventHandler toolSelectionHandler = new ToolModeEventHandler(gameModel, this);
             root.lookupAll(".tool-button")
-                    .forEach(node -> node.setOnMouseClicked(new ToolModeEventHandler(gameModel, this)));
+                    .forEach(node -> node.setOnMouseClicked(toolSelectionHandler));
 
         });
     }

@@ -15,7 +15,8 @@ public class GizmoBall extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage)
+    {
         IGameModel gameModel = new GameModel();
         PlayView playView = new PlayView(stage, gameModel);
 

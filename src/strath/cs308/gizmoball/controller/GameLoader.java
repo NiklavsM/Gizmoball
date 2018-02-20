@@ -1,5 +1,8 @@
-package strath.cs308.gizmoball.model;
+package strath.cs308.gizmoball.controller;
 
+import strath.cs308.gizmoball.model.GizmoFactory;
+import strath.cs308.gizmoball.model.IGameModel;
+import strath.cs308.gizmoball.model.IGizmoFactory;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
 import java.io.File;
@@ -8,9 +11,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static strath.cs308.gizmoball.model.gizmo.IGizmo.Type.Absorber;
-import static strath.cs308.gizmoball.model.gizmo.IGizmo.Type.Ball;
 
-public class GameLoader implements IGameLoader {
+public class GameLoader
+{
 
     public static final String ROTATE_COMMAND = "Rotate";
     public static final String KEY_CONNECT_COMMAND = "KeyConnect";
@@ -27,7 +30,7 @@ public class GameLoader implements IGameLoader {
     private Set<String> gizmoCreationCommandsAdvanced;
     private Set<String> nameCommands;
 
-    private GizmoFactory gizmoFactory;
+    private IGizmoFactory gizmoFactory;
     private IGameModel gameModel;
 
     public GameLoader(IGameModel gameModel, File fileToLoad) {
@@ -116,7 +119,8 @@ public class GameLoader implements IGameLoader {
         }
     }
 
-    private void nameCommands(String command, String name, Queue<String> tokens) throws IllegalAccessException {
+    private void nameCommands(String command, String name, Queue<String> tokens)
+    {
         if (command.equals(DELETE_COMMAND)) {
             gameModel.remove(name);
             return;

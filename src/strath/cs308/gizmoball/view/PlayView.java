@@ -1,6 +1,7 @@
 package strath.cs308.gizmoball.view;
 
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -52,9 +53,11 @@ public class PlayView implements IPlayView, Observer{
             pauseMenu.toBack();
             gameModel.addObserver(this);
 
+            EventHandler ingameKeyHandler = new IngameKeyEventHandler(gameModel);
+
             Scene scene = new Scene(root, root.getWidth(), root.getHeight());
-            scene.setOnKeyPressed(new IngameKeyEventHandler(gameModel));
-            scene.setOnKeyReleased(new IngameKeyEventHandler(gameModel));
+            scene.setOnKeyPressed(ingameKeyHandler);
+            scene.setOnKeyReleased(ingameKeyHandler);
 
             stage.setScene(scene);
             stage.setWidth(root.getWidth());
@@ -73,11 +76,15 @@ public class PlayView implements IPlayView, Observer{
     private void attachEventHandlers() {
         Platform.runLater(() -> {
             IGameTimer gameTimer = new GameTimer(gameModel);
+            EventHandler gameBarEventHandler =  new GameBarEventHandler(gameModel, gameTimer, this);
 
             root.lookupAll("#gameMenu > Button")
-                    .forEach(node -> ((Button) node).setOnAction(new GameBarEventHandler(gameModel, gameTimer, this)));
+                    .forEach(node -> ((Button) node).setOnAction(gameBarEventHandler));
 
-            root.lookupAll("#pauseMenuItemHolder > Button").forEach(node -> ((Button) node).setOnAction(new PauseMenuEventHandler(gameModel, gameTimer, this)));
+            EventHandler pauseMenuEventHandler = new PauseMenuEventHandler(gameModel, gameTimer, this);
+            root.lookupAll("#pauseMenuItemHolder > Button")
+                    .forEach(node -> ((Button) node).setOnAction(pauseMenuEventHandler));
+
 
         });
     }
@@ -103,8 +110,10 @@ public class PlayView implements IPlayView, Observer{
 
     @Override
     public void update(Observable observable, Object o) {
-        drawBackground();
-        drawGizmos();
+        Platform.runLater(() -> {
+            drawBackground();
+            drawGizmos();
+        });
     }
 
     private void drawBackground() {
@@ -130,10 +139,7 @@ public class PlayView implements IPlayView, Observer{
         closeConfirmation.initModality(Modality.APPLICATION_MODAL);
 
         Optional<ButtonType> closeResponse = closeConfirmation.showAndWait();
-        if (ButtonType.OK.equals(closeResponse.get())) {
-            return true;
-        }
-        return false;
+        return ButtonType.OK.equals(closeResponse.get());
     }
 
     @Override

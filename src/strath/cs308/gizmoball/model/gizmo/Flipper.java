@@ -10,7 +10,7 @@ import java.util.Set;
 public class Flipper extends Gizmo implements IMovable, ITriggerable {
 
     enum Movement {
-        BACK, FORWARD, BOTTOM, TOP;
+        BACK, FORWARD, BOTTOM, TOP
     }
 
     public enum Orientation {

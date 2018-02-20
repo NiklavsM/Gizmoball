@@ -4,8 +4,6 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-import strath.cs308.gizmoball.model.GameLoader;
-import strath.cs308.gizmoball.model.IGameLoader;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGameTimer;
 import strath.cs308.gizmoball.view.IPlayView;
@@ -66,7 +64,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent>
     private void loadGame() {
 
         File fileToLoad = playView.getLoadFile();
-        IGameLoader gl = new GameLoader(gameModel, fileToLoad);
+        GameLoader gl = new GameLoader(gameModel, fileToLoad);
         try {
             gl.load();
             closeMenu();
