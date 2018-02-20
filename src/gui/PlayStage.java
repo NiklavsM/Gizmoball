@@ -45,11 +45,11 @@ public class PlayStage extends Stage {
         gameBar = new GameBar(Pos.BOTTOM_LEFT, this, gizmoView.getGameModel());
 
         // Score
-        scoreLabel = new Label("Score: 1337");
+        scoreLabel = new Label("Hit SPACE to shoot the ball out");
         scoreLabel.setPadding(Theme.Padding.DEFAULT_PADDING);
         scoreLabel.setFont(Theme.Fonts.TITLE_FONT);
 
-        StackPane.setAlignment(scoreLabel, Pos.TOP_RIGHT);
+        StackPane.setAlignment(scoreLabel, Pos.TOP_CENTER);
         StackPane.setAlignment(gameBar, Pos.BOTTOM_LEFT);
 
         stackPane.getChildren().add(canvas);

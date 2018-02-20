@@ -43,7 +43,7 @@ public class GizmoView extends Application {
     private IGameModel makeTestModel() {
         GameModel gameModel = new GameModel();
         gameModel.addEntity(new Absorber(0, 19, 20, 20));
-        gameModel.addEntity(new Ball(5, 1, 4, 4));
+        gameModel.addEntity(new Ball(1, 1, 4, 4));
         return gameModel;
     }
 

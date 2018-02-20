@@ -74,13 +74,12 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     public void moveBall() {
-        boolean isAbsorbed = false;
         Ball ball = getBall();
         double moveTime = 0.05; // 0.05 = 20 times per second as per Gizmoball
 
         IEntity nextIEntity = null;
 
-        if (ball != null && !isAbsorbed) {
+        if (ball != null) {
             CollisionDetails cd = timeUntilCollision();
 
             double tuc = cd.getTuc();
@@ -109,7 +108,6 @@ public class GameModel extends Observable implements IGameModel {
         if (absorberCollision) {
 //            entities.remove(ball.getId());
 //            ball = null;
-            isAbsorbed = true;
             setBallInAbsorber();
         }
 
@@ -128,7 +126,7 @@ public class GameModel extends Observable implements IGameModel {
         Ball ball = this.getBall();
         ball.setExactX(19.74);
         ball.setExactY(19.74);
-        ball.setVelo(new Vect(1.0, 1.0));
+        ball.setVelo(new Vect(0.5, 0.0));
     }
 
     private void applyForces(Vect velocity, double time, Ball ball) {
@@ -301,6 +299,5 @@ public class GameModel extends Observable implements IGameModel {
 
         return false;
     }
-
 
 }

@@ -16,22 +16,6 @@ public class KeyboardTriggerEventHandler implements EventHandler<KeyEvent> {
 
     @Override
     public void handle(KeyEvent keyEvent) {
-        if (keyEvent.getCode().equals(KeyCode.K)) {
-            gameModel.getEntities()
-                    .stream()
-                    .filter(ITriggerable.class::isInstance)
-                    .map(ITriggerable.class::cast)
-                    .forEach(iTriggerable -> iTriggerable.trigger(ITriggerable.Event.KEY_K));
-        }
-
-        if (keyEvent.getCode().equals(KeyCode.L)) {
-            gameModel.getEntities()
-                    .stream()
-                    .filter(ITriggerable.class::isInstance)
-                    .map(ITriggerable.class::cast)
-                    .forEach(iTriggerable -> iTriggerable.trigger(ITriggerable.Event.KEY_L));
-        }
-
         if (keyEvent.getCode().equals(KeyCode.SPACE)) {
             gameModel.shootOut();
         }
