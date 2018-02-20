@@ -13,8 +13,7 @@ in order to achieve bonus marks.
 
 We will focus on writing unit tests for the domain specific code, that is code that 
 implements "business logic" (in this case, Gizmoball core functionality) as this
- is very likely to change often. Simple code is not going to change and will, most probably, going to be
- implemented correctly from the first attempt.
+ is very likely to change often. 
  
  We are planning to identify test cases mostly based on the `model` side of our `MVC` design, as these
  classes are responsible to model the physical aspects of the game. Moreover, 
