@@ -252,4 +252,29 @@ with the velocity 50L/s upwards
 **Expected outputs:** The configurations are displayed on the screen, ready for further editing
 
 
+###Test 12
+ 
+**Purpose:** Test whether already saved configurations are loaded properly in Play mode 
+
+**Test inputs:** User:
+
+1. Starts at the "Play mode"
+
+2. Clicks "Menu" icon in the game toolbar 
+
+3. Selects "Load" in the currently displayed pause menu
+
+4. Navigates to the desired location and selects the file to be loaded, for example filename.gizmo
+
+5. Clicks "Load"
+
+6. Game configurations are loaded and displayed on the blurred in the background playing area
+
+7. Exiting the pause menu brings the user back to the game with the newly loaded game configurations
+
+**Expected outputs:** The configurations are displayed on the screen ready for play 
+
+
+
+
 
