@@ -11,6 +11,7 @@ import model.gizmo.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 public class GizmoView extends Application {
 
@@ -18,15 +19,7 @@ public class GizmoView extends Application {
     private Stage currentStage;
 
     public GizmoView() {
-        gameModel = new GameModel();
-        try {
-            GameLoader gameLoader = new GameLoader(gameModel, new FileInputStream(new File("maps/proto.gizmo")));
-            gameLoader.load();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
+        gameModel = makeModel();
     }
 
     @Override
@@ -56,54 +49,44 @@ public class GizmoView extends Application {
     private IGameModel makeModel() {
         GameModel gameModel = new GameModel();
 
-        gameModel.addEntity(new Ball(1, 1, 4, 4));
-        gameModel.addEntity(new Square(15, 5));
-        gameModel.addEntity(new Square(14, 6));
-        gameModel.addEntity(new Square(12, 8));
-        gameModel.addEntity(new CircleGizmo(14, 8));
-        gameModel.addEntity(new CircleGizmo(0, 8));
+        gameModel.addEntity(new Square(0, 2));
+        gameModel.addEntity(new Square(1, 2));
+        gameModel.addEntity(new Square(2, 2));
+        gameModel.addEntity(new Square(3, 2));
+        gameModel.addEntity(new Square(4, 2));
+        gameModel.addEntity(new Square(5, 2));
+        gameModel.addEntity(new Square(6, 2));
+        gameModel.addEntity(new Square(7, 2));
+        gameModel.addEntity(new Square(8, 2));
+        gameModel.addEntity(new Square(13, 2));
+        gameModel.addEntity(new Square(14, 2));
+        gameModel.addEntity(new Square(15, 2));
+        gameModel.addEntity(new Square(16, 2));
+        gameModel.addEntity(new Square(17, 2));
+        gameModel.addEntity(new Square(18, 2));
 
-//		gameModel.addEntity(new CircleGizmo(2, 8));
-//		gameModel.addEntity(new CircleGizmo(4, 8));
-//		gameModel.addEntity(new CircleGizmo(5, 8));
-//		gameModel.addEntity(new CircleGizmo(13, 8));
-//		gameModel.addEntity(new CircleGizmo(17, 6));
 
-        gameModel.addEntity(new Flipper(2, 2, Flipper.Orientation.RIGHT));
-        gameModel.addEntity(new Flipper(2, 4, Flipper.Orientation.RIGHT));
+        gameModel.addEntity(new CircleGizmo(4, 3));
+        gameModel.addEntity(new CircleGizmo(5, 4));
+        gameModel.addEntity(new CircleGizmo(6, 5));
+        gameModel.addEntity(new CircleGizmo(7, 6));
+        gameModel.addEntity(new CircleGizmo(9, 9));
+        gameModel.addEntity(new CircleGizmo(4, 3));
+        gameModel.addEntity(new CircleGizmo(10, 9));
+        gameModel.addEntity(new CircleGizmo(11, 10));
+        gameModel.addEntity(new CircleGizmo(12, 9));
+        gameModel.addEntity(new CircleGizmo(13, 9));
+        gameModel.addEntity(new CircleGizmo(15, 6));
+        gameModel.addEntity(new CircleGizmo(16, 5));
+        gameModel.addEntity(new CircleGizmo(17, 4));
+        gameModel.addEntity(new CircleGizmo(18, 3));
 
-
-        gameModel.addEntity(new Flipper(2, 8, Flipper.Orientation.RIGHT));
-        gameModel.addEntity(new Flipper(4, 4, Flipper.Orientation.RIGHT));
-        gameModel.addEntity(new Flipper(8, 4, Flipper.Orientation.RIGHT));
-        gameModel.addEntity(new Flipper(10, 4, Flipper.Orientation.RIGHT));
-        gameModel.addEntity(new Flipper(16, 16, Flipper.Orientation.RIGHT));
-
-//        gameModel.addEntity(new FLIPPER(10,8));
-//        gameModel.addEntity(new FLIPPER(14,8));
-//        gameModel.addEntity(new FLIPPER(16,8));
-        gameModel.addEntity(new Flipper(18, 8, Flipper.Orientation.RIGHT));
-        gameModel.addEntity(new Flipper(14, 12, Flipper.Orientation.RIGHT));
-        gameModel.addEntity(new Flipper(16, 14, Flipper.Orientation.RIGHT));
-
-        gameModel.addEntity(new CircleGizmo(10, 8));
-        gameModel.addEntity(new CircleGizmo(11, 9));
-        gameModel.addEntity(new CircleGizmo(12, 10));
-        gameModel.addEntity(new Square(3, 14));
-        gameModel.addEntity(new Square(4, 14));
-        gameModel.addEntity(new Square(5, 14));
-
-        Gizmo triangle = new Triangle(1, 14);
-        triangle.rotate();
-        triangle.rotate();
+        Gizmo triangle = new Triangle(19, 0);
         triangle.rotate();
         gameModel.addEntity(triangle);
-        gameModel.addEntity(new CircleGizmo(7, 7));
-        triangle = new Triangle(19, 0);
-        triangle.rotate();
-        gameModel.addEntity(triangle);
+        gameModel.addEntity(new Triangle(1, 1));
 
-        gameModel.addEntity(new Absorber(0, 19, 20, 20));
+        gameModel.addEntity(new Ball(10, 2, -10, 2));
 
         return gameModel;
     }
