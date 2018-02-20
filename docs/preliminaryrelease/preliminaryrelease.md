@@ -497,7 +497,7 @@ with velocity of 50L/s upwards
 
  2. Click on the "Tick" button on the bottom left
 
-**Expected outputs:** The ball moves one tick then stops.
+**Expected outputs:** The ball moves one tick then stops
 
 
 
@@ -569,7 +569,7 @@ with velocity of 50L/s upwards
 
  2. Drag the game window 
 
- 3. Resize the game window. 
+ 3. Resize the game window
 
  4. Minimise
 
