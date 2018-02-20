@@ -23,7 +23,7 @@ implements "business logic" (in this case, Gizmoball core functionality) as this
  planning to test. The test classes will be placed in the `test` package which is going 
  to have the same structure as the `src` package, for consistency.
  
- #### What we'll test
+#### What we'll test
  
  - `equals()` and `hashCode()` methods for `Gizmo` and `GameModel` classes 
  as we're heavily relying on them in hash-based collections, and in writing other unit tests
@@ -47,7 +47,7 @@ implements "business logic" (in this case, Gizmoball core functionality) as this
  
  - whether checked exceptions are being thrown accordingly
  
- #### What we won't test
+#### What we won't test
  
  - library code; we assume that the MIT physics package works according
  to its specification; the same with other resources when they're available
