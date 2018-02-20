@@ -73,8 +73,16 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent>
         }
     }
 
-    private void saveGame()
-    {
+    private void saveGame() {
+
+        File fileToLoad = playView.getLoadFile();
+        GameSaver gs = new GameSaver(gameModel, fileToLoad);
+        try {
+            gs.save();
+        } catch (IllegalAccessException | FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void closeMenu() {
