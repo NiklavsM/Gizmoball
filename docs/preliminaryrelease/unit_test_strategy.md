@@ -1,4 +1,4 @@
-### Unit testing strategy for Gizmoball
+## Unit testing strategy for Gizmoball
 
 During the development of the preliminary release, as a team, we have realized that
 the code base of this project will steadily increase in both size and complexity 
@@ -8,7 +8,7 @@ or editing previously written code. This is especially important since the code 
 is maintained by multiple developers. As a bonus, this will also help us confidentely experiment with extra features without breaking the basic functionality,
 in order to achieve bonus marks.
 
-#### Test cases identification
+### Test cases identification
 
 We will focus on writing unit tests for the domain specific code, that is code that 
 implements "business logic" (in this case, Gizmoball core functionality) as this
@@ -23,7 +23,7 @@ implements "business logic" (in this case, Gizmoball core functionality) as this
  planning to test. The test classes will be placed in the `test` package which is going 
  to have the same structure as the `src` package, for consistency.
  
-**What we'll test**
+ #### What we'll test
  
  - `equals()` and `hashCode()` methods for `Gizmo` and `GameModel` classes 
  as we're heavily relying on them in hash-based collections, and in writing other unit tests
@@ -47,7 +47,7 @@ implements "business logic" (in this case, Gizmoball core functionality) as this
  
  - whether checked exceptions are being thrown accordingly
  
- **What we won't test**
+ #### What we won't test
  
  - library code; we assume that the MIT physics package works according
  to its specification; the same with other resources when they're available
@@ -58,7 +58,7 @@ implements "business logic" (in this case, Gizmoball core functionality) as this
  - trivial code, like *getters* and *setters*
  
 
-#### Approach
+### Approach
 
 We will use the `JUnit 5` framework for Java as it provides some nice features
 like *Parametrized tests*, *grouped assertions, powerful exception expecting mechanism etc*. 
@@ -75,12 +75,12 @@ potential bugs.
  test cases against a method's specifications and then switch to *white box* testing in order
  to get some more insights about the method's behaviour.
 
-##### Guidelines that we're going to follow
+#### Guidelines that we're going to follow
 
 - smart use of `setUp()`, `tearDown()`, `beforeEach()` and `beforeAll()` methods
 
-- use the following naming convention for tests: `MethodName_StateUnderTest_ExpectedBehavior`, 
-for example, `rotate_Square_PositionIsTheSame`
+- use the following naming convention for tests: `MethodName_StateUnderTest_ExpectedBehavior`;
+for example: `rotate_Square_PositionIsTheSame`
 
 - 100% line coverage is a must, but only run the coverage on what we mark as business critical
 code
