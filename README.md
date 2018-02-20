@@ -10,6 +10,8 @@ CS308 Semester 2 Group Project
 
 [Preliminary Release](docs/preliminaryrelease/preliminaryrelease.md)
 
+[Testing Strategy](docs/preliminaryrelease/unit_test_strategy.md)
+
 ## Build
 
 Markdown to PDF
