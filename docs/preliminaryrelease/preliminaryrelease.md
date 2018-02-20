@@ -32,13 +32,13 @@ Niklavs Meiers @isb15151
 ### Test 1
 **Purpose:** Test adding gizmo on an empty tile
 
-**Test inputs:** User:
+**Test inputs:** 
  
- 1. Starts at the "Editor mode"
+ 1. Start at the "Editor mode"
  
- 2. Clicks the "Add tool" button in the option menu on the left
+ 2. Click the "Add tool" button in the option menu on the left
   
- 3. Selects the icon with the gizmo to be added on the map (square, triangle, circle or flipper)
+ 3. Select the icon with the gizmo to be added on the map (square, triangle, circle or flipper)
  
  4. When mouse is moved over the board the corresponding tile lights up green (meaning the tile is free)
  
@@ -52,19 +52,19 @@ Niklavs Meiers @isb15151
  ### Test 2
 **Purpose:** Test adding gizmo on an occupied tile
  
-**Test inputs:** User:
+**Test inputs:**
   
- 1. Starts at the "Editor mode"
+ 1. Start at the "Editor mode"
   
- 2. Clicks the "Add tool" button in the option menu on the left
+ 2. Click the "Add tool" button in the option menu on the left
    
- 3. Selects the icon with the gizmo to be added on the map (square, triangle, circle or flipper)
+ 3. Select the icon with the gizmo to be added on the map (square, triangle, circle or flipper)
   
  4. When mouse is moved over the board the corresponding tile lights up red (meaning the tile is occupied by another gizmo)
   
  5. The mouse is clicked and no change is done (tile still occupied by the same gizmo)
  
- 6. A status label shows that the gizmo has not been added as this particular location is not empty
+ 6. A status label shows that the gizmo can not been added as this particular location is not empty
   
 **Expected outputs:** No visible changes to the map, configurations remain the same
   
@@ -72,11 +72,11 @@ Niklavs Meiers @isb15151
  ###Test 3
 **Purpose:** Test adding absorber on empty space
  
-**Test inputs:** User:
+**Test inputs:**
  
- 1. Starts at the "Editor mode"
+ 1. Start at the "Editor mode"
  
- 2. Clicks "Add tool" button in the menu on the left then selects the absorber icon
+ 2. Click "Add tool" button in the menu on the left then selects the absorber icon
  
  3. Mouse is clicked where the start of the gizmo should be and the mouse button is held pressed 
  
@@ -92,122 +92,208 @@ Niklavs Meiers @isb15151
   ###Test 4
 **Purpose:** Test adding absorber on occupied space (or partly occupied)
   
-**Test inputs:** User:
+**Test inputs:**
   
-  1. Starts at the "Editor mode"
+  1. Start at the "Editor mode"
   
-  2. Clicks "Add tool" button in the menu on the left then selects the absorber icon
+  2. Click "Add tool" button in the menu on the left then selects the absorber icon
   
   3. Mouse is clicked where the start of the gizmo should be and the mouse button is held pressed 
   
   4. Now when mouse is dragged around the bord the tiles light up red (meaning part of the space is occupied by other gizmos)
   
   5. Mouse is released and no change is visible - absorber is not added
-  
-  6. If the desired location is completely free the absorber is added to the board, otherwise nothing is changed
- 
-  7. A status label shows that an absorber has not been added as this particular location is not entirely free 
+   
+  6. A status label shows that an absorber can not been added as this particular location is not entirely free 
  
 **Expected outputs:** No visible changes to the map, configurations remain the same
  
-# TO REFACTOR TESTS 5 AND ONWARDS! 
  
  ###Test 5
  
-**Purpose:** Test whether removing gizmo works as expected
+**Purpose:** Test removing present gizmo 
 
-**Test inputs:** User:
+**Test inputs:** 
 
- 1. Starts at the "Editor mode"
+ 1. Start at the "Editor mode"
  
- 2. Clicks "Remove tool" button in the menu on the left
+ 2. Click "Remove tool" button in the menu on the left
  
  3. When mouse moves over the board the corresponding tile lights up yellow
  
- 4. If tile that is not occupied by any gizmo is clicked nothing happens
- 
- 5. If tile that is occupied by a gizmo (or is part of the gizmo in case of flipper and absorber) the whole gizmo is removed from the board
+ 4. Tile with gizmo is selected (or part of a gizmo in case of flipper and absorber) and the whole gizmo is removed from the board
+
+ 5. A status label shows that a gizmo has been successfully removed from the playing area 
 
 **Expected outputs:** The gizmo is no longer visible on the board
 
 
-###Test 6
+ ###Test 6
  
-**Purpose:** Test whether connecting gizmo to another gizmo or key press triggering works
+**Purpose:** Test removing a gizmo from an empty tile
 
-**Test inputs:** User:
+**Test inputs:** 
 
-1. Starts at the "Editor mode"
-
-2. Clicks "Connect tool" button in the menu on the left
-
-3. When mouse moves over the board the corresponding tile lights up yellow
-
-4. When user presses on tile that is occupied by a gizmo it lights up green
+ 1. Start at the "Editor mode"
  
-5. A status label appears at the bottom saying "Click on another gizmo or press a key to create a trigger"
+ 2. Click "Remove tool" button in the menu on the left
+ 
+ 3. When mouse moves over the board the corresponding tile lights up yellow
+ 
+ 4. An empty tile is selected (no part of any gizmo occupies any part of this tile) 
+ 
+ 5. Tile lights up red
 
-6. If user then clicks on another gizmo or presses a key on the keyboard respectively the action is successfully connected, otherwise nothing changes
+ 6. A status label shows that the selected tile is empty and nothing is removed
 
-7. User then launches the Play mode by pressing the "Play mode" button
-
-8. In Play mode, user can press a key linked to a particular gizmo or wait for a collision with a linked gizmo respectively to see the made connection in action
-
-**Expected outputs:** Whenever the linked key is pressed or linked gizmo is touched by ball the corresponding gizmo performs its action.
+**Expected outputs:** No visible changes to the map, configurations remain the same
 
 
 ###Test 7
  
-**Purpose:** Test whether clear playing area functionality works
+**Purpose:** Test connecting gizmo to another gizmo
 
-**Test inputs:** User:
+**Test inputs:** 
 
-1. Starts at the "Editor mode" 
+1. Start at the "Editor mode"
 
-2. Adds some gizmos to the map
+2. Click "Connect tool" button in the menu on the left
 
-3. Clicks on "Clear playing area" button
+3. When mouse moves over the board the corresponding tile lights up yellow
 
-**Expected outputs:** All the gizmos are removed from the map leaving it completely empty.
-
-
-###Test 8 // Discuss this
+4. When tile that is occupied by a gizmo is selected it lights up green
  
-**Purpose:** Test whether adding a ball functionality works
+5. A status label appears at the bottom saying "Click on another gizmo to create a trigger"
 
-**Test inputs:** User:
+6. If then another gizmo is selected it now triggers the first gizmo's action 
 
-1. Starts at the "Editor mode" 
+7. Play mode then is launched by pressing the "Play mode" button
 
-2. Clicks "Add tool" button in the menu on the left then selects the absorber icon
+8. In Play mode upon a ball collision with the trigger gizmo, the first gizmo performs its action
 
-3. Selects the ball icon from the panel on the right 
+**Expected outputs:** Whenever the linked gizmo is touched by ball the corresponding gizmo performs its action
 
-4. User then clicks on the board where he wishes the ball to be added. 
 
-5. If the place is occupied by another gizmo the tile blinks red and nothing happens, otherwise the ball is added to the board
+###Test 8
+ 
+**Purpose:** Test key-press triggering 
 
-6. A dialog box should appear asking the user to input the balls starting velocity by specifying the length of x and y vectors
+**Test inputs:** 
 
-7. In special case when user clicks on the absorber, the ball is placed in its lower right corner and no dialog box appears. The starting velocity is set to 50L/s upwards
+1. Start at the "Editor mode"
 
-**Expected outputs:** Ball starts from the specified position with the correct velocity. In case ball was added inside the absorber in launches when the absorber is triggered
-with the velocity 50L/s upwards
+2. Click "Connect tool" button in the menu on the left
+
+3. When mouse moves over the board the corresponding tile lights up yellow
+
+4. When tile that is occupied by a gizmo is selected it lights up green
+ 
+5. A status label appears at the bottom saying "Press a key to create a trigger"
+
+6. If then a key is pressed it now triggers the selected gizmo's action 
+
+7. Play mode then is launched by pressing the "Play mode" button
+
+8. In Play mode when the bound key is pressed the first gizmo performs its action
+
+**Expected outputs:** Whenever the linked key is pressed the corresponding gizmo performs its action.
 
 
 ###Test 9
  
-**Purpose:** Test whether move gizmo functionality works
+**Purpose:** Test clearing playing area 
 
-**Test inputs:** User:
+**Test inputs:** 
 
-1. Starts at the "Editor mode" 
+1. Start at the "Editor mode" 
 
-2. Adds couple of gizmos to the board
+2. Add some gizmos to the map
 
-3. Selects "Move gizmos tool" button
+3. Click on "Clear playing area" button
 
-4. Clicks on a gizmo he wishes to move the tiles that gizmo occupies turns yellow
+**Expected outputs:** All the gizmos are removed from the map leaving it completely empty.
+
+
+###Test 10 
+ 
+**Purpose:** Test adding a ball on an empty tile 
+
+**Test inputs:** 
+
+1. Start at the "Editor mode" 
+
+2. Click "Add tool" button in the menu on the left
+
+3. Select the ball icon from the panel on the right 
+
+4. Click on a completely empty space on the board  
+
+5. The ball is added to the board at the desired location
+
+6. A dialog box should appear asking for input x and y for the ball's starting velocity vector
+
+**Expected outputs:** Ball starts from the specified position with the correct velocity
+
+
+###Test 11 
+**Purpose:** Test adding a ball on an occupied tile
+
+**Test inputs:** 
+
+1. Start at the "Editor mode" 
+
+2. Click "Add tool" button in the menu on the left
+
+3. Select the ball icon from the panel on the right 
+
+4. Mouse is clicked at a position where part of other gizmo is located 
+
+5. The corresponding tile lights up red and nothing happens
+
+6. A dialog box should appear asking for input x and y for the ball's starting velocity vector
+
+**Expected outputs:** No visible changes to the map, configurations remain the same
+
+
+###Test 12 
+**Purpose:** Test adding a ball in an absorber
+
+**Test inputs:** 
+
+1. Start at the "Editor mode" 
+
+2. Click "Add tool" button in the menu on the left 
+
+3. Selects the absorber icon
+
+4. Do steps 3-6 described in Test3
+
+5. Select the ball icon from the panel on the right 
+
+6. Mouse is clicked when it is in the absorber's boundaries
+ 
+7. The ball is placed visible in the absorber's lower right corner 
+
+8. No dialog box appears. The starting velocity of the ball is set to 50L/s upwards
+
+**Expected outputs:** Ball is visited inside the absorber ready to launch when the absorber is triggered
+with velocity of 50L/s upwards
+
+## TO-FIX - TESTS 13 and 14 
+
+###Test 13
+ 
+**Purpose:** Test moving gizmo functionality 
+
+**Test inputs:** 
+
+1. Start at the "Editor mode" 
+
+2. Add couple of gizmos to the board
+
+3. Select "Move gizmos tool" button
+
+4. Click on a gizmo to move the tiles that gizmo occupies turns yellow
 
 5. User then clicks on the tile that is occupied by another gizmo the tile turns read indicating the location is not available
 
@@ -216,74 +302,74 @@ with the velocity 50L/s upwards
 **Expected outputs:** The gizmo has disappeared from the previous location ad no occupies the new location
 
 
-###Test 10
+###Test 14
  
-**Purpose:** Test whether rotate gizmo functionality works
+**Purpose:** Test rotating gizmo functionality 
 
-**Test inputs:** User:
+**Test inputs:** 
 
-1. Starts at the "Editor mode" 
+1. Start at the "Editor mode" 
 
-2. Adds some gizmos to the board 
+2. Add some gizmos to the board 
 
-3. Selects "Rotate tool" from the menu on the left
+3. Select "Rotate tool" from the menu on the left
 
-4. Clicks on any gizmo on the board to rotate it by 90° clockwise each click
+4. Click on any gizmo on the board to rotate it by 90° clockwise each click
 
 **Expected outputs:** Each click on the gizmo should rotate it by 90°
 
 
-###Test 11 
+###Test 15 
  
-**Purpose:** Test whether a newly configurated map can be properly saved   
+**Purpose:** Test saving newly configurated map 
 
-**Test inputs:** User: 
+**Test inputs:**  
 
-1. Starts at the "Editor mode"
+1. Start at the "Editor mode"
  
 2. Add at least one gizmo of each type to the board
 
-3. Clicks "Save As" icon located in the top toolbar
+3. Click "Save As" icon located in the top toolbar
 
-4. A file explorer pops up prompting the user to choose a desired location for the file 
+4. A file explorer pops up prompting to specify a desired location for the file 
 
-5. Types in the name of the file to be saved, for example filename.gizmo
+5. Type in the name of the file to be saved, for example filename.gizmo
 
-6. Clicks "Save".  
+6. Click "Save".  
 
 7. A status label shows that the game configuration has been successfully saved.
 
 **Expected outputs:** Game configuration has successfully been saved to filename.gizmo located in the specified directory
 
 
-###Test 12
+###Test 16
  
-**Purpose:** Test whether an already saved map can be saved (using "Save", not "Save As")    
+**Purpose:** Test saving an already saved map (using "Save", not "Save As")    
 
-**Test inputs:** User: 
+**Test inputs:** 
 
-1. Does steps 1-7 described in Test 9
+1. Do steps 1-7 described in Test 9
 
 2. Change the board layout
 
-3. Clicks "Save" icon located in the top toolbar
+3. Click "Save" icon located in the top toolbar
 
 4. A status label shows that the game configuration have been successfully saved.
 
 **Expected outputs:** Game configuration has successfully been saved, overwriting the file with the new configurations 
 
 
-###Test 13
+###Test 17
  
-**Purpose:** Test whether already saved configurations are loaded properly in Editor mode 
+**Purpose:** Test loading from saved configurations in Editor mode 
 
-**Test inputs:** User:
+**Test inputs:** 
 
-1. Starts at the "Editor mode"
+1. Start at the "Editor mode"
 
-2. Clicks "Load" icon located in the top toolbar
+2. Click "Load" icon located in the top toolbar
 
-3. Navigates to the desired location and selects the file to be loaded, for example filename.gizmo
+3. Specify to the desired location and selects the file to be loaded, for example filename.gizmo
 
 4. Clicks "Load"
 
@@ -294,19 +380,19 @@ with the velocity 50L/s upwards
 **Expected outputs:** The configurations are displayed on the screen, ready for further editing
 
 
-###Test 14
+###Test 18
  
-**Purpose:** Test whether already saved configurations are loaded properly in Play mode 
+**Purpose:** Test loading from saved configurations in Play mode 
 
-**Test inputs:** User:
+**Test inputs:** 
 
-1. Starts at the "Play mode"
+1. Start at the "Play mode"
 
-2. Clicks "Menu" icon in the game toolbar 
+2. Click "Menu" icon in the game toolbar 
 
-3. Selects "Load" in the currently displayed pause menu
+3. Select "Load" in the currently displayed pause menu
 
-4. Navigates to the desired location and selects the file to be loaded, for example filename.gizmo
+4. Specify the desired location and selects the file to be loaded, for example filename.gizmo
 
 5. Clicks "Load"
 
@@ -317,32 +403,32 @@ with the velocity 50L/s upwards
 **Expected outputs:** The configurations are displayed on the screen ready for play 
 
 
-###Test 15
+###Test 19
  
-**Purpose:** Test whether switching from Editor to Play mode works 
+**Purpose:** Test switching from Editor to Play mode 
 
-**Test inputs:** User:
+**Test inputs:** 
 
-1. Starts at the "Editor mode"
+1. Start at the "Editor mode"
 
-2. Clicks "Play" icon in the top toolbar 
+2. Click "Play" icon in the top toolbar 
 
 3. The Editor window is replaced by a playing area containing the latest configurations made in Editor mode
 
 **Expected outputs:** Play mode is displayed and ready for action  
 
 
-###Test 16
+###Test 20
  
-**Purpose:** Test whether switching from Play to Editor mode works 
+**Purpose:** Test switching from Play to Editor mode  
 
-**Test inputs:** User:
+**Test inputs:** 
 
-1. Starts at the "Play mode"
+1. Start at the "Play mode"
 
-2. Clicks "Menu" icon in the game toolbar 
+2. Click "Menu" icon in the game toolbar 
 
-3. Selects "Editor" in the currently displayed pause menu
+3. Select "Editor" in the currently displayed pause menu
 
 3. The playing area is replaced by the Editor mode showing the configurations used in Play mode
 
@@ -350,7 +436,7 @@ with the velocity 50L/s upwards
 
 
 
-###Test 17
+###Test 21
  
 **Purpose:** Test whether the game starts correctly
 
@@ -363,7 +449,7 @@ with the velocity 50L/s upwards
 **Expected outputs:** The game should start. The ball should start to move
 
 
-###Test 18
+###Test 22
  
 **Purpose:** Test whether the game stops correctly
 
@@ -376,7 +462,7 @@ with the velocity 50L/s upwards
 **Expected outputs:** The game should stop. The ball should freeze in its current position
 
 
-###Test 19
+###Test 23
  
 **Purpose:** Test whether the game ticks correctly
 
@@ -389,7 +475,7 @@ with the velocity 50L/s upwards
 **Expected outputs:** The ball moves one tick then stops.
 
 
-###Test 20
+###Test 24
  
 **Purpose:** Test whether the menu appears
 
@@ -402,7 +488,7 @@ with the velocity 50L/s upwards
 **Expected outputs:** The should be paused. The background should blur and a menu overlay should be displayed
 
 
-###Test 21
+###Test 25
  
 **Purpose:** Test whether the game maintains the same game state after closing the menu
 
@@ -417,7 +503,7 @@ with the velocity 50L/s upwards
 **Expected outputs:** The menu should hide, background unblur and game should continue. (E.g If the game was paused it should remain paused after resuming).
 
 
-###Test 22
+###Test 26
  
 **Purpose:** Test whether the game exists gracefully after exit selected in the menu
 
@@ -434,7 +520,7 @@ with the velocity 50L/s upwards
 **Expected outputs:** The game should quit
 
 
-###Test 23
+###Test 27
  
 **Purpose:** Test whether the status bar updates depending on option selected
 
@@ -449,7 +535,7 @@ with the velocity 50L/s upwards
 **Expected outputs:** Appropriate status message in the format <MODE> tool: ....
 
 
-###Test 24
+###Test 28
  
 **Purpose:** Test whether the game maintains it aspect ratio and draws correctly when the window is resized
 
