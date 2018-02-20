@@ -350,7 +350,7 @@ with the velocity 50L/s upwards
 
 
 
-###Test 15
+###Test 17
  
 **Purpose:** Test whether the game starts correctly
 
@@ -363,7 +363,7 @@ with the velocity 50L/s upwards
 **Expected outputs:** The game should start. The ball should start to move
 
 
-###Test 16
+###Test 18
  
 **Purpose:** Test whether the game stops correctly
 
@@ -376,7 +376,7 @@ with the velocity 50L/s upwards
 **Expected outputs:** The game should stop. The ball should freeze in its current position
 
 
-###Test 17
+###Test 19
  
 **Purpose:** Test whether the game ticks correctly
 
@@ -389,7 +389,7 @@ with the velocity 50L/s upwards
 **Expected outputs:** The ball moves one tick then stops.
 
 
-###Test 18
+###Test 20
  
 **Purpose:** Test whether the menu appears
 
@@ -402,7 +402,7 @@ with the velocity 50L/s upwards
 **Expected outputs:** The should be paused. The background should blur and a menu overlay should be displayed
 
 
-###Test 19
+###Test 21
  
 **Purpose:** Test whether the game maintains the same game state after closing the menu
 
@@ -417,7 +417,7 @@ with the velocity 50L/s upwards
 **Expected outputs:** The menu should hide, background unblur and game should continue. (E.g If the game was paused it should remain paused after resuming).
 
 
-###Test 20
+###Test 22
  
 **Purpose:** Test whether the game exists gracefully after exit selected in the menu
 
@@ -434,7 +434,7 @@ with the velocity 50L/s upwards
 **Expected outputs:** The game should quit
 
 
-###Test 21
+###Test 23
  
 **Purpose:** Test whether the status bar updates depending on option selected
 
@@ -449,7 +449,7 @@ with the velocity 50L/s upwards
 **Expected outputs:** Appropriate status message in the format <MODE> tool: ....
 
 
-###Test 22
+###Test 24
  
 **Purpose:** Test whether the game maintains it aspect ratio and draws correctly when the window is resized
 
