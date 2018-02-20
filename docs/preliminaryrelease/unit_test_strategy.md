@@ -2,6 +2,10 @@
 
 - junit 5 
 
+- focus on tests that test domain specific (in this case Gizmoball) code. 
+this is more likely to change while simple code is not going
+to change and also theyre likely to be correct impl
+
 #### Test cases identification
 
 - test class for every model class
@@ -29,7 +33,7 @@ code implemented by someone else
 
 - TDD? or something else
 
--  100% line coverage is a must
+- 100% line coverage is a must
 
 - one assert per test
 
@@ -38,5 +42,7 @@ code implemented by someone else
 - rely on equals and hashcode impl of methods
 
 - run the tests whenever you add new code
+
+- CI pipeline to run tests when pushing to master
 
 
