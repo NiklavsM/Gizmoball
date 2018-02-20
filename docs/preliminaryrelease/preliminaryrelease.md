@@ -14,22 +14,6 @@ Niklavs Meiers @isb15151
 
 
 ## Validation Testing Strategy
-*  Test number
-*  Purpose of test
-*  Test inputs (including GUI options selected) - enough detail that a third party could execute the test.
-*  Expected outputs - enough detail that a third party could determine whether the test has completed successfully (included expected change to the GUI, error messages, file changes, ...)
-* (^^^ delete latter)
-
-
-###Test
- 
-**Purpose:**
-
-**Test inputs:**
-
-**Expected outputs:**
-
-
 
  ### Test 1
 **Purpose:** Test adding gizmo on an empty tile
