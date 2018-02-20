@@ -17,7 +17,7 @@ public class Square extends Gizmo {
     }
 
     @Override
-    public void draw(Set<LineSegment> lines, List<Circle> circles, double x1, double y1, double x2, double y2) {
+    protected void setup(double x1, double y1, double x2, double y2) {
         lines.add(new LineSegment(x1, y1, x1 + 1, y1));
         lines.add(new LineSegment(x1, y1, x1, y1 + 1));
         lines.add(new LineSegment(x1 + 1, y1, x1 + 1, y1 + 1));

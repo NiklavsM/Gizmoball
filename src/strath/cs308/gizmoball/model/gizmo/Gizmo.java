@@ -27,7 +27,7 @@ public abstract class Gizmo implements IGizmo {
         this.id = id;
         rotateCount = 0;
 
-        draw(lines, circles, x1, y1, x2, y2);
+        setup(x1, y1, x2, y2);
     }
 
     public Gizmo(double x1, double y1, double x2, double y2) {
@@ -58,7 +58,7 @@ public abstract class Gizmo implements IGizmo {
         return id;
     }
 
-    public abstract void draw(Set<LineSegment> lines, List<Circle> circles, double x1, double y1, double x2, double y2);
+    protected abstract void setup(double x1, double y1, double x2, double y2);
 
     public abstract Type getType();
 

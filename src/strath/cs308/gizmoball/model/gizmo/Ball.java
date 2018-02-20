@@ -76,7 +76,7 @@ public class Ball extends Gizmo implements IMovable
     }
 
     @Override
-    public void draw(Set<LineSegment> lines, List<Circle> circles, double x, double y, double x2, double y2) {
+    protected void setup(double x, double y, double x2, double y2) {
         radius = 0.25;
         circle = new Circle(x, y, radius);
         circles.add(circle);

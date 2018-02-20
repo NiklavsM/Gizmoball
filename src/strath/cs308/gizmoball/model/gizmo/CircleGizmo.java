@@ -20,7 +20,7 @@ public class CircleGizmo extends Gizmo {
     }
 
     @Override
-    public void draw(Set<LineSegment> lines, List<Circle> circles, double x1, double y1, double x2, double y2) {
+    protected void setup(double x1, double y1, double x2, double y2) {
         circles.add(new Circle(x1 + 0.5, y1 + 0.5, 0.5));
 
     }

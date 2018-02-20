@@ -19,7 +19,7 @@ public class Absorber extends Gizmo {
     }
 
     @Override
-    public void draw(Set<LineSegment> lines, List<Circle> circles, double x1, double y1, double x2, double y2) {
+    protected void setup(double x1, double y1, double x2, double y2) {
         lines.add(new LineSegment(x1,y1,x2,y1));
         lines.add(new LineSegment(x2,y1,x2,y2));
         lines.add(new LineSegment(x2,y2,x1,y2));
