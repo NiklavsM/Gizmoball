@@ -30,7 +30,7 @@ Niklavs Meiers @isb15151
 
 
 ### Test 1
-**Purpose:** Test whether adding gizmo functionality works
+**Purpose:** Test adding gizmo on an empty tile
 
 **Test inputs:** User:
  
@@ -40,37 +40,79 @@ Niklavs Meiers @isb15151
   
  3. Selects the icon with the gizmo to be added on the map (square, triangle, circle or flipper)
  
- 4. When user moves the mouse over the board the corresponding tile lights up green if the tile is free and red if the tile is already occupied by another gizmo
+ 4. When mouse is moved over the board the corresponding tile lights up green (meaning the tile is free)
  
- 5. If the user tries to add the gizmo to a occupied tile the tile blinks red and no gizmo is added
+ 5. The mouse is clicked and the desired gizmo appears on the corresponding tile
  
- 6. If the tile is free the desired gizmo is added to the board
+ 6. A status label shows that a gizmo has been successfully added at a particular location 
  
  **Expected outputs:** The newly added gizmo is visible on the map
  
  
- ###Test 2
- **Purpose:** Test whether adding absorber works
+ ### Test 2
+**Purpose:** Test adding gizmo on an occupied tile
  
- **Test inputs:** User:
+**Test inputs:** User:
+  
+ 1. Starts at the "Editor mode"
+  
+ 2. Clicks the "Add tool" button in the option menu on the left
+   
+ 3. Selects the icon with the gizmo to be added on the map (square, triangle, circle or flipper)
+  
+ 4. When mouse is moved over the board the corresponding tile lights up red (meaning the tile is occupied by another gizmo)
+  
+ 5. The mouse is clicked and no change is done (tile still occupied by the same gizmo)
+ 
+ 6. A status label shows that the gizmo has not been added as this particular location is not empty
+  
+**Expected outputs:** No visible changes to the map, configurations remain the same
+  
+ 
+ ###Test 3
+**Purpose:** Test adding absorber on empty space
+ 
+**Test inputs:** User:
  
  1. Starts at the "Editor mode"
  
  2. Clicks "Add tool" button in the menu on the left then selects the absorber icon
  
- 3. User clicks on the screen where the start of the gizmo should be and holds the mouse button pressed
+ 3. Mouse is clicked where the start of the gizmo should be and the mouse button is held pressed 
  
- 4. Now when user drags mouse around the bord the tiles light up green if such observer can be added (no other gizmos are in the selected area) or red otherwise
+ 4. Now when mouse is dragged around the bord the tiles light up green (meaning space is not occupied by other gizmos)
  
- 5. User releases the mouse
+ 5. Mouse is released and the absorber is added in the desired location with the specified size
  
- 6. If the desired location is completely free the absorber is added to the board, otherwise nothing is changed
+ 6. A status label shows that an absorber has been added at a particular location
  
  **Expected outputs:** The newly added absorber is visible on the screen
  
  
+  ###Test 4
+**Purpose:** Test adding absorber on occupied space (or partly occupied)
+  
+**Test inputs:** User:
+  
+  1. Starts at the "Editor mode"
+  
+  2. Clicks "Add tool" button in the menu on the left then selects the absorber icon
+  
+  3. Mouse is clicked where the start of the gizmo should be and the mouse button is held pressed 
+  
+  4. Now when mouse is dragged around the bord the tiles light up red (meaning part of the space is occupied by other gizmos)
+  
+  5. Mouse is released and no change is visible - absorber is not added
+  
+  6. If the desired location is completely free the absorber is added to the board, otherwise nothing is changed
  
- ###Test 3
+  7. A status label shows that an absorber has not been added as this particular location is not entirely free 
+ 
+**Expected outputs:** No visible changes to the map, configurations remain the same
+ 
+# TO REFACTOR TESTS 5 AND ONWARDS! 
+ 
+ ###Test 5
  
 **Purpose:** Test whether removing gizmo works as expected
 
@@ -89,7 +131,7 @@ Niklavs Meiers @isb15151
 **Expected outputs:** The gizmo is no longer visible on the board
 
 
-###Test 4
+###Test 6
  
 **Purpose:** Test whether connecting gizmo to another gizmo or key press triggering works
 
@@ -114,7 +156,7 @@ Niklavs Meiers @isb15151
 **Expected outputs:** Whenever the linked key is pressed or linked gizmo is touched by ball the corresponding gizmo performs its action.
 
 
-###Test 5
+###Test 7
  
 **Purpose:** Test whether clear playing area functionality works
 
@@ -129,7 +171,7 @@ Niklavs Meiers @isb15151
 **Expected outputs:** All the gizmos are removed from the map leaving it completely empty.
 
 
-###Test 6 // Discuss this
+###Test 8 // Discuss this
  
 **Purpose:** Test whether adding a ball functionality works
 
@@ -153,7 +195,7 @@ Niklavs Meiers @isb15151
 with the velocity 50L/s upwards
 
 
-###Test 7
+###Test 9
  
 **Purpose:** Test whether move gizmo functionality works
 
@@ -174,7 +216,7 @@ with the velocity 50L/s upwards
 **Expected outputs:** The gizmo has disappeared from the previous location ad no occupies the new location
 
 
-###Test 8
+###Test 10
  
 **Purpose:** Test whether rotate gizmo functionality works
 
@@ -191,7 +233,7 @@ with the velocity 50L/s upwards
 **Expected outputs:** Each click on the gizmo should rotate it by 90°
 
 
-###Test 9 
+###Test 11 
  
 **Purpose:** Test whether a newly configurated map can be properly saved   
 
@@ -214,7 +256,7 @@ with the velocity 50L/s upwards
 **Expected outputs:** Game configuration has successfully been saved to filename.gizmo located in the specified directory
 
 
-###Test 10 
+###Test 12
  
 **Purpose:** Test whether an already saved map can be saved (using "Save", not "Save As")    
 
@@ -231,7 +273,7 @@ with the velocity 50L/s upwards
 **Expected outputs:** Game configuration has successfully been saved, overwriting the file with the new configurations 
 
 
-###Test 11
+###Test 13
  
 **Purpose:** Test whether already saved configurations are loaded properly in Editor mode 
 
@@ -252,7 +294,7 @@ with the velocity 50L/s upwards
 **Expected outputs:** The configurations are displayed on the screen, ready for further editing
 
 
-###Test 12
+###Test 14
  
 **Purpose:** Test whether already saved configurations are loaded properly in Play mode 
 
@@ -275,7 +317,7 @@ with the velocity 50L/s upwards
 **Expected outputs:** The configurations are displayed on the screen ready for play 
 
 
-###Test 13
+###Test 15
  
 **Purpose:** Test whether switching from Editor to Play mode works 
 
@@ -290,7 +332,7 @@ with the velocity 50L/s upwards
 **Expected outputs:** Play mode is displayed and ready for action  
 
 
-###Test 14
+###Test 16
  
 **Purpose:** Test whether switching from Play to Editor mode works 
 
