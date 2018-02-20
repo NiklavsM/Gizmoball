@@ -5,8 +5,7 @@ the code base of this project will steadily increase in both size and complexity
 as we keep adding new features. Therefore, we agreed to do unit testing as this 
 practice will boost our confidence when either writing new code
 or editing previously written code. This is especially important since the code base
-is maintained by multiple developers. As a bonus, this will also help us 
-confidentely experiment with extra features without braking the basic functionality,
+is maintained by multiple developers. As a bonus, this will also help us confidentely experiment with extra features without breaking the basic functionality,
 in order to achieve bonus marks.
 
 #### Test cases identification
@@ -32,7 +31,7 @@ implements "business logic" (in this case, Gizmoball core functionality) as this
  - `toString()` methods for `Gizmo` and `GameModel` classes, because they will be used in 
  converting the `model` to a text file
  
- - all the methods exposed in the `model` interfaces, since they will be used by `views` and 
+ - all the methods exposed in the `model` interfaces since they will be used by `views` and 
  `controllers`
  
  - *file saving and loading* functionality
@@ -80,7 +79,8 @@ potential bugs.
 
 - smart use of `setUp()`, `tearDown()`, `beforeEach()` and `beforeAll()` methods
 
-- test naming conversion 
+- use the following naming convention for tests: `MethodName_StateUnderTest_ExpectedBehavior`, 
+for example, `rotate_Square_PositionIsTheSame`
 
 - 100% line coverage is a must, but only run the coverage on what we mark as business critical
 code
