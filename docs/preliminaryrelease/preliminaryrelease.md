@@ -305,3 +305,122 @@ with the velocity 50L/s upwards
 3. The playing area is replaced by the Editor mode showing the configurations used in Play mode
 
 **Expected outputs:** Editor mode is displayed and ready for further editing  
+
+
+
+###Test 15
+ 
+**Purpose:** Test whether the game starts correctly
+
+**Test inputs:** 
+
+1. Starts at the "Play mode" 
+
+2. Click on the "Play" button on the bottom left
+
+**Expected outputs:** The game should start. The ball should start to move
+
+
+###Test 16
+ 
+**Purpose:** Test whether the game stops correctly
+
+**Test inputs:** 
+
+1. Starts at the "Play mode" 
+
+2. Click on the stop button on the bottom left
+
+**Expected outputs:** The game should stop. The ball should freeze in its current position
+
+
+###Test 17
+ 
+**Purpose:** Test whether the game ticks correctly
+
+**Test inputs:** 
+
+1. Starts at the "Play mode" 
+
+2. Click on the "tick" button on the bottom left
+
+**Expected outputs:** The ball moves one tick then stops.
+
+
+###Test 18
+ 
+**Purpose:** Test whether the menu appears
+
+**Test inputs:** 
+
+1. Starts at the "Play mode" 
+
+2. Click on the "Menu" button on the bottom left
+
+**Expected outputs:** The should be paused. The background should blur and a menu overlay should be displayed
+
+
+###Test 19
+ 
+**Purpose:** Test whether the game maintains the same game state after closing the menu
+
+**Test inputs:** 
+
+1. Starts at the "Play mode" 
+
+2. Click on the "Menu" button on the bottom left
+
+3. Click on the back button
+
+**Expected outputs:** The menu should hide, background unblur and game should continue. (E.g If the game was paused it should remain paused after resuming).
+
+
+###Test 20
+ 
+**Purpose:** Test whether the game exists gracefully after exit selected in the menu
+
+**Test inputs:** 
+
+1. Starts at the "Play mode" 
+
+2. Click on the "Menu" button on the bottom left
+
+3. Click on "Exit"
+
+3. A confirmation dialog will pop up click on "Yes" 
+
+**Expected outputs:** The game should quit
+
+
+###Test 21
+ 
+**Purpose:** Test whether the status bar updates depending on option selected
+
+**Test inputs:** 
+
+1. Starts at the "Editor mode" 
+
+2. Click on each tool on the left left sidebar
+
+3. After each click the status bar should read "<MODE> tool: ...."
+
+**Expected outputs:** Appropriate status message in the format <MODE> tool: ....
+
+
+###Test 22
+ 
+**Purpose:** Test whether the game maintains it aspect ratio and draws correctly when the window is resized
+
+**Test inputs:** 
+
+1. Starts at the "Play mode" 
+
+2. Drag the game window 
+
+3. Resize the game window. 
+
+4. Minimise
+
+5. Maximise
+
+**Expected outputs:** The game should maintain it's aspect ratio 
