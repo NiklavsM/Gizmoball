@@ -2,26 +2,25 @@
 
 During the development of the preliminary release, as a team, we have realized that
 the code base of this project will steadily increase in both size and complexity 
-as we keep adding new features. Therefore, we agreed to do unit testing using 
-`JUnit 5` as this practice will boost our confidence when either writing new code
+as we keep adding new features. Therefore, we agreed to do unit testing using as this 
+practice will boost our confidence when either writing new, bug-free code
 or editing previously written code, this being especially important since the code base
-is maintained by multiple developers. As a bonus, this will also help us  
+is maintained by multiple developers. As a bonus, this will also help us 
 confidentely experiment with extra features without braking the basic functionality,
 in order to achieve bonus marks.
-
-- focus on tests that test domain specific (in this case Gizmoball) code. 
-this is more likely to change while simple code is not going
-to change and also theyre likely to be correct impl
 
 #### Test cases identification
 
 We will focus on writing unit tests for the domain specific code, that is code that 
 implements "business logic" (in this case, Gizmoball basic functionality) as this
  is very likely to change a lot and is also crucial in accurately implementing the 
- main requirements.
+ main requirements. Simple code is not going to change and will, most probably, going to be
+ implemented correctly.
  
  We are planning to identify test cases mostly based on the `model` side of our `MVC` as these
- classes are responsible to model the physical aspects and interactions of the game.
+ classes are responsible to model the physical aspects and interactions of the game. Moreover, 
+ we decided to write good method specifications for the complex methods, as we can easily create
+ uses cases based on them, including *edge cases*.
  
  We are going to have one `JUnit` test class for each of the `model` classes that we are 
  planning to test. The test classes will be placed in the `test` package which is going 
@@ -29,47 +28,74 @@ implements "business logic" (in this case, Gizmoball basic functionality) as thi
  
  ##### What we'll test
  
- - every single equals method 
-
-- do not test library code, assume it works correctly, the same with
-other external resources(when theyre available), trivial code like getters and setters,
-code that deals only with UI, swing toolkit etc., or non deterministic results
-
-- test class for every model class
-
-- identify test cases based on method spec
-
-- test for checked exceptions being thrown accordingly
-
-- properly test equals and hashcode
-
-- also aim edge cases
+ - `equals()` and `hashCode()` methods for `Gizmo` and `GameModel` classes 
+ as we're heavily relying on them in hash-based collections, and in writing other unit tests
+ 
+ - `toString()` methods for `Gizmo` and `GameModel` classes, because they will be used in 
+ converting the `model` to a text file
+ 
+ - all the methods exposed in the `model` interfaces, since they will be used by `views` and 
+ `controllers`
+ 
+ - *file saving and loading* functionality
+ 
+ - `Gizmo` uniqueness, deletion, rotation 
+ 
+ - the triggering system
+ 
+ - the movement according to time - *location*, *forces*; especially for 
+ edge values
+ 
+ - collisions detection
+ 
+ - whether checked exceptions being thrown accordingly
+ 
+ ##### What we won't test
+ 
+ - library code; we assume that the MIT physics package works according
+ to its specification; the same with other resources when they're available
+ 
+ - code that deals with UI, like `java-fx` toolkit and components; for that, we'll perform
+ *validation testing*
+ 
+ - trivial code, like *getters* and *setters*
+ 
 
 #### Approach
 
-- probably both black and white box testing?
+We will use the `JUnit 5` framework for Java unit testing as it provides some nice features
+like *Parametrized tests*, *grouped assertions, powerful exception expecting mechanism etc*. 
+Since we're all contributing to the source code of Gizmoball, we have decided that all of us will
+be responsible for unit testing as well. However, as individuals, we should try to test the code
+written by a different team member and not our own as we might be biased towards our own 
+implementation which may cause as us to miss some test cases, making it more difficult to find 
+potential bugs. 
+ 
+ As a lot of the code is already written, we won't be able to adhere to the 
+ `Test Driven Development` practice. However, we plan to write tests incrementally, most likely
+ after each piece of meaningful new code. A mix of *black box* and *white box* testing 
+ techniques will be useful in finding bugs more effectively. We can start with *black box* 
+ test cases against a method's specifications and then switch to *white box* testing in order
+ to get some more insights about the method's behaviour.
 
-- we'll all write tests, but I would say write test for 
-code implemented by someone else
+###### Guidelines that we're going to follow
 
-- no need for mocking 
-
-- test package will have the same structure as the source package
+- smart use of `setUp()`, `tearDown()`, `beforeEach()` and `beforeAll()` methods
 
 - test naming conversion 
 
-- TDD? or something else
+- 100% line coverage is a must, but only run the coverage on what we mark as business critical
+code
 
-- 100% line coverage is a must, with regards to business logic code
+- only ene *assertion* per test, unless use the `JUnit 5` *grouped assertions* are used
+(they are placed in a lambda and the framework reports all the assertions that failed) in 
+which case they should be related
 
-- one assert per test, unless we use the new junit 5 grouped assertions that reports
+- use the overloaded version of the `assert` methods, in order to pass in a message that 
+describes what went wrong 
 
-- use the overloaded version of the assert methods, to pass in a message 
+- run the whole test suite frequently, especially when adding a new feature
 
-- rely on equals and hashcode impl of methods
-
-- run the tests whenever you add new code
-
-- CI pipeline to run tests when pushing to master
+- set up a CI pipeline on *gitlab* to run the test suite whenever we push to the `master` branch
 
 
