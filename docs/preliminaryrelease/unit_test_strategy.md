@@ -4,16 +4,32 @@ During the development of the preliminary release, as a team, we have realized t
 the code base of this project will steadily increase in both size and complexity 
 as we keep adding new features. Therefore, we agreed to do unit testing using 
 `JUnit 5` as this practice will boost our confidence when either writing new code
-or editing previously written code, this being especially important when the code base
-is maintained by multiple developers.
-
-- junit 5 
+or editing previously written code, this being especially important since the code base
+is maintained by multiple developers. As a bonus, this will also help us  
+confidentely experiment with extra features without braking the basic functionality,
+in order to achieve bonus marks.
 
 - focus on tests that test domain specific (in this case Gizmoball) code. 
 this is more likely to change while simple code is not going
 to change and also theyre likely to be correct impl
 
 #### Test cases identification
+
+We will focus on writing unit tests for the domain specific code, that is code that 
+implements "business logic" (in this case, Gizmoball basic functionality) as this
+ is very likely to change a lot and is also crucial in accurately implementing the 
+ main requirements.
+ 
+ We are planning to identify test cases mostly based on the `model` side of our `MVC` as these
+ classes are responsible to model the physical aspects and interactions of the game.
+ 
+ We are going to have one `JUnit` test class for each of the `model` classes that we are 
+ planning to test. The test classes will be placed in the `test` package which is going 
+ to have the same structure as the `src` package, for consistency.
+ 
+ ##### What we'll test
+ 
+ - every single equals method 
 
 - do not test library code, assume it works correctly, the same with
 other external resources(when theyre available), trivial code like getters and setters,
