@@ -275,6 +275,33 @@ with the velocity 50L/s upwards
 **Expected outputs:** The configurations are displayed on the screen ready for play 
 
 
+###Test 13
+ 
+**Purpose:** Test whether switching from Editor to Play mode works 
+
+**Test inputs:** User:
+
+1. Starts at the "Editor mode"
+
+2. Clicks "Play" icon in the top toolbar 
+
+3. The Editor window is replaced by a playing area containing the latest configurations made in Editor mode
+
+**Expected outputs:** Play mode is displayed and ready for action  
 
 
+###Test 14
+ 
+**Purpose:** Test whether switching from Play to Editor mode works 
 
+**Test inputs:** User:
+
+1. Starts at the "Play mode"
+
+2. Clicks "Menu" icon in the game toolbar 
+
+3. Selects "Editor" in the currently displayed pause menu
+
+3. The playing area is replaced by the Editor mode showing the configurations used in Play mode
+
+**Expected outputs:** Editor mode is displayed and ready for further editing  
