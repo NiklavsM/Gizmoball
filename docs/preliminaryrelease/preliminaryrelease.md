@@ -233,8 +233,23 @@ with the velocity 50L/s upwards
 
 ###Test 11
  
-**Purpose:**
+**Purpose:** Test whether already saved configurations are loaded properly in Editor mode 
 
-**Test inputs:**
+**Test inputs:** User:
 
-**Expected outputs:**
+1. Starts at the "Editor mode"
+
+2. Clicks "Load" icon located in the top toolbar
+
+3. Navigates to the desired location and selects the file to be loaded, for example filename.gizmo
+
+4. Clicks "Load"
+
+5. Game configurations are loaded and displayed on the board
+
+6. The status label shows that the game configurations have been successfully loaded
+
+**Expected outputs:** The configurations are displayed on the screen, ready for further editing
+
+
+
