@@ -18,7 +18,7 @@ public class GizmoBall extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws FileNotFoundException {
+    public void start(Stage stage) {
         IGameModel gameModel = new GameModel();
 
         GameLoader gameLoader = new GameLoader(gameModel, getClass().getResourceAsStream("/default.gizmo"));
