@@ -21,7 +21,7 @@ public class GizmoBall extends Application {
     public void start(Stage stage) throws FileNotFoundException {
         IGameModel gameModel = new GameModel();
 
-        GameLoader gameLoader = new GameLoader(gameModel, getClass().getResourceAsStream("/maps/default.gizmo"));
+        GameLoader gameLoader = new GameLoader(gameModel, getClass().getResourceAsStream("/default.gizmo"));
 
         try {
             gameLoader.load();
