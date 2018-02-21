@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class GizmoFactory implements IGizmoFactory {
 
-    public Gizmo createGizmo(IGizmo.Type type, double x, double y, String id) {
+    public IGizmo createGizmo(IGizmo.Type type, double x, double y, String id) {
         switch (type) {
             case TRIANGLE:
                 return new Triangle(x, y, id);
@@ -25,11 +25,11 @@ public class GizmoFactory implements IGizmoFactory {
         throw new IllegalArgumentException("no absorber please");
     }
 
-    public Gizmo createGizmo(IGizmo.Type type, double x, double y) {
+    public IGizmo createGizmo(IGizmo.Type type, double x, double y) {
         return createGizmo(type, x, y, UUID.randomUUID().toString());
     }
 
-    public Gizmo createGizmo(IGizmo.Type type, double x1, double y1, double x2, double y2, String id) {
+    public IGizmo createGizmo(IGizmo.Type type, double x1, double y1, double x2, double y2, String id) {
         switch (type) {
             case BALL:
                 Ball ball = new Ball(x1, y1, id);
@@ -39,6 +39,11 @@ public class GizmoFactory implements IGizmoFactory {
                 return new Absorber(x1, y1, x2, y2, id);
         }
         throw new IllegalArgumentException("absorber or ball only please:" + type.name());
+    }
+
+    @Override
+    public IGizmo createGizmo(IGizmo.Type type, double x1, double y1, double x2, double y2) {
+        return createGizmo(type, x1, y1, x2, y2, UUID.randomUUID().toString());
     }
 
 }

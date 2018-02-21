@@ -5,7 +5,14 @@ import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
 import java.io.InputStream;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Scanner;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static strath.cs308.gizmoball.model.gizmo.IGizmo.Type.*;
@@ -70,10 +77,9 @@ public class GameLoader {
         try {
             while (scanner.hasNextLine()) {
 
-                line = scanner.nextLine();
+                line = scanner.nextLine().trim();
 
                 if (line.equals("")) {
-                    System.out.println("empty line");
                     continue;
                 }
 
@@ -89,7 +95,7 @@ public class GameLoader {
                         String keyMode = tokens.poll();
                         String name = tokens.poll();
                         //TODO
-                        System.out.println("connected " + keyNumber + keyMode + " to " + name);
+                        System.out.println("connected " + keyNumber + " " + keyMode + " to " + name);
                         continue;
                     }
 
@@ -153,12 +159,13 @@ public class GameLoader {
                 double y2 = toValidNumber(tokens.poll());
 
                 gameModel.addGizmo(gizmoFactory.createGizmo(gizmoCommandToEnum.get(command), x, y, x2, y2, name));
-                System.out.println("created " + name);
+
+                System.out.println("created " + command + " " + name + " at " + x + ", " + y + " -- " + x2 + ", " + y2);
                 return;
             }
 
             gameModel.addGizmo(gizmoFactory.createGizmo(gizmoCommandToEnum.get(command), x, y, name));
-            System.out.println("created" + name);
+            System.out.println("created " + command + " " + name + " at " + x + ", " + y);
         }
     }
 
@@ -171,3 +178,6 @@ public class GameLoader {
     }
 
 }
+
+
+
