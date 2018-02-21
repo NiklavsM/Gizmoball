@@ -1,5 +1,18 @@
 
 # Finalized class design
+
+Two UML diagram come with this documentation.
+One with the full diagram and one with just the core classes
+(Interfaces and Physics package removed).
+
+Interfaces used only to separate the Model View and Controller
+part of the application.
+
+- Event Handler: from View to Controller
+- IEditorView | IPlayView: from Controller to View
+- IGameModel | IGameTimer | IGizmo | IGizmoFactory: from Controller and View to Model
+- Observer: from Model to View
+
 ## Changes
 
 - View representation changed
