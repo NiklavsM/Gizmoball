@@ -42,17 +42,11 @@ public class GizmoDrawer {
             diameter = dot.getRadius() * 2 * pxPerL;
             i++;
         }
-        if (type == IGizmo.Type.FLIPPER) {
-            for (int k = 0; k < i; k++) {
-                gc.fillOval(xPoints[k] - diameter / 2, yPoints[k] - diameter / 2, diameter, diameter);
-            }
-            gc.setLineWidth(diameter);
-            gc.setLineCap(StrokeLineCap.BUTT);
-            gc.setStroke(ORANGE);
-            gc.strokeLine(xPoints[0], yPoints[0], xPoints[1], yPoints[1]);
-        }
+        
         if (type == IGizmo.Type.CIRCLE || type == IGizmo.Type.BALL || type == IGizmo.Type.FLIPPER) {
-            gc.fillOval(xPoints[0] - diameter / 2, yPoints[0] - diameter / 2, diameter, diameter);
+            gc.setLineWidth(diameter);
+            gc.setLineCap(StrokeLineCap.ROUND);
+            gc.strokeLine(xPoints[0], yPoints[0], xPoints[i-1], yPoints[i-1]);
         } else {
             gc.fillPolygon(xPoints, yPoints, i);
         }
@@ -85,7 +79,7 @@ public class GizmoDrawer {
                 break;
 
             case FLIPPER:
-                gc.setFill(ORANGE);
+                gc.setStroke(ORANGE);
                 break;
         }
 
