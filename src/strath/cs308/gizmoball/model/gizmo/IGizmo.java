@@ -8,6 +8,16 @@ import java.util.Set;
 
 public interface IGizmo {
 
+    List<Dot> getDots();
+
+    Set<LineSegment> getLines();
+
+    Type getType();
+
+    String getId();
+
+    void rotate();
+
     enum Type {
         TRIANGLE("Triangle"), ABSORBER("Absorber"), SQUARE("Square"), BALL("Ball"),
         WALLS("Walls"), FLIPPER("Flipper"), CIRCLE("Circle"),
@@ -25,15 +35,4 @@ public interface IGizmo {
             return name;
         }
     }
-
-
-    List<Dot> getDots();
-
-    Set<LineSegment> getLines();
-
-    Type getType();
-
-    String getId();
-
-    void rotate();
 }

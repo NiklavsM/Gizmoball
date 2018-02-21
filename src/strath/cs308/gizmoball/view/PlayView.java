@@ -29,7 +29,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Optional;
 
-public class PlayView implements IPlayView, Observer{
+public class PlayView implements IPlayView, Observer {
 
     private IGameModel gameModel;
     private BorderPane root;
@@ -76,7 +76,7 @@ public class PlayView implements IPlayView, Observer{
     private void attachEventHandlers() {
         Platform.runLater(() -> {
             IGameTimer gameTimer = new GameTimer(gameModel);
-            EventHandler gameBarEventHandler =  new GameBarEventHandler(gameModel, gameTimer, this);
+            EventHandler gameBarEventHandler = new GameBarEventHandler(gameModel, gameTimer, this);
 
             root.lookupAll("#gameMenu > Button")
                     .forEach(node -> ((Button) node).setOnAction(gameBarEventHandler));

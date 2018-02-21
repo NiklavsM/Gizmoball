@@ -10,7 +10,7 @@ public class GameSaver {
     private IGameModel gameModel;
     private File fileToSave;
 
-    public GameSaver (IGameModel gameModel, File fileToSave) {
+    public GameSaver(IGameModel gameModel, File fileToSave) {
         this.gameModel = gameModel;
         this.fileToSave = fileToSave;
     }

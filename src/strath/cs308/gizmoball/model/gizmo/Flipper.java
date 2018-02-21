@@ -4,44 +4,19 @@ import mit.physics.*;
 import strath.cs308.gizmoball.model.IMovable;
 import strath.cs308.gizmoball.model.ITriggerable;
 
-import java.util.List;
-import java.util.Set;
-
 public class Flipper extends Gizmo implements IMovable, ITriggerable {
-
-    enum Movement {
-        BACK, FORWARD, BOTTOM, TOP
-    }
-
-    public enum Orientation {
-        LEFT(1), RIGHT(-1);
-
-        private double mult;
-
-        Orientation(double mult) {
-            this.mult = mult;
-        }
-
-        public double getMult() {
-            return mult;
-        }
-    }
-
 
     private Circle startPoint;
     private Circle endPoint;
     private LineSegment connector1;
     private LineSegment connector2;
-
     private Vect velocity;
     private double movedAngle;
     private Movement movementStatus;
     private Orientation orientation;
-
     public Flipper(double x, double y, Orientation orientation) {
         this(x, y, orientation, generateID());
     }
-
     public Flipper(double x, double y, Orientation orientation, String id) {
         super(x, y, x, y, id); // Needs to be fixed ASP WHYYY all gizmos need to have 4 cordinates Nik
 
@@ -199,10 +174,28 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
         }
     }
 
-
     @Override
     protected void setup(double x1, double y1, double x2, double y2) {
 
+    }
+
+    enum Movement {
+        BACK, FORWARD, BOTTOM, TOP
+    }
+
+
+    public enum Orientation {
+        LEFT(1), RIGHT(-1);
+
+        private double mult;
+
+        Orientation(double mult) {
+            this.mult = mult;
+        }
+
+        public double getMult() {
+            return mult;
+        }
     }
 
 }

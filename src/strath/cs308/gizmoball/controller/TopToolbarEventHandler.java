@@ -10,8 +10,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class TopToolbarEventHandler implements EventHandler<MouseEvent>
-{
+public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
     private IGameModel gameModel;
     private IEditorView editView;
 

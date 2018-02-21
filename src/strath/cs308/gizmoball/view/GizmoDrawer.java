@@ -25,7 +25,7 @@ public class GizmoDrawer {
         gc = canvas.getGraphicsContext2D();
     }
 
-    public void drawGizmo (IGizmo gizmo) {
+    public void drawGizmo(IGizmo gizmo) {
         gc.setFill(Color.BLACK);
 
         double diameter = 0;
@@ -62,31 +62,31 @@ public class GizmoDrawer {
         switch (type) {
             case BALL:
                 gc.setFill(Color.WHITE);
-            break;
+                break;
 
             case SQUARE:
                 gc.setFill(RED);
-            break;
+                break;
 
             case ABSORBER:
                 gc.setFill(PINK);
-            break;
+                break;
 
             case CIRCLE:
                 gc.setFill(GREEN);
-            break;
+                break;
 
             case WALLS:
                 gc.setFill(Color.BLACK);
-            break;
+                break;
 
             case TRIANGLE:
                 gc.setFill(BLUE);
-            break;
+                break;
 
             case FLIPPER:
                 gc.setFill(ORANGE);
-            break;
+                break;
         }
 
     }

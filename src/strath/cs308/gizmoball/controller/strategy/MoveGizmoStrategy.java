@@ -6,8 +6,7 @@ import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.view.IEditorView;
 
-public class MoveGizmoStrategy implements EventHandler<MouseEvent>
-{
+public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
     private final IEditorView editorView;
     private final IGameModel gameModel;
 

@@ -12,8 +12,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class PauseMenuEventHandler implements EventHandler<ActionEvent>
-{
+public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
     private IPlayView playView;
     private IGameTimer gameTimer;
     private IGameModel gameModel;
@@ -54,8 +53,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent>
         playView.switchToEditor();
     }
 
-    private void exitGame()
-    {
+    private void exitGame() {
         if (playView.getCloseConFormation()) {
             Platform.exit();
             System.exit(0);

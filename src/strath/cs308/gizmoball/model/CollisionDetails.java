@@ -1,7 +1,6 @@
 package strath.cs308.gizmoball.model;
 
 import mit.physics.Vect;
-
 import strath.cs308.gizmoball.model.gizmo.Gizmo;
 
 

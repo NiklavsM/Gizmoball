@@ -24,26 +24,26 @@ public class GameBarEventHandler implements EventHandler<ActionEvent> {
         switch (((Node) actionEvent.getSource()).getId()) {
             case "menuButton":
                 openMenu();
-            break;
+                break;
 
             case "tickButton":
                 tick();
-            break;
+                break;
 
             case "playButton":
                 gameTimer.start();
-            break;
+                break;
 
             case "stopButton":
                 gameTimer.stop();
-            break;
+                break;
         }
     }
 
     private void tick() {
 
         if (!gameTimer.isRunning()) {
-            gameModel.tick(1/30.0);
+            gameModel.tick(1 / 30.0);
         }
 
     }

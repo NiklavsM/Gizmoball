@@ -5,7 +5,9 @@ import java.io.File;
 public interface IPlayView {
 
     void showPauseMenu();
+
     void hidePauseMenu();
+
     boolean getCloseConFormation();
 
     void switchToEditor();

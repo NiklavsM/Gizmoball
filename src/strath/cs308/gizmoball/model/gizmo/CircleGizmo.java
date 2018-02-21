@@ -1,10 +1,6 @@
 package strath.cs308.gizmoball.model.gizmo;
 
 import mit.physics.Circle;
-import mit.physics.LineSegment;
-
-import java.util.List;
-import java.util.Set;
 
 public class CircleGizmo extends Gizmo {
 
@@ -15,7 +11,7 @@ public class CircleGizmo extends Gizmo {
         rotatingPoint = circle.getCenter();
     }
 
-    public CircleGizmo (double x, double y) {
+    public CircleGizmo(double x, double y) {
         this(x, y, generateID());
     }
 

@@ -18,13 +18,13 @@
                      minHeight="200"
                      maxHeight="250"
                      fx:id="pauseMenu"
-                     styleClass="default-padding, PauseMenu">
+                     styleClass="no-padding">
 
                 <GridPane hgap="16"
                           vgap="15"
                           alignment="CENTER"
                           fx:id="pauseMenuItemHolder"
-                          styleClass="default-padding">
+                          styleClass="no-padding">
 
                     <Button text="Back"
                             GridPane.columnIndex="0"

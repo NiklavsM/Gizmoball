@@ -25,11 +25,9 @@ public class GameTimer implements IGameTimer {
         if (!isRunning) {
             this.isRunning = true;
 
-            TimerTask task = new TimerTask()
-            {
+            TimerTask task = new TimerTask() {
                 @Override
-                public void run()
-                {
+                public void run() {
                     gameModel.tick(1 / refreshRate);
                 }
             };

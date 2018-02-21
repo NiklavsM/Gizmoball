@@ -32,7 +32,11 @@ public abstract class Gizmo implements IGizmo {
     }
 
     public Gizmo(double x1, double y1, double x2, double y2) {
-        this(x1,y1, x2, y2, generateID());
+        this(x1, y1, x2, y2, generateID());
+    }
+
+    protected static String generateID() {
+        return UUID.randomUUID().toString();
     }
 
     public List<Circle> getCircles() {
@@ -52,13 +56,8 @@ public abstract class Gizmo implements IGizmo {
         return lines;
     }
 
-
     @Override
     public abstract IGizmo.Type getType();
-
-    protected static String generateID() {
-        return UUID.randomUUID().toString();
-    }
 
     public String getId() {
         return id;

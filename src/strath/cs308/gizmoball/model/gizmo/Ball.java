@@ -5,7 +5,10 @@ import mit.physics.LineSegment;
 import mit.physics.Vect;
 import strath.cs308.gizmoball.model.IMovable;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 public class Ball extends Gizmo implements IMovable {
 
@@ -28,9 +31,9 @@ public class Ball extends Gizmo implements IMovable {
     public void setVelocity(Vect v) {
         velocity = v;
     }
-    
+
     double getRadius() {
-    	return radius;
+        return radius;
     }
 
     public Circle getCircle() {
@@ -41,12 +44,12 @@ public class Ball extends Gizmo implements IMovable {
         return circle.getCenter().x();
     }
 
-    double getExactY() {
-        return circle.getCenter().y();
-    }
-
     void setExactX(double x) {
         circle = new Circle(x, getExactY(), radius);
+    }
+
+    double getExactY() {
+        return circle.getCenter().y();
     }
 
     void setExactY(double y) {
@@ -62,7 +65,7 @@ public class Ball extends Gizmo implements IMovable {
         circles = new LinkedList<>();
         circles.add(circle);
         return circles;
-     }
+    }
 
     @Override
     public Type getType() {
@@ -74,7 +77,7 @@ public class Ball extends Gizmo implements IMovable {
         radius = 0.25;
         circle = new Circle(x, y, radius);
         circles.add(circle);
-        setVelocity(new Vect(4,4));
+        setVelocity(new Vect(4, 4));
     }
 
     @Override

@@ -6,8 +6,8 @@ public interface IMovable {
 
     void move(double timeInSeconds);
 
-    void setVelocity(Vect velocity);
-
     Vect getVelocity();
+
+    void setVelocity(Vect velocity);
 
 }

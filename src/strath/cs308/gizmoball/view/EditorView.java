@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
@@ -15,23 +14,20 @@ import strath.cs308.gizmoball.controller.GizmoSelectorEventHandler;
 import strath.cs308.gizmoball.controller.ToolModeEventHandler;
 import strath.cs308.gizmoball.controller.TopToolbarEventHandler;
 import strath.cs308.gizmoball.model.IGameModel;
-import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
-public class EditorView implements IEditorView, Observer
-{
+public class EditorView implements IEditorView, Observer {
     private BorderPane root;
     private IGameModel gameModel;
     private Canvas canvas;
 
     public EditorView(Stage stage, IGameModel gameModel) {
 
-        try
-        {
+        try {
             root = FXMLLoader.load(getClass().getResource("/view/editorview.fxml"));
             canvas = (Canvas) root.lookup("#canvas");
             this.gameModel = gameModel;

@@ -4,9 +4,6 @@ import mit.physics.Circle;
 import mit.physics.LineSegment;
 import mit.physics.Vect;
 
-import java.util.List;
-import java.util.Set;
-
 public class Triangle extends Gizmo {
 
     public Triangle(double x, double y, String id) {

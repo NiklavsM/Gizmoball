@@ -20,16 +20,14 @@ public class GameLoader {
     public static final String DELETE_COMMAND = "Delete";
     public static final String MOVE_COMMAND = "Move";
     public static final String WALLS_NAME = "OuterWalls";
-
+    private final GizmoFactory gizmoFactory;
+    private final IGameModel gameModel;
+    private final InputStream source;
     private Set<String> gizmoCreationCommands;
     private Set<String> nameCoordCoordCommands;
     private Set<String> gizmoCreationCommandsAdvanced;
     private Set<String> nameCommands;
     private Map<String, IGizmo.Type> gizmoCommandToEnum;
-
-    private final GizmoFactory gizmoFactory;
-    private final IGameModel gameModel;
-    private final InputStream source;
 
     public GameLoader(IGameModel gameModel, InputStream source) {
         this.gameModel = gameModel;

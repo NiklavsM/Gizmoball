@@ -3,9 +3,6 @@ package strath.cs308.gizmoball.model.gizmo;
 import mit.physics.Circle;
 import mit.physics.LineSegment;
 
-import java.util.List;
-import java.util.Set;
-
 public class Square extends Gizmo {
 
     public Square(double x, double y) {
