@@ -42,11 +42,11 @@ public class GizmoDrawer {
             diameter = dot.getRadius() * 2 * pxPerL;
             i++;
         }
-        
+
         if (type == IGizmo.Type.CIRCLE || type == IGizmo.Type.BALL || type == IGizmo.Type.FLIPPER) {
             gc.setLineWidth(diameter);
             gc.setLineCap(StrokeLineCap.ROUND);
-            gc.strokeLine(xPoints[0], yPoints[0], xPoints[i-1], yPoints[i-1]);
+            gc.strokeLine(xPoints[0], yPoints[0], xPoints[i - 1], yPoints[i - 1]);
         } else {
             gc.fillPolygon(xPoints, yPoints, i);
         }
@@ -55,7 +55,7 @@ public class GizmoDrawer {
     private void setGizmoColor(IGizmo.Type type) {
         switch (type) {
             case BALL:
-                gc.setFill(Color.WHITE);
+                gc.setStroke(Color.WHITE);
                 break;
 
             case SQUARE:
@@ -67,7 +67,7 @@ public class GizmoDrawer {
                 break;
 
             case CIRCLE:
-                gc.setFill(GREEN);
+                gc.setStroke(GREEN);
                 break;
 
             case WALLS:
