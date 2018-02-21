@@ -197,10 +197,7 @@ public class GameModel extends Observable implements IGameModel {
         notifyObservers();
     }
 
-    public void clear() {
+    public void reset() {
         setup();
-
-        setChanged();
-        notifyObservers();
     }
 }

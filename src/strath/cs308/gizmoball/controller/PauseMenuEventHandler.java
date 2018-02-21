@@ -27,7 +27,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         switch (((Node) actionEvent.getSource()).getId()) {
             case "menuBackButton":
-                closeMenu();
+                playView.hidePauseMenu();
                 break;
 
             case "menuSaveButton":
@@ -61,14 +61,21 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
     }
 
     private void loadGame() {
-
         File fileToLoad = playView.getLoadFile();
+
+        if (fileToLoad == null) {
+            System.out.println("Loading file dialog cancelled");
+            return;
+        }
+
         try {
-            GameLoader gl = new GameLoader(gameModel, new FileInputStream(fileToLoad));
-            gl.load();
-            closeMenu();
+            GameLoader gameLoader = new GameLoader(gameModel, new FileInputStream(fileToLoad));
+//            gameModel.reset();
+            gameLoader.load();
         } catch (IllegalAccessException | FileNotFoundException e) {
             e.printStackTrace();
+        } finally {
+            playView.hidePauseMenu();
         }
     }
 
@@ -80,11 +87,10 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
             gs.save();
         } catch (IllegalAccessException | FileNotFoundException e) {
             e.printStackTrace();
+        } finally {
+            playView.hidePauseMenu();
         }
 
     }
 
-    private void closeMenu() {
-        playView.hidePauseMenu();
-    }
 }

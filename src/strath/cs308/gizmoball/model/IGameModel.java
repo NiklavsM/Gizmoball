@@ -26,5 +26,5 @@ public interface IGameModel {
 
     void rotate(String id);
 
-    void clear();
+    void reset();
 }
