@@ -2,6 +2,7 @@ package strath.cs308.gizmoball.controller;
 
 import strath.cs308.gizmoball.model.GizmoFactory;
 import strath.cs308.gizmoball.model.IGameModel;
+import strath.cs308.gizmoball.model.IGizmoFactory;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
 import java.io.InputStream;
@@ -27,7 +28,7 @@ public class GameLoader {
     public static final String DELETE_COMMAND = "Delete";
     public static final String MOVE_COMMAND = "Move";
     public static final String WALLS_NAME = "OuterWalls";
-    private final GizmoFactory gizmoFactory;
+    private final IGizmoFactory gizmoFactory;
     private final IGameModel gameModel;
     private final InputStream source;
     private Set<String> gizmoCreationCommands;
