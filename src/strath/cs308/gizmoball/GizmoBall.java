@@ -7,10 +7,6 @@ import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.view.PlayView;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 public class GizmoBall extends Application {
 
     public static void main(String[] args) {
