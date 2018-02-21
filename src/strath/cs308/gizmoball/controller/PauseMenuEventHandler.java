@@ -70,7 +70,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
 
         try {
             GameLoader gameLoader = new GameLoader(gameModel, new FileInputStream(fileToLoad));
-//            gameModel.reset();
+            gameModel.reset();
             gameLoader.load();
         } catch (IllegalAccessException | FileNotFoundException e) {
             e.printStackTrace();
@@ -80,7 +80,6 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
     }
 
     private void saveGame() {
-
         File fileToLoad = playView.getLoadFile();
         GameSaver gs = new GameSaver(gameModel, fileToLoad);
         try {
