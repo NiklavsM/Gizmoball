@@ -1,4 +1,5 @@
-# Preliminary Release
+
+## Validation Testing Strategy
 
 **Group:** PR_Th1
 
@@ -11,9 +12,6 @@ Lyubomir Ivanov @kwb15150
 Martin Kollie @vib15168
 
 Niklavs Meiers @isb15151
-
-
-## Validation Testing Strategy
 
 ### Test 1
 
