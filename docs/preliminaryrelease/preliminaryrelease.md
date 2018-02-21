@@ -1,4 +1,4 @@
-#Preliminary Release
+# Preliminary Release
 
 **Group:** PR_Th1
 
@@ -15,7 +15,8 @@ Niklavs Meiers @isb15151
 
 ## Validation Testing Strategy
 
- ### Test 1
+### Test 1
+
 **Purpose:** Test adding gizmo on an empty tile
 
 **Test inputs:** 
@@ -36,7 +37,8 @@ Niklavs Meiers @isb15151
 
  
  
- ### Test 2
+### Test 2
+
 **Purpose:** Test adding gizmo on an occupied tile
  
 **Test inputs:**
@@ -57,7 +59,8 @@ Niklavs Meiers @isb15151
   
 
  
- ###Test 3
+### Test 3
+
 **Purpose:** Test adding absorber on empty space
  
 **Test inputs:**
@@ -78,7 +81,7 @@ Niklavs Meiers @isb15151
  
 
  
- ###Test 4
+### Test 4
 **Purpose:** Test adding absorber on occupied space (or partly occupied)
   
 **Test inputs:**
@@ -99,7 +102,7 @@ Niklavs Meiers @isb15151
  
 
  
- ###Test 5 
+### Test 5 
 **Purpose:** Test removing present gizmo 
 
 **Test inputs:** 
@@ -118,7 +121,7 @@ Niklavs Meiers @isb15151
 
 
 
- ###Test 6 
+### Test 6 
 **Purpose:** Test removing a gizmo from an empty tile
 
 **Test inputs:** 
@@ -139,7 +142,7 @@ Niklavs Meiers @isb15151
 
 
 
- ###Test 7 
+### Test 7 
 **Purpose:** Test connecting gizmo to another gizmo
 
 **Test inputs:** 
@@ -164,7 +167,7 @@ Niklavs Meiers @isb15151
 
 
 
- ###Test 8
+### Test 8
 **Purpose:** Test key-press triggering 
 
 **Test inputs:** 
@@ -189,7 +192,7 @@ Niklavs Meiers @isb15151
 
 
 
- ###Test 9
+### Test 9
 **Purpose:** Test clearing playing area 
 
 **Test inputs:** 
@@ -204,7 +207,7 @@ Niklavs Meiers @isb15151
 
 
 
-###Test 10  
+### Test 10  
 **Purpose:** Test adding a ball on an empty tile 
 
 **Test inputs:** 
@@ -225,7 +228,7 @@ Niklavs Meiers @isb15151
 
 
 
- ###Test 11 
+### Test 11 
 **Purpose:** Test adding a ball on an occupied tile
 
 **Test inputs:** 
@@ -246,7 +249,7 @@ Niklavs Meiers @isb15151
 
 
 
- ###Test 12 
+### Test 12 
 **Purpose:** Test adding a ball in an absorber
 
 **Test inputs:** 
@@ -272,7 +275,7 @@ with velocity of 50L/s upwards
 
 
 
- ###Test 13 
+### Test 13 
 **Purpose:** Test moving gizmo to an empty tile 
 
 **Test inputs:** 
@@ -293,7 +296,7 @@ with velocity of 50L/s upwards
 
 
 
- ###Test 14
+### Test 14
 **Purpose:** Test moving gizmo to an occupied tile
 
 **Test inputs:** 
@@ -314,7 +317,7 @@ with velocity of 50L/s upwards
 
 
 
- ###Test 15
+### Test 15
 **Purpose:** Test rotating gizmo functionality 
 
 **Test inputs:** 
@@ -331,7 +334,7 @@ with velocity of 50L/s upwards
 
 
 
- ###Test 16  
+### Test 16  
 **Purpose:** Test saving newly configurated map 
 
 **Test inputs:**  
@@ -354,7 +357,7 @@ with velocity of 50L/s upwards
 
 
 
- ###Test 17 
+### Test 17 
 **Purpose:** Test saving an already saved map (using "Save", not "Save As")    
 
 **Test inputs:** 
@@ -371,7 +374,7 @@ with velocity of 50L/s upwards
 
 
 
- ###Test 18 
+### Test 18 
 **Purpose:** Test loading from saved configurations in Editor mode 
 
 **Test inputs:** 
@@ -391,7 +394,7 @@ with velocity of 50L/s upwards
 **Expected outputs:** The configurations are displayed on the screen, ready for further editing
 
 
- ###Test 19
+### Test 19
 **Purpose:** Test loading from saved configurations in Play mode 
 
 **Test inputs:** 
@@ -414,7 +417,7 @@ with velocity of 50L/s upwards
 
 
 
- ###Test 20 
+### Test 20 
 **Purpose:** Test switching from Editor to Play mode 
 
 **Test inputs:** 
@@ -429,7 +432,7 @@ with velocity of 50L/s upwards
 
 
 
- ###Test 21 
+### Test 21 
 **Purpose:** Test switching from Play to Editor mode  
 
 **Test inputs:** 
@@ -446,7 +449,7 @@ with velocity of 50L/s upwards
 
 
 
- ###Test 22
+### Test 22
 **Purpose:** Test whether the game starts correctly
 
 **Test inputs:** 
@@ -459,7 +462,7 @@ with velocity of 50L/s upwards
 
 
 
- ###Test 23 
+### Test 23 
 **Purpose:** Test whether the game stops correctly
 
 **Test inputs:** 
@@ -472,7 +475,7 @@ with velocity of 50L/s upwards
 
 
 
- ###Test 24 
+### Test 24 
 **Purpose:** Test whether the game ticks correctly
 
 **Test inputs:** 
@@ -485,7 +488,7 @@ with velocity of 50L/s upwards
 
 
 
- ###Test 25
+### Test 25
 **Purpose:** Test whether the pause menu appears properly 
 
 **Test inputs:** 
@@ -498,7 +501,7 @@ with velocity of 50L/s upwards
 
 
 
- ###Test 26 
+### Test 26 
 **Purpose:** Test whether the game maintains the same game state after closing the menu
 
 **Test inputs:** 
@@ -513,7 +516,7 @@ with velocity of 50L/s upwards
 
 
 
- ###Test 27
+### Test 27
 **Purpose:** Test whether the game exists gracefully after exit selected in the menu
 
 **Test inputs:** 
@@ -530,7 +533,7 @@ with velocity of 50L/s upwards
 
 
 
- ###Test 28 
+### Test 28 
 **Purpose:** Test whether the status bar updates depending on option selected
 
 **Test inputs:** 
@@ -544,7 +547,7 @@ with velocity of 50L/s upwards
 **Expected outputs:** Appropriate status message in the format <MODE> tool: ....
 
 
- ###Test 29 
+### Test 29 
 **Purpose:** Test whether the game maintains it aspect ratio and draws correctly when the window is resized
 
 **Test inputs:** 
