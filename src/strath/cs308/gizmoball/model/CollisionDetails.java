@@ -1,7 +1,9 @@
 package strath.cs308.gizmoball.model;
 
 import mit.physics.Vect;
+
 import strath.cs308.gizmoball.model.gizmo.Gizmo;
+
 
 public class CollisionDetails {
     private double tuc;
@@ -22,7 +24,7 @@ public class CollisionDetails {
         return velo;
     }
 
-    public Gizmo getGizmo(){
+    public Gizmo getGizmo() {
         return gizmo;
     }
 

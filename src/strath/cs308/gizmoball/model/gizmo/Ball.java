@@ -1,17 +1,13 @@
 package strath.cs308.gizmoball.model.gizmo;
 
-
 import mit.physics.Circle;
 import mit.physics.LineSegment;
 import mit.physics.Vect;
 import strath.cs308.gizmoball.model.IMovable;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-public class Ball extends Gizmo implements IMovable
-{
+public class Ball extends Gizmo implements IMovable {
 
     private Vect velocity;
     private double radius;
@@ -58,21 +54,19 @@ public class Ball extends Gizmo implements IMovable
     }
 
     @Override
+    public Set<LineSegment> getLines() {
+        return new HashSet<>();
+    }
+
     public List<Circle> getCircles() {
         circles = new LinkedList<>();
         circles.add(circle);
         return circles;
-    }
-
+     }
 
     @Override
     public Type getType() {
-        return Type.Ball;
-    }
-
-    @Override
-    public String getId() {
-        return id;
+        return Type.BALL;
     }
 
     @Override

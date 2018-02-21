@@ -19,7 +19,7 @@ public class Walls extends Gizmo {
     }
 
     @Override
-    public Type getType() {
-        return Type.Walls;
+    public IGizmo.Type getType() {
+        return IGizmo.Type.WALLS;
     }
 }

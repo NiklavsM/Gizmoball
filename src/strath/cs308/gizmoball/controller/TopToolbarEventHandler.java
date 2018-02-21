@@ -7,6 +7,7 @@ import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.view.IEditorView;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class TopToolbarEventHandler implements EventHandler<MouseEvent>
@@ -50,8 +51,8 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent>
 
     private void loadGame() {
         File fileToLoad = editView.getLoadFile();
-        GameLoader gl = new GameLoader(gameModel, fileToLoad);
         try {
+            GameLoader gl = new GameLoader(gameModel, new FileInputStream(fileToLoad));
             gl.load();
         } catch (IllegalAccessException | FileNotFoundException e) {
             e.printStackTrace();

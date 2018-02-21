@@ -2,18 +2,15 @@ package strath.cs308.gizmoball.controller;
 
 import strath.cs308.gizmoball.model.GizmoFactory;
 import strath.cs308.gizmoball.model.IGameModel;
-import strath.cs308.gizmoball.model.IGizmoFactory;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static strath.cs308.gizmoball.model.gizmo.IGizmo.Type.Absorber;
+import static strath.cs308.gizmoball.model.gizmo.IGizmo.Type.*;
 
-public class GameLoader
-{
+public class GameLoader {
 
     public static final String ROTATE_COMMAND = "Rotate";
     public static final String KEY_CONNECT_COMMAND = "KeyConnect";
@@ -23,25 +20,32 @@ public class GameLoader
     public static final String DELETE_COMMAND = "Delete";
     public static final String MOVE_COMMAND = "Move";
     public static final String WALLS_NAME = "OuterWalls";
-    private final File fileToLoad;
 
     private Set<String> gizmoCreationCommands;
     private Set<String> nameCoordCoordCommands;
     private Set<String> gizmoCreationCommandsAdvanced;
     private Set<String> nameCommands;
+    private Map<String, IGizmo.Type> gizmoCommandToEnum;
 
-    private IGizmoFactory gizmoFactory;
-    private IGameModel gameModel;
+    private final GizmoFactory gizmoFactory;
+    private final IGameModel gameModel;
+    private final InputStream source;
 
-    public GameLoader(IGameModel gameModel, File fileToLoad) {
-        this.fileToLoad = fileToLoad;
+    public GameLoader(IGameModel gameModel, InputStream source) {
         this.gameModel = gameModel;
+        this.source = source;
         gizmoFactory = new GizmoFactory();
 
-        gizmoCreationCommands =
-                Arrays.stream(IGizmo.Type.values())
-                        .map(IGizmo.Type::toString)
-                        .collect(Collectors.toCollection(HashSet::new));
+        gizmoCommandToEnum = new HashMap<>();
+        gizmoCommandToEnum.put("Circle", CIRCLE);
+        gizmoCommandToEnum.put("Square", SQUARE);
+        gizmoCommandToEnum.put("Triangle", TRIANGLE);
+        gizmoCommandToEnum.put("LeftFlipper", LEFT_FLIPPER);
+        gizmoCommandToEnum.put("RightFlipper", RIGHT_FLIPPER);
+        gizmoCommandToEnum.put("Ball", BALL);
+        gizmoCommandToEnum.put("Absorber", ABSORBER);
+
+        gizmoCreationCommands = gizmoCommandToEnum.keySet();
 
         nameCommands = new HashSet<>(gizmoCreationCommands);
         nameCommands.add(CONNECT_COMMAND);
@@ -53,17 +57,17 @@ public class GameLoader
         nameCoordCoordCommands.add(MOVE_COMMAND);
 
         gizmoCreationCommandsAdvanced = new HashSet<>();
-        gizmoCreationCommandsAdvanced.add(Absorber.toString());
+        gizmoCreationCommandsAdvanced.add("Absorber");
+        gizmoCreationCommandsAdvanced.add("Ball");
     }
 
-    public void load() throws IllegalAccessException, FileNotFoundException {
+    public void load() throws IllegalAccessException {
 
         Queue<String> tokens;
         String command;
         String line;
 
-        gameModel.clear();
-        Scanner scanner = new Scanner(fileToLoad);
+        Scanner scanner = new Scanner(source);
 
         try {
             while (scanner.hasNextLine()) {
@@ -119,8 +123,7 @@ public class GameLoader
         }
     }
 
-    private void nameCommands(String command, String name, Queue<String> tokens)
-    {
+    private void nameCommands(String command, String name, Queue<String> tokens) throws IllegalAccessException {
         if (command.equals(DELETE_COMMAND)) {
             gameModel.remove(name);
             return;
@@ -150,12 +153,13 @@ public class GameLoader
             if (gizmoCreationCommandsAdvanced.contains(command)) {
                 double x2 = toValidNumber(tokens.poll());
                 double y2 = toValidNumber(tokens.poll());
-                gameModel.addGizmo(gizmoFactory.createGizmo(IGizmo.Type.valueOf(command), x, y, x2, y2, name));
+
+                gameModel.addGizmo(gizmoFactory.createGizmo(gizmoCommandToEnum.get(command), x, y, x2, y2, name));
                 System.out.println("created " + name);
                 return;
             }
 
-            gameModel.addGizmo(gizmoFactory.createGizmo(IGizmo.Type.valueOf(command), x, y, name));
+            gameModel.addGizmo(gizmoFactory.createGizmo(gizmoCommandToEnum.get(command), x, y, name));
             System.out.println("created" + name);
         }
     }

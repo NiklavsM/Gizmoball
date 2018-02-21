@@ -1,16 +1,35 @@
 package strath.cs308.gizmoball.model.gizmo;
 
+import mit.physics.LineSegment;
 import strath.cs308.gizmoball.model.Dot;
 
 import java.util.List;
+import java.util.Set;
 
 public interface IGizmo {
 
     enum Type {
-        Triangle, Absorber, Square, Ball, Walls, Flipper, Circle, LeftFlipper, RightFlipper
+        TRIANGLE("Triangle"), ABSORBER("Absorber"), SQUARE("Square"), BALL("Ball"),
+        WALLS("Walls"), FLIPPER("Flipper"), CIRCLE("Circle"),
+        LEFT_FLIPPER("LeftFlipper"), RIGHT_FLIPPER("RightFlipper");
+
+        private String name;
+
+        Type(String name) {
+            this.name = name;
+        }
+
+
+        @Override
+        public String toString() {
+            return name;
+        }
     }
 
+
     List<Dot> getDots();
+
+    Set<LineSegment> getLines();
 
     Type getType();
 

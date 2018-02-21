@@ -31,8 +31,8 @@ public class Triangle extends Gizmo {
     }
 
     @Override
-    public Type getType() {
-        return Type.Triangle;
+    public IGizmo.Type getType() {
+        return IGizmo.Type.TRIANGLE;
     }
 
 }

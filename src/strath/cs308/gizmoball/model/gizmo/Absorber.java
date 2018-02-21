@@ -4,14 +4,10 @@ package strath.cs308.gizmoball.model.gizmo;
 import mit.physics.Circle;
 import mit.physics.LineSegment;
 
-import java.util.List;
-import java.util.Set;
-
 public class Absorber extends Gizmo {
 
     public Absorber(double x1, double y1, double x2, double y2, String id) {
         super(x1, y1, x2, y2, id);
-
     }
 
     public Absorber (double x1, double y1, double x2, double y2) {
@@ -31,8 +27,8 @@ public class Absorber extends Gizmo {
     }
 
     @Override
-    public Type getType() {
-        return Type.Absorber;
+    public IGizmo.Type getType() {
+        return IGizmo.Type.ABSORBER;
     }
 
 }

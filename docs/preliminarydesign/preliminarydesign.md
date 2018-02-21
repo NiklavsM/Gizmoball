@@ -30,12 +30,12 @@ Niklavs Meiers @isb15151
 * [Use cases](#use-cases)
   * [Add Gizmos](#add-gizmos)
   * [Add Absorber](#add-absorber)
-  * [Remove Gizmo](#remove-gizmo)
+  * [Remove Gizmo](#remove-Gizmo)
   * [Connect Gizmos](#connect-gizmos)
   * [Clear playing area](#clear-playing-area)
   * [Adding a new ball](#adding-a-new-ball)
-  * [Move Gizmo](#move-gizmo)
-  * [Rotate Gizmo](#rotate-gizmo)
+  * [Move Gizmo](#move-Gizmo)
+  * [Rotate Gizmo](#rotate-Gizmo)
   * [Save configuration](#save-configuration)
   * [Load configuration](#load-configuration)
   * [Stop game](#stop-game)
@@ -90,7 +90,7 @@ Niklavs Meiers @isb15151
 
 - Re-configure an already constructed layout 
 
-- Add any chosen type of gizmo to the playing area 
+- Add any chosen type of Gizmo to the playing area 
 
 - Add a ball to the playing area, specifying its position 
 
@@ -102,15 +102,15 @@ Niklavs Meiers @isb15151
 
 - Set custom values for gravity and friction
 
-- Move a gizmo from one cell to another  
+- Move a Gizmo from one cell to another  
 
-- Rotate a gizmo 90° clockwise  
+- Rotate a Gizmo 90° clockwise  
 
-- Remove a selected gizmo from the playing area 
+- Remove a selected Gizmo from the playing area 
 
-- Connect gizmos together (link a certain gizmo's trigger to the action of another gizmo) 
+- Connect gizmos together (link a certain Gizmo's trigger to the action of another Gizmo) 
 
-- Make a key press trigger a particular gizmo's action 
+- Make a key press trigger a particular Gizmo's action 
 
 - Save the configurations to a file 
 
@@ -157,7 +157,7 @@ Niklavs Meiers @isb15151
 
 3. The user selects a grid square from the layout by clicking it.
 
-4. If the grid square is occupied by another gizmo, go to `3`.
+4. If the grid square is occupied by another Gizmo, go to `3`.
 . The status label informs the user that he can now add more gizmos of the same type animated for 2 seconds, go to `2`.
 
 **Postcondition:** One or more gizmos of the same type have been added to the layout.
@@ -177,7 +177,7 @@ Niklavs Meiers @isb15151
 
 3. The user selects a grid square from the layout by clicking it.
 
-4. If the grid square is occupied by another gizmo, go to `3`.
+4. If the grid square is occupied by another Gizmo, go to `3`.
 
 5. The status label informs the user that he needs to select one grid location representing the left bottom corner of the absorber, do `3 - 4`and go to `6`.
 
@@ -200,12 +200,12 @@ Or an already existing ball
 
 2. Gizmo is removed from the grid layout.
 
-**Postcondition:** The grid layout does not contain the removed gizmo.
+**Postcondition:** The grid layout does not contain the removed Gizmo.
 
 
 ### Connect Gizmos
 
-Connects a gizmo trigger to a gizmo action
+Connects a Gizmo trigger to a Gizmo action
 
 **Precondition:** Editor mode enabled
 
@@ -213,13 +213,13 @@ Connects a gizmo trigger to a gizmo action
 
 **Path:**
 
-1. The user selects a gizmo from the grid, the gizmo then becomes highlighted. If the gizmo 
+1. The user selects a Gizmo from the grid, the Gizmo then becomes highlighted. If the Gizmo 
 cannot trigger then notify the user through the status label, go to `1`.
 
-1. The user selects a second gizmo from the grid which then becomes highlighted in a different way. If the selected gizmo
+1. The user selects a second Gizmo from the grid which then becomes highlighted in a different way. If the selected Gizmo
 doesn't have an action then notify the user through the status label, go to `2`.
 
-**Postcondition:** The first gizmo's trigger is now connected to the second gizmo's action.
+**Postcondition:** The first Gizmo's trigger is now connected to the second Gizmo's action.
 
 
 ### Clear playing area
@@ -267,13 +267,13 @@ is occupied, go to `2`, else go to `4`. If The user clicks on an absorber go to 
 
 **Precondition:** Editor mode selected 
 
-**Trigger:** "Move gizmo" button clicked 
+**Trigger:** "Move Gizmo" button clicked 
 
 **Path:**
 
-1. User clicks on the gizmo to be moved 
+1. User clicks on the Gizmo to be moved 
 
-2. User drags gizmo to the new location 
+2. User drags Gizmo to the new location 
 
 3. If location is already occupied go to step `2`. 
 
@@ -288,18 +288,18 @@ is occupied, go to `2`, else go to `4`. If The user clicks on an absorber go to 
 
 **Path:**
 
-1. The user clicks on a gizmo.
+1. The user clicks on a Gizmo.
 
-1. If the gizmo doesn't support rotation, go to `1`.
+1. If the Gizmo doesn't support rotation, go to `1`.
 
-1. The selected gizmo rotates 90 degrees clockwise.
+1. The selected Gizmo rotates 90 degrees clockwise.
 
 1. Go to `1`.
 
-**Postcondition:** The gizmo/gizmos that the 
+**Postcondition:** The Gizmo/gizmos that the 
 user clicked on have been rotated by `n * 90` degrees
 clockwise, where `n` is the number of clicks 
-on each gizmo.
+on each Gizmo.
 
 
 ### Save configuration 
@@ -389,7 +389,7 @@ for every tick
         calculate and set the velocity of the ball after the collision
         
         # Calls the triggered() method on the object returned by calculating collisions method   
-        if gizmo that ball collides with have trigger then
+        if Gizmo that ball collides with have trigger then
            trigger the action
     
     Notifies the observers (redraws the screen)
@@ -404,7 +404,7 @@ for every tick
 ### ITrigger
  * An interface that describes the ability of gizmos to trigger other gizmos, calling their actions. 
  * In a system where all the gizmos can trigger, then an `AbstractGizmo` class can implement this interface. 
- * Alternatively, the interface can be implemented by particular concrete gizmo implementations so that this ability remains specific to
+ * Alternatively, the interface can be implemented by particular concrete Gizmo implementations so that this ability remains specific to
 only a few gizmos.
 
 ### Rationale
@@ -414,9 +414,15 @@ Not all the gizmos have to be `Itriggarable` and not all the gizmos need to be `
 Every `Itrigger` needs to mantain a `Set<Itriggerable> toBeTriggeredGizmos` as part of their implementation.
 However, this set can be empty as a trigger may not have any triggarable elements connected to it.
 
+<<<<<<< HEAD
 As part of the strath.cs308.gizmoball.model, a `Set<Itrigger> hitByBallTriggers` will contain all the triggers that can call actions 
 on other gizmos when the ball collides with them. In the physics loop, whenever the ball collides with a gizmo,
 if the gizmo is part of the `hitByBallTriggers` set, then the `trigger()` method of it is called. Internally, the 
+=======
+As part of the model, a `Set<Itrigger> hitByBallTriggers` will contain all the triggers that can call actions 
+on other gizmos when the ball collides with them. In the physics loop, whenever the ball collides with a Gizmo,
+if the Gizmo is part of the `hitByBallTriggers` set, then the `trigger()` method of it is called. Internally, the 
+>>>>>>> master
 `trigger()` method will call the `doAction()` method of every `Itriggarable` in the `toBeTriggeredGizmos` set.
 
 In addition, a `Map<Key, ITriggarable> keyStrokeToITriggarable` such that 
@@ -487,7 +493,7 @@ This class handles all the event coming from the EditView.
 And also changing the state of the editing area.
 
 ### Edit area states
-AddGizmo, ConnectGizmo, DeleteGizmo, RotateGizmo.
+AddEntity, AddGizmo, ConnectGizmo, DeleteGizmo, RotateGizmo.
 These event handlers specifying that how the edit area should behave in the given state
 which was set by the EditController (trough an interaction of the EditView).
 This contains clicking and drawing events.
@@ -544,7 +550,7 @@ traits of an entity which meant to be placed in our game world
 and used in physics simulation.
 
 ### Absorber
-The entity class which represents an Absorber gizmo with all its own
+The entity class which represents an Absorber Gizmo with all its own
 functionality and traits.
 Subclass of the PhysicsBody.
 
@@ -553,7 +559,7 @@ The entity class for the game ball.
 Subclass of the PhysicsBody.
 
 ### Circle
-Class for Circle gizmo representation in our Model.
+Class for Circle Gizmo representation in our Model.
 Subclass of the PhysicsBody.
 
 ### Flipper
@@ -567,11 +573,11 @@ Subclass of the PhysicsBody.
 Enum class for representing the possible flipper directions.
 
 ### Rectangle
-Class for modeling the rectangle gizmo.
+Class for modeling the rectangle Gizmo.
 Subclass of the PhysicsBody.
 
 ### Triangle
-Class for modeling the triangle gizmo.
+Class for modeling the triangle Gizmo.
 Subclass of the PhysicsBody.
 
 ### Wall

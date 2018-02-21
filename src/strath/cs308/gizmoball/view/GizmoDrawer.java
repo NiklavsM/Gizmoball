@@ -42,7 +42,7 @@ public class GizmoDrawer {
             diameter = dot.getRadius() * 2 * pxPerL;
             i++;
         }
-        if (type == IGizmo.Type.Flipper) {
+        if (type == IGizmo.Type.FLIPPER) {
             for (int k = 0; k < i; k++) {
                 gc.fillOval(xPoints[k] - diameter / 2, yPoints[k] - diameter / 2, diameter, diameter);
             }
@@ -51,7 +51,7 @@ public class GizmoDrawer {
             gc.setStroke(ORANGE);
             gc.strokeLine(xPoints[0], yPoints[0], xPoints[1], yPoints[1]);
         }
-        if (type == IGizmo.Type.Circle || type == IGizmo.Type.Ball || type == IGizmo.Type.Flipper) {
+        if (type == IGizmo.Type.CIRCLE || type == IGizmo.Type.BALL || type == IGizmo.Type.FLIPPER) {
             gc.fillOval(xPoints[0] - diameter / 2, yPoints[0] - diameter / 2, diameter, diameter);
         } else {
             gc.fillPolygon(xPoints, yPoints, i);
@@ -60,31 +60,31 @@ public class GizmoDrawer {
 
     private void setGizmoColor(IGizmo.Type type) {
         switch (type) {
-            case Ball:
+            case BALL:
                 gc.setFill(Color.WHITE);
             break;
 
-            case Square:
+            case SQUARE:
                 gc.setFill(RED);
             break;
 
-            case Absorber:
+            case ABSORBER:
                 gc.setFill(PINK);
             break;
 
-            case Circle:
+            case CIRCLE:
                 gc.setFill(GREEN);
             break;
 
-            case Walls:
+            case WALLS:
                 gc.setFill(Color.BLACK);
             break;
 
-            case Triangle:
+            case TRIANGLE:
                 gc.setFill(BLUE);
             break;
 
-            case Flipper:
+            case FLIPPER:
                 gc.setFill(ORANGE);
             break;
         }

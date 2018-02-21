@@ -46,7 +46,10 @@ fabric.properties
 .mtj.tmp/
 
 # Package Files #
+<<<<<<< HEAD
 #*.jar
+=======
+>>>>>>> master
 *.war
 *.ear
 *.zip

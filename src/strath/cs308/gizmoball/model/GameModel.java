@@ -26,10 +26,6 @@ public class GameModel extends Observable implements IGameModel {
 
     public void addGizmo(IGizmo gizmo) {
         if (gizmo instanceof Ball) {
-            if (ball != null) {
-                remove(ball.getId());
-            }
-
             ball = (Ball) gizmo;
         }
 
@@ -96,7 +92,7 @@ public class GameModel extends Observable implements IGameModel {
             gizmos.remove(ball.getId());
             ball = null;
         }
-        absorberCollision = nextGizmo != null && nextGizmo.getType() == IGizmo.Type.Absorber;
+        absorberCollision = nextGizmo != null && nextGizmo.getType() == IGizmo.Type.ABSORBER;
     }
 
     private void moveMovables(Double time) {
@@ -184,7 +180,7 @@ public class GameModel extends Observable implements IGameModel {
 
         // checking needs to change
         if (ball == null) { // need to use absorber coordinates
-            ball = new Ball(19.74,18.5);
+            ball = new Ball(19.74, 18.5);
             ball.setVelocity(new Vect(0, -50));
             addGizmo(ball);
 

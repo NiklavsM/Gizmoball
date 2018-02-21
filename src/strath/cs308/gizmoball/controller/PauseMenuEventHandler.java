@@ -9,6 +9,7 @@ import strath.cs308.gizmoball.model.IGameTimer;
 import strath.cs308.gizmoball.view.IPlayView;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class PauseMenuEventHandler implements EventHandler<ActionEvent>
@@ -64,8 +65,8 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent>
     private void loadGame() {
 
         File fileToLoad = playView.getLoadFile();
-        GameLoader gl = new GameLoader(gameModel, fileToLoad);
         try {
+            GameLoader gl = new GameLoader(gameModel, new FileInputStream(fileToLoad));
             gl.load();
             closeMenu();
         } catch (IllegalAccessException | FileNotFoundException e) {

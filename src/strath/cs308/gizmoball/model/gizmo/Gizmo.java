@@ -16,6 +16,7 @@ public abstract class Gizmo implements IGizmo {
     private double y1;
     private double x2;
     private double y2;
+    private int scoreValue;
 
     public Gizmo(double x1, double y1, double x2, double y2, String id) {
         this.x1 = x1;
@@ -46,9 +47,14 @@ public abstract class Gizmo implements IGizmo {
         return dots;
     }
 
+    @Override
     public Set<LineSegment> getLines() {
         return lines;
     }
+
+
+    @Override
+    public abstract IGizmo.Type getType();
 
     protected static String generateID() {
         return UUID.randomUUID().toString();
@@ -59,8 +65,6 @@ public abstract class Gizmo implements IGizmo {
     }
 
     protected abstract void setup(double x1, double y1, double x2, double y2);
-
-    public abstract Type getType();
 
     public void rotate() {
         rotateCount++;
@@ -92,12 +96,12 @@ public abstract class Gizmo implements IGizmo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Gizmo gizmo = (Gizmo) o;
+        Gizmo Gizmo = (Gizmo) o;
 
-        if (rotateCount != gizmo.rotateCount) return false;
-        if (!id.equals(gizmo.id)) return false;
-        if (!circles.equals(gizmo.circles)) return false;
-        return lines.equals(gizmo.lines);
+        if (rotateCount != Gizmo.rotateCount) return false;
+        if (!id.equals(Gizmo.id)) return false;
+        if (!circles.equals(Gizmo.circles)) return false;
+        return lines.equals(Gizmo.lines);
     }
 
     @Override
@@ -110,4 +114,7 @@ public abstract class Gizmo implements IGizmo {
     }
 
 
+    public int getScoreValue() {
+        return 1;
+    }
 }

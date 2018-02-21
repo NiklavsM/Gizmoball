@@ -14,14 +14,13 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
     }
 
     public enum Orientation {
-        LEFT(1)
-        , RIGHT(-1);
+        LEFT(1), RIGHT(-1);
 
         private double mult;
 
         Orientation(double mult) {
-                               this.mult = mult;
-                                                }
+            this.mult = mult;
+        }
 
         public double getMult() {
             return mult;
@@ -38,11 +37,13 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
     private double movedAngle;
     private Movement movementStatus;
     private Orientation orientation;
-    public Flipper(double x, double y, Orientation orientation){
-                                                              this(x,y,orientation,generateID());
-                                                                                                 }
+
+    public Flipper(double x, double y, Orientation orientation) {
+        this(x, y, orientation, generateID());
+    }
+
     public Flipper(double x, double y, Orientation orientation, String id) {
-        super(x,y,x,y,id); // Needs to be fixed ASP WHYYY all gizmos need to have 4 cordinates Nik
+        super(x, y, x, y, id); // Needs to be fixed ASP WHYYY all gizmos need to have 4 cordinates Nik
 
         double radius = 0.25;
         this.orientation = orientation;
@@ -54,7 +55,7 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
         velocity = Vect.ZERO;
 
         if (orientation == Orientation.RIGHT) {
-            x = (x + 2) - radius ;
+            x = (x + 2) - radius;
         } else {
             x = x + radius;
         }
@@ -85,8 +86,8 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
 
     @Override
     public Type getType() {
-                        return Gizmo.Type.Flipper;
-                                                  }
+        return Type.FLIPPER;
+    }
 
     @Override
     public void move(double time) {
@@ -120,7 +121,7 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
 
             lines.add(connector1);
             lines.add(connector2);
-            movedAngle += Math.abs(rotationRadian) ;
+            movedAngle += Math.abs(rotationRadian);
 
             if (movedAngle >= Angle.DEG_90.radians()) {
 
@@ -143,8 +144,8 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
     }
 
     public Vect getVelocity() {
-                            return velocity;
-                                            }
+        return velocity;
+    }
 
     public void setVelocity(Vect velocity) {
         this.velocity = new Vect(new Angle(velocity.angle().radians() * orientation.getMult()));
@@ -153,7 +154,7 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
     private void up() {
         if (movementStatus == Movement.BACK && movedAngle != 0) {
             movementStatus = Movement.FORWARD;
-            movedAngle = Angle.DEG_90.radians() - movedAngle ;
+            movedAngle = Angle.DEG_90.radians() - movedAngle;
             velocity = new Vect(new Angle(Angle.DEG_180.radians() * -1 * orientation.getMult()));
         }
 
@@ -175,7 +176,7 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
 
         if (movementStatus == Movement.FORWARD && movedAngle != 0) {
             movementStatus = Movement.BACK;
-            movedAngle = Angle.DEG_90.radians() - movedAngle ;
+            movedAngle = Angle.DEG_90.radians() - movedAngle;
             velocity = new Vect(new Angle(Angle.DEG_180.radians() * orientation.getMult()));
         }
 
@@ -188,13 +189,13 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
     @Override
     public void trigger(String triggerEvent) {
         triggerEvent = triggerEvent.toUpperCase();
-        String letter = (orientation.equals(Orientation.RIGHT))? "L" : "K";
-        if (triggerEvent.equals("KEY_PRESSED_"+letter)) {
+        String letter = (orientation.equals(Orientation.RIGHT)) ? "L" : "K";
+        if (triggerEvent.equals("KEY_PRESSED_" + letter)) {
             up();
         }
 
-        if (triggerEvent.equals("KEY_RELEASED_"+letter)){
-           down();
+        if (triggerEvent.equals("KEY_RELEASED_" + letter)) {
+            down();
         }
     }
 

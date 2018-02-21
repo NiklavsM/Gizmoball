@@ -21,31 +21,31 @@ public class GizmoSelectorEventHandler implements EventHandler<MouseEvent> {
     public void handle(MouseEvent mouseEvent) {
         switch (((Node) mouseEvent.getSource()).getId()) {
             case "addTriangleMode":
-                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.Triangle));
+                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.TRIANGLE));
                 break;
 
             case "addRectangleMode":
-                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.Square));
+                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.SQUARE));
                 break;
 
             case "addLeftFlipperMode":
-                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.LeftFlipper) );
+                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.LEFT_FLIPPER) );
                 break;
 
             case "addRightFlipperMode":
-                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.RightFlipper) );
+                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.RIGHT_FLIPPER) );
                 break;
 
             case "addCircleMode":
-                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.Circle));
+                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.CIRCLE));
                 break;
 
             case "addAbsorberMode":
-                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.Absorber));
+                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.ABSORBER));
                 break;
 
             case "addBallMode":
-                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.Ball));
+                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.BALL));
                 break;
         }
     }
