@@ -103,8 +103,12 @@ public class PlayView implements IPlayView, Observer{
 
     @Override
     public void update(Observable observable, Object o) {
-        drawBackground();
-        drawGizmos();
+
+        Platform.runLater(() -> {
+            drawBackground();
+            drawGizmos();
+        });
+
     }
 
     private void drawBackground() {

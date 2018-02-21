@@ -90,6 +90,15 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
 
     @Override
     public void move(double time) {
+        moveTemp(time);
+        moveTemp(time);
+        moveTemp(time);
+        moveTemp(time);
+        moveTemp(time);
+        moveTemp(time);
+    }
+
+    public void moveTemp(double time) {
         if (!velocity.equals(Vect.ZERO)) {
             double rotationRadian = velocity.angle().radians() * time;
 
