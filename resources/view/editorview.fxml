@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<?import strath.cs308.gizmoball.view.GizmoDrawer ?>
-
 <?import javafx.scene.canvas.Canvas?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx"
             stylesheets="/styles/style.css"
             prefHeight="500.0"
             prefWidth="800.0">
@@ -22,10 +15,10 @@
     <top>
         <VBox>
             <MenuBar>
-                <Menu text="File" />
-                <Menu text="Edit" />
-                <Menu text="View" />
-                <Menu text="Help" />
+                <Menu text="File"/>
+                <Menu text="Edit"/>
+                <Menu text="View"/>
+                <Menu text="Help"/>
             </MenuBar>
             <ToolBar>
                 <GridPane vgap="5"
@@ -44,11 +37,11 @@
                                 fx:id="topPlayButton"
                                 styleClass="play-button, regular-font, top-toolbar-button">
                         </Button>
-                        <Label text="Play" />
+                        <Label text="Play"/>
                     </VBox>
 
                     <VBox GridPane.columnIndex="1"
-                           GridPane.rowIndex="0"
+                          GridPane.rowIndex="0"
                           spacing="5"
                           alignment="CENTER">
                         <Button maxWidth="24"
@@ -58,11 +51,11 @@
                                 fx:id="topLoadButton"
                                 styleClass="load-button, regular-font, top-toolbar-button">
                         </Button>
-                        <Label text="Load" />
+                        <Label text="Load"/>
                     </VBox>
 
                     <VBox GridPane.columnIndex="2"
-                           GridPane.rowIndex="0"
+                          GridPane.rowIndex="0"
                           spacing="5"
                           alignment="CENTER">
                         <Button maxWidth="24"
@@ -71,7 +64,7 @@
                                 maxHeight="24"
                                 styleClass="save-button, regular-font, top-toolbar-button">
                         </Button>
-                        <Label text="Save" />
+                        <Label text="Save"/>
                     </VBox>
 
                     <VBox GridPane.columnIndex="4"
@@ -84,7 +77,7 @@
                                 maxHeight="24"
                                 styleClass="saveas-button, regular-font, top-toolbar-button">
                         </Button>
-                        <Label text="Save As" />
+                        <Label text="Save As"/>
                     </VBox>
 
                     <VBox GridPane.columnIndex="5"
@@ -97,7 +90,7 @@
                                 maxHeight="24"
                                 styleClass="clear-button, regular-font, top-toolbar-button">
                         </Button>
-                        <Label text="Clear Board" />
+                        <Label text="Clear Board"/>
                     </VBox>
 
                     <VBox GridPane.columnIndex="6"
@@ -110,7 +103,7 @@
                                 maxHeight="24"
                                 styleClass="undo-button, regular-font, top-toolbar-button">
                         </Button>
-                        <Label text="Undo" />
+                        <Label text="Undo"/>
                     </VBox>
 
                     <VBox GridPane.columnIndex="7"
@@ -123,10 +116,10 @@
                                 maxHeight="24"
                                 styleClass="redo-button, regular-font, top-toolbar-button">
                         </Button>
-                        <Label text="Redo" />
+                        <Label text="Redo"/>
                     </VBox>
 
-                   <VBox GridPane.columnIndex="8"
+                    <VBox GridPane.columnIndex="8"
                           GridPane.rowIndex="0"
                           spacing="5"
                           alignment="CENTER">
@@ -136,7 +129,7 @@
                                 maxHeight="24"
                                 styleClass="grid-button, regular-font, top-toolbar-button">
                         </Button>
-                        <Label text="Toggle Grid" />
+                        <Label text="Toggle Grid"/>
                     </VBox>
 
                     <VBox GridPane.columnIndex="9"
@@ -149,7 +142,7 @@
                                 maxHeight="24"
                                 styleClass="console-button, regular-font, top-toolbar-button">
                         </Button>
-                        <Label text="Console" />
+                        <Label text="Console"/>
                     </VBox>
 
                 </GridPane>
@@ -171,7 +164,7 @@
                         fx:id="addToolButton"
                         styleClass="tool-button, add-button">
                     <tooltip>
-                        <Tooltip text="Add tool" />
+                        <Tooltip text="Add tool"/>
                     </tooltip>
                 </Button>
 
@@ -184,7 +177,7 @@
                         fx:id="connectToolButton"
                         styleClass="tool-button, connect-button">
                     <tooltip>
-                        <Tooltip text="Connect tool" />
+                        <Tooltip text="Connect tool"/>
                     </tooltip>
                 </Button>
 
@@ -197,7 +190,7 @@
                         fx:id="selectToolButton"
                         styleClass="tool-button, select-button">
                     <tooltip>
-                        <Tooltip text="Select tool" />
+                        <Tooltip text="Select tool"/>
                     </tooltip>
                 </Button>
 
@@ -210,7 +203,7 @@
                         fx:id="rotateToolButton"
                         styleClass="tool-button, rotate-button">
                     <tooltip>
-                        <Tooltip text="Rotate tool" />
+                        <Tooltip text="Rotate tool"/>
                     </tooltip>
                 </Button>
 
@@ -223,7 +216,7 @@
                         fx:id="removeToolButton"
                         styleClass="tool-button, clear-button">
                     <tooltip>
-                        <Tooltip text="Remove tool" />
+                        <Tooltip text="Remove tool"/>
                     </tooltip>
                 </Button>
 
@@ -239,7 +232,7 @@
 
     <bottom>
         <HBox styleClass="statusbar">
-            <Label styleClass="statusbar-padding" />
+            <Label styleClass="statusbar-padding"/>
         </HBox>
     </bottom>
 
@@ -251,7 +244,7 @@
                     <VBox spacing="16"
                           styleClass="default-padding, GizmoPane">
                         <Label text="Gizmos"
-                               styleClass="card-title" />
+                               styleClass="card-title"/>
                         <ScrollPane maxHeight="250">
                             <GridPane hgap="16"
                                       vgap="16"
@@ -272,7 +265,7 @@
                                         </graphic>
                                     </Button>
                                     <Label text="Rectangle"
-                                           styleClass="regular-font" />
+                                           styleClass="regular-font"/>
                                 </VBox>
 
                                 <VBox GridPane.rowIndex="0"
@@ -282,11 +275,11 @@
                                     <Button fx:id="addCircleMode">
                                         <graphic>
                                             <Circle fill="#03a9f4"
-                                                    radius="12.5" />
+                                                    radius="12.5"/>
                                         </graphic>
                                     </Button>
                                     <Label text="Dot"
-                                           styleClass="regular-font" />
+                                           styleClass="regular-font"/>
                                 </VBox>
 
                                 <VBox GridPane.rowIndex="1"
@@ -297,12 +290,12 @@
                                         <graphic>
                                             <ImageView fitHeight="25"
                                                        fitWidth="25">
-                                                <Image url="/icons/tri.png" />
+                                                <Image url="/icons/tri.png"/>
                                             </ImageView>
                                         </graphic>
                                     </Button>
                                     <Label text="Triangle"
-                                           styleClass="regular-font" />
+                                           styleClass="regular-font"/>
                                 </VBox>
 
                                 <VBox GridPane.rowIndex="1"
@@ -317,7 +310,7 @@
                                         </graphic>
                                     </Button>
                                     <Label text="Absorber"
-                                           styleClass="regular-font" />
+                                           styleClass="regular-font"/>
                                 </VBox>
 
                                 <VBox GridPane.rowIndex="2"
@@ -328,12 +321,12 @@
                                         <graphic>
                                             <ImageView fitWidth="30"
                                                        fitHeight="30">
-                                                <Image url="/icons/flipper.png" />
+                                                <Image url="/icons/flipper.png"/>
                                             </ImageView>
                                         </graphic>
                                     </Button>
                                     <Label text="Left Flipper"
-                                           styleClass="regular-font" />
+                                           styleClass="regular-font"/>
                                 </VBox>
 
                                 <VBox GridPane.rowIndex="2"
@@ -344,12 +337,12 @@
                                         <graphic>
                                             <ImageView fitWidth="30"
                                                        fitHeight="30">
-                                                <Image url="/icons/flipper.png" />
+                                                <Image url="/icons/flipper.png"/>
                                             </ImageView>
                                         </graphic>
                                     </Button>
                                     <Label text="Right Flipper"
-                                           styleClass="regular-font" />
+                                           styleClass="regular-font"/>
                                 </VBox>
 
                                 <VBox GridPane.rowIndex="3"
@@ -358,11 +351,11 @@
                                       alignment="CENTER">
                                     <Button fx:id="addBallMode">
                                         <graphic>
-                                             <Circle radius="9" fill="#ff9800" />
+                                            <Circle radius="9" fill="#ff9800"/>
                                         </graphic>
                                     </Button>
                                     <Label text="Ball"
-                                           styleClass="regular-font" />
+                                           styleClass="regular-font"/>
                                 </VBox>
 
                             </GridPane>

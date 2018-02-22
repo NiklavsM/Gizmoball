@@ -77,6 +77,6 @@ hs_err_pid*
 # macOS
 **/.DS_Store
 
-# Vim
+# VIM
 *.swp
 

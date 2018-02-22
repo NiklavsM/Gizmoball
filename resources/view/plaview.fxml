@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<?import javafx.scene.canvas.Canvas?>
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx"
             stylesheets="/styles/style.css"
             prefHeight="500.0" prefWidth="800.0">
     <center>
@@ -30,41 +29,41 @@
                             GridPane.columnIndex="0"
                             GridPane.rowIndex="0"
                             fx:id="menuBackButton"
-                            styleClass="back-button, pause-menu-item-padding, pause-menu-font" />
+                            styleClass="back-button, pause-menu-item-padding, pause-menu-font"/>
 
                     <Button text="Save"
                             GridPane.columnIndex="0"
                             GridPane.rowIndex="1"
                             fx:id="menuSaveButton"
-                            styleClass="save-progress-button, pause-menu-item-padding, pause-menu-font" />
+                            styleClass="save-progress-button, pause-menu-item-padding, pause-menu-font"/>
 
                     <Button text="Load"
                             GridPane.columnIndex="0"
                             GridPane.rowIndex="2"
                             fx:id="menuLoadButton"
-                            styleClass="load-game-button, pause-menu-item-padding, pause-menu-font" />
+                            styleClass="load-game-button, pause-menu-item-padding, pause-menu-font"/>
 
                     <Button text="Editor"
                             GridPane.columnIndex="0"
                             GridPane.rowIndex="3"
                             fx:id="menuEditorButton"
-                            styleClass="to-editor-button, pause-menu-item-padding, pause-menu-font" />
+                            styleClass="to-editor-button, pause-menu-item-padding, pause-menu-font"/>
 
                     <Button text="Exit"
                             GridPane.columnIndex="0"
                             GridPane.rowIndex="4"
                             fx:id="menuExitButton"
-                            styleClass="exit-game-button, pause-menu-item-padding, pause-menu-font" />
+                            styleClass="exit-game-button, pause-menu-item-padding, pause-menu-font"/>
 
                 </GridPane>
             </ToolBar>
 
             <Canvas width="500"
                     height="500"
-                    fx:id="canvas" />
+                    fx:id="canvas"/>
 
             <Label StackPane.alignment="TOP_RIGHT"
-                   styleClass="default-padding, title-font" >
+                   styleClass="default-padding, title-font">
                 Score: 1337
             </Label>
 
