@@ -66,7 +66,7 @@ Since we're all contributing to the source code of Gizmoball, we have decided th
 be responsible for unit testing as well. However, as individuals, we should try to test the code
 written by a different team member and not our own as we might be biased towards our own 
 implementation which may cause us to miss some test cases, making it more difficult to find 
-potential bugs. 
+potential bugs.
  
  As a lot of the code is already written, we won't be able to adhere to the 
  `Test Driven Development` practice. However, we plan to write tests incrementally, most likely

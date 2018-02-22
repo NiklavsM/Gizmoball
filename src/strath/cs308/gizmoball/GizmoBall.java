@@ -1,6 +1,7 @@
 package strath.cs308.gizmoball;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.model.GameModel;
@@ -28,5 +29,11 @@ public class GizmoBall extends Application {
         }
 
         PlayView playView = new PlayView(stage, gameModel);
+    }
+
+    @Override
+    public void stop() {
+        Platform.exit();
+        System.exit(0);
     }
 }
