@@ -75,3 +75,10 @@ hs_err_pid*
 # Specific
 
 .idea/misc.xml
+
+# macOS
+**/.DS_Store
+
+# Vim
+*.swp
+
