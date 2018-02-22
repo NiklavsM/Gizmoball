@@ -82,12 +82,20 @@ public abstract class Gizmo implements IGizmo {
         circles = newCircleList;
     }
 
-    public double getXLocation() {
+    public double getStartX() {
         return x1;
     }
 
-    public double getYLocation() {
+    public double getStartY() {
         return y1;
+    }
+
+    public double getEndX() {
+        return x2;
+    }
+
+    public double getEndY() {
+        return y2;
     }
 
     @Override

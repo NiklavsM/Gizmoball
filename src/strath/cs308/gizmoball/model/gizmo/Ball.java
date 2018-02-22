@@ -40,20 +40,20 @@ public class Ball extends Gizmo implements IMovable {
         return circle;
     }
 
-    double getExactX() {
+    private double getX() {
         return circle.getCenter().x();
     }
 
-    void setExactX(double x) {
-        circle = new Circle(x, getExactY(), radius);
+    private void setX(double x) {
+        circle = new Circle(x, getY(), radius);
     }
 
-    double getExactY() {
+    private double getY() {
         return circle.getCenter().y();
     }
 
-    void setExactY(double y) {
-        circle = new Circle(getExactX(), y, radius);
+    private void setY(double y) {
+        circle = new Circle(getX(), y, radius);
     }
 
     @Override
@@ -82,8 +82,8 @@ public class Ball extends Gizmo implements IMovable {
 
     @Override
     public void move(double timeInSeconds) {
-        setExactX(getExactX() + (getVelocity().x() * timeInSeconds));
-        setExactY(getExactY() + (getVelocity().y() * timeInSeconds));
+        setX(getX() + (getVelocity().x() * timeInSeconds));
+        setY(getY() + (getVelocity().y() * timeInSeconds));
 
     }
 }

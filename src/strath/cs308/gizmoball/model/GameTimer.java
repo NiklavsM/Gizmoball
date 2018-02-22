@@ -12,7 +12,7 @@ public class GameTimer implements IGameTimer {
     private Double refreshRate;
 
     public GameTimer(IGameModel gameModel) {
-        this(gameModel, 60.0);
+        this(gameModel, 20.0);
     }
 
     public GameTimer(IGameModel gameModel, Double refreshRate) {

@@ -20,10 +20,6 @@ public interface IGameModel {
 
     void addObserver(Observer o);
 
-    Ball getBall(); // Could get rid of this if make ball implement IGizmo
-
-    void shootOut();
-
     void rotate(String id);
 
     void reset();
