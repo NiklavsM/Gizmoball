@@ -1,10 +1,7 @@
 package strath.cs308.gizmoball.controller.strategy;
 
 import javafx.event.EventHandler;
-import javafx.event.EventType;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import strath.cs308.gizmoball.model.GizmoFactory;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGizmoFactory;
