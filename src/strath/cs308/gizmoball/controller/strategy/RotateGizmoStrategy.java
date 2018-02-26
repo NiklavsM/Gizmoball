@@ -23,7 +23,15 @@ public class RotateGizmoStrategy implements EventHandler<MouseEvent> {
         double pointY = Math.floor(mouseEvent.getY() / editorView.getPixelRatioFor(20.0));
 
         IGizmo gizmo = gameModel.getGizmo(pointX, pointY);
-        gameModel.rotate(gizmo.getId());
+
+        /*
+        * Check if gizmo exists and it's either a triangle, absorber or flipper;
+        * No need to rotate Circles (+Ball) or Squares for the moment but could be added in
+        * future implementations if we decide to allow rotating gizmos to a custom angle (e.g 135°)
+        * */
+        if (gizmo != null && (gizmo.getType().equals(IGizmo.Type.TRIANGLE) || gizmo.getType().equals(IGizmo.Type.ABSORBER) || gizmo.getType().equals(IGizmo.Type.FLIPPER)))
+            gameModel.rotate(gizmo.getId());
+
     }
 }
 
