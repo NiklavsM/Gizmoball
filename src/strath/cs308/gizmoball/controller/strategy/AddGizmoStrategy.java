@@ -33,7 +33,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         pointY = Math.floor(pointY);
 
         try {
-            if (gameModel.getGizmo(pointX, pointY) == null ) {
+            if (gameModel.getGizmo(pointX, pointY) == null ||gameModel.getGizmo(pointX, pointY).getType().equals(IGizmo.Type.WALLS)) {
                 if (!gizmoType.equals(IGizmo.Type.ABSORBER)) {
 
                     if (gizmoType.equals(IGizmo.Type.LEFT_FLIPPER) || gizmoType.equals(IGizmo.Type.RIGHT_FLIPPER)) {
@@ -53,6 +53,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
                     gameModel.addGizmo(gizmo);
 
                 } else {
+                    //add absorber
                     System.out.println(mouseEvent.getEventType());
                 }
             } else {

@@ -64,9 +64,7 @@ public class GameModel extends Observable implements IGameModel {
                     }
                 }
             }
-
         }
-
         return null;
     }
 
