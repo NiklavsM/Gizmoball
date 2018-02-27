@@ -2,6 +2,7 @@ package strath.cs308.gizmoball.controller.strategy;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.GizmoFactory;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGizmoFactory;
@@ -32,7 +33,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         pointY = Math.floor(pointY);
 
         try {
-            if (gameModel.getGizmo(pointX, pointY) == null) {
+            if (gameModel.getGizmo(pointX, pointY) == null ) {
                 if (!gizmoType.equals(IGizmo.Type.ABSORBER)) {
 
                     if (gizmoType.equals(IGizmo.Type.LEFT_FLIPPER) || gizmoType.equals(IGizmo.Type.RIGHT_FLIPPER)) {
