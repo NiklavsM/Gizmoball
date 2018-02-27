@@ -25,5 +25,6 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
         if (gizmo != null)
             System.out.println(gizmo.getType() + " selected at position " + pointX + " , " + pointY + ". Please select a new location for this gizmo.");
 
+        editorView.setCanvasMode(new RelocateGizmoStrategy(gameModel, editorView, gizmo));
     }
 }
