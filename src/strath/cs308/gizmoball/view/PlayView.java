@@ -40,7 +40,6 @@ public class PlayView implements IPlayView, Observer {
     public PlayView(Stage stage, IGameModel gameModel) {
 
         try {
-
             root = FXMLLoader.load(getClass().getResource("/view/plaview.fxml"));
             this.gameModel = gameModel;
             pauseMenu = (ToolBar) root.lookup("#pauseMenu");
