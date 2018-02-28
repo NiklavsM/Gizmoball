@@ -75,6 +75,8 @@ public class EditorView implements IEditorView, Observer {
     @Override
     public void setCanvasMode(EventHandler<MouseEvent> canvasStrategy) {
         canvas.setOnMouseClicked(canvasStrategy);
+        canvas.setOnMousePressed(canvasStrategy);
+        canvas.setOnMouseReleased(canvasStrategy);
     }
 
     @Override
