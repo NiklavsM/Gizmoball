@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="collision:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/collision_jar</output-path>
-    <root id="archive" name="gizmoball.jar">
-      <element id="module-output" name="gizmoball" />
-      <element id="dir-copy" path="$PROJECT_DIR$/maps" />
-    </root>
-  </artifact>
-</component>
