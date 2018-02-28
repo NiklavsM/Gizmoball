@@ -27,17 +27,50 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
 
         double pointX = mouseEvent.getX() / editorView.getPixelRatioFor(20.0);
         double pointY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
-        if (!gizmoType.equals(IGizmo.Type.BALL)) {
-            pointX = Math.floor(pointX);
-            pointY = Math.floor(pointY);
+
+        pointX = Math.floor(pointX);
+        pointY = Math.floor(pointY);
+
+        try {
+            if (gameModel.getGizmo(pointX, pointY) == null ||gameModel.getGizmo(pointX, pointY).getType().equals(IGizmo.Type.WALLS)) {
+                if (!gizmoType.equals(IGizmo.Type.ABSORBER)) {
+
+                    if (gizmoType.equals(IGizmo.Type.LEFT_FLIPPER) || gizmoType.equals(IGizmo.Type.RIGHT_FLIPPER)) {
+
+                        //adjust which squares to scan if free depending on the flipper orientation
+                        if (gizmoType.equals(IGizmo.Type.LEFT_FLIPPER))
+                            pointX -= 1;
+
+                        if (!canAddFlipper(pointX, pointY)) {
+                            System.out.println("Another flipper occupies the adjacent square! Gizmo cannot be added!");
+                            return;
+                        }
+                    }
+
+                    IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, pointX, pointY);
+                    System.out.println(gizmo);
+                    gameModel.addGizmo(gizmo);
+
+                } else {
+                    //add absorber
+                    System.out.println(mouseEvent.getEventType());
+                }
+            } else {
+                System.out.println("A " + gameModel.getGizmo(pointX, pointY).getType().toString() + " is already occupying this square. Gizmo cannot be placed here!");
+            }
+        } catch (NullPointerException ex) {
+            System.out.print("CHECK OUT! --> ");
+            ex.printStackTrace();
         }
+    }
 
-        if (!gizmoType.equals(IGizmo.Type.ABSORBER)) {
-
-            IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, pointX, pointY);
-            System.out.println(gizmo);
-            gameModel.addGizmo(gizmo);
+    private boolean canAddFlipper (double pointX, double pointY) {
+        for (int x = 0; x < 2; x++) {
+            for (int y = 0; y < 2; y++) {
+                if (gameModel.getGizmo(pointX + x, pointY + y) != null)
+                    return false;
+            }
         }
-
+        return true;
     }
 }

@@ -150,8 +150,8 @@ Button:hover {
     -fx-background-image: url("/icons/connect.png");
 }
 
-.select-button {
-    -fx-background-image: url("/icons/select.png");
+.move-button {
+    -fx-background-image: url("/icons/move.png");
 }
 
 .rotate-button {

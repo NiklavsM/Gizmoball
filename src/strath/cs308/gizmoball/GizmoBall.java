@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
+import strath.cs308.gizmoball.view.EditorView;
 import strath.cs308.gizmoball.view.PlayView;
 
 public class GizmoBall extends Application {
@@ -28,7 +29,7 @@ public class GizmoBall extends Application {
             e.printStackTrace();
         }
 
-        PlayView playView = new PlayView(stage, gameModel);
+        EditorView playView = new EditorView(stage, gameModel);
     }
 
     @Override
