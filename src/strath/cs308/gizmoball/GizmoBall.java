@@ -29,7 +29,7 @@ public class GizmoBall extends Application {
             e.printStackTrace();
         }
 
-        EditorView playView = new EditorView(stage, gameModel);
+        PlayView playView = new PlayView(stage, gameModel);
     }
 
     @Override

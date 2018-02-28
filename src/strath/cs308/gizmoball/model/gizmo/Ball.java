@@ -10,11 +10,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-public class Ball extends Gizmo implements IMovable {
+public class Ball extends Gizmo {
 
     private Vect velocity;
     private double radius;
     private Circle circle;
+    private boolean stopped;
 
     public Ball(double x, double y) {
         this(x, y, generateID());
@@ -32,39 +33,39 @@ public class Ball extends Gizmo implements IMovable {
         velocity = v;
     }
 
-    double getRadius() {
-        return radius;
-    }
-
     public Circle getCircle() {
         return circle;
     }
 
-    private double getX() {
+    public double getX() {
         return circle.getCenter().x();
     }
 
-    private void setX(double x) {
+    public void setX(double x) {
         circle = new Circle(x, getY(), radius);
+        updateCircles();
     }
 
-    private double getY() {
+    public double getY() {
         return circle.getCenter().y();
     }
 
-    private void setY(double y) {
+    public void setY(double y) {
         circle = new Circle(getX(), y, radius);
+        updateCircles();
     }
 
-    @Override
-    public Set<LineSegment> getLines() {
-        return new HashSet<>();
+    public boolean isStopped() {
+        return stopped;
     }
 
-    public List<Circle> getCircles() {
+    void setStopped(boolean stopped) {
+        this.stopped = stopped;
+    }
+
+    private void updateCircles(){
         circles = new LinkedList<>();
         circles.add(circle);
-        return circles;
     }
 
     @Override
@@ -80,7 +81,6 @@ public class Ball extends Gizmo implements IMovable {
         setVelocity(new Vect(4, 4));
     }
 
-    @Override
     public void move(double timeInSeconds) {
         setX(getX() + (getVelocity().x() * timeInSeconds));
         setY(getY() + (getVelocity().y() * timeInSeconds));
