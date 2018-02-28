@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="gizmoball:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/gizmoball_jar</output-path>
-    <root id="archive" name="gizmoball.jar">
-      <element id="module-output" name="gizmoball" />
-    </root>
-  </artifact>
-</component>
