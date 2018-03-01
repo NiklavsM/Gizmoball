@@ -80,3 +80,9 @@ hs_err_pid*
 # VIM
 *.swp
 
+*.iml
+
+# Eclipse
+.classpath
+.project
+bin
