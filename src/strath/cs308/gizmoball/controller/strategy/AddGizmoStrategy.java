@@ -9,6 +9,11 @@ import strath.cs308.gizmoball.model.IGizmoFactory;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.view.IEditorView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class AddGizmoStrategy implements EventHandler<MouseEvent> {
 
     private final IGizmo.Type gizmoType;
@@ -64,6 +69,18 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         startY /= editorView.getPixelRatioFor(20.0);
         endX /= editorView.getPixelRatioFor(20.0);
         endY /= editorView.getPixelRatioFor(20.0);
+
+        if (startX > endX) {
+            startX += endX;
+            endX = startX - endX;
+            startX = startX - endX;
+        }
+
+        if (startY > endY) {
+            startY += endY;
+            endY = startY - endY;
+            startY = startY - endY;
+        }
 
         if (gizmoType.equals(IGizmo.Type.ABSORBER)) {
             IGizmo gizmo = gizmoFactory.createGizmo(gizmoType
