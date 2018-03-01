@@ -58,7 +58,23 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
 
     }
 
-    private void putGizmoFromTo(double pressX, double pressY, double releasedX, double releasedY) {
+    private void putGizmoFromTo(double startX, double startY, double endX, double endY) {
+
+        startX /= editorView.getPixelRatioFor(20.0);
+        startY /= editorView.getPixelRatioFor(20.0);
+        endX /= editorView.getPixelRatioFor(20.0);
+        endY /= editorView.getPixelRatioFor(20.0);
+
+        if (gizmoType.equals(IGizmo.Type.ABSORBER)) {
+            IGizmo gizmo = gizmoFactory.createGizmo(gizmoType
+                    , Math.floor(startX)
+                    , Math.floor(startY)
+                    , Math.floor(endX) + 1
+                    , Math.floor(endY) + 1);
+
+            gameModel.addGizmo(gizmo);
+        }
+
     }
 
     private void putGizmoAt(double x, double y) {
