@@ -13,7 +13,7 @@ Group PR_Th1
 
 ## Plan for next week
 
-* Sort out triggering functioanality
+* Sort out triggering functionality
 * Start implementing extra features
 
 
