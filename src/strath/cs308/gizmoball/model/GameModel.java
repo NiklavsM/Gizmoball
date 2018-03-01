@@ -53,6 +53,15 @@ public class GameModel extends Observable implements IGameModel {
             if (gizmo.getStartX() == x && gizmo.getStartY() == y) {
                 return gizmo;
             }
+
+            //check if certain adjacent squares are occupied by a flipper so not to allow adding a gizmo in a flipper area
+            for (int i = (int) x-1; i <= (int) x+1; i++) {
+                for (int j = (int) y-1; j <= (int) y; j++) {
+                    if (gizmo.getStartX() == i && gizmo.getStartY() == j && gizmo.getType().equals(Gizmo.Type.FLIPPER)) {
+                        return gizmo;
+                    }
+                }
+            }
         }
 
         return null;
