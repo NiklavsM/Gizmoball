@@ -9,7 +9,8 @@ Group PR_Th1
 * Flipper collisions work now
 * Multithreading issues sorted
 * Ball lies in absorber nicely
-* Adding gizmos to board
+* Adding gizmos to the board
+* Can move gizmos now
 
 ## Plan for next week
 
