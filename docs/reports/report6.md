@@ -11,12 +11,13 @@ Group PR_Th1
 * Ball lies in absorber nicely
 * Adding gizmos to the board
 * Can move gizmos now
+* Fixed adding, rotating and removing gizmo strategy to work properly even if the main flow is not followed (e.g empty tile selected)
+* Disallow adding gizmos in flipper area (2x2 grid)
 
 ## Plan for next week
 
 * Sort out triggering functionality
 * Start implementing extra features
-
 
 ## Questions
 
