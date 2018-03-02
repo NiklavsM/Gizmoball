@@ -70,7 +70,6 @@ public class EditorView implements IEditorView, Observer {
 
     @Override
     public void switchToPlay() {
-        stage.close();
         PlayView playView = new PlayView((Stage) root.getScene().getWindow(), gameModel);
     }
 
