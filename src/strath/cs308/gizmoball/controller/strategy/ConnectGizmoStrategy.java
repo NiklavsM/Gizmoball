@@ -22,10 +22,10 @@ public class ConnectGizmoStrategy implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent mouseEvent) {
 
-        double pointX = Math.floor(mouseEvent.getX() / editorView.getPixelRatioFor(20.0));
-        double pointY = Math.floor(mouseEvent.getY() / editorView.getPixelRatioFor(20.0));
+        /**
+         * TODO
+         * still need to be done
+         */
 
-        IGizmo gizmo = gameModel.getGizmo(pointX, pointY);
-        gameModel.remove(gizmo.getId());
     }
 }
