@@ -24,9 +24,10 @@ public class EditorView implements IEditorView, Observer {
     private BorderPane root;
     private IGameModel gameModel;
     private Canvas canvas;
+    private Stage stage;
 
     public EditorView(Stage stage, IGameModel gameModel) {
-
+        this.stage = stage;
         try {
             root = FXMLLoader.load(getClass().getResource("/view/editorview.fxml"));
             canvas = (Canvas) root.lookup("#canvas");
@@ -69,6 +70,7 @@ public class EditorView implements IEditorView, Observer {
 
     @Override
     public void switchToPlay() {
+        stage.close();
         PlayView playView = new PlayView((Stage) root.getScene().getWindow(), gameModel);
     }
 

@@ -14,9 +14,11 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
     private double movedAngle;
     private Movement movementStatus;
     private Orientation orientation;
+
     public Flipper(double x, double y, Orientation orientation) {
         this(x, y, orientation, generateID());
     }
+
     public Flipper(double x, double y, Orientation orientation, String id) {
         super(x, y, x, y, id); // Needs to be fixed ASP WHYYY all gizmos need to have 4 cordinates Nik
 

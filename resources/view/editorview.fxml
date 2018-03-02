@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<?import strath.cs308.gizmoball.view.GizmoDrawer ?>
-
 <?import javafx.scene.canvas.Canvas?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <BorderPane xmlns="http://javafx.com/javafx"
@@ -194,10 +187,10 @@
                         scaleY="0.7"
                         GridPane.columnIndex="0"
                         GridPane.rowIndex="2"
-                        fx:id="selectToolButton"
-                        styleClass="tool-button, select-button">
+                        fx:id="moveToolButton"
+                        styleClass="tool-button, move-button">
                     <tooltip>
-                        <Tooltip text="Select tool" />
+                        <Tooltip text="Move tool" />
                     </tooltip>
                 </Button>
 

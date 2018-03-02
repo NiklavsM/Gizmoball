@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class GameModel extends Observable implements IGameModel {
 
     private Map<String, Gizmo> gizmos;
-    private Map<String, Boolean> absorberCollisions;
+    private Absorber absorberCollided;
 
     public GameModel() {
         setup();
@@ -20,14 +20,12 @@ public class GameModel extends Observable implements IGameModel {
 
     private void setup() {
         gizmos = new ConcurrentHashMap<>();
-        absorberCollisions = new HashMap<>();
         addGizmo(new Walls());
     }
 
     public void addGizmo(IGizmo gizmo) {
         if (gizmo != null) {
             gizmos.put(gizmo.getId(), (Gizmo) gizmo);
-
             setChanged();
             notifyObservers();
         }
@@ -55,46 +53,52 @@ public class GameModel extends Observable implements IGameModel {
             if (gizmo.getStartX() == x && gizmo.getStartY() == y) {
                 return gizmo;
             }
+
+            //check if certain adjacent squares are occupied by a flipper so not to allow adding a gizmo in a flipper area
+            for (int i = (int) x-1; i <= (int) x+1; i++) {
+                for (int j = (int) y-1; j <= (int) y; j++) {
+                    if (gizmo.getStartX() == i && gizmo.getStartY() == j && gizmo.getType().equals(Gizmo.Type.FLIPPER)) {
+                        return gizmo;
+                    }
+                }
+            }
         }
 
         return null;
     }
 
     public void tick(double time) {
-        shootOutAbsorberBalls();
-        Gizmo nextGizmo;
-        for (Ball ball : getBalls()) {
-            nextGizmo = null;
-            //System.out.println("ball id: " + ball.getId());
-            CollisionDetails cd = timeUntilCollision(ball);
+        shootOutAbsorbedBall();
+        Gizmo nextGizmo = null;
+        Ball ball = getBall();
 
+        if (ball != null && !ball.isStopped()) {
+            CollisionDetails cd = timeUntilCollision(ball);
             if (cd.getTuc() > time) {
                 // No collision ...
                 ball.move(time);
+                moveMovables(time);
                 applyForces(ball.getVelocity(), time, ball);
 
             } else {
                 // We've got a collision in tuc
                 nextGizmo = cd.getGizmo();
                 ball.move(cd.getTuc());
+                moveMovables(cd.getTuc());
                 // Post collision velocity ...
                 applyForces(cd.getVelo(), cd.getTuc(), ball);
             }
-
-            moveMovables(time); // TODO
-            // Notify observers ... redraw updated view
-            this.setChanged();
-            this.notifyObservers();
-
-            // absorber collision detected during the previous tick
-            if (absorberCollisions.get(ball.getId()) != null && absorberCollisions.get(ball.getId())) {
-                absorberCollisions.remove(ball.getId());
-                gizmos.remove(ball.getId());
-            }
-            if (nextGizmo instanceof Absorber) {
-                ((Absorber) nextGizmo).absorbBall();
-                absorberCollisions.put(ball.getId(), true);
-            }
+        }
+        if (absorberCollided != null) {
+            absorberCollided.absorbBall(ball);
+            absorberCollided = null;
+        }
+        // Notify observers ... redraw updated view
+        this.setChanged();
+        this.notifyObservers();
+        
+        if (nextGizmo instanceof Absorber) {
+            absorberCollided = ((Absorber) nextGizmo);
         }
 
     }
@@ -102,7 +106,7 @@ public class GameModel extends Observable implements IGameModel {
     private void moveMovables(Double time) {
         gizmos.values()
                 .stream()
-                .filter(gizmo -> gizmo instanceof IMovable && !(gizmo instanceof Ball))
+                .filter(gizmo -> gizmo instanceof IMovable)
                 .forEach(gizmo -> ((IMovable) gizmo).move(time));
 
     }
@@ -119,9 +123,12 @@ public class GameModel extends Observable implements IGameModel {
 
     }
 
-    private void shootOutAbsorberBalls() {
+    private void shootOutAbsorbedBall() {
         getAbsorbers().forEach(absorber -> {
-            ((Absorber) absorber).ballsToShootOut().forEach(this::addGizmo);
+            Ball ballTemp = absorber.ballToShoot();
+            if (ballTemp != null) {
+                gizmos.put(ballTemp.getId(), ballTemp);
+            }
         });
     }
 
@@ -182,30 +189,20 @@ public class GameModel extends Observable implements IGameModel {
         return new CollisionDetails(shortestTime, newVelo, nextGizmo);
     }
 
-    private List<Ball> getBalls() {
-        List<Ball> balls = new LinkedList<>();
-        gizmos.values().stream().filter(gizmo -> gizmo instanceof Ball).forEach(ball -> balls.add((Ball) ball));
-        return balls;
-    }
-
     private List<Absorber> getAbsorbers() {
         List<Absorber> absorbers = new LinkedList<>();
         gizmos.values().stream().filter(gizmo -> gizmo instanceof Absorber).forEach(absorber -> absorbers.add((Absorber) absorber));
         return absorbers;
     }
 
-//    public void shootOut() { // bad absorber needs to take care of this.
-//        // checking needs to change
-//        if (getBalls().isEmpty()) { // need to use absorber coordinates
-//            Ball ball = new Ball(19.74, 18.5);
-//            ball.setVelocity(new Vect(0, -50));
-//            addGizmo(ball);
-//
-//            setChanged();
-//            notifyObservers();
-//        }
-//
-//    }
+    private Ball getBall() {
+        for (Gizmo gizmo : gizmos.values()) {
+            if (gizmo instanceof Ball) {
+                return (Ball) gizmo;
+            }
+        }
+        return null;
+    }
 
     @Override
     public void rotate(String id) {

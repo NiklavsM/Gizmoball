@@ -12,8 +12,8 @@ import java.util.Queue;
 
 public class Absorber extends Gizmo implements ITriggerable {
 
-    Queue<Ball> ballsAbsorbed = new LinkedList<>();
-    List<Ball> ballsToShoot = new LinkedList<>();
+    private Ball ballAbsorbed;
+    private Ball ballToShoot;
 
     public Absorber(double x1, double y1, double x2, double y2, String id) {
         super(x1, y1, x2, y2, id);
@@ -35,16 +35,19 @@ public class Absorber extends Gizmo implements ITriggerable {
         circles.add(new Circle(x1, y2, 0));
     }
 
-    public void absorbBall() {
-        Ball ball = new Ball(getEndX() - 0.25, getStartY() - 0.25);
+    public void absorbBall(Ball ball) {
+        ball.setX(getEndX() - 0.25);
+        ball.setY(getEndY() - 0.25);
         ball.setVelocity(new Vect(0, -50));
-        ballsAbsorbed.add(ball);
+        ball.setStopped(true);
+        System.out.println("ball.getCircle().getCenter().y() " + ball.getCircle().getCenter().y());
+        ballAbsorbed = ball;
     }
 
-    public List<Ball> ballsToShootOut() {
-        List<Ball> balls = ballsToShoot;
-        ballsToShoot = new LinkedList<>();
-        return balls;
+    public Ball ballToShoot() {
+        Ball temp = ballToShoot;
+        ballToShoot = null;
+        return temp;
     }
 
     @Override
@@ -55,8 +58,14 @@ public class Absorber extends Gizmo implements ITriggerable {
     @Override
     public void trigger(String triggerEvent) {
         if (triggerEvent.toUpperCase().equals("KEY_PRESSED_J")) {
-            ballsToShoot.add(ballsAbsorbed.poll());
-            System.out.println("herhgkgdgdfgdfg11 " + triggerEvent);
+            ballToShoot = ballAbsorbed;
+            if(ballToShoot !=null) {
+                ballToShoot.setStopped(false);
+                ballToShoot.setX(getEndX() - 0.25);
+                ballToShoot.setY(getStartY() - 0.25);
+            }
+            ballAbsorbed = null;
+            System.out.println("J " + triggerEvent);
         }
 
     }
