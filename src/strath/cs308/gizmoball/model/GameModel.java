@@ -214,5 +214,8 @@ public class GameModel extends Observable implements IGameModel {
 
     public void reset() {
         setup();
+
+        setChanged();
+        notifyObservers();
     }
 }

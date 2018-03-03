@@ -34,8 +34,16 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
             case "topSaveButton":
                 saveGame();
                 break;
+
+            case "topClearButton":
+                clearBoard();
+                break;
         }
 
+    }
+
+    private void clearBoard() {
+        gameModel.reset();
     }
 
     private void saveGame() {
