@@ -8,6 +8,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GizmoSelectorEventHandler;
@@ -24,15 +25,16 @@ public class EditorView implements IEditorView, Observer {
     private BorderPane root;
     private IGameModel gameModel;
     private Canvas canvas;
-    private Stage stage;
+    private boolean isGrided;
 
     public EditorView(Stage stage, IGameModel gameModel) {
-        this.stage = stage;
         try {
             root = FXMLLoader.load(getClass().getResource("/view/editorview.fxml"));
             canvas = (Canvas) root.lookup("#canvas");
             this.gameModel = gameModel;
             this.gameModel.addObserver(this);
+
+            isGrided = true;
 
             Scene scene = new Scene(root);
 
@@ -40,14 +42,35 @@ public class EditorView implements IEditorView, Observer {
             stage.setTitle("Gizmoball - Editor");
             stage.show();
 
-            Platform.runLater(() -> {
-                drawBackground();
-                drawGizmos();
-                attachHandlers();
-            });
-
+            redrawCanvas();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void redrawCanvas() {
+        Platform.runLater(() -> {
+            drawBackground();
+            drawGizmos();
+            drawGrid();
+            attachHandlers();
+        });
+
+    }
+
+    private void drawGrid() {
+
+        if (!isGrided) {
+            return;
+        }
+
+        GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
+
+        graphicsContext.setStroke(Color.RED);
+        graphicsContext.setLineWidth(0.25);
+        for (double i = 0; i <= canvas.getWidth(); i += (canvas.getWidth() / 20.0)) {
+            graphicsContext.strokeLine(i, 0, i, canvas.getHeight());
+            graphicsContext.strokeLine(0, i, canvas.getWidth(), i);
         }
     }
 
@@ -94,9 +117,14 @@ public class EditorView implements IEditorView, Observer {
     }
 
     @Override
+    public void toggleGrid() {
+        isGrided = !isGrided;
+        redrawCanvas();
+    }
+
+    @Override
     public void update(Observable observable, Object o) {
-        drawBackground();
-        drawGizmos();
+       redrawCanvas();
     }
 
     private void drawGizmos() {

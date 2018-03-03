@@ -128,6 +128,7 @@
                                 minWidth="24"
                                 minHeight="24"
                                 maxHeight="24"
+                                fx:id="topGridButton"
                                 styleClass="grid-button, regular-font, top-toolbar-button">
                         </Button>
                         <Label text="Toggle Grid" />

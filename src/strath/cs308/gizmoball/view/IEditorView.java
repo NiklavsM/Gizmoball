@@ -14,4 +14,6 @@ public interface IEditorView {
     double getPixelRatioFor(double valueToCompare);
 
     File getLoadFile();
+
+    void toggleGrid();
 }

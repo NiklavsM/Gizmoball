@@ -38,8 +38,16 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
             case "topClearButton":
                 clearBoard();
                 break;
+
+            case "topGridButton":
+                toggleGrid();
+                break;
         }
 
+    }
+
+    private void toggleGrid() {
+        editView.toggleGrid();
     }
 
     private void clearBoard() {
