@@ -66,7 +66,7 @@ public class EditorView implements IEditorView, Observer {
 
         GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
 
-        graphicsContext.setStroke(Color.RED);
+        graphicsContext.setStroke(Color.WHITE);
         graphicsContext.setLineWidth(0.25);
         for (double i = 0; i <= canvas.getWidth(); i += (canvas.getWidth() / 20.0)) {
             graphicsContext.strokeLine(i, 0, i, canvas.getHeight());
