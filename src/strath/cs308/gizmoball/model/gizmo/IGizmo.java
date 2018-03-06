@@ -18,6 +18,14 @@ public interface IGizmo {
 
     void rotate();
 
+    double getStartX();
+
+    double getStartY();
+
+    double getEndX();
+
+    double getEndY();
+
     enum Type {
         TRIANGLE("Triangle"), ABSORBER("Absorber"), SQUARE("Square"), BALL("Ball"),
         WALLS("Walls"), FLIPPER("Flipper"), CIRCLE("Circle"),

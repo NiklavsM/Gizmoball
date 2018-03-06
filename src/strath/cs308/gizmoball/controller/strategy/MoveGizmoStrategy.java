@@ -51,7 +51,17 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
 
         Optional<IGizmo> existingGizmo = gameModel.getGizmo(pointX, pointY);
         if (!existingGizmo.isPresent()) {
-            IGizmo copyGizmo = gizmoFactory.createGizmo(selectedGizmo.get().getType(), Math.floor(pointX), Math.floor(pointY));
+            IGizmo copyGizmo;
+            if (selectedGizmo.get().getType().equals(IGizmo.Type.ABSORBER)) {
+                copyGizmo = gizmoFactory.createGizmo(selectedGizmo.get().getType()
+                        , Math.floor(pointX)
+                        , Math.floor(pointY)
+                        , Math.floor(pointX) + (selectedGizmo.get().getEndX() - selectedGizmo.get().getStartX())
+                        , Math.floor(pointY) + (selectedGizmo.get().getEndY() - selectedGizmo.get().getStartY()));
+            } else {
+                copyGizmo = gizmoFactory.createGizmo(selectedGizmo.get().getType(), Math.floor(pointX), Math.floor(pointY));
+            }
+
             gameModel.addGizmo(copyGizmo);
             gameModel.remove(selectedGizmo.get().getId());
             System.out.println(selectedGizmo.get().getType() + " gizmo moved to tile " + pointX+ " , "+pointY);
