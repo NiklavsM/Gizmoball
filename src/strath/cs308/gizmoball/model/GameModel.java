@@ -42,6 +42,10 @@ public class GameModel extends Observable implements IGameModel {
             }
         }
 
+        if (gizmo.getType().equals(IGizmo.Type.BALL) && getBall() != null) {
+            return false;
+        }
+
         gizmos.put(gizmo.getId(), (Gizmo) gizmo);
 
         setChanged();

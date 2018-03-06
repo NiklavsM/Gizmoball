@@ -59,7 +59,12 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
                         , Math.floor(pointX) + (selectedGizmo.get().getEndX() - selectedGizmo.get().getStartX())
                         , Math.floor(pointY) + (selectedGizmo.get().getEndY() - selectedGizmo.get().getStartY()));
             } else {
-                copyGizmo = gizmoFactory.createGizmo(selectedGizmo.get().getType(), Math.floor(pointX), Math.floor(pointY));
+                if (!selectedGizmo.get().getType().equals(IGizmo.Type.BALL)) {
+                    pointX = Math.floor(pointX);
+                    pointY = Math.floor(pointY);
+                }
+
+                copyGizmo = gizmoFactory.createGizmo(selectedGizmo.get().getType(), pointX, pointY);
             }
 
             gameModel.remove(selectedGizmo.get().getId());
