@@ -20,7 +20,7 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
     }
 
     public Flipper(double x, double y, Orientation orientation, String id) {
-        super(x, y, x, y, id); // Needs to be fixed ASP WHYYY all gizmos need to have 4 cordinates Nik
+        super(x, y, x+2, y+2, id);
 
         double radius = 0.25;
         this.orientation = orientation;

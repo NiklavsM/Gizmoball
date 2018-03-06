@@ -23,12 +23,32 @@ public class GameModel extends Observable implements IGameModel {
         addGizmo(new Walls());
     }
 
-    public void addGizmo(IGizmo gizmo) {
-        if (gizmo != null) {
-            gizmos.put(gizmo.getId(), (Gizmo) gizmo);
-            setChanged();
-            notifyObservers();
+    public boolean addGizmo(IGizmo gizmo) {
+
+        if (gizmo == null) {
+            return false;
         }
+
+        Gizmo tempGizmo = (Gizmo) gizmo;
+
+        //re mi van itt ?
+        for (double column = tempGizmo.getStartX(); column < tempGizmo.getEndX(); column++) {
+            for (double row = tempGizmo.getStartY(); row < tempGizmo.getEndY(); row++) {
+                System.out.println(column + ":" + row);
+                Optional<IGizmo> giz = getGizmo(column, row);
+                if (giz.isPresent()) {
+                    return false;
+                }
+            }
+        }
+
+        gizmos.put(gizmo.getId(), (Gizmo) gizmo);
+
+        setChanged();
+        notifyObservers();
+
+        return true;
+
     }
 
     @Override
@@ -46,25 +66,18 @@ public class GameModel extends Observable implements IGameModel {
         return new HashSet<>(gizmos.values());
     }
 
-    public IGizmo getGizmo(double x, double y) {
+    public Optional<IGizmo> getGizmo(double x, double y) {
         for (Map.Entry<String, Gizmo> entrySet : gizmos.entrySet()) {
             Gizmo gizmo = entrySet.getValue();
 
-            if (gizmo.getStartX() == x && gizmo.getStartY() == y) {
-                return gizmo;
-            }
-
-            //check if certain adjacent squares are occupied by a flipper so not to allow adding a gizmo in a flipper area
-            for (int i = (int) x-1; i <= (int) x+1; i++) {
-                for (int j = (int) y-1; j <= (int) y; j++) {
-                    if (gizmo.getStartX() == i && gizmo.getStartY() == j && gizmo.getType().equals(Gizmo.Type.FLIPPER)) {
-                        return gizmo;
-                    }
+            if (!gizmo.getType().equals(IGizmo.Type.WALLS)){
+                if ((x >= gizmo.getStartX() && x < gizmo.getEndX()) && (y >= gizmo.getStartY() && y < gizmo.getEndY())) {
+                    return Optional.of(gizmo);
                 }
             }
         }
 
-        return null;
+        return Optional.empty();
     }
 
     public void tick(double time) {
