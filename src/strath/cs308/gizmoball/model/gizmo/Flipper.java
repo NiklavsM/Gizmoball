@@ -63,6 +63,14 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
 
     @Override
     public Type getType() {
+        if (orientation.equals(Orientation.RIGHT)) {
+            return Type.RIGHT_FLIPPER;
+        }
+
+        if (orientation.equals(Orientation.LEFT)) {
+            return Type.LEFT_FLIPPER;
+        }
+
         return Type.FLIPPER;
     }
 

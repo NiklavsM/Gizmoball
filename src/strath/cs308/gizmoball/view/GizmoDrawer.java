@@ -43,7 +43,11 @@ public class GizmoDrawer {
             i++;
         }
 
-        if (type == IGizmo.Type.CIRCLE || type == IGizmo.Type.BALL || type == IGizmo.Type.FLIPPER) {
+        if (type.equals(IGizmo.Type.CIRCLE)
+                | type.equals(IGizmo.Type.BALL)
+                || type.equals(IGizmo.Type.FLIPPER)
+                || type.equals(IGizmo.Type.LEFT_FLIPPER)
+                || type.equals(IGizmo.Type.RIGHT_FLIPPER)) {
             gc.setLineWidth(diameter);
             gc.setLineCap(StrokeLineCap.ROUND);
             gc.strokeLine(xPoints[0], yPoints[0], xPoints[i - 1], yPoints[i - 1]);
@@ -79,6 +83,14 @@ public class GizmoDrawer {
                 break;
 
             case FLIPPER:
+                gc.setStroke(ORANGE);
+                break;
+
+            case LEFT_FLIPPER:
+                gc.setStroke(ORANGE);
+                break;
+
+            case RIGHT_FLIPPER:
                 gc.setStroke(ORANGE);
                 break;
         }
