@@ -14,7 +14,7 @@ public interface IGameModel {
 
     boolean addGizmo(IGizmo gizmo);
 
-    boolean remove(String id);
+    boolean removeGizmo(String id);
 
     void tick(double time);
 

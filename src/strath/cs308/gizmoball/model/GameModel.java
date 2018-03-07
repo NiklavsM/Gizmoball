@@ -56,7 +56,7 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     @Override
-    public boolean remove(String id) {
+    public boolean removeGizmo(String id) {
         if (gizmos.remove(id) != null) {
 
             setChanged();
