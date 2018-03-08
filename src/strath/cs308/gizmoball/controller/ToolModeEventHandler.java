@@ -37,7 +37,7 @@ public class ToolModeEventHandler implements EventHandler<MouseEvent> {
 
             case "moveToolButton":
                 editorView.setCanvasMode(new MoveGizmoStrategy(gameModel, editorView));
-                editorView.setStatus("Move Tool:");
+                editorView.setStatus("Move Tool: Click on a gizmo and then select a new location for it");
                 break;
 
         }

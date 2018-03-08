@@ -111,7 +111,7 @@ public class GameModel extends Observable implements IGameModel {
                 if (!nextGizmo.getType().equals(IGizmo.Type.ABSORBER)) {
                     score += nextGizmo.getScoreValue();
                 } else {
-                    // subtract 10 points (if possible) when ball is absorbed
+                    // deduct 10 points (if possible) when ball is absorbed
                     if (score >= 10)
                         score -= 10;
                     else
