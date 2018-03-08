@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
@@ -120,6 +121,12 @@ public class EditorView implements IEditorView, Observer {
     public void toggleGrid() {
         isGrided = !isGrided;
         redrawCanvas();
+    }
+
+    @Override
+    public void setStatus(String message) {
+        Label statusLabel = (Label) root.lookup("#statusbar");
+        statusLabel.setText(message);
     }
 
     @Override

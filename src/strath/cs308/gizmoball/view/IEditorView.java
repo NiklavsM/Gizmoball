@@ -16,4 +16,6 @@ public interface IEditorView {
     File getLoadFile();
 
     void toggleGrid();
+
+    void setStatus(String message);
 }

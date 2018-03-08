@@ -28,6 +28,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
 
         switch (mouseEvent.getEventType().getName()) {
             case "MOUSE_PRESSED":
+                editorView.setStatus("Gizmo Added");
                 onMousePressed(mouseEvent);
                 break;
             case "MOUSE_RELEASED":
