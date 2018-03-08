@@ -255,18 +255,22 @@ public class GameModel extends Observable implements IGameModel {
         notifyObservers();
     }
 
+    @Override
     public double getFrictionCoEfficient() {
         return frictionCoEfficient;
     }
 
+    @Override
     public void setFrictionCoEfficient(double frictionCoEfficient) {
         this.frictionCoEfficient = frictionCoEfficient;
     }
 
+    @Override
     public double getGravityCoEfficient() {
         return gravityCoEfficient;
     }
 
+    @Override
     public void setGravityCoEfficient(double gravityCoEfficient) {
         this.gravityCoEfficient = gravityCoEfficient;
     }

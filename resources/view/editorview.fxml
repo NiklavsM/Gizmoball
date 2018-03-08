@@ -155,11 +155,9 @@
                       spacing="5"
                       alignment="CENTER">
                     <Label text="Gravity" />
-                    <!--<TextField id="gravity"  fx:id="gravity" layoutX="115.0" layoutY="78.0" />-->
-                    <TextField id="gravity" fx:id="gravity" prefWidth="60.0">
-                        0.0025
+                    <TextField fx:id="gravity" styleClass="game-option-textbox" prefWidth="60.0">
+                        0.002
                     </TextField>
-                    <!--<Slider fx:id="gravity" blockIncrement="0.1" layoutX="26.0" layoutY="32.0" majorTickUnit="0.5" max="1.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" />-->
                 </HBox>
 
 
@@ -168,12 +166,10 @@
                       spacing="5"
                       alignment="CENTER">
                     <Label text="Friction" />
-
-                    <TextField id="gravity" fx:id="friction" prefWidth="60.0">
-                        25.0
+                    <TextField fx:id="friction" styleClass="game-option-textbox" prefWidth="60.0">
+                        0.002
                     </TextField>
                 </HBox>
-
             </ToolBar>
         </VBox>
     </top>
