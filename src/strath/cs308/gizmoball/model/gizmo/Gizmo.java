@@ -28,8 +28,8 @@ public abstract class Gizmo implements IGizmo {
         this.id = id;
         rotateCount = 0;
 
-        rotatingPoint = new Vect(x1 + ((x2 - x1) / 2.0), y1 + ((y2-y1) /2.0)); 
- 
+        rotatingPoint = new Vect(x1 + ((x2 - x1) / 2.0), y1 + ((y2 - y1) / 2.0));
+
         setup(x1, y1, x2, y2);
     }
 
@@ -125,5 +125,15 @@ public abstract class Gizmo implements IGizmo {
 
     public int getScoreValue() {
         return 1;
+    }
+
+    @Override
+    public String toString() {
+        String x2String = "", y2String = "";
+        if (getType().equals(Type.ABSORBER)) {
+            x2String = " " + x2;
+            y2String = " " + y2;
+        }
+        return getType() + " " + id + " " + x1 + " " + y1 + x2String + y2String + "\n";
     }
 }

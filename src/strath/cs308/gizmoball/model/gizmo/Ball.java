@@ -22,7 +22,7 @@ public class Ball extends Gizmo {
     }
 
     public Ball(double x, double y, String id) {
-        super(x-0.25, y-0.25, x+0.25, y+0.25, id);
+        super(x - 0.25, y - 0.25, x + 0.25, y + 0.25, id);
     }
 
     public Vect getVelocity() {
@@ -63,7 +63,7 @@ public class Ball extends Gizmo {
         this.stopped = stopped;
     }
 
-    private void updateCircles(){
+    private void updateCircles() {
         circles = new LinkedList<>();
         circles.add(circle);
 
@@ -91,5 +91,12 @@ public class Ball extends Gizmo {
         setX(getX() + (getVelocity().x() * timeInSeconds));
         setY(getY() + (getVelocity().y() * timeInSeconds));
 
+    }
+
+    @Override
+    public String toString() {
+        String soFar = super.toString();
+        soFar = soFar.substring(0, soFar.length() - 1);
+        return soFar + " " + velocity.x() + " " + velocity.y() + "\n";
     }
 }
