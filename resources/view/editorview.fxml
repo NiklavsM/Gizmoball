@@ -346,7 +346,7 @@
                                       alignment="CENTER">
                                     <Button fx:id="addLeftFlipperMode">
                                         <graphic>
-                                            <ImageView fitWidth="30"
+                                            <ImageView fitWidth="10"
                                                        fitHeight="30">
                                                 <Image url="/icons/flipper.png" />
                                             </ImageView>
@@ -362,7 +362,7 @@
                                       alignment="CENTER">
                                     <Button fx:id="addRightFlipperMode">
                                         <graphic>
-                                            <ImageView fitWidth="30"
+                                            <ImageView fitWidth="10"
                                                        fitHeight="30">
                                                 <Image url="/icons/flipper.png" />
                                             </ImageView>
