@@ -5,8 +5,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class BallTest {
     @BeforeEach
     void setUp() {
@@ -20,7 +18,12 @@ class BallTest {
     void toString_anyGizmo_command() {
         Ball ball = new Ball(2, 3, "mine");
         ball.setVelocity(new Vect(3, 2));
-        assertEquals("Square patrat 2.0 3.0\n", ball.toString());
+
+        Triangle t = new Triangle(2, 3);
+        t.rotate();
+        t.rotate();
+        t.rotate();
+        System.out.println(t);
     }
 
 }
