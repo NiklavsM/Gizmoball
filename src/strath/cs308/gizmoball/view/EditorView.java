@@ -71,8 +71,8 @@ public class EditorView implements IEditorView, Observer {
     }
 
     private void updateFields() {
-        gravityTextField.setText(String.valueOf(gameModel.getGravityCoEfficient()));
-        frictionTextField.setText(String.valueOf(gameModel.getFrictionCoEfficient()));
+        gravityTextField.setText(String.valueOf(gameModel.getGravityCoefficient()));
+        frictionTextField.setText(String.valueOf(gameModel.getFrictionCoefficient()));
     }
 
 
@@ -98,7 +98,7 @@ public class EditorView implements IEditorView, Observer {
             gravityTextField.textProperty()
                     .addListener((observable, oldValue, newValue) -> {
                         double value = Double.parseDouble(newValue);
-                        gameModel.setGravityCoEfficient(value);
+                        gameModel.setGravityCoefficient(value);
                     });
 
 
@@ -106,7 +106,7 @@ public class EditorView implements IEditorView, Observer {
             frictionTextField.textProperty()
                     .addListener((observable, oldValue, newValue) -> {
                         double value = Double.parseDouble(newValue);
-                        gameModel.setGravityCoEfficient(value);
+                        gameModel.setFrictionCoefficient(value);
                     });
 
         });

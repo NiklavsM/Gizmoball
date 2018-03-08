@@ -24,13 +24,13 @@ public interface IGameModel {
 
     void rotate(String id);
 
-    double getFrictionCoEfficient();
+    double getFrictionCoefficient();
 
-    void setFrictionCoEfficient(double frictionCoEfficient);
+    void setFrictionCoefficient(double frictionCoefficient);
 
-    double getGravityCoEfficient();
+    double getGravityCoefficient();
 
-    void setGravityCoEfficient(double gravityCoEfficient);
+    void setGravityCoefficient(double gravityCoefficient);
 
     void reset();
 
