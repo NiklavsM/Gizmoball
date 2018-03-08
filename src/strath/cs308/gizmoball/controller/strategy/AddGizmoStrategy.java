@@ -31,6 +31,9 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
                 editorView.setStatus("Gizmo Added");
                 onMousePressed(mouseEvent);
                 break;
+            case "DRAG_DETECTED":
+                onMouseDragged(mouseEvent);
+                break;
             case "MOUSE_RELEASED":
                 onMouseReleased(mouseEvent);
                 break;
@@ -41,6 +44,14 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
     private void onMousePressed(MouseEvent mouseEvent) {
         pressX = mouseEvent.getX();
         pressY = mouseEvent.getY();
+    }
+
+    private void onMouseDragged(MouseEvent mouseEvent) {
+        System.out.println("DRAG DETECED");
+        double startX = Math.floor(pressX / editorView.getPixelRatioFor(20.0));
+        double startY = Math.floor(pressY / editorView.getPixelRatioFor(20.0));
+        double endX = Math.floor(mouseEvent.getX() / editorView.getPixelRatioFor(20.0));
+        double endY = Math.floor(mouseEvent.getY() / editorView.getPixelRatioFor(20.0));
     }
 
     private void onMouseReleased(MouseEvent mouseEvent) {

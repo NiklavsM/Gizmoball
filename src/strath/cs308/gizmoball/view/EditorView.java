@@ -102,6 +102,7 @@ public class EditorView implements IEditorView, Observer {
         canvas.setOnMouseClicked(canvasStrategy);
         canvas.setOnMousePressed(canvasStrategy);
         canvas.setOnMouseReleased(canvasStrategy);
+        canvas.setOnDragDetected(canvasStrategy);
     }
 
     @Override
