@@ -367,6 +367,7 @@
                 <Tab closable="false"
                      text="Properties">
 
+
                 </Tab>
             </TabPane>
         </VBox>
