@@ -4,6 +4,8 @@ import mit.physics.*;
 import strath.cs308.gizmoball.model.IMovable;
 import strath.cs308.gizmoball.model.ITriggerable;
 
+import java.util.Iterator;
+
 public class Flipper extends Gizmo implements IMovable, ITriggerable {
 
     private Circle startPoint;
@@ -55,10 +57,6 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
         lines.add(connector2);
         circles.add(startPoint);
         circles.add(endPoint);
-    }
-
-    public void rotate(Angle angle) {
-
     }
 
     @Override
@@ -208,4 +206,14 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
         }
     }
 
+    @Override
+    public void rotate(){
+        super.rotate();
+
+        startPoint = circles.get(0);
+        endPoint = circles.get(1);
+        Iterator<LineSegment> lineIt = lines.iterator();
+        connector1 = lineIt.next(); 
+        connector2 = lineIt.next(); 
+   }
 }

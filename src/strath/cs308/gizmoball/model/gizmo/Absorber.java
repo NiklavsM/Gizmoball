@@ -69,4 +69,9 @@ public class Absorber extends Gizmo implements ITriggerable {
         }
 
     }
+
+    @Override
+    public void rotate() {
+        System.out.println("absorber is not rotatable!");
+    }
 }

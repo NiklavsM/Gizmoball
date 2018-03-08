@@ -28,6 +28,8 @@ public abstract class Gizmo implements IGizmo {
         this.id = id;
         rotateCount = 0;
 
+        rotatingPoint = new Vect(x1 + ((x2 - x1) / 2.0), y1 + ((y2-y1) /2.0)); 
+ 
         setup(x1, y1, x2, y2);
     }
 
