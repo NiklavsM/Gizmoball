@@ -10,6 +10,7 @@ Group PR_Th1
 * Started testing
 * Grid added
 * Clear board
+* Implemented basic scoring system
 
 ## Plan for next week
 
@@ -18,6 +19,7 @@ Group PR_Th1
 * Implement sounds
 * Implement adjustable gravity and friction
 * Make flippers return to the original position
+* Improve scoring system
 
 ## Questions
 
