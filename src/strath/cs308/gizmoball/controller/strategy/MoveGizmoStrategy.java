@@ -21,8 +21,7 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
         this.editorView = editorView;
 
         gizmoFactory = new GizmoFactory();
-        selectedGizmo = Optional.ofNullable(null);
-
+        selectedGizmo = Optional.empty();
     }
 
     @Override
@@ -39,31 +38,40 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
     }
 
     private void select(MouseEvent mouseEvent) {
-        double pointX = Math.floor(mouseEvent.getX() / editorView.getPixelRatioFor(20.0));
-        double pointY = Math.floor(mouseEvent.getY() / editorView.getPixelRatioFor(20.0));
+        double pointX = mouseEvent.getX() / editorView.getPixelRatioFor(20.0);
+        double pointY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
 
-        IGizmo gizmo = gameModel.getGizmo(pointX, pointY);
-        if (gizmo != null) {
-            System.out.println(gizmo.getType() + " selected at position " + pointX + " , " + pointY + ". Please select a new location for this gizmo.");
-            selectedGizmo = Optional.of(gizmo);
-        } else {
-            System.out.println("Tile " + pointX + " , " + pointY + " is not currently occupied by a gizmo. Please choose a gizmo to be moved.");
-        }
+        selectedGizmo = gameModel.getGizmo(pointX, pointY);
     }
 
     private void moveTo(MouseEvent mouseEvent) {
-        double pointX = Math.floor(mouseEvent.getX() / editorView.getPixelRatioFor(20.0));
-        double pointY = Math.floor(mouseEvent.getY() / editorView.getPixelRatioFor(20.0));
+        double pointX = mouseEvent.getX() / editorView.getPixelRatioFor(20.0);
+        double pointY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
 
-        IGizmo existingGizmo = gameModel.getGizmo(pointX, pointY);
-        if (existingGizmo == null) {
-            IGizmo copyGizmo = gizmoFactory.createGizmo(selectedGizmo.get().getType(), pointX, pointY);
+        Optional<IGizmo> existingGizmo = gameModel.getGizmo(pointX, pointY);
+        if (!existingGizmo.isPresent()) {
+            IGizmo copyGizmo;
+            if (selectedGizmo.get().getType().equals(IGizmo.Type.ABSORBER)) {
+                copyGizmo = gizmoFactory.createGizmo(selectedGizmo.get().getType()
+                        , Math.floor(pointX)
+                        , Math.floor(pointY)
+                        , Math.floor(pointX) + (selectedGizmo.get().getEndX() - selectedGizmo.get().getStartX())
+                        , Math.floor(pointY) + (selectedGizmo.get().getEndY() - selectedGizmo.get().getStartY()));
+            } else {
+                if (!selectedGizmo.get().getType().equals(IGizmo.Type.BALL)) {
+                    pointX = Math.floor(pointX);
+                    pointY = Math.floor(pointY);
+                }
+
+                copyGizmo = gizmoFactory.createGizmo(selectedGizmo.get().getType(), pointX, pointY);
+            }
+
+            gameModel.removeGizmo(selectedGizmo.get().getId());
             gameModel.addGizmo(copyGizmo);
-            gameModel.remove(selectedGizmo.get().getId());
             System.out.println(selectedGizmo.get().getType() + " gizmo moved to tile " + pointX+ " , "+pointY);
-            selectedGizmo = Optional.ofNullable(null);
+            selectedGizmo = Optional.empty();
         } else {
-            System.out.println("Tile " + pointX + " , " + pointY + " is already occupied by a " + existingGizmo.getType() + " gizmo.");
+            System.out.println("Tile " + pointX + " , " + pointY + " is already occupied by a " + existingGizmo.get().getType() + " gizmo.");
         }
     }
 }

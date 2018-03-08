@@ -6,6 +6,8 @@ import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.view.IEditorView;
 
+import java.util.Optional;
+
 public class RotateGizmoStrategy implements EventHandler<MouseEvent> {
 
     private final IEditorView editorView;
@@ -21,18 +23,16 @@ public class RotateGizmoStrategy implements EventHandler<MouseEvent> {
 
         if (mouseEvent.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
 
-            double pointX = Math.floor(mouseEvent.getX() / editorView.getPixelRatioFor(20.0));
-            double pointY = Math.floor(mouseEvent.getY() / editorView.getPixelRatioFor(20.0));
+            double pointX = mouseEvent.getX() / editorView.getPixelRatioFor(20.0);
+            double pointY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
 
-            IGizmo gizmo = gameModel.getGizmo(pointX, pointY);
+            Optional<IGizmo> gizmo = gameModel.getGizmo(pointX, pointY);
 
-            /*
-            * Check if gizmo exists and it's either a triangle, absorber or flipper;
-            * No need to rotate Circles (+Ball) or Squares for the moment but could be added in
-            * future implementations if we decide to allow rotating gizmos to a custom angle (e.g 135°)
-            * */
-            if (gizmo != null && (gizmo.getType().equals(IGizmo.Type.TRIANGLE) || gizmo.getType().equals(IGizmo.Type.ABSORBER) || gizmo.getType().equals(IGizmo.Type.FLIPPER)))
-                gameModel.rotate(gizmo.getId());
+            gizmo.ifPresent(gizmo1 -> {
+                if (!gizmo1.getType().equals(IGizmo.Type.ABSORBER)){
+                    gameModel.rotate(gizmo1.getId());
+                }
+            });
         }
 
     }

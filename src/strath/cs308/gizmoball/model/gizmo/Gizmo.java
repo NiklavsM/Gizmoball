@@ -12,10 +12,10 @@ public abstract class Gizmo implements IGizmo {
     protected List<Circle> circles;
     protected Set<LineSegment> lines;
     protected Vect rotatingPoint;
-    private double x1;
-    private double y1;
-    private double x2;
-    private double y2;
+    protected double x1;
+    protected double y1;
+    protected double x2;
+    protected double y2;
     private int scoreValue;
 
     public Gizmo(double x1, double y1, double x2, double y2, String id) {
@@ -28,6 +28,8 @@ public abstract class Gizmo implements IGizmo {
         this.id = id;
         rotateCount = 0;
 
+        rotatingPoint = new Vect(x1 + ((x2 - x1) / 2.0), y1 + ((y2-y1) /2.0)); 
+ 
         setup(x1, y1, x2, y2);
     }
 

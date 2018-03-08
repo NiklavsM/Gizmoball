@@ -6,6 +6,8 @@ import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.view.IEditorView;
 
+import java.util.Optional;
+
 public class RemoveGizmoStrategy implements EventHandler<MouseEvent> {
 
     private final IEditorView editorView;
@@ -19,13 +21,16 @@ public class RemoveGizmoStrategy implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent mouseEvent) {
         if (mouseEvent.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
-            double pointX = Math.floor(mouseEvent.getX() / editorView.getPixelRatioFor(20.0));
-            double pointY = Math.floor(mouseEvent.getY() / editorView.getPixelRatioFor(20.0));
+            double pointX = mouseEvent.getX() / editorView.getPixelRatioFor(20.0);
+            double pointY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
 
-            IGizmo gizmo = gameModel.getGizmo(pointX, pointY);
-            //check if gizmo exists in this location
-            if (gizmo != null)
-                gameModel.remove(gizmo.getId());
+//            gameModel.getGizmo(pointX, pointY)
+//                    .ifPresent(gizmo1 -> gameModel.removeGizmo(gizmo1.getId()));
+
+            Optional<IGizmo> gizmo = gameModel.getGizmo(pointX, pointY);
+            gizmo.ifPresent(gizmo1 -> gameModel.removeGizmo(gizmo1.getId()));
+
+
         }
 
     }
