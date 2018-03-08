@@ -15,6 +15,8 @@ public class GameModel extends Observable implements IGameModel {
     private Map<String, Gizmo> gizmos;
     private Absorber absorberCollided;
     private int score;
+    private double frictionCoEfficient;
+    private double gravityCoEfficient;
 
     public GameModel() {
         setup();
@@ -22,8 +24,12 @@ public class GameModel extends Observable implements IGameModel {
 
     private void setup() {
         gizmos = new ConcurrentHashMap<>();
-        addGizmo(new Walls());
+        frictionCoEfficient = 0.025;
+        gravityCoEfficient = 25;
         score = 0;
+
+
+        addGizmo(new Walls());
     }
 
     public boolean addGizmo(IGizmo gizmo) {
@@ -144,15 +150,15 @@ public class GameModel extends Observable implements IGameModel {
 
     private void applyForces(Vect velocity, double time, Ball ball) {
         Vect velocityAfterFriction;
-        Vect gravity;
+        Vect gravity = new Vect(0.0, gravityCoEfficient * time);
 
-        gravity = new Vect(0.0, 25 * time);
         // Vnew = Vold * (1 - mu * delta_t - mu2 * |Vold| * delta_t).
         velocityAfterFriction = new Vect(velocity.angle(),
-                velocity.length() * (1 - (0.025 * time) - (0.025 * velocity.length() * time)));
+                velocity.length() * (1 - (frictionCoEfficient * time) - (frictionCoEfficient * velocity.length() * time)));
         ball.setVelocity(velocityAfterFriction.plus(gravity));
 
     }
+
 
     private void shootOutAbsorbedBall() {
         getAbsorbers().forEach(absorber -> {
@@ -249,6 +255,22 @@ public class GameModel extends Observable implements IGameModel {
 
         setChanged();
         notifyObservers();
+    }
+
+    public double getFrictionCoEfficient() {
+        return frictionCoEfficient;
+    }
+
+    public void setFrictionCoEfficient(double frictionCoEfficient) {
+        this.frictionCoEfficient = frictionCoEfficient;
+    }
+
+    public double getGravityCoEfficient() {
+        return gravityCoEfficient;
+    }
+
+    public void setGravityCoEfficient(double gravityCoEfficient) {
+        this.gravityCoEfficient = gravityCoEfficient;
     }
 
     public void reset() {
