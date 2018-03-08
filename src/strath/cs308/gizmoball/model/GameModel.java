@@ -105,6 +105,8 @@ public class GameModel extends Observable implements IGameModel {
                 // Post collision velocity ...
                 applyForces(cd.getVelo(), cd.getTuc(), ball);
             }
+        }else{
+            moveMovables(time);
         }
         if (absorberCollided != null) {
             absorberCollided.absorbBall(ball);
