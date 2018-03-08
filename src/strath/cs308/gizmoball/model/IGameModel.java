@@ -10,6 +10,8 @@ public interface IGameModel {
 
     Set<IGizmo> getGizmos();
 
+    IGizmo getGizmoBall();
+
     Optional<IGizmo> getGizmo(double x, double y);
 
     boolean addGizmo(IGizmo gizmo);

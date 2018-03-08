@@ -223,6 +223,10 @@ public class GameModel extends Observable implements IGameModel {
         return null;
     }
 
+    public IGizmo getGizmoBall(){
+       return getBall();
+    }
+
     @Override
     public void rotate(String id) {
         gizmos.get(id).rotate();
