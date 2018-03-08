@@ -130,14 +130,20 @@ public abstract class Gizmo implements IGizmo {
 
     @Override
     public String toString() {
+        if (getType().equals(Type.WALLS)) {
+            return "";
+        }
+
         String x2String = "", y2String = "", rotate = "";
         if (getType().equals(Type.ABSORBER)) {
             x2String = " " + x2;
             y2String = " " + y2;
         }
-        if (rotateCount % 2 == 1) {
-            rotate = GameLoader.ROTATE_COMMAND + " " + id + "\n";
+
+        for (int i = 0; i < rotateCount % 4; i++) {
+            rotate += GameLoader.ROTATE_COMMAND + " " + id + "\n";
         }
-        return getType() + " " + id + " " + x1 + " " + y1 + x2String + y2String + "\n" + rotate;
+
+        return getType() + " " + id + " " + x1 + " " + y1 + x2String + y2String + "\n" + rotate + "\n";
     }
 }

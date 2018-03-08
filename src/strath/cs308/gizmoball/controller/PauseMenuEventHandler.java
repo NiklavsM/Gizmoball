@@ -80,8 +80,14 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
     }
 
     private void saveGame() {
-        File fileToLoad = playView.getLoadFile();
-        GameSaver gs = new GameSaver(gameModel, fileToLoad);
+        File fileToSave = playView.getLoadFile();
+        GameSaver gs = new GameSaver(gameModel, fileToSave);
+
+        if(fileToSave == null) {
+            System.out.println("Saving file dialog cancelled");
+            return;
+        }
+
         try {
             gs.save();
         } catch (IllegalAccessException | FileNotFoundException e) {

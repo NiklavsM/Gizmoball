@@ -96,7 +96,7 @@ public class Ball extends Gizmo {
     @Override
     public String toString() {
         String soFar = super.toString();
-        soFar = soFar.substring(0, soFar.length() - 1);
-        return soFar + " " + velocity.x() + " " + velocity.y() + "\n";
+        soFar = soFar.substring(0, soFar.length() - 2);
+        return soFar + " " + velocity.x() + " " + velocity.y() + "\n\n";
     }
 }

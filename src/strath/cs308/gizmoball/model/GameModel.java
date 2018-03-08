@@ -74,7 +74,7 @@ public class GameModel extends Observable implements IGameModel {
         for (Map.Entry<String, Gizmo> entrySet : gizmos.entrySet()) {
             Gizmo gizmo = entrySet.getValue();
 
-            if (!gizmo.getType().equals(IGizmo.Type.WALLS)){
+            if (!gizmo.getType().equals(IGizmo.Type.WALLS)) {
                 if ((x >= gizmo.getStartX() && x < gizmo.getEndX()) && (y >= gizmo.getStartY() && y < gizmo.getEndY())) {
                     return Optional.of(gizmo);
                 }
@@ -105,7 +105,7 @@ public class GameModel extends Observable implements IGameModel {
                 // Post collision velocity ...
                 applyForces(cd.getVelo(), cd.getTuc(), ball);
             }
-        }else{
+        } else {
             moveMovables(time);
         }
         if (absorberCollided != null) {
@@ -115,7 +115,7 @@ public class GameModel extends Observable implements IGameModel {
         // Notify observers ... redraw updated view
         this.setChanged();
         this.notifyObservers();
-        
+
         if (nextGizmo instanceof Absorber) {
             absorberCollided = ((Absorber) nextGizmo);
         }
@@ -223,8 +223,8 @@ public class GameModel extends Observable implements IGameModel {
         return null;
     }
 
-    public IGizmo getGizmoBall(){
-       return getBall();
+    public IGizmo getGizmoBall() {
+        return getBall();
     }
 
     @Override
@@ -240,5 +240,18 @@ public class GameModel extends Observable implements IGameModel {
 
         setChanged();
         notifyObservers();
+    }
+
+    @Override
+    public String toString() {
+        String commands = "";
+        for (Gizmo gizmo : gizmos.values()) {
+            commands += gizmo.toString();
+        }
+
+        commands += "\n\n";
+
+        //TODO add gravity and friciton
+        return commands;
     }
 }
