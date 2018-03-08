@@ -65,7 +65,7 @@
 
             <Label StackPane.alignment="TOP_RIGHT"
                    styleClass="default-padding, title-font"
-                   fx:id = "score">
+                   fx:id="score">
                 Score: 0
             </Label>
 

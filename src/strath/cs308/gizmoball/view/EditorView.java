@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
@@ -27,6 +28,8 @@ public class EditorView implements IEditorView, Observer {
     private IGameModel gameModel;
     private Canvas canvas;
     private boolean isGrided;
+    private TextField frictionTextField;
+    private TextField gravityTextField;
 
     public EditorView(Stage stage, IGameModel gameModel) {
         try {
@@ -43,21 +46,35 @@ public class EditorView implements IEditorView, Observer {
             stage.setTitle("Gizmoball - Editor");
             stage.show();
 
-            redrawCanvas();
+            initialSetup();
+
+            refresh();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void redrawCanvas() {
+    private void initialSetup() {
+        attachHandlers();
+        setupTextFields();
+    }
+
+
+    private void refresh() {
         Platform.runLater(() -> {
             drawBackground();
             drawGizmos();
             drawGrid();
-            attachHandlers();
+            updateFields();
         });
 
     }
+
+    private void updateFields() {
+        gravityTextField.setText(String.valueOf(gameModel.getGravityCoefficient()));
+        frictionTextField.setText(String.valueOf(gameModel.getFrictionCoefficient()));
+    }
+
 
     private void drawGrid() {
 
@@ -73,6 +90,27 @@ public class EditorView implements IEditorView, Observer {
             graphicsContext.strokeLine(i, 0, i, canvas.getHeight());
             graphicsContext.strokeLine(0, i, canvas.getWidth(), i);
         }
+    }
+
+    private void setupTextFields() {
+        Platform.runLater(() -> {
+            gravityTextField = (TextField) root.lookup("#gravity");
+            gravityTextField.textProperty()
+                    .addListener((observable, oldValue, newValue) -> {
+                        double value = Double.parseDouble(newValue);
+                        gameModel.setGravityCoefficient(value);
+                    });
+
+
+            frictionTextField = (TextField) root.lookup("#friction");
+            frictionTextField.textProperty()
+                    .addListener((observable, oldValue, newValue) -> {
+                        double value = Double.parseDouble(newValue);
+                        gameModel.setFrictionCoefficient(value);
+                    });
+
+        });
+
     }
 
     private void attachHandlers() {
@@ -121,7 +159,7 @@ public class EditorView implements IEditorView, Observer {
     @Override
     public void toggleGrid() {
         isGrided = !isGrided;
-        redrawCanvas();
+        refresh();
     }
 
     @Override
@@ -130,9 +168,10 @@ public class EditorView implements IEditorView, Observer {
         statusLabel.setText(message);
     }
 
+
     @Override
     public void update(Observable observable, Object o) {
-        redrawCanvas();
+        refresh();
     }
 
     private void drawGizmos() {

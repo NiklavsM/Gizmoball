@@ -10,7 +10,7 @@ public class Square extends Gizmo {
     }
 
     public Square(double x, double y, String id) {
-        super(x, y, x+1, y+1, id);
+        super(x, y, x + 1, y + 1, id);
     }
 
     @Override

@@ -4,7 +4,6 @@ import mit.physics.Circle;
 import mit.physics.Geometry;
 import mit.physics.LineSegment;
 import mit.physics.Vect;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import strath.cs308.gizmoball.model.gizmo.*;
 
 import java.util.*;
@@ -15,6 +14,8 @@ public class GameModel extends Observable implements IGameModel {
     private Map<String, Gizmo> gizmos;
     private Absorber absorberCollided;
     private int score;
+    private double frictionCoefficient;
+    private double gravityCoefficient;
 
     public GameModel() {
         setup();
@@ -22,8 +23,11 @@ public class GameModel extends Observable implements IGameModel {
 
     private void setup() {
         gizmos = new ConcurrentHashMap<>();
-        addGizmo(new Walls());
+        frictionCoefficient = 0.025;
+        gravityCoefficient = 25;
         score = 0;
+
+        addGizmo(new Walls());
     }
 
     public boolean addGizmo(IGizmo gizmo) {
@@ -144,15 +148,15 @@ public class GameModel extends Observable implements IGameModel {
 
     private void applyForces(Vect velocity, double time, Ball ball) {
         Vect velocityAfterFriction;
-        Vect gravity;
+        Vect gravity = new Vect(0.0, gravityCoefficient * time);
 
-        gravity = new Vect(0.0, 25 * time);
         // Vnew = Vold * (1 - mu * delta_t - mu2 * |Vold| * delta_t).
         velocityAfterFriction = new Vect(velocity.angle(),
-                velocity.length() * (1 - (0.025 * time) - (0.025 * velocity.length() * time)));
+                velocity.length() * (1 - (frictionCoefficient * time) - (frictionCoefficient * velocity.length() * time)));
         ball.setVelocity(velocityAfterFriction.plus(gravity));
 
     }
+
 
     private void shootOutAbsorbedBall() {
         getAbsorbers().forEach(absorber -> {
@@ -249,6 +253,26 @@ public class GameModel extends Observable implements IGameModel {
 
         setChanged();
         notifyObservers();
+    }
+
+    @Override
+    public double getFrictionCoefficient() {
+        return frictionCoefficient;
+    }
+
+    @Override
+    public void setFrictionCoefficient(double frictionCoefficient) {
+        this.frictionCoefficient = frictionCoefficient;
+    }
+
+    @Override
+    public double getGravityCoefficient() {
+        return gravityCoefficient;
+    }
+
+    @Override
+    public void setGravityCoefficient(double gravityCoefficient) {
+        this.gravityCoefficient = gravityCoefficient;
     }
 
     public void reset() {

@@ -18,7 +18,7 @@ public class GizmoFactory implements IGizmoFactory {
             case BALL:
                 return new Ball(x, y, id);
             case ABSORBER:
-                return new Absorber(x, y, x +1, y +1, id);
+                return new Absorber(x, y, x + 1, y + 1, id);
             case LEFT_FLIPPER:
                 return new Flipper(x, y, Flipper.Orientation.LEFT, id);
             case RIGHT_FLIPPER:

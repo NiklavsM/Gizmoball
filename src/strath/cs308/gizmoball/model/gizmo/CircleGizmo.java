@@ -5,7 +5,7 @@ import mit.physics.Circle;
 public class CircleGizmo extends Gizmo {
 
     public CircleGizmo(double x, double y, String id) {
-        super(x, y, x+1, y+1, id);
+        super(x, y, x + 1, y + 1, id);
 
         Circle circle = new Circle(x + 0.5, y + 0.5, 0.5);
         rotatingPoint = circle.getCenter();
