@@ -4,7 +4,6 @@ import mit.physics.Circle;
 import mit.physics.Geometry;
 import mit.physics.LineSegment;
 import mit.physics.Vect;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import strath.cs308.gizmoball.model.gizmo.*;
 
 import java.util.*;
@@ -27,7 +26,6 @@ public class GameModel extends Observable implements IGameModel {
         frictionCoEfficient = 0.025;
         gravityCoEfficient = 25;
         score = 0;
-
 
         addGizmo(new Walls());
     }

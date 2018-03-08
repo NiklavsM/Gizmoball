@@ -232,3 +232,11 @@ i.pause-menu-font {
 .card-title {
     -fx-font: 15px Arial;
 }
+
+
+/* Options */
+
+#gravity {
+    -fx-background-color: #37474F;
+    -fx-text-fill: #B0BEC5;
+}

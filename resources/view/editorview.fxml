@@ -156,8 +156,10 @@
                       alignment="CENTER">
                     <Label text="Gravity" />
                     <!--<TextField id="gravity"  fx:id="gravity" layoutX="115.0" layoutY="78.0" />-->
-                    <Slider fx:id="gravity" blockIncrement="0.1" layoutX="26.0" layoutY="32.0" majorTickUnit="0.5" max="1.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" />
-
+                    <TextField id="gravity" fx:id="gravity" prefWidth="60.0">
+                        0.0025
+                    </TextField>
+                    <!--<Slider fx:id="gravity" blockIncrement="0.1" layoutX="26.0" layoutY="32.0" majorTickUnit="0.5" max="1.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" />-->
                 </HBox>
 
 
@@ -166,9 +168,10 @@
                       spacing="5"
                       alignment="CENTER">
                     <Label text="Friction" />
-                    <!--<TextField id="friction"  fx:id="friction" layoutX="115.0" layoutY="78.0" />-->
-                    <!--<Slider fx:id="friction" blockIncrement="0.1" layoutX="26.0" layoutY="32.0" majorTickUnit="0.5" max="1.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" />-->
 
+                    <TextField id="gravity" fx:id="friction" prefWidth="60.0">
+                        25.0
+                    </TextField>
                 </HBox>
 
             </ToolBar>
