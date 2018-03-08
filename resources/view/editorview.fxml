@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.SVGPath?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             stylesheets="/styles/style.css"
@@ -298,11 +299,11 @@
                                       alignment="CENTER">
                                     <Button fx:id="addCircleMode">
                                         <graphic>
-                                            <Circle fill="#03a9f4"
+                                            <Circle fill="#8bc34a"
                                                     radius="12.5" />
                                         </graphic>
                                     </Button>
-                                    <Label text="Dot"
+                                    <Label text="Circle"
                                            styleClass="regular-font" />
                                 </VBox>
 
@@ -312,10 +313,12 @@
                                       alignment="CENTER">
                                     <Button fx:id="addTriangleMode">
                                         <graphic>
-                                            <ImageView fitHeight="25"
-                                                       fitWidth="25">
-                                                <Image url="/icons/tri.png" />
-                                            </ImageView>
+                                            <SVGPath content="M 0,0 L 17,0 L 0,17 L 0,0 z" fill="#03a9f8"></SVGPath>
+
+                                            <!--<ImageView fitHeight="25"-->
+                                                       <!--fitWidth="25">-->
+                                                <!--<Image url="/icons/tri.png" />-->
+                                            <!--</ImageView>-->
                                         </graphic>
                                     </Button>
                                     <Label text="Triangle"
@@ -375,7 +378,7 @@
                                       alignment="CENTER">
                                     <Button fx:id="addBallMode">
                                         <graphic>
-                                             <Circle radius="9" fill="#ff9800" />
+                                             <Circle radius="9" fill="#ffffff" />
                                         </graphic>
                                     </Button>
                                     <Label text="Ball"
