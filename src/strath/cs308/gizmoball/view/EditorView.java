@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
@@ -66,7 +67,7 @@ public class EditorView implements IEditorView, Observer {
 
         GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
 
-        graphicsContext.setStroke(Color.RED);
+        graphicsContext.setStroke(Color.WHITE);
         graphicsContext.setLineWidth(0.25);
         for (double i = 0; i <= canvas.getWidth(); i += (canvas.getWidth() / 20.0)) {
             graphicsContext.strokeLine(i, 0, i, canvas.getHeight());
@@ -123,6 +124,12 @@ public class EditorView implements IEditorView, Observer {
     }
 
     @Override
+    public void setStatus(String message) {
+        Label statusLabel = (Label) root.lookup("#statusbar");
+        statusLabel.setText(message);
+    }
+
+    @Override
     public void update(Observable observable, Object o) {
        redrawCanvas();
     }
@@ -130,6 +137,7 @@ public class EditorView implements IEditorView, Observer {
     private void drawGizmos() {
         GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
         gameModel.getGizmos().forEach(gizmoDrawer::drawGizmo);
+        gizmoDrawer.drawGizmo(gameModel.getGizmoBall());
     }
 
     private void drawBackground() {

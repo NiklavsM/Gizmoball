@@ -1,19 +1,12 @@
 package strath.cs308.gizmoball.controller.strategy;
 
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.scene.input.MouseEvent;
 import strath.cs308.gizmoball.model.GizmoFactory;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGizmoFactory;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.view.IEditorView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class AddGizmoStrategy implements EventHandler<MouseEvent> {
 
@@ -35,6 +28,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
 
         switch (mouseEvent.getEventType().getName()) {
             case "MOUSE_PRESSED":
+                editorView.setStatus("Gizmo Added");
                 onMousePressed(mouseEvent);
                 break;
             case "MOUSE_RELEASED":

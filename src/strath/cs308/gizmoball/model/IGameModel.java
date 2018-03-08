@@ -10,11 +10,13 @@ public interface IGameModel {
 
     Set<IGizmo> getGizmos();
 
+    IGizmo getGizmoBall();
+
     Optional<IGizmo> getGizmo(double x, double y);
 
     boolean addGizmo(IGizmo gizmo);
 
-    boolean remove(String id);
+    boolean removeGizmo(String id);
 
     void tick(double time);
 

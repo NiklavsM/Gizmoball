@@ -234,7 +234,7 @@
 
     <bottom>
         <HBox styleClass="statusbar">
-            <Label styleClass="statusbar-padding" />
+            <Label fx:id="statusbar" styleClass="statusbar-padding" />
         </HBox>
     </bottom>
 
@@ -284,8 +284,8 @@
                                            styleClass="regular-font" />
                                 </VBox>
 
-                                <VBox GridPane.rowIndex="1"
-                                      GridPane.columnIndex="0"
+                                <VBox GridPane.rowIndex="0"
+                                      GridPane.columnIndex="2"
                                       spacing="16"
                                       alignment="CENTER">
                                     <Button fx:id="addTriangleMode">
@@ -301,7 +301,7 @@
                                 </VBox>
 
                                 <VBox GridPane.rowIndex="1"
-                                      GridPane.columnIndex="1"
+                                      GridPane.columnIndex="0"
                                       spacing="16"
                                       alignment="CENTER">
                                     <Button fx:id="addAbsorberMode">
@@ -315,8 +315,8 @@
                                            styleClass="regular-font" />
                                 </VBox>
 
-                                <VBox GridPane.rowIndex="2"
-                                      GridPane.columnIndex="0"
+                                <VBox GridPane.rowIndex="1"
+                                      GridPane.columnIndex="1"
                                       spacing="16"
                                       alignment="CENTER">
                                     <Button fx:id="addLeftFlipperMode">
@@ -331,8 +331,8 @@
                                            styleClass="regular-font" />
                                 </VBox>
 
-                                <VBox GridPane.rowIndex="2"
-                                      GridPane.columnIndex="1"
+                                <VBox GridPane.rowIndex="1"
+                                      GridPane.columnIndex="2"
                                       spacing="16"
                                       alignment="CENTER">
                                     <Button fx:id="addRightFlipperMode">
@@ -347,7 +347,7 @@
                                            styleClass="regular-font" />
                                 </VBox>
 
-                                <VBox GridPane.rowIndex="3"
+                                <VBox GridPane.rowIndex="2"
                                       GridPane.columnIndex="0"
                                       spacing="16"
                                       alignment="CENTER">
@@ -366,6 +366,7 @@
                 </Tab>
                 <Tab closable="false"
                      text="Properties">
+
 
                 </Tab>
             </TabPane>

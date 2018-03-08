@@ -88,3 +88,12 @@ hs_err_pid*
 .classpath
 .project
 bin
+
+# gradle
+.gradle/
+build.gradle
+build/
+gradle/
+gradlew
+gradlew.bat
+settings.gradle

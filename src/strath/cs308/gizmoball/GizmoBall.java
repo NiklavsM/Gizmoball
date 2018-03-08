@@ -16,8 +16,9 @@ public class GizmoBall extends Application {
 
     @Override
     public void start(Stage stage) {
-        IGameModel gameModel = new GameModel();
+        stage.setX(100);
 
+        IGameModel gameModel = new GameModel();
         GameLoader gameLoader = new GameLoader(gameModel, getClass().getResourceAsStream("/alternative.gizmo"));
 
         try {

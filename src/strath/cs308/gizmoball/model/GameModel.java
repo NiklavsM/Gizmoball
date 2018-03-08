@@ -58,7 +58,7 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     @Override
-    public boolean remove(String id) {
+    public boolean removeGizmo(String id) {
         if (gizmos.remove(id) != null) {
 
             setChanged();
@@ -112,6 +112,8 @@ public class GameModel extends Observable implements IGameModel {
                 // Post collision velocity ...
                 applyForces(cd.getVelo(), cd.getTuc(), ball);
             }
+        }else{
+            moveMovables(time);
         }
         if (absorberCollided != null) {
             absorberCollided.absorbBall(ball);
@@ -226,6 +228,10 @@ public class GameModel extends Observable implements IGameModel {
             }
         }
         return null;
+    }
+
+    public IGizmo getGizmoBall(){
+       return getBall();
     }
 
     @Override

@@ -8,7 +8,6 @@ import strath.cs308.gizmoball.model.IGizmoFactory;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.view.IEditorView;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
@@ -67,7 +66,7 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
                 copyGizmo = gizmoFactory.createGizmo(selectedGizmo.get().getType(), pointX, pointY);
             }
 
-            gameModel.remove(selectedGizmo.get().getId());
+            gameModel.removeGizmo(selectedGizmo.get().getId());
             gameModel.addGizmo(copyGizmo);
             System.out.println(selectedGizmo.get().getType() + " gizmo moved to tile " + pointX+ " , "+pointY);
             selectedGizmo = Optional.empty();

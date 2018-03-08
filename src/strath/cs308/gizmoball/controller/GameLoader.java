@@ -123,7 +123,7 @@ public class GameLoader {
 
     private void nameCommands(String command, String name, Queue<String> tokens) throws IllegalAccessException {
         if (command.equals(DELETE_COMMAND)) {
-            gameModel.remove(name);
+            gameModel.removeGizmo(name);
             return;
         }
         if (command.equals(ROTATE_COMMAND)) {
