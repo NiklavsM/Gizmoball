@@ -4,6 +4,7 @@ import mit.physics.Circle;
 import mit.physics.Geometry;
 import mit.physics.LineSegment;
 import mit.physics.Vect;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import strath.cs308.gizmoball.model.gizmo.*;
 
 import java.util.*;
@@ -13,6 +14,7 @@ public class GameModel extends Observable implements IGameModel {
 
     private Map<String, Gizmo> gizmos;
     private Absorber absorberCollided;
+    private int score;
 
     public GameModel() {
         setup();
@@ -21,6 +23,7 @@ public class GameModel extends Observable implements IGameModel {
     private void setup() {
         gizmos = new ConcurrentHashMap<>();
         addGizmo(new Walls());
+        score = 0;
     }
 
     public boolean addGizmo(IGizmo gizmo) {
@@ -31,7 +34,6 @@ public class GameModel extends Observable implements IGameModel {
 
         Gizmo tempGizmo = (Gizmo) gizmo;
 
-        //re mi van itt ?
         for (double column = tempGizmo.getStartX(); column < tempGizmo.getEndX(); column++) {
             for (double row = tempGizmo.getStartY(); row < tempGizmo.getEndY(); row++) {
                 System.out.println(column + ":" + row);
@@ -84,6 +86,10 @@ public class GameModel extends Observable implements IGameModel {
         return Optional.empty();
     }
 
+    public int getScore() {
+        return score;
+    }
+
     public void tick(double time) {
         shootOutAbsorbedBall();
         Gizmo nextGizmo = null;
@@ -100,6 +106,7 @@ public class GameModel extends Observable implements IGameModel {
             } else {
                 // We've got a collision in tuc
                 nextGizmo = cd.getGizmo();
+                score += nextGizmo.getScoreValue();
                 ball.move(cd.getTuc());
                 moveMovables(cd.getTuc());
                 // Post collision velocity ...

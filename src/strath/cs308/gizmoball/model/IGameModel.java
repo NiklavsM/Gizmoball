@@ -23,4 +23,6 @@ public interface IGameModel {
     void rotate(String id);
 
     void reset();
+
+    int getScore();
 }

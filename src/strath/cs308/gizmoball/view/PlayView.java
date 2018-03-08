@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ToolBar;
+import javafx.scene.control.*;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
@@ -41,6 +38,7 @@ public class PlayView implements IPlayView, Observer {
 
         try {
             root = FXMLLoader.load(getClass().getResource("/view/plaview.fxml"));
+
             this.gameModel = gameModel;
             pauseMenu = (ToolBar) root.lookup("#pauseMenu");
             stackPane = (StackPane) root.lookup("#stackPane");
@@ -112,6 +110,7 @@ public class PlayView implements IPlayView, Observer {
         Platform.runLater(() -> {
             drawBackground();
             drawGizmos();
+            updateScore();
         });
     }
 
@@ -125,6 +124,11 @@ public class PlayView implements IPlayView, Observer {
     private void drawGizmos() {
         GizmoDrawer drawer = new GizmoDrawer(canvas);
         gameModel.getGizmos().forEach(drawer::drawGizmo);
+    }
+
+    private void updateScore() {
+        Label score = (Label) root.lookup("#score");
+        score.setText("Score :" + gameModel.getScore());
     }
 
     public boolean getCloseConFormation() {
