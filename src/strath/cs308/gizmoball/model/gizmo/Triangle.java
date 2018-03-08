@@ -8,8 +8,6 @@ public class Triangle extends Gizmo {
 
     public Triangle(double x, double y, String id) {
         super(x, y, x+1, y+1, id);
-
-        rotatingPoint = new Vect(x + 0.5, y + 0.5);
     }
 
     public Triangle(double x, double y) {
