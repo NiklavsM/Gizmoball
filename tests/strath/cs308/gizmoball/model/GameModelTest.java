@@ -16,7 +16,7 @@ class GameModelTest {
     void setup() {
         model = new GameModel();
         squareGizmo1 = new Square(1, 1, "square1");
-        dummyGizmo = new Square(99,99);
+        dummyGizmo = new Square(99, 99);
     }
 
     @Test
@@ -46,10 +46,11 @@ class GameModelTest {
         model.addGizmo(squareGizmo1);
         assertEquals(squareGizmo1, model.getGizmo(1, 1).orElse(dummyGizmo));
     }
+
     @Test
     void getGizmo_GetNonExistingGizmo_EqualsTrue() {
 
-        assertEquals(dummyGizmo,model.getGizmo(1,1).orElse(dummyGizmo)); // Better way?? TODO
+        assertEquals(dummyGizmo, model.getGizmo(1, 1).orElse(dummyGizmo)); // Better way?? TODO
     }
 
     @Test

@@ -22,7 +22,7 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
     }
 
     public Flipper(double x, double y, Orientation orientation, String id) {
-        super(x, y, x+2, y+2, id);
+        super(x, y, x + 2, y + 2, id);
 
         double radius = 0.25;
         this.orientation = orientation;
@@ -187,10 +187,21 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
 
     }
 
+    @Override
+    public void rotate() {
+        super.rotate();
+
+        startPoint = circles.get(0);
+        endPoint = circles.get(1);
+        Iterator<LineSegment> lineIt = lines.iterator();
+        connector1 = lineIt.next();
+        connector2 = lineIt.next();
+    }
+
+
     enum Movement {
         BACK, FORWARD, BOTTOM, TOP
     }
-
 
     public enum Orientation {
         LEFT(1), RIGHT(-1);
@@ -205,15 +216,4 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
             return mult;
         }
     }
-
-    @Override
-    public void rotate(){
-        super.rotate();
-
-        startPoint = circles.get(0);
-        endPoint = circles.get(1);
-        Iterator<LineSegment> lineIt = lines.iterator();
-        connector1 = lineIt.next(); 
-        connector2 = lineIt.next(); 
-   }
 }

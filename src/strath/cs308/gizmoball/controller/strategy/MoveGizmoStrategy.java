@@ -27,7 +27,7 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent mouseEvent) {
 
-        if (mouseEvent.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
+        if (mouseEvent.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
             if (selectedGizmo.isPresent()) {
                 moveTo(mouseEvent);
             } else {
@@ -68,7 +68,7 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
 
             gameModel.removeGizmo(selectedGizmo.get().getId());
             gameModel.addGizmo(copyGizmo);
-            System.out.println(selectedGizmo.get().getType() + " gizmo moved to tile " + pointX+ " , "+pointY);
+            System.out.println(selectedGizmo.get().getType() + " gizmo moved to tile " + pointX + " , " + pointY);
             selectedGizmo = Optional.empty();
         } else {
             System.out.println("Tile " + pointX + " , " + pointY + " is already occupied by a " + existingGizmo.get().getType() + " gizmo.");

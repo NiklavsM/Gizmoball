@@ -6,10 +6,6 @@ import mit.physics.LineSegment;
 import mit.physics.Vect;
 import strath.cs308.gizmoball.model.ITriggerable;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-
 public class Absorber extends Gizmo implements ITriggerable {
 
     private Ball ballAbsorbed;
@@ -59,7 +55,7 @@ public class Absorber extends Gizmo implements ITriggerable {
     public void trigger(String triggerEvent) {
         if (triggerEvent.toUpperCase().equals("KEY_PRESSED_J")) {
             ballToShoot = ballAbsorbed;
-            if(ballToShoot !=null) {
+            if (ballToShoot != null) {
                 ballToShoot.setStopped(false);
                 ballToShoot.setX(getEndX() - 0.25);
                 ballToShoot.setY(getStartY() - 0.25);

@@ -114,7 +114,6 @@ public class EditorView implements IEditorView, Observer {
     }
 
     private void attachHandlers() {
-        System.out.println("ATTACHED HANDLER");
         Platform.runLater(() -> {
             EventHandler topToolbarHandler = new TopToolbarEventHandler(gameModel, this);
             root.lookupAll(".top-toolbar-button")
