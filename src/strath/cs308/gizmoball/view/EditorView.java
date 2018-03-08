@@ -131,13 +131,13 @@ public class EditorView implements IEditorView, Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-       redrawCanvas();
+        redrawCanvas();
     }
 
     private void drawGizmos() {
         GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
         gameModel.getGizmos().forEach(gizmoDrawer::drawGizmo);
-        gizmoDrawer.drawGizmo(gameModel.getGizmoBall());
+        if (gameModel.getGizmoBall() != null) gizmoDrawer.drawGizmo(gameModel.getGizmoBall());
     }
 
     private void drawBackground() {

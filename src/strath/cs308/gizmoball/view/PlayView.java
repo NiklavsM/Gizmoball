@@ -125,7 +125,7 @@ public class PlayView implements IPlayView, Observer {
     private void drawGizmos() {
         GizmoDrawer drawer = new GizmoDrawer(canvas);
         gameModel.getGizmos().forEach(drawer::drawGizmo);
-        drawer.drawGizmo(gameModel.getGizmoBall());
+        if (gameModel.getGizmoBall() != null) drawer.drawGizmo(gameModel.getGizmoBall());
     }
 
     public boolean getCloseConFormation() {
