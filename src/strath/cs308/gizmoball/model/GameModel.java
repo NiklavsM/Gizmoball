@@ -106,7 +106,17 @@ public class GameModel extends Observable implements IGameModel {
             } else {
                 // We've got a collision in tuc
                 nextGizmo = cd.getGizmo();
-                score += nextGizmo.getScoreValue();
+
+                // grant 1 point if any gizmo is hit apart from the absorber
+                if (!nextGizmo.getType().equals(IGizmo.Type.ABSORBER)) {
+                    score += nextGizmo.getScoreValue();
+                } else {
+                    // subtract 10 points (if possible) when ball is absorbed
+                    if (score >= 10)
+                        score -= 10;
+                    else
+                        score = 0;
+                }
                 ball.move(cd.getTuc());
                 moveMovables(cd.getTuc());
                 // Post collision velocity ...
