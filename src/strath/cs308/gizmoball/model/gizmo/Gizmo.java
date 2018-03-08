@@ -126,7 +126,7 @@ public abstract class Gizmo implements IGizmo {
     public int getScoreValue() {
         switch (this.getType()) {
             // no points are granted for flipper collisions
-            case RIGHT_FLIPPER: case LEFT_FLIPPER:
+            case RIGHT_FLIPPER: case LEFT_FLIPPER: case BALL:
                 return 0;
             // deduct 10 points when ball is absorbed
             case ABSORBER:
