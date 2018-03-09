@@ -1,14 +1,9 @@
 package strath.cs308.gizmoball.model.gizmo;
 
 import mit.physics.Circle;
-import mit.physics.LineSegment;
 import mit.physics.Vect;
-import strath.cs308.gizmoball.model.IMovable;
 
-import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
 
 public class Ball extends Gizmo {
 
@@ -22,7 +17,7 @@ public class Ball extends Gizmo {
     }
 
     public Ball(double x, double y, String id) {
-        super(x-0.25, y-0.25, x+0.25, y+0.25, id);
+        super(x - 0.25, y - 0.25, x + 0.25, y + 0.25, id);
     }
 
     public Vect getVelocity() {
@@ -63,7 +58,7 @@ public class Ball extends Gizmo {
         this.stopped = stopped;
     }
 
-    private void updateCircles(){
+    private void updateCircles() {
         circles = new LinkedList<>();
         circles.add(circle);
 

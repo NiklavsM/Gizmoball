@@ -2,12 +2,11 @@ package strath.cs308.gizmoball.model.gizmo;
 
 import mit.physics.Circle;
 import mit.physics.LineSegment;
-import mit.physics.Vect;
 
 public class Triangle extends Gizmo {
 
     public Triangle(double x, double y, String id) {
-        super(x, y, x+1, y+1, id);
+        super(x, y, x + 1, y + 1, id);
     }
 
     public Triangle(double x, double y) {

@@ -19,7 +19,6 @@ public class IngameKeyEventHandler implements EventHandler<KeyEvent> {
 //        if (keyEvent.getText().toUpperCase().equals("J")) {
 //            gameModel.shootOut();
 //        }
-
         gameModel.getGizmos()
                 .stream()
                 .filter(ITriggerable.class::isInstance)

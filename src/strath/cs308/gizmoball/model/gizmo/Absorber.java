@@ -60,7 +60,7 @@ public class Absorber extends Gizmo implements ITriggerable {
     public void trigger(String triggerEvent) {
         if (triggerEvent.toUpperCase().equals("KEY_PRESSED_J")) {
             ballToShoot = ballsAbsorbed.poll();
-            if(ballToShoot !=null) {
+            if(ballToShoot != null) {
                 ballToShoot.setStopped(false);
                 ballToShoot.setX(getEndX() - 0.25);
                 ballToShoot.setY(getStartY() - 0.25);
