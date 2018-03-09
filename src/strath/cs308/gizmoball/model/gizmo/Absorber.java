@@ -12,11 +12,12 @@ import java.util.Queue;
 
 public class Absorber extends Gizmo implements ITriggerable {
 
-    private Ball ballAbsorbed;
+    private Queue<Ball> ballsAbsorbed;
     private Ball ballToShoot;
 
     public Absorber(double x1, double y1, double x2, double y2, String id) {
         super(x1, y1, x2, y2, id);
+        ballsAbsorbed = new LinkedList<>();
     }
 
     public Absorber(double x1, double y1, double x2, double y2) {
@@ -41,7 +42,7 @@ public class Absorber extends Gizmo implements ITriggerable {
         ball.setVelocity(new Vect(0, -50));
         ball.setStopped(true);
         System.out.println("ball.getCircle().getCenter().y() " + ball.getCircle().getCenter().y());
-        ballAbsorbed = ball;
+        ballsAbsorbed.add(ball);
     }
 
     public Ball ballToShoot() {
@@ -58,13 +59,12 @@ public class Absorber extends Gizmo implements ITriggerable {
     @Override
     public void trigger(String triggerEvent) {
         if (triggerEvent.toUpperCase().equals("KEY_PRESSED_J")) {
-            ballToShoot = ballAbsorbed;
+            ballToShoot = ballsAbsorbed.poll();
             if(ballToShoot !=null) {
                 ballToShoot.setStopped(false);
                 ballToShoot.setX(getEndX() - 0.25);
                 ballToShoot.setY(getStartY() - 0.25);
             }
-            ballAbsorbed = null;
             System.out.println("J " + triggerEvent);
         }
 

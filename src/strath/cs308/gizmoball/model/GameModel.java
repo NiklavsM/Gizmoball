@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class GameModel extends Observable implements IGameModel {
 
     private Map<String, Gizmo> gizmos;
-    private Absorber absorberCollided;
+    private Map<String, Absorber> absorberCollided;
     private int score;
     private double frictionCoEfficient;
     private double gravityCoEfficient;
@@ -23,6 +23,7 @@ public class GameModel extends Observable implements IGameModel {
 
     private void setup() {
         gizmos = new ConcurrentHashMap<>();
+        absorberCollided = new ConcurrentHashMap<>();
         frictionCoEfficient = 0.025;
         gravityCoEfficient = 25;
         score = 0;
@@ -96,12 +97,12 @@ public class GameModel extends Observable implements IGameModel {
 
     public void tick(double time) {
         shootOutAbsorbedBall();
-        Gizmo nextGizmo = null;
+        Gizmo nextGizmo;
         Set<Ball> balls = getBalls();
         double timeUntilNextCollision = timeUntilNextCollision(balls);
 
-
         for (Ball ball : balls) {
+            nextGizmo = null;
             if (ball != null && !ball.isStopped()) {
                 CollisionDetails cd = timeUntilCollision(ball);
                 if (cd.getTuc() > time) {
@@ -122,17 +123,17 @@ public class GameModel extends Observable implements IGameModel {
                     // Post collision velocity ...
                     applyForces(cd.getVelo(), cd.getTuc(), ball);
                 }
-            }
-            if (absorberCollided != null) {
-                absorberCollided.absorbBall(ball);
-                absorberCollided = null;
+                if (absorberCollided.containsKey(ball.getId())) {
+                    absorberCollided.get(ball.getId()).absorbBall(ball);
+                    absorberCollided.remove(ball.getId());
+                }
             }
             // Notify observers ... redraw updated view
             this.setChanged();
             this.notifyObservers();
 
             if (nextGizmo instanceof Absorber) {
-                absorberCollided = ((Absorber) nextGizmo);
+                absorberCollided.put(ball.getId(), (Absorber) gizmos.get(nextGizmo.getId()));
             }
         }
         if (timeUntilNextCollision > time) {
@@ -140,8 +141,6 @@ public class GameModel extends Observable implements IGameModel {
         } else {
             moveMovables(timeUntilNextCollision);
         }
-
-
 
     }
 
