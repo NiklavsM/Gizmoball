@@ -92,7 +92,6 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     public void tick(double time) {
-        shootOutAbsorbedBall();
         Gizmo nextGizmo;
         Set<Ball> balls = getBalls();
         double timeUntilNextCollision = timeUntilNextCollision(balls);
@@ -143,9 +142,11 @@ public class GameModel extends Observable implements IGameModel {
     private double timeUntilNextCollision(Set<Ball> balls) {
         double smallestTime = Double.MAX_VALUE;
         for (Ball ball : balls) {
-            CollisionDetails cd = timeUntilCollision(ball);
-            if (smallestTime > cd.getTuc()) {
-                smallestTime = cd.getTuc();
+            if (!ball.isStopped()) {
+                CollisionDetails cd = timeUntilCollision(ball);
+                if (smallestTime > cd.getTuc()) {
+                    smallestTime = cd.getTuc();
+                }
             }
         }
         return smallestTime;
@@ -169,16 +170,6 @@ public class GameModel extends Observable implements IGameModel {
                 velocity.length() * (1 - (frictionCoefficient * time) - (frictionCoefficient * velocity.length() * time)));
         ball.setVelocity(velocityAfterFriction.plus(gravity));
 
-    }
-
-
-    private void shootOutAbsorbedBall() {
-        getAbsorbers().forEach(absorber -> {
-            Ball ballTemp = absorber.ballToShoot();
-            if (ballTemp != null) {
-                gizmos.put(ballTemp.getId(), ballTemp);
-            }
-        });
     }
 
     private CollisionDetails timeUntilCollision(Ball ball) {
@@ -236,12 +227,6 @@ public class GameModel extends Observable implements IGameModel {
         }
 
         return new CollisionDetails(shortestTime, newVelo, nextGizmo, ball);
-    }
-
-    private List<Absorber> getAbsorbers() {
-        List<Absorber> absorbers = new LinkedList<>();
-        gizmos.values().stream().filter(gizmo -> gizmo instanceof Absorber).forEach(absorber -> absorbers.add((Absorber) absorber));
-        return absorbers;
     }
 
     private Set<Ball> getBalls() {
