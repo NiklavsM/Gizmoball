@@ -6,13 +6,15 @@ import mit.physics.LineSegment;
 import mit.physics.Vect;
 import strath.cs308.gizmoball.model.ITriggerable;
 
+import java.util.Stack;
+
 public class Absorber extends Gizmo implements ITriggerable {
 
-    private Ball ballAbsorbed;
-    private Ball ballToShoot;
+    private Stack<Ball> ballsAbsorbed;
 
     public Absorber(double x1, double y1, double x2, double y2, String id) {
         super(x1, y1, x2, y2, id);
+        ballsAbsorbed = new Stack<>();
     }
 
     public Absorber(double x1, double y1, double x2, double y2) {
@@ -32,18 +34,20 @@ public class Absorber extends Gizmo implements ITriggerable {
     }
 
     public void absorbBall(Ball ball) {
-        ball.setX(getEndX() - 0.25);
-        ball.setY(getEndY() - 0.25);
+        ballsAbsorbed.add(ball);
+        ball.setX(getEndX() - 0.25 - ((ballsAbsorbed.size() - 1) * 0.5) % (x2 - x1)); // makes sure balls sit in the absorber nicely
+        ball.setY(getEndY() - 0.25 - (((ballsAbsorbed.size() - 1) / (int) ((x2 - x1) * 2)) * 0.5) % (y2 - y1));
         ball.setVelocity(new Vect(0, -50));
         ball.setStopped(true);
         System.out.println("ball.getCircle().getCenter().y() " + ball.getCircle().getCenter().y());
-        ballAbsorbed = ball;
     }
 
-    public Ball ballToShoot() {
-        Ball temp = ballToShoot;
-        ballToShoot = null;
-        return temp;
+    private void shootTheBallOut(Ball ball) {
+
+        ball.setStopped(false);
+        ball.setX(getEndX() - 0.25);
+        ball.setY(getStartY() - 0.25);
+
     }
 
     @Override
@@ -54,13 +58,9 @@ public class Absorber extends Gizmo implements ITriggerable {
     @Override
     public void trigger(String triggerEvent) {
         if (triggerEvent.toUpperCase().equals("KEY_PRESSED_J")) {
-            ballToShoot = ballAbsorbed;
-            if (ballToShoot != null) {
-                ballToShoot.setStopped(false);
-                ballToShoot.setX(getEndX() - 0.25);
-                ballToShoot.setY(getStartY() - 0.25);
+            if (!ballsAbsorbed.isEmpty()) {
+                shootTheBallOut(ballsAbsorbed.pop());
             }
-            ballAbsorbed = null;
             System.out.println("J " + triggerEvent);
         }
 

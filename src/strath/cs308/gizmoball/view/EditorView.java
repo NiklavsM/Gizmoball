@@ -177,7 +177,7 @@ public class EditorView implements IEditorView, Observer {
     private void drawGizmos() {
         GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
         gameModel.getGizmos().forEach(gizmoDrawer::drawGizmo);
-        gameModel.getGizmoBall().ifPresent(gizmoDrawer::drawGizmo);
+        gameModel.getGizmoBalls().forEach(gizmoDrawer::drawGizmo);
     }
 
     private void drawBackground() {

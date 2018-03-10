@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class GameModel extends Observable implements IGameModel {
 
     private Map<String, Gizmo> gizmos;
-    private Absorber absorberCollided;
+    private Map<String, Absorber> absorberCollided;
     private int score;
     private double frictionCoefficient;
     private double gravityCoefficient;
@@ -23,6 +23,7 @@ public class GameModel extends Observable implements IGameModel {
 
     private void setup() {
         gizmos = new ConcurrentHashMap<>();
+        absorberCollided = new ConcurrentHashMap<>();
         frictionCoefficient = 0.025;
         gravityCoefficient = 25;
         score = 0;
@@ -46,10 +47,6 @@ public class GameModel extends Observable implements IGameModel {
                     return false;
                 }
             }
-        }
-
-        if (gizmo.getType().equals(IGizmo.Type.BALL) && getBall() != null) {
-            return false;
         }
 
         gizmos.put(gizmo.getId(), (Gizmo) gizmo);
@@ -95,48 +92,66 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     public void tick(double time) {
-        shootOutAbsorbedBall();
-        Gizmo nextGizmo = null;
-        Ball ball = getBall();
+        Gizmo nextGizmo;
+        Set<Ball> balls = getBalls();
+        double timeUntilNextCollision = timeUntilNextCollision(balls);
 
-        if (ball != null && !ball.isStopped()) {
-            CollisionDetails cd = timeUntilCollision(ball);
-            if (cd.getTuc() > time) {
-                // No collision ...
-                ball.move(time);
-                moveMovables(time);
-                applyForces(ball.getVelocity(), time, ball);
+        for (Ball ball : balls) {
+            nextGizmo = null;
+            if (ball != null && !ball.isStopped()) {
+                CollisionDetails cd = timeUntilCollision(ball);
+                if (cd.getTuc() > time) {
+                    // No collision ...
+                    ball.move(time);
+                    applyForces(ball.getVelocity(), time, ball);
 
-            } else {
-                // We've got a collision in tuc
-                nextGizmo = cd.getGizmo();
+                } else {
+                    // We've got a collision in tuc
+                    nextGizmo = cd.getGizmo();
 
-                score += nextGizmo.getScoreValue();
-                // don't allow negative score values
-                if (score < 0)
-                    score = 0;
+                    score += nextGizmo.getScoreValue();
+                    // don't allow negative score values
+                    if (score < 0)
+                        score = 0;
 
-                ball.move(cd.getTuc());
-                moveMovables(cd.getTuc());
-                // Post collision velocity ...
-                applyForces(cd.getVelo(), cd.getTuc(), ball);
+                    ball.move(cd.getTuc());
+                    // Post collision velocity ...
+                    applyForces(cd.getVelo(), cd.getTuc(), ball);
+                }
+                if (absorberCollided.containsKey(ball.getId())) {
+                    absorberCollided.get(ball.getId()).absorbBall(ball);
+                    absorberCollided.remove(ball.getId());
+                }
             }
-        } else {
-            moveMovables(time);
-        }
-        if (absorberCollided != null) {
-            absorberCollided.absorbBall(ball);
-            absorberCollided = null;
-        }
-        // Notify observers ... redraw updated view
-        this.setChanged();
-        this.notifyObservers();
+            // Notify observers ... redraw updated view
+            this.setChanged();
+            this.notifyObservers();
 
-        if (nextGizmo instanceof Absorber) {
-            absorberCollided = ((Absorber) nextGizmo);
+            if (nextGizmo instanceof Absorber) {
+                absorberCollided.put(ball.getId(), (Absorber) gizmos.get(nextGizmo.getId()));
+            }
+        }
+        if (timeUntilNextCollision > time) {
+            moveMovables(time);
+        } else {
+            moveMovables(timeUntilNextCollision);
         }
 
     }
+
+    private double timeUntilNextCollision(Set<Ball> balls) {
+        double smallestTime = Double.MAX_VALUE;
+        for (Ball ball : balls) {
+            if (!ball.isStopped()) {
+                CollisionDetails cd = timeUntilCollision(ball);
+                if (smallestTime > cd.getTuc()) {
+                    smallestTime = cd.getTuc();
+                }
+            }
+        }
+        return smallestTime;
+    }
+
 
     private void moveMovables(Double time) {
         gizmos.values()
@@ -155,16 +170,6 @@ public class GameModel extends Observable implements IGameModel {
                 velocity.length() * (1 - (frictionCoefficient * time) - (frictionCoefficient * velocity.length() * time)));
         ball.setVelocity(velocityAfterFriction.plus(gravity));
 
-    }
-
-
-    private void shootOutAbsorbedBall() {
-        getAbsorbers().forEach(absorber -> {
-            Ball ballTemp = absorber.ballToShoot();
-            if (ballTemp != null) {
-                gizmos.put(ballTemp.getId(), ballTemp);
-            }
-        });
     }
 
     private CollisionDetails timeUntilCollision(Ball ball) {
@@ -221,30 +226,23 @@ public class GameModel extends Observable implements IGameModel {
             }
         }
 
-        return new CollisionDetails(shortestTime, newVelo, nextGizmo);
+        return new CollisionDetails(shortestTime, newVelo, nextGizmo, ball);
     }
 
-    private List<Absorber> getAbsorbers() {
-        List<Absorber> absorbers = new LinkedList<>();
-        gizmos.values().stream().filter(gizmo -> gizmo instanceof Absorber).forEach(absorber -> absorbers.add((Absorber) absorber));
-        return absorbers;
-    }
-
-    private Ball getBall() {
+    private Set<Ball> getBalls() {
+        Set<Ball> balls = new HashSet<>();
         for (Gizmo gizmo : gizmos.values()) {
             if (gizmo instanceof Ball) {
-                return (Ball) gizmo;
+                balls.add((Ball) gizmo);
             }
         }
-        return null;
+        return balls;
     }
 
-    public Optional<IGizmo> getGizmoBall() {
-        IGizmo ball = getBall();
-        if (ball != null) {
-            return Optional.of(ball);
-        }
-        return Optional.empty();
+    public Set<IGizmo> getGizmoBalls() {
+        Set<IGizmo> balls = new HashSet<>();
+        balls.addAll(getBalls());
+        return balls;
     }
 
     @Override
