@@ -86,8 +86,8 @@ public class EditorView implements IEditorView, Observer {
         frictionTextField.setText(String.valueOf(gameModel.getFrictionCoefficient()));
 
 
-        if (selectedGizmo instanceof Ball) {
-        System.out.println("A " + selectedGizmo.getType() + " at " + selectedGizmo.getStartX() + ", " + selectedGizmo.getStartY());
+        if (selectedGizmo != null && selectedGizmo.getType() == IGizmo.Type.BALL) {
+            System.out.println("A " + selectedGizmo.getType() + " at " + selectedGizmo.getStartX() + ", " + selectedGizmo.getStartY());
             Vect vect = ((Ball) selectedGizmo).getVelocity();
             ballXGravityTextField.setText(String.valueOf(vect.x()));
             ballYGravityTextField.setText(String.valueOf(vect.y()));
