@@ -34,12 +34,14 @@ public class Absorber extends Gizmo implements ITriggerable {
     }
 
     public void absorbBall(Ball ball) {
-        ballsAbsorbed.add(ball);
-        ball.setX(getEndX() - 0.25 - ((ballsAbsorbed.size() - 1) * 0.5) % (x2 - x1)); // makes sure balls sit in the absorber nicely
-        ball.setY(getEndY() - 0.25 - (((ballsAbsorbed.size() - 1) / (int) ((x2 - x1) * 2)) * 0.5) % (y2 - y1));
-        ball.setVelocity(new Vect(0, -50));
-        ball.setStopped(true);
-        System.out.println("ball.getCircle().getCenter().y() " + ball.getCircle().getCenter().y());
+        if(haveSpace()) {
+            ballsAbsorbed.add(ball);
+            ball.setX(getEndX() - 0.25 - ((ballsAbsorbed.size() - 1) * 0.5) % (x2 - x1)); // makes sure balls sit in the absorber nicely
+            ball.setY(getEndY() - 0.25 - (((ballsAbsorbed.size() - 1) / (int) ((x2 - x1) * 2)) * 0.5) % (y2 - y1));
+            ball.setVelocity(new Vect(0, -50));
+            ball.setStopped(true);
+            System.out.println("ball.getCircle().getCenter().y() " + ball.getCircle().getCenter().y());
+        }
     }
 
     private void shootTheBallOut(Ball ball) {
@@ -64,6 +66,11 @@ public class Absorber extends Gizmo implements ITriggerable {
             System.out.println("J " + triggerEvent);
         }
 
+    }
+
+    private boolean haveSpace() {
+        double size = ((x2 - x1) * 2) * ((y2 - y1) * 2);
+        return (size > ballsAbsorbed.size());
     }
 
     @Override
