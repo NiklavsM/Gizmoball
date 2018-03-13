@@ -33,12 +33,14 @@ public class Absorber extends AbstractTriggerAndTriggarableGizmo implements IAct
     }
 
     public void absorbBall(Ball ball) {
-        ballsAbsorbed.add(ball);
-        ball.setX(getEndX() - 0.25 - ((ballsAbsorbed.size() - 1) * 0.5) % (x2 - x1)); // makes sure balls sit in the absorber nicely
-        ball.setY(getEndY() - 0.25 - (((ballsAbsorbed.size() - 1) / (int) ((x2 - x1) * 2)) * 0.5) % (y2 - y1));
-        ball.setVelocity(new Vect(0, -50));
-        ball.setStopped(true);
-        System.out.println("ball.getCircle().getCenter().y() " + ball.getCircle().getCenter().y());
+        if(haveSpace()) {
+            ballsAbsorbed.add(ball);
+            ball.setX(getEndX() - 0.25 - ((ballsAbsorbed.size() - 1) * 0.5) % (x2 - x1)); // makes sure balls sit in the absorber nicely
+            ball.setY(getEndY() - 0.25 - (((ballsAbsorbed.size() - 1) / (int) ((x2 - x1) * 2)) * 0.5) % (y2 - y1));
+            ball.setVelocity(new Vect(0, -50));
+            ball.setStopped(true);
+            System.out.println("ball.getCircle().getCenter().y() " + ball.getCircle().getCenter().y());
+        }
     }
 
     private void shootTheBallOut(Ball ball) {
@@ -53,11 +55,6 @@ public class Absorber extends AbstractTriggerAndTriggarableGizmo implements IAct
     }
 
     @Override
-    public void rotate() {
-        System.out.println("absorber is not rotatable!");
-    }
-
-    @Override
     public void doAction(Object args) {
         String triggerEvent = (String) args;
         if (triggerEvent.toUpperCase().equals("KEY_PRESSED_J")) {
@@ -68,4 +65,13 @@ public class Absorber extends AbstractTriggerAndTriggarableGizmo implements IAct
         }
     }
 
+    private boolean haveSpace() {
+        double size = ((x2 - x1) * 2) * ((y2 - y1) * 2);
+        return (size > ballsAbsorbed.size());
+    }
+
+    @Override
+    public void rotate() {
+        System.out.println("absorber is not rotatable!");
+    }
 }

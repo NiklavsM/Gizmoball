@@ -2,11 +2,15 @@ package strath.cs308.gizmoball.controller.strategy;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import strath.cs308.gizmoball.model.Dot;
 import strath.cs308.gizmoball.model.GizmoFactory;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGizmoFactory;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.view.IEditorView;
+
+import java.util.HashSet;
+import java.util.Optional;
 
 public class AddGizmoStrategy implements EventHandler<MouseEvent> {
 
@@ -31,6 +35,9 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
                 editorView.setStatus("Gizmo Added");
                 onMousePressed(mouseEvent);
                 break;
+            case "DRAG_DETECTED":
+                onMouseDragged(mouseEvent);
+                break;
             case "MOUSE_RELEASED":
                 onMouseReleased(mouseEvent);
                 break;
@@ -41,6 +48,14 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
     private void onMousePressed(MouseEvent mouseEvent) {
         pressX = mouseEvent.getX();
         pressY = mouseEvent.getY();
+    }
+
+    private void onMouseDragged(MouseEvent mouseEvent) {
+        System.out.println("DRAG DETECED");
+        double startX = Math.floor(pressX / editorView.getPixelRatioFor(20.0));
+        double startY = Math.floor(pressY / editorView.getPixelRatioFor(20.0));
+        double endX = Math.floor(mouseEvent.getX() / editorView.getPixelRatioFor(20.0));
+        double endY = Math.floor(mouseEvent.getY() / editorView.getPixelRatioFor(20.0));
     }
 
     private void onMouseReleased(MouseEvent mouseEvent) {
@@ -84,13 +99,13 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
 
             gameModel.addGizmo(gizmo);
         } else if (!gizmoType.equals(IGizmo.Type.BALL)) {
-            IGizmo gizmo;
-            for (double row = startX; row <= endX; row++) {
-                for (double column = startY; column <= endY; column++) {
-                    gizmo = gizmoFactory.createGizmo(gizmoType, row, column);
-                    gameModel.addGizmo(gizmo);
-                }
-            }
+//            IGizmo gizmo;
+//            for (double row = startX; row <= endX; row++) {
+//                for (double column = startY; column <= endY; column++) {
+//                    gizmo = gizmoFactory.createGizmo(gizmoType, row, column);
+//                    gameModel.addGizmo(gizmo);
+//                }
+//            }
         }
 
     }
@@ -103,10 +118,15 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         if (!gizmoType.equals(IGizmo.Type.BALL)) {
             x = Math.floor(x);
             y = Math.floor(y);
+        } else {
+            x = x + 0.25;
+            y = y + 0.25;
         }
 
         IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, x, y);
-        gameModel.addGizmo(gizmo);
+        Optional<IGizmo> existingGizmo = gameModel.getGizmo(x, y);
+        if (existingGizmo.equals(Optional.empty())) {
+            gameModel.addGizmo(gizmo);
+        }
     }
-
 }

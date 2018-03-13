@@ -132,7 +132,7 @@ public class PlayView implements IPlayView, Observer {
 
     private void updateScore() {
         Label score = (Label) root.lookup("#score");
-        score.setText("Score : " + gameModel.getScore());
+        score.setText("Score: " + gameModel.getScore());
     }
 
     public boolean getCloseConFormation() {
