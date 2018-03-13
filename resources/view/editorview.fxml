@@ -391,6 +391,34 @@
                 <Tab closable="false"
                      text="Properties">
 
+                    <VBox spacing="16"
+                          styleClass="default-padding, GizmoPane">
+                        <Label fx:id="gizmotype" text="Gizmo"/>
+
+                        <VBox spacing="5">
+                            <Label text="ID"/>
+                            <TextField fx:id="gizmoname" styleClass="game-option-textbox" prefWidth="100.0">
+                                0.002
+                            </TextField>
+
+
+                            <Label text="Colour"/>
+                            <TextField fx:id="gizmo-colour" styleClass="game-option-textbox" prefWidth="100.0">
+                                0.002
+                            </TextField>
+
+                            <!--<ComboBox fx:id="clour" id="comboId" prefWidth="100.0">-->
+                                <!--<items>-->
+                                    <!--<FXCollections fx:factory="observableArrayList">-->
+                                        <!--<String fx:value="Item 1"/>-->
+                                        <!--<String fx:value="Item 2"/>-->
+                                        <!--<String fx:value="Item 3"/>-->
+                                    <!--</FXCollections>-->
+                                <!--</items>-->
+                            <!--</ComboBox>-->
+                        </VBox>
+
+                    </VBox>
 
                 </Tab>
             </TabPane>
