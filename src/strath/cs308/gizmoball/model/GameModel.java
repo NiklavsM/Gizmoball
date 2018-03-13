@@ -123,6 +123,12 @@ public class GameModel extends Observable implements IGameModel {
                 } else {
                     // We've got a collision in tuc
                     nextGizmo = cd.getGizmo();
+
+                    if (collisionTriggers.contains(nextGizmo)) {
+                        ITrigger trigger = (ITrigger) nextGizmo;
+                        trigger.trigger();
+                    }
+
                     if (nextGizmo instanceof Flipper && tuc < timeToMoveFlippers) timeToMoveFlippers = tuc;
 
                     score += nextGizmo.getScoreValue();

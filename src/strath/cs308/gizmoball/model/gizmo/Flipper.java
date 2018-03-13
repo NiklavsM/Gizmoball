@@ -182,6 +182,12 @@ public class Flipper extends AbstractTriggarableGizmo implements IMovable, IActi
 
     @Override
     public void doAction(Object args) {
+        if(args == null) {
+            //do a full one
+
+            return;
+        }
+
         Movement upOrDown = (Movement) args;
         if (upOrDown.equals(Movement.TOP)) {
             up();

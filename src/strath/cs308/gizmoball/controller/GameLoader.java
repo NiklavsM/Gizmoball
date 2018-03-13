@@ -137,17 +137,11 @@ public class GameLoader {
         }
         if (command.equals(CONNECT_COMMAND)) {
             String name2 = tokens.poll();
-
-            try {
-//                ITrigger from = (ITrigger) gameModel.getGizmoById(name);
-//                ITriggerable to = (ITriggerable) gameModel.getGizmoById(name2);
-////                to.registerAction(s -> System.out.println("ive beeeeeen hit"));
-//                from.registerTriggarable(to);
-//                gameModel.onCollisionTrigger(from);
-//                System.out.println("connected " + name + " to " + name2);
-            } catch (ClassCastException e) {
-                e.printStackTrace();
-            }
+            ITrigger from = (ITrigger) gameModel.getGizmoById(name);
+            ITriggerable to = (ITriggerable) gameModel.getGizmoById(name2);
+            from.registerTriggarable(to);
+            gameModel.onCollisionTrigger(from);
+            System.out.println("connected " + name + " to " + name2);
             return;
         }
         if (nameCoordCoordCommands.contains(command)) {
