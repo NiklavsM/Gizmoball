@@ -14,7 +14,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameBarEventHandler;
-import strath.cs308.gizmoball.controller.IngameKeyEventHandler;
+import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.controller.PauseMenuEventHandler;
 import strath.cs308.gizmoball.model.GameTimer;
 import strath.cs308.gizmoball.model.IGameModel;
@@ -33,8 +33,12 @@ public class PlayView implements IPlayView, Observer {
     private ToolBar pauseMenu;
     private StackPane stackPane;
     private Canvas canvas;
+    private EventHandler keyHandler;
+    private GameLoader gameLoader;
 
-    public PlayView(Stage stage, IGameModel gameModel) {
+    public PlayView(Stage stage, IGameModel gameModel, EventHandler keyHandler, GameLoader gameLoader) {
+        this.keyHandler = keyHandler;
+        this.gameLoader = gameLoader;
 
         try {
             root = FXMLLoader.load(getClass().getResource("/view/plaview.fxml"));
@@ -50,11 +54,9 @@ public class PlayView implements IPlayView, Observer {
             pauseMenu.toBack();
             gameModel.addObserver(this);
 
-            EventHandler ingameKeyHandler = new IngameKeyEventHandler(gameModel);
-
             Scene scene = new Scene(root, root.getWidth(), root.getHeight());
-            scene.setOnKeyPressed(ingameKeyHandler);
-            scene.setOnKeyReleased(ingameKeyHandler);
+            scene.setOnKeyPressed(this.keyHandler);
+            scene.setOnKeyReleased(this.keyHandler);
 
             stage.setScene(scene);
             stage.setWidth(root.getWidth());
@@ -78,7 +80,7 @@ public class PlayView implements IPlayView, Observer {
             root.lookupAll("#gameMenu > Button")
                     .forEach(node -> ((Button) node).setOnAction(gameBarEventHandler));
 
-            EventHandler pauseMenuEventHandler = new PauseMenuEventHandler(gameModel, gameTimer, this);
+            EventHandler pauseMenuEventHandler = new PauseMenuEventHandler(gameModel, gameTimer, this, gameLoader);
             root.lookupAll("#pauseMenuItemHolder > Button")
                     .forEach(node -> ((Button) node).setOnAction(pauseMenuEventHandler));
 
@@ -148,7 +150,7 @@ public class PlayView implements IPlayView, Observer {
 
     @Override
     public void switchToEditor() {
-        EditorView editorView = new EditorView((Stage) root.getScene().getWindow(), gameModel);
+        EditorView editorView = new EditorView((Stage) root.getScene().getWindow(), gameModel, keyHandler);
     }
 
     @Override

@@ -1,8 +1,9 @@
 package strath.cs308.gizmoball.controller;
 
+import javafx.event.EventHandler;
 import strath.cs308.gizmoball.model.*;
+import strath.cs308.gizmoball.model.gizmo.Flipper;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
-import strath.cs308.gizmoball.model.triggeringsystem.IAction;
 import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
@@ -25,15 +26,18 @@ public class GameLoader {
     private final IGizmoFactory gizmoFactory;
     private final IGameModel gameModel;
     private final InputStream source;
+    private IngameKeyEventHandler keyHandler;
+
     private Set<String> gizmoCreationCommands;
     private Set<String> nameCoordCoordCommands;
     private Set<String> gizmoCreationCommandsAdvanced;
     private Set<String> nameCommands;
     private Map<String, IGizmo.Type> gizmoCommandToEnum;
 
-    public GameLoader(IGameModel gameModel, InputStream source) {
+    public GameLoader(IGameModel gameModel, IngameKeyEventHandler keyHandler, InputStream source) {
         this.gameModel = gameModel;
         this.source = source;
+        this.keyHandler = keyHandler;
         gizmoFactory = new GizmoFactory();
 
         gizmoCommandToEnum = new HashMap<>();
@@ -89,6 +93,7 @@ public class GameLoader {
                         double keyNumber = toValidNumber(tokens.poll());
                         String keyMode = tokens.poll();
                         String name = tokens.poll();
+
                         //TODO
                         System.out.println("connected " + keyNumber + " " + keyMode + " to " + name);
                         continue;

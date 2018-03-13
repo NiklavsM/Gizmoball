@@ -12,12 +12,12 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class GameModel extends Observable implements IGameModel {
 
+    private final Set<ITrigger> collisionTriggers = new HashSet<>();
     private Map<String, Gizmo> gizmos;
     private Map<String, Absorber> absorberCollided;
     private int score;
     private double frictionCoefficient;
     private double gravityCoefficient;
-    private final Set<ITrigger> collisionTriggers = new HashSet<>();
 
     public GameModel() {
         setup();
@@ -62,8 +62,10 @@ public class GameModel extends Observable implements IGameModel {
 
     @Override
     public boolean removeGizmo(String id) {
-        if (gizmos.remove(id) != null) {
-
+        Gizmo gizmo = gizmos.get(id);
+        if (gizmo != null) {
+            collisionTriggers.remove(gizmo);
+            gizmos.remove(id);
             setChanged();
             notifyObservers();
             return true;
@@ -100,7 +102,7 @@ public class GameModel extends Observable implements IGameModel {
 
     @Override
     public void onCollisionTrigger(ITrigger from) {
-       collisionTriggers.add(from);
+        collisionTriggers.add(from);
     }
 
     public void tick(double time) {
@@ -156,7 +158,7 @@ public class GameModel extends Observable implements IGameModel {
         for (Ball ball : balls) {
             if (!ball.isStopped()) {
                 CollisionDetails cd = timeUntilCollision(ball);
-                if(cd.getGizmo() instanceof IMovable) {
+                if (cd.getGizmo() instanceof IMovable) {
                     if (smallestTime > cd.getTuc()) {
                         smallestTime = cd.getTuc();
                     }

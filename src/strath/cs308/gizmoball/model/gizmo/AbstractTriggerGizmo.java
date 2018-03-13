@@ -13,8 +13,8 @@ public abstract class AbstractTriggerGizmo extends Gizmo implements ITrigger {
         super(x1, y1, x2, y2, id);
     }
 
-    public void trigger() {
-        triggerables.forEach(iTriggerable -> iTriggerable.performAction("asd"));
+    public void trigger(Object args) {
+        triggerables.forEach(iTriggerable -> iTriggerable.performAction(args));
     }
 
     @Override

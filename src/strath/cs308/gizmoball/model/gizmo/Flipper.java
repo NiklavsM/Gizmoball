@@ -143,7 +143,7 @@ public class Flipper extends AbstractTriggarableGizmo implements IMovable, IActi
         this.velocity = new Vect(new Angle(velocity.angle().radians() * orientation.getMult()));
     }
 
-    private void up() {
+    public void up() {
         if (movementStatus == Movement.BACK) {
             movementStatus = Movement.FORWARD;
             movedAngle = Angle.DEG_90.radians() - movedAngle;
@@ -179,13 +179,14 @@ public class Flipper extends AbstractTriggarableGizmo implements IMovable, IActi
     }
 
     @Override
-    public void doAction(String event) {
-        event = event.toUpperCase();
+    public void doAction(Object args) {
+        String upOrDown = (String) args;
+        upOrDown = upOrDown.toUpperCase();
         String letter = (orientation.equals(Orientation.RIGHT)) ? "L" : "K";
-        if (event.equals("KEY_PRESSED_" + letter)) {
+        if (upOrDown.equals("KEY_PRESSED_" + letter)) {
             up();
         }
-        if (event.equals("KEY_RELEASED_" + letter)) {
+        if (upOrDown.equals("KEY_RELEASED_" + letter)) {
             down();
         }
     }

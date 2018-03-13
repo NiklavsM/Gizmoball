@@ -31,7 +31,10 @@ public class EditorView implements IEditorView, Observer {
     private TextField frictionTextField;
     private TextField gravityTextField;
 
-    public EditorView(Stage stage, IGameModel gameModel) {
+    private EventHandler keyHandler;
+
+    public EditorView(Stage stage, IGameModel gameModel, EventHandler keyHandler) {
+        this.keyHandler = keyHandler;
         try {
             root = FXMLLoader.load(getClass().getResource("/view/editorview.fxml"));
             canvas = (Canvas) root.lookup("#canvas");
@@ -144,7 +147,7 @@ public class EditorView implements IEditorView, Observer {
 
     @Override
     public void switchToPlay() {
-        PlayView playView = new PlayView((Stage) root.getScene().getWindow(), gameModel);
+        PlayView playView = new PlayView((Stage) root.getScene().getWindow(), gameModel, keyHandler);
     }
 
     @Override

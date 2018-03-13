@@ -1,14 +1,10 @@
 package strath.cs308.gizmoball.model.gizmo;
 
-
 import mit.physics.Circle;
 import mit.physics.LineSegment;
 import mit.physics.Vect;
-import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 import strath.cs308.gizmoball.model.triggeringsystem.IAction;
-import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
-import java.util.Set;
 import java.util.Stack;
 
 public class Absorber extends AbstractTriggerAndTriggarableGizmo implements IAction {
@@ -62,7 +58,8 @@ public class Absorber extends AbstractTriggerAndTriggarableGizmo implements IAct
     }
 
     @Override
-    public void doAction(String triggerEvent) {
+    public void doAction(Object args) {
+        String triggerEvent = (String) args;
         if (triggerEvent.toUpperCase().equals("KEY_PRESSED_J")) {
             if (!ballsAbsorbed.isEmpty()) {
                 shootTheBallOut(ballsAbsorbed.pop());

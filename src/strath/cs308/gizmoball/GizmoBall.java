@@ -2,8 +2,10 @@ package strath.cs308.gizmoball;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameLoader;
+import strath.cs308.gizmoball.controller.IngameKeyEventHandler;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.view.PlayView;
@@ -19,7 +21,8 @@ public class GizmoBall extends Application {
         stage.setX(100);
 
         IGameModel gameModel = new GameModel();
-        GameLoader gameLoader = new GameLoader(gameModel, getClass().getResourceAsStream("/alternative.gizmo"));
+        EventHandler keyHandler = new IngameKeyEventHandler(gameModel);
+        GameLoader gameLoader = new GameLoader(gameModel, keyHandler, getClass().getResourceAsStream("/alternative.gizmo"));
 
         try {
             gameLoader.load();
@@ -29,7 +32,7 @@ public class GizmoBall extends Application {
             e.printStackTrace();
         }
 
-        PlayView playView = new PlayView(stage, gameModel);
+        PlayView playView = new PlayView(stage, gameModel, keyHandler);
     }
 
     @Override
