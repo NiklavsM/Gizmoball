@@ -3,8 +3,8 @@ package strath.cs308.gizmoball.model.gizmo;
 import mit.physics.Circle;
 import mit.physics.Vect;
 
-import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Ball extends Gizmo {
 
@@ -60,7 +60,7 @@ public class Ball extends Gizmo {
     }
 
     private void updateCircles() {
-        circles = new LinkedList<>();
+        circles = new CopyOnWriteArrayList<>();
         circles.add(circle);
 
         x1 = circle.getCenter().x() - 0.25;
