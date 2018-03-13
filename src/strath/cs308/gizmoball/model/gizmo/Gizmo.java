@@ -4,6 +4,7 @@ import mit.physics.*;
 import strath.cs308.gizmoball.model.Dot;
 
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public abstract class Gizmo implements IGizmo {
 
@@ -23,7 +24,7 @@ public abstract class Gizmo implements IGizmo {
         this.y1 = y1;
         this.x2 = x2;
         this.y2 = y2;
-        this.circles = new LinkedList<>();
+        this.circles = new CopyOnWriteArrayList<>();
         this.lines = new HashSet<>();
         this.id = id;
         rotateCount = 0;
@@ -46,7 +47,7 @@ public abstract class Gizmo implements IGizmo {
     }
 
     public List<Dot> getDots() {
-        List<Dot> dots = new LinkedList<>();
+        List<Dot> dots = new CopyOnWriteArrayList<>();
         circles.forEach(circle -> dots.add(new Dot(circle.getCenter().x(),
                 circle.getCenter().y(),
                 circle.getRadius())));
@@ -69,14 +70,14 @@ public abstract class Gizmo implements IGizmo {
 
     public void rotate() {
         rotateCount++;
-        Set<LineSegment> newLineList = new HashSet<>();
+        Set<LineSegment> newLineSet = new HashSet<>();
         lines.forEach(line -> {
             line = Geometry.rotateAround(line, rotatingPoint, Angle.DEG_90);
-            newLineList.add(line);
+            newLineSet.add(line);
         });
-        lines = newLineList;
+        lines = newLineSet;
 
-        List<Circle> newCircleList = new LinkedList<>();
+        List<Circle> newCircleList = new CopyOnWriteArrayList<>();
         circles.forEach(circle -> {
             circle = Geometry.rotateAround(circle, rotatingPoint, Angle.DEG_90);
             newCircleList.add(circle);
@@ -105,23 +106,36 @@ public abstract class Gizmo implements IGizmo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Gizmo Gizmo = (Gizmo) o;
+        Gizmo gizmo = (Gizmo) o;
 
-        if (rotateCount != Gizmo.rotateCount) return false;
-        if (!id.equals(Gizmo.id)) return false;
-        if (!circles.equals(Gizmo.circles)) return false;
-        return lines.equals(Gizmo.lines);
+        if (rotateCount != gizmo.rotateCount) return false;
+        if (Double.compare(gizmo.x1, x1) != 0) return false;
+        if (Double.compare(gizmo.y1, y1) != 0) return false;
+        if (Double.compare(gizmo.x2, x2) != 0) return false;
+        if (Double.compare(gizmo.y2, y2) != 0) return false;
+        if (scoreValue != gizmo.scoreValue) return false;
+        if (!id.equals(gizmo.id)) return false;
+        return rotatingPoint != null ? rotatingPoint.equals(gizmo.rotatingPoint) : gizmo.rotatingPoint == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
+        int result;
+        long temp;
+        result = id.hashCode();
         result = 31 * result + rotateCount;
-        result = 31 * result + circles.hashCode();
-        result = 31 * result + lines.hashCode();
+        result = 31 * result + (rotatingPoint != null ? rotatingPoint.hashCode() : 0);
+        temp = Double.doubleToLongBits(x1);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(y1);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(x2);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(y2);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + scoreValue;
         return result;
     }
-
 
     public int getScoreValue() {
         switch (this.getType()) {
