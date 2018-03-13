@@ -29,7 +29,7 @@ public class RotateGizmoStrategy implements EventHandler<MouseEvent> {
             Optional<IGizmo> gizmo = gameModel.getGizmo(pointX, pointY);
 
             gizmo.ifPresent(gizmo1 -> {
-                if (!gizmo1.getType().equals(IGizmo.Type.ABSORBER)) {
+                if (!gizmo1.getType().equals(IGizmo.Type.ABSORBER) && !gizmo1.getType().equals(IGizmo.Type.BALL)) {
                     gameModel.rotate(gizmo1.getId());
                 }
             });

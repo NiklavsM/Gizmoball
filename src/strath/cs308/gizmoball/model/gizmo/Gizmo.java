@@ -86,18 +86,26 @@ public abstract class Gizmo implements IGizmo {
     }
 
     public double getStartX() {
+        if (this.getType().equals(Type.BALL))
+            return x1 - 0.25;
         return x1;
     }
 
     public double getStartY() {
+        if (this.getType().equals(Type.BALL))
+            return y1 - 0.25;
         return y1;
     }
 
     public double getEndX() {
+        if (this.getType().equals(Type.BALL))
+            return x2 + 0.25;
         return x2;
     }
 
     public double getEndY() {
+        if (this.getType().equals(Type.BALL))
+            return y2 + 0.25;
         return y2;
     }
 

@@ -2,8 +2,6 @@ package strath.cs308.gizmoball.model.gizmo;
 
 import mit.physics.Circle;
 import mit.physics.Vect;
-
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Ball extends Gizmo {
@@ -67,10 +65,6 @@ public class Ball extends Gizmo {
         y1 = circle.getCenter().y() - 0.25;
         x2 = circle.getCenter().x() + 0.25;
         y2 = circle.getCenter().y() + 0.25;
-    }
-
-    public List<Circle> getCircles() {
-        return circles;
     }
 
     @Override
