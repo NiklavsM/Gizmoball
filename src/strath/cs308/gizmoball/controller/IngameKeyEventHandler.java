@@ -3,7 +3,7 @@ package strath.cs308.gizmoball.controller;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 import strath.cs308.gizmoball.model.IGameModel;
-import strath.cs308.gizmoball.model.ITriggerable;
+import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 public class IngameKeyEventHandler implements EventHandler<KeyEvent> {
 

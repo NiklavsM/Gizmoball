@@ -2,8 +2,8 @@ package strath.cs308.gizmoball.model.gizmo;
 
 import mit.physics.*;
 import strath.cs308.gizmoball.model.IMovable;
-import strath.cs308.gizmoball.model.ITriggerAction;
-import strath.cs308.gizmoball.model.ITriggerable;
+import strath.cs308.gizmoball.model.triggeringsystem.IAction;
+import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.util.Iterator;
 
@@ -184,7 +184,7 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
     }
 
     @Override
-    public void registerAction(ITriggerAction triggerAction) {
+    public void registerAction(IAction triggerAction) {
 
     }
 

@@ -4,15 +4,18 @@ package strath.cs308.gizmoball.model.gizmo;
 import mit.physics.Circle;
 import mit.physics.LineSegment;
 import mit.physics.Vect;
-import strath.cs308.gizmoball.model.ITriggerAction;
-import strath.cs308.gizmoball.model.ITriggerable;
+import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
+import strath.cs308.gizmoball.model.triggeringsystem.IAction;
+import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
+import java.util.Set;
 import java.util.Stack;
 
-public class Absorber extends Gizmo implements ITriggerable, ITriggerAction {
+public class Absorber extends Gizmo implements ITriggerable, IAction, ITrigger {
 
     private Stack<Ball> ballsAbsorbed;
-    private ITriggerAction triggerAction;
+    private IAction triggerAction;
+    private Set<ITriggerable> triggerables;
 
     public Absorber(double x1, double y1, double x2, double y2, String id) {
         super(x1, y1, x2, y2, id);
@@ -67,7 +70,7 @@ public class Absorber extends Gizmo implements ITriggerable, ITriggerAction {
     }
 
     @Override
-    public void registerAction(ITriggerAction triggerAction) {
+    public void registerAction(IAction triggerAction) {
         this.triggerAction = triggerAction;
     }
 
@@ -81,5 +84,15 @@ public class Absorber extends Gizmo implements ITriggerable, ITriggerAction {
         if (!ballsAbsorbed.isEmpty()) {
             shootTheBallOut(ballsAbsorbed.pop());
         }
+    }
+
+    @Override
+    public void trigger() {
+       triggerables.forEach(triggarable -> triggarable.trigger("idk"));
+    }
+
+    @Override
+    public void addTarget(ITriggerable triggerTarget) {
+        triggerables.add(triggerTarget);
     }
 }

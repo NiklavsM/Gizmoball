@@ -1,8 +1,8 @@
 package strath.cs308.gizmoball.controller.actions;
 
-import strath.cs308.gizmoball.model.ITriggerAction;
+import strath.cs308.gizmoball.model.triggeringsystem.IAction;
 
-public class ChangeColorAction implements ITriggerAction{
+public class ChangeColorAction implements IAction {
 
     @Override
     public void doAction() {

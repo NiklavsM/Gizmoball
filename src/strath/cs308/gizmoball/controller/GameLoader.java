@@ -2,6 +2,8 @@ package strath.cs308.gizmoball.controller;
 
 import strath.cs308.gizmoball.model.*;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
+import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
+import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.io.InputStream;
 import java.util.*;
@@ -133,12 +135,16 @@ public class GameLoader {
             String name2 = tokens.poll();
             //TODO connect name to name2
 
-            ITrigger from = (ITrigger) gameModel.getGizmoById(name);
-            ITriggerable to = (ITriggerable) gameModel.getGizmoById(name2);
+            try {
 
-            to.registerAction(() -> System.out.println("Im changing color"));
-            from.addTarget(to);
+                ITrigger from = (ITrigger) gameModel.getGizmoById(name);
+                ITriggerable to = (ITriggerable) gameModel.getGizmoById(name2);
 
+                to.registerAction(() -> System.out.println("Im changing color"));
+                from.addTarget(to);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             System.out.println("connected " + name + " to " + name2);
             return;
         }

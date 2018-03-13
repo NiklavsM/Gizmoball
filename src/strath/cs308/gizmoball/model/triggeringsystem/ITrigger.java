@@ -1,4 +1,4 @@
-package strath.cs308.gizmoball.model;
+package strath.cs308.gizmoball.model.triggeringsystem;
 
 public interface ITrigger {
 
