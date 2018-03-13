@@ -94,7 +94,7 @@ public class GameModel extends Observable implements IGameModel {
     public void tick(double time) {
         Gizmo nextGizmo;
         Set<Ball> balls = getBalls();
-        double timeUntilMovableCol = timeUntilMovableCol(balls);
+        double timeToMoveFlippers = time;
 
         for (Ball ball : balls) {
             nextGizmo = null;
@@ -109,6 +109,7 @@ public class GameModel extends Observable implements IGameModel {
                 } else {
                     // We've got a collision in tuc
                     nextGizmo = cd.getGizmo();
+                    if (nextGizmo instanceof Flipper && tuc < timeToMoveFlippers) timeToMoveFlippers = tuc;
 
                     score += nextGizmo.getScoreValue();
                     // don't allow negative score values
@@ -131,29 +132,9 @@ public class GameModel extends Observable implements IGameModel {
                 absorberCollided.put(ball.getId(), (Absorber) gizmos.get(nextGizmo.getId()));
             }
         }
-        if (timeUntilMovableCol > time) {
-            moveMovables(time);
-        } else {
-            moveMovables(timeUntilMovableCol);
-        }
+        moveMovables(timeToMoveFlippers);
 
     }
-
-    private double timeUntilMovableCol(Set<Ball> balls) {
-        double smallestTime = Double.MAX_VALUE;
-        for (Ball ball : balls) {
-            if (!ball.isStopped()) {
-                CollisionDetails cd = timeUntilCollision(ball);
-                if(cd.getGizmo() instanceof IMovable) {
-                    if (smallestTime > cd.getTuc()) {
-                        smallestTime = cd.getTuc();
-                    }
-                }
-            }
-        }
-        return smallestTime;
-    }
-
 
     private void moveMovables(Double time) {
         gizmos.values()
