@@ -15,6 +15,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameBarEventHandler;
 import strath.cs308.gizmoball.controller.GameLoader;
+import strath.cs308.gizmoball.controller.IngameKeyEventHandler;
 import strath.cs308.gizmoball.controller.PauseMenuEventHandler;
 import strath.cs308.gizmoball.model.GameTimer;
 import strath.cs308.gizmoball.model.IGameModel;
@@ -33,10 +34,10 @@ public class PlayView implements IPlayView, Observer {
     private ToolBar pauseMenu;
     private StackPane stackPane;
     private Canvas canvas;
-    private EventHandler keyHandler;
+    private IngameKeyEventHandler keyHandler;
     private GameLoader gameLoader;
 
-    public PlayView(Stage stage, IGameModel gameModel, EventHandler keyHandler, GameLoader gameLoader) {
+    public PlayView(Stage stage, IGameModel gameModel, IngameKeyEventHandler keyHandler, GameLoader gameLoader) {
         this.keyHandler = keyHandler;
         this.gameLoader = gameLoader;
 
@@ -150,7 +151,7 @@ public class PlayView implements IPlayView, Observer {
 
     @Override
     public void switchToEditor() {
-        EditorView editorView = new EditorView((Stage) root.getScene().getWindow(), gameModel, keyHandler);
+        EditorView editorView = new EditorView((Stage) root.getScene().getWindow(), gameModel, gameLoader, keyHandler);
     }
 
     @Override

@@ -2,6 +2,7 @@ package strath.cs308.gizmoball.view;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import strath.cs308.gizmoball.controller.IngameKeyEventHandler;
 
 import java.io.File;
 
@@ -18,4 +19,6 @@ public interface IEditorView {
     void toggleGrid();
 
     void setStatus(String message);
+
+    IngameKeyEventHandler getKeyHandler();
 }

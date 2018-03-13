@@ -13,9 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import strath.cs308.gizmoball.controller.GizmoSelectorEventHandler;
-import strath.cs308.gizmoball.controller.ToolModeEventHandler;
-import strath.cs308.gizmoball.controller.TopToolbarEventHandler;
+import strath.cs308.gizmoball.controller.*;
 import strath.cs308.gizmoball.model.IGameModel;
 
 import java.io.File;
@@ -31,9 +29,11 @@ public class EditorView implements IEditorView, Observer {
     private TextField frictionTextField;
     private TextField gravityTextField;
 
-    private EventHandler keyHandler;
+    private GameLoader gameLoader;
+    private IngameKeyEventHandler keyHandler;
 
-    public EditorView(Stage stage, IGameModel gameModel, EventHandler keyHandler) {
+    public EditorView(Stage stage, IGameModel gameModel, GameLoader gameLoader, IngameKeyEventHandler keyHandler) {
+        this.gameLoader = gameLoader;
         this.keyHandler = keyHandler;
         try {
             root = FXMLLoader.load(getClass().getResource("/view/editorview.fxml"));
@@ -147,7 +147,7 @@ public class EditorView implements IEditorView, Observer {
 
     @Override
     public void switchToPlay() {
-        PlayView playView = new PlayView((Stage) root.getScene().getWindow(), gameModel, keyHandler);
+        PlayView playView = new PlayView((Stage) root.getScene().getWindow(), gameModel, keyHandler, gameLoader);
     }
 
     @Override
@@ -180,6 +180,11 @@ public class EditorView implements IEditorView, Observer {
     public void setStatus(String message) {
         Label statusLabel = (Label) root.lookup("#statusbar");
         statusLabel.setText(message);
+    }
+
+    @Override
+    public IngameKeyEventHandler getKeyHandler() {
+        return keyHandler;
     }
 
 

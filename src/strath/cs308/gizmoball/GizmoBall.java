@@ -21,7 +21,7 @@ public class GizmoBall extends Application {
         stage.setX(100);
 
         IGameModel gameModel = new GameModel();
-        EventHandler keyHandler = new IngameKeyEventHandler(gameModel);
+        IngameKeyEventHandler keyHandler = new IngameKeyEventHandler(gameModel);
         GameLoader gameLoader = new GameLoader(gameModel, keyHandler, getClass().getResourceAsStream("/alternative.gizmo"));
 
         try {
@@ -32,7 +32,7 @@ public class GizmoBall extends Application {
             e.printStackTrace();
         }
 
-        PlayView playView = new PlayView(stage, gameModel, keyHandler);
+        PlayView playView = new PlayView(stage, gameModel, keyHandler, gameLoader);
     }
 
     @Override
