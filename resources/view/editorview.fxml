@@ -402,10 +402,10 @@
                             </TextField>
 
 
-                            <Label text="Colour"/>
-                            <TextField fx:id="gizmo-colour" styleClass="game-option-textbox" prefWidth="100.0">
-                                0.002
-                            </TextField>
+                            <!--<Label text="Colour"/>-->
+                            <!--<TextField fx:id="gizmo-colour" styleClass="game-option-textbox" prefWidth="100.0">-->
+                                <!--0.002-->
+                            <!--</TextField>-->
 
                             <!--<ComboBox fx:id="clour" id="comboId" prefWidth="100.0">-->
                                 <!--<items>-->
