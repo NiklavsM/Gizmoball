@@ -94,13 +94,14 @@ public class GameModel extends Observable implements IGameModel {
     public void tick(double time) {
         Gizmo nextGizmo;
         Set<Ball> balls = getBalls();
-        double timeUntilNextCollision = timeUntilNextCollision(balls);
+        double timeUntilMovableCol = timeUntilMovableCol(balls);
 
         for (Ball ball : balls) {
             nextGizmo = null;
             if (ball != null && !ball.isStopped()) {
                 CollisionDetails cd = timeUntilCollision(ball);
-                if (cd.getTuc() > time) {
+                double tuc = cd.getTuc();
+                if (tuc > time) {
                     // No collision ...
                     ball.move(time);
                     applyForces(ball.getVelocity(), time, ball);
@@ -111,12 +112,11 @@ public class GameModel extends Observable implements IGameModel {
 
                     score += nextGizmo.getScoreValue();
                     // don't allow negative score values
-                    if (score < 0)
-                        score = 0;
+                    if (score < 0) score = 0;
 
-                    ball.move(cd.getTuc());
+                    ball.move(tuc);
                     // Post collision velocity ...
-                    applyForces(cd.getVelo(), cd.getTuc(), ball);
+                    applyForces(cd.getVelo(), tuc, ball);
                 }
                 if (absorberCollided.containsKey(ball.getId())) {
                     absorberCollided.get(ball.getId()).absorbBall(ball);
@@ -131,21 +131,23 @@ public class GameModel extends Observable implements IGameModel {
                 absorberCollided.put(ball.getId(), (Absorber) gizmos.get(nextGizmo.getId()));
             }
         }
-        if (timeUntilNextCollision > time) {
+        if (timeUntilMovableCol > time) {
             moveMovables(time);
         } else {
-            moveMovables(timeUntilNextCollision);
+            moveMovables(timeUntilMovableCol);
         }
 
     }
 
-    private double timeUntilNextCollision(Set<Ball> balls) {
+    private double timeUntilMovableCol(Set<Ball> balls) {
         double smallestTime = Double.MAX_VALUE;
         for (Ball ball : balls) {
             if (!ball.isStopped()) {
                 CollisionDetails cd = timeUntilCollision(ball);
-                if (smallestTime > cd.getTuc()) {
-                    smallestTime = cd.getTuc();
+                if(cd.getGizmo() instanceof IMovable) {
+                    if (smallestTime > cd.getTuc()) {
+                        smallestTime = cd.getTuc();
+                    }
                 }
             }
         }
@@ -225,7 +227,6 @@ public class GameModel extends Observable implements IGameModel {
                 }
             }
         }
-
         return new CollisionDetails(shortestTime, newVelo, nextGizmo, ball);
     }
 

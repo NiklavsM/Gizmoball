@@ -6,6 +6,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx"
             stylesheets="/styles/style.css"
@@ -391,6 +393,41 @@
                 <Tab closable="false"
                      text="Properties">
 
+                    <VBox spacing="16"
+                          styleClass="default-padding, GizmoPane">
+                        <Label fx:id="gizmotype" text="Ball"/>
+
+                        <VBox spacing="5">
+                            <Label text="ID"/>
+                            <TextField fx:id="gizmoName" styleClass="game-option-textbox" prefWidth="60.0"  disable="true">
+                                47856-65654-65463
+                            </TextField>
+
+                            <Label text="Velocity X"/>
+                            <TextField fx:id="ballVelocityX" styleClass="game-option-textbox" prefWidth="60.0">
+                                6
+                            </TextField>
+
+                            <Label text="Velocity Y"/>
+                            <TextField fx:id="ballVelocityY" styleClass="game-option-textbox" prefWidth="60.0">
+                               3
+                            </TextField>
+
+                            <Label text="Colour"/>
+                            <ComboBox fx:id="colour" id="comboId" prefWidth="100.0">
+                                <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                        <String fx:value="Item 1"/>
+                                        <String fx:value="Item 2"/>
+                                        <String fx:value="Item 3"/>
+                                    </FXCollections>
+                                </items>
+                            </ComboBox>
+
+
+                        </VBox>
+
+                    </VBox>
 
                 </Tab>
             </TabPane>

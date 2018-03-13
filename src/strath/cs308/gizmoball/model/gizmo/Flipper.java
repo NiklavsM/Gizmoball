@@ -77,8 +77,11 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
         if (!velocity.equals(Vect.ZERO)) {
             double rotationRadian = velocity.angle().radians() * time;
 
-            if ((rotationRadian + movedAngle) > Angle.DEG_90.radians()) {
-                rotationRadian = Angle.DEG_90.radians() - movedAngle;
+            if ((Math.abs(rotationRadian) + movedAngle) > Angle.DEG_90.radians()) {
+                rotationRadian = (Angle.DEG_90.radians() - movedAngle) * orientation.getMult();
+                if (movementStatus.equals(Movement.FORWARD)) {
+                    rotationRadian *= -1;
+                }
             }
 
             Angle rotationAngle = new Angle(rotationRadian);
@@ -135,7 +138,7 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
     }
 
     private void up() {
-        if (movementStatus == Movement.BACK && movedAngle != 0) {
+        if (movementStatus == Movement.BACK) {
             movementStatus = Movement.FORWARD;
             movedAngle = Angle.DEG_90.radians() - movedAngle;
             velocity = new Vect(new Angle(Angle.DEG_180.radians() * -1 * orientation.getMult()));
@@ -157,7 +160,7 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
             velocity = new Vect(new Angle(Angle.DEG_180.radians() * orientation.getMult()));
         }
 
-        if (movementStatus == Movement.FORWARD && movedAngle != 0) {
+        if (movementStatus == Movement.FORWARD) {
             movementStatus = Movement.BACK;
             movedAngle = Angle.DEG_90.radians() - movedAngle;
             velocity = new Vect(new Angle(Angle.DEG_180.radians() * orientation.getMult()));
@@ -176,10 +179,9 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
         if (triggerEvent.equals("KEY_PRESSED_" + letter)) {
             up();
         }
-
         if (triggerEvent.equals("KEY_RELEASED_" + letter)) {
             down();
-        }
+        }    
     }
 
     @Override
