@@ -124,7 +124,7 @@ public class PlayView implements IPlayView, Observer {
     private void drawGizmos() {
         GizmoDrawer drawer = new GizmoDrawer(canvas);
         gameModel.getGizmos().forEach(drawer::drawGizmo);
-        gameModel.getGizmoBall().ifPresent(drawer::drawGizmo);
+        gameModel.getGizmoBalls().forEach(drawer::drawGizmo);
     }
 
     private void updateScore() {
