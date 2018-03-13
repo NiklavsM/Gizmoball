@@ -47,8 +47,8 @@ public class EditorView implements IEditorView, Observer {
             stage.show();
 
             initialSetup();
-
             refresh();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
