@@ -2,7 +2,7 @@ package strath.cs308.gizmoball.model.gizmo;
 
 import mit.physics.Circle;
 
-public class CircleGizmo extends Gizmo {
+public class CircleGizmo extends AbstractTriggerAndTriggarableGizmo {
 
     public CircleGizmo(double x, double y, String id) {
         super(x, y, x + 1, y + 1, id);

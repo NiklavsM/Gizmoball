@@ -23,6 +23,6 @@ public class IngameKeyEventHandler implements EventHandler<KeyEvent> {
                 .stream()
                 .filter(ITriggerable.class::isInstance)
                 .map(ITriggerable.class::cast)
-                .forEach(iTriggerable -> iTriggerable.trigger(keyEvent.getEventType().getName() + "_" + keyEvent.getText()));
+                .forEach(iTriggerable -> iTriggerable.performAction(keyEvent.getEventType().getName() + "_" + keyEvent.getText()));
     }
 }

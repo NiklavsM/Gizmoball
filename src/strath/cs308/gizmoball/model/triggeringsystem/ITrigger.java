@@ -4,6 +4,8 @@ public interface ITrigger {
 
     void trigger();
 
-    void addTarget(ITriggerable triggerTarget);
+    void registerTriggarable(ITriggerable triggerTarget);
+
+    void removeTriggarable(ITriggerable trigger);
 
 }

@@ -5,6 +5,7 @@ import mit.physics.Geometry;
 import mit.physics.LineSegment;
 import mit.physics.Vect;
 import strath.cs308.gizmoball.model.gizmo.*;
+import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,6 +17,7 @@ public class GameModel extends Observable implements IGameModel {
     private int score;
     private double frictionCoefficient;
     private double gravityCoefficient;
+    private final Set<ITrigger> collisionTriggers = new HashSet<>();
 
     public GameModel() {
         setup();
@@ -94,6 +96,11 @@ public class GameModel extends Observable implements IGameModel {
 
     public int getScore() {
         return score;
+    }
+
+    @Override
+    public void onCollisionTrigger(ITrigger from) {
+       collisionTriggers.add(from);
     }
 
     public void tick(double time) {

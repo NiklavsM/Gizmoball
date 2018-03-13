@@ -2,6 +2,7 @@ package strath.cs308.gizmoball.controller;
 
 import strath.cs308.gizmoball.model.*;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
+import strath.cs308.gizmoball.model.triggeringsystem.IAction;
 import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
@@ -133,19 +134,17 @@ public class GameLoader {
         }
         if (command.equals(CONNECT_COMMAND)) {
             String name2 = tokens.poll();
-            //TODO connect name to name2
 
             try {
-
                 ITrigger from = (ITrigger) gameModel.getGizmoById(name);
                 ITriggerable to = (ITriggerable) gameModel.getGizmoById(name2);
-
-                to.registerAction(() -> System.out.println("Im changing color"));
-                from.addTarget(to);
-            } catch (Exception e) {
+                to.registerAction(s -> System.out.println("ive beeeeeen hit"));
+                from.registerTriggarable(to);
+                gameModel.onCollisionTrigger(from);
+                System.out.println("connected " + name + " to " + name2);
+            } catch (ClassCastException e) {
                 e.printStackTrace();
             }
-            System.out.println("connected " + name + " to " + name2);
             return;
         }
         if (nameCoordCoordCommands.contains(command)) {

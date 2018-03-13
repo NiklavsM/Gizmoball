@@ -5,7 +5,7 @@ import strath.cs308.gizmoball.model.triggeringsystem.IAction;
 public class ChangeColorAction implements IAction {
 
     @Override
-    public void doAction() {
+    public void doAction(String event) {
 
     }
 }

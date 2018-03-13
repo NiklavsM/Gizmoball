@@ -7,7 +7,7 @@ import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.util.Iterator;
 
-public class Flipper extends Gizmo implements IMovable, ITriggerable {
+public class Flipper extends AbstractTriggarableGizmo implements IMovable, IAction {
 
     private Circle startPoint;
     private Circle endPoint;
@@ -71,6 +71,11 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
         }
 
         return Type.FLIPPER;
+    }
+
+    @Override
+    protected void setup(double x1, double y1, double x2, double y2) {
+
     }
 
     @Override
@@ -174,25 +179,15 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
     }
 
     @Override
-    public void trigger(String triggerEvent) {
-        triggerEvent = triggerEvent.toUpperCase();
+    public void doAction(String event) {
+        event = event.toUpperCase();
         String letter = (orientation.equals(Orientation.RIGHT)) ? "L" : "K";
-        if (triggerEvent.equals("KEY_PRESSED_" + letter)) {
+        if (event.equals("KEY_PRESSED_" + letter)) {
             up();
         }
-        if (triggerEvent.equals("KEY_RELEASED_" + letter)) {
+        if (event.equals("KEY_RELEASED_" + letter)) {
             down();
-        }    
-    }
-
-    @Override
-    public void registerAction(IAction triggerAction) {
-
-    }
-
-    @Override
-    protected void setup(double x1, double y1, double x2, double y2) {
-
+        }
     }
 
     @Override

@@ -11,11 +11,9 @@ import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 import java.util.Set;
 import java.util.Stack;
 
-public class Absorber extends Gizmo implements ITriggerable, IAction, ITrigger {
+public class Absorber extends AbstractTriggerAndTriggarableGizmo implements IAction {
 
     private Stack<Ball> ballsAbsorbed;
-    private IAction triggerAction;
-    private Set<ITriggerable> triggerables;
 
     public Absorber(double x1, double y1, double x2, double y2, String id) {
         super(x1, y1, x2, y2, id);
@@ -48,11 +46,9 @@ public class Absorber extends Gizmo implements ITriggerable, IAction, ITrigger {
     }
 
     private void shootTheBallOut(Ball ball) {
-
         ball.setStopped(false);
         ball.setX(getEndX() - 0.25);
         ball.setY(getStartY() - 0.25);
-
     }
 
     @Override
@@ -61,38 +57,18 @@ public class Absorber extends Gizmo implements ITriggerable, IAction, ITrigger {
     }
 
     @Override
-    public void trigger(String triggerEvent) {
-        if (triggerEvent.toUpperCase().equals("KEY_PRESSED_J")) {
-            triggerAction.doAction();
-            System.out.println("J " + triggerEvent);
-        }
-
-    }
-
-    @Override
-    public void registerAction(IAction triggerAction) {
-        this.triggerAction = triggerAction;
-    }
-
-    @Override
     public void rotate() {
         System.out.println("absorber is not rotatable!");
     }
 
     @Override
-    public void doAction() {
-        if (!ballsAbsorbed.isEmpty()) {
-            shootTheBallOut(ballsAbsorbed.pop());
+    public void doAction(String triggerEvent) {
+        if (triggerEvent.toUpperCase().equals("KEY_PRESSED_J")) {
+            if (!ballsAbsorbed.isEmpty()) {
+                shootTheBallOut(ballsAbsorbed.pop());
+            }
+            System.out.println("J " + triggerEvent);
         }
     }
 
-    @Override
-    public void trigger() {
-       triggerables.forEach(triggarable -> triggarable.trigger("idk"));
-    }
-
-    @Override
-    public void addTarget(ITriggerable triggerTarget) {
-        triggerables.add(triggerTarget);
-    }
 }
