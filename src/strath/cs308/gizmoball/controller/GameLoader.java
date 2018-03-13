@@ -1,8 +1,6 @@
 package strath.cs308.gizmoball.controller;
 
-import javafx.event.EventHandler;
 import strath.cs308.gizmoball.model.*;
-import strath.cs308.gizmoball.model.gizmo.Flipper;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
@@ -93,8 +91,8 @@ public class GameLoader {
                         double keyNumber = toValidNumber(tokens.poll());
                         String keyMode = tokens.poll();
                         String name = tokens.poll();
-
-                        //TODO
+                        ITriggerable triggerable = (ITriggerable) gameModel.getGizmoById(name);
+                        keyHandler.onKeyEventTriger("key " + keyNumber + " " + keyMode, triggerable);
                         System.out.println("connected " + keyNumber + " " + keyMode + " to " + name);
                         continue;
                     }
@@ -141,12 +139,12 @@ public class GameLoader {
             String name2 = tokens.poll();
 
             try {
-                ITrigger from = (ITrigger) gameModel.getGizmoById(name);
-                ITriggerable to = (ITriggerable) gameModel.getGizmoById(name2);
-                to.registerAction(s -> System.out.println("ive beeeeeen hit"));
-                from.registerTriggarable(to);
-                gameModel.onCollisionTrigger(from);
-                System.out.println("connected " + name + " to " + name2);
+//                ITrigger from = (ITrigger) gameModel.getGizmoById(name);
+//                ITriggerable to = (ITriggerable) gameModel.getGizmoById(name2);
+////                to.registerAction(s -> System.out.println("ive beeeeeen hit"));
+//                from.registerTriggarable(to);
+//                gameModel.onCollisionTrigger(from);
+//                System.out.println("connected " + name + " to " + name2);
             } catch (ClassCastException e) {
                 e.printStackTrace();
             }

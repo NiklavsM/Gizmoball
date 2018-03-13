@@ -13,6 +13,9 @@ public abstract class AbstractTriggarableGizmo extends Gizmo implements ITrigger
 
     @Override
     public void performAction(Object args) {
+        if(action == null) {
+            return;
+        }
        action.doAction(args);
     }
 

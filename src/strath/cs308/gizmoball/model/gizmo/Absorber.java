@@ -14,6 +14,7 @@ public class Absorber extends AbstractTriggerAndTriggarableGizmo implements IAct
     public Absorber(double x1, double y1, double x2, double y2, String id) {
         super(x1, y1, x2, y2, id);
         ballsAbsorbed = new Stack<>();
+        registerAction(this);
     }
 
     public Absorber(double x1, double y1, double x2, double y2) {
@@ -56,12 +57,8 @@ public class Absorber extends AbstractTriggerAndTriggarableGizmo implements IAct
 
     @Override
     public void doAction(Object args) {
-        String triggerEvent = (String) args;
-        if (triggerEvent.toUpperCase().equals("KEY_PRESSED_J")) {
             if (!ballsAbsorbed.isEmpty()) {
                 shootTheBallOut(ballsAbsorbed.pop());
-            }
-            System.out.println("J " + triggerEvent);
         }
     }
 

@@ -58,6 +58,8 @@ public class Flipper extends AbstractTriggarableGizmo implements IMovable, IActi
         lines.add(connector2);
         circles.add(startPoint);
         circles.add(endPoint);
+
+        registerAction(this);
     }
 
     @Override
@@ -180,13 +182,10 @@ public class Flipper extends AbstractTriggarableGizmo implements IMovable, IActi
 
     @Override
     public void doAction(Object args) {
-        String upOrDown = (String) args;
-        upOrDown = upOrDown.toUpperCase();
-        String letter = (orientation.equals(Orientation.RIGHT)) ? "L" : "K";
-        if (upOrDown.equals("KEY_PRESSED_" + letter)) {
+        Movement upOrDown = (Movement) args;
+        if (upOrDown.equals(Movement.TOP)) {
             up();
-        }
-        if (upOrDown.equals("KEY_RELEASED_" + letter)) {
+        } else if (upOrDown.equals(Movement.BOTTOM)) {
             down();
         }
     }
@@ -203,7 +202,7 @@ public class Flipper extends AbstractTriggarableGizmo implements IMovable, IActi
     }
 
 
-    enum Movement {
+    public enum Movement {
         BACK, FORWARD, BOTTOM, TOP
     }
 

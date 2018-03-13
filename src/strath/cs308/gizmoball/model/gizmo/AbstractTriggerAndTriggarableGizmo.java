@@ -13,6 +13,7 @@ public abstract class AbstractTriggerAndTriggarableGizmo extends AbstractTrigger
 
     @Override
     public void performAction(Object args) {
+        if(action == null) return;
         action.doAction(args);
     }
 
