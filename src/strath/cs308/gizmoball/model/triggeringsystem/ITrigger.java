@@ -2,7 +2,7 @@ package strath.cs308.gizmoball.model.triggeringsystem;
 
 public interface ITrigger {
 
-    void trigger(Object args);
+    void trigger();
 
     void registerTriggarable(ITriggerable triggerTarget);
 
