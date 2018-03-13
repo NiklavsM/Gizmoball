@@ -4,6 +4,7 @@ import mit.physics.Circle;
 import mit.physics.Vect;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class Ball extends Gizmo {
 
@@ -66,7 +67,10 @@ public class Ball extends Gizmo {
         y1 = circle.getCenter().y() - 0.25;
         x2 = circle.getCenter().x() + 0.25;
         y2 = circle.getCenter().y() + 0.25;
+    }
 
+    public List<Circle> getCircles() {
+        return circles;
     }
 
     @Override
