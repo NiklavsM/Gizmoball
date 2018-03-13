@@ -8,6 +8,8 @@ import javafx.scene.shape.StrokeLineCap;
 import strath.cs308.gizmoball.model.Dot;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
+import java.util.List;
+
 public class GizmoDrawer {
 
     public static final Paint RED = Color.rgb(244, 67, 54);
@@ -27,32 +29,32 @@ public class GizmoDrawer {
 
     public void drawGizmo(IGizmo gizmo) {
         gc.setFill(Color.BLACK);
-
+        List<Dot> dots = gizmo.getDots();
         double diameter = 0;
-        double[] xPoints = new double[gizmo.getDots().size()];
-        double[] yPoints = new double[gizmo.getDots().size()];
+        double[] xPoints = new double[dots.size()];
+        double[] yPoints = new double[dots.size()];
         IGizmo.Type type = gizmo.getType();
         setGizmoColor(type);
 
         int i = 0;
-
-        for (Dot dot : gizmo.getDots()) {
+        for (Dot dot : dots) {
             xPoints[i] = dot.getX() * pxPerL;
             yPoints[i] = dot.getY() * pxPerL;
             diameter = dot.getRadius() * 2 * pxPerL;
             i++;
         }
-
-        if (type.equals(IGizmo.Type.CIRCLE)
-                | type.equals(IGizmo.Type.BALL)
-                || type.equals(IGizmo.Type.FLIPPER)
-                || type.equals(IGizmo.Type.LEFT_FLIPPER)
-                || type.equals(IGizmo.Type.RIGHT_FLIPPER)) {
-            gc.setLineWidth(diameter);
-            gc.setLineCap(StrokeLineCap.ROUND);
-            gc.strokeLine(xPoints[0], yPoints[0], xPoints[i - 1], yPoints[i - 1]);
-        } else {
-            gc.fillPolygon(xPoints, yPoints, i);
+        if (i > 0) {
+            if (type.equals(IGizmo.Type.CIRCLE)
+                    | type.equals(IGizmo.Type.BALL)
+                    || type.equals(IGizmo.Type.FLIPPER)
+                    || type.equals(IGizmo.Type.LEFT_FLIPPER)
+                    || type.equals(IGizmo.Type.RIGHT_FLIPPER)) {
+                gc.setLineWidth(diameter);
+                gc.setLineCap(StrokeLineCap.ROUND);
+                gc.strokeLine(xPoints[0], yPoints[0], xPoints[i - 1], yPoints[i - 1]);
+            } else {
+                gc.fillPolygon(xPoints, yPoints, i);
+            }
         }
     }
 
