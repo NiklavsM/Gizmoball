@@ -4,13 +4,15 @@ package strath.cs308.gizmoball.model.gizmo;
 import mit.physics.Circle;
 import mit.physics.LineSegment;
 import mit.physics.Vect;
+import strath.cs308.gizmoball.model.ITriggerAction;
 import strath.cs308.gizmoball.model.ITriggerable;
 
 import java.util.Stack;
 
-public class Absorber extends Gizmo implements ITriggerable {
+public class Absorber extends Gizmo implements ITriggerable, ITriggerAction {
 
     private Stack<Ball> ballsAbsorbed;
+    private ITriggerAction triggerAction;
 
     public Absorber(double x1, double y1, double x2, double y2, String id) {
         super(x1, y1, x2, y2, id);
@@ -58,16 +60,26 @@ public class Absorber extends Gizmo implements ITriggerable {
     @Override
     public void trigger(String triggerEvent) {
         if (triggerEvent.toUpperCase().equals("KEY_PRESSED_J")) {
-            if (!ballsAbsorbed.isEmpty()) {
-                shootTheBallOut(ballsAbsorbed.pop());
-            }
+            triggerAction.doAction();
             System.out.println("J " + triggerEvent);
         }
 
     }
 
     @Override
+    public void registerAction(ITriggerAction triggerAction) {
+        this.triggerAction = triggerAction;
+    }
+
+    @Override
     public void rotate() {
         System.out.println("absorber is not rotatable!");
+    }
+
+    @Override
+    public void doAction() {
+        if (!ballsAbsorbed.isEmpty()) {
+            shootTheBallOut(ballsAbsorbed.pop());
+        }
     }
 }

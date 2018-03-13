@@ -87,6 +87,11 @@ public class GameModel extends Observable implements IGameModel {
         return Optional.empty();
     }
 
+    @Override
+    public IGizmo getGizmoById(String id) {
+        return gizmos.get(id);
+    }
+
     public int getScore() {
         return score;
     }

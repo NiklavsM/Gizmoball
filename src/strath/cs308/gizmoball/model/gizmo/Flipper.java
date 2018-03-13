@@ -2,6 +2,7 @@ package strath.cs308.gizmoball.model.gizmo;
 
 import mit.physics.*;
 import strath.cs308.gizmoball.model.IMovable;
+import strath.cs308.gizmoball.model.ITriggerAction;
 import strath.cs308.gizmoball.model.ITriggerable;
 
 import java.util.Iterator;
@@ -180,6 +181,11 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
         if (triggerEvent.equals("KEY_RELEASED_" + letter)) {
             down();
         }
+    }
+
+    @Override
+    public void registerAction(ITriggerAction triggerAction) {
+
     }
 
     @Override

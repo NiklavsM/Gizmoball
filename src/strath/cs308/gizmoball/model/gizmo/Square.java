@@ -2,8 +2,12 @@ package strath.cs308.gizmoball.model.gizmo;
 
 import mit.physics.Circle;
 import mit.physics.LineSegment;
+import strath.cs308.gizmoball.model.ITriggerAction;
+import strath.cs308.gizmoball.model.ITriggerable;
 
-public class Square extends Gizmo {
+public class Square extends Gizmo implements ITriggerable {
+
+    private ITriggerAction triggerAction;
 
     public Square(double x, double y) {
         this(x, y, generateID());
@@ -31,4 +35,13 @@ public class Square extends Gizmo {
         return IGizmo.Type.SQUARE;
     }
 
+    @Override
+    public void trigger(String triggerEvent) {
+        triggerAction.doAction();
+    }
+
+    @Override
+    public void registerAction(ITriggerAction triggerAction) {
+        this.triggerAction = triggerAction;
+    }
 }

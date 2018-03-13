@@ -14,6 +14,8 @@ public interface IGameModel {
 
     Optional<IGizmo> getGizmo(double x, double y);
 
+    IGizmo getGizmoById(String id);
+
     boolean addGizmo(IGizmo gizmo);
 
     boolean removeGizmo(String id);
