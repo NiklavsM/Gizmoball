@@ -97,16 +97,28 @@ public class EditorView implements IEditorView, Observer {
             gravityTextField = (TextField) root.lookup("#gravity");
             gravityTextField.textProperty()
                     .addListener((observable, oldValue, newValue) -> {
-                        double value = Double.parseDouble(newValue);
-                        gameModel.setGravityCoefficient(value);
+
+                        try {
+                            double value = Double.parseDouble(newValue);
+                            gameModel.setGravityCoefficient(value);
+                        } catch (NumberFormatException ex) {
+                            System.out.println("Invalid input for gravity");
+                        }
+
                     });
 
 
             frictionTextField = (TextField) root.lookup("#friction");
             frictionTextField.textProperty()
                     .addListener((observable, oldValue, newValue) -> {
-                        double value = Double.parseDouble(newValue);
-                        gameModel.setFrictionCoefficient(value);
+
+                        try {
+                            double value = Double.parseDouble(newValue);
+                            gameModel.setFrictionCoefficient(value);
+                        } catch (NumberFormatException ex) {
+                            System.out.println("Invalid input for friction");
+                        }
+
                     });
 
         });
