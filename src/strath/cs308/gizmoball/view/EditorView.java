@@ -54,6 +54,8 @@ public class EditorView extends Stage implements IEditorView, Observer {
             isGrided = true;
 
             EventHandler<MouseEvent> onMouseClicked = new GizmoClickEventHandler(gameModel, this);
+            ((Observable) onMouseClicked).addObserver(this);
+
             canvas.setOnMouseClicked(onMouseClicked);
 
             Scene scene = new Scene(root);
@@ -81,16 +83,13 @@ public class EditorView extends Stage implements IEditorView, Observer {
             drawBackground();
             drawGizmos();
             drawGrid();
-            updateFields();
         });
 
     }
 
-    @Override
-    public void updateFields() {
+    private void updateFields() {
         gravityTextField.setText(String.valueOf(gameModel.getGravityCoefficient()));
         frictionTextField.setText(String.valueOf(gameModel.getFrictionCoefficient()));
-
 
         if (selectedGizmo != null && selectedGizmo.getType() == IGizmo.Type.BALL) {
             Logger.debug(TAG, "A " + selectedGizmo.getType() + " at " + selectedGizmo.getStartX() + ", " + selectedGizmo.getStartY());
@@ -253,6 +252,10 @@ public class EditorView extends Stage implements IEditorView, Observer {
     @Override
     public void update(Observable observable, Object o) {
         refresh();
+
+        if (observable instanceof GizmoClickEventHandler) {
+            updateFields();
+        }
     }
 
     private void drawGizmos() {

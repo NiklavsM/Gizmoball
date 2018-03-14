@@ -9,8 +9,6 @@ import java.io.File;
 
 public interface IEditorView {
 
-    void updateFields();
-
     void switchToPlay();
 
     void setCanvasMode(EventHandler<MouseEvent> canvasStrategy);

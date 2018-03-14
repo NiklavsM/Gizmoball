@@ -27,14 +27,11 @@ public class GizmoClickEventHandler extends Observable implements EventHandler<M
             double pointX = mouseEvent.getX() / editorView.getPixelRatioFor(20.0);
             double pointY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
 
-//            gameModel.getGizmo(pointX, pointY)
-//                    .ifPresent(gizmo1 -> gameModel.removeGizmo(gizmo1.getId()));
-
             Optional<IGizmo> gizmo = gameModel.getGizmo(pointX, pointY);
-            gizmo.ifPresent(editorView::setSelectedGizmo);
-
-
-            editorView.updateFields();
+            gizmo.ifPresent((editorView) -> {
+                setChanged();
+                notifyObservers();
+            });
 
             Logger.debug(TAG, "A gizmo has been selected");
 
