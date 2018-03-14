@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.controller.GameBarEventHandler;
 import strath.cs308.gizmoball.controller.GameLoader;
-import strath.cs308.gizmoball.controller.IngameKeyEventHandler;
+import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.controller.PauseMenuEventHandler;
 import strath.cs308.gizmoball.model.GameTimer;
 import strath.cs308.gizmoball.model.IGameModel;
@@ -38,7 +38,7 @@ public class PlayView extends Stage implements IPlayView, Observer {
     private ToolBar pauseMenu;
     private StackPane stackPane;
     private Canvas canvas;
-    private IngameKeyEventHandler keyHandler;
+    private InGameKeyEventHandler keyHandler;
     private GameLoader gameLoader;
 
     public PlayView(GizmoBall gizmoBall) {

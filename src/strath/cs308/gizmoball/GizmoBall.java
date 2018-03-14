@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameLoader;
-import strath.cs308.gizmoball.controller.IngameKeyEventHandler;
+import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.view.EditorView;
@@ -14,7 +14,7 @@ public class GizmoBall extends Application {
 
     private IGameModel gameModel;
     private Stage currentStage;
-    private IngameKeyEventHandler keyHandler;
+    private InGameKeyEventHandler keyHandler;
     private GameLoader gameLoader;
 
     public static void main(String[] args) {
@@ -26,7 +26,7 @@ public class GizmoBall extends Application {
         primaryStage.setX(100);
 
         gameModel = new GameModel();
-        keyHandler = new IngameKeyEventHandler(gameModel);
+        keyHandler = new InGameKeyEventHandler(gameModel);
         gameLoader = new GameLoader(gameModel, keyHandler, getClass().getResourceAsStream("/alternative.gizmo"));
 
         try {
@@ -67,7 +67,7 @@ public class GizmoBall extends Application {
         return gameLoader;
     }
 
-    public IngameKeyEventHandler getKeyHandler() {
+    public InGameKeyEventHandler getKeyHandler() {
         return keyHandler;
     }
 }
