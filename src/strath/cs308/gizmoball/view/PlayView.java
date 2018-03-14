@@ -159,6 +159,8 @@ public class PlayView extends Stage implements IPlayView, Observer {
     @Override
     public File getLoadFile() {
         FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("GIZMO (*.gizmo)", "*.gizmo");
+        fileChooser.getExtensionFilters().add(filter);
         fileChooser.setTitle("Gizmoball loading file");
         fileChooser.setInitialFileName("hahahah");
         return fileChooser.showOpenDialog(null);
