@@ -122,7 +122,6 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
                 }
             }
         }
-
     }
 
     private void putGizmoAt(double x, double y) {

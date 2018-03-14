@@ -50,7 +50,7 @@ public class GizmoDrawer {
         }
         if (i > 0) {
             if (type.equals(IGizmo.Type.CIRCLE)
-                    | type.equals(IGizmo.Type.BALL)
+                    || type.equals(IGizmo.Type.BALL)
                     || type.equals(IGizmo.Type.FLIPPER)
                     || type.equals(IGizmo.Type.LEFT_FLIPPER)
                     || type.equals(IGizmo.Type.RIGHT_FLIPPER)) {
