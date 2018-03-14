@@ -81,9 +81,14 @@ class GameModelTest {
 
     @Test
     void setFrictionCoefficient_setPositiveCoefficient() {
-        model.setFrictionCoefficient(2.0);
-        assertEquals(2.0,model.getFrictionCoefficient());
+        assertTrue(model.setFrictionCoefficient(2.0));
     }
+
+    @Test
+    void setFrictionCoefficient_setZeroCoefficient() {
+        assertTrue(model.setFrictionCoefficient(0));
+    }
+
     @Test
     void setFrictionCoefficient_tryToSetNegativeCoefficient() {
         assertFalse(model.setFrictionCoefficient(-2.0));
@@ -91,19 +96,43 @@ class GameModelTest {
 
     @Test
     void getFrictionCoefficient() {
+        model.setFrictionCoefficient(2.0);
+        assertEquals(2.0, model.getFrictionCoefficient());
     }
 
     @Test
-    void setGravityCoefficient() {
+    void setGravityCoefficient_setPositiveCoefficient() {
+        assertTrue(model.setGravityCoefficient(2.0));
+    }
+
+    @Test
+    void setGravityCoefficient_setZeroCoefficient() {
+        assertTrue(model.setGravityCoefficient(0));
+    }
+
+    @Test
+    void setGravityCoefficient_tryToSetNegativeCoefficient() {
+        assertFalse(model.setGravityCoefficient(-2.0));
     }
 
     @Test
     void getGravityCoefficient() {
+        model.setGravityCoefficient(2.0);
+        assertEquals(2.0, model.getGravityCoefficient());
     }
 
     @Test
-    void reset() {
+    void reset_resetModel() {
+        model.addGizmo(new Ball(1, 1));
+        model.reset();
+        assertTrue(checkIsFreshModel(model));
     }
 
-
+    private boolean checkIsFreshModel(GameModel model) {
+        if (model.getGizmos().size() != 1) return false; //just walls
+        if (model.getFrictionCoefficient() != 0.025) return false;
+        if (model.getGravityCoefficient() != 25.0) return false;
+        if (model.getScore() != 0) return false;
+        return true;
+    }
 }
