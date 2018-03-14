@@ -5,13 +5,16 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 
 import strath.cs308.gizmoball.model.IGameModel;
+import strath.cs308.gizmoball.view.IEditorView;
 
 public class GamePropertyEventHandler implements EventHandler<ActionEvent> {
 
-    private IGameModel gameMode;
+    private IGameModel gameModel;
+    private IEditorView editorView;
 
-    public GamePropertyEventHandler(IGameModel gameMode) {
-        this.gameMode = gameMode;
+    public GamePropertyEventHandler(IGameModel gameModel, IEditorView editView) {
+        this.gameModel = gameModel;
+        this.editorView = editView;
     }
     
     @Override
@@ -28,11 +31,13 @@ public class GamePropertyEventHandler implements EventHandler<ActionEvent> {
     }
 
     private void changeGameGravity() {
-        System.out.println("hello");
+        gameModel.setGravityCoefficient(editorView.getGravityInput()); 
+        editorView.setStatus("Game gravity is changed to: " +editorView.getGravityInput());
     }
 
     private void changeGameFriction() {
-        System.out.println("hello2");
+        gameModel.setFrictionCoefficient(editorView.getFrictionInput());
+        editorView.setStatus("Game friction is changed to: " +editorView.getFrictionInput());
     }
     
 }

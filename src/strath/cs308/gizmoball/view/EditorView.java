@@ -48,8 +48,8 @@ public class EditorView implements IEditorView, Observer {
             root = loader.load();
             namespace = loader.getNamespace(); 
             canvas = (Canvas) namespace.get("canvas");
-            frictionTextField = (TextField) namespace.get("gravity");
-            gravityTextField = (TextField) namespace.get("friction");
+            frictionTextField = (TextField) namespace.get("friction");
+            gravityTextField = (TextField) namespace.get("gravity");
 
             this.gameModel = gameModel;
             this.gameModel.addObserver(this);
@@ -139,7 +139,7 @@ public class EditorView implements IEditorView, Observer {
             ((GridPane) namespace.get("toolButtonHolder")).lookupAll(".tool-button")
                     .forEach(node -> node.setOnMouseClicked(toolSelectionHandler));
 
-            EventHandler gamePropertyEventHandler = new GamePropertyEventHandler(gameModel);
+            EventHandler gamePropertyEventHandler = new GamePropertyEventHandler(gameModel, this);
             frictionTextField.setOnAction(gamePropertyEventHandler);
             gravityTextField.setOnAction(gamePropertyEventHandler);            
         });
@@ -210,4 +210,15 @@ public class EditorView implements IEditorView, Observer {
         graphicsContext.setFill(GizmoDrawer.DEEP_BLUE);
         graphicsContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
+
+    @Override
+    public double getFrictionInput() {
+        return Double.parseDouble(frictionTextField.getText());
+    }
+
+    @Override
+    public double getGravityInput() {
+        return Double.parseDouble(gravityTextField.getText());
+    }
+   
 }

@@ -25,4 +25,8 @@ public interface IEditorView {
     void setSelectedGizmo(IGizmo gizmo);
 
     IGizmo getSelectedGizmo();
+
+    double getFrictionInput();
+
+    double getGravityInput();
 }
