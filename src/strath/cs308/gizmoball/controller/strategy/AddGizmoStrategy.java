@@ -17,6 +17,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
     private final IGizmoFactory gizmoFactory;
     private final IEditorView editorView;
     private double pressX, pressY;
+    private double mouseX, mouseY;
 
     public AddGizmoStrategy(IGameModel gameModel, IEditorView editorView, IGizmo.Type gizmoType) {
         this.gizmoType = gizmoType;
@@ -27,20 +28,36 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-
         switch (mouseEvent.getEventType().getName()) {
+            case "MOUSE_MOVED":
+                onMouseMoved(mouseEvent);
+                break;
             case "MOUSE_PRESSED":
-                editorView.setStatus("Gizmo Added");
                 onMousePressed(mouseEvent);
                 break;
             case "DRAG_DETECTED":
                 onMouseDragged(mouseEvent);
                 break;
             case "MOUSE_RELEASED":
+                editorView.setStatus("Gizmo Added");
                 onMouseReleased(mouseEvent);
                 break;
         }
 
+    }
+
+    private void onMouseMoved(MouseEvent mouseEvent) {
+        double previewX = Math.floor(mouseEvent.getX()/editorView.getPixelRatioFor(20.0));
+        double previewY = Math.floor(mouseEvent.getY()/editorView.getPixelRatioFor(20.0));
+
+        if (mouseX != previewX || mouseY != previewY)
+            gameModel.update();
+
+        mouseX = previewX;
+        mouseY = previewY;
+
+        IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, previewX, previewY);
+        editorView.previewGizmo(gizmo, previewX, previewY);
     }
 
     private void onMousePressed(MouseEvent mouseEvent) {
@@ -49,7 +66,8 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
     }
 
     private void onMouseDragged(MouseEvent mouseEvent) {
-        Logger.verbose(TAG, "DRAG DETECED");
+        Logger.verbose(TAG, "DRAG DETECTED");
+
         double startX = Math.floor(pressX / editorView.getPixelRatioFor(20.0));
         double startY = Math.floor(pressY / editorView.getPixelRatioFor(20.0));
         double endX = Math.floor(mouseEvent.getX() / editorView.getPixelRatioFor(20.0));
@@ -66,7 +84,6 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         } else {
             putGizmoFromTo(pressX, pressY, releasedX, releasedY);
         }
-
     }
 
     private void putGizmoFromTo(double startX, double startY, double endX, double endY) {
@@ -118,9 +135,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
             y = Math.floor(y);
         }
 
-
         IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, x, y);
         gameModel.addGizmo(gizmo);
-
     }
 }

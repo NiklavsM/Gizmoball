@@ -205,6 +205,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
     @Override
     public void setCanvasMode(EventHandler<MouseEvent> canvasStrategy) {
+        canvas.setOnMouseMoved(canvasStrategy);
         canvas.setOnMouseClicked(canvasStrategy);
         canvas.setOnMousePressed(canvasStrategy);
         canvas.setOnMouseReleased(canvasStrategy);
@@ -256,13 +257,18 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
     private void drawGizmos() {
         GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
-        gameModel.getGizmos().forEach(gizmoDrawer::drawGizmo);
-        gameModel.getGizmoBalls().forEach(gizmoDrawer::drawGizmo);
+        gameModel.getGizmos().forEach(gizmo -> gizmoDrawer.drawGizmo(gizmo, false));
+        gameModel.getGizmoBalls().forEach(ball -> gizmoDrawer.drawGizmo(ball, false));
     }
 
     private void drawBackground() {
         GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
         graphicsContext.setFill(GizmoDrawer.DEEP_BLUE);
         graphicsContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    }
+
+    public void previewGizmo(IGizmo gizmo, double x, double y) {
+        GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
+        gizmoDrawer.drawGizmo(gizmo, true);
     }
 }

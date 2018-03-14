@@ -299,6 +299,12 @@ public class GameModel extends Observable implements IGameModel {
         notifyObservers();
     }
 
+
+    public void update() {
+        setChanged();
+        notifyObservers();
+    }
+
     @Override
     public String toString() {
         String commands = "";

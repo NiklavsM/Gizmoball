@@ -130,9 +130,9 @@ public class PlayView extends Stage implements IPlayView, Observer {
     }
 
     private void drawGizmos() {
-        GizmoDrawer drawer = new GizmoDrawer(canvas);
-        gameModel.getGizmos().forEach(drawer::drawGizmo);
-        gameModel.getGizmoBalls().forEach(drawer::drawGizmo);
+        GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
+        gameModel.getGizmos().forEach(gizmo -> gizmoDrawer.drawGizmo(gizmo, false));
+        gameModel.getGizmoBalls().forEach(ball -> gizmoDrawer.drawGizmo(ball, false));
     }
 
     private void updateScore() {

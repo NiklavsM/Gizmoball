@@ -28,4 +28,6 @@ public interface IEditorView {
     IGizmo getSelectedGizmo();
 
     void setSelectedGizmo(IGizmo gizmo);
+
+    void previewGizmo(IGizmo gizmo, double x, double y);
 }

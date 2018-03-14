@@ -37,6 +37,8 @@ public interface IGameModel {
 
     void reset();
 
+    void update();
+
     int getScore();
 
     void onCollisionTrigger(ITrigger from);
