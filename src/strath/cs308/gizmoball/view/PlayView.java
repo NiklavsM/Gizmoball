@@ -28,6 +28,8 @@ import java.util.Optional;
 
 public class PlayView implements IPlayView, Observer {
 
+    private static final double WIDTH = 1000;
+    private static final double HEIGHT = 800;
     private IGameModel gameModel;
     private BorderPane root;
     private ToolBar pauseMenu;
@@ -57,8 +59,8 @@ public class PlayView implements IPlayView, Observer {
             scene.setOnKeyReleased(ingameKeyHandler);
 
             stage.setScene(scene);
-            stage.setWidth(root.getWidth());
-            stage.setHeight(root.getHeight());
+            stage.setWidth(WIDTH);
+            stage.setHeight(HEIGHT);
             stage.setTitle("Gizmoball - Play");
             stage.show();
 
