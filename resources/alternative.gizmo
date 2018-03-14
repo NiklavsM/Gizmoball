@@ -71,6 +71,8 @@ KeyConnect key 69 up A2
 Connect A A2
 Connect A2 A
 
+# Balls
+
 Ball B3 17.0 10.0 1.0 0.0
 Ball B4 17.0 13.0 0.0 0.0
 Ball B5 17.0 14.0 0.0 0.0

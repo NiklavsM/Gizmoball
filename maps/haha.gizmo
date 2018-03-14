@@ -1,14 +1,408 @@
-Ball B 0.75 10.75 0.0 0.0
+Circle b54a22fe-287c-46cb-9f1b-4f2a0f58f0da 12.0 15.0
 
-Circle C 9.0 3.0
+Circle 42caded7-7e90-4c2e-acc5-1d3a27a726c1 15.0 16.0
 
-Triangle T 4.0 4.0
-Rotate T
-Rotate T
+Circle 34643edb-c2ab-4e58-ab73-7a603d685b3e 8.0 4.0
 
-Square x 2.0 11.0
+Circle 5f7d82bb-a339-45a5-8b5f-e332b5a3e220 9.0 10.0
 
-LeftFlipper XASDASD32 12.0 15.0
+Circle c9cefce4-b050-491f-b2d5-fce751f03764 5.0 13.0
+
+Circle a81b64fa-a3d3-42b1-9798-e745e34dbd03 2.0 9.0
+
+Circle ebd4bef8-288e-4cec-8974-9dd043bcc85d 9.0 4.0
+
+Circle 6d883128-3367-4099-a715-e0f4c6af80e1 3.0 14.0
+
+Circle ac869c8a-3390-4609-aa16-b8860f1795e5 3.0 9.0
+
+Circle c48acc4d-02c5-4d8e-a782-5530db70b204 10.0 4.0
+
+Circle a6b2fbf8-3cb9-4be1-afc1-0e3edc3f8483 4.0 3.0
+
+Circle 8c5d7bd3-1962-4dce-a31d-8decd946da66 16.0 6.0
+
+Circle 9d8c142e-6247-4c08-a86e-d2e3d0ee28c7 4.0 8.0
+
+Circle db4d6b44-8edc-4c18-876f-e80a00dd45ba 6.0 10.0
+
+Circle 7d651477-acd7-4821-a847-90190176ba75 11.0 11.0
+
+Circle 0acf7314-c46c-488e-b6ae-b66a9225dc93 10.0 7.0
+
+Circle 7b95668f-6d98-465e-8665-889b32b8ed9f 4.0 10.0
+
+Circle 74bf5838-92e1-45fa-9348-3a4bfad786ce 7.0 11.0
+
+Circle f0da8922-ca05-42e0-892e-01bfe216ac43 18.0 4.0
+
+Circle 10c0242b-b384-4235-9799-a09d089b9189 2.0 4.0
+
+Circle bc2429bc-71d2-4862-9c8b-af0b3884b327 18.0 9.0
+
+Circle e8b33306-237c-4b65-83b0-005a0acaffbf 4.0 1.0
+
+Circle 169c3dcb-8c4c-4845-a223-3b864386dc93 3.0 1.0
+
+Circle ce61fae6-0b92-436e-8757-dc9cbe039feb 5.0 8.0
+
+Circle 0c1c3f52-ff2f-4512-b855-229b5e82aa72 9.0 13.0
+
+Circle 761ab757-40f4-4ee0-a446-8661684505d1 4.0 7.0
+
+Circle 810cac45-fc80-4167-b882-e59156f02b7a 15.0 6.0
+
+Circle 670452f3-5bcc-4a74-9039-390b7817a456 11.0 10.0
+
+Circle 19d7f47e-ed58-43e4-873b-267113fe8441 10.0 10.0
+
+Circle 9cf8c034-2e39-4e30-9b1b-ddc6863335c6 4.0 13.0
+
+Circle a904c56b-647e-46b4-9084-85aa8109721b 17.0 2.0
+
+Circle a9a60958-3af6-4176-9938-e8b546658883 4.0 5.0
+
+Circle 4f2f7168-ff38-47cf-b560-06bc6802a508 12.0 16.0
+
+Circle be8b76a1-5c26-49ca-9a3f-aba5fa208e6b 7.0 6.0
+
+Circle f2c7c198-5c41-493d-aee3-a33de5b3c93b 3.0 7.0
+
+Circle d765d64e-ee20-44d0-835c-3613ec15af69 11.0 13.0
+
+Circle a520b3d4-402b-4078-b7a9-04776bd96e4c 17.0 15.0
+
+Circle 18cf4c97-5b5e-487c-af83-acc31d66c16e 18.0 7.0
+
+Circle c661aeb0-5c20-44f2-b1d6-6a8a39dcf27f 18.0 2.0
+
+Circle 1f24aef3-8795-40fa-af42-6b72a823cbd0 6.0 2.0
+
+Circle 1699d187-8bcf-483f-a639-0a3e32485bb3 11.0 5.0
+
+Circle 25357a6e-e712-459c-ae69-4d71dafcd657 6.0 1.0
+
+Circle 1a3dc364-cd1e-452c-a908-cbb1b0ed9785 18.0 6.0
+
+Circle b78d02e2-53da-47f0-8d1d-51bcc44345b0 15.0 9.0
+
+Circle 92a4419a-bf73-45a2-92bd-61e120ed539f 10.0 5.0
+
+Circle 2d33e878-3722-410a-b875-376fcd6d86b5 3.0 8.0
+
+Circle 7e2a5dcb-4b56-4c5c-94e7-73e277b3dde2 15.0 14.0
+
+Circle 60d1c3b0-976e-472a-98bf-e84ad022f3f9 16.0 15.0
+
+Circle c512a21e-d8f3-4351-805b-d1e37c9b2f2f 14.0 17.0
+
+Circle 35145320-b210-4e81-9e38-ba4db1bd9b83 10.0 9.0
+
+Circle f73410e2-4f74-4fe2-b3fa-85798dd7302e 5.0 9.0
+
+Circle b42d71b9-9a8b-4c18-8f65-f40c9a5e49d7 17.0 18.0
+
+Circle 7385b1dc-7638-46da-b3a0-4b3499a74068 13.0 11.0
+
+Circle 405870cf-1ad7-4586-8abd-1621f60f24ba 8.0 10.0
+
+Circle 92419ce3-f279-414c-85a5-a17092477f30 15.0 8.0
+
+Circle 10c414e6-8846-4e60-becc-61754f87af5a 7.0 10.0
+
+Circle f84ef294-2a64-4ffc-88f4-330c4aed2887 15.0 13.0
+
+Circle 7f52e97b-f84f-4c79-ae94-9df9469d8375 18.0 1.0
+
+Circle 5ebfe66d-ffb3-4ffa-87ce-7c7212132e2c 7.0 8.0
+
+Circle 15cbe6df-e3ab-4b6a-9c6c-41420c510217 8.0 6.0
+
+Circle be9ba755-aa1f-4816-9442-e361446ea659 11.0 9.0
+
+Circle dbcec191-7cdb-48d7-a498-4460035b7512 2.0 10.0
+
+Circle c6cbad10-8fd7-4a88-8e60-27b66291f2b0 8.0 9.0
+
+Circle e3bedf7b-7acc-4ec5-80b7-3017d80d8246 14.0 3.0
+
+Circle 1a0cc343-aaaf-4e7e-89ae-1b67e7184c2c 15.0 18.0
+
+Circle 4abf74bf-eb35-4679-aedd-7b710d4abb4f 16.0 16.0
+
+Circle 95acc40c-8183-41fe-b4ae-502fbf01cd0b 15.0 0.0
+
+Circle eeb77fa0-c684-4f90-a59c-f104ae20e30a 10.0 12.0
+
+Circle 82a1883d-f109-42b9-a634-c5c2facce71f 2.0 14.0
+
+Circle 79595a2b-93eb-4983-82c1-922aed5bb055 9.0 5.0
+
+Circle 73a74b28-cba6-44fa-bdd0-5437fa939662 17.0 1.0
+
+Circle fb93d8ee-ceb9-4d7f-a1d8-4cd7de56bf26 17.0 7.0
+
+Circle 7d11bc88-e41d-4c0b-a97c-82d5f5044de9 4.0 14.0
+
+Circle 55024db1-6775-4f26-9ed3-1fba46cc32a5 15.0 7.0
+
+Circle 06673f6b-6729-48e4-a33c-52ccb6260158 16.0 5.0
+
+Circle 47776ab6-e236-4a47-b4f9-0d4224d4d645 2.0 2.0
+
+Circle 879de514-c06e-4f5d-8561-633bf603d0b3 17.0 4.0
+
+Circle 26354701-a08c-432d-b093-5b851433ad52 2.0 11.0
+
+Circle b2dbeb32-f496-4b7d-ab7d-bf46ca9a9161 4.0 6.0
+
+Circle 6f26e3d5-2224-4ca7-800c-e15faf10cba9 4.0 11.0
+
+Circle 5a112938-a02d-4ba9-b699-acdc626a6223 14.0 14.0
+
+Circle e2e843f8-a810-4431-9e13-0b4174d2c7c1 6.0 3.0
+
+Circle 2591a0cf-2cc5-42bf-90da-ad096fb8fc47 13.0 18.0
+
+Circle 49c341ab-a615-43f3-9a8e-9322a89c93ef 10.0 13.0
+
+Circle ab838978-bdab-4a70-82c5-5df287d015ae 5.0 5.0
+
+Circle 3411b105-83a1-4735-b705-f926747dba35 15.0 2.0
+
+Circle 8c2cbd90-1a3b-4ff4-bc37-d63951e0136c 12.0 14.0
+
+Circle fbbf8ab0-394c-4cc5-b2e2-c8df9917d76e 15.0 15.0
+
+Circle be49ae33-7e66-4b46-a776-36aa4d08b877 7.0 12.0
+
+Circle e893eaee-f940-4d02-bbbc-6a12656b0b2d 16.0 1.0
+
+Circle e45e24e3-638e-4986-abbd-e51365211e44 14.0 18.0
+
+Circle b315098e-7ced-4a33-889b-ad42697bcfc7 17.0 8.0
+
+Circle 9ec8a450-952e-49d1-8ea3-ee2a3641aa9f 17.0 3.0
+
+Circle 865a6828-f32d-49dc-b015-c3d97617e909 16.0 14.0
+
+Circle 2f1c883b-268b-471c-80e4-f3523a3c7c87 18.0 3.0
+
+Circle 91d3c8e2-fcf6-47f8-8914-e3c9eca596d5 9.0 8.0
+
+Circle d0167dc6-aec3-4378-8dd9-6d06810199df 6.0 7.0
+
+Circle eae9d5ad-49e9-4901-acb5-3fda342cc691 15.0 3.0
+
+Circle 663849e3-44a2-4da4-9f8a-f6fe48b31e5d 5.0 10.0
+
+Circle b08a1c08-cdfc-40fc-99ea-37a8ba0024e0 17.0 5.0
+
+Circle d2bff071-5f25-4a9b-9299-c9acb39a2313 2.0 13.0
+
+Circle 3a2936e2-7c7e-4c43-aba9-c21aa6a2b054 3.0 12.0
+
+Circle 0ab215db-e7ec-44eb-bdb8-bd8a3ce058ef 4.0 9.0
+
+Circle bebbc657-611a-4251-a3fc-c32605aeacad 16.0 18.0
+
+Circle 18932bd4-a10d-49fd-9357-a45d1cf0c91b 13.0 13.0
+
+Circle 3c9a09ab-cf20-4d2d-ba4e-8d2de358b711 7.0 7.0
+
+Circle 5f4d172c-fcdf-455c-8e89-9c9c8d7122c4 6.0 13.0
+
+Circle 6156cd53-75f6-45bf-bde0-2758fd269927 5.0 7.0
+
+Circle d35e985c-c99a-432e-ab6e-f01405593762 7.0 9.0
+
+Circle b066e883-9e37-4c5b-9e06-e922efd8209b 5.0 3.0
+
+Circle 9d9eae74-a4a5-41b6-97fb-c5525f0a0d0d 13.0 14.0
+
+Circle 9fed855d-b490-40cf-a38f-6dda58cca5e7 7.0 13.0
+
+Circle 50a7754b-4597-4b72-8147-2b9df4a52236 11.0 14.0
+
+Circle 48cb1003-e46a-4247-b123-37e1725de244 8.0 12.0
+
+Circle f379f274-3ca0-4a74-bb57-24bf81a41218 9.0 12.0
+
+Circle c482e20d-d9a9-4b82-9bc2-bfc9627b33a7 11.0 12.0
+
+Circle 49e5eb4b-976a-4287-a07d-17d9db0a7fc1 9.0 6.0
+
+Circle 0d0a6dc6-91b8-4cdc-82de-7f9bc210abe2 6.0 12.0
+
+Circle 6227422e-0411-4cd4-a3d3-743666bcc968 6.0 6.0
+
+Circle 90961ba1-bfe3-4dbc-a9ad-7653802ee8f3 5.0 2.0
+
+Circle 0426a441-6431-445d-a0b9-81afe805a4c2 14.0 15.0
+
+Circle 604d913b-480f-4283-8186-51a69cb4f027 16.0 7.0
+
+Circle dbe6360a-71e6-46cc-af17-a4df4a67e77d 16.0 2.0
+
+Circle a15210c2-a986-4438-8d40-69ba126de69c 8.0 14.0
+
+Circle af2ba5c6-65c1-4df7-980b-15b3cad7af6c 2.0 1.0
+
+Circle f8d984ae-5c08-47a3-b6f0-36e200534425 16.0 3.0
+
+Circle f3b5a307-ae5a-48a5-99f1-a17e8dd2edc5 17.0 9.0
+
+Circle 7d3f6f5b-1d3d-4cd3-bd78-9ea004256e69 14.0 13.0
+
+Circle 6db63dbb-a92e-48da-9a6a-453340629ac4 12.0 18.0
+
+Circle 65ffa9ed-fcbe-4de3-be7a-2c2d913f344b 13.0 15.0
+
+Circle 7ea3cb5e-12ee-4ea2-bc8a-a0ee5d515a1e 6.0 14.0
+
+Circle 47e3822e-94ba-47b4-ae88-98b7cfbfe2f8 8.0 13.0
+
+Circle a1136c2e-1081-4125-b732-0c5385da5744 5.0 12.0
+
+Circle 991fa375-ceaf-4712-b3e5-92ebee7c41fe 2.0 3.0
+
+Circle 114bd601-4cf4-421a-8659-1a71b31099da 13.0 17.0
+
+Circle 60e07631-1524-415d-8db5-290ca82d80b6 12.0 11.0
+
+Circle 4a9089f8-d499-487a-a26c-443c2f66b217 6.0 9.0
+
+Circle f7272e2a-3b80-45e8-b3f8-55b3eab37332 6.0 11.0
+
+Circle f95e90a5-800a-423c-b85c-50394fb9a5e6 3.0 4.0
+
+Circle 72c5ba88-a24a-414a-a5ea-73980cffcb0a 3.0 2.0
+
+Circle dc183136-bf9b-469e-8977-ec58a561d4de 9.0 9.0
+
+Circle 6278f619-14b2-4c44-a93c-12da31b657aa 8.0 7.0
+
+Circle dbf03ff9-c86b-4e71-b354-cc190e6db163 9.0 7.0
+
+Circle b5bc3e2a-b285-418d-a5fc-79da24ba3b19 2.0 8.0
+
+Circle fb4a163c-5bc0-403b-b1ed-ee8d07e7361a 12.0 17.0
+
+Circle 9bb51504-ef6d-4a5c-a9e9-fad73296c97e 17.0 13.0
+
+Circle 54f92d60-789e-49ea-8e96-e3d0b7165c5d 16.0 4.0
+
+Circle 24d4a5f3-cf9b-463b-b35e-249d0ca52a40 11.0 4.0
+
+Circle 64830305-76d5-4c23-9609-60787ba6117b 9.0 11.0
+
+Circle a65704dc-bec6-46ac-8cbd-3b0370228a5c 6.0 4.0
+
+Circle d5981730-3324-4077-bf46-de1235a9c3f6 2.0 6.0
+
+Circle 84e43578-54e8-49de-bbfb-734077f09829 8.0 5.0
+
+Circle 9fbb9c47-e186-4f94-af32-9f4b49f24989 5.0 1.0
+
+Circle 7058b5ea-3d0e-44e8-ab8f-ce89423e0669 17.0 17.0
+
+Circle 11de2bb1-79c6-4275-90d9-384aa197d78d 5.0 4.0
+
+Circle 8d76e679-8be1-4d20-9f23-1cea848469fb 13.0 16.0
+
+Circle f7cb8563-78e0-4789-b258-940860da8b5e 17.0 16.0
+
+Circle 98fb7643-3cae-4d3a-a1b5-abf0afb97a83 7.0 14.0
+
+Circle fa309d76-91c2-4fd6-9129-c7d5bbd2a539 3.0 11.0
+
+Circle 798f500b-8d6b-4531-a4bc-4addfba37b24 16.0 17.0
+
+Circle 1d112756-078d-4e31-b9ec-6d814c6f8b99 16.0 13.0
+
+Circle 617c742b-b866-45bb-b286-3c710bf15016 3.0 6.0
+
+Circle 9d195ed3-8d1d-492d-8542-1d7402041cce 5.0 11.0
+
+Circle 8ccbb86a-4417-47a3-a5db-753bbca11e9b 15.0 1.0
+
+Circle 048d70b3-5974-4ae1-8953-b0a4aabe5795 3.0 3.0
+
+Circle c600d670-5e86-4ce3-8a09-ca3f6cc08892 3.0 10.0
+
+Circle 40a35f11-401c-46df-9327-c2133cbd2c78 14.0 4.0
+
+Circle b8548638-c2b8-4d46-b421-bb360d8ef9b8 12.0 13.0
+
+Circle e7528a92-d7c7-45b3-86b5-5f2f4b2cd824 2.0 7.0
+
+Circle a05ae6ca-00f4-4441-b0d9-2ac4927c9392 11.0 6.0
+
+Circle f3343c75-3a08-4ab6-afdd-987ba25b4a70 16.0 8.0
+
+Circle cd6b38f7-7e65-4a97-88ad-1af700f06050 7.0 4.0
+
+Circle 2eb300e1-2a89-46f8-b9e9-007fa6695ea9 4.0 2.0
+
+Circle 7796978d-df08-4bcd-82bb-fea0450bbffd 5.0 6.0
+
+Circle d9735e9a-0b90-46d0-84a1-4ad47ae0d34d 18.0 5.0
+
+Circle d88f8745-b6c1-425a-8116-43214c6887a8 6.0 5.0
+
+Circle 854915df-674e-4c92-81bf-10c4a15a5f1a 16.0 9.0
+
+Circle 4ea9b34d-eef6-47f6-ada8-7938e7c2d9b9 15.0 5.0
+
+Circle 5d637eef-dc1c-46c7-a8ed-8f77a4ba05e0 4.0 12.0
+
+Circle d2283d9f-f158-469e-bc9a-2225309fd0c6 3.0 5.0
+
+Circle d8e81f76-d21d-4a59-8dbf-d8d4210a2bfb 11.0 8.0
+
+Circle 8d14ed59-ff12-4c37-85f0-0a693df741e0 10.0 14.0
+
+Circle de4f4f32-9102-4a64-b46c-f9d18d503ae2 15.0 17.0
+
+Circle 0c79b591-c60e-4b9f-9aa7-ac8722e6eac4 2.0 5.0
+
+Circle a67b191c-d2ee-42db-9102-8d259dd7cee6 10.0 8.0
+
+Circle c8860c4c-58a2-48c5-8bfd-034a20e6dc34 9.0 14.0
+
+Circle 047fb70f-6236-4e3b-b727-ccfdebdbaf3c 18.0 8.0
+
+Circle 9e50e55d-18ed-4048-84cf-bf316aa346b2 11.0 7.0
+
+Square 18cc31e8-2bf9-43e2-a5dd-9c5eacbcee62 8.0 1.0
+
+Circle 659964a8-e173-4c92-a6a4-5d60fadd5d2f 6.0 8.0
+
+Circle b586b720-76c4-4fc1-8c7b-19315bc0d985 15.0 4.0
+
+Circle d1c1d52b-d3bb-4e0f-abbe-7dc751e7191e 17.0 6.0
+
+Circle 1abb1c3e-b7ea-4d0f-ac78-737017ebc098 8.0 8.0
+
+Circle 8e39b903-3e58-4bde-8eca-7f26e7db927c 8.0 11.0
+
+Circle dfd59141-cd99-4d9b-a7cc-62422122ae7c 4.0 4.0
+
+Circle 7e426a9a-b5b7-4e08-b16a-b30e0ce0e031 17.0 14.0
+
+Circle 85fd9f97-dbaa-49a9-b218-00abf476075c 2.0 12.0
+
+Circle 61d9a53f-1ec6-44df-84d4-f06dfad6039d 10.0 6.0
+
+Circle 65b13d42-7d1b-4ba6-b2f7-c48887e01a25 7.0 5.0
+
+Circle 54e87de1-5d85-49be-af3e-d52b26628b44 5.0 14.0
+
+Circle 1f7f4756-9084-4113-bec2-cf0c1b41ebde 3.0 13.0
+
+Circle 43e00d95-c872-4333-b8fc-11f56634a181 14.0 16.0
+
+Circle 6e9b9ade-c10a-4f21-ae1d-09b623ef11d4 10.0 11.0
 
 
 

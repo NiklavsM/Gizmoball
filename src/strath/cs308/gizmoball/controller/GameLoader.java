@@ -85,6 +85,11 @@ public class GameLoader {
                 tokens = Arrays.stream(line.split("\\s+")).collect(Collectors.toCollection(LinkedList::new));
                 command = tokens.poll();
 
+                if(command.equals("#")) {
+                    // comments basically
+                    continue;
+                }
+
                 if (nameCommands.contains(command)) {
                     nameCommands(command, tokens.poll(), tokens);
                 } else {
