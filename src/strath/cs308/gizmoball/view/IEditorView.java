@@ -21,6 +21,8 @@ public interface IEditorView {
     void toggleGrid();
 
     void setStatus(String message);
+    
+    void setErrorStatus(String message);
 
     void setSelectedGizmo(IGizmo gizmo);
 

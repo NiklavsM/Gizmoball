@@ -41,6 +41,7 @@ public class EditorView implements IEditorView, Observer {
     private TextField frictionTextField;
     private TextField gravityTextField;
     private IGizmo selectedGizmo;
+    private Label statusLabel;
 
     public EditorView(Stage stage, IGameModel gameModel) {
         try {
@@ -50,6 +51,7 @@ public class EditorView implements IEditorView, Observer {
             canvas = (Canvas) namespace.get("canvas");
             frictionTextField = (TextField) namespace.get("friction");
             gravityTextField = (TextField) namespace.get("gravity");
+            statusLabel = (Label) namespace.get("statusbar");
 
             this.gameModel = gameModel;
             this.gameModel.addObserver(this);
@@ -179,8 +181,7 @@ public class EditorView implements IEditorView, Observer {
 
     @Override
     public void setStatus(String message) {
-        Label statusLabel = (Label) root.lookup("#statusbar");
-        System.out.println(statusLabel);
+        statusLabel.getStyleClass().remove("error-label");
         statusLabel.setText(message);
     }
 
@@ -220,5 +221,10 @@ public class EditorView implements IEditorView, Observer {
     public double getGravityInput() throws NumberFormatException {
         return Double.parseDouble(gravityTextField.getText());
     }
-   
+
+    @Override
+    public void setErrorStatus(String message) {
+        statusLabel.getStyleClass().add("error-label");
+        statusLabel.setText(message); 
+    }
 }

@@ -35,7 +35,7 @@ public class GamePropertyEventHandler implements EventHandler<ActionEvent> {
             gameModel.setGravityCoefficient(editorView.getGravityInput()); 
             editorView.setStatus("Game gravity is changed to: " +editorView.getGravityInput());
         } catch (NumberFormatException e) {
-            editorView.setStatus("The given gravity value is not acceptable!");
+            editorView.setErrorStatus("The given gravity value is not acceptable!");
         }
     }
 
@@ -44,7 +44,7 @@ public class GamePropertyEventHandler implements EventHandler<ActionEvent> {
             gameModel.setFrictionCoefficient(editorView.getFrictionInput());
             editorView.setStatus("Game friction is changed to: " +editorView.getFrictionInput());
         } catch (NumberFormatException e) {
-            editorView.setStatus("The given firction value is not accpetable!");
+            editorView.setErrorStatus("The given firction value is not accpetable!");
         }
     }
     
