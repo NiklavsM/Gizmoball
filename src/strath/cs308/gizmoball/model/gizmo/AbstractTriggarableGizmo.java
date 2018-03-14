@@ -13,14 +13,14 @@ public abstract class AbstractTriggarableGizmo extends Gizmo implements ITrigger
 
     @Override
     public void performAction(Object args) {
-        if(action == null) {
+        if (action == null) {
             return;
         }
-       action.doAction(args);
+        action.doAction(args);
     }
 
     @Override
     public void registerAction(IAction triggerAction) {
-       action = triggerAction;
+        action = triggerAction;
     }
 }

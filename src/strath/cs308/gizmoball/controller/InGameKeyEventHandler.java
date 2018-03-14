@@ -3,12 +3,9 @@ package strath.cs308.gizmoball.controller;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 import strath.cs308.gizmoball.model.IGameModel;
-import strath.cs308.gizmoball.model.gizmo.Absorber;
 import strath.cs308.gizmoball.model.gizmo.Flipper;
-import strath.cs308.gizmoball.model.triggeringsystem.IAction;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
-import java.awt.datatransfer.FlavorListener;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,17 +14,17 @@ import java.util.Set;
 import static javafx.scene.input.KeyEvent.KEY_PRESSED;
 import static javafx.scene.input.KeyEvent.KEY_RELEASED;
 
-public class IngameKeyEventHandler implements EventHandler<KeyEvent> {
+public class InGameKeyEventHandler implements EventHandler<KeyEvent> {
 
     private final Map<String, Set<ITriggerable>> keyEventMap = new HashMap<>();
 
     private IGameModel gameModel;
 
-    public IngameKeyEventHandler(IGameModel gameModel) {
+    public InGameKeyEventHandler(IGameModel gameModel) {
         this.gameModel = gameModel;
     }
 
-    public void onKeyEventTriger(String keyEvent, ITriggerable triggerable) {
+    public void onKeyEventTrigger(String keyEvent, ITriggerable triggerable) {
         if (!keyEventMap.containsKey(keyEvent)) {
             keyEventMap.put(keyEvent, new HashSet<>());
         }
@@ -52,7 +49,6 @@ public class IngameKeyEventHandler implements EventHandler<KeyEvent> {
         }
 
         keyEventMap.get(keyEventString)
-                .stream()
                 .forEach(triggerable -> {
                     if (triggerable instanceof Flipper) {
                         Flipper.Movement args = null;

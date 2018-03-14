@@ -85,7 +85,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
         File fileToSave = playView.getLoadFile();
         GameSaver gs = new GameSaver(gameModel, fileToSave);
 
-        if(fileToSave == null) {
+        if (fileToSave == null) {
             Logger.debug(TAG, "Saving file dialog cancelled");
             return;
         }

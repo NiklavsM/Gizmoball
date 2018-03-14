@@ -34,12 +34,12 @@ public class GizmoDrawer {
         double[] xPoints = new double[dots.size()];
         double[] yPoints = new double[dots.size()];
         IGizmo.Type type = gizmo.getType();
-        setGizmoColor(type);
 
         if (isPreview) {
-            gc.setFill(Color.GREY);
-            gc.setStroke(Color.GREY);
-        }
+            gc.setFill(Color.GAINSBORO);
+            gc.setStroke(Color.GAINSBORO);
+        } else
+            setGizmoColor(type);
 
         int i = 0;
         for (Dot dot : dots) {
@@ -50,7 +50,7 @@ public class GizmoDrawer {
         }
         if (i > 0) {
             if (type.equals(IGizmo.Type.CIRCLE)
-                    | type.equals(IGizmo.Type.BALL)
+                    || type.equals(IGizmo.Type.BALL)
                     || type.equals(IGizmo.Type.FLIPPER)
                     || type.equals(IGizmo.Type.LEFT_FLIPPER)
                     || type.equals(IGizmo.Type.RIGHT_FLIPPER)) {
