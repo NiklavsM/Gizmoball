@@ -54,7 +54,6 @@ public class GameModel extends Observable implements IGameModel {
         notifyObservers();
 
         return true;
-
     }
 
     @Override
@@ -131,7 +130,6 @@ public class GameModel extends Observable implements IGameModel {
             }
         }
         moveMovables(timeToMoveFlippers);
-
     }
 
     private void moveMovables(Double time) {
@@ -139,7 +137,6 @@ public class GameModel extends Observable implements IGameModel {
                 .stream()
                 .filter(gizmo -> gizmo instanceof IMovable)
                 .forEach(gizmo -> ((IMovable) gizmo).move(time));
-
     }
 
     private void applyForces(Vect velocity, double time, Ball ball) {
@@ -239,8 +236,12 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     @Override
-    public void setFrictionCoefficient(double frictionCoefficient) {
-        this.frictionCoefficient = frictionCoefficient;
+    public boolean setFrictionCoefficient(double frictionCoefficient) {
+        if (frictionCoefficient >= 0) {
+            this.frictionCoefficient = frictionCoefficient;
+            return true;
+        } else
+            return false;
     }
 
     @Override
@@ -249,13 +250,16 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     @Override
-    public void setGravityCoefficient(double gravityCoefficient) {
-        this.gravityCoefficient = gravityCoefficient;
+    public boolean setGravityCoefficient(double gravityCoefficient) {
+        if (gravityCoefficient >= 0) {
+            this.gravityCoefficient = gravityCoefficient;
+            return true;
+        }
+        return false;
     }
 
     public void reset() {
         setup();
-
         setChanged();
         notifyObservers();
     }

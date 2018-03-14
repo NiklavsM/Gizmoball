@@ -13,10 +13,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import mit.physics.Vect;
+import strath.cs308.gizmoball.controller.GizmoClickEventHandler;
 import strath.cs308.gizmoball.controller.GizmoSelectorEventHandler;
 import strath.cs308.gizmoball.controller.ToolModeEventHandler;
 import strath.cs308.gizmoball.controller.TopToolbarEventHandler;
 import strath.cs308.gizmoball.model.IGameModel;
+import strath.cs308.gizmoball.model.gizmo.Ball;
+import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +34,9 @@ public class EditorView implements IEditorView, Observer {
     private boolean isGrided;
     private TextField frictionTextField;
     private TextField gravityTextField;
+    private IGizmo selectedGizmo;
+    private TextField ballXGravityTextField;
+    private TextField ballYGravityTextField;
 
     public EditorView(Stage stage, IGameModel gameModel) {
         try {
@@ -39,6 +46,9 @@ public class EditorView implements IEditorView, Observer {
             this.gameModel.addObserver(this);
 
             isGrided = true;
+
+            EventHandler<MouseEvent> onMouseClicked = new GizmoClickEventHandler(gameModel, this);
+            canvas.setOnMouseClicked(onMouseClicked);
 
             Scene scene = new Scene(root);
 
@@ -70,11 +80,19 @@ public class EditorView implements IEditorView, Observer {
 
     }
 
-    private void updateFields() {
+    @Override
+    public void updateFields() {
         gravityTextField.setText(String.valueOf(gameModel.getGravityCoefficient()));
         frictionTextField.setText(String.valueOf(gameModel.getFrictionCoefficient()));
-    }
 
+
+        if (selectedGizmo != null && selectedGizmo.getType() == IGizmo.Type.BALL) {
+            System.out.println("A " + selectedGizmo.getType() + " at " + selectedGizmo.getStartX() + ", " + selectedGizmo.getStartY());
+            Vect vect = ((Ball) selectedGizmo).getVelocity();
+            ballXGravityTextField.setText(String.valueOf(vect.x()));
+            ballYGravityTextField.setText(String.valueOf(vect.y()));
+        }
+    }
 
     private void drawGrid() {
 
@@ -121,6 +139,38 @@ public class EditorView implements IEditorView, Observer {
 
                     });
 
+            ballXGravityTextField = (TextField) root.lookup("#ballVelocityX");
+            ballXGravityTextField.textProperty()
+                    .addListener((observable, oldValue, newValue) -> {
+
+                        try {
+                            double xVel = Double.parseDouble(newValue);
+                            Vect vect = ((Ball) getSelectedGizmo()).getVelocity();
+                            Vect newVect = new Vect(xVel, vect.y());
+                            ((Ball) getSelectedGizmo()).setVelocity(newVect);
+
+                        } catch (NumberFormatException ex) {
+                            System.out.println("Invalid input for velocity");
+                        }
+
+                    });
+
+
+            ballYGravityTextField = (TextField) root.lookup("#ballVelocityY");
+            ballYGravityTextField.textProperty()
+                    .addListener((observable, oldValue, newValue) -> {
+
+                        try {
+                            double xVel = Double.parseDouble(newValue);
+                            Vect vect = ((Ball) getSelectedGizmo()).getVelocity();
+                            Vect newVect = new Vect(xVel, vect.x());
+                            ((Ball) getSelectedGizmo()).setVelocity(newVect);
+
+                        } catch (NumberFormatException ex) {
+                            System.out.println("Invalid input for velocity");
+                        }
+
+                    });
         });
 
     }
@@ -164,7 +214,7 @@ public class EditorView implements IEditorView, Observer {
     public File getLoadFile() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Gizmoball loading file");
-        fileChooser.setInitialFileName("hahahah");
+        fileChooser.setInitialFileName("New Gizmo");
         return fileChooser.showOpenDialog(null);
     }
 
@@ -180,6 +230,15 @@ public class EditorView implements IEditorView, Observer {
         statusLabel.setText(message);
     }
 
+    @Override
+    public void setSelectedGizmo(IGizmo gizmo) {
+        this.selectedGizmo = gizmo;
+    }
+
+    @Override
+    public IGizmo getSelectedGizmo() {
+        return selectedGizmo;
+    }
 
     @Override
     public void update(Observable observable, Object o) {

@@ -417,13 +417,14 @@
                             <ComboBox fx:id="colour" id="comboId" prefWidth="100.0">
                                 <items>
                                     <FXCollections fx:factory="observableArrayList">
-                                        <String fx:value="Item 1"/>
-                                        <String fx:value="Item 2"/>
-                                        <String fx:value="Item 3"/>
+                                        <String fx:value="Red"/>
+                                        <String fx:value="Green"/>
+                                        <String fx:value="Blue"/>
+                                        <String fx:value="Yellow"/>
+                                        <String fx:value="Purple"/>
                                     </FXCollections>
                                 </items>
                             </ComboBox>
-
 
                         </VBox>
 

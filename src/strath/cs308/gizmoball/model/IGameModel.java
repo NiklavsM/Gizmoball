@@ -26,11 +26,11 @@ public interface IGameModel {
 
     double getFrictionCoefficient();
 
-    void setFrictionCoefficient(double frictionCoefficient);
+    boolean setFrictionCoefficient(double frictionCoefficient);
 
     double getGravityCoefficient();
 
-    void setGravityCoefficient(double gravityCoefficient);
+    boolean setGravityCoefficient(double gravityCoefficient);
 
     void reset();
 
