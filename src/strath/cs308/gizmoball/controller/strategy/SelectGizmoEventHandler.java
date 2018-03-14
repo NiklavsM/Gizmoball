@@ -10,13 +10,13 @@ import strath.cs308.gizmoball.view.IEditorView;
 import java.util.Observable;
 import java.util.Optional;
 
-public class GizmoClickEventHandler extends Observable implements EventHandler<MouseEvent> {
+public class SelectGizmoEventHandler extends Observable implements EventHandler<MouseEvent> {
 
     private static final String TAG = "GizmoClickEventHandler";
     private final IEditorView editorView;
     private final IGameModel gameModel;
 
-    public GizmoClickEventHandler(IGameModel gameModel, IEditorView editorView) {
+    public SelectGizmoEventHandler(IGameModel gameModel, IEditorView editorView) {
         this.gameModel = gameModel;
         this.editorView = editorView;
     }
@@ -27,17 +27,15 @@ public class GizmoClickEventHandler extends Observable implements EventHandler<M
             double pointX = mouseEvent.getX() / editorView.getPixelRatioFor(20.0);
             double pointY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
 
-//            gameModel.getGizmo(pointX, pointY)
-//                    .ifPresent(gizmo1 -> gameModel.removeGizmo(gizmo1.getId()));
-
             Optional<IGizmo> gizmo = gameModel.getGizmo(pointX, pointY);
-            gizmo.ifPresent(editorView::setSelectedGizmo);
-
-
-            editorView.updateFields();
+            gizmo.ifPresent(editorView::displayGizmoProperties);
+            
+            gizmo.ifPresent((editorView) -> {
+                setChanged();
+                notifyObservers();
+            });
 
             Logger.debug(TAG, "A gizmo has been selected");
-
         }
 
     }

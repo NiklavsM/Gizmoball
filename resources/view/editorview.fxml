@@ -149,29 +149,31 @@
                         <Label text="Console"/>
                     </VBox>
 
+                    <VBox GridPane.columnIndex="10"
+                          GridPane.rowIndex="0"
+                          spacing="5"
+                          alignment="CENTER">
+                        <Label text="Gravity"/>
+                        <TextField fx:id="gravity" 
+                                   styleClass="game-option-textbox" 
+                                   prefWidth="60.0" />
+                    </VBox>
+
+
+                    <VBox GridPane.columnIndex="11"
+                          GridPane.rowIndex="0"
+                          spacing="5"
+                          fx:id="gravityHolder"
+                          alignment="CENTER">
+                        <Label text="Friction"/>
+                        <TextField fx:id="friction" 
+                                   styleClass="game-option-textbox" 
+                                   prefWidth="60.0" />
+                    </VBox>
 
                 </GridPane>
 
-                <HBox GridPane.columnIndex="9"
-                      GridPane.rowIndex="0"
-                      spacing="5"
-                      alignment="CENTER">
-                    <Label text="Gravity"/>
-                    <TextField fx:id="gravity" styleClass="game-option-textbox" prefWidth="60.0">
-                        0.002
-                    </TextField>
-                </HBox>
-
-
-                <HBox GridPane.columnIndex="9"
-                      GridPane.rowIndex="0"
-                      spacing="5"
-                      alignment="CENTER">
-                    <Label text="Friction"/>
-                    <TextField fx:id="friction" styleClass="game-option-textbox" prefWidth="60.0">
-                        0.002
-                    </TextField>
-                </HBox>
+                
             </ToolBar>
         </VBox>
     </top>
@@ -180,6 +182,7 @@
         <ToolBar styleClass="default-padding" orientation="VERTICAL">
             <GridPane vgap="5"
                       hgap="16"
+                      fx:id="toolButtonHolder"
                       alignment="CENTER">
                 <Button minHeight="24"
                         minWidth="24"
@@ -187,10 +190,10 @@
                         scaleY="0.7"
                         GridPane.columnIndex="0"
                         GridPane.rowIndex="0"
-                        fx:id="addToolButton"
+                        fx:id="selectToolButton"
                         styleClass="tool-button, add-button">
                     <tooltip>
-                        <Tooltip text="Add tool"/>
+                        <Tooltip text="Select tool"/>
                     </tooltip>
                 </Button>
 

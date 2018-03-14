@@ -29,7 +29,7 @@ public class GameModel extends Observable implements IGameModel {
         frictionCoefficient = 0.025;
         gravityCoefficient = 25;
         score = 0;
-
+        collisionTriggers.clear();
         addGizmo(new Walls());
     }
 
@@ -271,12 +271,17 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     @Override
+
     public boolean setFrictionCoefficient(double frictionCoefficient) {
         if (frictionCoefficient >= 0) {
             this.frictionCoefficient = frictionCoefficient;
+            
+            setChanged();
+            notifyObservers();
             return true;
-        } else
+        } else {
             return false;
+        }
     }
 
     @Override
@@ -288,6 +293,9 @@ public class GameModel extends Observable implements IGameModel {
     public boolean setGravityCoefficient(double gravityCoefficient) {
         if (gravityCoefficient >= 0) {
             this.gravityCoefficient = gravityCoefficient;
+
+            setChanged();
+            notifyObservers();
             return true;
         }
         return false;

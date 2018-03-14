@@ -67,4 +67,5 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent> {
     public void removeTriggarable(ITriggerable triggerable) {
         keyEventMap.values().forEach(set -> set.remove(triggerable));
     }
+
 }
