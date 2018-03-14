@@ -39,6 +39,7 @@ import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.controller.ToolModeEventHandler;
 import strath.cs308.gizmoball.controller.TopToolbarEventHandler;
 import strath.cs308.gizmoball.model.IGameModel;
+import strath.cs308.gizmoball.model.IMovable;
 import strath.cs308.gizmoball.model.gizmo.Ball;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.utils.Logger;
@@ -256,10 +257,15 @@ public class EditorView extends Stage implements IEditorView, Observer {
         selectionModel.select(1);
 
         Label typeLabel = (Label) namespace.get("gizmoType");
-        TextField gizmoIdField = (TextField) namespace.get("gizmoId");
+        Label gizmoIdField = (Label) namespace.get("gizmoId");
 
         typeLabel.setText(gizmo.getType().toString());         
         gizmoIdField.setText(gizmo.getId());
+
+        if (gizmo instanceof IMovable) {
+            IMovable movableGizmo = (IMovable) gizmo;  
+            
+        }
     }
     
     @Override

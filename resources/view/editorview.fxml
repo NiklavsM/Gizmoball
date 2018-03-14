@@ -398,37 +398,33 @@
 
                     <VBox spacing="16"
                           styleClass="default-padding, GizmoPane">
-                        <Label fx:id="gizmoType" />
 
-                        <VBox spacing="5">
-                            <Label text="ID"/>
-                            <TextField fx:id="gizmoId" styleClass="game-option-textbox" prefWidth="60.0"  disable="true" />
-        
-                            <!--
-                            <Label text="Velocity X"/>
-                            <TextField fx:id="ballVelocityX" styleClass="game-option-textbox" prefWidth="60.0">
-                                6
-                            </TextField>
+                        <HBox spacing="16" 
+                              styleClass="default-padding"> 
+                            <VBox>
+                                <Label text="Type:" />
+                                <Label fx:id="gizmoType" />
+                            </VBox>
+                            <VBox>
+                                <Label text="Id:"/>
+                                <Label fx:id="gizmoId" />
+                            </VBox>       
+                        </HBox>
+                           <!-- 
+                        <VBox fx:id="movableFieldHolder" 
+                              spacing="5">
+                            <Label text="Velocity X" />
+                            <TextField fx:id="xVelocityField"
+                                       styleClass="game-option-textbox"
+                                       prefWidth="60.0" />
+    
+                            <Label text="Velocity X" />
+                            <TextField fx:id="xVelocityField"
+                                       styleClass="game-option-textbox"
+                                       prefWidth="60.0" />
 
-                            <Label text="Velocity Y"/>
-                            <TextField fx:id="ballVelocityY" styleClass="game-option-textbox" prefWidth="60.0">
-                               3
-                            </TextField>
-
-                            <Label text="Colour"/>
-                            <ComboBox fx:id="colour" id="comboId" prefWidth="100.0">
-                                <items>
-                                    <FXCollections fx:factory="observableArrayList">
-                                        <String fx:value="Red"/>
-                                        <String fx:value="Green"/>
-                                        <String fx:value="Blue"/>
-                                        <String fx:value="Yellow"/>
-                                        <String fx:value="Purple"/>
-                                    </FXCollections>
-                                </items>
-                            </ComboBox>
-                            -->
-                        </VBox>
+                       </VBox>
+                    -->
 
                     </VBox>
 
