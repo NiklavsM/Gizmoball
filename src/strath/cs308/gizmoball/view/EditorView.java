@@ -2,9 +2,9 @@ package strath.cs308.gizmoball.view;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.Map;
 
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
@@ -36,6 +37,7 @@ public class EditorView implements IEditorView, Observer {
     private IGameModel gameModel;
     private Canvas canvas;
     private boolean isGrided;
+    private Map<String, Object> namespace;
     private TextField frictionTextField;
     private TextField gravityTextField;
     private IGizmo selectedGizmo;
@@ -46,8 +48,8 @@ public class EditorView implements IEditorView, Observer {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/editorview.fxml"));
             root = loader.load();
-            canvas = (Canvas) root.lookup("#canvas");
-            Map<String, Object> namespace = loader.getNamespace(); 
+            namespace = loader.getNamespace(); 
+            canvas = (Canvas) namespace.get("canvas");
             frictionTextField = (TextField) namespace.get("gravity");
             gravityTextField = (TextField) namespace.get("friction");
 
@@ -75,7 +77,7 @@ public class EditorView implements IEditorView, Observer {
 
     private void initialSetup() {
         attachHandlers();
-        setupTextFields();
+        //setupTextFields();
     }
 
 
@@ -122,6 +124,8 @@ public class EditorView implements IEditorView, Observer {
 
     private void setupTextFields() {
         Platform.runLater(() -> {
+
+            // this needs to be moved to controller
             gravityTextField.textProperty()
                     .addListener((observable, oldValue, newValue) -> {
                         try {
@@ -186,7 +190,7 @@ public class EditorView implements IEditorView, Observer {
     private void attachHandlers() {
         Platform.runLater(() -> {
             EventHandler topToolbarHandler = new TopToolbarEventHandler(gameModel, this);
-            root.lookupAll(".top-toolbar-button")
+            ((GridPane) namespace.get("topToolbar")).lookupAll(".top-toolbar-button")
                     .forEach(node -> node.setOnMouseClicked(topToolbarHandler));
 
             EventHandler addGizmoEventHandler = new GizmoSelectorEventHandler(gameModel, this);
@@ -194,7 +198,8 @@ public class EditorView implements IEditorView, Observer {
                     .forEach(node -> node.setOnMouseClicked(addGizmoEventHandler));
 
             EventHandler toolSelectionHandler = new ToolModeEventHandler(gameModel, this);
-            root.lookupAll(".tool-button")
+            System.out.println(root.lookupAll(".tool-button"));
+            ((GridPane) namespace.get("toolButtonHolder")).lookupAll(".tool-button")
                     .forEach(node -> node.setOnMouseClicked(toolSelectionHandler));
 
         });
@@ -235,6 +240,7 @@ public class EditorView implements IEditorView, Observer {
     @Override
     public void setStatus(String message) {
         Label statusLabel = (Label) root.lookup("#statusbar");
+        System.out.println(statusLabel);
         statusLabel.setText(message);
     }
 

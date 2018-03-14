@@ -182,6 +182,7 @@
         <ToolBar styleClass="default-padding" orientation="VERTICAL">
             <GridPane vgap="5"
                       hgap="16"
+                      fx:id="toolButtonHolder"
                       alignment="CENTER">
                 <Button minHeight="24"
                         minWidth="24"
@@ -189,10 +190,10 @@
                         scaleY="0.7"
                         GridPane.columnIndex="0"
                         GridPane.rowIndex="0"
-                        fx:id="addToolButton"
+                        fx:id="selectToolButton"
                         styleClass="tool-button, add-button">
                     <tooltip>
-                        <Tooltip text="Add tool"/>
+                        <Tooltip text="Select tool"/>
                     </tooltip>
                 </Button>
 
