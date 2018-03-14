@@ -6,4 +6,5 @@ public interface ITriggerable {
 
     void registerAction(IAction triggerAction);
 
+    String id();
 }

@@ -42,6 +42,20 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent> {
     }
 
     @Override
+    public String toString() {
+        final String[] s = {""};
+        keyEventMap
+                .forEach(
+                        (event, trigs) ->
+                                trigs
+                                      .forEach(trig ->
+                                          s[0] += GameLoader.KEY_CONNECT_COMMAND +
+                                                   " " + event + " " + trig.id() + "\n")
+                );
+        return s[0];
+    }
+
+    @Override
     public void handle(KeyEvent keyEvent) {
         String keyEventString = prettify(keyEvent);
         if (!keyEventMap.containsKey(keyEventString)) {
@@ -71,4 +85,5 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent> {
     public void removeAllHandlers() {
         keyEventMap.clear();
     }
+
 }

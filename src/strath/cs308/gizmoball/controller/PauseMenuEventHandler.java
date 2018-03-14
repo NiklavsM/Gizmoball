@@ -21,6 +21,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
     private IGameModel gameModel;
     private GameLoader gameLoader;
     private InGameKeyEventHandler keyEventHandler;
+    private GizmoBall gizmoBall;
 
     public PauseMenuEventHandler(GizmoBall gizmoBall, IGameTimer gameTimer, IPlayView playView) {
         this.playView = playView;
@@ -28,6 +29,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
         this.gameModel = gizmoBall.getGameModel();
         this.gameLoader = gizmoBall.getGameLoader();
         this.keyEventHandler = gizmoBall.getKeyHandler();
+        this.gizmoBall = gizmoBall;
     }
 
     @Override
@@ -90,7 +92,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
 
     private void saveGame() {
         File fileToSave = playView.getLoadFile();
-        GameSaver gs = new GameSaver(gameModel, fileToSave);
+        GameSaver gs = new GameSaver(gizmoBall, fileToSave);
 
         if (fileToSave == null) {
             Logger.debug(TAG, "Saving file dialog cancelled");

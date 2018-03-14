@@ -4,8 +4,10 @@ import mit.physics.Circle;
 import mit.physics.Geometry;
 import mit.physics.LineSegment;
 import mit.physics.Vect;
+import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.model.gizmo.*;
 import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
+import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -298,9 +300,19 @@ public class GameModel extends Observable implements IGameModel {
             commands += gizmo.toString();
         }
 
-        commands += "\n\n";
+        commands += "\n\n# collision triggers\n";
+
+        for (ITrigger trigger : collisionTriggers) {
+            for (ITriggerable triggerable : trigger.getTriggerables()) {
+                commands += GameLoader.CONNECT_COMMAND +
+                        " " + trigger.id() + " " + triggerable.id() + "\n";
+            }
+        }
 
         //TODO add gravity and friciton
+
+        commands += "\n# gravity and friction\n";
+
         return commands;
     }
 }
