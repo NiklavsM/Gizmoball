@@ -38,7 +38,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
     private IGizmo selectedGizmo;
     private TextField ballXGravityTextField;
     private TextField ballYGravityTextField;
-    private IngameKeyEventHandler keyHandler;
+    private InGameKeyEventHandler keyHandler;
 
     public EditorView(GizmoBall gizmoball) {
 
@@ -237,7 +237,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
         statusLabel.setText(message);
     }
 
-    public IngameKeyEventHandler getKeyHandler() {
+    public InGameKeyEventHandler getKeyHandler() {
         return keyHandler;
     }
 

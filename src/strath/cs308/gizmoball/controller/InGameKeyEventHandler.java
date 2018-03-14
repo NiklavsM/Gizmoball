@@ -14,13 +14,13 @@ import java.util.Set;
 import static javafx.scene.input.KeyEvent.KEY_PRESSED;
 import static javafx.scene.input.KeyEvent.KEY_RELEASED;
 
-public class IngameKeyEventHandler implements EventHandler<KeyEvent> {
+public class InGameKeyEventHandler implements EventHandler<KeyEvent> {
 
     private final Map<String, Set<ITriggerable>> keyEventMap = new HashMap<>();
 
     private IGameModel gameModel;
 
-    public IngameKeyEventHandler(IGameModel gameModel) {
+    public InGameKeyEventHandler(IGameModel gameModel) {
         this.gameModel = gameModel;
     }
 
