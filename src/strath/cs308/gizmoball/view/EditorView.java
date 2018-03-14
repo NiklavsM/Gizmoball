@@ -19,6 +19,7 @@ import strath.cs308.gizmoball.controller.*;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.Ball;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
+import strath.cs308.gizmoball.utils.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,6 +27,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class EditorView extends Stage implements IEditorView, Observer {
+    private static final String TAG = "EditorView";
     private GizmoBall gizmoBall;
     private BorderPane root;
     private IGameModel gameModel;
@@ -91,7 +93,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
 
         if (selectedGizmo != null && selectedGizmo.getType() == IGizmo.Type.BALL) {
-            System.out.println("A " + selectedGizmo.getType() + " at " + selectedGizmo.getStartX() + ", " + selectedGizmo.getStartY());
+            Logger.debug(TAG, "A " + selectedGizmo.getType() + " at " + selectedGizmo.getStartX() + ", " + selectedGizmo.getStartY());
             Vect vect = ((Ball) selectedGizmo).getVelocity();
             ballXGravityTextField.setText(String.valueOf(vect.x()));
             ballYGravityTextField.setText(String.valueOf(vect.y()));
@@ -124,7 +126,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
                             double value = Double.parseDouble(newValue);
                             gameModel.setGravityCoefficient(value);
                         } catch (NumberFormatException ex) {
-                            System.out.println("Invalid input for gravity");
+                            Logger.error(TAG, "Invalid input for gravity");
                         }
 
                     });
@@ -138,7 +140,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
                             double value = Double.parseDouble(newValue);
                             gameModel.setFrictionCoefficient(value);
                         } catch (NumberFormatException ex) {
-                            System.out.println("Invalid input for friction");
+                            Logger.error(TAG, "Invalid input for friction");
                         }
 
                     });
@@ -154,7 +156,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
                             ((Ball) getSelectedGizmo()).setVelocity(newVect);
 
                         } catch (NumberFormatException ex) {
-                            System.out.println("Invalid input for velocity");
+                            Logger.error(TAG, "Invalid input for velocity");
                         }
 
                     });
@@ -171,7 +173,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
                             ((Ball) getSelectedGizmo()).setVelocity(newVect);
 
                         } catch (NumberFormatException ex) {
-                            System.out.println("Invalid input for velocity");
+                            Logger.error(TAG, "Invalid input for velocity");
                         }
 
                     });

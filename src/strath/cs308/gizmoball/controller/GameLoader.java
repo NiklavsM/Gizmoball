@@ -1,6 +1,8 @@
 package strath.cs308.gizmoball.controller;
 
-import strath.cs308.gizmoball.model.*;
+import strath.cs308.gizmoball.model.GizmoFactory;
+import strath.cs308.gizmoball.model.IGameModel;
+import strath.cs308.gizmoball.model.IGizmoFactory;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
@@ -12,7 +14,7 @@ import java.util.stream.Collectors;
 
 import static strath.cs308.gizmoball.model.gizmo.IGizmo.Type.*;
 
-public class  GameLoader {
+public class GameLoader {
 
     public static final String ROTATE_COMMAND = "Rotate";
     public static final String KEY_CONNECT_COMMAND = "KeyConnect";

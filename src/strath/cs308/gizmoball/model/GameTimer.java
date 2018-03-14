@@ -1,12 +1,14 @@
 package strath.cs308.gizmoball.model;
 
 import strath.cs308.gizmoball.controller.Constants;
+import strath.cs308.gizmoball.utils.Logger;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameTimer implements IGameTimer {
 
+    private static final String TAG = "GameTimer";
     private IGameModel gameModel;
     private Timer timer;
 
@@ -36,7 +38,7 @@ public class GameTimer implements IGameTimer {
 
 
             this.timer = new Timer();
-            System.out.println("time: " + (Constants.TICK_TIME * 1000));
+            Logger.verbose(TAG,"time: " + (Constants.TICK_TIME * 1000));
             this.timer.schedule(task, 0, (long) (Constants.TICK_TIME * 1000));
         }
     }

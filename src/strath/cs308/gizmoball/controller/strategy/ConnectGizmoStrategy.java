@@ -4,10 +4,12 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
+import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.IEditorView;
 
 public class ConnectGizmoStrategy implements EventHandler<MouseEvent> {
 
+    private static final String TAG = "ConnectGizmoStrategy";
     private final IEditorView editorView;
     private final IGameModel gameModel;
     private IGizmo connectTo;
@@ -21,7 +23,7 @@ public class ConnectGizmoStrategy implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-        System.out.println("handling connecttions");
+        Logger.debug(TAG, "handling connecttions");
         /**
          * TODO
          * still need to be done

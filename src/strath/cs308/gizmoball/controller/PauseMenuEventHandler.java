@@ -6,12 +6,14 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGameTimer;
+import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.IPlayView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 
 public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
+    private static final String TAG = "PauseMenuEventHandler";
     private IPlayView playView;
     private IGameTimer gameTimer;
     private IGameModel gameModel;
@@ -65,7 +67,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
         File fileToLoad = playView.getLoadFile();
 
         if (fileToLoad == null) {
-            System.out.println("Loading file dialog cancelled");
+            Logger.debug(TAG, "Loading file dialog cancelled");
             return;
         }
 
@@ -84,7 +86,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
         GameSaver gs = new GameSaver(gameModel, fileToSave);
 
         if(fileToSave == null) {
-            System.out.println("Saving file dialog cancelled");
+            Logger.debug(TAG, "Saving file dialog cancelled");
             return;
         }
 
