@@ -212,12 +212,12 @@ public class EditorView implements IEditorView, Observer {
     }
 
     @Override
-    public double getFrictionInput() {
+    public double getFrictionInput() throws NumberFormatException {
         return Double.parseDouble(frictionTextField.getText());
     }
 
     @Override
-    public double getGravityInput() {
+    public double getGravityInput() throws NumberFormatException {
         return Double.parseDouble(gravityTextField.getText());
     }
    

@@ -26,7 +26,7 @@ public interface IEditorView {
 
     IGizmo getSelectedGizmo();
 
-    double getFrictionInput();
+    double getFrictionInput() throws NumberFormatException;
 
-    double getGravityInput();
+    double getGravityInput() throws NumberFormatException;
 }

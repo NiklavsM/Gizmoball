@@ -31,13 +31,21 @@ public class GamePropertyEventHandler implements EventHandler<ActionEvent> {
     }
 
     private void changeGameGravity() {
-        gameModel.setGravityCoefficient(editorView.getGravityInput()); 
-        editorView.setStatus("Game gravity is changed to: " +editorView.getGravityInput());
+        try {
+            gameModel.setGravityCoefficient(editorView.getGravityInput()); 
+            editorView.setStatus("Game gravity is changed to: " +editorView.getGravityInput());
+        } catch (NumberFormatException e) {
+            editorView.setStatus("The given gravity value is not acceptable!");
+        }
     }
 
     private void changeGameFriction() {
-        gameModel.setFrictionCoefficient(editorView.getFrictionInput());
-        editorView.setStatus("Game friction is changed to: " +editorView.getFrictionInput());
+        try {
+            gameModel.setFrictionCoefficient(editorView.getFrictionInput());
+            editorView.setStatus("Game friction is changed to: " +editorView.getFrictionInput());
+        } catch (NumberFormatException e) {
+            editorView.setStatus("The given firction value is not accpetable!");
+        }
     }
     
 }
