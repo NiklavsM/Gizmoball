@@ -28,10 +28,10 @@ public class GizmoBall extends Application {
 
         gameModel = new GameModel();
         keyHandler = new InGameKeyEventHandler(gameModel);
-        gameLoader = new GameLoader(gameModel, keyHandler, getClass().getResourceAsStream("/alternative.gizmo"));
+        gameLoader = new GameLoader(gameModel, keyHandler);
 
         try {
-            gameLoader.load();
+            gameLoader.load(getClass().getResourceAsStream("/alternative.gizmo"));
         } catch (IllegalAccessException e) {
             System.err.println("Failed to load default model");
             System.err.println("\n\n");

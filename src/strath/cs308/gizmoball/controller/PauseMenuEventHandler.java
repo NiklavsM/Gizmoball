@@ -4,12 +4,14 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGameTimer;
 import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.IPlayView;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
@@ -18,12 +20,14 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
     private IGameTimer gameTimer;
     private IGameModel gameModel;
     private GameLoader gameLoader;
+    private InGameKeyEventHandler keyEventHandler;
 
-    public PauseMenuEventHandler(IGameModel gameModel, IGameTimer gameTimer, IPlayView playView, GameLoader gameLoader) {
+    public PauseMenuEventHandler(GizmoBall gizmoBall, IGameTimer gameTimer, IPlayView playView) {
         this.playView = playView;
         this.gameTimer = gameTimer;
-        this.gameModel = gameModel;
-        this.gameLoader = gameLoader;
+        this.gameModel = gizmoBall.getGameModel();
+        this.gameLoader = gizmoBall.getGameLoader();
+        this.keyEventHandler = gizmoBall.getKeyHandler();
     }
 
     @Override
@@ -73,8 +77,11 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
 
         try {
             gameModel.reset();
-            gameLoader.load();
+            keyEventHandler.removeAllHandlers();
+            gameLoader.load(new FileInputStream(fileToLoad));
         } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         } finally {
             playView.hidePauseMenu();

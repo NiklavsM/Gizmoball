@@ -27,7 +27,6 @@ public class GameLoader {
     private static final String TAG = "GameLoader";
     private final IGizmoFactory gizmoFactory;
     private final IGameModel gameModel;
-    private final InputStream source;
     private InGameKeyEventHandler keyHandler;
 
     private Set<String> gizmoCreationCommands;
@@ -36,9 +35,8 @@ public class GameLoader {
     private Set<String> nameCommands;
     private Map<String, IGizmo.Type> gizmoCommandToEnum;
 
-    public GameLoader(IGameModel gameModel, InGameKeyEventHandler keyHandler, InputStream source) {
+    public GameLoader(IGameModel gameModel, InGameKeyEventHandler keyHandler) {
         this.gameModel = gameModel;
-        this.source = source;
         this.keyHandler = keyHandler;
         gizmoFactory = new GizmoFactory();
 
@@ -67,7 +65,7 @@ public class GameLoader {
         gizmoCreationCommandsAdvanced.add("Ball");
     }
 
-    public void load() throws IllegalAccessException {
+    public void load(InputStream source) throws IllegalAccessException {
 
         Queue<String> tokens;
         String command;
