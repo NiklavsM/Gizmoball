@@ -1,5 +1,11 @@
 package strath.cs308.gizmoball.view;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
+
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -10,11 +16,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
 import mit.physics.Vect;
-import strath.cs308.gizmoball.controller.GizmoClickEventHandler;
+
+import strath.cs308.gizmoball.controller.GamePropertyEventHandler;
 import strath.cs308.gizmoball.controller.GizmoSelectorEventHandler;
 import strath.cs308.gizmoball.controller.ToolModeEventHandler;
 import strath.cs308.gizmoball.controller.TopToolbarEventHandler;
@@ -22,33 +32,31 @@ import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.Ball;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Observable;
-import java.util.Observer;
-
 public class EditorView implements IEditorView, Observer {
     private BorderPane root;
     private IGameModel gameModel;
     private Canvas canvas;
     private boolean isGrided;
+    private Map<String, Object> namespace;
     private TextField frictionTextField;
     private TextField gravityTextField;
     private IGizmo selectedGizmo;
-    private TextField ballXGravityTextField;
-    private TextField ballYGravityTextField;
+    private Label statusLabel;
 
     public EditorView(Stage stage, IGameModel gameModel) {
         try {
-            root = FXMLLoader.load(getClass().getResource("/view/editorview.fxml"));
-            canvas = (Canvas) root.lookup("#canvas");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/editorview.fxml"));
+            root = loader.load();
+            namespace = loader.getNamespace(); 
+            canvas = (Canvas) namespace.get("canvas");
+            frictionTextField = (TextField) namespace.get("friction");
+            gravityTextField = (TextField) namespace.get("gravity");
+            statusLabel = (Label) namespace.get("statusbar");
+
             this.gameModel = gameModel;
             this.gameModel.addObserver(this);
 
             isGrided = true;
-
-            EventHandler<MouseEvent> onMouseClicked = new GizmoClickEventHandler(gameModel, this);
-            canvas.setOnMouseClicked(onMouseClicked);
 
             Scene scene = new Scene(root);
 
@@ -82,16 +90,18 @@ public class EditorView implements IEditorView, Observer {
 
     @Override
     public void updateFields() {
+        
         gravityTextField.setText(String.valueOf(gameModel.getGravityCoefficient()));
         frictionTextField.setText(String.valueOf(gameModel.getFrictionCoefficient()));
 
-
+        /*
         if (selectedGizmo != null && selectedGizmo.getType() == IGizmo.Type.BALL) {
             System.out.println("A " + selectedGizmo.getType() + " at " + selectedGizmo.getStartX() + ", " + selectedGizmo.getStartY());
             Vect vect = ((Ball) selectedGizmo).getVelocity();
             ballXGravityTextField.setText(String.valueOf(vect.x()));
             ballYGravityTextField.setText(String.valueOf(vect.y()));
         }
+        */
     }
 
     private void drawGrid() {
@@ -112,73 +122,15 @@ public class EditorView implements IEditorView, Observer {
 
     private void setupTextFields() {
         Platform.runLater(() -> {
-            gravityTextField = (TextField) root.lookup("#gravity");
-            gravityTextField.textProperty()
-                    .addListener((observable, oldValue, newValue) -> {
-
-                        try {
-                            double value = Double.parseDouble(newValue);
-                            gameModel.setGravityCoefficient(value);
-                        } catch (NumberFormatException ex) {
-                            System.out.println("Invalid input for gravity");
-                        }
-
-                    });
-
-
-            frictionTextField = (TextField) root.lookup("#friction");
-            frictionTextField.textProperty()
-                    .addListener((observable, oldValue, newValue) -> {
-
-                        try {
-                            double value = Double.parseDouble(newValue);
-                            gameModel.setFrictionCoefficient(value);
-                        } catch (NumberFormatException ex) {
-                            System.out.println("Invalid input for friction");
-                        }
-
-                    });
-
-            ballXGravityTextField = (TextField) root.lookup("#ballVelocityX");
-            ballXGravityTextField.textProperty()
-                    .addListener((observable, oldValue, newValue) -> {
-
-                        try {
-                            double xVel = Double.parseDouble(newValue);
-                            Vect vect = ((Ball) getSelectedGizmo()).getVelocity();
-                            Vect newVect = new Vect(xVel, vect.y());
-                            ((Ball) getSelectedGizmo()).setVelocity(newVect);
-
-                        } catch (NumberFormatException ex) {
-                            System.out.println("Invalid input for velocity");
-                        }
-
-                    });
-
-
-            ballYGravityTextField = (TextField) root.lookup("#ballVelocityY");
-            ballYGravityTextField.textProperty()
-                    .addListener((observable, oldValue, newValue) -> {
-
-                        try {
-                            double xVel = Double.parseDouble(newValue);
-                            Vect vect = ((Ball) getSelectedGizmo()).getVelocity();
-                            Vect newVect = new Vect(xVel, vect.x());
-                            ((Ball) getSelectedGizmo()).setVelocity(newVect);
-
-                        } catch (NumberFormatException ex) {
-                            System.out.println("Invalid input for velocity");
-                        }
-
-                    });
+            gravityTextField.setText(Double.toString(gameModel.getGravityCoefficient()));
+            frictionTextField.setText(Double.toString(gameModel.getFrictionCoefficient()));
         });
-
     }
 
     private void attachHandlers() {
         Platform.runLater(() -> {
             EventHandler topToolbarHandler = new TopToolbarEventHandler(gameModel, this);
-            root.lookupAll(".top-toolbar-button")
+            ((GridPane) namespace.get("topToolbar")).lookupAll(".top-toolbar-button")
                     .forEach(node -> node.setOnMouseClicked(topToolbarHandler));
 
             EventHandler addGizmoEventHandler = new GizmoSelectorEventHandler(gameModel, this);
@@ -186,9 +138,12 @@ public class EditorView implements IEditorView, Observer {
                     .forEach(node -> node.setOnMouseClicked(addGizmoEventHandler));
 
             EventHandler toolSelectionHandler = new ToolModeEventHandler(gameModel, this);
-            root.lookupAll(".tool-button")
+            ((GridPane) namespace.get("toolButtonHolder")).lookupAll(".tool-button")
                     .forEach(node -> node.setOnMouseClicked(toolSelectionHandler));
 
+            EventHandler gamePropertyEventHandler = new GamePropertyEventHandler(gameModel, this);
+            frictionTextField.setOnAction(gamePropertyEventHandler);
+            gravityTextField.setOnAction(gamePropertyEventHandler);            
         });
     }
 
@@ -220,13 +175,12 @@ public class EditorView implements IEditorView, Observer {
 
     @Override
     public void toggleGrid() {
-        isGrided = !isGrided;
         refresh();
     }
 
     @Override
     public void setStatus(String message) {
-        Label statusLabel = (Label) root.lookup("#statusbar");
+        statusLabel.getStyleClass().remove("error-label");
         statusLabel.setText(message);
     }
 
@@ -255,5 +209,26 @@ public class EditorView implements IEditorView, Observer {
         GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
         graphicsContext.setFill(GizmoDrawer.DEEP_BLUE);
         graphicsContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+    }
+
+    @Override
+    public double getFrictionInput() throws NumberFormatException {
+        return Double.parseDouble(frictionTextField.getText());
+    }
+
+    @Override
+    public double getGravityInput() throws NumberFormatException {
+        return Double.parseDouble(gravityTextField.getText());
+    }
+
+    @Override
+    public void setErrorStatus(String message) {
+        statusLabel.getStyleClass().add("error-label");
+        statusLabel.setText(message); 
+    }
+
+    @Override
+    public void displayGizmoProperties(IGizmo gizmo) {
+        System.out.println(gizmo.getId());
     }
 }
