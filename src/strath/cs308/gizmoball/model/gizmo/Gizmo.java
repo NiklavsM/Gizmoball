@@ -4,10 +4,7 @@ import mit.physics.*;
 import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.model.Dot;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public abstract class Gizmo implements IGizmo {
@@ -143,14 +140,15 @@ public abstract class Gizmo implements IGizmo {
 
     public int getScoreValue() {
         switch (this.getType()) {
-            // no points are granted for flipper collisions
+            // no points are granted for flipper collisions, ball-to-ball collisions or walls collisions
             case RIGHT_FLIPPER:
             case LEFT_FLIPPER:
             case BALL:
+            case WALLS:
                 return 0;
             // deduct 10 points when ball is absorbed
             case ABSORBER:
-                return -10;
+                return -20;
             // grant 1 point if any gizmo is hit apart from the absorber
             default:
                 return 1;
