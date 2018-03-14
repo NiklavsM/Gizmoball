@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 
 import mit.physics.Vect;
 
+import strath.cs308.gizmoball.controller.GamePropertyEventHandler;
 import strath.cs308.gizmoball.controller.GizmoSelectorEventHandler;
 import strath.cs308.gizmoball.controller.ToolModeEventHandler;
 import strath.cs308.gizmoball.controller.TopToolbarEventHandler;
@@ -119,12 +120,9 @@ public class EditorView implements IEditorView, Observer {
 
     private void setupTextFields() {
         Platform.runLater(() -> {
-            
             gravityTextField.setText(Double.toString(gameModel.getGravityCoefficient()));
             frictionTextField.setText(Double.toString(gameModel.getFrictionCoefficient()));
- 
         });
-
     }
 
     private void attachHandlers() {
@@ -138,10 +136,12 @@ public class EditorView implements IEditorView, Observer {
                     .forEach(node -> node.setOnMouseClicked(addGizmoEventHandler));
 
             EventHandler toolSelectionHandler = new ToolModeEventHandler(gameModel, this);
-            System.out.println(root.lookupAll(".tool-button"));
             ((GridPane) namespace.get("toolButtonHolder")).lookupAll(".tool-button")
                     .forEach(node -> node.setOnMouseClicked(toolSelectionHandler));
 
+            EventHandler gamePropertyEventHandler = new GamePropertyEventHandler(gameModel);
+            frictionTextField.setOnAction(gamePropertyEventHandler);
+            gravityTextField.setOnAction(gamePropertyEventHandler);            
         });
     }
 
