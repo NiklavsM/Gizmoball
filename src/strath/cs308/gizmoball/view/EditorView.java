@@ -240,13 +240,13 @@ public class EditorView extends Stage implements IEditorView, Observer {
         return keyHandler;
     }
 
-    public void setSelectedGizmo(IGizmo gizmo) {
-        this.selectedGizmo = gizmo;
-    }
-
     @Override
     public IGizmo getSelectedGizmo() {
         return selectedGizmo;
+    }
+
+    public void setSelectedGizmo(IGizmo gizmo) {
+        this.selectedGizmo = gizmo;
     }
 
     @Override

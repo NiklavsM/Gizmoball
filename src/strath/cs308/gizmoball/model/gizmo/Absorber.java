@@ -36,7 +36,7 @@ public class Absorber extends AbstractTriggerAndTriggarableGizmo implements IAct
     }
 
     public void absorbBall(Ball ball) {
-        if(haveSpace()) {
+        if (haveSpace()) {
             ballsAbsorbed.add(ball);
             ball.setX(getEndX() - 0.25 - ((ballsAbsorbed.size() - 1) * 0.5) % (x2 - x1)); // makes sure balls sit in the absorber nicely
             ball.setY(getEndY() - 0.25 - (((ballsAbsorbed.size() - 1) / (int) ((x2 - x1) * 2)) * 0.5) % (y2 - y1));
@@ -59,8 +59,8 @@ public class Absorber extends AbstractTriggerAndTriggarableGizmo implements IAct
 
     @Override
     public void doAction(Object args) {
-            if (!ballsAbsorbed.isEmpty()) {
-                shootTheBallOut(ballsAbsorbed.pop());
+        if (!ballsAbsorbed.isEmpty()) {
+            shootTheBallOut(ballsAbsorbed.pop());
         }
     }
 

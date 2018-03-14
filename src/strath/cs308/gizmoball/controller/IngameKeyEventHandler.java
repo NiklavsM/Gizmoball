@@ -3,12 +3,9 @@ package strath.cs308.gizmoball.controller;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 import strath.cs308.gizmoball.model.IGameModel;
-import strath.cs308.gizmoball.model.gizmo.Absorber;
 import strath.cs308.gizmoball.model.gizmo.Flipper;
-import strath.cs308.gizmoball.model.triggeringsystem.IAction;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
-import java.awt.datatransfer.FlavorListener;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;

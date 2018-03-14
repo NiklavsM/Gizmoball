@@ -24,7 +24,8 @@ public interface IEditorView {
     void setStatus(String message);
 
     IngameKeyEventHandler getKeyHandler();
-    void setSelectedGizmo(IGizmo gizmo);
 
     IGizmo getSelectedGizmo();
+
+    void setSelectedGizmo(IGizmo gizmo);
 }

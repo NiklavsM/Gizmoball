@@ -2,7 +2,6 @@ package strath.cs308.gizmoball;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.controller.IngameKeyEventHandler;

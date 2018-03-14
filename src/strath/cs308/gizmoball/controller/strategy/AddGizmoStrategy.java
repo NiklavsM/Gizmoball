@@ -2,16 +2,12 @@ package strath.cs308.gizmoball.controller.strategy;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import strath.cs308.gizmoball.model.Dot;
 import strath.cs308.gizmoball.model.GizmoFactory;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGizmoFactory;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.IEditorView;
-
-import java.util.HashSet;
-import java.util.Optional;
 
 public class AddGizmoStrategy implements EventHandler<MouseEvent> {
 
@@ -53,7 +49,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
     }
 
     private void onMouseDragged(MouseEvent mouseEvent) {
-        Logger.verbose(TAG,"DRAG DETECED");
+        Logger.verbose(TAG, "DRAG DETECED");
         double startX = Math.floor(pressX / editorView.getPixelRatioFor(20.0));
         double startY = Math.floor(pressY / editorView.getPixelRatioFor(20.0));
         double endX = Math.floor(mouseEvent.getX() / editorView.getPixelRatioFor(20.0));
@@ -124,7 +120,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
 
 
         IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, x, y);
-            gameModel.addGizmo(gizmo);
+        gameModel.addGizmo(gizmo);
 
     }
 }

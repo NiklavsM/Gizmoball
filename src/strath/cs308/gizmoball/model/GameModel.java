@@ -42,7 +42,7 @@ public class GameModel extends Observable implements IGameModel {
         Gizmo tempGizmo = (Gizmo) gizmo;
 
         for (Gizmo currentGizmo : gizmos.values()) {
-            if ( !currentGizmo.getType().equals(IGizmo.Type.WALLS) &&
+            if (!currentGizmo.getType().equals(IGizmo.Type.WALLS) &&
                     tempGizmo.getStartX() < currentGizmo.getEndX() &&
                     tempGizmo.getEndX() > currentGizmo.getStartX() &&
                     tempGizmo.getStartY() < currentGizmo.getEndY() &&
