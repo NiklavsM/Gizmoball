@@ -267,7 +267,7 @@
 
     <right>
         <VBox>
-            <TabPane>
+            <TabPane fx:id="sidePanel">
                 <Tab closable="false"
                      text="Gizmos">
                     <VBox spacing="16"
@@ -398,14 +398,13 @@
 
                     <VBox spacing="16"
                           styleClass="default-padding, GizmoPane">
-                        <Label fx:id="gizmotype" text="Ball"/>
+                        <Label fx:id="gizmoType" />
 
                         <VBox spacing="5">
                             <Label text="ID"/>
-                            <TextField fx:id="gizmoName" styleClass="game-option-textbox" prefWidth="60.0"  disable="true">
-                                47856-65654-65463
-                            </TextField>
-
+                            <TextField fx:id="gizmoId" styleClass="game-option-textbox" prefWidth="60.0"  disable="true" />
+        
+                            <!--
                             <Label text="Velocity X"/>
                             <TextField fx:id="ballVelocityX" styleClass="game-option-textbox" prefWidth="60.0">
                                 6
@@ -428,7 +427,7 @@
                                     </FXCollections>
                                 </items>
                             </ComboBox>
-
+                            -->
                         </VBox>
 
                     </VBox>

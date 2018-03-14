@@ -18,6 +18,9 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.control.SingleSelectionModel;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -32,9 +35,9 @@ import mit.physics.Vect;
 import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.controller.GamePropertyEventHandler;
 import strath.cs308.gizmoball.controller.GizmoSelectorEventHandler;
+import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.controller.ToolModeEventHandler;
 import strath.cs308.gizmoball.controller.TopToolbarEventHandler;
-import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.Ball;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
@@ -248,7 +251,15 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
     @Override
     public void displayGizmoProperties(IGizmo gizmo) {
-        System.out.println(gizmo.getId());
+        TabPane sidePane = (TabPane) namespace.get("sidePanel");
+        SingleSelectionModel<Tab> selectionModel = sidePane.getSelectionModel();
+        selectionModel.select(1);
+
+        Label typeLabel = (Label) namespace.get("gizmoType");
+        TextField gizmoIdField = (TextField) namespace.get("gizmoId");
+
+        typeLabel.setText(gizmo.getType().toString());         
+        gizmoIdField.setText(gizmo.getId());
     }
     
     @Override
