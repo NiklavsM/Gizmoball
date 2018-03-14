@@ -96,7 +96,7 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     @Override
-    public void onCollisionTrigger(ITrigger from) {
+    public void addCollisionTrigger(ITrigger from) {
         collisionTriggers.add(from);
     }
 
