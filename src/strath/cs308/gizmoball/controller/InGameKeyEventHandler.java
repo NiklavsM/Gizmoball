@@ -53,9 +53,9 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent> {
                     if (triggerable instanceof Flipper) {
                         Flipper.Movement args = null;
                         if (keyEvent.getEventType().equals(KEY_PRESSED)) {
-                            args = Flipper.Movement.TOP;
+                            args = Flipper.Movement.FORWARD;
                         } else if (keyEvent.getEventType().equals(KEY_RELEASED)) {
-                            args = Flipper.Movement.BOTTOM;
+                            args = Flipper.Movement.BACKWARDS;
                         }
                         triggerable.performAction(args);
                     } else {

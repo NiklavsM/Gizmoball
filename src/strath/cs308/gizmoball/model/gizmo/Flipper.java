@@ -125,7 +125,7 @@ public class Flipper extends AbstractTriggerableGizmo implements IMovable, IActi
                     movedAngle = Angle.ZERO.radians();
                 }
 
-                if (movementStatus.equals(Movement.BACK)) {
+                if (movementStatus.equals(Movement.BACKWARDS)) {
                     movementStatus = Movement.BOTTOM;
                     velocity = Vect.ZERO;
                     movedAngle = Angle.ZERO.radians();
@@ -144,8 +144,8 @@ public class Flipper extends AbstractTriggerableGizmo implements IMovable, IActi
         this.velocity = new Vect(new Angle(velocity.angle().radians() * orientation.getMult()));
     }
 
-    public void up() {
-        if (movementStatus == Movement.BACK) {
+    private void up() {
+        if (movementStatus == Movement.BACKWARDS) {
             movementStatus = Movement.FORWARD;
             movedAngle = Angle.DEG_90.radians() - movedAngle;
             velocity = new Vect(new Angle(Angle.DEG_180.radians() * -1 * orientation.getMult()));
@@ -162,13 +162,13 @@ public class Flipper extends AbstractTriggerableGizmo implements IMovable, IActi
     private void down() {
 
         if (movementStatus.equals(Movement.TOP)) {
-            movementStatus = Movement.BACK;
+            movementStatus = Movement.BACKWARDS;
             movedAngle = Angle.ZERO.radians();
             velocity = new Vect(new Angle(Angle.DEG_180.radians() * orientation.getMult()));
         }
 
         if (movementStatus == Movement.FORWARD) {
-            movementStatus = Movement.BACK;
+            movementStatus = Movement.BACKWARDS;
             movedAngle = Angle.DEG_90.radians() - movedAngle;
             velocity = new Vect(new Angle(Angle.DEG_180.radians() * orientation.getMult()));
         }
@@ -183,14 +183,13 @@ public class Flipper extends AbstractTriggerableGizmo implements IMovable, IActi
     public void doAction(Object args) {
         if (args == null) {
             //do a full one
-
             return;
         }
 
         Movement upOrDown = (Movement) args;
-        if (upOrDown.equals(Movement.TOP)) {
+        if (upOrDown.equals(Movement.FORWARD)) {
             up();
-        } else if (upOrDown.equals(Movement.BOTTOM)) {
+        } else if (upOrDown.equals(Movement.BACKWARDS)) {
             down();
         }
     }
@@ -208,7 +207,7 @@ public class Flipper extends AbstractTriggerableGizmo implements IMovable, IActi
 
 
     public enum Movement {
-        BACK, FORWARD, BOTTOM, TOP
+        BACKWARDS, FORWARD, BOTTOM, TOP
     }
 
     public enum Orientation {
