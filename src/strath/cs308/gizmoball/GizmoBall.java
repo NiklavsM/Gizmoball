@@ -6,21 +6,25 @@ import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
+import strath.cs308.gizmoball.view.EditorView;
 import strath.cs308.gizmoball.view.PlayView;
 
 public class GizmoBall extends Application {
+
+
+    private IGameModel gameModel;
+    private Stage currentStage;
 
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage stage) {
-        stage.setX(100);
+    public void start(Stage primaryStage) {
+        primaryStage.setX(100);
 
-        IGameModel gameModel = new GameModel();
+        gameModel = new GameModel();
         GameLoader gameLoader = new GameLoader(gameModel, getClass().getResourceAsStream("/alternative.gizmo"));
-
         try {
             gameLoader.load();
         } catch (IllegalAccessException e) {
@@ -29,7 +33,24 @@ public class GizmoBall extends Application {
             e.printStackTrace();
         }
 
-        PlayView playView = new PlayView(stage, gameModel);
+        currentStage = primaryStage;
+
+        currentStage = new PlayView(this);
+        currentStage.show();
+    }
+
+
+    public void switchModes() {
+        currentStage.close();
+        currentStage = currentStage instanceof PlayView
+                ? new EditorView(this)
+                : new PlayView(this);
+        currentStage.show();
+    }
+
+
+    public IGameModel getGameModel() {
+        return gameModel;
     }
 
     @Override

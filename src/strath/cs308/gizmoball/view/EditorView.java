@@ -14,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import mit.physics.Vect;
+import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.controller.GizmoClickEventHandler;
 import strath.cs308.gizmoball.controller.GizmoSelectorEventHandler;
 import strath.cs308.gizmoball.controller.ToolModeEventHandler;
@@ -27,7 +28,8 @@ import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
-public class EditorView implements IEditorView, Observer {
+public class EditorView extends Stage implements IEditorView, Observer {
+    private GizmoBall gizmoBall;
     private BorderPane root;
     private IGameModel gameModel;
     private Canvas canvas;
@@ -38,11 +40,12 @@ public class EditorView implements IEditorView, Observer {
     private TextField ballXGravityTextField;
     private TextField ballYGravityTextField;
 
-    public EditorView(Stage stage, IGameModel gameModel) {
+    public EditorView(GizmoBall gizmoball) {
         try {
             root = FXMLLoader.load(getClass().getResource("/view/editorview.fxml"));
             canvas = (Canvas) root.lookup("#canvas");
-            this.gameModel = gameModel;
+            this.gizmoBall = gizmoball;
+            this.gameModel = gizmoball.getGameModel();
             this.gameModel.addObserver(this);
 
             isGrided = true;
@@ -52,9 +55,9 @@ public class EditorView implements IEditorView, Observer {
 
             Scene scene = new Scene(root);
 
-            stage.setScene(scene);
-            stage.setTitle("Gizmoball - Editor");
-            stage.show();
+            super.setScene(scene);
+            super.setTitle("Gizmoball - Editor");
+            super.show();
 
             initialSetup();
             refresh();
@@ -194,7 +197,7 @@ public class EditorView implements IEditorView, Observer {
 
     @Override
     public void switchToPlay() {
-        PlayView playView = new PlayView((Stage) root.getScene().getWindow(), gameModel);
+        gizmoBall.switchModes();
     }
 
     @Override
