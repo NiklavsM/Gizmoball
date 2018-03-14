@@ -33,7 +33,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
     private BorderPane root;
     private IGameModel gameModel;
     private Canvas canvas;
-    private boolean isGrided;
+    private boolean gridEnabled;
     private TextField frictionTextField;
     private TextField gravityTextField;
     private IGizmo selectedGizmo;
@@ -52,7 +52,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
             this.gameModel = gizmoball.getGameModel();
             this.gameModel.addObserver(this);
 
-            isGrided = true;
+            gridEnabled = true;
 
             EventHandler<MouseEvent> onMouseClicked = new GizmoClickEventHandler(gameModel, this);
             ((Observable) onMouseClicked).addObserver(this);
@@ -102,7 +102,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
     private void drawGrid() {
 
-        if (!isGrided) {
+        if (!gridEnabled) {
             return;
         }
 
@@ -227,7 +227,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
     @Override
     public void toggleGrid() {
-        isGrided = !isGrided;
+        gridEnabled = !gridEnabled;
         refresh();
     }
 

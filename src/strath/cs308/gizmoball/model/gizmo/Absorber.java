@@ -8,7 +8,7 @@ import strath.cs308.gizmoball.utils.Logger;
 
 import java.util.Stack;
 
-public class Absorber extends AbstractTriggerAndTriggarableGizmo implements IAction {
+public class Absorber extends AbstractTriggerAndTriggerableGizmo implements IAction {
 
     private static final String TAG = "Absorber";
     private Stack<Ball> ballsAbsorbed;
