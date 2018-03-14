@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 import static strath.cs308.gizmoball.model.gizmo.IGizmo.Type.*;
 
-public class GameLoader {
+public class  GameLoader {
 
     public static final String ROTATE_COMMAND = "Rotate";
     public static final String KEY_CONNECT_COMMAND = "KeyConnect";

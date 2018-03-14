@@ -16,7 +16,7 @@ public class Ball extends Gizmo {
     }
 
     public Ball(double x, double y, String id) {
-        super(x - 0.25, y - 0.25, x + 0.25, y + 0.25, id);
+        super(x -0.25 , y -0.25, x + 0.25, y + 0.25, id);
     }
 
     public Vect getVelocity() {
@@ -75,7 +75,7 @@ public class Ball extends Gizmo {
     @Override
     protected void setup(double x, double y, double x2, double y2) {
         radius = 0.25;
-        circle = new Circle(x, y, radius);
+        circle = new Circle(x+0.25, y+0.25, radius);
         circles.add(circle);
         setVelocity(new Vect(4, 4));
     }

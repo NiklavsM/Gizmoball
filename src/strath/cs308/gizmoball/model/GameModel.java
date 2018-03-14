@@ -39,14 +39,13 @@ public class GameModel extends Observable implements IGameModel {
 
         Gizmo tempGizmo = (Gizmo) gizmo;
 
-        for (double column = tempGizmo.getStartX(); column < tempGizmo.getEndX(); column++) {
-            for (double row = tempGizmo.getStartY(); row < tempGizmo.getEndY(); row++) {
-                System.out.println(column + ":" + row);
-                Optional<IGizmo> giz = getGizmo(column, row);
-                if (giz.isPresent()) {
-                    return false;
-                }
-            }
+        for (Gizmo currentGizmo : gizmos.values()) {
+            if ( !currentGizmo.getType().equals(IGizmo.Type.WALLS) &&
+                    tempGizmo.getStartX() < currentGizmo.getEndX() &&
+                    tempGizmo.getEndX() > currentGizmo.getStartX() &&
+                    tempGizmo.getStartY() < currentGizmo.getEndY() &&
+                    tempGizmo.getEndY() > currentGizmo.getStartY())
+                return false;
         }
 
         gizmos.put(gizmo.getId(), (Gizmo) gizmo);
@@ -83,7 +82,6 @@ public class GameModel extends Observable implements IGameModel {
                 }
             }
         }
-
         return Optional.empty();
     }
 
