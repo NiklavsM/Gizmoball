@@ -71,7 +71,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
     }
 
     private void onMouseDragged(MouseEvent mouseEvent) {
-        System.out.println("DRAG DETECTED");
+        Logger.verbose(TAG,"DRAG DETECTED");
 
         double startX = Math.floor(pressX / editorView.getPixelRatioFor(20.0));
         double startY = Math.floor(pressY / editorView.getPixelRatioFor(20.0));

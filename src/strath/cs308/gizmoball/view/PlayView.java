@@ -96,7 +96,7 @@ public class PlayView extends Stage implements IPlayView, Observer {
 
     @Override
     public void showPauseMenu() {
-
+        root.lookup("#gameMenu").setDisable(true);
         pauseMenu.toFront();
         stackPane.getChildren()
                 .stream()
@@ -106,6 +106,7 @@ public class PlayView extends Stage implements IPlayView, Observer {
     }
 
     public void hidePauseMenu() {
+        root.lookup("#gameMenu").setDisable(false);
         pauseMenu.toBack();
         stackPane.getChildren()
                 .stream()
