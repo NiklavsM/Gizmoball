@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Optional;
 
 public class EditorView extends Stage implements IEditorView, Observer {
     private static final String TAG = "EditorView";
@@ -268,7 +269,9 @@ public class EditorView extends Stage implements IEditorView, Observer {
     }
 
     public void previewGizmo(IGizmo gizmo, double x, double y) {
-        GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
-        gizmoDrawer.drawGizmo(gizmo, true);
+        if (gameModel.getGizmo(x, y).equals(Optional.empty())) {
+            GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
+            gizmoDrawer.drawGizmo(gizmo, true);
+        }
     }
 }
