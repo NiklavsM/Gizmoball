@@ -119,6 +119,9 @@ public class GameLoader {
         } catch (NumberFormatException ex) {
             throw ex;
         }
+        finally {
+            scanner.close();
+        }
     }
 
     private double toValidNumber(String stringNumber) {
