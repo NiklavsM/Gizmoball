@@ -52,8 +52,7 @@ public class GameModel extends Observable implements IGameModel {
 
         gizmos.put(gizmo.getId(), (Gizmo) gizmo);
 
-        setChanged();
-        notifyObservers();
+        update();
 
         return true;
     }
@@ -64,8 +63,7 @@ public class GameModel extends Observable implements IGameModel {
         if (gizmo != null) {
             collisionTriggers.remove(gizmo);
             gizmos.remove(id);
-            setChanged();
-            notifyObservers();
+            update();
             return true;
         }
         return false;
@@ -142,29 +140,13 @@ public class GameModel extends Observable implements IGameModel {
                 }
             }
             // Notify observers ... redraw updated view
-            this.setChanged();
-            this.notifyObservers();
+            update();
 
             if (nextGizmo instanceof Absorber) {
                 absorberCollided.put(ball.getId(), (Absorber) gizmos.get(nextGizmo.getId()));
             }
         }
         moveMovables(timeToMoveFlippers);
-    }
-
-    private double timeUntilMovableCol(Set<Ball> balls) {
-        double smallestTime = Double.MAX_VALUE;
-        for (Ball ball : balls) {
-            if (!ball.isStopped()) {
-                CollisionDetails cd = timeUntilCollision(ball);
-                if (cd.getGizmo() instanceof IMovable) {
-                    if (smallestTime > cd.getTuc()) {
-                        smallestTime = cd.getTuc();
-                    }
-                }
-            }
-        }
-        return smallestTime;
     }
 
     private void moveMovables(Double time) {
@@ -260,9 +242,7 @@ public class GameModel extends Observable implements IGameModel {
     @Override
     public void rotate(String id) {
         gizmos.get(id).rotate();
-
-        setChanged();
-        notifyObservers();
+        update();
     }
 
     @Override
@@ -295,8 +275,7 @@ public class GameModel extends Observable implements IGameModel {
 
     public void reset() {
         setup();
-        setChanged();
-        notifyObservers();
+        update();
     }
 
 
