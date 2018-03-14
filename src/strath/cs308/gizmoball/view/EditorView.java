@@ -1,5 +1,11 @@
 package strath.cs308.gizmoball.view;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.Map;
+
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -10,10 +16,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
 import mit.physics.Vect;
+
 import strath.cs308.gizmoball.controller.GizmoClickEventHandler;
 import strath.cs308.gizmoball.controller.GizmoSelectorEventHandler;
 import strath.cs308.gizmoball.controller.ToolModeEventHandler;
@@ -21,11 +30,6 @@ import strath.cs308.gizmoball.controller.TopToolbarEventHandler;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.Ball;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Observable;
-import java.util.Observer;
 
 public class EditorView implements IEditorView, Observer {
     private BorderPane root;
@@ -40,8 +44,13 @@ public class EditorView implements IEditorView, Observer {
 
     public EditorView(Stage stage, IGameModel gameModel) {
         try {
-            root = FXMLLoader.load(getClass().getResource("/view/editorview.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/editorview.fxml"));
+            root = loader.load();
             canvas = (Canvas) root.lookup("#canvas");
+            Map<String, Object> namespace = loader.getNamespace(); 
+            frictionTextField = (TextField) namespace.get("gravity");
+            gravityTextField = (TextField) namespace.get("friction");
+
             this.gameModel = gameModel;
             this.gameModel.addObserver(this);
 
@@ -85,13 +94,14 @@ public class EditorView implements IEditorView, Observer {
         gravityTextField.setText(String.valueOf(gameModel.getGravityCoefficient()));
         frictionTextField.setText(String.valueOf(gameModel.getFrictionCoefficient()));
 
-
+        /*
         if (selectedGizmo != null && selectedGizmo.getType() == IGizmo.Type.BALL) {
             System.out.println("A " + selectedGizmo.getType() + " at " + selectedGizmo.getStartX() + ", " + selectedGizmo.getStartY());
             Vect vect = ((Ball) selectedGizmo).getVelocity();
             ballXGravityTextField.setText(String.valueOf(vect.x()));
             ballYGravityTextField.setText(String.valueOf(vect.y()));
         }
+        */
     }
 
     private void drawGrid() {
@@ -112,10 +122,8 @@ public class EditorView implements IEditorView, Observer {
 
     private void setupTextFields() {
         Platform.runLater(() -> {
-            gravityTextField = (TextField) root.lookup("#gravity");
             gravityTextField.textProperty()
                     .addListener((observable, oldValue, newValue) -> {
-
                         try {
                             double value = Double.parseDouble(newValue);
                             gameModel.setGravityCoefficient(value);
@@ -125,8 +133,6 @@ public class EditorView implements IEditorView, Observer {
 
                     });
 
-
-            frictionTextField = (TextField) root.lookup("#friction");
             frictionTextField.textProperty()
                     .addListener((observable, oldValue, newValue) -> {
 
@@ -139,6 +145,7 @@ public class EditorView implements IEditorView, Observer {
 
                     });
 
+            /*
             ballXGravityTextField = (TextField) root.lookup("#ballVelocityX");
             ballXGravityTextField.textProperty()
                     .addListener((observable, oldValue, newValue) -> {
@@ -171,6 +178,7 @@ public class EditorView implements IEditorView, Observer {
                         }
 
                     });
+            */
         });
 
     }

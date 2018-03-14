@@ -149,29 +149,31 @@
                         <Label text="Console"/>
                     </VBox>
 
+                    <VBox GridPane.columnIndex="10"
+                          GridPane.rowIndex="0"
+                          spacing="5"
+                          alignment="CENTER">
+                        <Label text="Gravity"/>
+                        <TextField fx:id="gravity" 
+                                   styleClass="game-option-textbox" 
+                                   prefWidth="60.0" />
+                    </VBox>
+
+
+                    <VBox GridPane.columnIndex="11"
+                          GridPane.rowIndex="0"
+                          spacing="5"
+                          fx:id="gravityHolder"
+                          alignment="CENTER">
+                        <Label text="Friction"/>
+                        <TextField fx:id="friction" 
+                                   styleClass="game-option-textbox" 
+                                   prefWidth="60.0" />
+                    </VBox>
 
                 </GridPane>
 
-                <HBox GridPane.columnIndex="9"
-                      GridPane.rowIndex="0"
-                      spacing="5"
-                      alignment="CENTER">
-                    <Label text="Gravity"/>
-                    <TextField fx:id="gravity" styleClass="game-option-textbox" prefWidth="60.0">
-                        0.002
-                    </TextField>
-                </HBox>
-
-
-                <HBox GridPane.columnIndex="9"
-                      GridPane.rowIndex="0"
-                      spacing="5"
-                      alignment="CENTER">
-                    <Label text="Friction"/>
-                    <TextField fx:id="friction" styleClass="game-option-textbox" prefWidth="60.0">
-                        0.002
-                    </TextField>
-                </HBox>
+                
             </ToolBar>
         </VBox>
     </top>
