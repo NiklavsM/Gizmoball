@@ -6,7 +6,7 @@ import strath.cs308.gizmoball.model.triggeringsystem.IAction;
 
 import java.util.Iterator;
 
-public class Flipper extends AbstractTriggarableGizmo implements IMovable, IAction {
+public class Flipper extends AbstractTriggerableGizmo implements IMovable, IAction {
 
     private Circle startPoint;
     private Circle endPoint;

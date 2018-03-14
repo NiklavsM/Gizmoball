@@ -3,7 +3,7 @@ package strath.cs308.gizmoball.model.gizmo;
 import mit.physics.Circle;
 import mit.physics.LineSegment;
 
-public class Square extends AbstractTriggerAndTriggarableGizmo {
+public class Square extends AbstractTriggerAndTriggerableGizmo {
 
     public Square(double x, double y) {
         this(x, y, generateID());
