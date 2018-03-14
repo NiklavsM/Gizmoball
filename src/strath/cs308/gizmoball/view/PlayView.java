@@ -13,7 +13,9 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.controller.GameBarEventHandler;
+import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.controller.IngameKeyEventHandler;
 import strath.cs308.gizmoball.controller.PauseMenuEventHandler;
 import strath.cs308.gizmoball.model.GameTimer;
@@ -26,20 +28,28 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Optional;
 
-public class PlayView implements IPlayView, Observer {
+public class PlayView extends Stage implements IPlayView, Observer {
 
+    private static final double WIDTH = 1000;
+    private static final double HEIGHT = 800;
+    private GizmoBall gizmoBall;
     private IGameModel gameModel;
     private BorderPane root;
     private ToolBar pauseMenu;
     private StackPane stackPane;
     private Canvas canvas;
+    private IngameKeyEventHandler keyHandler;
+    private GameLoader gameLoader;
 
-    public PlayView(Stage stage, IGameModel gameModel) {
+    public PlayView(GizmoBall gizmoBall) {
+        this.keyHandler = gizmoBall.getKeyHandler();
+        this.gameLoader = gizmoBall.getGameLoader();
 
         try {
             root = FXMLLoader.load(getClass().getResource("/view/plaview.fxml"));
 
-            this.gameModel = gameModel;
+            this.gizmoBall = gizmoBall;
+            this.gameModel = gizmoBall.getGameModel();
             pauseMenu = (ToolBar) root.lookup("#pauseMenu");
             stackPane = (StackPane) root.lookup("#stackPane");
             canvas = (Canvas) root.lookup("#canvas");
@@ -50,17 +60,15 @@ public class PlayView implements IPlayView, Observer {
             pauseMenu.toBack();
             gameModel.addObserver(this);
 
-            EventHandler ingameKeyHandler = new IngameKeyEventHandler(gameModel);
-
             Scene scene = new Scene(root, root.getWidth(), root.getHeight());
-            scene.setOnKeyPressed(ingameKeyHandler);
-            scene.setOnKeyReleased(ingameKeyHandler);
+            scene.setOnKeyPressed(this.keyHandler);
+            scene.setOnKeyReleased(this.keyHandler);
 
-            stage.setScene(scene);
-            stage.setWidth(root.getWidth());
-            stage.setHeight(root.getHeight());
-            stage.setTitle("Gizmoball - Play");
-            stage.show();
+            super.setScene(scene);
+            super.setWidth(WIDTH);
+            super.setHeight(HEIGHT);
+            super.setTitle("Gizmoball - Play");
+            super.show();
 
             Platform.runLater(this::attachEventHandlers);
         } catch (IOException e) {
@@ -78,7 +86,7 @@ public class PlayView implements IPlayView, Observer {
             root.lookupAll("#gameMenu > Button")
                     .forEach(node -> ((Button) node).setOnAction(gameBarEventHandler));
 
-            EventHandler pauseMenuEventHandler = new PauseMenuEventHandler(gameModel, gameTimer, this);
+            EventHandler pauseMenuEventHandler = new PauseMenuEventHandler(gameModel, gameTimer, this, gameLoader);
             root.lookupAll("#pauseMenuItemHolder > Button")
                     .forEach(node -> ((Button) node).setOnAction(pauseMenuEventHandler));
 
@@ -148,12 +156,14 @@ public class PlayView implements IPlayView, Observer {
 
     @Override
     public void switchToEditor() {
-        EditorView editorView = new EditorView((Stage) root.getScene().getWindow(), gameModel);
+        gizmoBall.switchModes();
     }
 
     @Override
     public File getLoadFile() {
         FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("GIZMO (*.gizmo)", "*.gizmo");
+        fileChooser.getExtensionFilters().add(filter);
         fileChooser.setTitle("Gizmoball loading file");
         fileChooser.setInitialFileName("hahahah");
         return fileChooser.showOpenDialog(null);

@@ -6,11 +6,13 @@ import strath.cs308.gizmoball.model.GizmoFactory;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGizmoFactory;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
+import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.IEditorView;
 
 import java.util.Optional;
 
 public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
+    private static final String TAG = "MoveGizmoStrategy";
     private final IEditorView editorView;
     private final IGameModel gameModel;
     private final IGizmoFactory gizmoFactory;
@@ -68,10 +70,10 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
 
             gameModel.removeGizmo(selectedGizmo.get().getId());
             gameModel.addGizmo(copyGizmo);
-            System.out.println(selectedGizmo.get().getType() + " gizmo moved to tile " + pointX + " , " + pointY);
+            Logger.debug(TAG, selectedGizmo.get().getType() + " gizmo moved to tile " + pointX + " , " + pointY);
             selectedGizmo = Optional.empty();
         } else {
-            System.out.println("Tile " + pointX + " , " + pointY + " is already occupied by a " + existingGizmo.get().getType() + " gizmo.");
+            Logger.debug(TAG, "Tile " + pointX + " , " + pointY + " is already occupied by a " + existingGizmo.get().getType() + " gizmo.");
         }
     }
 }

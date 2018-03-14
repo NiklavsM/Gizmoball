@@ -2,11 +2,12 @@ package strath.cs308.gizmoball.model.gizmo;
 
 import mit.physics.*;
 import strath.cs308.gizmoball.model.IMovable;
-import strath.cs308.gizmoball.model.ITriggerable;
+import strath.cs308.gizmoball.model.triggeringsystem.IAction;
+import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.util.Iterator;
 
-public class Flipper extends Gizmo implements IMovable, ITriggerable {
+public class Flipper extends AbstractTriggarableGizmo implements IMovable, IAction {
 
     private Circle startPoint;
     private Circle endPoint;
@@ -57,6 +58,8 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
         lines.add(connector2);
         circles.add(startPoint);
         circles.add(endPoint);
+
+        registerAction(this);
     }
 
     @Override
@@ -70,6 +73,11 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
         }
 
         return Type.FLIPPER;
+    }
+
+    @Override
+    protected void setup(double x1, double y1, double x2, double y2) {
+
     }
 
     @Override
@@ -137,7 +145,7 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
         this.velocity = new Vect(new Angle(velocity.angle().radians() * orientation.getMult()));
     }
 
-    private void up() {
+    public void up() {
         if (movementStatus == Movement.BACK) {
             movementStatus = Movement.FORWARD;
             movedAngle = Angle.DEG_90.radians() - movedAngle;
@@ -173,20 +181,19 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
     }
 
     @Override
-    public void trigger(String triggerEvent) {
-        triggerEvent = triggerEvent.toUpperCase();
-        String letter = (orientation.equals(Orientation.RIGHT)) ? "L" : "K";
-        if (triggerEvent.equals("KEY_PRESSED_" + letter)) {
-            up();
+    public void doAction(Object args) {
+        if(args == null) {
+            //do a full one
+
+            return;
         }
-        if (triggerEvent.equals("KEY_RELEASED_" + letter)) {
+
+        Movement upOrDown = (Movement) args;
+        if (upOrDown.equals(Movement.TOP)) {
+            up();
+        } else if (upOrDown.equals(Movement.BOTTOM)) {
             down();
-        }    
-    }
-
-    @Override
-    protected void setup(double x1, double y1, double x2, double y2) {
-
+        }
     }
 
     @Override
@@ -201,7 +208,7 @@ public class Flipper extends Gizmo implements IMovable, ITriggerable {
     }
 
 
-    enum Movement {
+    public enum Movement {
         BACK, FORWARD, BOTTOM, TOP
     }
 

@@ -14,20 +14,21 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import mit.physics.Vect;
-import strath.cs308.gizmoball.controller.GizmoClickEventHandler;
-import strath.cs308.gizmoball.controller.GizmoSelectorEventHandler;
-import strath.cs308.gizmoball.controller.ToolModeEventHandler;
-import strath.cs308.gizmoball.controller.TopToolbarEventHandler;
+import strath.cs308.gizmoball.GizmoBall;
+import strath.cs308.gizmoball.controller.*;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.Ball;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
+import strath.cs308.gizmoball.utils.Logger;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
-public class EditorView implements IEditorView, Observer {
+public class EditorView extends Stage implements IEditorView, Observer {
+    private static final String TAG = "EditorView";
+    private GizmoBall gizmoBall;
     private BorderPane root;
     private IGameModel gameModel;
     private Canvas canvas;
@@ -37,12 +38,17 @@ public class EditorView implements IEditorView, Observer {
     private IGizmo selectedGizmo;
     private TextField ballXGravityTextField;
     private TextField ballYGravityTextField;
+    private IngameKeyEventHandler keyHandler;
 
-    public EditorView(Stage stage, IGameModel gameModel) {
+    public EditorView(GizmoBall gizmoball) {
+
+        this.keyHandler = gizmoball.getKeyHandler();
+
         try {
             root = FXMLLoader.load(getClass().getResource("/view/editorview.fxml"));
             canvas = (Canvas) root.lookup("#canvas");
-            this.gameModel = gameModel;
+            this.gizmoBall = gizmoball;
+            this.gameModel = gizmoball.getGameModel();
             this.gameModel.addObserver(this);
 
             isGrided = true;
@@ -52,9 +58,9 @@ public class EditorView implements IEditorView, Observer {
 
             Scene scene = new Scene(root);
 
-            stage.setScene(scene);
-            stage.setTitle("Gizmoball - Editor");
-            stage.show();
+            super.setScene(scene);
+            super.setTitle("Gizmoball - Editor");
+            super.show();
 
             initialSetup();
             refresh();
@@ -87,7 +93,7 @@ public class EditorView implements IEditorView, Observer {
 
 
         if (selectedGizmo != null && selectedGizmo.getType() == IGizmo.Type.BALL) {
-            System.out.println("A " + selectedGizmo.getType() + " at " + selectedGizmo.getStartX() + ", " + selectedGizmo.getStartY());
+            Logger.debug(TAG, "A " + selectedGizmo.getType() + " at " + selectedGizmo.getStartX() + ", " + selectedGizmo.getStartY());
             Vect vect = ((Ball) selectedGizmo).getVelocity();
             ballXGravityTextField.setText(String.valueOf(vect.x()));
             ballYGravityTextField.setText(String.valueOf(vect.y()));
@@ -120,7 +126,7 @@ public class EditorView implements IEditorView, Observer {
                             double value = Double.parseDouble(newValue);
                             gameModel.setGravityCoefficient(value);
                         } catch (NumberFormatException ex) {
-                            System.out.println("Invalid input for gravity");
+                            Logger.error(TAG, "Invalid input for gravity");
                         }
 
                     });
@@ -134,7 +140,7 @@ public class EditorView implements IEditorView, Observer {
                             double value = Double.parseDouble(newValue);
                             gameModel.setFrictionCoefficient(value);
                         } catch (NumberFormatException ex) {
-                            System.out.println("Invalid input for friction");
+                            Logger.error(TAG, "Invalid input for friction");
                         }
 
                     });
@@ -150,7 +156,7 @@ public class EditorView implements IEditorView, Observer {
                             ((Ball) getSelectedGizmo()).setVelocity(newVect);
 
                         } catch (NumberFormatException ex) {
-                            System.out.println("Invalid input for velocity");
+                            Logger.error(TAG, "Invalid input for velocity");
                         }
 
                     });
@@ -167,7 +173,7 @@ public class EditorView implements IEditorView, Observer {
                             ((Ball) getSelectedGizmo()).setVelocity(newVect);
 
                         } catch (NumberFormatException ex) {
-                            System.out.println("Invalid input for velocity");
+                            Logger.error(TAG, "Invalid input for velocity");
                         }
 
                     });
@@ -194,7 +200,7 @@ public class EditorView implements IEditorView, Observer {
 
     @Override
     public void switchToPlay() {
-        PlayView playView = new PlayView((Stage) root.getScene().getWindow(), gameModel);
+        gizmoBall.switchModes();
     }
 
     @Override
@@ -231,7 +237,10 @@ public class EditorView implements IEditorView, Observer {
         statusLabel.setText(message);
     }
 
-    @Override
+    public IngameKeyEventHandler getKeyHandler() {
+        return keyHandler;
+    }
+
     public void setSelectedGizmo(IGizmo gizmo) {
         this.selectedGizmo = gizmo;
     }

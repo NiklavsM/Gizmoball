@@ -1,6 +1,7 @@
 package strath.cs308.gizmoball.model.gizmo;
 
 import mit.physics.*;
+import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.model.Dot;
 
 import java.util.*;
@@ -151,5 +152,24 @@ public abstract class Gizmo implements IGizmo {
             default:
                 return 1;
         }
+    }
+
+    @Override
+    public String toString() {
+        if (getType().equals(Type.WALLS)) {
+            return "";
+        }
+
+        String x2String = "", y2String = "", rotate = "";
+        if (getType().equals(Type.ABSORBER)) {
+            x2String = " " + x2;
+            y2String = " " + y2;
+        }
+
+        for (int i = 0; i < rotateCount % 4; i++) {
+            rotate += GameLoader.ROTATE_COMMAND + " " + id + "\n";
+        }
+
+        return getType() + " " + id + " " + x1 + " " + y1 + x2String + y2String + "\n" + rotate + "\n";
     }
 }

@@ -1,20 +1,22 @@
 package strath.cs308.gizmoball.model.gizmo;
 
-
 import mit.physics.Circle;
 import mit.physics.LineSegment;
 import mit.physics.Vect;
-import strath.cs308.gizmoball.model.ITriggerable;
+import strath.cs308.gizmoball.model.triggeringsystem.IAction;
+import strath.cs308.gizmoball.utils.Logger;
 
 import java.util.Stack;
 
-public class Absorber extends Gizmo implements ITriggerable {
+public class Absorber extends AbstractTriggerAndTriggarableGizmo implements IAction {
 
+    private static final String TAG = "Absorber";
     private Stack<Ball> ballsAbsorbed;
 
     public Absorber(double x1, double y1, double x2, double y2, String id) {
         super(x1, y1, x2, y2, id);
         ballsAbsorbed = new Stack<>();
+        registerAction(this);
     }
 
     public Absorber(double x1, double y1, double x2, double y2) {
@@ -40,16 +42,14 @@ public class Absorber extends Gizmo implements ITriggerable {
             ball.setY(getEndY() - 0.25 - (((ballsAbsorbed.size() - 1) / (int) ((x2 - x1) * 2)) * 0.5) % (y2 - y1));
             ball.setVelocity(new Vect(0, -50));
             ball.setStopped(true);
-            System.out.println("ball.getCircle().getCenter().y() " + ball.getCircle().getCenter().y());
+            Logger.verbose(TAG, "ball.getCircle().getCenter().y() " + ball.getCircle().getCenter().y());
         }
     }
 
     private void shootTheBallOut(Ball ball) {
-
         ball.setStopped(false);
         ball.setX(getEndX() - 0.25);
         ball.setY(getStartY() - 0.25);
-
     }
 
     @Override
@@ -58,14 +58,10 @@ public class Absorber extends Gizmo implements ITriggerable {
     }
 
     @Override
-    public void trigger(String triggerEvent) {
-        if (triggerEvent.toUpperCase().equals("KEY_PRESSED_J")) {
+    public void doAction(Object args) {
             if (!ballsAbsorbed.isEmpty()) {
                 shootTheBallOut(ballsAbsorbed.pop());
-            }
-            System.out.println("J " + triggerEvent);
         }
-
     }
 
     private boolean haveSpace() {
@@ -75,6 +71,6 @@ public class Absorber extends Gizmo implements ITriggerable {
 
     @Override
     public void rotate() {
-        System.out.println("absorber is not rotatable!");
+        Logger.error(TAG, "absorber is not rotatable!");
     }
 }

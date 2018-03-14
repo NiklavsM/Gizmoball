@@ -6,21 +6,24 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGameTimer;
+import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.IPlayView;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
+    private static final String TAG = "PauseMenuEventHandler";
     private IPlayView playView;
     private IGameTimer gameTimer;
     private IGameModel gameModel;
+    private GameLoader gameLoader;
 
-    public PauseMenuEventHandler(IGameModel gameModel, IGameTimer gameTimer, IPlayView playView) {
+    public PauseMenuEventHandler(IGameModel gameModel, IGameTimer gameTimer, IPlayView playView, GameLoader gameLoader) {
         this.playView = playView;
         this.gameTimer = gameTimer;
         this.gameModel = gameModel;
+        this.gameLoader = gameLoader;
     }
 
     @Override
@@ -64,15 +67,14 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
         File fileToLoad = playView.getLoadFile();
 
         if (fileToLoad == null) {
-            System.out.println("Loading file dialog cancelled");
+            Logger.debug(TAG, "Loading file dialog cancelled");
             return;
         }
 
         try {
-            GameLoader gameLoader = new GameLoader(gameModel, new FileInputStream(fileToLoad));
             gameModel.reset();
             gameLoader.load();
-        } catch (IllegalAccessException | FileNotFoundException e) {
+        } catch (IllegalAccessException e) {
             e.printStackTrace();
         } finally {
             playView.hidePauseMenu();
@@ -80,8 +82,14 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
     }
 
     private void saveGame() {
-        File fileToLoad = playView.getLoadFile();
-        GameSaver gs = new GameSaver(gameModel, fileToLoad);
+        File fileToSave = playView.getLoadFile();
+        GameSaver gs = new GameSaver(gameModel, fileToSave);
+
+        if(fileToSave == null) {
+            Logger.debug(TAG, "Saving file dialog cancelled");
+            return;
+        }
+
         try {
             gs.save();
         } catch (IllegalAccessException | FileNotFoundException e) {

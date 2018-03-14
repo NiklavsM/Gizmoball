@@ -1,6 +1,7 @@
 package strath.cs308.gizmoball.model;
 
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
+import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 
 import java.util.Observer;
 import java.util.Optional;
@@ -13,6 +14,8 @@ public interface IGameModel {
     Set<IGizmo> getGizmoBalls();
 
     Optional<IGizmo> getGizmo(double x, double y);
+
+    IGizmo getGizmoById(String id);
 
     boolean addGizmo(IGizmo gizmo);
 
@@ -37,4 +40,6 @@ public interface IGameModel {
     void update();
 
     int getScore();
+
+    void onCollisionTrigger(ITrigger from);
 }
