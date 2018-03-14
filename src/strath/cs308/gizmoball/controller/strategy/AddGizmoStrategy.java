@@ -57,6 +57,13 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         mouseY = previewY;
 
         IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, previewX, previewY);
+        if (gizmo.getType().equals(IGizmo.Type.BALL)) {
+            previewX = mouseEvent.getX() / editorView.getPixelRatioFor(20.0);
+            previewY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
+            gizmo = gizmoFactory.createGizmo(gizmoType, previewX, previewY);
+            gameModel.update();
+        }
+
         editorView.previewGizmo(gizmo, previewX, previewY);
     }
 
