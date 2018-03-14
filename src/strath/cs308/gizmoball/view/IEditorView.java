@@ -1,10 +1,11 @@
 package strath.cs308.gizmoball.view;
 
+import java.io.File;
+
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
-import java.io.File;
+import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
 public interface IEditorView {
 
@@ -31,4 +32,6 @@ public interface IEditorView {
     double getFrictionInput() throws NumberFormatException;
 
     double getGravityInput() throws NumberFormatException;
+
+    void displayGizmoProperties(IGizmo gizmo);
 }

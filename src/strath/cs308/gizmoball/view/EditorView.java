@@ -226,4 +226,9 @@ public class EditorView implements IEditorView, Observer {
         statusLabel.getStyleClass().add("error-label");
         statusLabel.setText(message); 
     }
+
+    @Override
+    public void displayGizmoProperties(IGizmo gizmo) {
+        System.out.println(gizmo.getId());
+    }
 }

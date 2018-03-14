@@ -27,6 +27,7 @@ public class SelectGizmoEventHandler extends Observable implements EventHandler<
             double pointY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
 
             Optional<IGizmo> gizmo = gameModel.getGizmo(pointX, pointY);
+            gizmo.ifPresent(editorView::displayGizmoProperties);
         }
 
     }
