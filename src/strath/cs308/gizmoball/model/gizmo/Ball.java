@@ -2,6 +2,7 @@ package strath.cs308.gizmoball.model.gizmo;
 
 import mit.physics.Circle;
 import mit.physics.Vect;
+
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Ball extends Gizmo {
@@ -75,7 +76,7 @@ public class Ball extends Gizmo {
     @Override
     protected void setup(double x, double y, double x2, double y2) {
         radius = 0.25;
-        circle = new Circle(x, y, radius);
+        circle = new Circle(x + 0.25, y + 0.25, radius);
         circles.add(circle);
         setVelocity(new Vect(4, 4));
     }
@@ -84,5 +85,12 @@ public class Ball extends Gizmo {
         setX(getX() + (getVelocity().x() * timeInSeconds));
         setY(getY() + (getVelocity().y() * timeInSeconds));
 
+    }
+
+    @Override
+    public String toString() {
+        String soFar = super.toString();
+        soFar = soFar.substring(0, soFar.length() - 2);
+        return soFar + " " + velocity.x() + " " + velocity.y() + "\n\n";
     }
 }

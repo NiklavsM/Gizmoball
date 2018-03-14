@@ -1,10 +1,15 @@
 package strath.cs308.gizmoball.view;
 
 import java.io.File;
+import java.io.File;
+import java.io.IOException;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Observable;
+import java.util.Observable;
 import java.util.Observer;
+import java.util.Observer;
+import java.util.Optional;
 
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -24,15 +29,20 @@ import javafx.stage.Stage;
 
 import mit.physics.Vect;
 
+import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.controller.GamePropertyEventHandler;
 import strath.cs308.gizmoball.controller.GizmoSelectorEventHandler;
 import strath.cs308.gizmoball.controller.ToolModeEventHandler;
 import strath.cs308.gizmoball.controller.TopToolbarEventHandler;
+import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.Ball;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
+import strath.cs308.gizmoball.utils.Logger;
 
-public class EditorView implements IEditorView, Observer {
+public class EditorView extends Stage implements IEditorView, Observer {
+    private static final String TAG = "EditorView";
+    private GizmoBall gizmoBall;
     private BorderPane root;
     private IGameModel gameModel;
     private Canvas canvas;
@@ -42,8 +52,12 @@ public class EditorView implements IEditorView, Observer {
     private TextField gravityTextField;
     private IGizmo selectedGizmo;
     private Label statusLabel;
+    private InGameKeyEventHandler keyHandler;
 
-    public EditorView(Stage stage, IGameModel gameModel) {
+    public EditorView(GizmoBall gizmoball) {
+
+        this.keyHandler = gizmoball.getKeyHandler();
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/editorview.fxml"));
             root = loader.load();
@@ -54,15 +68,18 @@ public class EditorView implements IEditorView, Observer {
             statusLabel = (Label) namespace.get("statusbar");
 
             this.gameModel = gameModel;
+            this.gizmoBall = gizmoball;
+            this.gameModel = gizmoball.getGameModel();
+            
             this.gameModel.addObserver(this);
 
-            isGrided = true;
+            isGrided  = true;
 
             Scene scene = new Scene(root);
 
-            stage.setScene(scene);
-            stage.setTitle("Gizmoball - Editor");
-            stage.show();
+            super.setScene(scene);
+            super.setTitle("Gizmoball - Editor");
+            super.show();
 
             initialSetup();
             refresh();
@@ -83,20 +100,17 @@ public class EditorView implements IEditorView, Observer {
             drawBackground();
             drawGizmos();
             drawGrid();
-            updateFields();
         });
 
     }
 
-    @Override
-    public void updateFields() {
-        
+    private void updateFields() {
         gravityTextField.setText(String.valueOf(gameModel.getGravityCoefficient()));
         frictionTextField.setText(String.valueOf(gameModel.getFrictionCoefficient()));
 
         /*
         if (selectedGizmo != null && selectedGizmo.getType() == IGizmo.Type.BALL) {
-            System.out.println("A " + selectedGizmo.getType() + " at " + selectedGizmo.getStartX() + ", " + selectedGizmo.getStartY());
+            Logger.debug(TAG, "A " + selectedGizmo.getType() + " at " + selectedGizmo.getStartX() + ", " + selectedGizmo.getStartY());
             Vect vect = ((Ball) selectedGizmo).getVelocity();
             ballXGravityTextField.setText(String.valueOf(vect.x()));
             ballYGravityTextField.setText(String.valueOf(vect.y()));
@@ -149,11 +163,12 @@ public class EditorView implements IEditorView, Observer {
 
     @Override
     public void switchToPlay() {
-        PlayView playView = new PlayView((Stage) root.getScene().getWindow(), gameModel);
+        gizmoBall.switchModes();
     }
 
     @Override
     public void setCanvasMode(EventHandler<MouseEvent> canvasStrategy) {
+        canvas.setOnMouseMoved(canvasStrategy);
         canvas.setOnMouseClicked(canvasStrategy);
         canvas.setOnMousePressed(canvasStrategy);
         canvas.setOnMouseReleased(canvasStrategy);
@@ -175,6 +190,7 @@ public class EditorView implements IEditorView, Observer {
 
     @Override
     public void toggleGrid() {
+        isGrided = !isGrided;
         refresh();
     }
 
@@ -184,14 +200,17 @@ public class EditorView implements IEditorView, Observer {
         statusLabel.setText(message);
     }
 
-    @Override
-    public void setSelectedGizmo(IGizmo gizmo) {
-        this.selectedGizmo = gizmo;
+    public InGameKeyEventHandler getKeyHandler() {
+        return keyHandler;
     }
 
     @Override
     public IGizmo getSelectedGizmo() {
         return selectedGizmo;
+    }
+
+    public void setSelectedGizmo(IGizmo gizmo) {
+        this.selectedGizmo = gizmo;
     }
 
     @Override
@@ -201,8 +220,8 @@ public class EditorView implements IEditorView, Observer {
 
     private void drawGizmos() {
         GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
-        gameModel.getGizmos().forEach(gizmoDrawer::drawGizmo);
-        gameModel.getGizmoBalls().forEach(gizmoDrawer::drawGizmo);
+        gameModel.getGizmos().forEach(gizmo -> gizmoDrawer.drawGizmo(gizmo, false));
+        gameModel.getGizmoBalls().forEach(ball -> gizmoDrawer.drawGizmo(ball, false));
     }
 
     private void drawBackground() {
@@ -230,5 +249,13 @@ public class EditorView implements IEditorView, Observer {
     @Override
     public void displayGizmoProperties(IGizmo gizmo) {
         System.out.println(gizmo.getId());
+    }
+    
+    @Override
+    public void previewGizmo(IGizmo gizmo, double x, double y) {
+        if (gameModel.getGizmo(x, y).equals(Optional.empty())) {
+            GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
+            gizmoDrawer.drawGizmo(gizmo, true);
+        }
     }
 }

@@ -5,12 +5,14 @@ import mit.physics.Geometry;
 import mit.physics.LineSegment;
 import mit.physics.Vect;
 import strath.cs308.gizmoball.model.gizmo.*;
+import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class GameModel extends Observable implements IGameModel {
 
+    private final Set<ITrigger> collisionTriggers = new HashSet<>();
     private Map<String, Gizmo> gizmos;
     private Map<String, Absorber> absorberCollided;
     private int score;
@@ -39,14 +41,13 @@ public class GameModel extends Observable implements IGameModel {
 
         Gizmo tempGizmo = (Gizmo) gizmo;
 
-        for (double column = tempGizmo.getStartX(); column < tempGizmo.getEndX(); column++) {
-            for (double row = tempGizmo.getStartY(); row < tempGizmo.getEndY(); row++) {
-                System.out.println(column + ":" + row);
-                Optional<IGizmo> giz = getGizmo(column, row);
-                if (giz.isPresent()) {
-                    return false;
-                }
-            }
+        for (Gizmo currentGizmo : gizmos.values()) {
+            if (!currentGizmo.getType().equals(IGizmo.Type.WALLS) &&
+                    tempGizmo.getStartX() < currentGizmo.getEndX() &&
+                    tempGizmo.getEndX() > currentGizmo.getStartX() &&
+                    tempGizmo.getStartY() < currentGizmo.getEndY() &&
+                    tempGizmo.getEndY() > currentGizmo.getStartY())
+                return false;
         }
 
         gizmos.put(gizmo.getId(), (Gizmo) gizmo);
@@ -55,13 +56,14 @@ public class GameModel extends Observable implements IGameModel {
         notifyObservers();
 
         return true;
-
     }
 
     @Override
     public boolean removeGizmo(String id) {
-        if (gizmos.remove(id) != null) {
-
+        Gizmo gizmo = gizmos.get(id);
+        if (gizmo != null) {
+            collisionTriggers.remove(gizmo);
+            gizmos.remove(id);
             setChanged();
             notifyObservers();
             return true;
@@ -83,12 +85,21 @@ public class GameModel extends Observable implements IGameModel {
                 }
             }
         }
-
         return Optional.empty();
+    }
+
+    @Override
+    public IGizmo getGizmoById(String id) {
+        return gizmos.get(id);
     }
 
     public int getScore() {
         return score;
+    }
+
+    @Override
+    public void onCollisionTrigger(ITrigger from) {
+        collisionTriggers.add(from);
     }
 
     public void tick(double time) {
@@ -109,6 +120,12 @@ public class GameModel extends Observable implements IGameModel {
                 } else {
                     // We've got a collision in tuc
                     nextGizmo = cd.getGizmo();
+
+                    if (collisionTriggers.contains(nextGizmo)) {
+                        ITrigger trigger = (ITrigger) nextGizmo;
+                        trigger.trigger();
+                    }
+
                     if (nextGizmo instanceof Flipper && tuc < timeToMoveFlippers) timeToMoveFlippers = tuc;
 
                     score += nextGizmo.getScoreValue();
@@ -133,7 +150,21 @@ public class GameModel extends Observable implements IGameModel {
             }
         }
         moveMovables(timeToMoveFlippers);
+    }
 
+    private double timeUntilMovableCol(Set<Ball> balls) {
+        double smallestTime = Double.MAX_VALUE;
+        for (Ball ball : balls) {
+            if (!ball.isStopped()) {
+                CollisionDetails cd = timeUntilCollision(ball);
+                if (cd.getGizmo() instanceof IMovable) {
+                    if (smallestTime > cd.getTuc()) {
+                        smallestTime = cd.getTuc();
+                    }
+                }
+            }
+        }
+        return smallestTime;
     }
 
     private void moveMovables(Double time) {
@@ -141,7 +172,6 @@ public class GameModel extends Observable implements IGameModel {
                 .stream()
                 .filter(gizmo -> gizmo instanceof IMovable)
                 .forEach(gizmo -> ((IMovable) gizmo).move(time));
-
     }
 
     private void applyForces(Vect velocity, double time, Ball ball) {
@@ -241,11 +271,17 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     @Override
-    public void setFrictionCoefficient(double frictionCoefficient) {
-        this.frictionCoefficient = frictionCoefficient;
 
-        setChanged();
-        notifyObservers();
+    public boolean setFrictionCoefficient(double frictionCoefficient) {
+        if (frictionCoefficient >= 0) {
+            this.frictionCoefficient = frictionCoefficient;
+            
+            setChanged();
+            notifyObservers();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -254,17 +290,39 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     @Override
-    public void setGravityCoefficient(double gravityCoefficient) {
-        this.gravityCoefficient = gravityCoefficient;
+    public boolean setGravityCoefficient(double gravityCoefficient) {
+        if (gravityCoefficient >= 0) {
+            this.gravityCoefficient = gravityCoefficient;
 
-        setChanged();
-        notifyObservers();
+            setChanged();
+            notifyObservers();
+            return true;
+        }
+        return false;
     }
 
     public void reset() {
         setup();
-
         setChanged();
         notifyObservers();
+    }
+
+
+    public void update() {
+        setChanged();
+        notifyObservers();
+    }
+
+    @Override
+    public String toString() {
+        String commands = "";
+        for (Gizmo gizmo : gizmos.values()) {
+            commands += gizmo.toString();
+        }
+
+        commands += "\n\n";
+
+        //TODO add gravity and friciton
+        return commands;
     }
 }

@@ -4,6 +4,9 @@ import strath.cs308.gizmoball.model.GizmoFactory;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGizmoFactory;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
+import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
+import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
+import strath.cs308.gizmoball.utils.Logger;
 
 import java.io.InputStream;
 import java.util.*;
@@ -21,18 +24,22 @@ public class GameLoader {
     public static final String DELETE_COMMAND = "Delete";
     public static final String MOVE_COMMAND = "Move";
     public static final String WALLS_NAME = "OuterWalls";
+    private static final String TAG = "GameLoader";
     private final IGizmoFactory gizmoFactory;
     private final IGameModel gameModel;
     private final InputStream source;
+    private InGameKeyEventHandler keyHandler;
+
     private Set<String> gizmoCreationCommands;
     private Set<String> nameCoordCoordCommands;
     private Set<String> gizmoCreationCommandsAdvanced;
     private Set<String> nameCommands;
     private Map<String, IGizmo.Type> gizmoCommandToEnum;
 
-    public GameLoader(IGameModel gameModel, InputStream source) {
+    public GameLoader(IGameModel gameModel, InGameKeyEventHandler keyHandler, InputStream source) {
         this.gameModel = gameModel;
         this.source = source;
+        this.keyHandler = keyHandler;
         gizmoFactory = new GizmoFactory();
 
         gizmoCommandToEnum = new HashMap<>();
@@ -88,8 +95,9 @@ public class GameLoader {
                         double keyNumber = toValidNumber(tokens.poll());
                         String keyMode = tokens.poll();
                         String name = tokens.poll();
-                        //TODO
-                        System.out.println("connected " + keyNumber + " " + keyMode + " to " + name);
+                        ITriggerable triggerable = (ITriggerable) gameModel.getGizmoById(name);
+                        keyHandler.onKeyEventTrigger("key " + keyNumber + " " + keyMode, triggerable);
+                        Logger.verbose(TAG, "connected " + keyNumber + " " + keyMode + " to " + name);
                         continue;
                     }
 
@@ -97,13 +105,13 @@ public class GameLoader {
 
                     if (command.equals(FRICTION_COMMAND)) {
                         //TODO
-                        System.out.println("friction = " + val1);
+                        Logger.verbose(TAG, "friction = " + val1);
                         continue;
                     }
                     if (command.equals(GRAVITY_COMMAND)) {
                         double val2 = toValidCoordinate(tokens.poll());
                         //TODO
-                        System.out.println("gravity = " + val1);
+                        Logger.verbose(TAG, "gravity = " + val1);
                         continue;
                     }
                 }
@@ -128,13 +136,16 @@ public class GameLoader {
         }
         if (command.equals(ROTATE_COMMAND)) {
             gameModel.rotate(name);
-            System.out.println("rotated " + name);
+            Logger.verbose(TAG, "rotated " + name);
             return;
         }
         if (command.equals(CONNECT_COMMAND)) {
             String name2 = tokens.poll();
-            //TODO connect name to name2
-            System.out.println("connected " + name + " to " + name2);
+            ITrigger from = (ITrigger) gameModel.getGizmoById(name);
+            ITriggerable to = (ITriggerable) gameModel.getGizmoById(name2);
+            from.registerTriggarable(to);
+            gameModel.onCollisionTrigger(from);
+            Logger.verbose(TAG, "connected " + name + " to " + name2);
             return;
         }
         if (nameCoordCoordCommands.contains(command)) {
@@ -145,7 +156,7 @@ public class GameLoader {
     private void nameCoordCoordCommands(String command, String name, double x, double y, Queue<String> tokens) {
         if (command.equals(MOVE_COMMAND)) {
             //TODO MOVE using name x and y
-            System.out.println("moved" + name + " to " + x + ", " + y);
+            Logger.verbose(TAG, "moved" + name + " to " + x + ", " + y);
         }
         if (gizmoCreationCommands.contains(command)) {
             if (gizmoCreationCommandsAdvanced.contains(command)) {
@@ -154,12 +165,12 @@ public class GameLoader {
 
                 gameModel.addGizmo(gizmoFactory.createGizmo(gizmoCommandToEnum.get(command), x, y, x2, y2, name));
 
-                System.out.println("created " + command + " " + name + " at " + x + ", " + y + " -- " + x2 + ", " + y2);
+                Logger.verbose(TAG, "created " + command + " " + name + " at " + x + ", " + y + " -- " + x2 + ", " + y2);
                 return;
             }
 
             gameModel.addGizmo(gizmoFactory.createGizmo(gizmoCommandToEnum.get(command), x, y, name));
-            System.out.println("created " + command + " " + name + " at " + x + ", " + y);
+            Logger.verbose(TAG, "created " + command + " " + name + " at " + x + ", " + y);
         }
     }
 

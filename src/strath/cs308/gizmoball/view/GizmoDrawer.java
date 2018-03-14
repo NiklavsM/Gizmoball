@@ -27,14 +27,19 @@ public class GizmoDrawer {
         gc = canvas.getGraphicsContext2D();
     }
 
-    public void drawGizmo(IGizmo gizmo) {
+    public void drawGizmo(IGizmo gizmo, boolean isPreview) {
         gc.setFill(Color.BLACK);
         List<Dot> dots = gizmo.getDots();
         double diameter = 0;
         double[] xPoints = new double[dots.size()];
         double[] yPoints = new double[dots.size()];
         IGizmo.Type type = gizmo.getType();
-        setGizmoColor(type);
+
+        if (isPreview) {
+            gc.setFill(Color.GAINSBORO);
+            gc.setStroke(Color.GAINSBORO);
+        } else
+            setGizmoColor(type);
 
         int i = 0;
         for (Dot dot : dots) {
@@ -45,7 +50,7 @@ public class GizmoDrawer {
         }
         if (i > 0) {
             if (type.equals(IGizmo.Type.CIRCLE)
-                    | type.equals(IGizmo.Type.BALL)
+                    || type.equals(IGizmo.Type.BALL)
                     || type.equals(IGizmo.Type.FLIPPER)
                     || type.equals(IGizmo.Type.LEFT_FLIPPER)
                     || type.equals(IGizmo.Type.RIGHT_FLIPPER)) {
@@ -56,6 +61,7 @@ public class GizmoDrawer {
                 gc.fillPolygon(xPoints, yPoints, i);
             }
         }
+
     }
 
     private void setGizmoColor(IGizmo.Type type) {
@@ -96,6 +102,23 @@ public class GizmoDrawer {
                 gc.setStroke(ORANGE);
                 break;
         }
+    }
+
+    public void previewGizmo(IGizmo gizmo, double x, double y) {
+//        x = x * pxPerL;
+//        y = y* pxPerL;
+//        gc.setFill(Color.LAWNGREEN);
+//        gc.setStroke(Color.LAWNGREEN);
+//        switch (gizmo) {
+//            case SQUARE:
+//                gc.strokeLine(x, y, x+1, y);
+//                gc.strokeLine(x+1, y, x+1, y+1);
+//                gc.strokeLine(x+1, y+1, x, y+1);
+//                gc.strokeLine(x, y+1, x, y);
+//                break;
+//        }
+//
+//
 
     }
 }

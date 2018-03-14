@@ -5,11 +5,11 @@ import java.io.File;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
+import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
+import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
 public interface IEditorView {
-
-    void updateFields();
 
     void switchToPlay();
 
@@ -25,7 +25,7 @@ public interface IEditorView {
     
     void setErrorStatus(String message);
 
-    void setSelectedGizmo(IGizmo gizmo);
+    InGameKeyEventHandler getKeyHandler();
 
     IGizmo getSelectedGizmo();
 
@@ -34,4 +34,8 @@ public interface IEditorView {
     double getGravityInput() throws NumberFormatException;
 
     void displayGizmoProperties(IGizmo gizmo);
+    
+    void setSelectedGizmo(IGizmo gizmo);
+
+    void previewGizmo(IGizmo gizmo, double x, double y);
 }

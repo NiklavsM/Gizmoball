@@ -4,14 +4,15 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
+import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.IEditorView;
 
 import java.util.Observable;
-import java.util.Observer;
 import java.util.Optional;
 
 public class SelectGizmoEventHandler extends Observable implements EventHandler<MouseEvent> {
 
+    private static final String TAG = "GizmoClickEventHandler";
     private final IEditorView editorView;
     private final IGameModel gameModel;
 
@@ -28,6 +29,13 @@ public class SelectGizmoEventHandler extends Observable implements EventHandler<
 
             Optional<IGizmo> gizmo = gameModel.getGizmo(pointX, pointY);
             gizmo.ifPresent(editorView::displayGizmoProperties);
+            
+            gizmo.ifPresent((editorView) -> {
+                setChanged();
+                notifyObservers();
+            });
+
+            Logger.debug(TAG, "A gizmo has been selected");
         }
 
     }

@@ -2,12 +2,14 @@ package strath.cs308.gizmoball.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import strath.cs308.gizmoball.model.gizmo.Ball;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.model.gizmo.Square;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameModelTest {
+
     private GameModel model;
     private IGizmo squareGizmo1;
     private IGizmo dummyGizmo; // better way?
@@ -20,20 +22,31 @@ class GameModelTest {
     }
 
     @Test
-    void addGizmo_AddSquareGizmo_EqualsTrue() {
+    void addGizmo_AddSquareGizmo() {
         model.addGizmo(squareGizmo1);
         assertEquals(squareGizmo1, model.getGizmo(1, 1).get());
     }
 
     @Test
-    void removeGizmo_RemoveExistingGizmo_True() {
+    void addGizmo_AddExistingGizmo() {
+        model.addGizmo(squareGizmo1);
+        assertFalse(model.addGizmo(squareGizmo1));
+    }
+
+    @Test
+    void addGizmo_AddNull() {
+        assertFalse(model.addGizmo(null));
+    }
+
+    @Test
+    void removeGizmo_RemoveExisting() {
         model.addGizmo(squareGizmo1);
         model.removeGizmo(squareGizmo1.getId());
         assertTrue(!model.getGizmo(1, 1).isPresent());
     }
 
     @Test
-    void removeGizmo_RemoveNonExistingGizmo_False() {
+    void removeGizmo_RemoveNonExistingGizmo() {
         assertFalse(model.removeGizmo(squareGizmo1.getId()));
     }
 
@@ -42,27 +55,84 @@ class GameModelTest {
     }
 
     @Test
-    void getGizmo_GetExistingGizmo_EqualsTrue() {
+    void getGizmo_GetExistingGizmo() {
         model.addGizmo(squareGizmo1);
         assertEquals(squareGizmo1, model.getGizmo(1, 1).orElse(dummyGizmo));
     }
 
     @Test
-    void getGizmo_GetNonExistingGizmo_EqualsTrue() {
-
+    void getGizmo_GetNonExistingGizmo() {
         assertEquals(dummyGizmo, model.getGizmo(1, 1).orElse(dummyGizmo)); // Better way?? TODO
     }
 
     @Test
-    void tick() {
+    void getScore_GetsScoreAtTheStartOfTheMatch() {
+        assertTrue(model.getScore() == 0);
     }
 
     @Test
-    void rotate() {
+    void getGizmoBalls_GetsBallsThatWasAdded() {
+        Ball ball1 = new Ball(1.0, 1.0, "ball1");
+        Ball ball2 = new Ball(2.0, 2.0, "ball2");
+        model.addGizmo(ball1);
+        model.addGizmo(ball2);
+        assertTrue(model.getGizmoBalls().contains(ball1) && model.getGizmoBalls().contains(ball2));
     }
 
     @Test
-    void reset() {
+    void setFrictionCoefficient_setPositiveCoefficient() {
+        assertTrue(model.setFrictionCoefficient(2.0));
     }
 
+    @Test
+    void setFrictionCoefficient_setZeroCoefficient() {
+        assertTrue(model.setFrictionCoefficient(0));
+    }
+
+    @Test
+    void setFrictionCoefficient_tryToSetNegativeCoefficient() {
+        assertFalse(model.setFrictionCoefficient(-2.0));
+    }
+
+    @Test
+    void getFrictionCoefficient() {
+        model.setFrictionCoefficient(2.0);
+        assertEquals(2.0, model.getFrictionCoefficient());
+    }
+
+    @Test
+    void setGravityCoefficient_setPositiveCoefficient() {
+        assertTrue(model.setGravityCoefficient(2.0));
+    }
+
+    @Test
+    void setGravityCoefficient_setZeroCoefficient() {
+        assertTrue(model.setGravityCoefficient(0));
+    }
+
+    @Test
+    void setGravityCoefficient_tryToSetNegativeCoefficient() {
+        assertFalse(model.setGravityCoefficient(-2.0));
+    }
+
+    @Test
+    void getGravityCoefficient() {
+        model.setGravityCoefficient(2.0);
+        assertEquals(2.0, model.getGravityCoefficient());
+    }
+
+    @Test
+    void reset_resetModel() {
+        model.addGizmo(new Ball(1, 1));
+        model.reset();
+        assertTrue(checkIsFreshModel(model));
+    }
+
+    private boolean checkIsFreshModel(GameModel model) {
+        if (model.getGizmos().size() != 1) return false; //just walls
+        if (model.getFrictionCoefficient() != 0.025) return false;
+        if (model.getGravityCoefficient() != 25.0) return false;
+        if (model.getScore() != 0) return false;
+        return true;
+    }
 }
