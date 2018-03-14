@@ -24,7 +24,6 @@ import javafx.stage.Stage;
 
 import mit.physics.Vect;
 
-import strath.cs308.gizmoball.controller.GizmoClickEventHandler;
 import strath.cs308.gizmoball.controller.GizmoSelectorEventHandler;
 import strath.cs308.gizmoball.controller.ToolModeEventHandler;
 import strath.cs308.gizmoball.controller.TopToolbarEventHandler;
@@ -41,8 +40,6 @@ public class EditorView implements IEditorView, Observer {
     private TextField frictionTextField;
     private TextField gravityTextField;
     private IGizmo selectedGizmo;
-    private TextField ballXGravityTextField;
-    private TextField ballYGravityTextField;
 
     public EditorView(Stage stage, IGameModel gameModel) {
         try {
@@ -57,9 +54,6 @@ public class EditorView implements IEditorView, Observer {
             this.gameModel.addObserver(this);
 
             isGrided = true;
-
-            EventHandler<MouseEvent> onMouseClicked = new GizmoClickEventHandler(gameModel, this);
-            canvas.setOnMouseClicked(onMouseClicked);
 
             Scene scene = new Scene(root);
 
@@ -77,7 +71,7 @@ public class EditorView implements IEditorView, Observer {
 
     private void initialSetup() {
         attachHandlers();
-        //setupTextFields();
+        setupTextFields();
     }
 
 
@@ -93,6 +87,7 @@ public class EditorView implements IEditorView, Observer {
 
     @Override
     public void updateFields() {
+        
         gravityTextField.setText(String.valueOf(gameModel.getGravityCoefficient()));
         frictionTextField.setText(String.valueOf(gameModel.getFrictionCoefficient()));
 
@@ -124,65 +119,10 @@ public class EditorView implements IEditorView, Observer {
 
     private void setupTextFields() {
         Platform.runLater(() -> {
-
-            // this needs to be moved to controller
-            gravityTextField.textProperty()
-                    .addListener((observable, oldValue, newValue) -> {
-                        try {
-                            double value = Double.parseDouble(newValue);
-                            gameModel.setGravityCoefficient(value);
-                        } catch (NumberFormatException ex) {
-                            System.out.println("Invalid input for gravity");
-                        }
-
-                    });
-
-            frictionTextField.textProperty()
-                    .addListener((observable, oldValue, newValue) -> {
-
-                        try {
-                            double value = Double.parseDouble(newValue);
-                            gameModel.setFrictionCoefficient(value);
-                        } catch (NumberFormatException ex) {
-                            System.out.println("Invalid input for friction");
-                        }
-
-                    });
-
-            /*
-            ballXGravityTextField = (TextField) root.lookup("#ballVelocityX");
-            ballXGravityTextField.textProperty()
-                    .addListener((observable, oldValue, newValue) -> {
-
-                        try {
-                            double xVel = Double.parseDouble(newValue);
-                            Vect vect = ((Ball) getSelectedGizmo()).getVelocity();
-                            Vect newVect = new Vect(xVel, vect.y());
-                            ((Ball) getSelectedGizmo()).setVelocity(newVect);
-
-                        } catch (NumberFormatException ex) {
-                            System.out.println("Invalid input for velocity");
-                        }
-
-                    });
-
-
-            ballYGravityTextField = (TextField) root.lookup("#ballVelocityY");
-            ballYGravityTextField.textProperty()
-                    .addListener((observable, oldValue, newValue) -> {
-
-                        try {
-                            double xVel = Double.parseDouble(newValue);
-                            Vect vect = ((Ball) getSelectedGizmo()).getVelocity();
-                            Vect newVect = new Vect(xVel, vect.x());
-                            ((Ball) getSelectedGizmo()).setVelocity(newVect);
-
-                        } catch (NumberFormatException ex) {
-                            System.out.println("Invalid input for velocity");
-                        }
-
-                    });
-            */
+            
+            gravityTextField.setText(Double.toString(gameModel.getGravityCoefficient()));
+            frictionTextField.setText(Double.toString(gameModel.getFrictionCoefficient()));
+ 
         });
 
     }
