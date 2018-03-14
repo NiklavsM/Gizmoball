@@ -96,7 +96,7 @@ public class GameLoader {
                         String keyMode = tokens.poll();
                         String name = tokens.poll();
                         ITriggerable triggerable = (ITriggerable) gameModel.getGizmoById(name);
-                        keyHandler.onKeyEventTriger("key " + keyNumber + " " + keyMode, triggerable);
+                        keyHandler.onKeyEventTrigger("key " + keyNumber + " " + keyMode, triggerable);
                         Logger.verbose(TAG, "connected " + keyNumber + " " + keyMode + " to " + name);
                         continue;
                     }

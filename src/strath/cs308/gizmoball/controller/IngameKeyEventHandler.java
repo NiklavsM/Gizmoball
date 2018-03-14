@@ -24,7 +24,7 @@ public class IngameKeyEventHandler implements EventHandler<KeyEvent> {
         this.gameModel = gameModel;
     }
 
-    public void onKeyEventTriger(String keyEvent, ITriggerable triggerable) {
+    public void onKeyEventTrigger(String keyEvent, ITriggerable triggerable) {
         if (!keyEventMap.containsKey(keyEvent)) {
             keyEventMap.put(keyEvent, new HashSet<>());
         }
@@ -49,7 +49,6 @@ public class IngameKeyEventHandler implements EventHandler<KeyEvent> {
         }
 
         keyEventMap.get(keyEventString)
-                .stream()
                 .forEach(triggerable -> {
                     if (triggerable instanceof Flipper) {
                         Flipper.Movement args = null;
