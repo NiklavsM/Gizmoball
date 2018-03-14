@@ -263,4 +263,9 @@ public class GameModel extends Observable implements IGameModel {
         setChanged();
         notifyObservers();
     }
+
+    public void update() {
+        setChanged();
+        notifyObservers();
+    }
 }

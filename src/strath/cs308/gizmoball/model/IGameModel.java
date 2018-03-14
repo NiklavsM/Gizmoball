@@ -34,5 +34,7 @@ public interface IGameModel {
 
     void reset();
 
+    void update();
+
     int getScore();
 }
