@@ -7,9 +7,7 @@ import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
-import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.model.gizmo.Triangle;
-import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 import strath.cs308.gizmoball.view.EditorView;
 import strath.cs308.gizmoball.view.PlayView;
@@ -45,7 +43,7 @@ public class GizmoBall extends Application {
         t.registerAction(args -> t.rotate());
         t.registerTriggarable(t);
         gameModel.onCollisionTrigger(t);
-        keyHandler.onKeyEventTriger("key 74.0 down", (ITriggerable) t);
+        keyHandler.onKeyEventTrigger("key 74.0 down", (ITriggerable) t);
 
         currentStage = primaryStage;
 
