@@ -150,7 +150,7 @@ public class GameLoader {
             ITrigger from = (ITrigger) gameModel.getGizmoById(name);
             ITriggerable to = (ITriggerable) gameModel.getGizmoById(name2);
             from.registerTriggarable(to);
-            gameModel.onCollisionTrigger(from);
+            gameModel.addCollisionTrigger(from);
             Logger.verbose(TAG, "connected " + name + " to " + name2);
             return;
         }

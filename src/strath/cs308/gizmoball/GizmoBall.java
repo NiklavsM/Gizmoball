@@ -41,7 +41,7 @@ public class GizmoBall extends Application {
         Triangle t = (Triangle) gameModel.getGizmoById("T");
         t.registerAction(args -> t.rotate());
         t.registerTriggarable(t);
-        gameModel.onCollisionTrigger(t);
+        gameModel.addCollisionTrigger(t);
         keyHandler.onKeyEventTrigger("key 74.0 down", t);
 
         currentStage = primaryStage;
