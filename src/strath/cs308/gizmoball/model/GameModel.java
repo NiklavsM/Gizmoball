@@ -243,6 +243,9 @@ public class GameModel extends Observable implements IGameModel {
     @Override
     public void setFrictionCoefficient(double frictionCoefficient) {
         this.frictionCoefficient = frictionCoefficient;
+
+        setChanged();
+        notifyObservers();
     }
 
     @Override
@@ -253,6 +256,9 @@ public class GameModel extends Observable implements IGameModel {
     @Override
     public void setGravityCoefficient(double gravityCoefficient) {
         this.gravityCoefficient = gravityCoefficient;
+
+        setChanged();
+        notifyObservers();
     }
 
     public void reset() {

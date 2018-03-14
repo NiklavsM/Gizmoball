@@ -175,7 +175,6 @@ public class EditorView implements IEditorView, Observer {
 
     @Override
     public void toggleGrid() {
-        isGrided = !isGrided;
         refresh();
     }
 
