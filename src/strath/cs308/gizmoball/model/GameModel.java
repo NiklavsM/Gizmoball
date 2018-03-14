@@ -263,4 +263,17 @@ public class GameModel extends Observable implements IGameModel {
         setChanged();
         notifyObservers();
     }
+
+    @Override
+    public String toString() {
+        String commands = "";
+        for (Gizmo gizmo : gizmos.values()) {
+            commands += gizmo.toString();
+        }
+
+        commands += "\n\n";
+
+        //TODO add gravity and friciton
+        return commands;
+    }
 }
