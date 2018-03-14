@@ -2,8 +2,10 @@ package strath.cs308.gizmoball;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameLoader;
+import strath.cs308.gizmoball.controller.IngameKeyEventHandler;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.view.EditorView;
@@ -14,6 +16,8 @@ public class GizmoBall extends Application {
 
     private IGameModel gameModel;
     private Stage currentStage;
+    private IngameKeyEventHandler keyHandler;
+    private GameLoader gameLoader;
 
     public static void main(String[] args) {
         launch(args);
@@ -24,7 +28,9 @@ public class GizmoBall extends Application {
         primaryStage.setX(100);
 
         gameModel = new GameModel();
-        GameLoader gameLoader = new GameLoader(gameModel, getClass().getResourceAsStream("/alternative.gizmo"));
+        keyHandler = new IngameKeyEventHandler(gameModel);
+        gameLoader = new GameLoader(gameModel, keyHandler, getClass().getResourceAsStream("/alternative.gizmo"));
+
         try {
             gameLoader.load();
         } catch (IllegalAccessException e) {
@@ -57,5 +63,13 @@ public class GizmoBall extends Application {
     public void stop() {
         Platform.exit();
         System.exit(0);
+    }
+
+    public GameLoader getGameLoader() {
+        return gameLoader;
+    }
+
+    public IngameKeyEventHandler getKeyHandler() {
+        return keyHandler;
     }
 }

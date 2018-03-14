@@ -15,6 +15,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.controller.GameBarEventHandler;
+import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.controller.IngameKeyEventHandler;
 import strath.cs308.gizmoball.controller.PauseMenuEventHandler;
 import strath.cs308.gizmoball.model.GameTimer;
@@ -37,8 +38,12 @@ public class PlayView extends Stage implements IPlayView, Observer {
     private ToolBar pauseMenu;
     private StackPane stackPane;
     private Canvas canvas;
+    private IngameKeyEventHandler keyHandler;
+    private GameLoader gameLoader;
 
     public PlayView(GizmoBall gizmoBall) {
+        this.keyHandler = gizmoBall.getKeyHandler();
+        this.gameLoader = gizmoBall.getGameLoader();
 
         try {
             root = FXMLLoader.load(getClass().getResource("/view/plaview.fxml"));
@@ -55,11 +60,9 @@ public class PlayView extends Stage implements IPlayView, Observer {
             pauseMenu.toBack();
             gameModel.addObserver(this);
 
-            EventHandler ingameKeyHandler = new IngameKeyEventHandler(gameModel);
-
             Scene scene = new Scene(root, root.getWidth(), root.getHeight());
-            scene.setOnKeyPressed(ingameKeyHandler);
-            scene.setOnKeyReleased(ingameKeyHandler);
+            scene.setOnKeyPressed(this.keyHandler);
+            scene.setOnKeyReleased(this.keyHandler);
 
             super.setScene(scene);
             super.setWidth(WIDTH);
@@ -83,7 +86,7 @@ public class PlayView extends Stage implements IPlayView, Observer {
             root.lookupAll("#gameMenu > Button")
                     .forEach(node -> ((Button) node).setOnAction(gameBarEventHandler));
 
-            EventHandler pauseMenuEventHandler = new PauseMenuEventHandler(gameModel, gameTimer, this);
+            EventHandler pauseMenuEventHandler = new PauseMenuEventHandler(gameModel, gameTimer, this, gameLoader);
             root.lookupAll("#pauseMenuItemHolder > Button")
                     .forEach(node -> ((Button) node).setOnAction(pauseMenuEventHandler));
 

@@ -5,12 +5,14 @@ import mit.physics.Geometry;
 import mit.physics.LineSegment;
 import mit.physics.Vect;
 import strath.cs308.gizmoball.model.gizmo.*;
+import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class GameModel extends Observable implements IGameModel {
 
+    private final Set<ITrigger> collisionTriggers = new HashSet<>();
     private Map<String, Gizmo> gizmos;
     private Map<String, Absorber> absorberCollided;
     private int score;
@@ -58,8 +60,10 @@ public class GameModel extends Observable implements IGameModel {
 
     @Override
     public boolean removeGizmo(String id) {
-        if (gizmos.remove(id) != null) {
-
+        Gizmo gizmo = gizmos.get(id);
+        if (gizmo != null) {
+            collisionTriggers.remove(gizmo);
+            gizmos.remove(id);
             setChanged();
             notifyObservers();
             return true;
@@ -84,8 +88,18 @@ public class GameModel extends Observable implements IGameModel {
         return Optional.empty();
     }
 
+    @Override
+    public IGizmo getGizmoById(String id) {
+        return gizmos.get(id);
+    }
+
     public int getScore() {
         return score;
+    }
+
+    @Override
+    public void onCollisionTrigger(ITrigger from) {
+        collisionTriggers.add(from);
     }
 
     public void tick(double time) {
@@ -106,6 +120,12 @@ public class GameModel extends Observable implements IGameModel {
                 } else {
                     // We've got a collision in tuc
                     nextGizmo = cd.getGizmo();
+
+                    if (collisionTriggers.contains(nextGizmo)) {
+                        ITrigger trigger = (ITrigger) nextGizmo;
+                        trigger.trigger();
+                    }
+
                     if (nextGizmo instanceof Flipper && tuc < timeToMoveFlippers) timeToMoveFlippers = tuc;
 
                     score += nextGizmo.getScoreValue();
@@ -130,6 +150,21 @@ public class GameModel extends Observable implements IGameModel {
             }
         }
         moveMovables(timeToMoveFlippers);
+    }
+
+    private double timeUntilMovableCol(Set<Ball> balls) {
+        double smallestTime = Double.MAX_VALUE;
+        for (Ball ball : balls) {
+            if (!ball.isStopped()) {
+                CollisionDetails cd = timeUntilCollision(ball);
+                if (cd.getGizmo() instanceof IMovable) {
+                    if (smallestTime > cd.getTuc()) {
+                        smallestTime = cd.getTuc();
+                    }
+                }
+            }
+        }
+        return smallestTime;
     }
 
     private void moveMovables(Double time) {

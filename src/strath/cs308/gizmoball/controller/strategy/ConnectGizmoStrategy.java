@@ -21,7 +21,7 @@ public class ConnectGizmoStrategy implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-
+        System.out.println("handling connecttions");
         /**
          * TODO
          * still need to be done

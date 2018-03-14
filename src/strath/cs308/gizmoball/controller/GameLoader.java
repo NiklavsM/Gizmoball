@@ -1,9 +1,9 @@
 package strath.cs308.gizmoball.controller;
 
-import strath.cs308.gizmoball.model.GizmoFactory;
-import strath.cs308.gizmoball.model.IGameModel;
-import strath.cs308.gizmoball.model.IGizmoFactory;
+import strath.cs308.gizmoball.model.*;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
+import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
+import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.io.InputStream;
 import java.util.*;
@@ -24,15 +24,18 @@ public class  GameLoader {
     private final IGizmoFactory gizmoFactory;
     private final IGameModel gameModel;
     private final InputStream source;
+    private IngameKeyEventHandler keyHandler;
+
     private Set<String> gizmoCreationCommands;
     private Set<String> nameCoordCoordCommands;
     private Set<String> gizmoCreationCommandsAdvanced;
     private Set<String> nameCommands;
     private Map<String, IGizmo.Type> gizmoCommandToEnum;
 
-    public GameLoader(IGameModel gameModel, InputStream source) {
+    public GameLoader(IGameModel gameModel, IngameKeyEventHandler keyHandler, InputStream source) {
         this.gameModel = gameModel;
         this.source = source;
+        this.keyHandler = keyHandler;
         gizmoFactory = new GizmoFactory();
 
         gizmoCommandToEnum = new HashMap<>();
@@ -88,7 +91,8 @@ public class  GameLoader {
                         double keyNumber = toValidNumber(tokens.poll());
                         String keyMode = tokens.poll();
                         String name = tokens.poll();
-                        //TODO
+                        ITriggerable triggerable = (ITriggerable) gameModel.getGizmoById(name);
+                        keyHandler.onKeyEventTriger("key " + keyNumber + " " + keyMode, triggerable);
                         System.out.println("connected " + keyNumber + " " + keyMode + " to " + name);
                         continue;
                     }
@@ -133,7 +137,10 @@ public class  GameLoader {
         }
         if (command.equals(CONNECT_COMMAND)) {
             String name2 = tokens.poll();
-            //TODO connect name to name2
+            ITrigger from = (ITrigger) gameModel.getGizmoById(name);
+            ITriggerable to = (ITriggerable) gameModel.getGizmoById(name2);
+            from.registerTriggarable(to);
+            gameModel.onCollisionTrigger(from);
             System.out.println("connected " + name + " to " + name2);
             return;
         }

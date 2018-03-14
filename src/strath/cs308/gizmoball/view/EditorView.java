@@ -15,10 +15,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import mit.physics.Vect;
 import strath.cs308.gizmoball.GizmoBall;
-import strath.cs308.gizmoball.controller.GizmoClickEventHandler;
-import strath.cs308.gizmoball.controller.GizmoSelectorEventHandler;
-import strath.cs308.gizmoball.controller.ToolModeEventHandler;
-import strath.cs308.gizmoball.controller.TopToolbarEventHandler;
+import strath.cs308.gizmoball.controller.*;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.Ball;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
@@ -39,8 +36,12 @@ public class EditorView extends Stage implements IEditorView, Observer {
     private IGizmo selectedGizmo;
     private TextField ballXGravityTextField;
     private TextField ballYGravityTextField;
+    private IngameKeyEventHandler keyHandler;
 
     public EditorView(GizmoBall gizmoball) {
+
+        this.keyHandler = gizmoball.getKeyHandler();
+
         try {
             root = FXMLLoader.load(getClass().getResource("/view/editorview.fxml"));
             canvas = (Canvas) root.lookup("#canvas");
@@ -233,7 +234,10 @@ public class EditorView extends Stage implements IEditorView, Observer {
         statusLabel.setText(message);
     }
 
-    @Override
+    public IngameKeyEventHandler getKeyHandler() {
+        return keyHandler;
+    }
+
     public void setSelectedGizmo(IGizmo gizmo) {
         this.selectedGizmo = gizmo;
     }
