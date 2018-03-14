@@ -68,4 +68,7 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent> {
         keyEventMap.values().forEach(set -> set.remove(triggerable));
     }
 
+    public void removeAllHandlers() {
+        keyEventMap.clear();
+    }
 }
