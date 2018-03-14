@@ -41,7 +41,6 @@ public class GameModel extends Observable implements IGameModel {
 
         for (double column = tempGizmo.getStartX(); column < tempGizmo.getEndX(); column++) {
             for (double row = tempGizmo.getStartY(); row < tempGizmo.getEndY(); row++) {
-                System.out.println(column + ":" + row);
                 Optional<IGizmo> giz = getGizmo(column, row);
                 if (giz.isPresent()) {
                     return false;
@@ -241,8 +240,12 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     @Override
-    public void setFrictionCoefficient(double frictionCoefficient) {
-        this.frictionCoefficient = frictionCoefficient;
+    public boolean setFrictionCoefficient(double frictionCoefficient) {
+        if (frictionCoefficient >= 0) {
+            this.frictionCoefficient = frictionCoefficient;
+            return true;
+        } else
+            return false;
     }
 
     @Override
@@ -251,8 +254,12 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     @Override
-    public void setGravityCoefficient(double gravityCoefficient) {
-        this.gravityCoefficient = gravityCoefficient;
+    public boolean setGravityCoefficient(double gravityCoefficient) {
+        if (gravityCoefficient >= 0) {
+            this.gravityCoefficient = gravityCoefficient;
+            return true;
+        }
+        return false;
     }
 
     public void reset() {
