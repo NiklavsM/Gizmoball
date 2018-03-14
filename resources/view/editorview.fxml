@@ -399,8 +399,7 @@
                     <VBox spacing="16"
                           styleClass="default-padding, GizmoPane">
 
-                        <HBox spacing="16" 
-                              styleClass="default-padding"> 
+                        <HBox spacing="16"> 
                             <VBox>
                                 <Label text="Type:" />
                                 <Label fx:id="gizmoType" />
@@ -410,7 +409,7 @@
                                 <Label fx:id="gizmoId" />
                             </VBox>       
                         </HBox>
-                           <!-- 
+                           
                         <VBox fx:id="movableFieldHolder" 
                               spacing="5">
                             <Label text="Velocity X" />
@@ -418,13 +417,12 @@
                                        styleClass="game-option-textbox"
                                        prefWidth="60.0" />
     
-                            <Label text="Velocity X" />
-                            <TextField fx:id="xVelocityField"
+                            <Label text="Velocity Y" />
+                            <TextField fx:id="yVelocityField"
                                        styleClass="game-option-textbox"
                                        prefWidth="60.0" />
-
                        </VBox>
-                    -->
+                   
 
                     </VBox>
 

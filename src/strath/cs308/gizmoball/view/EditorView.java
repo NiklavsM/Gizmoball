@@ -26,6 +26,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -111,15 +112,6 @@ public class EditorView extends Stage implements IEditorView, Observer {
     private void updateFields() {
         gravityTextField.setText(String.valueOf(gameModel.getGravityCoefficient()));
         frictionTextField.setText(String.valueOf(gameModel.getFrictionCoefficient()));
-
-        /*
-        if (selectedGizmo != null && selectedGizmo.getType() == IGizmo.Type.BALL) {
-            Logger.debug(TAG, "A " + selectedGizmo.getType() + " at " + selectedGizmo.getStartX() + ", " + selectedGizmo.getStartY());
-            Vect vect = ((Ball) selectedGizmo).getVelocity();
-            ballXGravityTextField.setText(String.valueOf(vect.x()));
-            ballYGravityTextField.setText(String.valueOf(vect.y()));
-        }
-        */
     }
 
     private void drawGrid() {
@@ -258,14 +250,26 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
         Label typeLabel = (Label) namespace.get("gizmoType");
         Label gizmoIdField = (Label) namespace.get("gizmoId");
+        VBox movableHolder = (VBox) namespace.get("movableFieldHolder");
 
         typeLabel.setText(gizmo.getType().toString());         
         gizmoIdField.setText(gizmo.getId());
 
         if (gizmo instanceof IMovable) {
+            System.out.println(gizmo);
             IMovable movableGizmo = (IMovable) gizmo;  
-            
+            movableHolder.setVisible(true);
+            TextField veloXField = (TextField) namespace.get("xVelocityField");
+            TextField veloYField = (TextField) namespace.get("yVelocityField");
+
+            Vect velocity = movableGizmo.getVelocity();
+            veloXField.setText(Double.toString(velocity.x())); 
+            veloYField.setText(Double.toString(velocity.y())); 
+
+        } else {
+            movableHolder.setVisible(false);
         }
+        
     }
     
     @Override
