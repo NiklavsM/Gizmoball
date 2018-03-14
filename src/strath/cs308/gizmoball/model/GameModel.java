@@ -29,7 +29,7 @@ public class GameModel extends Observable implements IGameModel {
         frictionCoefficient = 0.025;
         gravityCoefficient = 25;
         score = 0;
-
+        collisionTriggers.clear();
         addGizmo(new Walls());
     }
 
