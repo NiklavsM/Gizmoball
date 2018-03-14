@@ -13,7 +13,6 @@ import strath.cs308.gizmoball.view.PlayView;
 
 public class GizmoBall extends Application {
 
-
     private IGameModel gameModel;
     private Stage currentStage;
     private IngameKeyEventHandler keyHandler;
