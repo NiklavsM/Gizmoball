@@ -4,7 +4,10 @@ import mit.physics.*;
 import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.model.Dot;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public abstract class Gizmo implements IGizmo {

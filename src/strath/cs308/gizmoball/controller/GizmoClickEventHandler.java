@@ -8,7 +8,6 @@ import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.IEditorView;
 
 import java.util.Observable;
-import java.util.Observer;
 import java.util.Optional;
 
 public class GizmoClickEventHandler extends Observable implements EventHandler<MouseEvent> {
@@ -37,7 +36,7 @@ public class GizmoClickEventHandler extends Observable implements EventHandler<M
 
             editorView.updateFields();
 
-            Logger.debug(TAG,"A gizmo has been selected");
+            Logger.debug(TAG, "A gizmo has been selected");
 
         }
 

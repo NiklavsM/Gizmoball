@@ -3,7 +3,6 @@ package strath.cs308.gizmoball.model.gizmo;
 import mit.physics.*;
 import strath.cs308.gizmoball.model.IMovable;
 import strath.cs308.gizmoball.model.triggeringsystem.IAction;
-import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.util.Iterator;
 
@@ -182,7 +181,7 @@ public class Flipper extends AbstractTriggarableGizmo implements IMovable, IActi
 
     @Override
     public void doAction(Object args) {
-        if(args == null) {
+        if (args == null) {
             //do a full one
 
             return;
