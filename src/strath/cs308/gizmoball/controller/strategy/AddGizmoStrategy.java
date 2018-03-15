@@ -163,6 +163,6 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
 
         IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, x, y);
         gameModel.addGizmo(gizmo);
-        editorView.setStatus("Gizmo Added");
+        editorView.setStatus(gizmoType + " gizmo added at position: " + x + " , " + y);
     }
 }
