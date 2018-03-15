@@ -55,6 +55,10 @@ public class Ball extends Gizmo implements IMovable {
         updateCircles();
     }
 
+    public double getRadius() {
+        return (getEndX() - getStartX()) / 2;
+    }
+
     public boolean isStopped() {
         return stopped;
     }

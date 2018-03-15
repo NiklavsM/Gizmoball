@@ -38,8 +38,9 @@ public class Absorber extends AbstractTriggerAndTriggerableGizmo implements IAct
     public void absorbBall(Ball ball) {
         if (haveSpace()) {
             ballsAbsorbed.add(ball);
-            ball.setX(getEndX() - 0.25 - ((ballsAbsorbed.size() - 1) * 0.5) % (x2 - x1)); // makes sure balls sit in the absorber nicely
-            ball.setY(getEndY() - 0.25 - (((ballsAbsorbed.size() - 1) / (int) ((x2 - x1) * 2)) * 0.5) % (y2 - y1));
+            double radius = ball.getRadius();
+            ball.setX(getEndX() - radius - ((ballsAbsorbed.size() - 1) * (2*radius)) % (x2 - x1)); // makes sure balls sit in the absorber nicely
+            ball.setY(getEndY() - radius - (((ballsAbsorbed.size() - 1) / (int) ((x2 - x1) * 2)) * (2*radius)) % (y2 - y1));
             ball.setVelocity(new Vect(0, -50));
             ball.setStopped(true);
             Logger.verbose(TAG, "ball.getCircle().getCenter().y() " + ball.getCircle().getCenter().y());

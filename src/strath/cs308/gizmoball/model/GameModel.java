@@ -83,13 +83,6 @@ public class GameModel extends Observable implements IGameModel {
                 if ((x >= gizmo.getStartX() && x < gizmo.getEndX()) && (y >= gizmo.getStartY() && y < gizmo.getEndY())) {
                     return Optional.of(gizmo);
                 }
-
-//                // TO-FIX THIS SNIPPET FOR PROPER PREVIEW ON DRAG
-//                if (gizmo.getType().equals(IGizmo.Type.BALL)) {
-//                    double ballX = gizmo.getStartX() + 0.25, ballY = gizmo.getStartY() + 0.25;
-//                    if (x - 0.25 > ballX && ballX < x + 0.25 && y - 0.25 > ballY && ballY < y + 0.25)
-//                        return Optional.of(gizmo);
-//                }
             }
         }
         return Optional.empty();
