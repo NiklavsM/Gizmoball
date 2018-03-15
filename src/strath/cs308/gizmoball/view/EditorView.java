@@ -8,6 +8,7 @@ import java.util.Observer;
 import java.util.Optional;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -25,13 +26,11 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import strath.cs308.gizmoball.GizmoBall;
-import strath.cs308.gizmoball.controller.GamePropertyEventHandler;
-import strath.cs308.gizmoball.controller.GizmoSelectorEventHandler;
-import strath.cs308.gizmoball.controller.ToolModeEventHandler;
-import strath.cs308.gizmoball.controller.TopToolbarEventHandler;
-import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
+import strath.cs308.gizmoball.controller.*;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
+
+import javax.swing.*;
 
 public class EditorView extends Stage implements IEditorView, Observer {
     private static final String TAG = "EditorView";
@@ -77,10 +76,8 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
             statusLabel = (Label) namespace.get("statusbar");
 
-            this.gameModel = gameModel;
             this.gizmoBall = gizmoball;
             this.gameModel = gizmoball.getGameModel();
-            
             this.gameModel.addObserver(this);
 
             isGrided  = true;
@@ -155,21 +152,27 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
     private void attachHandlers() {
         Platform.runLater(() -> {
-            EventHandler topToolbarHandler = new TopToolbarEventHandler(gameModel, this);
+            EventHandler<MouseEvent> topToolbarHandler = new TopToolbarEventHandler(gameModel, this);
             ((GridPane) namespace.get("topToolbar")).lookupAll(".top-toolbar-button")
                     .forEach(node -> node.setOnMouseClicked(topToolbarHandler));
 
-            EventHandler addGizmoEventHandler = new GizmoSelectorEventHandler(gameModel, this);
+            EventHandler<MouseEvent> addGizmoEventHandler = new GizmoSelectorEventHandler(gameModel, this);
             root.lookupAll("#addGizmoOptions Button")
                     .forEach(node -> node.setOnMouseClicked(addGizmoEventHandler));
 
-            EventHandler toolSelectionHandler = new ToolModeEventHandler(gameModel, this);
+            EventHandler<MouseEvent> toolSelectionHandler = new ToolModeEventHandler(gameModel, this);
             ((GridPane) namespace.get("toolButtonHolder")).lookupAll(".tool-button")
                     .forEach(node -> node.setOnMouseClicked(toolSelectionHandler));
 
-            EventHandler gamePropertyEventHandler = new GamePropertyEventHandler(gameModel, this);
+            EventHandler<ActionEvent> gamePropertyEventHandler = new GamePropertyEventHandler(gameModel, this);
             friction1TextField.setOnAction(gamePropertyEventHandler);
-            gravityTextField.setOnAction(gamePropertyEventHandler);            
+            gravityTextField.setOnAction(gamePropertyEventHandler);
+
+            EventHandler<ActionEvent> triggerPropertyEventHandler = new TriggerPropertyEventHandler(gameModel, this);
+            connectAChangeButton.setOnAction(triggerPropertyEventHandler);
+            connectATextField.setOnAction(triggerPropertyEventHandler);
+            connectBChangeButton.setOnAction(triggerPropertyEventHandler);
+            connectBTextField.setOnAction(triggerPropertyEventHandler);
         });
     }
 
