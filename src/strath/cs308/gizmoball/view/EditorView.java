@@ -176,8 +176,8 @@ public class EditorView extends Stage implements IEditorView, Observer {
     }
 
     @Override
-    public double getPixelRatioFor(double valueToComapre) {
-        return canvas.getWidth() / valueToComapre;
+    public double getPixelRatioFor(double valueToCompare) {
+        return canvas.getWidth() / valueToCompare;
     }
 
     @Override
