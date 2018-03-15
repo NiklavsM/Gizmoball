@@ -11,10 +11,10 @@ import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 public class GameModel extends Observable implements IGameModel {
 
-    private final Set<ITrigger> collisionTriggers = new HashSet<>();
     private Map<String, Gizmo> gizmos;
     private Map<String, Absorber> absorberCollided;
     private int score;
@@ -33,7 +33,6 @@ public class GameModel extends Observable implements IGameModel {
         frictionCoefficient2 = 0.025;
         gravityCoefficient = 25;
         score = 0;
-        collisionTriggers.clear();
         addGizmo(new Walls());
     }
 
@@ -62,7 +61,6 @@ public class GameModel extends Observable implements IGameModel {
     public boolean removeGizmo(String id) {
         Gizmo gizmo = gizmos.get(id);
         if (gizmo != null) {
-            collisionTriggers.remove(gizmo);
             gizmos.remove(id);
             update();
             return true;
@@ -83,12 +81,12 @@ public class GameModel extends Observable implements IGameModel {
                     return Optional.of(gizmo);
                 }
 
-                // TO-FIX THIS SNIPPET FOR PROPER PREVIEW ON DRAG
-                if (gizmo.getType().equals(IGizmo.Type.BALL)) {
-                    double ballX = gizmo.getStartX() + 0.25, ballY = gizmo.getStartY() + 0.25;
-                    if (x - 0.25 > ballX && ballX < x + 0.25 && y - 0.25 > ballY && ballY < y + 0.25)
-                        return Optional.of(gizmo);
-                }
+//                // TO-FIX THIS SNIPPET FOR PROPER PREVIEW ON DRAG
+//                if (gizmo.getType().equals(IGizmo.Type.BALL)) {
+//                    double ballX = gizmo.getStartX() + 0.25, ballY = gizmo.getStartY() + 0.25;
+//                    if (x - 0.25 > ballX && ballX < x + 0.25 && y - 0.25 > ballY && ballY < y + 0.25)
+//                        return Optional.of(gizmo);
+//                }
             }
         }
         return Optional.empty();
@@ -101,11 +99,6 @@ public class GameModel extends Observable implements IGameModel {
 
     public int getScore() {
         return score;
-    }
-
-    @Override
-    public void addCollisionTrigger(ITrigger from) {
-        collisionTriggers.add(from);
     }
 
     public void tick(double time) {
@@ -127,7 +120,7 @@ public class GameModel extends Observable implements IGameModel {
                     // We've got a collision in tuc
                     nextGizmo = cd.getGizmo();
 
-                    if (collisionTriggers.contains(nextGizmo)) {
+                    if (nextGizmo instanceof ITrigger) {
                         ITrigger trigger = (ITrigger) nextGizmo;
                         trigger.trigger();
                     }
@@ -272,7 +265,7 @@ public class GameModel extends Observable implements IGameModel {
     public boolean getFrictionM2(double frictionCoefficient) {
         if (frictionCoefficient >= 0) {
             this.frictionCoefficient = frictionCoefficient;
-            
+
             setChanged();
             notifyObservers();
             return true;
@@ -316,6 +309,13 @@ public class GameModel extends Observable implements IGameModel {
         }
 
         commands.append("\n\n# collision triggers\n");
+
+        Set<ITrigger> collisionTriggers = gizmos
+                .values()
+                .parallelStream()
+                .filter(ITrigger.class::isInstance)
+                .map(ITrigger.class::cast)
+                .collect(Collectors.toSet());
 
         for (ITrigger trigger : collisionTriggers) {
             for (ITriggerable triggerable : trigger.getTriggerables()) {
