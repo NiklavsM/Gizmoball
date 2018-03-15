@@ -8,8 +8,6 @@ import strath.cs308.gizmoball.model.IGizmoFactory;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.view.IEditorView;
 
-import javax.swing.text.html.HTML;
-
 public class AddGizmoStrategy implements EventHandler<MouseEvent> {
 
     private static final String TAG = "AddGizmoStrategy";

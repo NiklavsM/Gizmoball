@@ -34,7 +34,7 @@ public class SelectGizmoEventHandler extends Observable implements EventHandler<
 
             Optional<IGizmo> gizmo = gameModel.getGizmo(pointX, pointY);
             gizmo.ifPresent(editorView::displayGizmoProperties);
-            
+
             gizmo.ifPresent((editorView) -> {
                 setChanged();
                 notifyObservers();

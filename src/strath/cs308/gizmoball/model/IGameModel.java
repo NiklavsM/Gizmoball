@@ -1,7 +1,6 @@
 package strath.cs308.gizmoball.model;
 
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
-import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 
 import java.util.Observer;
 import java.util.Optional;
@@ -27,11 +26,13 @@ public interface IGameModel {
 
     void rotate(String id);
 
-    double getFrictionM1();
+    double setFrictionM1();
 
     double getFrictionM2();
 
-    boolean getFrictionM1(double frictionCoefficient);
+    void setFrictionM2(double frictionCoefficient);
+
+    void setFrictionM1(double frictionCoefficient);
 
     boolean getFrictionM2(double frictionCoefficient);
 

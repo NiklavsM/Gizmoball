@@ -2,7 +2,6 @@ package strath.cs308.gizmoball.controller.strategy;
 
 import javafx.event.EventHandler;
 import javafx.scene.ImageCursor;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import strath.cs308.gizmoball.model.IGameModel;

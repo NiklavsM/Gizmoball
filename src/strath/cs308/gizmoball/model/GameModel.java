@@ -156,7 +156,7 @@ public class GameModel extends Observable implements IGameModel {
     private void moveMovables(Double time) {
         gizmos.values()
                 .stream()
-                .filter(gizmo -> gizmo instanceof IMovable)
+                .filter(gizmo -> gizmo instanceof IMovable && !(gizmo instanceof Ball))
                 .forEach(gizmo -> ((IMovable) gizmo).move(time));
     }
 
@@ -247,7 +247,7 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     @Override
-    public double getFrictionM1() {
+    public double setFrictionM1() {
         return frictionCoefficient;
     }
 
@@ -257,8 +257,13 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     @Override
-    public boolean getFrictionM1(double frictionCoefficient) {
-        return false;
+    public void setFrictionM2(double frictionCoefficient) {
+        this.frictionCoefficient2 = frictionCoefficient;
+    }
+
+    @Override
+    public void setFrictionM1(double frictionCoefficient) {
+        this.frictionCoefficient = frictionCoefficient;
     }
 
     @Override
