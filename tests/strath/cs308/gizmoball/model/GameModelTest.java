@@ -16,7 +16,7 @@ class GameModelTest {
     @BeforeEach
     void setup() {
         model = new GameModel();
-        model.setFrictionCoefficient(0);
+       // model.setFrictionCoefficient(0);
         model.setGravityCoefficient(0);
         squareGizmo1 = new Square(1, 1, "square1");
         dummyGizmo = new Square(99, 99);
