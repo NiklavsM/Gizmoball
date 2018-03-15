@@ -24,14 +24,8 @@ public class RemoveGizmoStrategy implements EventHandler<MouseEvent> {
             double pointX = mouseEvent.getX() / editorView.getPixelRatioFor(20.0);
             double pointY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
 
-//            gameModel.getGizmo(pointX, pointY)
-//                    .ifPresent(gizmo1 -> gameModel.removeGizmo(gizmo1.getId()));
-
             Optional<IGizmo> gizmo = gameModel.getGizmo(pointX, pointY);
-            gizmo.ifPresent(gizmo1 -> gameModel.removeGizmo(gizmo1.getId()));
-
-
+            gizmo.ifPresent(gizmo1 -> gameModel.removeGizmo(gizmo.get().getId()));
         }
-
     }
 }
