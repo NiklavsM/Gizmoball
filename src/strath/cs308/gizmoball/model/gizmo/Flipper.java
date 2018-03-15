@@ -65,16 +65,16 @@ public class Flipper extends AbstractTriggerableGizmo implements IMovable, IActi
     }
 
     @Override
-    public Type getType() {
+    public IGizmo.Type getType() {
         if (orientation.equals(Orientation.RIGHT)) {
-            return Type.RIGHT_FLIPPER;
+            return IGizmo.Type.RIGHT_FLIPPER;
         }
 
         if (orientation.equals(Orientation.LEFT)) {
-            return Type.LEFT_FLIPPER;
+            return IGizmo.Type.LEFT_FLIPPER;
         }
 
-        return Type.FLIPPER;
+        return IGizmo.Type.FLIPPER;
     }
 
     @Override
@@ -231,6 +231,10 @@ public class Flipper extends AbstractTriggerableGizmo implements IMovable, IActi
         connector2 = lineIt.next();
     }
 
+    @Override
+    public IMovable.Type getMovementType() {
+        return IMovable.Type.ROTATION;
+    }
 
     public enum Movement {
         BACKWARDS, FORWARD, BOTTOM, TOP

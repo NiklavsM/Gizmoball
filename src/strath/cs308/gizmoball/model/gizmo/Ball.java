@@ -1,11 +1,14 @@
 package strath.cs308.gizmoball.model.gizmo;
 
+import java.util.concurrent.CopyOnWriteArrayList;
+
 import mit.physics.Circle;
 import mit.physics.Vect;
 
-import java.util.concurrent.CopyOnWriteArrayList;
+import strath.cs308.gizmoball.model.IMovable;
+import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
-public class Ball extends Gizmo {
+public class Ball extends Gizmo implements IMovable {
 
     private Vect velocity;
     private double radius;
@@ -20,10 +23,12 @@ public class Ball extends Gizmo {
         super(x - 0.25, y - 0.25, x + 0.25, y + 0.25, id);
     }
 
+    @Override
     public Vect getVelocity() {
         return velocity;
     }
 
+    @Override
     public void setVelocity(Vect v) {
         velocity = v;
     }
@@ -69,8 +74,8 @@ public class Ball extends Gizmo {
     }
 
     @Override
-    public Type getType() {
-        return Type.BALL;
+    public IGizmo.Type getType() {
+        return IGizmo.Type.BALL;
     }
 
     @Override
@@ -81,6 +86,7 @@ public class Ball extends Gizmo {
         setVelocity(new Vect(4, 4));
     }
 
+    @Override
     public void move(double timeInSeconds) {
         setX(getX() + (getVelocity().x() * timeInSeconds));
         setY(getY() + (getVelocity().y() * timeInSeconds));
@@ -92,5 +98,10 @@ public class Ball extends Gizmo {
         String soFar = super.toString();
         soFar = soFar.substring(0, soFar.length() - 2);
         return soFar + " " + velocity.x() + " " + velocity.y() + "\n\n";
+    }
+
+    @Override
+    public IMovable.Type getMovementType() {
+        return IMovable.Type.LINEAR;
     }
 }

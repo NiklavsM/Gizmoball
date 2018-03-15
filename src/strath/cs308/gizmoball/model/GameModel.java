@@ -153,7 +153,7 @@ public class GameModel extends Observable implements IGameModel {
     private void moveMovables(Double time) {
         gizmos.values()
                 .stream()
-                .filter(gizmo -> gizmo instanceof IMovable)
+                .filter(gizmo -> gizmo instanceof IMovable && !(gizmo instanceof Ball))
                 .forEach(gizmo -> ((IMovable) gizmo).move(time));
     }
 
