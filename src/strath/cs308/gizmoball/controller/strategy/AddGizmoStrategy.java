@@ -9,6 +9,8 @@ import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.IEditorView;
 
+import javax.swing.text.html.HTML;
+
 public class AddGizmoStrategy implements EventHandler<MouseEvent> {
 
     private static final String TAG = "AddGizmoStrategy";
@@ -51,11 +53,31 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         double previewY = Math.floor(mouseEvent.getY()/editorView.getPixelRatioFor(20.0));
 
         if (mouseEvent.getEventType().equals(mouseEvent.MOUSE_DRAGGED)) {
-            Double startX = Math.floor(pressX / editorView.getPixelRatioFor(20.0));
-            Double startY = Math.floor(pressY / editorView.getPixelRatioFor(20.0));
+            Double startX, startY, endX, endY;
+            double initialX = Math.floor(pressX / editorView.getPixelRatioFor(20.0));
+            double initialY = Math.floor(pressY / editorView.getPixelRatioFor(20.0));
 
-            for (int x = startX.intValue(); x <= previewX; x++) {
-                for (int y = startY.intValue(); y <= previewY; y++) {
+            if (previewX >= initialX) {
+                startX = initialX;
+                endX = previewX;
+            } else {
+                startX = previewX;
+                endX = initialX;
+            }
+
+            if (previewY >= initialY) {
+                startY = initialY;
+                endY = previewY;
+            } else {
+                startY = previewY;
+                endY = initialY;
+            }
+
+            Logger.debug(TAG, "Drag started at: "+ startX+","+startY);
+            Logger.debug(TAG, "Drag ends at: "+endX+","+endY);
+
+            for (int x = startX.intValue(); x <= endX.intValue(); x++) {
+                for (int y = startY.intValue(); y <= endY.intValue(); y++) {
                     IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, x, y);
                     editorView.previewGizmo(gizmo, x, y);
                 }
