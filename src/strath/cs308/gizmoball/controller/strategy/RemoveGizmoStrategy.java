@@ -18,19 +18,23 @@ public class RemoveGizmoStrategy implements EventHandler<MouseEvent> {
     public RemoveGizmoStrategy(IGameModel gameModel, IEditorView editorView) {
         this.gameModel = gameModel;
         this.editorView = editorView;
+
+        Image image = new Image("/icons/clear.png");
+        editorView.setCursor(new ImageCursor(image));
     }
 
     @Override
     public void handle(MouseEvent mouseEvent) {
         if (mouseEvent.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
-            Image image = new Image("/icons/clear.png");
-            editorView.setCursor(new ImageCursor(image));
 
             double pointX = mouseEvent.getX() / editorView.getPixelRatioFor(20.0);
             double pointY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
 
             Optional<IGizmo> gizmo = gameModel.getGizmo(pointX, pointY);
-            gizmo.ifPresent(gizmo1 -> gameModel.removeGizmo(gizmo.get().getId()));
+            if (gizmo.isPresent()) {
+                gameModel.removeGizmo(gizmo.get().getId());
+                editorView.setStatus(gizmo.get().getType() + " gizmo removed from the playing area");
+            }
         }
     }
 }

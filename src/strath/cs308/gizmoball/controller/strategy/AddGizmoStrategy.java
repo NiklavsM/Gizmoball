@@ -49,21 +49,37 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         double previewX = Math.floor(mouseEvent.getX() / editorView.getPixelRatioFor(20.0));
         double previewY = Math.floor(mouseEvent.getY() / editorView.getPixelRatioFor(20.0));
 
-        if (mouseEvent.getEventType().equals(mouseEvent.MOUSE_DRAGGED)) {
-            Double startX = Math.floor(pressX / editorView.getPixelRatioFor(20.0));
-            Double startY = Math.floor(pressY / editorView.getPixelRatioFor(20.0));
+        if (mouseX != previewX || mouseY != previewY)
+            gameModel.update();
 
-            for (int x = startX.intValue(); x <= previewX; x++) {
-                for (int y = startY.intValue(); y <= previewY; y++) {
+        if (mouseEvent.getEventType().equals(mouseEvent.MOUSE_DRAGGED)) {
+            Double startX, startY, endX, endY;
+            double initialX = Math.floor(pressX / editorView.getPixelRatioFor(20.0));
+            double initialY = Math.floor(pressY / editorView.getPixelRatioFor(20.0));
+
+            if (previewX >= initialX) {
+                startX = initialX;
+                endX = previewX;
+            } else {
+                startX = previewX;
+                endX = initialX;
+            }
+
+            if (previewY >= initialY) {
+                startY = initialY;
+                endY = previewY;
+            } else {
+                startY = previewY;
+                endY = initialY;
+            }
+
+            for (int x = startX.intValue(); x <= endX.intValue(); x++) {
+                for (int y = startY.intValue(); y <= endY.intValue(); y++) {
                     IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, x, y);
                     editorView.previewGizmo(gizmo, x, y);
                 }
             }
         } else {
-
-            if (mouseX != previewX || mouseY != previewY)
-                gameModel.update();
-
             IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, previewX, previewY);
             if (gizmo.getType().equals(IGizmo.Type.BALL)) {
                 if (mouseX != mouseEvent.getX() || mouseY != mouseEvent.getY())
@@ -74,10 +90,10 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
             }
 
             editorView.previewGizmo(gizmo, previewX, previewY);
-
-            mouseX = previewX;
-            mouseY = previewY;
         }
+
+        mouseX = previewX;
+        mouseY = previewY;
     }
 
     private void onMousePressed(MouseEvent mouseEvent) {
@@ -162,6 +178,6 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
 
         IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, x, y);
         gameModel.addGizmo(gizmo);
-        editorView.setStatus("Gizmo Added");
+        editorView.setStatus(gizmoType + " gizmo added at position: " + x + " , " + y);
     }
 }

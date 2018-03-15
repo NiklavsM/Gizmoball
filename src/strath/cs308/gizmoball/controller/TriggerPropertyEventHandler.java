@@ -1,6 +1,5 @@
 package strath.cs308.gizmoball.controller;
 
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -9,7 +8,6 @@ import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.EditorView;
 
 public class TriggerPropertyEventHandler implements EventHandler<ActionEvent> {
-
 
     private static final String TAG = "TriggerPropertyEventHandler";
     private IGameModel gameModel;

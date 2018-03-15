@@ -70,16 +70,16 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
     }
 
     @Override
-    public Type getType() {
+    public IGizmo.Type getType() {
         if (orientation.equals(Orientation.RIGHT)) {
-            return Type.RIGHT_FLIPPER;
+            return IGizmo.Type.RIGHT_FLIPPER;
         }
 
         if (orientation.equals(Orientation.LEFT)) {
-            return Type.LEFT_FLIPPER;
+            return IGizmo.Type.LEFT_FLIPPER;
         }
 
-        return Type.FLIPPER;
+        return IGizmo.Type.FLIPPER;
     }
 
     @Override
@@ -265,6 +265,10 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
         return id;
     }
 
+    @Override
+    public IMovable.Type getMovementType() {
+        return IMovable.Type.ROTATION;
+    }
 
     public enum Movement {
         BACKWARDS, FORWARD, BOTTOM, TOP

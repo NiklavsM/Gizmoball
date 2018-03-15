@@ -85,7 +85,7 @@ public class GameLoader {
                 tokens = Arrays.stream(line.split("\\s+")).collect(Collectors.toCollection(LinkedList::new));
                 command = tokens.poll();
 
-                if(command.equals("#")) {
+                if (command.equals("#")) {
                     // comments basically
                     continue;
                 }
@@ -121,8 +121,7 @@ public class GameLoader {
             }
         } catch (NumberFormatException ex) {
             throw ex;
-        }
-        finally {
+        } finally {
             scanner.close();
         }
     }

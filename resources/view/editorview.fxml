@@ -275,7 +275,7 @@
 
     <right>
         <VBox>
-            <TabPane>
+            <TabPane fx:id="sidePanel">
                 <Tab closable="false"
                      text="Gizmos">
                     <VBox spacing="16"
@@ -406,38 +406,32 @@
 
                     <VBox spacing="16"
                           styleClass="default-padding, GizmoPane">
-                        <Label fx:id="gizmotype" text="Ball"/>
-
-                        <VBox spacing="5">
-                            <Label text="ID"/>
-                            <TextField fx:id="gizmoName" styleClass="game-option-textbox" prefWidth="60.0"
-                                       disable="true">
-                                47856-65654-65463
-                            </TextField>
-
-                            <Label text="Velocity X"/>
-                            <TextField fx:id="ballVelocityX" styleClass="game-option-textbox" prefWidth="60.0">
-                                6
-                            </TextField>
-
-                            <Label text="Velocity Y"/>
-                            <TextField fx:id="ballVelocityY" styleClass="game-option-textbox" prefWidth="60.0">
-                                3
-                            </TextField>
-
-                            <Label text="Colour"/>
-                            <ComboBox fx:id="colour" id="comboId" prefWidth="100.0">
-                                <items>
-                                    <FXCollections fx:factory="observableArrayList">
-                                        <String fx:value="Red"/>
-                                        <String fx:value="Green"/>
-                                        <String fx:value="Blue"/>
-                                        <String fx:value="Yellow"/>
-                                        <String fx:value="Purple"/>
-                                    </FXCollections>
-                                </items>
-                            </ComboBox>
-                        </VBox>
+                        <HBox spacing="16"> 
+                            <VBox>
+                                <Label text="Type:" />
+                                <Label fx:id="gizmoType" />
+                            </VBox>
+                            <VBox>
+                                <Label text="Id:"/>
+                                <Label fx:id="gizmoId" />
+                            </VBox>       
+                        </HBox>
+                           
+                        <VBox fx:id="movableFieldHolder" 
+                              spacing="5">
+                            <Label text="Movement type:" />
+                            <Label fx:id="movementType" />
+                            <Label text="Velocity X" />
+                            <TextField fx:id="xVelocityField"
+                                       styleClass="game-option-textbox"
+                                       prefWidth="60.0" />
+    
+                            <Label text="Velocity Y" />
+                            <TextField fx:id="yVelocityField"
+                                       styleClass="game-option-textbox"
+                                       prefWidth="60.0" />
+                       </VBox>
+                   
 
                     </VBox>
 
@@ -465,7 +459,8 @@
                         </Button>
 
                         <Label text="Connection B"/>
-                        <TextField fx:id="connectBTextField" styleClass="game-option-textbox" prefWidth="60.0" editable="false">
+                        <TextField fx:id="connectBTextField" styleClass="game-option-textbox" prefWidth="60.0"
+                                   editable="false">
                             Click Gizmo or Press key
                         </TextField>
 
