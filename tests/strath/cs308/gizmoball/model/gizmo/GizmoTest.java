@@ -21,7 +21,7 @@ public class GizmoTest {
     @Test
     void testScoreAfterCircleCollision() {
         int scoreBefore = model.getScore();
-        model.setFrictionCoefficient(0);
+        model.getFrictionM2(0);
         model.setGravityCoefficient(0);
         Ball ball = new Ball(5.5, 3.25, "ball");
         CircleGizmo circle = new CircleGizmo(7, 3, "circle");
@@ -36,7 +36,7 @@ public class GizmoTest {
 
     @Test
     void testScoreAfterAbsorbing() {
-        model.setFrictionCoefficient(0);
+        model.getFrictionM2(0);
         model.setGravityCoefficient(0);
         Ball ball = new Ball(0.75, 1.5, "ball");
         Absorber absorber = new Absorber(2, 1, 3, 2, "absorber");

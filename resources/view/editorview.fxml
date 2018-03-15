@@ -159,14 +159,22 @@
                                    prefWidth="60.0"/>
                     </VBox>
 
-
                     <VBox GridPane.columnIndex="11"
                           GridPane.rowIndex="0"
                           spacing="5"
-                          fx:id="gravityHolder"
                           alignment="CENTER">
-                        <Label text="Friction"/>
-                        <TextField fx:id="friction"
+                        <Label text="Friction mu1"/>
+                        <TextField fx:id="mu1"
+                                   styleClass="game-option-textbox"
+                                   prefWidth="60.0"/>
+                    </VBox>
+
+                    <VBox GridPane.columnIndex="12"
+                          GridPane.rowIndex="0"
+                          spacing="5"
+                          alignment="CENTER">
+                        <Label text="Friction mu2"/>
+                        <TextField fx:id="mu2"
                                    styleClass="game-option-textbox"
                                    prefWidth="60.0"/>
                     </VBox>
@@ -468,7 +476,6 @@
                                 </FXCollections>
                             </items>
                         </ComboBox>
-
 
 
                         <Label text="Action"/>

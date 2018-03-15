@@ -19,6 +19,7 @@ public class GameModel extends Observable implements IGameModel {
     private Map<String, Absorber> absorberCollided;
     private int score;
     private double frictionCoefficient;
+    private double frictionCoefficient2;
     private double gravityCoefficient;
 
     public GameModel() {
@@ -168,7 +169,7 @@ public class GameModel extends Observable implements IGameModel {
 
         // Vnew = Vold * (1 - mu * delta_t - mu2 * |Vold| * delta_t).
         velocityAfterFriction = new Vect(velocity.angle(),
-                velocity.length() * (1 - (frictionCoefficient * time) - (frictionCoefficient * velocity.length() * time)));
+                velocity.length() * (1 - (frictionCoefficient * time) - (frictionCoefficient2 * velocity.length() * time)));
         ball.setVelocity(velocityAfterFriction.plus(gravity));
 
     }
@@ -251,13 +252,23 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     @Override
-    public double getFrictionCoefficient() {
+    public double getFrictionM1() {
         return frictionCoefficient;
     }
 
     @Override
+    public double getFrictionM2() {
+        return frictionCoefficient2;
+    }
 
-    public boolean setFrictionCoefficient(double frictionCoefficient) {
+    @Override
+    public boolean getFrictionM1(double frictionCoefficient) {
+        return false;
+    }
+
+    @Override
+
+    public boolean getFrictionM2(double frictionCoefficient) {
         if (frictionCoefficient >= 0) {
             this.frictionCoefficient = frictionCoefficient;
             
