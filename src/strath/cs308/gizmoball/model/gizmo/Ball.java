@@ -74,8 +74,8 @@ public class Ball extends Gizmo implements IMovable {
     }
 
     @Override
-    public Type getType() {
-        return Type.BALL;
+    public IGizmo.Type getType() {
+        return IGizmo.Type.BALL;
     }
 
     @Override
@@ -98,5 +98,10 @@ public class Ball extends Gizmo implements IMovable {
         String soFar = super.toString();
         soFar = soFar.substring(0, soFar.length() - 2);
         return soFar + " " + velocity.x() + " " + velocity.y() + "\n\n";
+    }
+
+    @Override
+    public IMovable.Type getMovementType() {
+        return IMovable.Type.LINEAR;
     }
 }
