@@ -6,7 +6,6 @@ import strath.cs308.gizmoball.model.GizmoFactory;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGizmoFactory;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
-import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.IEditorView;
 
 import javax.swing.text.html.HTML;
@@ -49,8 +48,8 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
     }
 
     private void onMouseMoved(MouseEvent mouseEvent) {
-        double previewX = Math.floor(mouseEvent.getX()/editorView.getPixelRatioFor(20.0));
-        double previewY = Math.floor(mouseEvent.getY()/editorView.getPixelRatioFor(20.0));
+        double previewX = Math.floor(mouseEvent.getX() / editorView.getPixelRatioFor(20.0));
+        double previewY = Math.floor(mouseEvent.getY() / editorView.getPixelRatioFor(20.0));
 
         if (mouseEvent.getEventType().equals(mouseEvent.MOUSE_DRAGGED)) {
             Double startX, startY, endX, endY;

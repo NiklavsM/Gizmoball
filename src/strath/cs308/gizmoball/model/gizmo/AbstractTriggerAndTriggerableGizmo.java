@@ -3,6 +3,8 @@ package strath.cs308.gizmoball.model.gizmo;
 import strath.cs308.gizmoball.model.triggeringsystem.IAction;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
+import java.util.List;
+
 public abstract class AbstractTriggerAndTriggerableGizmo extends AbstractTriggerGizmo implements ITriggerable {
 
     private IAction action;
@@ -12,13 +14,33 @@ public abstract class AbstractTriggerAndTriggerableGizmo extends AbstractTrigger
     }
 
     @Override
+    public void trigger() {
+        super.trigger();
+    }
+
+    @Override
+    public IAction getCurrentAction() {
+        return null;
+    }
+
+    @Override
+    public List<IAction> getAvailableActions() {
+        return null;
+    }
+
+    @Override
+    public List<IAction> addAvailableAction() {
+        return null;
+    }
+
+    @Override
     public void performAction(Object args) {
         if (action == null) return;
         action.doAction(args);
     }
 
     @Override
-    public void registerAction(IAction triggerAction) {
+    public void setAction(IAction triggerAction) {
         action = triggerAction;
     }
 

@@ -16,6 +16,8 @@ class GameModelTest {
     @BeforeEach
     void setup() {
         model = new GameModel();
+        model.setFrictionCoefficient(0);
+        model.setGravityCoefficient(0);
         squareGizmo1 = new Square(1, 1, "square1");
         dummyGizmo = new Square(99, 99);
     }
@@ -76,6 +78,13 @@ class GameModelTest {
         model.addGizmo(ball1);
         model.addGizmo(ball2);
         assertTrue(model.getGizmoBalls().contains(ball1) && model.getGizmoBalls().contains(ball2));
+    }
+
+    @Test
+    void getGizmoById_addSquereThenGetItBack(){
+        Square square = new Square(1,1,"square1");
+        model.addGizmo(square);
+        assertEquals(square,model.getGizmoById("square1"));
     }
 
     @Test
@@ -226,6 +235,24 @@ class GameModelTest {
         assertEquals(2.25, ball.getX());
         System.out.println("x: " + ball.getX() + " y " + ball.getY());
     }
+
+    @Test
+    void rotate_rotateTriangle(){
+        Ball ball = new Ball(0.75, 1.5, "ball1");
+        Triangle triangle = new Triangle(2, 1, "triangle1");
+        ball.setVelocity(new Vect(1, 0));
+        model.addGizmo(ball);
+        model.addGizmo(triangle);
+        model.rotate("triangle1");
+        model.rotate("triangle1");
+        model.rotate("triangle1");
+        model.tick(1);
+        model.tick(1);
+        assertEquals(0.75, ball.getX());
+        System.out.println("x: " + ball.getX() + " y " + ball.getY());
+
+    }
+
 
     private boolean checkIsFreshModel(GameModel model) {
         if (model.getGizmos().size() != 1) return false; //just walls

@@ -1,18 +1,15 @@
 package strath.cs308.gizmoball.view;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Map;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.Optional;
-
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -21,15 +18,17 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import strath.cs308.gizmoball.GizmoBall;
-import strath.cs308.gizmoball.controller.GamePropertyEventHandler;
-import strath.cs308.gizmoball.controller.GizmoSelectorEventHandler;
-import strath.cs308.gizmoball.controller.ToolModeEventHandler;
-import strath.cs308.gizmoball.controller.TopToolbarEventHandler;
-import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
+import strath.cs308.gizmoball.controller.*;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.Optional;
 
 public class EditorView extends Stage implements IEditorView, Observer {
     private static final String TAG = "EditorView";
@@ -45,6 +44,12 @@ public class EditorView extends Stage implements IEditorView, Observer {
     private IGizmo selectedGizmo;
     private Label statusLabel;
     private InGameKeyEventHandler keyHandler;
+    private ComboBox<String> actionComboBox;
+    private Button connectionActionButton;
+    private TextField connectATextField;
+    private TextField connectBTextField;
+    private Button connectAChangeButton;
+    private Button connectBChangeButton;
 
     public EditorView(GizmoBall gizmoball) {
 
@@ -53,20 +58,27 @@ public class EditorView extends Stage implements IEditorView, Observer {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/editorview.fxml"));
             root = loader.load();
-            namespace = loader.getNamespace(); 
+            namespace = loader.getNamespace();
             canvas = (Canvas) namespace.get("canvas");
             friction1TextField = (TextField) namespace.get("mu1");
             friction2TextField = (TextField) namespace.get("mu2");
+
             gravityTextField = (TextField) namespace.get("gravity");
+
+            connectATextField = (TextField) namespace.get("connectBTextField");
+            connectBTextField = (TextField) namespace.get("connectBTextField");
+            connectAChangeButton = (Button) namespace.get("connectAChangeButton");
+            connectBChangeButton = (Button) namespace.get("connectBChangeButton");
+            actionComboBox = (ComboBox<String>) namespace.get("actionComboBox");
+            connectionActionButton = (Button) namespace.get("connectAction");
+
             statusLabel = (Label) namespace.get("statusbar");
 
-            this.gameModel = gameModel;
             this.gizmoBall = gizmoball;
             this.gameModel = gizmoball.getGameModel();
-            
             this.gameModel.addObserver(this);
 
-            isGrided  = true;
+            isGrided = true;
 
             Scene scene = new Scene(root);
 
@@ -138,21 +150,27 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
     private void attachHandlers() {
         Platform.runLater(() -> {
-            EventHandler topToolbarHandler = new TopToolbarEventHandler(gameModel, this);
+            EventHandler<MouseEvent> topToolbarHandler = new TopToolbarEventHandler(gameModel, this);
             ((GridPane) namespace.get("topToolbar")).lookupAll(".top-toolbar-button")
                     .forEach(node -> node.setOnMouseClicked(topToolbarHandler));
 
-            EventHandler addGizmoEventHandler = new GizmoSelectorEventHandler(gameModel, this);
+            EventHandler<MouseEvent> addGizmoEventHandler = new GizmoSelectorEventHandler(gameModel, this);
             root.lookupAll("#addGizmoOptions Button")
                     .forEach(node -> node.setOnMouseClicked(addGizmoEventHandler));
 
-            EventHandler toolSelectionHandler = new ToolModeEventHandler(gameModel, this);
+            EventHandler<MouseEvent> toolSelectionHandler = new ToolModeEventHandler(gameModel, this);
             ((GridPane) namespace.get("toolButtonHolder")).lookupAll(".tool-button")
                     .forEach(node -> node.setOnMouseClicked(toolSelectionHandler));
 
-            EventHandler gamePropertyEventHandler = new GamePropertyEventHandler(gameModel, this);
+            EventHandler<ActionEvent> gamePropertyEventHandler = new GamePropertyEventHandler(gameModel, this);
             friction1TextField.setOnAction(gamePropertyEventHandler);
-            gravityTextField.setOnAction(gamePropertyEventHandler);            
+            gravityTextField.setOnAction(gamePropertyEventHandler);
+
+            EventHandler<ActionEvent> triggerPropertyEventHandler = new TriggerPropertyEventHandler(gameModel, this);
+            connectAChangeButton.setOnAction(triggerPropertyEventHandler);
+            connectATextField.setOnAction(triggerPropertyEventHandler);
+            connectBChangeButton.setOnAction(triggerPropertyEventHandler);
+            connectBTextField.setOnAction(triggerPropertyEventHandler);
         });
     }
 
@@ -238,19 +256,24 @@ public class EditorView extends Stage implements IEditorView, Observer {
     @Override
     public void setErrorStatus(String message) {
         statusLabel.getStyleClass().add("error-label");
-        statusLabel.setText(message); 
+        statusLabel.setText(message);
     }
 
     @Override
     public void displayGizmoProperties(IGizmo gizmo) {
         System.out.println(gizmo.getId());
     }
-    
+
     @Override
     public void previewGizmo(IGizmo gizmo, double x, double y) {
         if (gameModel.getGizmo(x, y).equals(Optional.empty())) {
             GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
             gizmoDrawer.drawGizmo(gizmo, true);
         }
+    }
+
+    @Override
+    public void setCursor(Cursor cursor) {
+        getScene().setCursor(cursor);
     }
 }

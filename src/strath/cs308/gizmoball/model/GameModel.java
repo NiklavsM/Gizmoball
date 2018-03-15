@@ -61,6 +61,9 @@ public class GameModel extends Observable implements IGameModel {
     public boolean removeGizmo(String id) {
         Gizmo gizmo = gizmos.get(id);
         if (gizmo != null) {
+            if (gizmo instanceof Absorber) {
+                ((Absorber) gizmo).getBallsAbsorbed().forEach(ball -> removeGizmo(ball.getId()));
+            }
             gizmos.remove(id);
             update();
             return true;
@@ -234,9 +237,7 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     public Set<IGizmo> getGizmoBalls() {
-        Set<IGizmo> balls = new HashSet<>();
-        balls.addAll(getBalls());
-        return balls;
+        return new HashSet<>(getBalls());
     }
 
     @Override
