@@ -16,6 +16,8 @@ class GameModelTest {
     @BeforeEach
     void setup() {
         model = new GameModel();
+        model.setFrictionCoefficient(0);
+        model.setGravityCoefficient(0);
         squareGizmo1 = new Square(1, 1, "square1");
         dummyGizmo = new Square(99, 99);
     }
@@ -79,6 +81,13 @@ class GameModelTest {
     }
 
     @Test
+    void getGizmoById_addSquereThenGetItBack(){
+        Square square = new Square(1,1,"square1");
+        model.addGizmo(square);
+        assertEquals(square,model.getGizmoById("square1"));
+    }
+
+    @Test
     void setFrictionCoefficient_setPositiveCoefficient() {
         assertTrue(model.setFrictionCoefficient(2.0));
     }
@@ -138,8 +147,6 @@ class GameModelTest {
 
     @Test
     void tick_tickAndBallCollidesWithSquare() {
-        model.setFrictionCoefficient(0);
-        model.setGravityCoefficient(0);
         Ball ball = new Ball(0.75, 1.5, "ball1");
         Square square = new Square(2, 1, "square1");
         ball.setVelocity(new Vect(1, 0));
@@ -153,8 +160,6 @@ class GameModelTest {
 
     @Test
     void tick_tickAndBallCollidesWithCircle() {
-        model.setFrictionCoefficient(0);
-        model.setGravityCoefficient(0);
         Ball ball = new Ball(0.75, 1.5, "ball1");
         CircleGizmo circle = new CircleGizmo(2, 1, "circle1");
         ball.setVelocity(new Vect(1, 0));
@@ -168,8 +173,6 @@ class GameModelTest {
 
     @Test
     void tick_tickAndBallCollidesWithAbsorber() {
-        model.setFrictionCoefficient(0);
-        model.setGravityCoefficient(0);
         Ball ball = new Ball(0.75, 1.5, "ball1");
         Absorber square = new Absorber(2, 1, 3, 2, "absorber1");
         ball.setVelocity(new Vect(1, 0));
@@ -182,8 +185,6 @@ class GameModelTest {
 
     @Test
     void tick_tickAndBallCollidesWithStoppedLeftFlipper() {
-        model.setFrictionCoefficient(0);
-        model.setGravityCoefficient(0);
         Ball ball = new Ball(0.75, 1.5, "ball1");
         Flipper flipper = new Flipper(2, 1, Flipper.Orientation.LEFT, "flipper1");
         ball.setVelocity(new Vect(1, 0));
@@ -197,8 +198,6 @@ class GameModelTest {
 
     @Test
     void tick_tickAndBallCollidesWithMovingLeftFlipper() {
-        model.setFrictionCoefficient(0);
-        model.setGravityCoefficient(0);
         Ball ball = new Ball(0.75, 1.5, "ball1");
         Flipper flipper = new Flipper(2, 1, Flipper.Orientation.LEFT, "flipper1");
         ball.setVelocity(new Vect(1, 0));
@@ -213,8 +212,6 @@ class GameModelTest {
 
     @Test
     void tick_tickAndBallCollidesWithStoppedRightFlipper() {
-        model.setFrictionCoefficient(0);
-        model.setGravityCoefficient(0);
         Ball ball = new Ball(1.75, 1.5, "ball1");
         Flipper flipper = new Flipper(2, 1, Flipper.Orientation.RIGHT, "flipper1");
         ball.setVelocity(new Vect(1, 0));
@@ -226,6 +223,24 @@ class GameModelTest {
         assertEquals(2.25, ball.getX());
         System.out.println("x: " + ball.getX() + " y " + ball.getY());
     }
+
+    @Test
+    void rotate_rotateTriangle(){
+        Ball ball = new Ball(0.75, 1.5, "ball1");
+        Triangle triangle = new Triangle(2, 1, "triangle1");
+        ball.setVelocity(new Vect(1, 0));
+        model.addGizmo(ball);
+        model.addGizmo(triangle);
+        model.rotate("triangle1");
+        model.rotate("triangle1");
+        model.rotate("triangle1");
+        model.tick(1);
+        model.tick(1);
+        assertEquals(0.75, ball.getX());
+        System.out.println("x: " + ball.getX() + " y " + ball.getY());
+
+    }
+
 
     private boolean checkIsFreshModel(GameModel model) {
         if (model.getGizmos().size() != 1) return false; //just walls
