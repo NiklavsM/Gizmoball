@@ -6,6 +6,7 @@ import strath.cs308.gizmoball.model.triggeringsystem.IAction;
 
 import java.util.Iterator;
 
+
 public class Flipper extends AbstractTriggerableGizmo implements IMovable, IAction {
 
     private Circle startPoint;
@@ -16,6 +17,7 @@ public class Flipper extends AbstractTriggerableGizmo implements IMovable, IActi
     private double movedAngle;
     private Movement movementStatus;
     private Orientation orientation;
+    private boolean isCycle;
 
     public Flipper(double x, double y, Orientation orientation) {
         this(x, y, orientation, generateID());
@@ -32,6 +34,7 @@ public class Flipper extends AbstractTriggerableGizmo implements IMovable, IActi
 
 //        velocity = new Vect(Angle.DEG_180);
         velocity = Vect.ZERO;
+        isCycle = false;
 
         if (orientation == Orientation.RIGHT) {
             x = (x + 2) - radius;
@@ -58,7 +61,7 @@ public class Flipper extends AbstractTriggerableGizmo implements IMovable, IActi
         circles.add(startPoint);
         circles.add(endPoint);
 
-        registerAction(this);
+        setAction(this);
     }
 
     @Override
@@ -123,6 +126,11 @@ public class Flipper extends AbstractTriggerableGizmo implements IMovable, IActi
                     movementStatus = Movement.TOP;
                     velocity = Vect.ZERO;
                     movedAngle = Angle.ZERO.radians();
+                    if (isCycle) {
+                        isCycle = false;
+                        down();
+                        return;
+                    }
                 }
 
                 if (movementStatus.equals(Movement.BACKWARDS)) {
@@ -149,6 +157,7 @@ public class Flipper extends AbstractTriggerableGizmo implements IMovable, IActi
             movementStatus = Movement.FORWARD;
             movedAngle = Angle.DEG_90.radians() - movedAngle;
             velocity = new Vect(new Angle(Angle.DEG_180.radians() * -1 * orientation.getMult()));
+            return;
         }
 
         if (movementStatus.equals(Movement.BOTTOM)) {
@@ -165,6 +174,7 @@ public class Flipper extends AbstractTriggerableGizmo implements IMovable, IActi
             movementStatus = Movement.BACKWARDS;
             movedAngle = Angle.ZERO.radians();
             velocity = new Vect(new Angle(Angle.DEG_180.radians() * orientation.getMult()));
+            return;
         }
 
         if (movementStatus == Movement.FORWARD) {
@@ -182,16 +192,32 @@ public class Flipper extends AbstractTriggerableGizmo implements IMovable, IActi
     @Override
     public void doAction(Object args) {
         if (args == null) {
-            //do a full one
             return;
         }
 
-        Movement upOrDown = (Movement) args;
-        if (upOrDown.equals(Movement.FORWARD)) {
-            up();
-        } else if (upOrDown.equals(Movement.BACKWARDS)) {
-            down();
+        if (args.equals("TRIGGER")) {
+            //isCycle = true;
+            if(movementStatus.equals(Movement.TOP)) {
+                down();
+            }
+            else {
+                up();
+            }
+            return;
         }
+
+        if (args instanceof Movement) {
+            Movement upOrDown = (Movement) args;
+            if (upOrDown.equals(Movement.FORWARD)) {
+                up();
+                return;
+            }
+            if (upOrDown.equals(Movement.BACKWARDS)) {
+                down();
+                return;
+            }
+        }
+
     }
 
     @Override

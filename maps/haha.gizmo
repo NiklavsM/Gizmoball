@@ -157,7 +157,7 @@ KeyConnect key 74.0 down T
 KeyConnect key 74.0 down A
 KeyConnect key 75.0 down LF92
 KeyConnect key 75.0 down LF87
-KeyConnect key 76.0 down RF112
+KeyConnect key 68.0 down RF112
 KeyConnect key 76.0 down RF137
 KeyConnect key 75.0 up LF92
 KeyConnect key 75.0 up LF87
