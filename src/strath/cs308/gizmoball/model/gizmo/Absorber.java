@@ -16,7 +16,7 @@ public class Absorber extends AbstractTriggerAndTriggerableGizmo implements IAct
     public Absorber(double x1, double y1, double x2, double y2, String id) {
         super(x1, y1, x2, y2, id);
         ballsAbsorbed = new Stack<>();
-        registerAction(this);
+        setAction(this);
     }
 
     public Absorber(double x1, double y1, double x2, double y2) {

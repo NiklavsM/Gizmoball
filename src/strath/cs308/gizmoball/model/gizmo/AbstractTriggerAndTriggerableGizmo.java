@@ -18,7 +18,7 @@ public abstract class AbstractTriggerAndTriggerableGizmo extends AbstractTrigger
     }
 
     @Override
-    public void registerAction(IAction triggerAction) {
+    public void setAction(IAction triggerAction) {
         action = triggerAction;
     }
 

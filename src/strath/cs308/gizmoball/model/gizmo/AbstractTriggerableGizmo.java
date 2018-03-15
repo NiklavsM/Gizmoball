@@ -25,7 +25,7 @@ public abstract class AbstractTriggerableGizmo extends Gizmo implements ITrigger
     }
 
     @Override
-    public void registerAction(IAction triggerAction) {
+    public void setAction(IAction triggerAction) {
         action = triggerAction;
     }
 }
