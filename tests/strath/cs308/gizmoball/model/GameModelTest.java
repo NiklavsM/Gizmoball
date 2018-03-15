@@ -96,7 +96,7 @@ class GameModelTest {
     @Test
     void getFrictionCoefficient() {
         model.getFrictionM2(2.0);
-        assertEquals(2.0, model.getFrictionM1());
+        assertEquals(2.0, model.setFrictionM1());
     }
 
     @Test
@@ -229,7 +229,7 @@ class GameModelTest {
 
     private boolean checkIsFreshModel(GameModel model) {
         if (model.getGizmos().size() != 1) return false; //just walls
-        if (model.getFrictionM1() != 0.025) return false;
+        if (model.setFrictionM1() != 0.025) return false;
         if (model.getGravityCoefficient() != 25.0) return false;
         if (model.getScore() != 0) return false;
         return true;

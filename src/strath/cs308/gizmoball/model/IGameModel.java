@@ -27,11 +27,13 @@ public interface IGameModel {
 
     void rotate(String id);
 
-    double getFrictionM1();
+    double setFrictionM1();
 
     double getFrictionM2();
 
-    boolean getFrictionM1(double frictionCoefficient);
+    void setFrictionM1(double frictionCoefficient);
+
+    void setFrictionM2(double frictionCoefficient);
 
     boolean getFrictionM2(double frictionCoefficient);
 
