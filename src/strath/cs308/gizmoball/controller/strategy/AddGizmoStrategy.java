@@ -73,9 +73,6 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
                 endY = initialY;
             }
 
-            Logger.debug(TAG, "Drag started at: "+ startX+","+startY);
-            Logger.debug(TAG, "Drag ends at: "+endX+","+endY);
-
             for (int x = startX.intValue(); x <= endX.intValue(); x++) {
                 for (int y = startY.intValue(); y <= endY.intValue(); y++) {
                     IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, x, y);
