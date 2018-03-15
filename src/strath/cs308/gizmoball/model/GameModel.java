@@ -30,6 +30,7 @@ public class GameModel extends Observable implements IGameModel {
         gizmos = new ConcurrentHashMap<>();
         absorberCollided = new ConcurrentHashMap<>();
         frictionCoefficient = 0.025;
+        frictionCoefficient2 = 0.025;
         gravityCoefficient = 25;
         score = 0;
         collisionTriggers.clear();
@@ -309,24 +310,23 @@ public class GameModel extends Observable implements IGameModel {
 
     @Override
     public String toString() {
-        String commands = "";
+        StringBuilder commands = new StringBuilder();
         for (Gizmo gizmo : gizmos.values()) {
-            commands += gizmo.toString();
+            commands.append(gizmo.toString());
         }
 
-        commands += "\n\n# collision triggers\n";
+        commands.append("\n\n# collision triggers\n");
 
         for (ITrigger trigger : collisionTriggers) {
             for (ITriggerable triggerable : trigger.getTriggerables()) {
-                commands += GameLoader.CONNECT_COMMAND +
-                        " " + trigger.id() + " " + triggerable.id() + "\n";
+                commands.append(GameLoader.CONNECT_COMMAND + " ").append(trigger.id()).append(" ").append(triggerable.id()).append("\n");
             }
         }
 
         //TODO add gravity and friciton
 
-        commands += "\n# gravity and friction\n";
+        commands.append("\n# gravity and friction\n");
 
-        return commands;
+        return commands.toString();
     }
 }
