@@ -4,8 +4,10 @@ import mit.physics.Circle;
 import mit.physics.Geometry;
 import mit.physics.LineSegment;
 import mit.physics.Vect;
+import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.model.gizmo.*;
 import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
+import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -52,8 +54,7 @@ public class GameModel extends Observable implements IGameModel {
 
         gizmos.put(gizmo.getId(), (Gizmo) gizmo);
 
-        setChanged();
-        notifyObservers();
+        update();
 
         return true;
     }
@@ -64,8 +65,7 @@ public class GameModel extends Observable implements IGameModel {
         if (gizmo != null) {
             collisionTriggers.remove(gizmo);
             gizmos.remove(id);
-            setChanged();
-            notifyObservers();
+            update();
             return true;
         }
         return false;
@@ -98,7 +98,7 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     @Override
-    public void onCollisionTrigger(ITrigger from) {
+    public void addCollisionTrigger(ITrigger from) {
         collisionTriggers.add(from);
     }
 
@@ -142,29 +142,13 @@ public class GameModel extends Observable implements IGameModel {
                 }
             }
             // Notify observers ... redraw updated view
-            this.setChanged();
-            this.notifyObservers();
+            update();
 
             if (nextGizmo instanceof Absorber) {
                 absorberCollided.put(ball.getId(), (Absorber) gizmos.get(nextGizmo.getId()));
             }
         }
         moveMovables(timeToMoveFlippers);
-    }
-
-    private double timeUntilMovableCol(Set<Ball> balls) {
-        double smallestTime = Double.MAX_VALUE;
-        for (Ball ball : balls) {
-            if (!ball.isStopped()) {
-                CollisionDetails cd = timeUntilCollision(ball);
-                if (cd.getGizmo() instanceof IMovable) {
-                    if (smallestTime > cd.getTuc()) {
-                        smallestTime = cd.getTuc();
-                    }
-                }
-            }
-        }
-        return smallestTime;
     }
 
     private void moveMovables(Double time) {
@@ -260,9 +244,7 @@ public class GameModel extends Observable implements IGameModel {
     @Override
     public void rotate(String id) {
         gizmos.get(id).rotate();
-
-        setChanged();
-        notifyObservers();
+        update();
     }
 
     @Override
@@ -303,8 +285,7 @@ public class GameModel extends Observable implements IGameModel {
 
     public void reset() {
         setup();
-        setChanged();
-        notifyObservers();
+        update();
     }
 
     public void update() {
@@ -319,9 +300,19 @@ public class GameModel extends Observable implements IGameModel {
             commands += gizmo.toString();
         }
 
-        commands += "\n\n";
+        commands += "\n\n# collision triggers\n";
+
+        for (ITrigger trigger : collisionTriggers) {
+            for (ITriggerable triggerable : trigger.getTriggerables()) {
+                commands += GameLoader.CONNECT_COMMAND +
+                        " " + trigger.id() + " " + triggerable.id() + "\n";
+            }
+        }
 
         //TODO add gravity and friciton
+
+        commands += "\n# gravity and friction\n";
+
         return commands;
     }
 }

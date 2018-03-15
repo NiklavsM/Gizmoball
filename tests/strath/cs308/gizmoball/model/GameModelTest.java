@@ -1,10 +1,9 @@
 package strath.cs308.gizmoball.model;
 
+import mit.physics.Vect;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import strath.cs308.gizmoball.model.gizmo.Ball;
-import strath.cs308.gizmoball.model.gizmo.IGizmo;
-import strath.cs308.gizmoball.model.gizmo.Square;
+import strath.cs308.gizmoball.model.gizmo.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -126,6 +125,106 @@ class GameModelTest {
         model.addGizmo(new Ball(1, 1));
         model.reset();
         assertTrue(checkIsFreshModel(model));
+    }
+
+    @Test
+    void tick_tickAndBallMoves() {
+        Ball ball = new Ball(1, 1, "ball1");
+        ball.setVelocity(new Vect(1, 0));
+        model.addGizmo(ball);
+        model.tick(1);
+        assertEquals(2, ball.getX());
+    }
+
+    @Test
+    void tick_tickAndBallCollidesWithSquare() {
+        model.setFrictionCoefficient(0);
+        model.setGravityCoefficient(0);
+        Ball ball = new Ball(0.75, 1.5, "ball1");
+        Square square = new Square(2, 1, "square1");
+        ball.setVelocity(new Vect(1, 0));
+        model.addGizmo(ball);
+        model.addGizmo(square);
+        model.tick(1);
+        model.tick(1);
+        assertEquals(0.75, ball.getX());
+        System.out.println("x: " + ball.getX() + " y " + ball.getY());
+    }
+
+    @Test
+    void tick_tickAndBallCollidesWithCircle() {
+        model.setFrictionCoefficient(0);
+        model.setGravityCoefficient(0);
+        Ball ball = new Ball(0.75, 1.5, "ball1");
+        CircleGizmo circle = new CircleGizmo(2, 1, "circle1");
+        ball.setVelocity(new Vect(1, 0));
+        model.addGizmo(ball);
+        model.addGizmo(circle);
+        model.tick(1);
+        model.tick(1);
+        assertEquals(0.75, ball.getX());
+        System.out.println("x: " + ball.getX() + " y " + ball.getY());
+    }
+
+    @Test
+    void tick_tickAndBallCollidesWithAbsorber() {
+        model.setFrictionCoefficient(0);
+        model.setGravityCoefficient(0);
+        Ball ball = new Ball(0.75, 1.5, "ball1");
+        Absorber square = new Absorber(2, 1, 3, 2, "absorber1");
+        ball.setVelocity(new Vect(1, 0));
+        model.addGizmo(ball);
+        model.addGizmo(square);
+        model.tick(1);
+        model.tick(1);
+        assertTrue(ball.isStopped() && ball.getX() == 2.75 && ball.getY() == 1.75);
+    }
+
+    @Test
+    void tick_tickAndBallCollidesWithStoppedLeftFlipper() {
+        model.setFrictionCoefficient(0);
+        model.setGravityCoefficient(0);
+        Ball ball = new Ball(0.75, 1.5, "ball1");
+        Flipper flipper = new Flipper(2, 1, Flipper.Orientation.LEFT, "flipper1");
+        ball.setVelocity(new Vect(1, 0));
+        model.addGizmo(ball);
+        model.addGizmo(flipper);
+        model.tick(1);
+        model.tick(1);
+        assertEquals(0.75, ball.getX());
+        System.out.println("x: " + ball.getX() + " y " + ball.getY());
+    }
+
+    @Test
+    void tick_tickAndBallCollidesWithMovingLeftFlipper() {
+        model.setFrictionCoefficient(0);
+        model.setGravityCoefficient(0);
+        Ball ball = new Ball(0.75, 1.5, "ball1");
+        Flipper flipper = new Flipper(2, 1, Flipper.Orientation.LEFT, "flipper1");
+        ball.setVelocity(new Vect(1, 0));
+        model.addGizmo(ball);
+        model.addGizmo(flipper);
+        flipper.doAction(Flipper.Movement.FORWARD);
+        model.tick(1);
+        model.tick(1);
+        assertTrue(ball.getX() > 1.816 && ball.getX() < 1.817);
+        System.out.println("x: " + ball.getX() + " y " + ball.getY());
+    }
+
+    @Test
+    void tick_tickAndBallCollidesWithStoppedRightFlipper() {
+        model.setFrictionCoefficient(0);
+        model.setGravityCoefficient(0);
+        Ball ball = new Ball(1.75, 1.5, "ball1");
+        Flipper flipper = new Flipper(2, 1, Flipper.Orientation.RIGHT, "flipper1");
+        ball.setVelocity(new Vect(1, 0));
+        model.addGizmo(ball);
+        model.addGizmo(flipper);
+        model.tick(1);
+        model.tick(1);
+        model.tick(1);
+        assertEquals(2.25, ball.getX());
+        System.out.println("x: " + ball.getX() + " y " + ball.getY());
     }
 
     private boolean checkIsFreshModel(GameModel model) {

@@ -1,0 +1,111 @@
+Ball B20 19.5 19.5 0.0 -50.0
+
+Circle C43 4.0 3.0
+
+RightFlipper RF137 13.0 7.0
+
+Circle C129 12.0 9.0
+
+Square S82 8.0 2.0
+
+Square S42 4.0 2.0
+
+Absorber A2 16.0 19.0 20.0 20.0
+
+Circle C165 16.0 5.0
+
+Square S02 0.0 2.0
+
+Square S142 14.0 2.0
+
+Square S182 18.0 2.0
+
+Circle C99 9.0 9.0
+
+Circle C54 5.0 4.0
+
+Circle C139 13.0 9.0
+
+LeftFlipper LF92 9.0 2.0
+
+Square S52 5.0 2.0
+
+Ball B3 18.30001269694248 14.804324824579927 0.6231098788586957 10.26014982219281
+
+Ball B4 17.5 19.0 0.0 -50.0
+
+Ball B5 19.0 19.0 0.0 -50.0
+
+Circle C174 17.0 4.0
+
+Ball B6 16.5 19.5 0.0 -50.0
+
+Square S12 1.0 2.0
+
+Ball B7 18.0 19.5 0.0 -50.0
+
+Ball B8 19.0 19.5 0.0 -50.0
+
+Ball B9 19.312170623605198 15.906328512559291 0.6325984612187145 11.768562887098895
+
+Square S132 13.0 2.0
+
+Square S172 17.0 2.0
+
+Absorber A 0.0 19.0 10.0 20.0
+
+Circle C65 6.0 5.0
+
+Circle C1110 11.0 10.0
+
+Circle C109 10.0 9.0
+
+Square S62 6.0 2.0
+
+Square S22 2.0 2.0
+
+Triangle T 19.0 0.0
+Rotate T
+
+Circle C183 18.0 3.0
+
+LeftFlipper LF87 8.0 7.0
+
+Square S162 16.0 2.0
+
+Triangle T2 1.0 1.0
+
+Ball B10 16.5 19.0 0.0 -50.0
+
+Ball B11 18.0 19.0 0.0 -50.0
+
+Circle C76 7.0 6.0
+
+Ball B12 16.0 19.5 0.0 -50.0
+
+Ball B13 17.5 19.5 0.0 -50.0
+
+Ball B14 18.5 19.5 0.0 -50.0
+
+Ball B15 16.0 19.0 0.0 -50.0
+
+Ball B16 17.0 19.0 0.0 -50.0
+
+Ball B17 18.5 19.0 0.0 -50.0
+
+Ball B18 19.5 19.0 0.0 -50.0
+
+Ball B19 17.0 19.5 0.0 -50.0
+
+Square S72 7.0 2.0
+
+Circle C156 15.0 6.0
+
+Square S32 3.0 2.0
+
+RightFlipper RF112 11.0 2.0
+
+Square S152 15.0 2.0
+
+
+
