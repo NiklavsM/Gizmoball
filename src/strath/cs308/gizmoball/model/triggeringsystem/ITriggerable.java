@@ -12,7 +12,7 @@ public interface ITriggerable {
 
     List<IAction> getAvailableActions();
 
-    List<IAction> addAvailableAction();
+    boolean addAvailableAction(IAction action);
 
     String id();
 }

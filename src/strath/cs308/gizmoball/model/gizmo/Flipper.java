@@ -2,13 +2,17 @@ package strath.cs308.gizmoball.model.gizmo;
 
 import mit.physics.*;
 import strath.cs308.gizmoball.model.IMovable;
+import strath.cs308.gizmoball.model.triggeringsystem.DefaultTriggarable;
 import strath.cs308.gizmoball.model.triggeringsystem.IAction;
+import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.util.Iterator;
+import java.util.List;
 
 
-public class Flipper extends AbstractTriggerableGizmo implements IMovable, IAction {
+public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
 
+    private final DefaultTriggarable defaultTriggarable;
     private Circle startPoint;
     private Circle endPoint;
     private LineSegment connector1;
@@ -61,6 +65,7 @@ public class Flipper extends AbstractTriggerableGizmo implements IMovable, IActi
         circles.add(startPoint);
         circles.add(endPoint);
 
+        defaultTriggarable = new DefaultTriggarable();
         setAction(this);
     }
 
@@ -197,10 +202,9 @@ public class Flipper extends AbstractTriggerableGizmo implements IMovable, IActi
 
         if (args.equals("TRIGGER")) {
             //isCycle = true;
-            if(movementStatus.equals(Movement.TOP)) {
+            if (movementStatus.equals(Movement.TOP)) {
                 down();
-            }
-            else {
+            } else {
                 up();
             }
             return;
@@ -229,6 +233,36 @@ public class Flipper extends AbstractTriggerableGizmo implements IMovable, IActi
         Iterator<LineSegment> lineIt = lines.iterator();
         connector1 = lineIt.next();
         connector2 = lineIt.next();
+    }
+
+    @Override
+    public void performAction(Object args) {
+        defaultTriggarable.performAction(args);
+    }
+
+    @Override
+    public void setAction(IAction triggerAction) {
+        defaultTriggarable.setAction(triggerAction);
+    }
+
+    @Override
+    public IAction getCurrentAction() {
+        return defaultTriggarable.getCurrentAction();
+    }
+
+    @Override
+    public List<IAction> getAvailableActions() {
+        return getAvailableActions();
+    }
+
+    @Override
+    public boolean addAvailableAction(IAction action) {
+        return defaultTriggarable.addAvailableAction(action);
+    }
+
+    @Override
+    public String id() {
+        return id;
     }
 
 

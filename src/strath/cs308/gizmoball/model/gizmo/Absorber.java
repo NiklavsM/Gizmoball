@@ -3,20 +3,26 @@ package strath.cs308.gizmoball.model.gizmo;
 import mit.physics.Circle;
 import mit.physics.LineSegment;
 import mit.physics.Vect;
-import strath.cs308.gizmoball.model.triggeringsystem.IAction;
+import strath.cs308.gizmoball.model.triggeringsystem.*;
 import strath.cs308.gizmoball.utils.Logger;
 
+import java.util.List;
+import java.util.Set;
 import java.util.Stack;
 
-public class Absorber extends AbstractTriggerAndTriggerableGizmo implements IAction {
+public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
 
     private static final String TAG = "Absorber";
+    private final DefaultTriggarable triggerable;
+    private final DefaultCollisionTrigger collisionTrigger;
     private Stack<Ball> ballsAbsorbed;
 
     public Absorber(double x1, double y1, double x2, double y2, String id) {
         super(x1, y1, x2, y2, id);
         ballsAbsorbed = new Stack<>();
+        triggerable = new DefaultTriggarable();
         setAction(this);
+        collisionTrigger = new DefaultCollisionTrigger();
     }
 
     public Absorber(double x1, double y1, double x2, double y2) {
@@ -72,5 +78,55 @@ public class Absorber extends AbstractTriggerAndTriggerableGizmo implements IAct
     @Override
     public void rotate() {
         Logger.error(TAG, "absorber is not rotatable!");
+    }
+
+    @Override
+    public void trigger() {
+        collisionTrigger.trigger();
+    }
+
+    @Override
+    public void registerTriggarable(ITriggerable triggerTarget) {
+        collisionTrigger.registerTriggarable(triggerTarget);
+    }
+
+    @Override
+    public void removeTriggarable(ITriggerable trigger) {
+        collisionTrigger.removeTriggarable(trigger);
+    }
+
+    @Override
+    public Set<ITriggerable> getTriggerables() {
+        return collisionTrigger.getTriggerables();
+    }
+
+    @Override
+    public void performAction(Object args) {
+        triggerable.performAction(args);
+    }
+
+    @Override
+    public void setAction(IAction triggerAction) {
+        triggerable.setAction(triggerAction);
+    }
+
+    @Override
+    public IAction getCurrentAction() {
+        return triggerable.getCurrentAction();
+    }
+
+    @Override
+    public List<IAction> getAvailableActions() {
+        return triggerable.getAvailableActions();
+    }
+
+    @Override
+    public boolean addAvailableAction(IAction action) {
+        return triggerable.addAvailableAction(action);
+    }
+
+    @Override
+    public String id() {
+        return id;
     }
 }
