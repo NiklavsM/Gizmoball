@@ -9,17 +9,17 @@ public abstract class AbstractTriggerableGizmo extends Gizmo implements ITrigger
 
     private IAction action;
 
-    @Override
-    public String id() {
-        return id;
-    }
-
     public AbstractTriggerableGizmo(double x1, double y1, double x2, double y2, String id) {
         super(x1, y1, x2, y2, id);
     }
 
     public AbstractTriggerableGizmo(double x1, double y1, double x2, double y2) {
         super(x1, y1, x2, y2);
+    }
+
+    @Override
+    public String id() {
+        return id;
     }
 
     @Override

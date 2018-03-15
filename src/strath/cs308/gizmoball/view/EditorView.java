@@ -127,7 +127,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
     private void updateFields() {
         gravityTextField.setText(String.valueOf(gameModel.getGravityCoefficient()));
-        friction1TextField.setText(String.valueOf(gameModel.getFrictionM1()));
+        friction1TextField.setText(String.valueOf(gameModel.setFrictionM1()));
         friction2TextField.setText(String.valueOf(gameModel.getFrictionM2()));
     }
 
@@ -150,7 +150,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
     private void setupTextFields() {
         Platform.runLater(() -> {
             gravityTextField.setText(Double.toString(gameModel.getGravityCoefficient()));
-            friction1TextField.setText(Double.toString(gameModel.getFrictionM1()));
+            friction1TextField.setText(Double.toString(gameModel.setFrictionM1()));
             friction2TextField.setText(Double.toString(gameModel.getFrictionM2()));
         });
     }
