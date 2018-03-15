@@ -4,11 +4,9 @@ import mit.physics.LineSegment;
 
 public class Walls extends Gizmo {
 
-
     public Walls() {
         super(0, 0, 20, 20, "OuterWalls");
     }
-
 
     @Override
     protected void setup(double x1, double y1, double x2, double y2) {
@@ -22,4 +20,5 @@ public class Walls extends Gizmo {
     public IGizmo.Type getType() {
         return IGizmo.Type.WALLS;
     }
+
 }
