@@ -3,7 +3,6 @@ package strath.cs308.gizmoball.controller;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.view.IEditorView;
 
@@ -16,7 +15,7 @@ public class GamePropertyEventHandler implements EventHandler<ActionEvent> {
         this.gameModel = gameModel;
         this.editorView = editView;
     }
-    
+
     @Override
     public void handle(ActionEvent actionEvent) {
         switch (((Node) actionEvent.getSource()).getId()) {
@@ -34,8 +33,8 @@ public class GamePropertyEventHandler implements EventHandler<ActionEvent> {
 
     private void changeGameGravity() {
         try {
-            gameModel.setGravityCoefficient(editorView.getGravityInput()); 
-            editorView.setStatus("Game gravity is changed to: " +editorView.getGravityInput());
+            gameModel.setGravityCoefficient(editorView.getGravityInput());
+            editorView.setStatus("Game gravity is changed to: " + editorView.getGravityInput());
         } catch (NumberFormatException e) {
             editorView.setErrorStatus("The given gravity value is not acceptable!");
         }
@@ -44,7 +43,7 @@ public class GamePropertyEventHandler implements EventHandler<ActionEvent> {
     private void changeGameFriction1() {
         try {
             gameModel.setFrictionM1(editorView.getFrictionInput());
-            editorView.setStatus("Game friction is changed to: " +editorView.getFrictionInput());
+            editorView.setStatus("Game friction is changed to: " + editorView.getFrictionInput());
         } catch (NumberFormatException e) {
             editorView.setErrorStatus("The given friction value is not acceptable!");
         }
@@ -53,10 +52,10 @@ public class GamePropertyEventHandler implements EventHandler<ActionEvent> {
     private void changeGameFriction2() {
         try {
             gameModel.getFrictionM2(editorView.getFrictionInput());
-            editorView.setStatus("Game friction is changed to: " +editorView.getFrictionInput());
+            editorView.setStatus("Game friction is changed to: " + editorView.getFrictionInput());
         } catch (NumberFormatException e) {
             editorView.setErrorStatus("The given friction value is not acceptable!");
         }
     }
-    
+
 }

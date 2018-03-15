@@ -197,10 +197,9 @@ public class Flipper extends AbstractTriggerableGizmo implements IMovable, IActi
 
         if (args.equals("TRIGGER")) {
             //isCycle = true;
-            if(movementStatus.equals(Movement.TOP)) {
+            if (movementStatus.equals(Movement.TOP)) {
                 down();
-            }
-            else {
+            } else {
                 up();
             }
             return;

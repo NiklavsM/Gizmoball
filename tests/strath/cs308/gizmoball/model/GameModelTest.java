@@ -16,7 +16,7 @@ class GameModelTest {
     @BeforeEach
     void setup() {
         model = new GameModel();
-       // model.setFrictionCoefficient(0);
+        // model.setFrictionCoefficient(0);
         model.setGravityCoefficient(0);
         squareGizmo1 = new Square(1, 1, "square1");
         dummyGizmo = new Square(99, 99);
@@ -81,10 +81,10 @@ class GameModelTest {
     }
 
     @Test
-    void getGizmoById_addSquereThenGetItBack(){
-        Square square = new Square(1,1,"square1");
+    void getGizmoById_addSquereThenGetItBack() {
+        Square square = new Square(1, 1, "square1");
         model.addGizmo(square);
-        assertEquals(square,model.getGizmoById("square1"));
+        assertEquals(square, model.getGizmoById("square1"));
     }
 
     @Test
@@ -237,7 +237,7 @@ class GameModelTest {
     }
 
     @Test
-    void rotate_rotateTriangle(){
+    void rotate_rotateTriangle() {
         Ball ball = new Ball(0.75, 1.5, "ball1");
         Triangle triangle = new Triangle(2, 1, "triangle1");
         ball.setVelocity(new Vect(1, 0));

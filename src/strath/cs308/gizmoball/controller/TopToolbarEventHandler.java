@@ -6,10 +6,6 @@ import javafx.scene.input.MouseEvent;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.view.IEditorView;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
     private IGameModel gameModel;
     private IEditorView editView;

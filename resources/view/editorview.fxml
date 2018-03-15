@@ -465,7 +465,8 @@
                         </Button>
 
                         <Label text="Connection B"/>
-                        <TextField fx:id="connectBTextField" styleClass="game-option-textbox" prefWidth="60.0" editable="false">
+                        <TextField fx:id="connectBTextField" styleClass="game-option-textbox" prefWidth="60.0"
+                                   editable="false">
                             Click Gizmo or Press key
                         </TextField>
 

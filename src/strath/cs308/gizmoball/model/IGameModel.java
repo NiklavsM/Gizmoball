@@ -1,7 +1,6 @@
 package strath.cs308.gizmoball.model;
 
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
-import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 
 import java.util.Observer;
 import java.util.Optional;
@@ -31,9 +30,9 @@ public interface IGameModel {
 
     double getFrictionM2();
 
-    void setFrictionM1(double frictionCoefficient);
-
     void setFrictionM2(double frictionCoefficient);
+
+    void setFrictionM1(double frictionCoefficient);
 
     boolean getFrictionM2(double frictionCoefficient);
 
