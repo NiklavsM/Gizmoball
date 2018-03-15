@@ -41,7 +41,6 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
                 onMouseDragged(mouseEvent);
                 break;
             case "MOUSE_RELEASED":
-                editorView.setStatus("Gizmo Added");
                 onMouseReleased(mouseEvent);
                 break;
         }
@@ -91,10 +90,10 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         if (!gizmoType.equals(IGizmo.Type.BALL)) {
             this.onMouseMoved(mouseEvent);
         } else {
-            if (gameModel.getGizmoBalls().size() <= 50)
+            if (gameModel.getGizmoBalls().size() <= ballLimit)
                 putGizmoAt(mouseEvent.getX(), mouseEvent.getY());
             else
-            editorView.setStatus("Multiple balls cannot be added by dragging as their locations are relative.");
+                editorView.setStatus("There can be no more than " + ballLimit + " balls at once on the playing field!");
         }
     }
 
@@ -155,9 +154,15 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         if (!gizmoType.equals(IGizmo.Type.BALL)) {
             x = Math.floor(x);
             y = Math.floor(y);
+        } else {
+            if (gameModel.getGizmoBalls().size() == ballLimit) {
+                editorView.setStatus("There can be no more than " + ballLimit + " balls at once on the playing field!");
+                return;
+            }
         }
 
         IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, x, y);
         gameModel.addGizmo(gizmo);
+        editorView.setStatus("Gizmo Added");
     }
 }
