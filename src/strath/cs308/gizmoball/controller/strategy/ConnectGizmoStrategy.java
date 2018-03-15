@@ -25,13 +25,15 @@ public class ConnectGizmoStrategy implements EventHandler<MouseEvent> {
         this.editorView = editorView;
 
         this.connectTo = Optional.empty();
+
+        Image image = new Image("/icons/connect.png");
+        editorView.setCursor(new ImageCursor(image));
     }
 
     @Override
     public void handle(MouseEvent mouseEvent) {
         Logger.debug(TAG, "handling connections");
-        Image image = new Image("/icons/connect.png");
-        editorView.setCursor(new ImageCursor(image));
+
         if (mouseEvent.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
             double pointX = mouseEvent.getX() / editorView.getPixelRatioFor(20.0);
             double pointY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);

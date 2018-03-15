@@ -9,7 +9,6 @@ import strath.cs308.gizmoball.view.EditorView;
 
 public class TriggerPropertyEventHandler implements EventHandler<ActionEvent> {
 
-
     private static final String TAG = "TriggerPropertyEventHandler";
     private IGameModel gameModel;
     private EditorView editorView;

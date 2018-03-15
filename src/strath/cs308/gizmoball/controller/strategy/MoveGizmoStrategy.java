@@ -1,6 +1,8 @@
 package strath.cs308.gizmoball.controller.strategy;
 
 import javafx.event.EventHandler;
+import javafx.scene.ImageCursor;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import strath.cs308.gizmoball.model.GizmoFactory;
 import strath.cs308.gizmoball.model.IGameModel;
@@ -24,6 +26,9 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
 
         gizmoFactory = new GizmoFactory();
         selectedGizmo = Optional.empty();
+
+        Image image = new Image("/icons/move.png");
+        editorView.setCursor(new ImageCursor(image));
     }
 
     @Override

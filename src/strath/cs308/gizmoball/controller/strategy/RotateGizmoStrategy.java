@@ -18,14 +18,15 @@ public class RotateGizmoStrategy implements EventHandler<MouseEvent> {
     public RotateGizmoStrategy(IGameModel gameModel, IEditorView editorView) {
         this.gameModel = gameModel;
         this.editorView = editorView;
+
+        Image image = new Image("/icons/rotate.png");
+        editorView.setCursor(new ImageCursor(image));
     }
 
     @Override
     public void handle(MouseEvent mouseEvent) {
 
         if (mouseEvent.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
-            Image image = new Image("/icons/rotate.png");
-            editorView.setCursor(new ImageCursor(image));
 
             double pointX = mouseEvent.getX() / editorView.getPixelRatioFor(20.0);
             double pointY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
