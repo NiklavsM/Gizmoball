@@ -412,6 +412,8 @@
                            
                         <VBox fx:id="movableFieldHolder" 
                               spacing="5">
+                            <Label text="Movement type:" />
+                            <Label fx:id="movementType" />
                             <Label text="Velocity X" />
                             <TextField fx:id="xVelocityField"
                                        styleClass="game-option-textbox"
