@@ -35,7 +35,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
             case "MOUSE_PRESSED":
                 onMousePressed(mouseEvent);
                 break;
-            case "DRAG_DETECTED":
+            case "MOUSE_DRAGGED":
                 onMouseDragged(mouseEvent);
                 break;
             case "MOUSE_RELEASED":
@@ -43,42 +43,54 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
                 onMouseReleased(mouseEvent);
                 break;
         }
-
     }
 
     private void onMouseMoved(MouseEvent mouseEvent) {
         double previewX = Math.floor(mouseEvent.getX()/editorView.getPixelRatioFor(20.0));
         double previewY = Math.floor(mouseEvent.getY()/editorView.getPixelRatioFor(20.0));
 
-        if (mouseX != previewX || mouseY != previewY)
-            gameModel.update();
+        if (mouseEvent.getEventType().equals(mouseEvent.MOUSE_DRAGGED)) {
+            Double startX = Math.floor(pressX / editorView.getPixelRatioFor(20.0));
+            Double startY = Math.floor(pressY / editorView.getPixelRatioFor(20.0));
 
-        mouseX = previewX;
-        mouseY = previewY;
+            for (int x = startX.intValue(); x <= previewX; x++) {
+                for (int y = startY.intValue(); y <= previewY; y++) {
+                    IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, x, y);
+                    editorView.previewGizmo(gizmo, x, y);
+                }
+            }
 
-        IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, previewX, previewY);
-        if (gizmo.getType().equals(IGizmo.Type.BALL)) {
-            previewX = mouseEvent.getX() / editorView.getPixelRatioFor(20.0);
-            previewY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
-            gizmo = gizmoFactory.createGizmo(gizmoType, previewX, previewY);
-            gameModel.update();
+        } else {
+
+            if (mouseX != previewX || mouseY != previewY)
+                gameModel.update();
+
+            mouseX = previewX;
+            mouseY = previewY;
+
+            IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, previewX, previewY);
+            if (gizmo.getType().equals(IGizmo.Type.BALL)) {
+                previewX = mouseEvent.getX() / editorView.getPixelRatioFor(20.0);
+                previewY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
+                gizmo = gizmoFactory.createGizmo(gizmoType, previewX, previewY);
+            }
+
+            editorView.previewGizmo(gizmo, previewX, previewY);
         }
-
-        editorView.previewGizmo(gizmo, previewX, previewY);
     }
 
     private void onMousePressed(MouseEvent mouseEvent) {
         pressX = mouseEvent.getX();
         pressY = mouseEvent.getY();
+        System.out.println("Mouse is pressed");
     }
 
     private void onMouseDragged(MouseEvent mouseEvent) {
-        Logger.verbose(TAG,"DRAG DETECTED");
-
-        double startX = Math.floor(pressX / editorView.getPixelRatioFor(20.0));
-        double startY = Math.floor(pressY / editorView.getPixelRatioFor(20.0));
-        double endX = Math.floor(mouseEvent.getX() / editorView.getPixelRatioFor(20.0));
-        double endY = Math.floor(mouseEvent.getY() / editorView.getPixelRatioFor(20.0));
+        if (!gizmoType.equals(IGizmo.Type.BALL)) {
+            this.onMouseMoved(mouseEvent);
+        } else {
+            editorView.setStatus("Multiple balls cannot be added by dragging as their locations are relative.");
+        }
     }
 
     private void onMouseReleased(MouseEvent mouseEvent) {
