@@ -48,8 +48,8 @@ public class Absorber extends AbstractTriggerAndTriggerableGizmo implements IAct
 
     private void shootTheBallOut(Ball ball) {
         ball.setStopped(false);
-        ball.setX(getEndX() - 0.25);
-        ball.setY(getStartY() - 0.25);
+        ball.setX(getEndX() - 0.5);
+        ball.setY(getStartY() - 0.5);
     }
 
     @Override
@@ -63,10 +63,13 @@ public class Absorber extends AbstractTriggerAndTriggerableGizmo implements IAct
             shootTheBallOut(ballsAbsorbed.pop());
         }
     }
-
     private boolean haveSpace() {
         double size = ((x2 - x1) * 2) * ((y2 - y1) * 2);
         return (size > ballsAbsorbed.size());
+    }
+
+    public Stack<Ball> getBallsAbsorbed(){
+        return ballsAbsorbed;
     }
 
     @Override
