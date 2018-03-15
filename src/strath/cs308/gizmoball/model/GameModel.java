@@ -11,14 +11,15 @@ import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 public class GameModel extends Observable implements IGameModel {
 
-    private final Set<ITrigger> collisionTriggers = new HashSet<>();
     private Map<String, Gizmo> gizmos;
     private Map<String, Absorber> absorberCollided;
     private int score;
     private double frictionCoefficient;
+    private double frictionCoefficient2;
     private double gravityCoefficient;
 
     public GameModel() {
@@ -29,9 +30,9 @@ public class GameModel extends Observable implements IGameModel {
         gizmos = new ConcurrentHashMap<>();
         absorberCollided = new ConcurrentHashMap<>();
         frictionCoefficient = 0.025;
+        frictionCoefficient2 = 0.025;
         gravityCoefficient = 25;
         score = 0;
-        collisionTriggers.clear();
         addGizmo(new Walls());
     }
 
@@ -60,7 +61,6 @@ public class GameModel extends Observable implements IGameModel {
     public boolean removeGizmo(String id) {
         Gizmo gizmo = gizmos.get(id);
         if (gizmo != null) {
-            collisionTriggers.remove(gizmo);
             gizmos.remove(id);
             update();
             return true;
@@ -101,11 +101,6 @@ public class GameModel extends Observable implements IGameModel {
         return score;
     }
 
-    @Override
-    public void addCollisionTrigger(ITrigger from) {
-        collisionTriggers.add(from);
-    }
-
     public void tick(double time) {
         Gizmo nextGizmo;
         Set<Ball> balls = getBalls();
@@ -125,7 +120,7 @@ public class GameModel extends Observable implements IGameModel {
                     // We've got a collision in tuc
                     nextGizmo = cd.getGizmo();
 
-                    if (collisionTriggers.contains(nextGizmo)) {
+                    if (nextGizmo instanceof ITrigger) {
                         ITrigger trigger = (ITrigger) nextGizmo;
                         trigger.trigger();
                     }
@@ -168,7 +163,7 @@ public class GameModel extends Observable implements IGameModel {
 
         // Vnew = Vold * (1 - mu * delta_t - mu2 * |Vold| * delta_t).
         velocityAfterFriction = new Vect(velocity.angle(),
-                velocity.length() * (1 - (frictionCoefficient * time) - (frictionCoefficient * velocity.length() * time)));
+                velocity.length() * (1 - (frictionCoefficient * time) - (frictionCoefficient2 * velocity.length() * time)));
         ball.setVelocity(velocityAfterFriction.plus(gravity));
 
     }
@@ -251,16 +246,26 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     @Override
-    public double getFrictionCoefficient() {
+    public double getFrictionM1() {
         return frictionCoefficient;
     }
 
     @Override
+    public double getFrictionM2() {
+        return frictionCoefficient2;
+    }
 
-    public boolean setFrictionCoefficient(double frictionCoefficient) {
+    @Override
+    public boolean getFrictionM1(double frictionCoefficient) {
+        return false;
+    }
+
+    @Override
+
+    public boolean getFrictionM2(double frictionCoefficient) {
         if (frictionCoefficient >= 0) {
             this.frictionCoefficient = frictionCoefficient;
-            
+
             setChanged();
             notifyObservers();
             return true;
@@ -298,24 +303,30 @@ public class GameModel extends Observable implements IGameModel {
 
     @Override
     public String toString() {
-        String commands = "";
+        StringBuilder commands = new StringBuilder();
         for (Gizmo gizmo : gizmos.values()) {
-            commands += gizmo.toString();
+            commands.append(gizmo.toString());
         }
 
-        commands += "\n\n# collision triggers\n";
+        commands.append("\n\n# collision triggers\n");
+
+        Set<ITrigger> collisionTriggers = gizmos
+                .values()
+                .parallelStream()
+                .filter(ITrigger.class::isInstance)
+                .map(ITrigger.class::cast)
+                .collect(Collectors.toSet());
 
         for (ITrigger trigger : collisionTriggers) {
             for (ITriggerable triggerable : trigger.getTriggerables()) {
-                commands += GameLoader.CONNECT_COMMAND +
-                        " " + trigger.id() + " " + triggerable.id() + "\n";
+                commands.append(GameLoader.CONNECT_COMMAND + " ").append(trigger.id()).append(" ").append(triggerable.id()).append("\n");
             }
         }
 
         //TODO add gravity and friciton
 
-        commands += "\n# gravity and friction\n";
+        commands.append("\n# gravity and friction\n");
 
-        return commands;
+        return commands.toString();
     }
 }

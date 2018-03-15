@@ -6,3 +6,8 @@
 * Preview on drag 
 
 * Balls get reflected if the absorber is full
+
+* Nice and smooth JavaFX GUI
+
+* Visible Gizmo Drawings
+

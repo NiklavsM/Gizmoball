@@ -27,9 +27,13 @@ public interface IGameModel {
 
     void rotate(String id);
 
-    double getFrictionCoefficient();
+    double getFrictionM1();
 
-    boolean setFrictionCoefficient(double frictionCoefficient);
+    double getFrictionM2();
+
+    boolean getFrictionM1(double frictionCoefficient);
+
+    boolean getFrictionM2(double frictionCoefficient);
 
     double getGravityCoefficient();
 
@@ -41,5 +45,5 @@ public interface IGameModel {
 
     int getScore();
 
-    void addCollisionTrigger(ITrigger from);
 }
+

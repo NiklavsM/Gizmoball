@@ -23,7 +23,7 @@ public class ConnectGizmoStrategy implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-        Logger.debug(TAG, "handling connecttions");
+        Logger.debug(TAG, "handling connections");
         /**
          * TODO
          * still need to be done

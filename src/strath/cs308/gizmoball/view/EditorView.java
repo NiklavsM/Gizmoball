@@ -1,13 +1,9 @@
 package strath.cs308.gizmoball.view;
 
 import java.io.File;
-import java.io.File;
-import java.io.IOException;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Observable;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Observer;
 import java.util.Optional;
 
@@ -22,12 +18,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
-import mit.physics.Vect;
 
 import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.controller.GamePropertyEventHandler;
@@ -36,9 +29,7 @@ import strath.cs308.gizmoball.controller.ToolModeEventHandler;
 import strath.cs308.gizmoball.controller.TopToolbarEventHandler;
 import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.IGameModel;
-import strath.cs308.gizmoball.model.gizmo.Ball;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
-import strath.cs308.gizmoball.utils.Logger;
 
 public class EditorView extends Stage implements IEditorView, Observer {
     private static final String TAG = "EditorView";
@@ -48,8 +39,9 @@ public class EditorView extends Stage implements IEditorView, Observer {
     private Canvas canvas;
     private boolean isGrided;
     private Map<String, Object> namespace;
-    private TextField frictionTextField;
+    private TextField friction1TextField;
     private TextField gravityTextField;
+    private TextField friction2TextField;
     private IGizmo selectedGizmo;
     private Label statusLabel;
     private InGameKeyEventHandler keyHandler;
@@ -63,7 +55,8 @@ public class EditorView extends Stage implements IEditorView, Observer {
             root = loader.load();
             namespace = loader.getNamespace(); 
             canvas = (Canvas) namespace.get("canvas");
-            frictionTextField = (TextField) namespace.get("friction");
+            friction1TextField = (TextField) namespace.get("mu1");
+            friction2TextField = (TextField) namespace.get("mu2");
             gravityTextField = (TextField) namespace.get("gravity");
             statusLabel = (Label) namespace.get("statusbar");
 
@@ -106,7 +99,8 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
     private void updateFields() {
         gravityTextField.setText(String.valueOf(gameModel.getGravityCoefficient()));
-        frictionTextField.setText(String.valueOf(gameModel.getFrictionCoefficient()));
+        friction1TextField.setText(String.valueOf(gameModel.getFrictionM1()));
+        friction2TextField.setText(String.valueOf(gameModel.getFrictionM2()));
 
         /*
         if (selectedGizmo != null && selectedGizmo.getType() == IGizmo.Type.BALL) {
@@ -137,7 +131,8 @@ public class EditorView extends Stage implements IEditorView, Observer {
     private void setupTextFields() {
         Platform.runLater(() -> {
             gravityTextField.setText(Double.toString(gameModel.getGravityCoefficient()));
-            frictionTextField.setText(Double.toString(gameModel.getFrictionCoefficient()));
+            friction1TextField.setText(Double.toString(gameModel.getFrictionM1()));
+            friction2TextField.setText(Double.toString(gameModel.getFrictionM2()));
         });
     }
 
@@ -156,7 +151,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
                     .forEach(node -> node.setOnMouseClicked(toolSelectionHandler));
 
             EventHandler gamePropertyEventHandler = new GamePropertyEventHandler(gameModel, this);
-            frictionTextField.setOnAction(gamePropertyEventHandler);
+            friction1TextField.setOnAction(gamePropertyEventHandler);
             gravityTextField.setOnAction(gamePropertyEventHandler);            
         });
     }
@@ -176,8 +171,8 @@ public class EditorView extends Stage implements IEditorView, Observer {
     }
 
     @Override
-    public double getPixelRatioFor(double valueToComapre) {
-        return canvas.getWidth() / valueToComapre;
+    public double getPixelRatioFor(double valueToCompare) {
+        return canvas.getWidth() / valueToCompare;
     }
 
     @Override
@@ -232,7 +227,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
     @Override
     public double getFrictionInput() throws NumberFormatException {
-        return Double.parseDouble(frictionTextField.getText());
+        return Double.parseDouble(friction1TextField.getText());
     }
 
     @Override

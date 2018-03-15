@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
+<?import java.lang.*?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx"
             stylesheets="/styles/style.css"
@@ -154,26 +154,34 @@
                           spacing="5"
                           alignment="CENTER">
                         <Label text="Gravity"/>
-                        <TextField fx:id="gravity" 
-                                   styleClass="game-option-textbox" 
-                                   prefWidth="60.0" />
+                        <TextField fx:id="gravity"
+                                   styleClass="game-option-textbox"
+                                   prefWidth="60.0"/>
                     </VBox>
-
 
                     <VBox GridPane.columnIndex="11"
                           GridPane.rowIndex="0"
                           spacing="5"
-                          fx:id="gravityHolder"
                           alignment="CENTER">
-                        <Label text="Friction"/>
-                        <TextField fx:id="friction" 
-                                   styleClass="game-option-textbox" 
-                                   prefWidth="60.0" />
+                        <Label text="Friction mu1"/>
+                        <TextField fx:id="mu1"
+                                   styleClass="game-option-textbox"
+                                   prefWidth="60.0"/>
+                    </VBox>
+
+                    <VBox GridPane.columnIndex="12"
+                          GridPane.rowIndex="0"
+                          spacing="5"
+                          alignment="CENTER">
+                        <Label text="Friction mu2"/>
+                        <TextField fx:id="mu2"
+                                   styleClass="game-option-textbox"
+                                   prefWidth="60.0"/>
                     </VBox>
 
                 </GridPane>
 
-                
+
             </ToolBar>
         </VBox>
     </top>
@@ -402,7 +410,8 @@
 
                         <VBox spacing="5">
                             <Label text="ID"/>
-                            <TextField fx:id="gizmoName" styleClass="game-option-textbox" prefWidth="60.0"  disable="true">
+                            <TextField fx:id="gizmoName" styleClass="game-option-textbox" prefWidth="60.0"
+                                       disable="true">
                                 47856-65654-65463
                             </TextField>
 
@@ -413,7 +422,7 @@
 
                             <Label text="Velocity Y"/>
                             <TextField fx:id="ballVelocityY" styleClass="game-option-textbox" prefWidth="60.0">
-                               3
+                                3
                             </TextField>
 
                             <Label text="Colour"/>
@@ -428,12 +437,61 @@
                                     </FXCollections>
                                 </items>
                             </ComboBox>
-
                         </VBox>
 
                     </VBox>
 
                 </Tab>
+            </TabPane>
+
+            <TabPane>
+
+                <Tab closable="false"
+                     text="Connection">
+
+
+                    <VBox spacing="16"
+                          styleClass="default-padding, GizmoPane">
+
+
+                        <Label text="Connection A"/>
+                        <ComboBox fx:id="connectionA" id="comboId" prefWidth="100.0">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Change colour"/>
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+
+
+                        <Label text="Connection B"/>
+                        <ComboBox fx:id="connectionB" id="comboId" prefWidth="100.0">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Red"/>
+                                    <String fx:value="Green"/>
+                                    <String fx:value="Blue"/>
+                                    <String fx:value="Yellow"/>
+                                    <String fx:value="Purple"/>
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+
+
+                        <Label text="Action"/>
+                        <ComboBox fx:id="action" id="action" prefWidth="100.0">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Change Colour"/>
+                                    <String fx:value="Shoot ball"/>
+                                    <String fx:value="Rotate"/>
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                    </VBox>
+
+                </Tab>
+
             </TabPane>
         </VBox>
     </right>
