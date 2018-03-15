@@ -453,33 +453,29 @@
                     <VBox spacing="16"
                           styleClass="default-padding, GizmoPane">
 
-
                         <Label text="Connection A"/>
-                        <ComboBox fx:id="connectionA" id="comboId" prefWidth="100.0">
-                            <items>
-                                <FXCollections fx:factory="observableArrayList">
-                                    <String fx:value="Change colour"/>
-                                </FXCollections>
-                            </items>
-                        </ComboBox>
+                        <TextField fx:id="connectATextField" styleClass="game-option-textbox" minWidth="60.0"
+                                   editable="false">
+                            Click Gizmo or Press key
+                        </TextField>
 
+                        <Button fx:id="connectAChangeButton"
+                                styleClass="regular-button, regular-font, top-toolbar-button">
+                            Change
+                        </Button>
 
                         <Label text="Connection B"/>
-                        <ComboBox fx:id="connectionB" id="comboId" prefWidth="100.0">
-                            <items>
-                                <FXCollections fx:factory="observableArrayList">
-                                    <String fx:value="Red"/>
-                                    <String fx:value="Green"/>
-                                    <String fx:value="Blue"/>
-                                    <String fx:value="Yellow"/>
-                                    <String fx:value="Purple"/>
-                                </FXCollections>
-                            </items>
-                        </ComboBox>
+                        <TextField fx:id="connectBTextField" styleClass="game-option-textbox" prefWidth="60.0" editable="false">
+                            Click Gizmo or Press key
+                        </TextField>
 
+                        <Button fx:id="connectBChangeButton"
+                                styleClass="regular-button, regular-font, top-toolbar-button">
+                            Change
+                        </Button>
 
                         <Label text="Action"/>
-                        <ComboBox fx:id="action" id="action" prefWidth="100.0">
+                        <ComboBox fx:id="actionComboBox" id="actionComboBox" prefWidth="100.0">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
                                     <String fx:value="Change Colour"/>

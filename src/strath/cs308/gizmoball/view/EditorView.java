@@ -13,6 +13,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -45,6 +47,12 @@ public class EditorView extends Stage implements IEditorView, Observer {
     private IGizmo selectedGizmo;
     private Label statusLabel;
     private InGameKeyEventHandler keyHandler;
+    private ComboBox<String> actionComboBox;
+    private Button connectionActionButton;
+    private TextField connectATextField;
+    private TextField connectBTextField;
+    private Button connectAChangeButton;
+    private Button connectBChangeButton;
 
     public EditorView(GizmoBall gizmoball) {
 
@@ -57,7 +65,16 @@ public class EditorView extends Stage implements IEditorView, Observer {
             canvas = (Canvas) namespace.get("canvas");
             friction1TextField = (TextField) namespace.get("mu1");
             friction2TextField = (TextField) namespace.get("mu2");
+
             gravityTextField = (TextField) namespace.get("gravity");
+
+            connectATextField = (TextField) namespace.get("connectBTextField");
+            connectBTextField = (TextField) namespace.get("connectBTextField");
+            connectAChangeButton = (Button) namespace.get("connectAChangeButton");
+            connectBChangeButton = (Button) namespace.get("connectBChangeButton");
+            actionComboBox = (ComboBox<String>) namespace.get("actionComboBox");
+            connectionActionButton = (Button) namespace.get("connectAction");
+
             statusLabel = (Label) namespace.get("statusbar");
 
             this.gameModel = gameModel;
