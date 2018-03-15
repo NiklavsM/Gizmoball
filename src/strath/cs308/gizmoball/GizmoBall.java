@@ -39,12 +39,23 @@ public class GizmoBall extends Application {
             e.printStackTrace();
         }
 
+        //
+        //
+        //
+        //
+        // THIS IS JUST TESTING HERE
+        //
         Triangle t = (Triangle) gameModel.getGizmoById("T");
         t.setAction(args -> {
             t.rotate();
-            gameModel.removeGizmo("T");
         });
         t.registerTriggarable(t);
+        //
+        //
+        //
+        //
+        //
+
 
         Flipper f = (Flipper) gameModel.getGizmoById("RF112");
         t.registerTriggarable(f);
