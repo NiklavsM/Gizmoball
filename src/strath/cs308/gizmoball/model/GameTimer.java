@@ -38,8 +38,7 @@ public class GameTimer implements IGameTimer {
 
 
             this.timer = new Timer();
-            Logger.verbose(TAG, "time: " + (Constants.TICK_TIME * 1000));
-            this.timer.schedule(task, 0, (long) (Constants.TICK_TIME * 1000));
+            this.timer.schedule(task, 0, (long) (1000 / refreshRate));
         }
     }
 
