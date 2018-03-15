@@ -1,16 +1,10 @@
 package strath.cs308.gizmoball.view;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Map;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.Optional;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -24,13 +18,17 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.controller.*;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
-import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.Optional;
 
 public class EditorView extends Stage implements IEditorView, Observer {
     private static final String TAG = "EditorView";
@@ -60,7 +58,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/editorview.fxml"));
             root = loader.load();
-            namespace = loader.getNamespace(); 
+            namespace = loader.getNamespace();
             canvas = (Canvas) namespace.get("canvas");
             friction1TextField = (TextField) namespace.get("mu1");
             friction2TextField = (TextField) namespace.get("mu2");
@@ -80,7 +78,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
             this.gameModel = gizmoball.getGameModel();
             this.gameModel.addObserver(this);
 
-            isGrided  = true;
+            isGrided = true;
 
             Scene scene = new Scene(root);
 
@@ -258,19 +256,24 @@ public class EditorView extends Stage implements IEditorView, Observer {
     @Override
     public void setErrorStatus(String message) {
         statusLabel.getStyleClass().add("error-label");
-        statusLabel.setText(message); 
+        statusLabel.setText(message);
     }
 
     @Override
     public void displayGizmoProperties(IGizmo gizmo) {
         System.out.println(gizmo.getId());
     }
-    
+
     @Override
     public void previewGizmo(IGizmo gizmo, double x, double y) {
         if (gameModel.getGizmo(x, y).equals(Optional.empty())) {
             GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
             gizmoDrawer.drawGizmo(gizmo, true);
         }
+    }
+
+    @Override
+    public void setCursor(Cursor cursor) {
+        getScene().setCursor(cursor);
     }
 }
