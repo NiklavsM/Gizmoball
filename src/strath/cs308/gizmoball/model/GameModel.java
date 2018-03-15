@@ -237,9 +237,7 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     public Set<IGizmo> getGizmoBalls() {
-        Set<IGizmo> balls = new HashSet<>();
-        balls.addAll(getBalls());
-        return balls;
+        return new HashSet<>(getBalls());
     }
 
     @Override

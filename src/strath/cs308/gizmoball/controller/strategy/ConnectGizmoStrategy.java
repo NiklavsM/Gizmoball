@@ -1,6 +1,8 @@
 package strath.cs308.gizmoball.controller.strategy;
 
 import javafx.event.EventHandler;
+import javafx.scene.ImageCursor;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
@@ -24,6 +26,8 @@ public class ConnectGizmoStrategy implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent mouseEvent) {
         Logger.debug(TAG, "handling connections");
+        Image image = new Image("/icons/connect.png");
+        editorView.setCursor(new ImageCursor(image));
         /**
          * TODO
          * still need to be done
