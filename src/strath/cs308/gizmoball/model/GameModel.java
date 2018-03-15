@@ -36,7 +36,6 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     public boolean addGizmo(IGizmo gizmo) {
-
         if (gizmo == null) {
             return false;
         }
@@ -53,9 +52,7 @@ public class GameModel extends Observable implements IGameModel {
         }
 
         gizmos.put(gizmo.getId(), (Gizmo) gizmo);
-
         update();
-
         return true;
     }
 
@@ -82,6 +79,10 @@ public class GameModel extends Observable implements IGameModel {
             if (!gizmo.getType().equals(IGizmo.Type.WALLS)) {
                 if ((x >= gizmo.getStartX() && x < gizmo.getEndX()) && (y >= gizmo.getStartY() && y < gizmo.getEndY())) {
                     return Optional.of(gizmo);
+                }
+
+                if (gizmo.getType().equals(IGizmo.Type.BALL)) {
+
                 }
             }
         }
@@ -170,7 +171,6 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     private CollisionDetails timeUntilCollision(Ball ball) {
-
         Circle ballCircle = ball.getCircle();
         Vect ballVelocity = ball.getVelocity();
         Vect newVelo = new Vect(0, 0);

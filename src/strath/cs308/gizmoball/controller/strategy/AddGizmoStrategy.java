@@ -18,12 +18,14 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
     private final IEditorView editorView;
     private double pressX, pressY;
     private double mouseX, mouseY;
+    private int ballLimit;
 
     public AddGizmoStrategy(IGameModel gameModel, IEditorView editorView, IGizmo.Type gizmoType) {
         this.gizmoType = gizmoType;
         this.gameModel = gameModel;
         this.editorView = editorView;
         gizmoFactory = new GizmoFactory();
+        ballLimit = 50;
     }
 
     @Override
@@ -59,36 +61,39 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
                     editorView.previewGizmo(gizmo, x, y);
                 }
             }
-
         } else {
 
             if (mouseX != previewX || mouseY != previewY)
                 gameModel.update();
 
-            mouseX = previewX;
-            mouseY = previewY;
-
             IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, previewX, previewY);
             if (gizmo.getType().equals(IGizmo.Type.BALL)) {
+                if (mouseX != mouseEvent.getX() || mouseY != mouseEvent.getY())
+                    gameModel.update();
                 previewX = mouseEvent.getX() / editorView.getPixelRatioFor(20.0);
                 previewY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
                 gizmo = gizmoFactory.createGizmo(gizmoType, previewX, previewY);
             }
 
             editorView.previewGizmo(gizmo, previewX, previewY);
+
+            mouseX = previewX;
+            mouseY = previewY;
         }
     }
 
     private void onMousePressed(MouseEvent mouseEvent) {
         pressX = mouseEvent.getX();
         pressY = mouseEvent.getY();
-        System.out.println("Mouse is pressed");
     }
 
     private void onMouseDragged(MouseEvent mouseEvent) {
         if (!gizmoType.equals(IGizmo.Type.BALL)) {
             this.onMouseMoved(mouseEvent);
         } else {
+            if (gameModel.getGizmoBalls().size() <= 50)
+                putGizmoAt(mouseEvent.getX(), mouseEvent.getY());
+            else
             editorView.setStatus("Multiple balls cannot be added by dragging as their locations are relative.");
         }
     }
@@ -144,7 +149,6 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
     }
 
     private void putGizmoAt(double x, double y) {
-
         x /= editorView.getPixelRatioFor(20.0);
         y /= editorView.getPixelRatioFor(20.0);
 
