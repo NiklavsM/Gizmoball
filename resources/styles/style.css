@@ -11,6 +11,7 @@ Focus Colour: #37474F
     -fx-focused-text-base-color: transparent;
     -fx-focused-mark-color: -fx-focused-text-base-color;
     -fx-font-family: verdana;
+    -fx-text-fill: #B0BEC5;
 }
 
 Label {
@@ -245,11 +246,13 @@ i.pause-menu-font {
 }
 
 
-ComboBox {
+/* Connection */
+
+.regular-button {
     -fx-text-fill: #B0BEC5;
+    -fx-background-color: #37474F;
 }
 
-items {
-    -fx-text-fill: #B0BEC5;
-}
+.regular-button:hover {
 
+}

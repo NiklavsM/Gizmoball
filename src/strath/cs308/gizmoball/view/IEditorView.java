@@ -3,10 +3,10 @@ package strath.cs308.gizmoball.view;
 import java.io.File;
 
 import javafx.event.EventHandler;
+import javafx.scene.Cursor;
 import javafx.scene.input.MouseEvent;
 
 import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
-import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
 public interface IEditorView {
@@ -38,4 +38,6 @@ public interface IEditorView {
     void setSelectedGizmo(IGizmo gizmo);
 
     void previewGizmo(IGizmo gizmo, double x, double y);
+
+    void setCursor(Cursor cursor);
 }

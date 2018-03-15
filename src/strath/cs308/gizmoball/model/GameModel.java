@@ -81,12 +81,12 @@ public class GameModel extends Observable implements IGameModel {
                     return Optional.of(gizmo);
                 }
 
-                // TO-FIX THIS SNIPPET FOR PROPER PREVIEW ON DRAG
-                if (gizmo.getType().equals(IGizmo.Type.BALL)) {
-                    double ballX = gizmo.getStartX() + 0.25, ballY = gizmo.getStartY() + 0.25;
-                    if (x - 0.25 > ballX && ballX < x + 0.25 && y - 0.25 > ballY && ballY < y + 0.25)
-                        return Optional.of(gizmo);
-                }
+//                // TO-FIX THIS SNIPPET FOR PROPER PREVIEW ON DRAG
+//                if (gizmo.getType().equals(IGizmo.Type.BALL)) {
+//                    double ballX = gizmo.getStartX() + 0.25, ballY = gizmo.getStartY() + 0.25;
+//                    if (x - 0.25 > ballX && ballX < x + 0.25 && y - 0.25 > ballY && ballY < y + 0.25)
+//                        return Optional.of(gizmo);
+//                }
             }
         }
         return Optional.empty();
@@ -234,9 +234,7 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     public Set<IGizmo> getGizmoBalls() {
-        Set<IGizmo> balls = new HashSet<>();
-        balls.addAll(getBalls());
-        return balls;
+        return new HashSet<>(getBalls());
     }
 
     @Override
