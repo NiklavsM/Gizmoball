@@ -18,6 +18,16 @@ public abstract class AbstractTriggerGizmo extends Gizmo implements ITrigger {
     }
 
     @Override
+    public Set<ITriggerable> getTriggerables() {
+        return triggerables;
+    }
+
+    @Override
+    public String id() {
+        return id;
+    }
+
+    @Override
     public void registerTriggarable(ITriggerable triggerTarget) {
         triggerables.add(triggerTarget);
     }

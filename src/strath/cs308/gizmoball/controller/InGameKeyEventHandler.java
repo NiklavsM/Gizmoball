@@ -42,6 +42,20 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent> {
     }
 
     @Override
+    public String toString() {
+        final String[] s = {""};
+        keyEventMap
+                .forEach(
+                        (event, trigs) ->
+                                trigs
+                                      .forEach(trig ->
+                                          s[0] += GameLoader.KEY_CONNECT_COMMAND +
+                                                   " " + event + " " + trig.id() + "\n")
+                );
+        return s[0];
+    }
+
+    @Override
     public void handle(KeyEvent keyEvent) {
         String keyEventString = prettify(keyEvent);
         if (!keyEventMap.containsKey(keyEventString)) {
@@ -53,9 +67,9 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent> {
                     if (triggerable instanceof Flipper) {
                         Flipper.Movement args = null;
                         if (keyEvent.getEventType().equals(KEY_PRESSED)) {
-                            args = Flipper.Movement.TOP;
+                            args = Flipper.Movement.FORWARD;
                         } else if (keyEvent.getEventType().equals(KEY_RELEASED)) {
-                            args = Flipper.Movement.BOTTOM;
+                            args = Flipper.Movement.BACKWARDS;
                         }
                         triggerable.performAction(args);
                     } else {
@@ -66,6 +80,10 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent> {
 
     public void removeTriggarable(ITriggerable triggerable) {
         keyEventMap.values().forEach(set -> set.remove(triggerable));
+    }
+
+    public void removeAllHandlers() {
+        keyEventMap.clear();
     }
 
 }

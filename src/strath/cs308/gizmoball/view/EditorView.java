@@ -171,8 +171,8 @@ public class EditorView extends Stage implements IEditorView, Observer {
         canvas.setOnMouseMoved(canvasStrategy);
         canvas.setOnMouseClicked(canvasStrategy);
         canvas.setOnMousePressed(canvasStrategy);
+        canvas.setOnMouseDragged(canvasStrategy);
         canvas.setOnMouseReleased(canvasStrategy);
-        canvas.setOnDragDetected(canvasStrategy);
     }
 
     @Override

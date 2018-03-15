@@ -55,23 +55,11 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
     }
 
     private void saveGame() {
-        File fileToLoad = editView.getLoadFile();
-        GameSaver gs = new GameSaver(gameModel, fileToLoad);
-        try {
-            gs.save();
-        } catch (IllegalAccessException | FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        //todo like in playviewcontroller
     }
 
     private void loadGame() {
-        File fileToLoad = editView.getLoadFile();
-        try {
-            GameLoader gl = new GameLoader(gameModel, editView.getKeyHandler(), new FileInputStream(fileToLoad));
-            gl.load();
-        } catch (IllegalAccessException | FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        //todo like in playviewcontrolor
     }
 
     private void switchToPlayMode() {

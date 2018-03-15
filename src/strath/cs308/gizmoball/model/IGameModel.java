@@ -41,5 +41,5 @@ public interface IGameModel {
 
     int getScore();
 
-    void onCollisionTrigger(ITrigger from);
+    void addCollisionTrigger(ITrigger from);
 }

@@ -86,7 +86,7 @@ public class PlayView extends Stage implements IPlayView, Observer {
             root.lookupAll("#gameMenu > Button")
                     .forEach(node -> ((Button) node).setOnAction(gameBarEventHandler));
 
-            EventHandler pauseMenuEventHandler = new PauseMenuEventHandler(gameModel, gameTimer, this, gameLoader);
+            EventHandler pauseMenuEventHandler = new PauseMenuEventHandler(gizmoBall, gameTimer, this);
             root.lookupAll("#pauseMenuItemHolder > Button")
                     .forEach(node -> ((Button) node).setOnAction(pauseMenuEventHandler));
 
