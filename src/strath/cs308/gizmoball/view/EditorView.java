@@ -280,15 +280,16 @@ public class EditorView extends Stage implements IEditorView, Observer {
         gizmoIdField.setText(gizmo.getId());
 
         if (gizmo instanceof IMovable) {
-            System.out.println(gizmo);
             IMovable movableGizmo = (IMovable) gizmo;  
             movableHolder.setVisible(true);
             TextField veloXField = (TextField) namespace.get("xVelocityField");
             TextField veloYField = (TextField) namespace.get("yVelocityField");
+            Label movementTypeLabel = (Label) namespace.get("movementType");
 
             Vect velocity = movableGizmo.getVelocity();
             veloXField.setText(Double.toString(velocity.x())); 
             veloYField.setText(Double.toString(velocity.y())); 
+            movementTypeLabel.setText(movableGizmo.getMovementType().toString());
 
         } else {
             movableHolder.setVisible(false);
