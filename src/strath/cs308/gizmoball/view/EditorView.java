@@ -284,12 +284,25 @@ public class EditorView extends Stage implements IEditorView, Observer {
             movableHolder.setVisible(true);
             TextField veloXField = (TextField) namespace.get("xVelocityField");
             TextField veloYField = (TextField) namespace.get("yVelocityField");
+            TextField radianField = (TextField) namespace.get("radianVelocityField");
             Label movementTypeLabel = (Label) namespace.get("movementType");
 
             Vect velocity = movableGizmo.getVelocity();
-            veloXField.setText(Double.toString(velocity.x())); 
-            veloYField.setText(Double.toString(velocity.y())); 
             movementTypeLabel.setText(movableGizmo.getMovementType().toString());
+            VBox linearVelocityHolder = (VBox) namespace.get("linearVelocityHolder");
+            VBox rotationVelocityHolder = (VBox) namespace.get("rotationVelocityHolder");
+            if (movableGizmo.getMovementType().equals(IMovable.Type.LINEAR)) {
+                veloXField.setText(Double.toString(velocity.x())); 
+                veloYField.setText(Double.toString(velocity.y())); 
+
+                rotationVelocityHolder.setVisible(false); 
+                linearVelocityHolder.setVisible(true); 
+            } else {
+                radianField.setText(Double.toString(velocity.angle().radians()));
+      
+                rotationVelocityHolder.setVisible(true); 
+                linearVelocityHolder.setVisible(false); 
+            }
 
         } else {
             movableHolder.setVisible(false);

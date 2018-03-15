@@ -14,6 +14,7 @@ public class Flipper extends AbstractTriggerableGizmo implements IMovable, IActi
     private LineSegment connector1;
     private LineSegment connector2;
     private Vect velocity;
+    private Vect velocityConstant;
     private double movedAngle;
     private Movement movementStatus;
     private Orientation orientation;
@@ -32,7 +33,7 @@ public class Flipper extends AbstractTriggerableGizmo implements IMovable, IActi
         movementStatus = Movement.BOTTOM;
         movedAngle = Angle.ZERO.radians();
 
-//        velocity = new Vect(Angle.DEG_180);
+        velocityConstant = new Vect(Angle.DEG_180);
         velocity = Vect.ZERO;
         isCycle = false;
 
@@ -145,25 +146,25 @@ public class Flipper extends AbstractTriggerableGizmo implements IMovable, IActi
     }
 
     public Vect getVelocity() {
-        return velocity;
+        return velocityConstant;
     }
 
     public void setVelocity(Vect velocity) {
-        this.velocity = new Vect(new Angle(velocity.angle().radians() * orientation.getMult()));
+        velocityConstant = velocity;
     }
 
     private void up() {
         if (movementStatus == Movement.BACKWARDS) {
             movementStatus = Movement.FORWARD;
             movedAngle = Angle.DEG_90.radians() - movedAngle;
-            velocity = new Vect(new Angle(Angle.DEG_180.radians() * -1 * orientation.getMult()));
+            velocity = new Vect(new Angle(velocityConstant.angle().radians() * -1 * orientation.getMult()));
             return;
         }
 
         if (movementStatus.equals(Movement.BOTTOM)) {
             movedAngle = Angle.ZERO.radians();
             movementStatus = Movement.FORWARD;
-            velocity = new Vect(new Angle(Angle.DEG_180.radians() * -1 * orientation.getMult()));
+            velocity = new Vect(new Angle(velocityConstant.angle().radians() * -1 * orientation.getMult()));
         }
 
     }

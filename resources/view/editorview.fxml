@@ -421,15 +421,25 @@
                               spacing="5">
                             <Label text="Movement type:" />
                             <Label fx:id="movementType" />
-                            <Label text="Velocity X" />
-                            <TextField fx:id="xVelocityField"
-                                       styleClass="game-option-textbox"
-                                       prefWidth="60.0" />
-    
-                            <Label text="Velocity Y" />
-                            <TextField fx:id="yVelocityField"
-                                       styleClass="game-option-textbox"
-                                       prefWidth="60.0" />
+                            <VBox fx:id="linearVelocityHolder">
+                                
+                                <Label text="Velocity X" />
+                                <TextField fx:id="xVelocityField"
+                                           styleClass="game-option-textbox"
+                                           prefWidth="60.0" />
+        
+                                <Label text="Velocity Y" />
+                                <TextField fx:id="yVelocityField"
+                                           styleClass="game-option-textbox"
+                                           prefWidth="60.0" />
+                            </VBox>
+                            <VBox fx:id="rotationVelocityHolder">
+                                <Label text="Velocity radian" />
+                                <TextField fx:id="radianVelocityField"
+                                           styleClass="game-option-textbox"
+                                           prefWidth="60.0" />
+                            </VBox>
+
                        </VBox>
                    
 
