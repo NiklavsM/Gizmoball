@@ -2,10 +2,7 @@ package strath.cs308.gizmoball.view;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.Optional;
+import java.util.*;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -66,6 +63,9 @@ public class EditorView extends Stage implements IEditorView, Observer {
     private TextField connectBTextField;
     private Button connectAChangeButton;
     private Button connectBChangeButton;
+    private TextField veloXField;
+    private TextField veloYField;
+    private TextField radianField;
 
     public EditorView(GizmoBall gizmoball) {
 
@@ -73,12 +73,16 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/editorview.fxml"));
+            loader.setResources(ResourceBundle.getBundle("dictionary", gizmoball.getLocale()));
             root = loader.load();
             namespace = loader.getNamespace();
             canvas = (Canvas) namespace.get("canvas");
             friction1TextField = (TextField) namespace.get("mu1");
             friction2TextField = (TextField) namespace.get("mu2");
 
+            radianField = (TextField) namespace.get("radianVelocityField");
+            veloYField = (TextField) namespace.get("yVelocityField");
+            veloXField = (TextField) namespace.get("xVelocityField");
             gravityTextField = (TextField) namespace.get("gravity");
 
             connectATextField = (TextField) namespace.get("connectBTextField");
@@ -269,6 +273,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
     @Override
     public void displayGizmoProperties(IGizmo gizmo) {
         TabPane sidePane = (TabPane) namespace.get("sidePanel");
+        EventHandler eventHandler = new GizmoPropertyEventHandler(this, gizmo);
         SingleSelectionModel<Tab> selectionModel = sidePane.getSelectionModel();
         selectionModel.select(1);
 
@@ -282,14 +287,26 @@ public class EditorView extends Stage implements IEditorView, Observer {
         if (gizmo instanceof IMovable) {
             IMovable movableGizmo = (IMovable) gizmo;  
             movableHolder.setVisible(true);
-            TextField veloXField = (TextField) namespace.get("xVelocityField");
-            TextField veloYField = (TextField) namespace.get("yVelocityField");
+            veloXField.setOnAction(eventHandler);
+            veloYField.setOnAction(eventHandler);
+            radianField.setOnAction(eventHandler);
             Label movementTypeLabel = (Label) namespace.get("movementType");
 
-            Vect velocity = movableGizmo.getVelocity();
-            veloXField.setText(Double.toString(velocity.x())); 
-            veloYField.setText(Double.toString(velocity.y())); 
             movementTypeLabel.setText(movableGizmo.getMovementType().toString());
+            VBox linearVelocityHolder = (VBox) namespace.get("linearVelocityHolder");
+            VBox rotationVelocityHolder = (VBox) namespace.get("rotationVelocityHolder");
+            if (movableGizmo.getMovementType().equals(IMovable.Type.LINEAR)) {
+                veloXField.setText(Double.toString(movableGizmo.getVelocityX()));
+                veloYField.setText(Double.toString(movableGizmo.getVelocityY()));
+
+                rotationVelocityHolder.setVisible(false); 
+                linearVelocityHolder.setVisible(true); 
+            } else {
+                radianField.setText(Double.toString(movableGizmo.getVelocityRadian()));
+      
+                rotationVelocityHolder.setVisible(true); 
+                linearVelocityHolder.setVisible(false); 
+            }
 
         } else {
             movableHolder.setVisible(false);
@@ -310,5 +327,20 @@ public class EditorView extends Stage implements IEditorView, Observer {
     @Override
     public void setCursor(Cursor cursor) {
         getScene().setCursor(cursor);
+    }
+
+    @Override
+    public double getRadianProperty() {
+        return Double.parseDouble(radianField.getText());
+    }
+
+    @Override
+    public double getXVelocityProperty() {
+        return Double.parseDouble(veloXField.getText());
+    }
+
+    @Override
+    public double getYVelocityProperty() {
+        return Double.parseDouble(veloYField.getText());
     }
 }

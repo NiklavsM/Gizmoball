@@ -25,31 +25,31 @@
                           fx:id="pauseMenuItemHolder"
                           styleClass="no-padding">
 
-                    <Button text="Back"
+                    <Button text="%PAUSE_MENU_BACK"
                             GridPane.columnIndex="0"
                             GridPane.rowIndex="0"
                             fx:id="menuBackButton"
                             styleClass="back-button, pause-menu-item-padding, pause-menu-font"/>
 
-                    <Button text="Save"
+                    <Button text="%PAUSE_MENU_SAVE"
                             GridPane.columnIndex="0"
                             GridPane.rowIndex="1"
                             fx:id="menuSaveButton"
                             styleClass="save-progress-button, pause-menu-item-padding, pause-menu-font"/>
 
-                    <Button text="Load"
+                    <Button text="%PAUSE_MENU_LOAD"
                             GridPane.columnIndex="0"
                             GridPane.rowIndex="2"
                             fx:id="menuLoadButton"
                             styleClass="load-game-button, pause-menu-item-padding, pause-menu-font"/>
 
-                    <Button text="Editor"
+                    <Button text="%PAUSE_MENU_EDITOR"
                             GridPane.columnIndex="0"
                             GridPane.rowIndex="3"
                             fx:id="menuEditorButton"
                             styleClass="to-editor-button, pause-menu-item-padding, pause-menu-font"/>
 
-                    <Button text="Exit"
+                    <Button text="%PAUSE_MENU_EXIT"
                             GridPane.columnIndex="0"
                             GridPane.rowIndex="4"
                             fx:id="menuExitButton"
@@ -87,7 +87,7 @@
                             fx:id="playButton"
                             styleClass="play-button">
                         <tooltip>
-                            <Tooltip text="Play"/>
+                            <Tooltip text="%INGAME_MENU_PLAY"/>
                         </tooltip>
                     </Button>
 
@@ -100,7 +100,7 @@
                             fx:id="stopButton"
                             styleClass="stop-button">
                         <tooltip>
-                            <Tooltip text="Stop"/>
+                            <Tooltip text="%INGAME_MENU_STOP"/>
                         </tooltip>
                     </Button>
 
@@ -114,7 +114,7 @@
                             fx:id="tickButton"
                             styleClass="tick-button">
                         <tooltip>
-                            <Tooltip text="Tick"/>
+                            <Tooltip text="%INGAME_MENU_TICK"/>
                         </tooltip>
                     </Button>
 
@@ -127,7 +127,7 @@
                             fx:id="menuButton"
                             styleClass="pause-screen-button">
                         <tooltip>
-                            <Tooltip text="Menu"/>
+                            <Tooltip text="%INGAME_MENU_MENU"/>
                         </tooltip>
                     </Button>
 

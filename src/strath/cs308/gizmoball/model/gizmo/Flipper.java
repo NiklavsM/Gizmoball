@@ -18,6 +18,7 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
     private LineSegment connector1;
     private LineSegment connector2;
     private Vect velocity;
+    private Vect velocityConstant;
     private double movedAngle;
     private Movement movementStatus;
     private Orientation orientation;
@@ -36,7 +37,7 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
         movementStatus = Movement.BOTTOM;
         movedAngle = Angle.ZERO.radians();
 
-//        velocity = new Vect(Angle.DEG_180);
+        velocityConstant = new Vect(Angle.DEG_180);
         velocity = Vect.ZERO;
         isCycle = false;
 
@@ -150,25 +151,50 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
     }
 
     public Vect getVelocity() {
-        return velocity;
+        return velocityConstant;
     }
 
     public void setVelocity(Vect velocity) {
-        this.velocity = new Vect(new Angle(velocity.angle().radians() * orientation.getMult()));
+        velocityConstant = velocity;
+    }
+
+    @Override
+    public void setVelocityRadian(double radian) {
+        velocityConstant = new Vect(new Angle(radian));
+    }
+
+    @Override
+    public void setVelocity(double x, double y) {
+        velocityConstant = new Vect(x, y);
+    }
+
+    @Override
+    public double getVelocityX() {
+        return velocityConstant.x();
+    }
+
+    @Override
+    public double getVelocityY() {
+        return velocityConstant.y();
+    }
+
+    @Override
+    public double getVelocityRadian() {
+        return velocityConstant.angle().radians();
     }
 
     private void up() {
         if (movementStatus == Movement.BACKWARDS) {
             movementStatus = Movement.FORWARD;
             movedAngle = Angle.DEG_90.radians() - movedAngle;
-            velocity = new Vect(new Angle(Angle.DEG_180.radians() * -1 * orientation.getMult()));
+            velocity = new Vect(new Angle(velocityConstant.angle().radians() * -1 * orientation.getMult()));
             return;
         }
 
         if (movementStatus.equals(Movement.BOTTOM)) {
             movedAngle = Angle.ZERO.radians();
             movementStatus = Movement.FORWARD;
-            velocity = new Vect(new Angle(Angle.DEG_180.radians() * -1 * orientation.getMult()));
+            velocity = new Vect(new Angle(velocityConstant.angle().radians() * -1 * orientation.getMult()));
         }
 
     }
