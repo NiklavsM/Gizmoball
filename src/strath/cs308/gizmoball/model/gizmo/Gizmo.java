@@ -106,10 +106,7 @@ public abstract class Gizmo implements IGizmo {
 
     @Override
     public void move(double x, double y) {
-        setup(x1 - x1 + x,
-                y1 - y1 + y,
-                x2 - x2 + x,
-                y2 - y2 + y);
+        setup(x, y, x2 - x1 + x, y2 - y1 + y);
     }
 
     @Override
