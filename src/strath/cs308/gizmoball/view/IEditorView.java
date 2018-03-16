@@ -42,4 +42,6 @@ public interface IEditorView {
     void setCursor(Cursor cursor);
 
     double getRadianProperty() throws NumberFormatException;
+
+    double getXVelocityProperty();
 }

@@ -47,7 +47,13 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent>{
     }
 
     private void changeMovableVelocityX() {
-       System.out.println("velocity X");
+        IMovable movableGizmo = (IMovable) gizmo;
+        try {
+            movableGizmo.setVelocity(editorView.getXVelocityProperty(), movableGizmo.getVelocityY());
+            editorView.setStatus("Gizmo X velocity set!");
+        } catch (NumberFormatException e) {
+            editorView.setErrorStatus("Given X velocity value is not acceptable!");
+        }
     }
 
     private void changeMovableVelocityY() {
