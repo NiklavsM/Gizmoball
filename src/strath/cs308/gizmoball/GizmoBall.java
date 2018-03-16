@@ -12,12 +12,15 @@ import strath.cs308.gizmoball.model.gizmo.Triangle;
 import strath.cs308.gizmoball.view.EditorView;
 import strath.cs308.gizmoball.view.PlayView;
 
+import java.util.Locale;
+
 public class GizmoBall extends Application {
 
     private IGameModel gameModel;
     private Stage currentStage;
     private InGameKeyEventHandler keyHandler;
     private GameLoader gameLoader;
+    private Locale locale = new Locale("hu");
 
     public static void main(String[] args) {
         launch(args);
@@ -93,5 +96,13 @@ public class GizmoBall extends Application {
 
     public InGameKeyEventHandler getKeyHandler() {
         return keyHandler;
+    }
+
+    public Locale getLocale() {
+        return locale;
+    }
+
+    public void setLocale(Locale locale) {
+        this.locale = locale;
     }
 }
