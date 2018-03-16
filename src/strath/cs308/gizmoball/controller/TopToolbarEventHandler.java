@@ -3,16 +3,19 @@ package strath.cs308.gizmoball.controller;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
+import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.view.IEditorView;
 
 public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
     private IGameModel gameModel;
     private IEditorView editView;
+    private GizmoBall gizmoBall;
 
-    public TopToolbarEventHandler(IGameModel gameModel, IEditorView editorView) {
+    public TopToolbarEventHandler(IGameModel gameModel, IEditorView editorView, GizmoBall gizmoBall) {
         this.gameModel = gameModel;
         this.editView = editorView;
+        this.gizmoBall = gizmoBall;
     }
 
     @Override
@@ -34,6 +37,12 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
             case "topClearButton":
                 clearBoard();
                 break;
+            case "undoButton":
+                undo();
+                break;
+            case "redoButton":
+                redo();
+                break;
 
             case "topGridButton":
                 toggleGrid();
@@ -42,11 +51,22 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
 
     }
 
+    private void redo() {
+        gizmoBall.setGameModel(BoardHistory.popFromUndoHistory());
+        System.out.println("redo called");
+    }
+
+    private void undo() {
+        gizmoBall.setGameModel(BoardHistory.popFromHistory());
+        System.out.println("undo called");
+    }
+
     private void toggleGrid() {
         editView.toggleGrid();
     }
 
     private void clearBoard() {
+        BoardHistory.addToHistory(gameModel, gizmoBall.getKeyHandler(), gizmoBall.getGameLoader());
         gameModel.reset();
     }
 

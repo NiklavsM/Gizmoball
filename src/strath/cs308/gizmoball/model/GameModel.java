@@ -9,11 +9,12 @@ import strath.cs308.gizmoball.model.gizmo.*;
 import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
+import java.io.*;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-public class GameModel extends Observable implements IGameModel {
+public class GameModel extends Observable implements IGameModel, Cloneable, Serializable {
 
     private Map<String, Gizmo> gizmos;
     private Map<String, Absorber> absorberCollided;
@@ -23,6 +24,10 @@ public class GameModel extends Observable implements IGameModel {
     private double gravityCoefficient;
 
     public GameModel() {
+        setup();
+    }
+
+    public GameModel(GameModel gameModel) {
         setup();
     }
 
@@ -331,6 +336,26 @@ public class GameModel extends Observable implements IGameModel {
     public void update() {
         setChanged();
         notifyObservers();
+    }
+
+    public IGameModel deepCopy(IGameModel gameModel) {
+        IGameModel deepCopy = null;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(bos);
+            oos.writeObject(gameModel);
+            oos.flush();
+            oos.close();
+            bos.close();
+            byte[] byteData = bos.toByteArray();
+            ByteArrayInputStream bais = new ByteArrayInputStream(byteData);
+            oos = new ObjectOutputStream(bos);
+            deepCopy = (IGameModel) new ObjectInputStream(bais).readObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return deepCopy;
     }
 
     @Override

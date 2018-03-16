@@ -1,5 +1,6 @@
 package strath.cs308.gizmoball.controller;
 
+import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.model.GizmoFactory;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGizmoFactory;
@@ -25,8 +26,10 @@ public class GameLoader {
     public static final String MOVE_COMMAND = "Move";
     public static final String WALLS_NAME = "OuterWalls";
     private static final String TAG = "GameLoader";
+
+    private final GizmoBall gizmoBall;
     private final IGizmoFactory gizmoFactory;
-    private final IGameModel gameModel;
+    private IGameModel gameModel;
     private InGameKeyEventHandler keyHandler;
 
     private Set<String> gizmoCreationCommands;
@@ -35,9 +38,10 @@ public class GameLoader {
     private Set<String> nameCommands;
     private Map<String, IGizmo.Type> gizmoCommandToEnum;
 
-    public GameLoader(IGameModel gameModel, InGameKeyEventHandler keyHandler) {
-        this.gameModel = gameModel;
-        this.keyHandler = keyHandler;
+    public GameLoader(GizmoBall gizmoBall) {
+        this.gizmoBall = gizmoBall;
+        this.gameModel = gizmoBall.getGameModel();
+        this.keyHandler = gizmoBall.getKeyHandler();
         gizmoFactory = new GizmoFactory();
 
         gizmoCommandToEnum = new HashMap<>();
@@ -65,8 +69,18 @@ public class GameLoader {
         gizmoCreationCommandsAdvanced.add("Ball");
     }
 
-    public void load(InputStream source) throws IllegalAccessException {
+    public IGameModel loadIntoNewModel(InputStream stream) throws IllegalAccessException {
+        IGameModel newModel =  gizmoBall.getNewEmptyModel();
+        load(stream, newModel);
+        return newModel;
+    }
 
+    public void load(InputStream source) throws IllegalAccessException {
+        load(source, gameModel);
+    }
+
+    private void load(InputStream source, IGameModel model) throws IllegalAccessException {
+        IGameModel gameModel = model;
         Queue<String> tokens;
         String command;
         String line;
@@ -91,7 +105,7 @@ public class GameLoader {
                 }
 
                 if (nameCommands.contains(command)) {
-                    nameCommands(command, tokens.poll(), tokens);
+                    nameCommands(command, tokens.poll(), tokens, gameModel);
                 } else {
                     if (command.equals(KEY_CONNECT_COMMAND)) {
                         tokens.poll();
@@ -134,7 +148,7 @@ public class GameLoader {
         }
     }
 
-    private void nameCommands(String command, String name, Queue<String> tokens) throws IllegalAccessException {
+    private void nameCommands(String command, String name, Queue<String> tokens, IGameModel gameModel) throws IllegalAccessException {
         if (command.equals(DELETE_COMMAND)) {
             gameModel.removeGizmo(name);
             return;
@@ -153,11 +167,11 @@ public class GameLoader {
             return;
         }
         if (nameCoordCoordCommands.contains(command)) {
-            nameCoordCoordCommands(command, name, toValidCoordinate(tokens.poll()), toValidCoordinate(tokens.poll()), tokens);
+            nameCoordCoordCommands(command, name, toValidCoordinate(tokens.poll()), toValidCoordinate(tokens.poll()), tokens, gameModel);
         }
     }
 
-    private void nameCoordCoordCommands(String command, String name, double x, double y, Queue<String> tokens) {
+    private void nameCoordCoordCommands(String command, String name, double x, double y, Queue<String> tokens, IGameModel gameModel) {
         if (command.equals(MOVE_COMMAND)) {
             Logger.verbose(TAG, "moved" + name + " to " + x + ", " + y);
         }

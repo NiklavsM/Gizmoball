@@ -162,7 +162,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
     private void attachHandlers() {
         Platform.runLater(() -> {
-            EventHandler<MouseEvent> topToolbarHandler = new TopToolbarEventHandler(gameModel, this);
+            EventHandler<MouseEvent> topToolbarHandler = new TopToolbarEventHandler(gameModel, this, gizmoBall);
             ((GridPane) namespace.get("topToolbar")).lookupAll(".top-toolbar-button")
                     .forEach(node -> node.setOnMouseClicked(topToolbarHandler));
 
@@ -247,6 +247,8 @@ public class EditorView extends Stage implements IEditorView, Observer {
     }
 
     private void drawGizmos() {
+        gameModel = gizmoBall.getGameModel();
+        System.out.println("here" + gameModel.getGizmos().size());
         GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
         gameModel.getGizmos().forEach(gizmo -> gizmoDrawer.drawGizmo(gizmo, false));
         gameModel.getGizmoBalls().forEach(ball -> gizmoDrawer.drawGizmo(ball, false));
@@ -322,7 +324,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
         if (gameModel.getGizmo(x, y).equals(Optional.empty())) {
             GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
             gameModel.getGizmoBalls().forEach(e -> {
-               System.out.println(e.getStartX() + "," + e.getStartY());
+              //System.out.println(e.getStartX() + "," + e.getStartY());
             });
                 gizmoDrawer.drawGizmo(gizmo, true);
         }

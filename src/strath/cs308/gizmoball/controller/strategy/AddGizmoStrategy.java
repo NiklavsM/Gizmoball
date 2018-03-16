@@ -2,6 +2,7 @@ package strath.cs308.gizmoball.controller.strategy;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import strath.cs308.gizmoball.controller.BoardHistory;
 import strath.cs308.gizmoball.model.GizmoFactory;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGizmoFactory;
@@ -150,19 +151,24 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
                     , endX + 1
                     , endY + 1);
 
-            gameModel.addGizmo(gizmo);
+            if (gameModel.addGizmo(gizmo)) {
+               // BoardHistory.addToHistory(gameModel);
+            }
         } else if (!gizmoType.equals(IGizmo.Type.BALL)) {
             IGizmo gizmo;
             for (double row = startX; row <= endX; row++) {
                 for (double column = startY; column <= endY; column++) {
                     gizmo = gizmoFactory.createGizmo(gizmoType, row, column);
-                    gameModel.addGizmo(gizmo);
+                    if (gameModel.addGizmo(gizmo)) {
+                       // BoardHistory.addToHistory(gameModel);
+                    }
                 }
             }
         }
     }
 
     private void putGizmoAt(double x, double y) {
+        System.out.println("putGizmoat");
         x /= editorView.getPixelRatioFor(20.0);
         y /= editorView.getPixelRatioFor(20.0);
 
@@ -177,7 +183,11 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         }
 
         IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, x, y);
-        gameModel.addGizmo(gizmo);
-        editorView.setStatus(gizmoType + " gizmo added at position: " + x + " , " + y);
+        if (gameModel.addGizmo(gizmo)) {
+           // BoardHistory.addToHistory(gameModel);
+            editorView.setStatus(gizmoType + " gizmo added at position: " + x + " , " + y);
+        }
+
     }
+
 }

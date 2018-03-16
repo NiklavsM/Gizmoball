@@ -14,6 +14,8 @@ import strath.cs308.gizmoball.view.IEditorView;
 import strath.cs308.gizmoball.view.PlayView;
 
 import java.util.Locale;
+import java.util.Observable;
+import java.util.Observer;
 
 public class GizmoBall extends Application {
 
@@ -21,6 +23,8 @@ public class GizmoBall extends Application {
     private Stage currentStage;
     private InGameKeyEventHandler keyHandler;
     private GameLoader gameLoader;
+    private EditorView editorView;
+    private PlayView playView;
     private Locale locale = new Locale("en");
 
     public static void main(String[] args) {
@@ -33,7 +37,7 @@ public class GizmoBall extends Application {
 
         gameModel = new GameModel();
         keyHandler = new InGameKeyEventHandler(gameModel);
-        gameLoader = new GameLoader(gameModel, keyHandler);
+        gameLoader = new GameLoader(this); //TODO
 
         try {
             gameLoader.load(getClass().getResourceAsStream("/alternative.gizmo"));
@@ -67,8 +71,12 @@ public class GizmoBall extends Application {
 
         currentStage = primaryStage;
 
-        currentStage = new PlayView(this);
+        currentStage = new EditorView(this);
         currentStage.show();
+    }
+
+        public static IGameModel getNewEmptyModel() {
+        return new GameModel();
     }
 
 
@@ -83,6 +91,17 @@ public class GizmoBall extends Application {
 
     public IGameModel getGameModel() {
         return gameModel;
+    }
+
+    public void setGameModel(IGameModel gameModel){
+        System.out.println("game model size " + gameModel.getGizmos().size());
+
+        this.gameModel = gameModel;
+        //TODO add keyhandler
+        gameModel.deleteObservers();
+        this.gameModel.addObserver((Observer)currentStage);
+        this.gameModel.update();
+        System.out.println("lol");
     }
 
     @Override

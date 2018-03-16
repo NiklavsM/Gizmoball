@@ -18,6 +18,8 @@ public interface IGameModel {
 
     boolean addGizmo(IGizmo gizmo);
 
+    void deleteObservers();
+
     boolean removeGizmo(String id);
 
     boolean removeGizmo(IGizmo gizmo);
@@ -45,6 +47,8 @@ public interface IGameModel {
     void reset();
 
     void update();
+
+    IGameModel deepCopy(IGameModel gameModel);
 
     int getScore();
 

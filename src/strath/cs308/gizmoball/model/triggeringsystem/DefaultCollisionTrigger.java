@@ -1,9 +1,10 @@
 package strath.cs308.gizmoball.model.triggeringsystem;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class DefaultCollisionTrigger implements ITrigger {
+public class DefaultCollisionTrigger implements ITrigger, Serializable {
     private final Set<ITriggerable> triggerables;
 
     public DefaultCollisionTrigger() {

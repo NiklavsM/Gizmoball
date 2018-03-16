@@ -28,6 +28,8 @@ public class GizmoDrawer {
     }
 
     public void drawGizmo(IGizmo gizmo, boolean isPreview) {
+
+
         gc.setFill(Color.BLACK);
         List<Dot> dots = gizmo.getDots();
         double diameter = 0;

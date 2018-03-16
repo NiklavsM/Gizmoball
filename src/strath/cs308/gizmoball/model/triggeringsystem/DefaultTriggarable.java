@@ -1,9 +1,10 @@
 package strath.cs308.gizmoball.model.triggeringsystem;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class DefaultTriggarable implements ITriggerable {
+public class DefaultTriggarable implements ITriggerable, Serializable {
 
     private final List<IAction> availableActions;
     private IAction action;
