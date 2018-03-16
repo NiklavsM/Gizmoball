@@ -33,8 +33,11 @@ public class GamePropertyEventHandler implements EventHandler<ActionEvent> {
 
     private void changeGameGravity() {
         try {
-            gameModel.setGravityCoefficient(editorView.getGravityInput());
-            editorView.setStatus("Game gravity is changed to: " + editorView.getGravityInput());
+            if (gameModel.setGravityCoefficient(editorView.getGravityInput())) {
+                editorView.setStatus("Game gravity is changed to: " + editorView.getGravityInput());
+            } else {
+                editorView.setErrorStatus("The given gravity value is not acceptable!");
+            }
         } catch (NumberFormatException e) {
             editorView.setErrorStatus("The given gravity value is not acceptable!");
         }
