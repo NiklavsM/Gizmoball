@@ -26,6 +26,7 @@ public class GameBarEventHandler implements EventHandler<ActionEvent> {
         switch (((Node) actionEvent.getSource()).getId()) {
             case "menuButton":
                 openMenu();
+                soundOn(false);
                 break;
 
             case "tickButton":
@@ -52,15 +53,17 @@ public class GameBarEventHandler implements EventHandler<ActionEvent> {
         }
 
     }
-
-    private void soundSwitch() {
-        if (musicPlayer.isPlaying()) {
-            musicPlayer.musicOff();
-            playView.soundOn(false);
-        } else {
+    private void soundOn(boolean soundOn){
+        if (soundOn) {
             musicPlayer.musicOn();
             playView.soundOn(true);
+        } else {
+            musicPlayer.musicOff();
+            playView.soundOn(false);
         }
+    }
+    private void soundSwitch() {
+        soundOn(!musicPlayer.isPlaying());
     }
 
     private void openMenu() {
