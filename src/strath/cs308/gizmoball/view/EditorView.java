@@ -336,4 +336,9 @@ public class EditorView extends Stage implements IEditorView, Observer {
     public double getXVelocityProperty() {
         return Double.parseDouble(veloXField.getText());
     }
+
+    @Override
+    public double getYVelocityProperty() {
+        return Double.parseDouble(veloYField.getText());
+    }
 }

@@ -44,4 +44,6 @@ public interface IEditorView {
     double getRadianProperty() throws NumberFormatException;
 
     double getXVelocityProperty();
+
+    double getYVelocityProperty();
 }
