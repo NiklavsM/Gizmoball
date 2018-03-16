@@ -267,6 +267,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
     @Override
     public void displayGizmoProperties(IGizmo gizmo) {
         TabPane sidePane = (TabPane) namespace.get("sidePanel");
+        EventHandler eventHandler = new GizmoPropertyEventHandler(this, gizmo);
         SingleSelectionModel<Tab> selectionModel = sidePane.getSelectionModel();
         selectionModel.select(1);
 
@@ -281,8 +282,11 @@ public class EditorView extends Stage implements IEditorView, Observer {
             IMovable movableGizmo = (IMovable) gizmo;  
             movableHolder.setVisible(true);
             TextField veloXField = (TextField) namespace.get("xVelocityField");
+            veloXField.setOnAction(eventHandler);
             TextField veloYField = (TextField) namespace.get("yVelocityField");
+            veloYField.setOnAction(eventHandler);
             TextField radianField = (TextField) namespace.get("radianVelocityField");
+            radianField.setOnAction(eventHandler);
             Label movementTypeLabel = (Label) namespace.get("movementType");
 
             Vect velocity = movableGizmo.getVelocity();
