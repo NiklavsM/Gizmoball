@@ -42,7 +42,7 @@ public class ToolModeEventHandler implements EventHandler<MouseEvent> {
 
             case "selectToolButton":
                 editorView.setCanvasMode(new SelectGizmoEventHandler(gameModel, editorView));
-                editorView.setStatus("Select tool: Click on a gizmo to edit it's properties");
+                editorView.setStatus("Select tool: Click on a gizmo to edit its properties");
                 break;
 
         }
