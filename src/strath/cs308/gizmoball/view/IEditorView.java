@@ -7,6 +7,7 @@ import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
 import java.io.File;
+import java.text.NumberFormat;
 
 public interface IEditorView {
 
@@ -39,4 +40,10 @@ public interface IEditorView {
     void previewGizmo(IGizmo gizmo, double x, double y);
 
     void setCursor(Cursor cursor);
+
+    double getRadianProperty() throws NumberFormatException;
+
+    double getXVelocityProperty();
+
+    double getYVelocityProperty();
 }

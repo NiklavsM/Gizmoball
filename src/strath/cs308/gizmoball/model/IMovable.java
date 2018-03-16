@@ -10,9 +10,15 @@ public interface IMovable {
 
     void move(double timeInSeconds);
 
-    Vect getVelocity();
+    void setVelocityRadian(double radian);
 
-    void setVelocity(Vect velocity);
+    void setVelocity(double x, double y);
+
+    double getVelocityX();
+
+    double getVelocityY();
+
+    double getVelocityRadian();
 
     Type getMovementType();
 }

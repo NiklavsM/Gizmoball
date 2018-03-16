@@ -35,7 +35,7 @@ public class GizmoFactory implements IGizmoFactory {
         switch (type) {
             case BALL:
                 Ball ball = new Ball(x1, y1, id);
-                ball.setVelocity(new Vect(x2, y2));
+                ball.setVelocity(x2, y2);
                 return ball;
             case ABSORBER:
                 return new Absorber(x1, y1, x2, y2, id);

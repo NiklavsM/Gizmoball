@@ -117,7 +117,7 @@ public class GameModel extends Observable implements IGameModel {
                 if (tuc > time) {
                     // No collision ...
                     ball.move(time);
-                    applyForces(ball.getVelocity(), time, ball);
+                    applyForces(new Vect(ball.getVelocityX(), ball.getVelocityY()), time, ball);
 
                 } else {
                     // We've got a collision in tuc
@@ -166,14 +166,13 @@ public class GameModel extends Observable implements IGameModel {
 
         // Vnew = Vold * (1 - mu * delta_t - mu2 * |Vold| * delta_t).
         velocityAfterFriction = new Vect(velocity.angle(),
-                velocity.length() * (1 - (frictionCoefficient * time) - (frictionCoefficient2 * velocity.length() * time)));
-        ball.setVelocity(velocityAfterFriction.plus(gravity));
-
+                velocity.length() * (1 - (frictionCoefficient * time) - (frictionCoefficient2 * velocity.length() * time))).plus(gravity);
+        ball.setVelocity(velocityAfterFriction.x(), velocityAfterFriction.y());
     }
 
     private CollisionDetails timeUntilCollision(Ball ball) {
         Circle ballCircle = ball.getCircle();
-        Vect ballVelocity = ball.getVelocity();
+        Vect ballVelocity = new Vect(ball.getVelocityX(), ball.getVelocityY()) ;
         Vect newVelo = new Vect(0, 0);
         Gizmo nextGizmo = null;
         double shortestTime = Double.MAX_VALUE;
