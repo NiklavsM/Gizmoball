@@ -45,8 +45,11 @@ public class GamePropertyEventHandler implements EventHandler<ActionEvent> {
 
     private void changeGameFriction1() {
         try {
-            gameModel.setFrictionM1(editorView.getFrictionInput());
-            editorView.setStatus("Game friction is changed to: " + editorView.getFrictionInput());
+            if (gameModel.setFrictionM1(editorView.getFrictionInput())) {
+                editorView.setStatus("Game friction is changed to: " + editorView.getFrictionInput());
+            } else {
+                editorView.setErrorStatus("The given friction value is not acceptable!");
+            }
         } catch (NumberFormatException e) {
             editorView.setErrorStatus("The given friction value is not acceptable!");
         }
@@ -54,8 +57,11 @@ public class GamePropertyEventHandler implements EventHandler<ActionEvent> {
 
     private void changeGameFriction2() {
         try {
-            gameModel.getFrictionM2(editorView.getFrictionInput());
-            editorView.setStatus("Game friction is changed to: " + editorView.getFrictionInput());
+            if (gameModel.getFrictionM2(editorView.getFrictionInput())) {
+                editorView.setStatus("Game friction is changed to: " + editorView.getFrictionInput());
+            } else {
+                editorView.setErrorStatus("The given friction value is not acceptable!");
+            }
         } catch (NumberFormatException e) {
             editorView.setErrorStatus("The given friction value is not acceptable!");
         }

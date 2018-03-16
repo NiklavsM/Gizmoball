@@ -256,13 +256,33 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     @Override
-    public void setFrictionM2(double frictionCoefficient) {
+    public boolean setFrictionM2(double frictionCoefficient) {
+
+        if (frictionCoefficient < 0){
+            return false;
+        }
+
         this.frictionCoefficient2 = frictionCoefficient;
+
+        setChanged();
+        notifyObservers();
+
+        return true;
     }
 
     @Override
-    public void setFrictionM1(double frictionCoefficient) {
+    public boolean setFrictionM1(double frictionCoefficient) {
+
+        if (frictionCoefficient < 0) {
+            return false;
+        }
+
         this.frictionCoefficient = frictionCoefficient;
+
+        setChanged();
+        notifyObservers();
+
+        return true;
     }
 
     @Override
