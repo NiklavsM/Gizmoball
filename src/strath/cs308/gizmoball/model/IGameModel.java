@@ -20,6 +20,8 @@ public interface IGameModel {
 
     boolean removeGizmo(String id);
 
+    boolean removeGizmo(IGizmo gizmo);
+
     void tick(double time);
 
     void addObserver(Observer o);

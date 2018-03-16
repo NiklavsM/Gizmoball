@@ -42,6 +42,7 @@ import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IMovable;
 import strath.cs308.gizmoball.model.gizmo.Ball;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
+import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 public class EditorView extends Stage implements IEditorView, Observer {
     private static final String TAG = "EditorView";
@@ -169,7 +170,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
             root.lookupAll("#addGizmoOptions Button")
                     .forEach(node -> node.setOnMouseClicked(addGizmoEventHandler));
 
-            EventHandler<MouseEvent> toolSelectionHandler = new ToolModeEventHandler(gameModel, this);
+            EventHandler<MouseEvent> toolSelectionHandler = new ToolModeEventHandler(gizmoBall, this);
             ((GridPane) namespace.get("toolButtonHolder")).lookupAll(".tool-button")
                     .forEach(node -> node.setOnMouseClicked(toolSelectionHandler));
 
@@ -239,6 +240,9 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
     @Override
     public void update(Observable observable, Object o) {
+        if(o instanceof ITriggerable) {
+            return;
+        }
         refresh();
     }
 

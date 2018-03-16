@@ -3,25 +3,28 @@ package strath.cs308.gizmoball.controller;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
+import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.controller.strategy.*;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.view.IEditorView;
 
 public class ToolModeEventHandler implements EventHandler<MouseEvent> {
 
-    private IGameModel gameModel;
-    private IEditorView editorView;
+    private final IGameModel gameModel;
+    private final IEditorView editorView;
+    private final GizmoBall gizmoBall;
 
-    public ToolModeEventHandler(IGameModel gameModel, IEditorView editorView) {
-        this.gameModel = gameModel;
+    public ToolModeEventHandler(GizmoBall gizmoBall, IEditorView editorView) {
+        this.gameModel = gizmoBall.getGameModel();
         this.editorView = editorView;
+        this.gizmoBall = gizmoBall;
     }
 
     @Override
     public void handle(MouseEvent mouseEvent) {
         switch (((Node) mouseEvent.getSource()).getId()) {
             case "removeToolButton":
-                editorView.setCanvasMode(new RemoveGizmoStrategy(gameModel, editorView));
+                editorView.setCanvasMode(new RemoveGizmoStrategy(gizmoBall, editorView));
                 editorView.setStatus("Remove Tool: Click a Gizmo to remove");
                 break;
 

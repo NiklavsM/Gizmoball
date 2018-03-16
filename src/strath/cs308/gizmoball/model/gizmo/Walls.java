@@ -21,4 +21,8 @@ public class Walls extends Gizmo {
         return IGizmo.Type.WALLS;
     }
 
+    @Override
+    public void move() {
+        throw new UnsupportedOperationException();
+    }
 }

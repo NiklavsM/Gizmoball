@@ -6,15 +6,12 @@ import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.Flipper;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static javafx.scene.input.KeyEvent.KEY_PRESSED;
 import static javafx.scene.input.KeyEvent.KEY_RELEASED;
 
-public class InGameKeyEventHandler implements EventHandler<KeyEvent> {
+public class InGameKeyEventHandler implements EventHandler<KeyEvent>, Observer {
 
     private final Map<String, Set<ITriggerable>> keyEventMap = new HashMap<>();
 
@@ -22,6 +19,7 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent> {
 
     public InGameKeyEventHandler(IGameModel gameModel) {
         this.gameModel = gameModel;
+        gameModel.addObserver(this);
     }
 
     public void onKeyEventTrigger(String keyEvent, ITriggerable triggerable) {
@@ -48,9 +46,9 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent> {
                 .forEach(
                         (event, trigs) ->
                                 trigs
-                                      .forEach(trig ->
-                                          s[0] += GameLoader.KEY_CONNECT_COMMAND +
-                                                   " " + event + " " + trig.id() + "\n")
+                                        .forEach(trig ->
+                                                s[0] += GameLoader.KEY_CONNECT_COMMAND +
+                                                        " " + event + " " + trig.id() + "\n")
                 );
         return s[0];
     }
@@ -86,4 +84,10 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent> {
         keyEventMap.clear();
     }
 
+    @Override
+    public void update(java.util.Observable o, Object arg) {
+        if (arg instanceof ITriggerable) {
+            removeTriggarable((ITriggerable) arg);
+        }
+    }
 }

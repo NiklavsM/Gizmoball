@@ -37,10 +37,7 @@ public class RemoveGizmoStrategy implements EventHandler<MouseEvent> {
 
             Optional<IGizmo> gizmo = gameModel.getGizmo(pointX, pointY);
             if (gizmo.isPresent()) {
-                gameModel.removeGizmo(gizmo.get().getId());
-                if (gizmo.get() instanceof ITriggerable) {
-                    keyHandler.removeTriggarable((ITriggerable) gizmo.get());
-                }
+                gameModel.removeGizmo(gizmo.get());
                 editorView.setStatus(gizmo.get().getType() + " gizmo removed from the playing area");
             }
         }

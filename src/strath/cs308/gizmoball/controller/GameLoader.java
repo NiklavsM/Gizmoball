@@ -159,7 +159,6 @@ public class GameLoader {
 
     private void nameCoordCoordCommands(String command, String name, double x, double y, Queue<String> tokens) {
         if (command.equals(MOVE_COMMAND)) {
-            //TODO MOVE using name x and y
             Logger.verbose(TAG, "moved" + name + " to " + x + ", " + y);
         }
         if (gizmoCreationCommands.contains(command)) {
