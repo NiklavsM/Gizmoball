@@ -69,7 +69,7 @@
                 Score: 0
             </Label>
 
-            <ToolBar maxWidth="200"
+            <ToolBar maxWidth="230"
                      styleClass="game-bar"
                      StackPane.alignment="BOTTOM_LEFT">
                 <GridPane vgap="5"
@@ -126,6 +126,19 @@
                             maxHeight="24"
                             fx:id="menuButton"
                             styleClass="pause-screen-button">
+                        <tooltip>
+                            <Tooltip text="%INGAME_MENU_MENU"/>
+                        </tooltip>
+                    </Button>
+
+                    <Button GridPane.rowIndex="0"
+                            GridPane.columnIndex="4"
+                            minWidth="24"
+                            minHeight="24"
+                            maxWidth="24"
+                            maxHeight="24"
+                            fx:id="soundButton"
+                            styleClass="sound-off-button">
                         <tooltip>
                             <Tooltip text="%INGAME_MENU_MENU"/>
                         </tooltip>

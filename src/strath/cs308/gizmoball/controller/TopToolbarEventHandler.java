@@ -44,6 +44,10 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
             case "topGridButton":
                 toggleGrid();
                 break;
+
+            case "soundSettingsButton":
+                switchToSettings();
+                break;
         }
 
     }
@@ -75,5 +79,9 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
 
     private void switchToPlayMode() {
         this.editView.switchToPlay();
+    }
+
+    private void switchToSettings() {
+        this.editView.switchToSettings();
     }
 }

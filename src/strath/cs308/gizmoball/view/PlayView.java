@@ -165,6 +165,17 @@ public class PlayView extends Stage implements IPlayView, Observer {
         gizmoBall.switchModes();
     }
 
+    public void soundOn(boolean soundOn){
+        Button soundButton = (Button) root.lookup("#soundButton");
+        soundButton.getStyleClass().clear();
+        if(soundOn) {
+            soundButton.getStyleClass().add("sound-on-button");
+        }else{
+            soundButton.getStyleClass().add("sound-off-button");
+        }
+
+    }
+
     @Override
     public File getLoadFile() {
         FileChooser fileChooser = new FileChooser();

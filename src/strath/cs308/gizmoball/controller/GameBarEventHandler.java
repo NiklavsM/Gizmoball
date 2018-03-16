@@ -12,11 +12,13 @@ public class GameBarEventHandler implements EventHandler<ActionEvent> {
     private final IGameTimer gameTimer;
     private final IGameModel gameModel;
     private final IPlayView playView;
+    private MusicPlayer musicPlayer;
 
     public GameBarEventHandler(IGameModel gameModel, IGameTimer gameTimer, IPlayView playView) {
         this.gameModel = gameModel;
         this.playView = playView;
         this.gameTimer = gameTimer;
+        musicPlayer = new MusicPlayer();
     }
 
     @Override
@@ -37,6 +39,9 @@ public class GameBarEventHandler implements EventHandler<ActionEvent> {
             case "stopButton":
                 gameTimer.stop();
                 break;
+            case "soundButton":
+                soundSwitch();
+                break;
         }
     }
 
@@ -46,6 +51,16 @@ public class GameBarEventHandler implements EventHandler<ActionEvent> {
             gameModel.tick(Constants.TICK_TIME);
         }
 
+    }
+
+    private void soundSwitch() {
+        if (musicPlayer.isPlaying()) {
+            musicPlayer.musicOff();
+            playView.soundOn(false);
+        } else {
+            musicPlayer.musicOn();
+            playView.soundOn(true);
+        }
     }
 
     private void openMenu() {

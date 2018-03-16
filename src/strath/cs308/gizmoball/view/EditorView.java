@@ -25,7 +25,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import mit.physics.Vect;
@@ -192,6 +194,19 @@ public class EditorView extends Stage implements IEditorView, Observer {
     }
 
     @Override
+    public void switchToSettings() {
+
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.initOwner(this);
+        VBox dialogVbox = new VBox(20);
+        dialogVbox.getChildren().add(new Text("This is sound settings"));
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialog.setScene(dialogScene);
+        dialog.show();
+    }
+
+    @Override
     public void setCanvasMode(EventHandler<MouseEvent> canvasStrategy) {
         canvas.setOnMouseMoved(canvasStrategy);
         canvas.setOnMouseClicked(canvasStrategy);
@@ -240,7 +255,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        if(o instanceof ITriggerable) {
+        if (o instanceof ITriggerable) {
             return;
         }
         refresh();
@@ -285,11 +300,11 @@ public class EditorView extends Stage implements IEditorView, Observer {
         Label gizmoIdField = (Label) namespace.get("gizmoId");
         VBox movableHolder = (VBox) namespace.get("movableFieldHolder");
 
-        typeLabel.setText(gizmo.getType().toString());         
+        typeLabel.setText(gizmo.getType().toString());
         gizmoIdField.setText(gizmo.getId());
 
         if (gizmo instanceof IMovable) {
-            IMovable movableGizmo = (IMovable) gizmo;  
+            IMovable movableGizmo = (IMovable) gizmo;
             movableHolder.setVisible(true);
             veloXField.setOnAction(eventHandler);
             veloYField.setOnAction(eventHandler);
@@ -303,13 +318,13 @@ public class EditorView extends Stage implements IEditorView, Observer {
                 veloXField.setText(Double.toString(movableGizmo.getVelocityX()));
                 veloYField.setText(Double.toString(movableGizmo.getVelocityY()));
 
-                rotationVelocityHolder.setVisible(false); 
-                linearVelocityHolder.setVisible(true); 
+                rotationVelocityHolder.setVisible(false);
+                linearVelocityHolder.setVisible(true);
             } else {
                 radianField.setText(Double.toString(movableGizmo.getVelocityRadian()));
-      
-                rotationVelocityHolder.setVisible(true); 
-                linearVelocityHolder.setVisible(false); 
+
+                rotationVelocityHolder.setVisible(true);
+                linearVelocityHolder.setVisible(false);
             }
 
         } else {
@@ -322,9 +337,9 @@ public class EditorView extends Stage implements IEditorView, Observer {
         if (gameModel.getGizmo(x, y).equals(Optional.empty())) {
             GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
             gameModel.getGizmoBalls().forEach(e -> {
-              //System.out.println(e.getStartX() + "," + e.getStartY());
+                //System.out.println(e.getStartX() + "," + e.getStartY());
             });
-                gizmoDrawer.drawGizmo(gizmo, true);
+            gizmoDrawer.drawGizmo(gizmo, true);
         }
     }
 

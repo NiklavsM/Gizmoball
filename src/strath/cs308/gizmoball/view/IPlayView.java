@@ -13,4 +13,6 @@ public interface IPlayView {
     void switchToEditor();
 
     File getLoadFile();
+
+    void soundOn(boolean soundOn);
 }
