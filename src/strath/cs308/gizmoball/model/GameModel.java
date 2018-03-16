@@ -71,7 +71,7 @@ public class GameModel extends Observable implements IGameModel {
                         .map(ITrigger.class::cast)
                         .forEach(trig -> trig.removeTriggarable((ITriggerable) gizmo));
                 setChanged();
-                notifyObservers((ITriggerable) gizmo);
+                notifyObservers(gizmo);
             }
             gizmos.remove(id);
             update();
