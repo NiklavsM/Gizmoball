@@ -63,6 +63,9 @@ public class EditorView extends Stage implements IEditorView, Observer {
     private TextField connectBTextField;
     private Button connectAChangeButton;
     private Button connectBChangeButton;
+    private TextField veloXField;
+    private TextField veloYField;
+    private TextField radianField;
 
     public EditorView(GizmoBall gizmoball) {
 
@@ -77,6 +80,9 @@ public class EditorView extends Stage implements IEditorView, Observer {
             friction1TextField = (TextField) namespace.get("mu1");
             friction2TextField = (TextField) namespace.get("mu2");
 
+            radianField = (TextField) namespace.get("radianVelocityField");
+            veloYField = (TextField) namespace.get("yVelocityField");
+            veloXField = (TextField) namespace.get("xVelocityField");
             gravityTextField = (TextField) namespace.get("gravity");
 
             connectATextField = (TextField) namespace.get("connectBTextField");
@@ -281,11 +287,8 @@ public class EditorView extends Stage implements IEditorView, Observer {
         if (gizmo instanceof IMovable) {
             IMovable movableGizmo = (IMovable) gizmo;  
             movableHolder.setVisible(true);
-            TextField veloXField = (TextField) namespace.get("xVelocityField");
             veloXField.setOnAction(eventHandler);
-            TextField veloYField = (TextField) namespace.get("yVelocityField");
             veloYField.setOnAction(eventHandler);
-            TextField radianField = (TextField) namespace.get("radianVelocityField");
             radianField.setOnAction(eventHandler);
             Label movementTypeLabel = (Label) namespace.get("movementType");
 
@@ -322,5 +325,10 @@ public class EditorView extends Stage implements IEditorView, Observer {
     @Override
     public void setCursor(Cursor cursor) {
         getScene().setCursor(cursor);
+    }
+
+    @Override
+    public double getRadianProperty() {
+        return Double.parseDouble(radianField.getText());
     }
 }

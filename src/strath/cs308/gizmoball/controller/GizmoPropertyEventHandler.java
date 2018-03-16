@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 
+import strath.cs308.gizmoball.model.IMovable;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.view.IEditorView;
 
@@ -36,8 +37,14 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent>{
     }
 
     private void changeMovableVelocityRadian() {
-        System.out.println("velocity radian");
-    }  
+        IMovable movableGizmo = (IMovable) gizmo;
+        try {
+            movableGizmo.setVelocityRadian(editorView.getRadianProperty());
+            editorView.setStatus("Gizmo radian velocity set!");
+        } catch (NumberFormatException e) {
+            editorView.setErrorStatus("Given radian value is not acceptable");
+        }
+    }
 
     private void changeMovableVelocityX() {
        System.out.println("velocity X");
