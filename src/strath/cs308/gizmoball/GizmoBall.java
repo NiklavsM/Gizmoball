@@ -10,6 +10,7 @@ import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.Flipper;
 import strath.cs308.gizmoball.model.gizmo.Triangle;
 import strath.cs308.gizmoball.view.EditorView;
+import strath.cs308.gizmoball.view.IEditorView;
 import strath.cs308.gizmoball.view.PlayView;
 
 import java.util.Locale;
@@ -20,7 +21,7 @@ public class GizmoBall extends Application {
     private Stage currentStage;
     private InGameKeyEventHandler keyHandler;
     private GameLoader gameLoader;
-    private Locale locale = new Locale("es");
+    private Locale locale = new Locale("en");
 
     public static void main(String[] args) {
         launch(args);
@@ -105,4 +106,5 @@ public class GizmoBall extends Application {
     public void setLocale(Locale locale) {
         this.locale = locale;
     }
+
 }
