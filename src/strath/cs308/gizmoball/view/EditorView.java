@@ -294,14 +294,16 @@ public class EditorView extends Stage implements IEditorView, Observer {
         } else {
             movableHolder.setVisible(false);
         }
-        
     }
 
     @Override
     public void previewGizmo(IGizmo gizmo, double x, double y) {
         if (gameModel.getGizmo(x, y).equals(Optional.empty())) {
             GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
-            gizmoDrawer.drawGizmo(gizmo, true);
+            gameModel.getGizmoBalls().forEach(e -> {
+               System.out.println(e.getStartX() + "," + e.getStartY());
+            });
+                gizmoDrawer.drawGizmo(gizmo, true);
         }
     }
 
