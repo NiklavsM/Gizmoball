@@ -17,7 +17,7 @@ class BallTest {
     @Test
     void toString_anyGizmo_command() {
         Ball ball = new Ball(2, 3, "mine");
-        ball.setVelocity(new Vect(3, 2));
+        ball.setVelocity(3, 2);
 
         Triangle t = new Triangle(2, 3);
         t.rotate();
