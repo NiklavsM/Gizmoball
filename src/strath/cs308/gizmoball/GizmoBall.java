@@ -21,7 +21,7 @@ public class GizmoBall extends Application {
     private Stage currentStage;
     private InGameKeyEventHandler keyHandler;
     private GameLoader gameLoader;
-    private Locale locale = new Locale("en");
+    private Locale locale = new Locale("lv");
 
     public static void main(String[] args) {
         launch(args);
