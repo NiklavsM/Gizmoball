@@ -27,7 +27,7 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
         gizmoFactory = new GizmoFactory();
         selectedGizmo = Optional.empty();
 
-        Image image = new Image("/icons/move.png");
+        Image image = new Image("/icons/move.png"); // this should be handled in the view;
         editorView.setCursor(new ImageCursor(image));
     }
 
@@ -73,8 +73,9 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
                 copyGizmo = gizmoFactory.createGizmo(selectedGizmo.get().getType(), pointX, pointY);
             }
 
-            gameModel.removeGizmo(selectedGizmo.get().getId());
-            gameModel.addGizmo(copyGizmo);
+//            gameModel.removeGizmo(selectedGizmo.get().getId());
+//            gameModel.addGizmo(copyGizmo);
+            gameModel.move(selectedGizmo.get(), pointX, pointY);
             Logger.debug(TAG, selectedGizmo.get().getType() + " gizmo moved to tile " + pointX + " , " + pointY);
             selectedGizmo = Optional.empty();
         } else {

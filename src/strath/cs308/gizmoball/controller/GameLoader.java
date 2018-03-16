@@ -1,5 +1,6 @@
 package strath.cs308.gizmoball.controller;
 
+import javafx.stage.FileChooser;
 import strath.cs308.gizmoball.model.GizmoFactory;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGizmoFactory;
@@ -119,7 +120,8 @@ public class GameLoader {
                     }
                 }
             }
-        } catch (NumberFormatException ex) {
+        } catch (Exception ex) {
+            ex.printStackTrace();
             throw ex;
         } finally {
             scanner.close();

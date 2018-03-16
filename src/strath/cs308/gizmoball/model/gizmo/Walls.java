@@ -10,6 +10,7 @@ public class Walls extends Gizmo {
 
     @Override
     protected void setup(double x1, double y1, double x2, double y2) {
+        super.setup(x1, y1, x2, y2);
         lines.add(new LineSegment(0, 0, 0, 20));
         lines.add(new LineSegment(0, 0, 20, 0));
         lines.add(new LineSegment(0, 20, 20, 20));
@@ -22,7 +23,7 @@ public class Walls extends Gizmo {
     }
 
     @Override
-    public void move() {
+    public void move(double x, double y) {
         throw new UnsupportedOperationException();
     }
 }

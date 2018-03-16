@@ -31,6 +31,7 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
 
     @Override
     protected void setup(double x1, double y1, double x2, double y2) {
+        super.setup(x1, y1, x2, y2);
         lines.add(new LineSegment(x1, y1, x2, y1));
         lines.add(new LineSegment(x2, y1, x2, y2));
         lines.add(new LineSegment(x2, y2, x1, y2));
@@ -41,12 +42,18 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
         circles.add(new Circle(x1, y2, 0));
     }
 
+    @Override
+    public void move(double x, double y) {
+        super.move(x, y);
+        ballsAbsorbed.stream().forEach(b -> b.move(x, y));
+    }
+
     public void absorbBall(Ball ball) {
         if (haveSpace()) {
             ballsAbsorbed.add(ball);
             double radius = ball.getRadius();
-            ball.setX(getEndX() - radius - ((ballsAbsorbed.size() - 1) * (2*radius)) % (x2 - x1)); // makes sure balls sit in the absorber nicely
-            ball.setY(getEndY() - radius - (((ballsAbsorbed.size() - 1) / (int) ((x2 - x1) * 2)) * (2*radius)) % (y2 - y1));
+            ball.setX(getEndX() - radius - ((ballsAbsorbed.size() - 1) * (2 * radius)) % (x2 - x1)); // makes sure balls sit in the absorber nicely
+            ball.setY(getEndY() - radius - (((ballsAbsorbed.size() - 1) / (int) ((x2 - x1) * 2)) * (2 * radius)) % (y2 - y1));
             ball.setVelocity(0, -50);
             ball.setStopped(true);
             Logger.verbose(TAG, "ball.getCircle().getCenter().y() " + ball.getCircle().getCenter().y());

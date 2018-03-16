@@ -22,6 +22,7 @@ public class Ball extends Gizmo implements IMovable {
 
     public Ball(double x, double y, String id) {
         super(x - 0.25, y - 0.25, x + 0.25, y + 0.25, id);
+        setVelocity(4, 4);
     }
 
 
@@ -101,10 +102,10 @@ public class Ball extends Gizmo implements IMovable {
 
     @Override
     protected void setup(double x, double y, double x2, double y2) {
+        super.setup(x, y, x2, y2);
         radius = 0.25;
         circle = new Circle(x + 0.25, y + 0.25, radius);
         circles.add(circle);
-        setVelocity(4, 4);
     }
 
     @Override

@@ -84,11 +84,6 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
     }
 
     @Override
-    protected void setup(double x1, double y1, double x2, double y2) {
-
-    }
-
-    @Override
     public void move(double time) {
         if (!velocity.equals(Vect.ZERO)) {
             double rotationRadian = velocity.angle().radians() * time;

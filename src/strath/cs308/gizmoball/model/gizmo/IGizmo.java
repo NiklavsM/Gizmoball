@@ -18,7 +18,7 @@ public interface IGizmo {
 
     void rotate();
 
-    void move();
+    void move(double x, double y);
 
     double getStartX();
 

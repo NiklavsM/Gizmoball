@@ -24,18 +24,10 @@ public abstract class Gizmo implements IGizmo {
     private int scoreValue;
 
     public Gizmo(double x1, double y1, double x2, double y2, String id) {
-        this.x1 = x1;
-        this.y1 = y1;
-        this.x2 = x2;
-        this.y2 = y2;
-        this.circles = new CopyOnWriteArrayList<>();
-        this.lines = new HashSet<>();
+        setup(x1, y1, x2, y2);
         this.id = id;
         rotateCount = 0;
-
         rotatingPoint = new Vect(x1 + ((x2 - x1) / 2.0), y1 + ((y2 - y1) / 2.0));
-
-        setup(x1, y1, x2, y2);
     }
 
     public Gizmo(double x1, double y1, double x2, double y2) {
@@ -70,7 +62,14 @@ public abstract class Gizmo implements IGizmo {
         return id;
     }
 
-    protected abstract void setup(double x1, double y1, double x2, double y2);
+    protected void setup(double x1, double y1, double x2, double y2) {
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
+        this.circles = new CopyOnWriteArrayList<>();
+        this.lines = new HashSet<>();
+    }
 
     public void rotate() {
         rotateCount++;
@@ -106,8 +105,11 @@ public abstract class Gizmo implements IGizmo {
     }
 
     @Override
-    public void move() {
-
+    public void move(double x, double y) {
+        setup(x1 - x1 + x,
+                y1 - y1 + y,
+                x2 - x2 + x,
+                y2 - y2 + y);
     }
 
     @Override

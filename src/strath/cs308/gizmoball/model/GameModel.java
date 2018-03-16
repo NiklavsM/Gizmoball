@@ -23,12 +23,14 @@ public class GameModel extends Observable implements IGameModel {
     private double gravityCoefficient;
 
     public GameModel() {
+        gizmos = new ConcurrentHashMap<>();
+        absorberCollided = new ConcurrentHashMap<>();
         setup();
     }
 
     private void setup() {
-        gizmos = new ConcurrentHashMap<>();
-        absorberCollided = new ConcurrentHashMap<>();
+        gizmos.clear();
+        absorberCollided.clear();
         frictionCoefficient = 0.025;
         frictionCoefficient2 = 0.025;
         gravityCoefficient = 25;
@@ -162,6 +164,12 @@ public class GameModel extends Observable implements IGameModel {
             }
         }
         moveMovables(timeToMoveFlippers);
+    }
+
+    @Override
+    public void move(IGizmo gizmo, double x, double y) {
+        gizmo.move(x, y);
+        update();
     }
 
     private void moveMovables(Double time) {
