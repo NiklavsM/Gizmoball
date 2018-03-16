@@ -139,7 +139,7 @@ class GameModelTest {
     @Test
     void tick_tickAndBallMoves() {
         Ball ball = new Ball(1, 1, "ball1");
-        ball.setVelocity(new Vect(1, 0));
+        ball.setVelocity(1, 0);
         model.addGizmo(ball);
         model.tick(1);
         assertEquals(2, ball.getX());
@@ -151,7 +151,7 @@ class GameModelTest {
         model.setGravityCoefficient(0);
         Ball ball = new Ball(0.75, 1.5, "ball1");
         Square square = new Square(2, 1, "square1");
-        ball.setVelocity(new Vect(1, 0));
+        ball.setVelocity(1, 0);
         model.addGizmo(ball);
         model.addGizmo(square);
         model.tick(1);
@@ -166,7 +166,7 @@ class GameModelTest {
         model.setGravityCoefficient(0);
         Ball ball = new Ball(0.75, 1.5, "ball1");
         CircleGizmo circle = new CircleGizmo(2, 1, "circle1");
-        ball.setVelocity(new Vect(1, 0));
+        ball.setVelocity(1, 0);
         model.addGizmo(ball);
         model.addGizmo(circle);
         model.tick(1);
@@ -181,7 +181,7 @@ class GameModelTest {
         model.setGravityCoefficient(0);
         Ball ball = new Ball(0.75, 1.5, "ball1");
         Absorber square = new Absorber(2, 1, 3, 2, "absorber1");
-        ball.setVelocity(new Vect(1, 0));
+        ball.setVelocity(1, 0);
         model.addGizmo(ball);
         model.addGizmo(square);
         model.tick(1);
@@ -195,7 +195,7 @@ class GameModelTest {
         model.setGravityCoefficient(0);
         Ball ball = new Ball(0.75, 1.5, "ball1");
         Flipper flipper = new Flipper(2, 1, Flipper.Orientation.LEFT, "flipper1");
-        ball.setVelocity(new Vect(1, 0));
+        ball.setVelocity(1, 0);
         model.addGizmo(ball);
         model.addGizmo(flipper);
         model.tick(1);
@@ -210,7 +210,7 @@ class GameModelTest {
         model.setGravityCoefficient(0);
         Ball ball = new Ball(0.75, 1.5, "ball1");
         Flipper flipper = new Flipper(2, 1, Flipper.Orientation.LEFT, "flipper1");
-        ball.setVelocity(new Vect(1, 0));
+        ball.setVelocity(1, 0);
         model.addGizmo(ball);
         model.addGizmo(flipper);
         flipper.doAction(Flipper.Movement.FORWARD);
@@ -226,7 +226,7 @@ class GameModelTest {
         model.setGravityCoefficient(0);
         Ball ball = new Ball(1.75, 1.5, "ball1");
         Flipper flipper = new Flipper(2, 1, Flipper.Orientation.RIGHT, "flipper1");
-        ball.setVelocity(new Vect(1, 0));
+        ball.setVelocity(1, 0);
         model.addGizmo(ball);
         model.addGizmo(flipper);
         model.tick(1);
@@ -240,7 +240,7 @@ class GameModelTest {
     void rotate_rotateTriangle() {
         Ball ball = new Ball(0.75, 1.5, "ball1");
         Triangle triangle = new Triangle(2, 1, "triangle1");
-        ball.setVelocity(new Vect(1, 0));
+        ball.setVelocity(1, 0);
         model.addGizmo(ball);
         model.addGizmo(triangle);
         model.rotate("triangle1");

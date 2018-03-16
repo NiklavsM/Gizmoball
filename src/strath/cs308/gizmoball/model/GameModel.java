@@ -83,13 +83,6 @@ public class GameModel extends Observable implements IGameModel {
                 if ((x >= gizmo.getStartX() && x < gizmo.getEndX()) && (y >= gizmo.getStartY() && y < gizmo.getEndY())) {
                     return Optional.of(gizmo);
                 }
-
-//                // TO-FIX THIS SNIPPET FOR PROPER PREVIEW ON DRAG
-//                if (gizmo.getType().equals(IGizmo.Type.BALL)) {
-//                    double ballX = gizmo.getStartX() + 0.25, ballY = gizmo.getStartY() + 0.25;
-//                    if (x - 0.25 > ballX && ballX < x + 0.25 && y - 0.25 > ballY && ballY < y + 0.25)
-//                        return Optional.of(gizmo);
-//                }
             }
         }
         return Optional.empty();
@@ -117,7 +110,7 @@ public class GameModel extends Observable implements IGameModel {
                 if (tuc > time) {
                     // No collision ...
                     ball.move(time);
-                    applyForces(ball.getVelocity(), time, ball);
+                    applyForces(new Vect(ball.getVelocityX(), ball.getVelocityY()), time, ball);
 
                 } else {
                     // We've got a collision in tuc
@@ -166,14 +159,13 @@ public class GameModel extends Observable implements IGameModel {
 
         // Vnew = Vold * (1 - mu * delta_t - mu2 * |Vold| * delta_t).
         velocityAfterFriction = new Vect(velocity.angle(),
-                velocity.length() * (1 - (frictionCoefficient * time) - (frictionCoefficient2 * velocity.length() * time)));
-        ball.setVelocity(velocityAfterFriction.plus(gravity));
-
+                velocity.length() * (1 - (frictionCoefficient * time) - (frictionCoefficient2 * velocity.length() * time))).plus(gravity);
+        ball.setVelocity(velocityAfterFriction.x(), velocityAfterFriction.y());
     }
 
     private CollisionDetails timeUntilCollision(Ball ball) {
         Circle ballCircle = ball.getCircle();
-        Vect ballVelocity = ball.getVelocity();
+        Vect ballVelocity = new Vect(ball.getVelocityX(), ball.getVelocityY()) ;
         Vect newVelo = new Vect(0, 0);
         Gizmo nextGizmo = null;
         double shortestTime = Double.MAX_VALUE;
@@ -257,13 +249,33 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     @Override
-    public void setFrictionM2(double frictionCoefficient) {
+    public boolean setFrictionM2(double frictionCoefficient) {
+
+        if (frictionCoefficient < 0){
+            return false;
+        }
+
         this.frictionCoefficient2 = frictionCoefficient;
+
+        setChanged();
+        notifyObservers();
+
+        return true;
     }
 
     @Override
-    public void setFrictionM1(double frictionCoefficient) {
+    public boolean setFrictionM1(double frictionCoefficient) {
+
+        if (frictionCoefficient < 0) {
+            return false;
+        }
+
         this.frictionCoefficient = frictionCoefficient;
+
+        setChanged();
+        notifyObservers();
+
+        return true;
     }
 
     @Override

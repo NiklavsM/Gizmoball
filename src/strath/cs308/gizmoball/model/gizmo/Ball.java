@@ -2,6 +2,7 @@ package strath.cs308.gizmoball.model.gizmo;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import mit.physics.Angle;
 import mit.physics.Circle;
 import mit.physics.Vect;
 
@@ -23,14 +24,30 @@ public class Ball extends Gizmo implements IMovable {
         super(x - 0.25, y - 0.25, x + 0.25, y + 0.25, id);
     }
 
+
     @Override
-    public Vect getVelocity() {
-        return velocity;
+    public void setVelocityRadian(double radian) {
+        velocity = new Vect(new Angle(radian));
     }
 
     @Override
-    public void setVelocity(Vect v) {
-        velocity = v;
+    public void setVelocity(double x, double y) {
+        velocity = new Vect(x, y);
+    }
+
+    @Override
+    public double getVelocityX() {
+        return velocity.x();
+    }
+
+    @Override
+    public double getVelocityY() {
+        return velocity.y();
+    }
+
+    @Override
+    public double getVelocityRadian() {
+        return velocity.angle().radians();
     }
 
     public Circle getCircle() {
@@ -53,6 +70,10 @@ public class Ball extends Gizmo implements IMovable {
     public void setY(double y) {
         circle = new Circle(getX(), y, radius);
         updateCircles();
+    }
+
+    public double getRadius() {
+        return (getEndX() - getStartX()) / 2;
     }
 
     public boolean isStopped() {
@@ -83,14 +104,13 @@ public class Ball extends Gizmo implements IMovable {
         radius = 0.25;
         circle = new Circle(x + 0.25, y + 0.25, radius);
         circles.add(circle);
-        setVelocity(new Vect(4, 4));
+        setVelocity(4, 4);
     }
 
     @Override
     public void move(double timeInSeconds) {
-        setX(getX() + (getVelocity().x() * timeInSeconds));
-        setY(getY() + (getVelocity().y() * timeInSeconds));
-
+        setX(getX() + (getVelocityX() * timeInSeconds));
+        setY(getY() + (getVelocityY() * timeInSeconds));
     }
 
     @Override

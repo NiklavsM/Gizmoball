@@ -30,9 +30,9 @@ public interface IGameModel {
 
     double getFrictionM2();
 
-    void setFrictionM2(double frictionCoefficient);
+    boolean setFrictionM2(double frictionCoefficient);
 
-    void setFrictionM1(double frictionCoefficient);
+    boolean setFrictionM1(double frictionCoefficient);
 
     boolean getFrictionM2(double frictionCoefficient);
 

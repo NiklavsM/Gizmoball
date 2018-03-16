@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 
+import strath.cs308.gizmoball.model.IMovable;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.view.IEditorView;
 
@@ -36,14 +37,32 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent>{
     }
 
     private void changeMovableVelocityRadian() {
-        System.out.println("velocity radian");
-    }  
+        IMovable movableGizmo = (IMovable) gizmo;
+        try {
+            movableGizmo.setVelocityRadian(editorView.getRadianProperty());
+            editorView.setStatus("Gizmo radian velocity set!");
+        } catch (NumberFormatException e) {
+            editorView.setErrorStatus("Given radian value is not acceptable");
+        }
+    }
 
     private void changeMovableVelocityX() {
-       System.out.println("velocity X");
+        IMovable movableGizmo = (IMovable) gizmo;
+        try {
+            movableGizmo.setVelocity(editorView.getXVelocityProperty(), movableGizmo.getVelocityY());
+            editorView.setStatus("Gizmo X velocity set!");
+        } catch (NumberFormatException e) {
+            editorView.setErrorStatus("Given X velocity value is not acceptable!");
+        }
     }
 
     private void changeMovableVelocityY() {
-        System.out.println("velocity Y");
+        IMovable movableGizmo = (IMovable) gizmo;
+        try {
+            movableGizmo.setVelocity(movableGizmo.getVelocityX(), editorView.getYVelocityProperty());
+            editorView.setStatus("Gizmo Y velocity set!");
+        } catch (NumberFormatException e) {
+            editorView.setErrorStatus("Given Y velocity value is not acceptable!");
+        }
     }
 }
