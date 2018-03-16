@@ -20,7 +20,7 @@ public class GizmoBall extends Application {
     private Stage currentStage;
     private InGameKeyEventHandler keyHandler;
     private GameLoader gameLoader;
-    private Locale locale;
+    private Locale locale = new Locale("hu");
 
     public static void main(String[] args) {
         launch(args);
@@ -30,7 +30,6 @@ public class GizmoBall extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setX(100);
 
-        locale = new Locale("en");
         gameModel = new GameModel();
         keyHandler = new InGameKeyEventHandler(gameModel);
         gameLoader = new GameLoader(gameModel, keyHandler);

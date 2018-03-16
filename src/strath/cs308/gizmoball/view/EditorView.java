@@ -2,10 +2,7 @@ package strath.cs308.gizmoball.view;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.Optional;
+import java.util.*;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -73,6 +70,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/editorview.fxml"));
+            loader.setResources(ResourceBundle.getBundle("dictionary", gizmoball.getLocale()));
             root = loader.load();
             namespace = loader.getNamespace();
             canvas = (Canvas) namespace.get("canvas");

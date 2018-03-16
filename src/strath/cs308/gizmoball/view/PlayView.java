@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 public class PlayView extends Stage implements IPlayView, Observer {
 
@@ -39,14 +40,14 @@ public class PlayView extends Stage implements IPlayView, Observer {
     private StackPane stackPane;
     private Canvas canvas;
     private InGameKeyEventHandler keyHandler;
-    private GameLoader gameLoader;
 
     public PlayView(GizmoBall gizmoBall) {
         this.keyHandler = gizmoBall.getKeyHandler();
-        this.gameLoader = gizmoBall.getGameLoader();
 
         try {
-            root = FXMLLoader.load(getClass().getResource("/view/plaview.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/plaview.fxml"));
+            loader.setResources(ResourceBundle.getBundle("dictionary", gizmoBall.getLocale()));
+            root = loader.load();
 
             this.gizmoBall = gizmoBall;
             this.gameModel = gizmoBall.getGameModel();

@@ -16,12 +16,14 @@
 
     <top>
         <VBox>
+            <!-- do we need this ?
             <MenuBar>
                 <Menu text="File"/>
                 <Menu text="Edit"/>
                 <Menu text="View"/>
                 <Menu text="Help"/>
             </MenuBar>
+            -->
             <ToolBar>
                 <GridPane vgap="5"
                           hgap="16"
@@ -39,7 +41,7 @@
                                 fx:id="topPlayButton"
                                 styleClass="play-button, regular-font, top-toolbar-button">
                         </Button>
-                        <Label text="Play"/>
+                        <Label text="%EDITOR_TOPBAR_PLAY"/>
                     </VBox>
 
                     <VBox GridPane.columnIndex="1"
@@ -53,7 +55,7 @@
                                 fx:id="topLoadButton"
                                 styleClass="load-button, regular-font, top-toolbar-button">
                         </Button>
-                        <Label text="Load"/>
+                        <Label text="%EDITOR_TOPBAR_LOAD"/>
                     </VBox>
 
                     <VBox GridPane.columnIndex="2"
@@ -66,7 +68,7 @@
                                 maxHeight="24"
                                 styleClass="save-button, regular-font, top-toolbar-button">
                         </Button>
-                        <Label text="Save"/>
+                        <Label text="%EDITOR_TOPBAR_SAVE"/>
                     </VBox>
 
                     <VBox GridPane.columnIndex="4"
@@ -79,7 +81,7 @@
                                 maxHeight="24"
                                 styleClass="saveas-button, regular-font, top-toolbar-button">
                         </Button>
-                        <Label text="Save As"/>
+                        <Label text="%EDITOR_TOPBAR_SAVEAS"/>
                     </VBox>
 
                     <VBox GridPane.columnIndex="5"
@@ -93,7 +95,7 @@
                                 fx:id="topClearButton"
                                 styleClass="clear-button, regular-font, top-toolbar-button">
                         </Button>
-                        <Label text="Clear Board"/>
+                        <Label text="%EDITOR_TOPBAR_CLEARBOARD"/>
                     </VBox>
 
                     <VBox GridPane.columnIndex="6"
@@ -106,7 +108,7 @@
                                 maxHeight="24"
                                 styleClass="undo-button, regular-font, top-toolbar-button">
                         </Button>
-                        <Label text="Undo"/>
+                        <Label text="%EDITOR_TOPBAR_UNDO"/>
                     </VBox>
 
                     <VBox GridPane.columnIndex="7"
@@ -119,7 +121,7 @@
                                 maxHeight="24"
                                 styleClass="redo-button, regular-font, top-toolbar-button">
                         </Button>
-                        <Label text="Redo"/>
+                        <Label text="%EDITOR_TOPBAR_REDO"/>
                     </VBox>
 
                     <VBox GridPane.columnIndex="8"
@@ -133,7 +135,7 @@
                                 fx:id="topGridButton"
                                 styleClass="grid-button, regular-font, top-toolbar-button">
                         </Button>
-                        <Label text="Toggle Grid"/>
+                        <Label text="%EDITOR_TOPBAR_TOGGLEGRID"/>
                     </VBox>
 
                     <VBox GridPane.columnIndex="9"
@@ -146,14 +148,14 @@
                                 maxHeight="24"
                                 styleClass="console-button, regular-font, top-toolbar-button">
                         </Button>
-                        <Label text="Console"/>
+                        <Label text="%EDITOR_TOPBAR_CONSOLE"/>
                     </VBox>
 
                     <VBox GridPane.columnIndex="10"
                           GridPane.rowIndex="0"
                           spacing="5"
                           alignment="CENTER">
-                        <Label text="Gravity"/>
+                        <Label text="%EDITOR_TOPBAR_GRAVITY"/>
                         <TextField fx:id="gravity"
                                    styleClass="game-option-textbox"
                                    prefWidth="60.0"/>
@@ -163,7 +165,7 @@
                           GridPane.rowIndex="0"
                           spacing="5"
                           alignment="CENTER">
-                        <Label text="Friction mu1"/>
+                        <Label text="%EDITOR_TOPBAR_FRICTIONMU1"/>
                         <TextField fx:id="mu1"
                                    styleClass="game-option-textbox"
                                    prefWidth="60.0"/>
@@ -173,7 +175,7 @@
                           GridPane.rowIndex="0"
                           spacing="5"
                           alignment="CENTER">
-                        <Label text="Friction mu2"/>
+                        <Label text="%EDITOR_TOPBAR_FRICTIONMU2"/>
                         <TextField fx:id="mu2"
                                    styleClass="game-option-textbox"
                                    prefWidth="60.0"/>
@@ -201,7 +203,7 @@
                         fx:id="selectToolButton"
                         styleClass="tool-button, add-button">
                     <tooltip>
-                        <Tooltip text="Select tool"/>
+                        <Tooltip text="%EDITOR_TOOLBAR_SELECT"/>
                     </tooltip>
                 </Button>
 
@@ -214,7 +216,7 @@
                         fx:id="connectToolButton"
                         styleClass="tool-button, connect-button">
                     <tooltip>
-                        <Tooltip text="Connect tool"/>
+                        <Tooltip text="%EDITOR_TOOLBAR_CONNECT"/>
                     </tooltip>
                 </Button>
 
@@ -227,7 +229,7 @@
                         fx:id="moveToolButton"
                         styleClass="tool-button, move-button">
                     <tooltip>
-                        <Tooltip text="Move tool"/>
+                        <Tooltip text="%EDITOR_TOOLBAR_MOVE"/>
                     </tooltip>
                 </Button>
 
@@ -240,7 +242,7 @@
                         fx:id="rotateToolButton"
                         styleClass="tool-button, rotate-button">
                     <tooltip>
-                        <Tooltip text="Rotate tool"/>
+                        <Tooltip text="%EDITOR_TOOLBAR_ROTATE"/>
                     </tooltip>
                 </Button>
 
@@ -253,7 +255,7 @@
                         fx:id="removeToolButton"
                         styleClass="tool-button, clear-button">
                     <tooltip>
-                        <Tooltip text="Remove tool"/>
+                        <Tooltip text="%EDITOR_TOOLBAR_REMOVE"/>
                     </tooltip>
                 </Button>
 
@@ -277,10 +279,10 @@
         <VBox>
             <TabPane fx:id="sidePanel">
                 <Tab closable="false"
-                     text="Gizmos">
+                     text="%EDITOR_RIGHTBAR_TAB_GIZMO">
                     <VBox spacing="16"
                           styleClass="default-padding, GizmoPane">
-                        <Label text="Gizmos"
+                        <Label text="%EDITOR_RIGHTBAR_TAB_GIZMO"
                                styleClass="card-title"/>
                         <ScrollPane maxHeight="250">
                             <GridPane hgap="16"
@@ -301,7 +303,7 @@
                                                        fill="#f44336"/>
                                         </graphic>
                                     </Button>
-                                    <Label text="Rectangle"
+                                    <Label text="%EDITOR_RIGHTBAR_RECTANGLE"
                                            styleClass="regular-font"/>
                                 </VBox>
 
@@ -315,7 +317,7 @@
                                                     radius="12.5"/>
                                         </graphic>
                                     </Button>
-                                    <Label text="Circle"
+                                    <Label text="%EDITOR_RIGHTBAR_CIRCLE"
                                            styleClass="regular-font"/>
                                 </VBox>
 
@@ -333,7 +335,7 @@
                                             <!--</ImageView>-->
                                         </graphic>
                                     </Button>
-                                    <Label text="Triangle"
+                                    <Label text="%EDITOR_RIGHTBAR_TRIANGLE"
                                            styleClass="regular-font"/>
                                 </VBox>
 
@@ -348,7 +350,7 @@
                                                        fill="#e91e63"/>
                                         </graphic>
                                     </Button>
-                                    <Label text="Absorber"
+                                    <Label text="%EDITOR_RIGHTBAR_ABSORBER"
                                            styleClass="regular-font"/>
                                 </VBox>
 
@@ -364,7 +366,7 @@
                                             </ImageView>
                                         </graphic>
                                     </Button>
-                                    <Label text="Left Flipper"
+                                    <Label text="%EDITOR_RIGHTBAR_LEFTFLIPPER"
                                            styleClass="regular-font"/>
                                 </VBox>
 
@@ -380,7 +382,7 @@
                                             </ImageView>
                                         </graphic>
                                     </Button>
-                                    <Label text="Right Flipper"
+                                    <Label text="%EDITOR_RIGHTBAR_RIGHTFLIPPER"
                                            styleClass="regular-font"/>
                                 </VBox>
 
@@ -393,7 +395,7 @@
                                             <Circle radius="9" fill="#ffffff"/>
                                         </graphic>
                                     </Button>
-                                    <Label text="Ball"
+                                    <Label text="%EDITOR_RIGHTBAR_BALL"
                                            styleClass="regular-font"/>
                                 </VBox>
 
@@ -402,39 +404,39 @@
                     </VBox>
                 </Tab>
                 <Tab closable="false"
-                     text="Properties">
+                     text="%EDITOR_RIGHTBAR_TAB_PROPERTIES">
 
                     <VBox spacing="16"
                           styleClass="default-padding, GizmoPane">
                         <HBox spacing="16"> 
                             <VBox>
-                                <Label text="Type:" />
+                                <Label text="%EDITOR_RIGHTBAR_PROPERTY_TYPE" />
                                 <Label fx:id="gizmoType" />
                             </VBox>
                             <VBox>
-                                <Label text="Id:"/>
+                                <Label text="%EDITOR_RIGHTBAR_PROPERTY_ID"/>
                                 <Label fx:id="gizmoId" />
                             </VBox>       
                         </HBox>
                            
                         <VBox fx:id="movableFieldHolder" 
                               spacing="5">
-                            <Label text="Movement type:" />
+                            <Label text="%EDITOR_RIGHTBAR_PROPERTY_MOVEMENTTYPE" />
                             <Label fx:id="movementType" />
                             <VBox fx:id="linearVelocityHolder">
                                 
-                                <Label text="Velocity X" />
+                                <Label text="%EDITOR_RIGHTBAR_PROPERTY_VELOCITYX" />
                                 <TextField fx:id="xVelocityField"
                                            styleClass="game-option-textbox"
                                            prefWidth="60.0" />
         
-                                <Label text="Velocity Y" />
+                                <Label text="%EDITOR_RIGHTBAR_PROPERTY_VELOCITYY" />
                                 <TextField fx:id="yVelocityField"
                                            styleClass="game-option-textbox"
                                            prefWidth="60.0" />
                             </VBox>
                             <VBox fx:id="rotationVelocityHolder">
-                                <Label text="Velocity radian" />
+                                <Label text="%EDITOR_RIGHTBAR_PROPERTY_VELOCITYRAD" />
                                 <TextField fx:id="radianVelocityField"
                                            styleClass="game-option-textbox"
                                            prefWidth="60.0" />
