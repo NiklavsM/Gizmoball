@@ -48,6 +48,8 @@ public class GameLoader {
         gizmoCommandToEnum.put("RightFlipper", RIGHT_FLIPPER);
         gizmoCommandToEnum.put("Ball", BALL);
         gizmoCommandToEnum.put("Absorber", ABSORBER);
+        gizmoCommandToEnum.put("Rhombus", RHOMBUS);
+        gizmoCommandToEnum.put("Octagon", OCTAGON);
 
         gizmoCreationCommands = gizmoCommandToEnum.keySet();
 

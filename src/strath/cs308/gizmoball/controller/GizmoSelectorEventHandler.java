@@ -47,6 +47,14 @@ public class GizmoSelectorEventHandler implements EventHandler<MouseEvent> {
             case "addBallMode":
                 editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.BALL));
                 break;
+
+            case "addRhombusMode":
+                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.RHOMBUS));
+                break;
+
+            case "addOctagonMode":
+                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.OCTAGON));
+                break;
         }
     }
 }

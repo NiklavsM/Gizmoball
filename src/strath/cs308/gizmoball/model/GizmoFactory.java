@@ -26,6 +26,10 @@ public class GizmoFactory implements IGizmoFactory {
                 if (x >= 0 && x < 20 && y < 19)
                     return new Flipper(x, y, Flipper.Orientation.RIGHT, id); //FIXME
             }
+            case RHOMBUS:
+                return new Rhombus(x, y, id);
+            case OCTAGON:
+                return new Octagon(x, y, id);
         }
         throw new IllegalArgumentException("no absorber please");
     }

@@ -21,6 +21,10 @@ Square S162 16 2
 Square S172 17 2
 Square S182 18 2
 
+Rhombus R1 5 10
+
+Octagon O1 5 12
+
 Circle C43 4 3
 Circle C54 5 4
 Circle C65 6 5
@@ -63,7 +67,7 @@ Connect C165 RF137
 Connect C174 RF137
 Connect C183 RF137
 Absorber A 0 19 10 20
-Absorber A2 16 19 20 20
+Absorber A2 17 19 20 20
 
 KeyConnect key 74 down A
 KeyConnect key 69 up A2
@@ -72,10 +76,6 @@ Connect A2 A
 
 # Balls
 
-Ball B3 17.0 10.0 1.0 0.0
-Ball B4 17.0 13.0 0.0 0.0
-Ball B5 17.0 14.0 0.0 0.0
-Ball B6 17.0 15.0 0.0 0.0
 Ball B7 17.0 16.0 0.0 0.0
 Ball B8 17.0 17.0 0.0 0.0
 Ball B9 18.0 11.0 1.0 0.0

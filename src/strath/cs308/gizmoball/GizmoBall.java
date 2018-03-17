@@ -47,13 +47,13 @@ public class GizmoBall extends Application {
         //
         // THIS IS JUST TESTING HERE
         //
-        Triangle t = (Triangle) gameModel.getGizmoById("T");
-        t.setAction(args -> {
-            t.rotate();
-        });
-        t.registerTriggarable(t);  Flipper f = (Flipper) gameModel.getGizmoById("RF112");
-        t.registerTriggarable(f);
-        keyHandler.onKeyEventTrigger("key 74.0 down", t);
+//        Triangle t = (Triangle) gameModel.getGizmoById("T");
+//        t.setAction(args -> {
+//            t.rotate();
+//        });
+//        t.registerTriggarable(t);  Flipper f = (Flipper) gameModel.getGizmoById("RF112");
+//        t.registerTriggarable(f);
+//        keyHandler.onKeyEventTrigger("key 74.0 down", t);
         //
         //
         //
