@@ -49,11 +49,11 @@ public class GizmoBall extends Application {
         //
         // THIS IS JUST TESTING HERE
         //
-        Triangle t = (Triangle) gameModel.getGizmoById("T");
-        t.setAction(args -> {
-            t.rotate();
-        });
-        t.registerTriggarable(t);
+//        Triangle t = (Triangle) gameModel.getGizmoById("T");
+//        t.setAction(args -> {
+//            t.rotate();
+//        });
+//        t.registerTriggarable(t);
         //
         //
         //
@@ -61,9 +61,9 @@ public class GizmoBall extends Application {
         //
 
 
-        Flipper f = (Flipper) gameModel.getGizmoById("RF112");
-        t.registerTriggarable(f);
-        keyHandler.onKeyEventTrigger("key 74.0 down", t);
+//        Flipper f = (Flipper) gameModel.getGizmoById("RF112");
+//        t.registerTriggarable(f);
+//        keyHandler.onKeyEventTrigger("key 74.0 down", t);
 
         currentStage = primaryStage;
 

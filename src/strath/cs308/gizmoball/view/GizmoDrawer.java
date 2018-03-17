@@ -18,6 +18,8 @@ public class GizmoDrawer {
     public static final Paint BLUE = Color.rgb(3, 169, 244);
     public static final Paint ORANGE = Color.rgb(255, 152, 0);
     public static final Paint DEEP_BLUE = Color.rgb(84, 110, 122);
+    public static final Paint YELLOW = Color.rgb(255, 255, 23);
+    public static final Paint CYAN = Color.rgb(0, 255, 226);
 
     private final double pxPerL;
     private GraphicsContext gc;
@@ -64,7 +66,7 @@ public class GizmoDrawer {
 
     }
 
-    private void setGizmoColor(IGizmo.Type type) {
+    private void setGizmoColor(IGizmo.Type type) { // TODO Should get color properties from the gizmo itself
         switch (type) {
             case BALL:
                 gc.setStroke(Color.WHITE);
@@ -100,6 +102,14 @@ public class GizmoDrawer {
 
             case RIGHT_FLIPPER:
                 gc.setStroke(ORANGE);
+                break;
+
+            case RHOMBUS:
+                gc.setFill(YELLOW);
+                break;
+
+            case OCTAGON:
+                gc.setFill(CYAN);
                 break;
         }
     }

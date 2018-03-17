@@ -1,19 +1,19 @@
 package strath.cs308.gizmoball.controller;
 
-import javafx.stage.FileChooser;
-import strath.cs308.gizmoball.model.GizmoFactory;
-import strath.cs308.gizmoball.model.IGameModel;
-import strath.cs308.gizmoball.model.IGizmoFactory;
-import strath.cs308.gizmoball.model.gizmo.IGizmo;
-import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
-import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
-import strath.cs308.gizmoball.utils.Logger;
+        import javafx.stage.FileChooser;
+        import strath.cs308.gizmoball.model.GizmoFactory;
+        import strath.cs308.gizmoball.model.IGameModel;
+        import strath.cs308.gizmoball.model.IGizmoFactory;
+        import strath.cs308.gizmoball.model.gizmo.IGizmo;
+        import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
+        import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
+        import strath.cs308.gizmoball.utils.Logger;
 
-import java.io.InputStream;
-import java.util.*;
-import java.util.stream.Collectors;
+        import java.io.InputStream;
+        import java.util.*;
+        import java.util.stream.Collectors;
 
-import static strath.cs308.gizmoball.model.gizmo.IGizmo.Type.*;
+        import static strath.cs308.gizmoball.model.gizmo.IGizmo.Type.*;
 
 public class GameLoader {
 
@@ -49,6 +49,8 @@ public class GameLoader {
         gizmoCommandToEnum.put("RightFlipper", RIGHT_FLIPPER);
         gizmoCommandToEnum.put("Ball", BALL);
         gizmoCommandToEnum.put("Absorber", ABSORBER);
+        gizmoCommandToEnum.put("Rhombus", RHOMBUS);
+        gizmoCommandToEnum.put("Octagon", OCTAGON);
 
         gizmoCreationCommands = gizmoCommandToEnum.keySet();
 

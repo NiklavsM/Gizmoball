@@ -22,6 +22,10 @@ public class GizmoFactory implements IGizmoFactory {
                 return new Flipper(x, y, Flipper.Orientation.LEFT, id);
             case RIGHT_FLIPPER:
                 return new Flipper(x, y, Flipper.Orientation.RIGHT, id); //FIXME
+            case RHOMBUS:
+                return new Rhombus(x, y, id);
+            case OCTAGON:
+                return new Octagon(x, y, id);
         }
         throw new IllegalArgumentException("no absorber please");
     }
