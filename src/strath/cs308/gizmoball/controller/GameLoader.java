@@ -161,6 +161,8 @@ public class GameLoader {
 
     private void nameCoordCoordCommands(String command, String name, double x, double y, Queue<String> tokens) {
         if (command.equals(MOVE_COMMAND)) {
+            gameModel.getGizmoById(name).move(x, y);
+            //TODO check if occupied
             Logger.verbose(TAG, "moved" + name + " to " + x + ", " + y);
         }
         if (gizmoCreationCommands.contains(command)) {
