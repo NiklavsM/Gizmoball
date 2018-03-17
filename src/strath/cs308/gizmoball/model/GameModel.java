@@ -387,9 +387,11 @@ public class GameModel extends Observable implements IGameModel {
             }
         }
 
-        //TODO add gravity and friciton
 
         commands.append("\n# gravity and friction\n");
+        //TODO add gravity and friciton
+        commands.append(GameLoader.GRAVITY_COMMAND + " ").append(gravityCoefficient + "\n");
+        commands.append(GameLoader.FRICTION_COMMAND + " ").append(frictionCoefficient + " " + frictionCoefficient2);
 
         return commands.toString();
     }
