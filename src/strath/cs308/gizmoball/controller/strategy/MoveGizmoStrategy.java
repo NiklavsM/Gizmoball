@@ -59,6 +59,8 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
         if (!existingGizmo.isPresent()) {
             IGizmo copyGizmo;
             if (selectedGizmo.get().getType().equals(IGizmo.Type.ABSORBER)) {
+                pointX = Math.floor(pointX);
+                pointY = Math.floor(pointY);
                 copyGizmo = gizmoFactory.createGizmo(selectedGizmo.get().getType()
                         , Math.floor(pointX)
                         , Math.floor(pointY)
