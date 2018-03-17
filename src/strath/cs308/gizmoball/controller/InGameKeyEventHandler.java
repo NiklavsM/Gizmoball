@@ -23,6 +23,9 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent>, Observer {
     }
 
     public void onKeyEventTrigger(String keyEvent, ITriggerable triggerable) {
+        if(triggerable == null) {
+            return;
+        }
         if (!keyEventMap.containsKey(keyEvent)) {
             keyEventMap.put(keyEvent, new HashSet<>());
         }
