@@ -9,6 +9,7 @@ import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.Flipper;
 import strath.cs308.gizmoball.model.gizmo.Triangle;
+import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.EditorView;
 import strath.cs308.gizmoball.view.IEditorView;
 import strath.cs308.gizmoball.view.PlayView;
@@ -17,6 +18,7 @@ import java.util.Locale;
 
 public class GizmoBall extends Application {
 
+    private static final String TAG = "GizmoBall";
     private IGameModel gameModel;
     private Stage currentStage;
     private InGameKeyEventHandler keyHandler;
@@ -38,14 +40,10 @@ public class GizmoBall extends Application {
         try {
             gameLoader.load(getClass().getResourceAsStream("/alternative.gizmo"));
         } catch (Exception e) {
-            System.err.println("Failed to load default model");
-            System.err.println("\n\n");
+            Logger.error(TAG,"Failed to load default model");
             e.printStackTrace();
         }
 
-        //
-        //
-        //
         //
         // THIS IS JUST TESTING HERE
         //

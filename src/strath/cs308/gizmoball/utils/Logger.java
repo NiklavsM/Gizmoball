@@ -22,7 +22,7 @@ public class Logger {
 
     public static void error(String tag, String message) {
         if (level != DISABLED) {
-            System.out.println(tag + ": " + message);
+            System.err.println(tag + ": " + message);
         }
     }
 
