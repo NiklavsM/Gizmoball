@@ -140,7 +140,7 @@
                             fx:id="soundButton"
                             styleClass="sound-off-button">
                         <tooltip>
-                            <Tooltip text="%INGAME_MENU_MENU"/>
+                            <Tooltip text="%INGAME_MENU_MUSIC"/>
                         </tooltip>
                     </Button>
 
