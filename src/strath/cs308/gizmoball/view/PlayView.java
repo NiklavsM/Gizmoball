@@ -21,6 +21,7 @@ import strath.cs308.gizmoball.controller.PauseMenuEventHandler;
 import strath.cs308.gizmoball.model.GameTimer;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGameTimer;
+import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.io.File;
 import java.io.IOException;
@@ -117,6 +118,9 @@ public class PlayView extends Stage implements IPlayView, Observer {
 
     @Override
     public void update(Observable observable, Object o) {
+        if(o instanceof ITriggerable) {
+            return;
+        }
         Platform.runLater(() -> {
             drawBackground();
             drawGizmos();
@@ -159,6 +163,17 @@ public class PlayView extends Stage implements IPlayView, Observer {
     @Override
     public void switchToEditor() {
         gizmoBall.switchModes();
+    }
+
+    public void soundOn(boolean soundOn){
+        Button soundButton = (Button) root.lookup("#soundButton");
+        soundButton.getStyleClass().clear();
+        if(soundOn) {
+            soundButton.getStyleClass().add("sound-on-button");
+        }else{
+            soundButton.getStyleClass().add("sound-off-button");
+        }
+
     }
 
     @Override

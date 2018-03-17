@@ -146,6 +146,10 @@ Button:hover {
     -fx-background-image: url("/icons/console.png");
 }
 
+.settings-button {
+    -fx-background-image: url("/icons/settings.png");
+}
+
 /* Toolbar */
 .add-button {
     -fx-background-image: url("/icons/cursor.png");
@@ -170,6 +174,14 @@ Button:hover {
 
 .pause-screen-button {
     -fx-background-image: url("/icons/menu.png");
+}
+
+.sound-on-button {
+    -fx-background-image: url("/icons/soundon.png");
+}
+
+.sound-off-button {
+    -fx-background-image: url("/icons/soundoff.png");
 }
 
 .game-bar {

@@ -11,8 +11,8 @@
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx"
             stylesheets="/styles/style.css"
-            prefHeight="500.0"
-            prefWidth="800.0">
+            prefHeight="800.0"
+            prefWidth="1300.0">
 
     <top>
         <VBox>
@@ -106,6 +106,7 @@
                                 minWidth="24"
                                 minHeight="24"
                                 maxHeight="24"
+                                fx:id="undoButton"
                                 styleClass="undo-button, regular-font, top-toolbar-button">
                         </Button>
                         <Label text="%EDITOR_TOPBAR_UNDO"/>
@@ -119,6 +120,7 @@
                                 minWidth="24"
                                 minHeight="24"
                                 maxHeight="24"
+                                fx:id="redoButton"
                                 styleClass="redo-button, regular-font, top-toolbar-button">
                         </Button>
                         <Label text="%EDITOR_TOPBAR_REDO"/>
@@ -172,13 +174,26 @@
                     </VBox>
 
                     <VBox GridPane.columnIndex="12"
+                                                     GridPane.rowIndex="0"
+                                                     spacing="5"
+                                                     alignment="CENTER">
+                    <Label text="%EDITOR_TOPBAR_FRICTIONMU2"/>
+                    <TextField fx:id="mu2"
+                               styleClass="game-option-textbox"
+                               prefWidth="60.0"/>
+                </VBox>
+                    <VBox GridPane.columnIndex="13"
                           GridPane.rowIndex="0"
                           spacing="5"
                           alignment="CENTER">
-                        <Label text="%EDITOR_TOPBAR_FRICTIONMU2"/>
-                        <TextField fx:id="mu2"
-                                   styleClass="game-option-textbox"
-                                   prefWidth="60.0"/>
+                        <Button maxWidth="24"
+                                minWidth="24"
+                                minHeight="24"
+                                maxHeight="24"
+                                fx:id="soundSettingsButton"
+                                styleClass="settings-button, regular-font, top-toolbar-button">
+                        </Button>
+                        <Label text="%EDITOR_SOUND_SETTINGS"/>
                     </VBox>
 
                 </GridPane>

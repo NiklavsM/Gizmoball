@@ -34,12 +34,30 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
             case "topClearButton":
                 clearBoard();
                 break;
+            case "undoButton":
+                undo();
+                break;
+            case "redoButton":
+                redo();
+                break;
 
             case "topGridButton":
                 toggleGrid();
                 break;
+
+            case "soundSettingsButton":
+                switchToSettings();
+                break;
         }
 
+    }
+
+    private void redo() {
+        BoardHistory.popFromUndoHistory(gameModel);
+    }
+
+    private void undo() {
+        BoardHistory.popFromHistory(gameModel);
     }
 
     private void toggleGrid() {
@@ -47,6 +65,7 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
     }
 
     private void clearBoard() {
+        gameModel.getGizmos().forEach(BoardHistory::addToHistoryGizmoRemoved);
         gameModel.reset();
     }
 
@@ -60,5 +79,9 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
 
     private void switchToPlayMode() {
         this.editView.switchToPlay();
+    }
+
+    private void switchToSettings() {
+        this.editView.switchToSettings();
     }
 }

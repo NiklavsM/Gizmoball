@@ -4,6 +4,9 @@ import javafx.event.EventHandler;
 import javafx.scene.ImageCursor;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import strath.cs308.gizmoball.GizmoBall;
+import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
+import strath.cs308.gizmoball.controller.BoardHistory;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.view.IEditorView;
@@ -14,10 +17,12 @@ public class RemoveGizmoStrategy implements EventHandler<MouseEvent> {
 
     private final IEditorView editorView;
     private final IGameModel gameModel;
+    private final InGameKeyEventHandler keyHandler;
 
-    public RemoveGizmoStrategy(IGameModel gameModel, IEditorView editorView) {
-        this.gameModel = gameModel;
+    public RemoveGizmoStrategy(GizmoBall gizmoBall, IEditorView editorView) {
+        this.gameModel = gizmoBall.getGameModel();
         this.editorView = editorView;
+        this.keyHandler = gizmoBall.getKeyHandler();
 
         Image image = new Image("/icons/clear.png");
         editorView.setCursor(new ImageCursor(image));
@@ -32,7 +37,8 @@ public class RemoveGizmoStrategy implements EventHandler<MouseEvent> {
 
             Optional<IGizmo> gizmo = gameModel.getGizmo(pointX, pointY);
             if (gizmo.isPresent()) {
-                gameModel.removeGizmo(gizmo.get().getId());
+                BoardHistory.addToHistoryGizmoRemoved(gizmo.get());
+                gameModel.removeGizmo(gizmo.get());
                 editorView.setStatus(gizmo.get().getType() + " gizmo removed from the playing area");
             }
         }

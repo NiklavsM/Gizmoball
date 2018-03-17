@@ -13,6 +13,8 @@ public interface IEditorView {
 
     void switchToPlay();
 
+    void switchToSettings();
+
     void setCanvasMode(EventHandler<MouseEvent> canvasStrategy);
 
     double getPixelRatioFor(double valueToCompare);

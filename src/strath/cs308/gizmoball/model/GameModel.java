@@ -64,10 +64,28 @@ public class GameModel extends Observable implements IGameModel {
             if (gizmo instanceof Absorber) {
                 ((Absorber) gizmo).getBallsAbsorbed().forEach(ball -> removeGizmo(ball.getId()));
             }
+            if (gizmo instanceof ITrigger) {
+                gizmos.values()
+                        .stream()
+                        .filter(ITrigger.class::isInstance)
+                        .map(ITrigger.class::cast)
+                        .forEach(trig -> trig.removeTriggarable((ITriggerable) gizmo));
+                setChanged();
+                notifyObservers(gizmo);
+            }
             gizmos.remove(id);
             update();
             return true;
         }
+        return false;
+    }
+
+    @Override
+    public boolean removeGizmo(IGizmo gizmo) {
+        if (gizmo == null) {
+            throw new NullPointerException();
+        }
+        removeGizmo(gizmo.getId());
         return false;
     }
 
@@ -165,7 +183,7 @@ public class GameModel extends Observable implements IGameModel {
 
     private CollisionDetails timeUntilCollision(Ball ball) {
         Circle ballCircle = ball.getCircle();
-        Vect ballVelocity = new Vect(ball.getVelocityX(), ball.getVelocityY()) ;
+        Vect ballVelocity = new Vect(ball.getVelocityX(), ball.getVelocityY());
         Vect newVelo = new Vect(0, 0);
         Gizmo nextGizmo = null;
         double shortestTime = Double.MAX_VALUE;
@@ -251,14 +269,13 @@ public class GameModel extends Observable implements IGameModel {
     @Override
     public boolean setFrictionM2(double frictionCoefficient) {
 
-        if (frictionCoefficient < 0){
+        if (frictionCoefficient < 0) {
             return false;
         }
 
         this.frictionCoefficient2 = frictionCoefficient;
 
-        setChanged();
-        notifyObservers();
+        update();
 
         return true;
     }
@@ -272,8 +289,7 @@ public class GameModel extends Observable implements IGameModel {
 
         this.frictionCoefficient = frictionCoefficient;
 
-        setChanged();
-        notifyObservers();
+        update();
 
         return true;
     }
@@ -284,8 +300,7 @@ public class GameModel extends Observable implements IGameModel {
         if (frictionCoefficient >= 0) {
             this.frictionCoefficient = frictionCoefficient;
 
-            setChanged();
-            notifyObservers();
+            update();
             return true;
         } else {
             return false;
@@ -302,8 +317,7 @@ public class GameModel extends Observable implements IGameModel {
         if (gravityCoefficient >= 0) {
             this.gravityCoefficient = gravityCoefficient;
 
-            setChanged();
-            notifyObservers();
+            update();
             return true;
         }
         return false;
