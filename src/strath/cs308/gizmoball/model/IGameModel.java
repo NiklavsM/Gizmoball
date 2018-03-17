@@ -24,7 +24,7 @@ public interface IGameModel {
 
     void tick(double time);
 
-    void move(IGizmo gizmo, double x, double y);
+    boolean move(IGizmo gizmo, double x, double y);
 
     void addObserver(Observer o);
 

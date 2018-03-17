@@ -43,15 +43,8 @@ public class GameModel extends Observable implements IGameModel {
             return false;
         }
 
-        Gizmo tempGizmo = (Gizmo) gizmo;
-
-        for (Gizmo currentGizmo : gizmos.values()) {
-            if (!currentGizmo.getType().equals(IGizmo.Type.WALLS) &&
-                    tempGizmo.getStartX() < currentGizmo.getEndX() &&
-                    tempGizmo.getEndX() > currentGizmo.getStartX() &&
-                    tempGizmo.getStartY() < currentGizmo.getEndY() &&
-                    tempGizmo.getEndY() > currentGizmo.getStartY())
-                return false;
+        if (overlaps(gizmo)) {
+            return false;
         }
 
         gizmos.put(gizmo.getId(), (Gizmo) gizmo);
@@ -167,9 +160,32 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     @Override
-    public void move(IGizmo gizmo, double x, double y) {
+    public boolean move(IGizmo gizmo, double x, double y) {
+        double backX = gizmo.getStartX(), backY = gizmo.getStartY();
         gizmo.move(x, y);
+        if (overlaps(gizmo)) {
+            gizmo.move(backX, backY);
+            return false;
+        }
         update();
+        return true;
+    }
+
+    private boolean overlaps(IGizmo gizmo) {
+        Gizmo tempGizmo = (Gizmo) gizmo;
+        for (Gizmo currentGizmo : gizmos.values()) {
+            if (!currentGizmo.getType().equals(IGizmo.Type.WALLS) &&
+                    tempGizmo.getStartX() < currentGizmo.getEndX() &&
+                    tempGizmo.getEndX() > currentGizmo.getStartX() &&
+                    tempGizmo.getStartY() < currentGizmo.getEndY() &&
+                    tempGizmo.getEndY() > currentGizmo.getStartY()) {
+                if (tempGizmo.equals(currentGizmo)) {
+                    continue;
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
     private void moveMovables(Double time) {
