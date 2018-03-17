@@ -69,10 +69,10 @@
                 Score: 0
             </Label>
 
-            <ToolBar maxWidth="230"
+            <ToolBar maxWidth="200"
                      styleClass="game-bar"
                      StackPane.alignment="BOTTOM_LEFT">
-                <GridPane vgap="5"
+                <GridPane vgap="4"
                           hgap="16"
                           fx:id="gameMenu"
                           styleClass="default-padding">
@@ -91,22 +91,22 @@
                         </tooltip>
                     </Button>
 
+                    <!--<Button GridPane.rowIndex="0"-->
+                    <!--GridPane.columnIndex="1"-->
+                    <!--minWidth="24"-->
+                    <!--minHeight="24"-->
+                    <!--maxWidth="24"-->
+                    <!--maxHeight="24"-->
+                    <!--fx:id="stopButton"-->
+                    <!--styleClass="stop-button">-->
+                    <!--<tooltip>-->
+                    <!--<Tooltip text="%INGAME_MENU_STOP"/>-->
+                    <!--</tooltip>-->
+                    <!--</Button>-->
+
+
                     <Button GridPane.rowIndex="0"
                             GridPane.columnIndex="1"
-                            minWidth="24"
-                            minHeight="24"
-                            maxWidth="24"
-                            maxHeight="24"
-                            fx:id="stopButton"
-                            styleClass="stop-button">
-                        <tooltip>
-                            <Tooltip text="%INGAME_MENU_STOP"/>
-                        </tooltip>
-                    </Button>
-
-
-                    <Button GridPane.rowIndex="0"
-                            GridPane.columnIndex="2"
                             minWidth="24"
                             minHeight="24"
                             maxWidth="24"
@@ -119,7 +119,7 @@
                     </Button>
 
                     <Button GridPane.rowIndex="0"
-                            GridPane.columnIndex="3"
+                            GridPane.columnIndex="2"
                             minWidth="24"
                             minHeight="24"
                             maxWidth="24"
@@ -132,7 +132,7 @@
                     </Button>
 
                     <Button GridPane.rowIndex="0"
-                            GridPane.columnIndex="4"
+                            GridPane.columnIndex="3"
                             minWidth="24"
                             minHeight="24"
                             maxWidth="24"
