@@ -18,10 +18,14 @@ public class GizmoFactory implements IGizmoFactory {
                 return new Ball(x, y, id);
             case ABSORBER:
                 return new Absorber(x, y, x + 1, y + 1, id);
-            case LEFT_FLIPPER:
-                return new Flipper(x, y, Flipper.Orientation.LEFT, id);
-            case RIGHT_FLIPPER:
-                return new Flipper(x, y, Flipper.Orientation.RIGHT, id); //FIXME
+            case LEFT_FLIPPER: {
+                if (x >= 0 && x < 19 && y < 19)
+                    return new Flipper(x, y, Flipper.Orientation.LEFT, id);
+            }
+            case RIGHT_FLIPPER: {
+                if (x >= 0 && x < 20 && y < 19)
+                    return new Flipper(x, y, Flipper.Orientation.RIGHT, id); //FIXME
+            }
         }
         throw new IllegalArgumentException("no absorber please");
     }
