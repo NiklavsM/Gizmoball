@@ -66,7 +66,8 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
                 pointY = Math.floor(pointY);
             }
 
-            boolean moveSuccessful = gameModel.move(selectedGizmo.get(), pointX, pointY);
+            if (!gameModel.move(selectedGizmo.get(), pointX, pointY))
+                return;
             editorView.setStatus(selectedGizmo.get().getType() + " gizmo moved to tile " + pointX + " , " + pointY);
             selectedGizmo = Optional.empty();
         } else {
