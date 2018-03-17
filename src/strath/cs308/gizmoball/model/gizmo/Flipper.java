@@ -47,22 +47,29 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
             x = x + radius;
         }
 
-        setup(x - radius, y + radius, x + radius, y + radius + 1.5);
+        flipperSetup(x - radius, y + radius, x + radius, y + radius + 1.5);
         defaultTriggarable = new DefaultTriggarable();
         setAction(this);
     }
 
     @Override
     public void move(double x, double y) {
+        setup(x, y, x + 2, y + 2);
         if (orientation == Orientation.RIGHT) {
-            x += 2 * radius;
+            x = (x + 2) - radius;
+        } else {
+            x = x + radius;
         }
-        super.move(x, y + radius);
+//        super.move(x, y + radius);
+        flipperSetup(x - radius, y + radius, x + radius, y + radius + 1.5);
+        int rotateCount = this.rotateCount;
+        for (int i = 0; i < rotateCount; i++) {
+            rotate();
+        }
+        this.rotateCount = rotateCount;
     }
 
-    @Override
-    protected void setup(double x1, double y1, double x2, double y2) {
-        super.setup(x1, y1, x2, y2);
+    private void flipperSetup(double x1, double y1, double x2, double y2) {
         startPoint = new Circle(x1 + radius, y1, radius);
         endPoint = new Circle(x2 - radius, y2, radius);
 
