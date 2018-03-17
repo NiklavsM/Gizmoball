@@ -157,6 +157,10 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
 
     }
 
+    public boolean isMoving(){
+        return velocity == Vect.ZERO;
+    }
+
     public Vect getVelocity() {
         return velocityConstant;
     }
@@ -207,7 +211,6 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
     }
 
     private void down() {
-
         if (movementStatus.equals(Movement.TOP)) {
             movementStatus = Movement.BACKWARDS;
             movedAngle = Angle.ZERO.radians();
