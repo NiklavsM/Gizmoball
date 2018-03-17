@@ -78,7 +78,7 @@ public class GameModel extends Observable implements IGameModel {
     @Override
     public boolean removeGizmo(IGizmo gizmo) {
         if (gizmo == null) {
-            throw new NullPointerException();
+            return false;
         }
         removeGizmo(gizmo.getId());
         return false;
@@ -161,6 +161,9 @@ public class GameModel extends Observable implements IGameModel {
 
     @Override
     public boolean move(IGizmo gizmo, double x, double y) {
+        if (gizmo == null) {
+            return false;
+        }
         double backX = gizmo.getStartX(), backY = gizmo.getStartY();
         gizmo.move(x, y);
         if (overlaps(gizmo)) {
@@ -275,9 +278,14 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     @Override
-    public void rotate(String id) {
-        gizmos.get(id).rotate();
+    public boolean rotate(String id) {
+        IGizmo g = gizmos.get(id);
+        if (g == null) {
+            return false;
+        }
+        g.rotate();
         update();
+        return true;
     }
 
     @Override
@@ -379,9 +387,11 @@ public class GameModel extends Observable implements IGameModel {
             }
         }
 
-        //TODO add gravity and friciton
 
         commands.append("\n# gravity and friction\n");
+        //TODO add gravity and friciton
+        commands.append(GameLoader.GRAVITY_COMMAND + " ").append(gravityCoefficient + "\n");
+        commands.append(GameLoader.FRICTION_COMMAND + " ").append(frictionCoefficient + " " + frictionCoefficient2);
 
         return commands.toString();
     }

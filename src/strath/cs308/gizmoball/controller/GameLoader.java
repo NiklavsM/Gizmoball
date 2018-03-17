@@ -1,19 +1,18 @@
 package strath.cs308.gizmoball.controller;
 
-        import javafx.stage.FileChooser;
-        import strath.cs308.gizmoball.model.GizmoFactory;
-        import strath.cs308.gizmoball.model.IGameModel;
-        import strath.cs308.gizmoball.model.IGizmoFactory;
-        import strath.cs308.gizmoball.model.gizmo.IGizmo;
-        import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
-        import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
-        import strath.cs308.gizmoball.utils.Logger;
+import strath.cs308.gizmoball.model.GizmoFactory;
+import strath.cs308.gizmoball.model.IGameModel;
+import strath.cs308.gizmoball.model.IGizmoFactory;
+import strath.cs308.gizmoball.model.gizmo.IGizmo;
+import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
+import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
+import strath.cs308.gizmoball.utils.Logger;
 
-        import java.io.InputStream;
-        import java.util.*;
-        import java.util.stream.Collectors;
+import java.io.InputStream;
+import java.util.*;
+import java.util.stream.Collectors;
 
-        import static strath.cs308.gizmoball.model.gizmo.IGizmo.Type.*;
+import static strath.cs308.gizmoball.model.gizmo.IGizmo.Type.*;
 
 public class GameLoader {
 
@@ -107,17 +106,20 @@ public class GameLoader {
                         continue;
                     }
 
-                    double val1 = toValidCoordinate(tokens.poll());
+                    double val1 = toValidNumber(tokens.poll());
 
-                    if (command.equals(FRICTION_COMMAND)) {
-                        //TODO
-                        Logger.verbose(TAG, "friction = " + val1);
+                    if (command.equals(GRAVITY_COMMAND)) {
+                        gameModel.setGravityCoefficient(val1);
+                        //TODO make sure it works
+                        Logger.verbose(TAG, "gravity = " + val1);
                         continue;
                     }
-                    if (command.equals(GRAVITY_COMMAND)) {
-                        double val2 = toValidCoordinate(tokens.poll());
-                        //TODO
-                        Logger.verbose(TAG, "gravity = " + val1);
+                    if (command.equals(FRICTION_COMMAND)) {
+                        double val2 = toValidNumber(tokens.poll());
+                        //TODO make sure it works
+                        gameModel.setFrictionM1(val1);
+                        gameModel.setFrictionM2(val2);
+                        Logger.verbose(TAG, "mu1 = " + val1 + ", mu2 = " + val2);
                         continue;
                     }
                 }
@@ -157,7 +159,7 @@ public class GameLoader {
             return;
         }
         if (nameCoordCoordCommands.contains(command)) {
-            nameCoordCoordCommands(command, name, toValidCoordinate(tokens.poll()), toValidCoordinate(tokens.poll()), tokens);
+            nameCoordCoordCommands(command, name, toValidNumber(tokens.poll()), toValidNumber(tokens.poll()), tokens);
         }
     }
 
@@ -181,14 +183,6 @@ public class GameLoader {
             gameModel.addGizmo(gizmoFactory.createGizmo(gizmoCommandToEnum.get(command), x, y, name));
             Logger.verbose(TAG, "created " + command + " " + name + " at " + x + ", " + y);
         }
-    }
-
-    private double toValidCoordinate(String stringCoordinate) {
-        double coordinate = toValidNumber(stringCoordinate);
-        if (coordinate >= 0 && coordinate <= 19) {
-            return coordinate;
-        }
-        throw new NumberFormatException("Coordinate is not in range [0,19].");
     }
 
 }

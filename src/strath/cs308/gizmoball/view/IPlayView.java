@@ -15,4 +15,6 @@ public interface IPlayView {
     File getLoadFile();
 
     void soundOn(boolean soundOn);
+
+    void changePlayIcon();
 }

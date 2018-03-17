@@ -21,7 +21,7 @@ public class GizmoBall extends Application {
     private Stage currentStage;
     private InGameKeyEventHandler keyHandler;
     private GameLoader gameLoader;
-    private Locale locale = new Locale("lv");
+    private Locale locale = new Locale("en");
 
     public static void main(String[] args) {
         launch(args);
@@ -37,7 +37,7 @@ public class GizmoBall extends Application {
 
         try {
             gameLoader.load(getClass().getResourceAsStream("/alternative.gizmo"));
-        } catch (IllegalAccessException e) {
+        } catch (Exception e) {
             System.err.println("Failed to load default model");
             System.err.println("\n\n");
             e.printStackTrace();
@@ -53,17 +53,14 @@ public class GizmoBall extends Application {
 //        t.setAction(args -> {
 //            t.rotate();
 //        });
-//        t.registerTriggarable(t);
-        //
-        //
-        //
-        //
-        //
-
-
-//        Flipper f = (Flipper) gameModel.getGizmoById("RF112");
+//        t.registerTriggarable(t);  Flipper f = (Flipper) gameModel.getGizmoById("RF112");
 //        t.registerTriggarable(f);
 //        keyHandler.onKeyEventTrigger("key 74.0 down", t);
+        //
+        //
+        //
+        //
+        //
 
         currentStage = primaryStage;
 

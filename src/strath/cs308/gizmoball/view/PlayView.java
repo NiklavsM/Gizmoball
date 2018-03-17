@@ -8,6 +8,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.effect.GaussianBlur;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
@@ -144,6 +146,18 @@ public class PlayView extends Stage implements IPlayView, Observer {
     private void updateScore() {
         Label score = (Label) root.lookup("#score");
         score.setText("Score: " + gameModel.getScore());
+    }
+
+    public void changePlayIcon() {
+        Button icon = (Button) root.lookup("#playButton");
+        if (icon.getStyle().contains("stop")) {
+            icon.setStyle("-fx-background-image: url('/icons/play.png')");
+            icon.setTooltip(new Tooltip("Play"));
+        }
+        else {
+            icon.setStyle("-fx-background-image: url('/icons/stop.png')");
+            icon.setTooltip(new Tooltip("Stop"));
+        }
     }
 
     public boolean getCloseConFormation() {

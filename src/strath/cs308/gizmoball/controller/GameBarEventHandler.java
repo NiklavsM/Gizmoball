@@ -34,12 +34,16 @@ public class GameBarEventHandler implements EventHandler<ActionEvent> {
                 break;
 
             case "playButton":
-                gameTimer.start();
+                if (gameTimer.isRunning())
+                    gameTimer.stop();
+                else
+                    gameTimer.start();
+                playView.changePlayIcon();
                 break;
 
-            case "stopButton":
-                gameTimer.stop();
-                break;
+//            case "stopButton":
+//                gameTimer.stop();
+//                break;
             case "soundButton":
                 soundSwitch();
                 break;
