@@ -112,6 +112,7 @@ public class GameModel extends Observable implements IGameModel {
 
     public void tick(double time) {
         Gizmo nextGizmo;
+        List<ITrigger> triggersToTrigger = new LinkedList<>();
         Set<Ball> balls = getBalls();
         double timeToMoveFlippers = time;
 
@@ -130,8 +131,7 @@ public class GameModel extends Observable implements IGameModel {
                     nextGizmo = cd.getGizmo();
 
                     if (nextGizmo instanceof ITrigger) {
-                        ITrigger trigger = (ITrigger) nextGizmo;
-                        trigger.trigger();
+                        triggersToTrigger.add((ITrigger) nextGizmo);
                     }
 
                     if (nextGizmo instanceof Flipper && tuc < timeToMoveFlippers) timeToMoveFlippers = tuc;
@@ -157,6 +157,7 @@ public class GameModel extends Observable implements IGameModel {
             }
         }
         moveMovables(timeToMoveFlippers);
+        triggersToTrigger.forEach(ITrigger::trigger);
     }
 
     @Override

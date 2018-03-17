@@ -23,7 +23,6 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
     private double movedAngle;
     private Movement movementStatus;
     private Orientation orientation;
-    private boolean isCycle;
 
     public Flipper(double x, double y, Orientation orientation) {
         this(x, y, orientation, generateID());
@@ -39,7 +38,6 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
 
         velocityConstant = new Vect(Angle.DEG_180);
         velocity = Vect.ZERO;
-        isCycle = false;
 
         if (orientation == Orientation.RIGHT) {
             x = (x + 2) - radius;
@@ -139,11 +137,6 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
                     movementStatus = Movement.TOP;
                     velocity = Vect.ZERO;
                     movedAngle = Angle.ZERO.radians();
-                    if (isCycle) {
-                        isCycle = false;
-                        down();
-                        return;
-                    }
                 }
 
                 if (movementStatus.equals(Movement.BACKWARDS)) {
@@ -288,7 +281,7 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
 
     @Override
     public List<IAction> getAvailableActions() {
-        return getAvailableActions();
+        return defaultTriggarable.getAvailableActions();
     }
 
     @Override
