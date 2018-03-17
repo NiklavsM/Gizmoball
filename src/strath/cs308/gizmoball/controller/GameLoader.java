@@ -183,10 +183,14 @@ public class GameLoader {
 
     private double toValidCoordinate(String stringCoordinate) {
         double coordinate = toValidNumber(stringCoordinate);
-        if (coordinate >= 0 && coordinate <= 19) {
+        try {
+        if (coordinate >= 0 && coordinate <= 19)
             return coordinate;
+        } catch (NumberFormatException ex) {
+            ex.printStackTrace();
         }
-        throw new NumberFormatException("Coordinate is not in range [0,19].");
+        return coordinate;
+//        throw new NumberFormatException("Coordinate is not in range [0,19].");
     }
 
 }

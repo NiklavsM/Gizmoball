@@ -57,31 +57,16 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
 
         Optional<IGizmo> existingGizmo = gameModel.getGizmo(pointX, pointY);
         if (!existingGizmo.isPresent()) {
-            IGizmo copyGizmo;
-            if (selectedGizmo.get().getType().equals(IGizmo.Type.ABSORBER)) {
+            if (!selectedGizmo.get().getType().equals(IGizmo.Type.BALL)) {
                 pointX = Math.floor(pointX);
                 pointY = Math.floor(pointY);
-                copyGizmo = gizmoFactory.createGizmo(selectedGizmo.get().getType()
-                        , Math.floor(pointX)
-                        , Math.floor(pointY)
-                        , Math.floor(pointX) + (selectedGizmo.get().getEndX() - selectedGizmo.get().getStartX())
-                        , Math.floor(pointY) + (selectedGizmo.get().getEndY() - selectedGizmo.get().getStartY()));
-            } else {
-                if (!selectedGizmo.get().getType().equals(IGizmo.Type.BALL)) {
-                    pointX = Math.floor(pointX);
-                    pointY = Math.floor(pointY);
-                }
-
-                copyGizmo = gizmoFactory.createGizmo(selectedGizmo.get().getType(), pointX, pointY);
             }
 
-//            gameModel.removeGizmo(selectedGizmo.get().getId());
-//            gameModel.addGizmo(copyGizmo);
-            gameModel.move(selectedGizmo.get(), pointX, pointY);
-            Logger.debug(TAG, selectedGizmo.get().getType() + " gizmo moved to tile " + pointX + " , " + pointY);
+            boolean moveSuccessful = gameModel.move(selectedGizmo.get(), pointX, pointY);
+            editorView.setStatus(selectedGizmo.get().getType() + " gizmo moved to tile " + pointX + " , " + pointY);
             selectedGizmo = Optional.empty();
         } else {
-            Logger.debug(TAG, "Tile " + pointX + " , " + pointY + " is already occupied by a " + existingGizmo.get().getType() + " gizmo.");
+           editorView.setStatus("Tile " + Math.floor(pointX) + " , " + Math.floor(pointY) + " is already occupied by a " + existingGizmo.get().getType() + " gizmo.");
         }
     }
 }
