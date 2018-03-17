@@ -13,6 +13,7 @@ import java.util.List;
 public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
 
     private final DefaultTriggarable defaultTriggarable;
+    private final double radius = 0.25;
     private Circle startPoint;
     private Circle endPoint;
     private LineSegment connector1;
@@ -31,7 +32,6 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
     public Flipper(double x, double y, Orientation orientation, String id) {
         super(x, y, x + 2, y + 2, id);
 
-        double radius = 0.25;
         this.orientation = orientation;
 
         movementStatus = Movement.BOTTOM;
@@ -47,27 +47,39 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
             x = x + radius;
         }
 
-        startPoint = new Circle(x, y + radius, radius);
-        endPoint = new Circle(x, y + radius + 1.5, radius);
+        flipperSetup(x - radius, y + radius, x + radius, y + radius + 1.5);
+        defaultTriggarable = new DefaultTriggarable();
+        setAction(this);
+    }
 
-        connector1 = new LineSegment(startPoint.getCenter().x() - radius
-                , startPoint.getCenter().y()
-                , endPoint.getCenter().x() - radius
-                , endPoint.getCenter().y());
+    @Override
+    public void move(double x, double y) {
+        setup(x, y, x + 2, y + 2);
+        if (orientation == Orientation.RIGHT) {
+            x = (x + 2) - radius;
+        } else {
+            x = x + radius;
+        }
+//        super.move(x, y + radius);
+        flipperSetup(x - radius, y + radius, x + radius, y + radius + 1.5);
+        int rotateCount = this.rotateCount;
+        for (int i = 0; i < rotateCount; i++) {
+            rotate();
+        }
+        this.rotateCount = rotateCount;
+    }
 
+    private void flipperSetup(double x1, double y1, double x2, double y2) {
+        startPoint = new Circle(x1 + radius, y1, radius);
+        endPoint = new Circle(x2 - radius, y2, radius);
 
-        connector2 = new LineSegment(startPoint.getCenter().x() + radius
-                , startPoint.getCenter().y()
-                , endPoint.getCenter().x() + radius
-                , endPoint.getCenter().y());
+        connector1 = new LineSegment(x1, y1, x1, y2);
+        connector2 = new LineSegment(x2, y1, x2, y2);
 
         lines.add(connector1);
         lines.add(connector2);
         circles.add(startPoint);
         circles.add(endPoint);
-
-        defaultTriggarable = new DefaultTriggarable();
-        setAction(this);
     }
 
     @Override
@@ -81,11 +93,6 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
         }
 
         return IGizmo.Type.FLIPPER;
-    }
-
-    @Override
-    protected void setup(double x1, double y1, double x2, double y2) {
-
     }
 
     @Override
@@ -159,11 +166,6 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
     }
 
     @Override
-    public void setVelocityRadian(double radian) {
-        velocityConstant = new Vect(new Angle(radian));
-    }
-
-    @Override
     public void setVelocity(double x, double y) {
         velocityConstant = new Vect(x, y);
     }
@@ -181,6 +183,11 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
     @Override
     public double getVelocityRadian() {
         return velocityConstant.angle().radians();
+    }
+
+    @Override
+    public void setVelocityRadian(double radian) {
+        velocityConstant = new Vect(new Angle(radian));
     }
 
     private void up() {

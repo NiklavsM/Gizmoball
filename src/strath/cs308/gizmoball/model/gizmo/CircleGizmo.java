@@ -26,8 +26,8 @@ public class CircleGizmo extends Gizmo implements ITrigger, ITriggerable {
 
     @Override
     protected void setup(double x1, double y1, double x2, double y2) {
+        super.setup(x1, y1, x2, y2);
         circles.add(new Circle(x1 + 0.5, y1 + 0.5, 0.5));
-
     }
 
     @Override

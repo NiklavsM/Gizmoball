@@ -24,6 +24,7 @@ public class Square extends Gizmo implements ITrigger, ITriggerable {
 
     @Override
     protected void setup(double x1, double y1, double x2, double y2) {
+        super.setup(x1, y1, x2, y2);
         lines.add(new LineSegment(x1, y1, x1 + 1, y1));
         lines.add(new LineSegment(x1, y1, x1, y1 + 1));
         lines.add(new LineSegment(x1 + 1, y1, x1 + 1, y1 + 1));
