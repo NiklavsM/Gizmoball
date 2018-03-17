@@ -20,10 +20,11 @@ Group PR_Th1
 * Work on extra features
 * Add triggering GUI support
 * Write more tests
-* Try to beak the system and fix bugs
+* Try to break the system and fix bugs
 
 ## Questions
-
+ * Ask about marking criteria
+ * Ask about the final submission
 
 ## Group Members
 
