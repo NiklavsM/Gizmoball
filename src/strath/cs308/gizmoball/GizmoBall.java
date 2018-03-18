@@ -62,7 +62,7 @@ public class GizmoBall extends Application {
 
         currentStage = primaryStage;
 
-        currentStage = new EditorView(this);
+        currentStage = new PlayView(this);
         currentStage.show();
     }
 
