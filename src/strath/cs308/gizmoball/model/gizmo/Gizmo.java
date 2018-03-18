@@ -23,12 +23,15 @@ public abstract class Gizmo implements IGizmo {
     protected double y2;
     private int scoreValue;
     private double reflectionCoefficient;
+    private String color;
 
     public Gizmo(double x1, double y1, double x2, double y2, String id) {
         setup(x1, y1, x2, y2);
         this.id = id;
         rotateCount = 0;
         reflectionCoefficient = 1.0;
+
+        color = "ffffff";
     }
 
     public Gizmo(double x1, double y1, double x2, double y2) {
@@ -189,14 +192,27 @@ public abstract class Gizmo implements IGizmo {
     }
 
     @Override
-    public void setReflectionCoefficient(double coefficient)
-    {
+    public void setReflectionCoefficient(double coefficient) {
         reflectionCoefficient = coefficient;
     }
 
     @Override
-    public double getReflectionCoefficient()
-    {
+    public double getReflectionCoefficient() {
         return reflectionCoefficient;
+    }
+
+    @Override
+    public String getColor() {
+        return color;
+    }
+
+    @Override
+    public boolean setColor(String color) {
+        if (!color.matches("^#[0-9A-F]{6}$")) {
+            return false;
+        }
+
+        this.color = color;
+        return true;
     }
 }

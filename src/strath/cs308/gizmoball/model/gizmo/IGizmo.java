@@ -32,6 +32,10 @@ public interface IGizmo {
 
     double getReflectionCoefficient();
 
+    String getColor();
+
+    boolean setColor(String color);
+
     enum Type {
         TRIANGLE("Triangle"), ABSORBER("Absorber"), SQUARE("Square"), BALL("Ball"),
         WALLS("Walls"), FLIPPER("Flipper"), CIRCLE("Circle"),
