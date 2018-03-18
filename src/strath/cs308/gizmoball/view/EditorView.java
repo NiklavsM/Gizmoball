@@ -274,6 +274,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
         TabPane sidePane = (TabPane) namespace.get("sidePanel");
         EventHandler eventHandler = new GizmoPropertyEventHandler(this, gizmo);
         SingleSelectionModel<Tab> selectionModel = sidePane.getSelectionModel();
+        ColorPicker colorPicker = (ColorPicker) namespace.get("colorPickerPorperty");
         selectionModel.select(1);
 
         Label typeLabel = (Label) namespace.get("gizmoType");
@@ -284,6 +285,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
         typeLabel.setText(gizmo.getType().toString());
         gizmoIdField.setText(gizmo.getId());
         reflectionCoefficientField.setText(String.valueOf(gizmo.getReflectionCoefficient()));
+        colorPicker.setValue(Color.web(gizmo.getColor()));
 
         if (gizmo instanceof IMovable) {
             IMovable movableGizmo = (IMovable) gizmo;
