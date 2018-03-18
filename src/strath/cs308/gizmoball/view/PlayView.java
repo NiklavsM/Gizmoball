@@ -166,6 +166,7 @@ public class PlayView extends Scene implements IPlayView, Observer {
 
     @Override
     public void switchToEditor() {
+        gameModel.deleteObserver(this);
         GizmoBall.switchView(new EditorView(gameModel, keyHandler));
     }
 

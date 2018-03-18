@@ -28,6 +28,8 @@ public interface IGameModel {
 
     void addObserver(Observer o);
 
+    void deleteObserver(Observer observer);
+
     boolean rotate(String id);
 
     double setFrictionM1();
