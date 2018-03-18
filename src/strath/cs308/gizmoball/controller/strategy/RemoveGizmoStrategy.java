@@ -17,12 +17,10 @@ public class RemoveGizmoStrategy implements EventHandler<MouseEvent> {
 
     private final IEditorView editorView;
     private final IGameModel gameModel;
-    private final InGameKeyEventHandler keyHandler;
 
-    public RemoveGizmoStrategy(GizmoBall gizmoBall, IEditorView editorView) {
-        this.gameModel = gizmoBall.getGameModel();
+    public RemoveGizmoStrategy(IGameModel gameModel,  IEditorView editorView) {
+        this.gameModel = gameModel;
         this.editorView = editorView;
-        this.keyHandler = gizmoBall.getKeyHandler();
 
         Image image = new Image("/icons/clear.png");
         editorView.setCursor(new ImageCursor(image));
