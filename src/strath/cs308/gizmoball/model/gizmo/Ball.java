@@ -27,7 +27,7 @@ public class Ball extends Gizmo implements IMovable {
 
 
     @Override
-    public void setVelocityConstantRadian(double radian) {
+    public void setVelocityRadian(double radian) {
         velocity = new Vect(new Angle(radian));
     }
 
@@ -47,7 +47,7 @@ public class Ball extends Gizmo implements IMovable {
     }
 
     @Override
-    public double getVelocityConstantRadian() {
+    public double getVelocityRadian() {
         return velocity.angle().radians();
     }
 

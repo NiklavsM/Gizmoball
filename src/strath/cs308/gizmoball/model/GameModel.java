@@ -229,7 +229,7 @@ public class GameModel extends Observable implements IGameModel {
             List<Circle> circles = gizmo.getCircles();
             if (gizmo instanceof Flipper && !((Flipper) gizmo).isMoving()) {
                 Flipper flipper = ((Flipper) gizmo);
-                Double angularVelo = flipper.getVelocity().angle().radians();
+                Double angularVelo = flipper.getCurrentVelocity().angle().radians();
                 Vect rotationCentre = flipper.getStartPoint().getCenter();
                 for (LineSegment line : lines) {
                     time = Geometry.timeUntilRotatingWallCollision(line, rotationCentre, angularVelo, ballCircle, ballVelocity);

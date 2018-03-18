@@ -10,7 +10,7 @@ public interface IMovable {
 
     void move(double timeInSeconds);
 
-    void setVelocityConstantRadian(double radian);
+    void setVelocityRadian(double radian);
 
     void setVelocity(double x, double y);
 
@@ -18,7 +18,7 @@ public interface IMovable {
 
     double getVelocityY();
 
-    double getVelocityConstantRadian();
+    double getVelocityRadian();
 
     Type getMovementType();
 }

@@ -316,7 +316,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
                 rotationVelocityHolder.setVisible(false);
                 linearVelocityHolder.setVisible(true);
             } else {
-                radianField.setText(Double.toString(movableGizmo.getVelocityConstantRadian()));
+                radianField.setText(Double.toString(movableGizmo.getVelocityRadian()));
 
                 rotationVelocityHolder.setVisible(true);
                 linearVelocityHolder.setVisible(false);
