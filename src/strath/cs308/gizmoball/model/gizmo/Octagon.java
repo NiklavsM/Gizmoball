@@ -17,6 +17,7 @@ public class Octagon extends Gizmo implements ITrigger, ITriggerable {
         collisionTrigger = new DefaultCollisionTrigger();
         triggerable = new DefaultTriggarable();
     }
+
     public Octagon(double x, double y) {
         this(x, y, generateID());
     }
@@ -24,21 +25,21 @@ public class Octagon extends Gizmo implements ITrigger, ITriggerable {
     @Override
     protected void setup(double x1, double y1, double x2, double y2) {
         super.setup(x1, y1, x2, y2);
-        lines.add(new LineSegment(x1+0.3, y1, x1 + 0.7, y1));
-        lines.add(new LineSegment(x1+ 0.7, y1, x1+1, y1 + 0.3));
-        lines.add(new LineSegment(x1 + 1, y1+ 0.3, x1 + 1, y1 + 0.7));
+        lines.add(new LineSegment(x1 + 0.3, y1, x1 + 0.7, y1));
+        lines.add(new LineSegment(x1 + 0.7, y1, x1 + 1, y1 + 0.3));
+        lines.add(new LineSegment(x1 + 1, y1 + 0.3, x1 + 1, y1 + 0.7));
         lines.add(new LineSegment(x1, y1 + 0.7, x1 + 0.7, y1 + 1));
-        lines.add(new LineSegment(x1+0.7, y1 + 1, x1 + 0.3, y1+1));
-        lines.add(new LineSegment(x1+ 0.3, y1+1, x1, y1 + 0.7));
-        lines.add(new LineSegment(x1, y1+ 0.7, x1 , y1 + 0.3));
+        lines.add(new LineSegment(x1 + 0.7, y1 + 1, x1 + 0.3, y1 + 1));
+        lines.add(new LineSegment(x1 + 0.3, y1 + 1, x1, y1 + 0.7));
+        lines.add(new LineSegment(x1, y1 + 0.7, x1, y1 + 0.3));
         lines.add(new LineSegment(x1, y1 + 0.3, x1 + 0.3, y1));
 
-        circles.add(new Circle(x1+0.3, y1 , 0));
-        circles.add(new Circle(x1 + 0.7, y1 , 0));
+        circles.add(new Circle(x1 + 0.3, y1, 0));
+        circles.add(new Circle(x1 + 0.7, y1, 0));
         circles.add(new Circle(x1 + 1, y1 + 0.3, 0));
-        circles.add(new Circle(x1+1, y1 + 0.7, 0));
-        circles.add(new Circle(x1+0.7, y1+1 , 0));
-        circles.add(new Circle(x1+0.3, y1 + 1, 0));
+        circles.add(new Circle(x1 + 1, y1 + 0.7, 0));
+        circles.add(new Circle(x1 + 0.7, y1 + 1, 0));
+        circles.add(new Circle(x1 + 0.3, y1 + 1, 0));
         circles.add(new Circle(x1, y1 + 0.7, 0));
         circles.add(new Circle(x1, y1 + 0.3, 0));
     }
@@ -95,6 +96,6 @@ public class Octagon extends Gizmo implements ITrigger, ITriggerable {
 
     @Override
     public String id() {
-        return null;
+        return id;
     }
 }

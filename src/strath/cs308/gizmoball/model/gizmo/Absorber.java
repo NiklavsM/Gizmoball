@@ -6,6 +6,7 @@ import mit.physics.Vect;
 import strath.cs308.gizmoball.model.triggeringsystem.*;
 import strath.cs308.gizmoball.utils.Logger;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.Stack;
@@ -45,7 +46,9 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
     @Override
     public void move(double x, double y) {
         super.move(x, y);
-        ballsAbsorbed.stream().forEach(b -> b.move(x, y));
+        List<Ball> balls = new LinkedList<>(ballsAbsorbed);
+        ballsAbsorbed.clear();
+        balls.forEach(b -> absorbBall(b));
     }
 
     public void absorbBall(Ball ball) {
@@ -58,6 +61,10 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
             ball.setStopped(true);
             Logger.verbose(TAG, "ball.getCircle().getCenter().y() " + ball.getCircle().getCenter().y());
         }
+    }
+
+    public boolean hasAbsorbed(Ball ball) {
+        return ballsAbsorbed.contains(ball);
     }
 
     private void shootTheBallOut(Ball ball) {

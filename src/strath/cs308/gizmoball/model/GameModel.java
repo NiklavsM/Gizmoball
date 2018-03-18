@@ -186,6 +186,13 @@ public class GameModel extends Observable implements IGameModel {
                 if (tempGizmo.equals(currentGizmo)) {
                     continue;
                 }
+                if (tempGizmo instanceof Absorber) {
+                    if (currentGizmo instanceof Ball) {
+                        if (((Absorber) tempGizmo).hasAbsorbed((Ball) currentGizmo)) {
+                            continue;
+                        }
+                    }
+                }
                 return true;
             }
         }

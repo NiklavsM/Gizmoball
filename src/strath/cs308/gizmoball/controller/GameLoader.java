@@ -140,7 +140,7 @@ public class GameLoader {
         }
     }
 
-    private void nameCommands(String command, String name, Queue<String> tokens) throws IllegalAccessException {
+    private void nameCommands(String command, String name, Queue<String> tokens) {
         if (command.equals(DELETE_COMMAND)) {
             gameModel.removeGizmo(name);
             return;

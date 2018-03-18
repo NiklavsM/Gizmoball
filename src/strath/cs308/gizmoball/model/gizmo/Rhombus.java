@@ -17,6 +17,7 @@ public class Rhombus extends Gizmo implements ITrigger, ITriggerable {
         collisionTrigger = new DefaultCollisionTrigger();
         triggerable = new DefaultTriggarable();
     }
+
     public Rhombus(double x, double y) {
         this(x, y, generateID());
     }
@@ -25,11 +26,11 @@ public class Rhombus extends Gizmo implements ITrigger, ITriggerable {
     protected void setup(double x1, double y1, double x2, double y2) {
         super.setup(x1, y1, x2, y2);
         lines.add(new LineSegment(x1, y1 + 0.5, x1 + 0.5, y1));
-        lines.add(new LineSegment(x1+ 0.5, y1, x1+1, y1 + 0.5));
-        lines.add(new LineSegment(x1 + 1, y1+ 0.5, x1 + + 0.5, y1 + 1));
+        lines.add(new LineSegment(x1 + 0.5, y1, x1 + 1, y1 + 0.5));
+        lines.add(new LineSegment(x1 + 1, y1 + 0.5, x1 + +0.5, y1 + 1));
         lines.add(new LineSegment(x1, y1 + 0.5, x1 + 0.5, y1 + 1));
 
-        circles.add(new Circle(x1+0.5, y1 , 0));
+        circles.add(new Circle(x1 + 0.5, y1, 0));
         circles.add(new Circle(x1 + 1, y1 + 0.5, 0));
         circles.add(new Circle(x1 + 0.5, y1 + 1, 0));
         circles.add(new Circle(x1, y1 + 0.5, 0));
@@ -87,6 +88,6 @@ public class Rhombus extends Gizmo implements ITrigger, ITriggerable {
 
     @Override
     public String id() {
-        return null;
+        return id;
     }
 }
