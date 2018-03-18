@@ -69,84 +69,72 @@
                 Score: 0
             </Label>
 
-            <ToolBar maxWidth="200"
-                     styleClass="game-bar"
-                     StackPane.alignment="BOTTOM_LEFT">
-                <GridPane vgap="4"
-                          hgap="16"
-                          fx:id="gameMenu"
-                          styleClass="default-padding">
-
-
-                    <Button GridPane.rowIndex="0"
-                            GridPane.columnIndex="0"
-                            minWidth="24"
-                            minHeight="24"
-                            maxWidth="24"
-                            maxHeight="24"
-                            fx:id="playButton"
-                            styleClass="play-button">
-                        <tooltip>
-                            <Tooltip text="%INGAME_MENU_PLAY"/>
-                        </tooltip>
-                    </Button>
-
-                    <!--<Button GridPane.rowIndex="0"-->
-                    <!--GridPane.columnIndex="1"-->
-                    <!--minWidth="24"-->
-                    <!--minHeight="24"-->
-                    <!--maxWidth="24"-->
-                    <!--maxHeight="24"-->
-                    <!--fx:id="stopButton"-->
-                    <!--styleClass="stop-button">-->
-                    <!--<tooltip>-->
-                    <!--<Tooltip text="%INGAME_MENU_STOP"/>-->
-                    <!--</tooltip>-->
-                    <!--</Button>-->
-
-
-                    <Button GridPane.rowIndex="0"
-                            GridPane.columnIndex="1"
-                            minWidth="24"
-                            minHeight="24"
-                            maxWidth="24"
-                            maxHeight="24"
-                            fx:id="tickButton"
-                            styleClass="tick-button">
-                        <tooltip>
-                            <Tooltip text="%INGAME_MENU_TICK"/>
-                        </tooltip>
-                    </Button>
-
-                    <Button GridPane.rowIndex="0"
-                            GridPane.columnIndex="2"
-                            minWidth="24"
-                            minHeight="24"
-                            maxWidth="24"
-                            maxHeight="24"
-                            fx:id="menuButton"
-                            styleClass="pause-screen-button">
-                        <tooltip>
-                            <Tooltip text="%INGAME_MENU_MENU"/>
-                        </tooltip>
-                    </Button>
-
-                    <Button GridPane.rowIndex="0"
-                            GridPane.columnIndex="3"
-                            minWidth="24"
-                            minHeight="24"
-                            maxWidth="24"
-                            maxHeight="24"
-                            fx:id="soundButton"
-                            styleClass="sound-off-button">
-                        <tooltip>
-                            <Tooltip text="%INGAME_MENU_MUSIC"/>
-                        </tooltip>
-                    </Button>
-
-                </GridPane>
-            </ToolBar>
-
         </StackPane>
     </center>
+
+    <bottom>
+        <ToolBar maxWidth="200"
+                 styleClass="game-bar"
+                 BorderPane.alignment="BOTTOM_CENTER">
+            <GridPane vgap="4"
+                      hgap="16"
+                      fx:id="gameMenu"
+                      styleClass="default-padding">
+
+                <Button GridPane.rowIndex="0"
+                        GridPane.columnIndex="0"
+                        minWidth="24"
+                        minHeight="24"
+                        maxWidth="24"
+                        maxHeight="24"
+                        fx:id="playButton"
+                        styleClass="play-button">
+                    <tooltip>
+                        <Tooltip text="%INGAME_MENU_PLAY"/>
+                    </tooltip>
+                </Button>
+
+                <Button GridPane.rowIndex="0"
+                        GridPane.columnIndex="1"
+                        minWidth="24"
+                        minHeight="24"
+                        maxWidth="24"
+                        maxHeight="24"
+                        fx:id="tickButton"
+                        styleClass="tick-button">
+                    <tooltip>
+                        <Tooltip text="%INGAME_MENU_TICK"/>
+                    </tooltip>
+                </Button>
+
+                <Button GridPane.rowIndex="0"
+                        GridPane.columnIndex="2"
+                        minWidth="24"
+                        minHeight="24"
+                        maxWidth="24"
+                        maxHeight="24"
+                        fx:id="menuButton"
+                        styleClass="pause-screen-button">
+                    <tooltip>
+                        <Tooltip text="%INGAME_MENU_MENU"/>
+                    </tooltip>
+                </Button>
+
+                <Button GridPane.rowIndex="0"
+                        GridPane.columnIndex="3"
+                        minWidth="24"
+                        minHeight="24"
+                        maxWidth="24"
+                        maxHeight="24"
+                        fx:id="soundButton"
+                        styleClass="sound-off-button">
+                    <tooltip>
+                        <Tooltip text="%INGAME_MENU_MUSIC"/>
+                    </tooltip>
+                </Button>
+
+            </GridPane>
+        </ToolBar>
+
+    </bottom>
 </BorderPane>
