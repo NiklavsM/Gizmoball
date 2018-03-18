@@ -8,10 +8,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.effect.GaussianBlur;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -32,11 +29,10 @@ import java.util.Observer;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class PlayView extends Stage implements IPlayView, Observer {
+public class PlayView extends Scene implements IPlayView, Observer {
 
     private static final double WIDTH = 1000;
     private static final double HEIGHT = 800;
-    private GizmoBall gizmoBall;
     private IGameModel gameModel;
     private BorderPane root;
     private ToolBar pauseMenu;
@@ -44,16 +40,16 @@ public class PlayView extends Stage implements IPlayView, Observer {
     private Canvas canvas;
     private InGameKeyEventHandler keyHandler;
 
-    public PlayView(GizmoBall gizmoBall) {
-        this.keyHandler = gizmoBall.getKeyHandler();
+    public PlayView(IGameModel gameModel, InGameKeyEventHandler keyEventHandler) {
+        super(new Pane());
+        this.keyHandler = keyEventHandler;
+        this.gameModel = gameModel;
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/plaview.fxml"));
-            loader.setResources(ResourceBundle.getBundle("dictionary", gizmoBall.getLocale()));
+            loader.setResources(ResourceBundle.getBundle("dictionary", GizmoBall.locale));
             root = loader.load();
 
-            this.gizmoBall = gizmoBall;
-            this.gameModel = gizmoBall.getGameModel();
             pauseMenu = (ToolBar) root.lookup("#pauseMenu");
             stackPane = (StackPane) root.lookup("#stackPane");
             canvas = (Canvas) root.lookup("#canvas");
@@ -64,15 +60,9 @@ public class PlayView extends Stage implements IPlayView, Observer {
             pauseMenu.toBack();
             gameModel.addObserver(this);
 
-            Scene scene = new Scene(root, root.getWidth(), root.getHeight());
-            scene.setOnKeyPressed(this.keyHandler);
-            scene.setOnKeyReleased(this.keyHandler);
-
-            super.setScene(scene);
-            super.setWidth(WIDTH);
-            super.setHeight(HEIGHT);
-            super.setTitle("Gizmoball - Play");
-            super.show();
+            setOnKeyPressed(this.keyHandler);
+            setOnKeyReleased(this.keyHandler);
+            setRoot(root);
 
             Platform.runLater(this::attachEventHandlers);
         } catch (IOException e) {
@@ -90,7 +80,7 @@ public class PlayView extends Stage implements IPlayView, Observer {
             root.lookupAll("#gameMenu > Button")
                     .forEach(node -> ((Button) node).setOnAction(gameBarEventHandler));
 
-            EventHandler pauseMenuEventHandler = new PauseMenuEventHandler(gizmoBall, gameTimer, this);
+            EventHandler pauseMenuEventHandler = new PauseMenuEventHandler(gameModel, keyHandler, gameTimer, this);
             root.lookupAll("#pauseMenuItemHolder > Button")
                     .forEach(node -> ((Button) node).setOnAction(pauseMenuEventHandler));
 
@@ -176,7 +166,8 @@ public class PlayView extends Stage implements IPlayView, Observer {
 
     @Override
     public void switchToEditor() {
-        gizmoBall.switchModes();
+        gameModel.deleteObserver(this);
+        GizmoBall.switchView(new EditorView(gameModel, keyHandler));
     }
 
     public void soundOn(boolean soundOn){

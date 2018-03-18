@@ -2,6 +2,7 @@ package strath.cs308.gizmoball;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
@@ -20,10 +21,11 @@ public class GizmoBall extends Application {
 
     private static final String TAG = "GizmoBall";
     private IGameModel gameModel;
-    private Stage currentStage;
     private InGameKeyEventHandler keyHandler;
     private GameLoader gameLoader;
-    private Locale locale = new Locale("en");
+    public static Locale locale = new Locale("en");
+    private static Stage stage;
+    private static Scene view;
 
     public static void main(String[] args) {
         launch(args);
@@ -60,46 +62,21 @@ public class GizmoBall extends Application {
         //
         //
 
-        currentStage = primaryStage;
-
-        currentStage = new PlayView(this);
-        currentStage.show();
+        primaryStage.setScene(new PlayView(gameModel, keyHandler));
+        primaryStage.show();
+        stage = primaryStage;
     }
 
 
-    public void switchModes() {
-        currentStage.close();
-        currentStage = currentStage instanceof PlayView
-                ? new EditorView(this)
-                : new PlayView(this);
-        currentStage.show();
-    }
-
-
-    public IGameModel getGameModel() {
-        return gameModel;
+    public static void switchView(Scene view) {
+        GizmoBall.view = view;
+        stage.setScene(view);
     }
 
     @Override
     public void stop() {
         Platform.exit();
         System.exit(0);
-    }
-
-    public GameLoader getGameLoader() {
-        return gameLoader;
-    }
-
-    public InGameKeyEventHandler getKeyHandler() {
-        return keyHandler;
-    }
-
-    public Locale getLocale() {
-        return locale;
-    }
-
-    public void setLocale(Locale locale) {
-        this.locale = locale;
     }
 
 }

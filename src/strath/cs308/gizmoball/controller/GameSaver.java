@@ -9,13 +9,15 @@ import java.io.PrintWriter;
 
 public class GameSaver {
 
+    private final InGameKeyEventHandler keyEventhandler;
     private IGameModel gameModel;
     private GizmoBall gizmoBall;
     private File fileToSave;
 
-    public GameSaver(GizmoBall gizmoBall, File fileToSave) {
+    public GameSaver(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, File fileToSave) {
         this.gizmoBall = gizmoBall;
-        this.gameModel = gizmoBall.getGameModel();
+        this.gameModel = gameModel;
+        this.keyEventhandler = keyEventHandler;
         this.fileToSave = fileToSave;
     }
 
@@ -23,7 +25,7 @@ public class GameSaver {
         PrintWriter printWriter = new PrintWriter(fileToSave);
         printWriter.print(gameModel.toString());
         printWriter.println("\n\n# key bindings");
-        printWriter.println(gizmoBall.getKeyHandler());
+        printWriter.println(keyEventhandler);
         printWriter.close();
     }
 }

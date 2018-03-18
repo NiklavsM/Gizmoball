@@ -16,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -35,9 +36,8 @@ import strath.cs308.gizmoball.model.IMovable;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
-public class EditorView extends Stage implements IEditorView, Observer {
+public class EditorView extends Scene implements IEditorView, Observer {
     private static final String TAG = "EditorView";
-    private GizmoBall gizmoBall;
     private BorderPane root;
     private IGameModel gameModel;
     private Canvas canvas;
@@ -60,45 +60,24 @@ public class EditorView extends Stage implements IEditorView, Observer {
     private TextField reflectionCoefficientField;
     private ColorPicker colorPicker;
 
-    public EditorView(GizmoBall gizmoball) {
-
-        this.keyHandler = gizmoball.getKeyHandler();
+    public EditorView(IGameModel gameModel, InGameKeyEventHandler inGameKeyEventHandler) {
+        super(new Pane());
+        this.keyHandler = inGameKeyEventHandler;
+        this.gameModel = gameModel;
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/editorview.fxml"));
-            loader.setResources(ResourceBundle.getBundle("dictionary", gizmoball.getLocale()));
+            loader.setResources(ResourceBundle.getBundle("dictionary", GizmoBall.locale));
             root = loader.load();
             namespace = loader.getNamespace();
-            canvas = (Canvas) namespace.get("canvas");
-            friction1TextField = (TextField) namespace.get("mu1");
-            friction2TextField = (TextField) namespace.get("mu2");
-            reflectionCoefficientField = (TextField) namespace.get("reflectionCoeffField");
-            radianField = (TextField) namespace.get("radianVelocityField");
-            veloYField = (TextField) namespace.get("yVelocityField");
-            veloXField = (TextField) namespace.get("xVelocityField");
-            colorPicker = (ColorPicker) namespace.get("colorPickerPorperty");
-            gravityTextField = (TextField) namespace.get("gravity");
 
-            connectATextField = (TextField) namespace.get("connectBTextField");
-            connectBTextField = (TextField) namespace.get("connectBTextField");
-            connectAChangeButton = (Button) namespace.get("connectAChangeButton");
-            connectBChangeButton = (Button) namespace.get("connectBChangeButton");
-            actionComboBox = (ComboBox<String>) namespace.get("actionComboBox");
-            connectionActionButton = (Button) namespace.get("connectAction");
+            loadUiElements();
 
-            statusLabel = (Label) namespace.get("statusbar");
-
-            this.gizmoBall = gizmoball;
-            this.gameModel = gizmoball.getGameModel();
             this.gameModel.addObserver(this);
 
             isGrided = true;
 
-            Scene scene = new Scene(root);
-
-            super.setScene(scene);
-            super.setTitle("Gizmoball - Editor");
-            super.show();
+            setRoot(root);
 
             initialSetup();
             refresh();
@@ -106,6 +85,27 @@ public class EditorView extends Stage implements IEditorView, Observer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void loadUiElements() {
+        canvas = (Canvas) namespace.get("canvas");
+        friction1TextField = (TextField) namespace.get("mu1");
+        friction2TextField = (TextField) namespace.get("mu2");
+        reflectionCoefficientField = (TextField) namespace.get("reflectionCoeffField");
+        radianField = (TextField) namespace.get("radianVelocityField");
+        veloYField = (TextField) namespace.get("yVelocityField");
+        veloXField = (TextField) namespace.get("xVelocityField");
+        colorPicker = (ColorPicker) namespace.get("colorPickerPorperty");
+        gravityTextField = (TextField) namespace.get("gravity");
+
+        connectATextField = (TextField) namespace.get("connectBTextField");
+        connectBTextField = (TextField) namespace.get("connectBTextField");
+        connectAChangeButton = (Button) namespace.get("connectAChangeButton");
+        connectBChangeButton = (Button) namespace.get("connectBChangeButton");
+        actionComboBox = (ComboBox<String>) namespace.get("actionComboBox");
+        connectionActionButton = (Button) namespace.get("connectAction");
+
+        statusLabel = (Label) namespace.get("statusbar");
     }
 
     private void initialSetup() {
@@ -163,7 +163,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
             root.lookupAll("#addGizmoOptions Button")
                     .forEach(node -> node.setOnMouseClicked(addGizmoEventHandler));
 
-            EventHandler<MouseEvent> toolSelectionHandler = new ToolModeEventHandler(gizmoBall, this);
+            EventHandler<MouseEvent> toolSelectionHandler = new ToolModeEventHandler(gameModel, this);
             ((GridPane) namespace.get("toolButtonHolder")).lookupAll(".tool-button")
                     .forEach(node -> node.setOnMouseClicked(toolSelectionHandler));
 
@@ -181,7 +181,8 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
     @Override
     public void switchToPlay() {
-        gizmoBall.switchModes();
+        gameModel.deleteObserver(this);
+        GizmoBall.switchView(new PlayView(gameModel, keyHandler));
     }
 
     @Override
@@ -189,7 +190,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
         final Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);
-        dialog.initOwner(this);
+        dialog.initOwner(getWindow());
         VBox dialogVbox = new VBox(20);
         dialogVbox.getChildren().add(new Text("This is sound settings"));
         Scene dialogScene = new Scene(dialogVbox, 300, 200);
@@ -329,10 +330,6 @@ public class EditorView extends Stage implements IEditorView, Observer {
         }
     }
 
-    @Override
-    public void setCursor(Cursor cursor) {
-        getScene().setCursor(cursor);
-    }
 
     @Override
     public double getRadianProperty() {

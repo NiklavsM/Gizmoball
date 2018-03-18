@@ -12,19 +12,17 @@ public class ToolModeEventHandler implements EventHandler<MouseEvent> {
 
     private final IGameModel gameModel;
     private final IEditorView editorView;
-    private final GizmoBall gizmoBall;
 
-    public ToolModeEventHandler(GizmoBall gizmoBall, IEditorView editorView) {
-        this.gameModel = gizmoBall.getGameModel();
+    public ToolModeEventHandler(IGameModel gameModel, IEditorView editorView) {
+        this.gameModel = gameModel;
         this.editorView = editorView;
-        this.gizmoBall = gizmoBall;
     }
 
     @Override
     public void handle(MouseEvent mouseEvent) {
         switch (((Node) mouseEvent.getSource()).getId()) {
             case "removeToolButton":
-                editorView.setCanvasMode(new RemoveGizmoStrategy(gizmoBall, editorView));
+                editorView.setCanvasMode(new RemoveGizmoStrategy(gameModel, editorView));
                 editorView.setStatus("Remove Tool: Click a Gizmo to remove");
                 break;
 
