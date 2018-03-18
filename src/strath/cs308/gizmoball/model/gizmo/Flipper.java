@@ -155,35 +155,35 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
     }
 
     public Vect getVelocity() {
-        return velocityConstant;
+        return velocity;
     }
 
     public void setVelocity(Vect velocity) {
-        velocityConstant = velocity;
+        this.velocity = velocity;
     }
 
     @Override
     public void setVelocity(double x, double y) {
-        velocityConstant = new Vect(x, y);
+        velocity = new Vect(x, y);
     }
 
     @Override
     public double getVelocityX() {
-        return velocityConstant.x();
+        return velocity.x();
     }
 
     @Override
     public double getVelocityY() {
-        return velocityConstant.y();
+        return velocity.y();
     }
 
     @Override
-    public double getVelocityRadian() {
+    public double getVelocityConstantRadian() {
         return velocityConstant.angle().radians();
     }
 
     @Override
-    public void setVelocityRadian(double radian) {
+    public void setVelocityConstantRadian(double radian) {
         velocityConstant = new Vect(new Angle(radian));
     }
 

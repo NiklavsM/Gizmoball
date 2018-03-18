@@ -39,7 +39,7 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent>{
     private void changeMovableVelocityRadian() {
         IMovable movableGizmo = (IMovable) gizmo;
         try {
-            movableGizmo.setVelocityRadian(editorView.getRadianProperty());
+            movableGizmo.setVelocityConstantRadian(editorView.getRadianProperty());
             editorView.setStatus("Gizmo radian velocity set!");
         } catch (NumberFormatException e) {
             editorView.setErrorStatus("Given radian value is not acceptable");

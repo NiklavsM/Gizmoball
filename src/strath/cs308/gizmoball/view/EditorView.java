@@ -22,15 +22,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import mit.physics.Vect;
 
 import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.controller.*;
@@ -40,9 +37,7 @@ import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.controller.ToolModeEventHandler;
 import strath.cs308.gizmoball.controller.TopToolbarEventHandler;
 import strath.cs308.gizmoball.model.IGameModel;
-import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IMovable;
-import strath.cs308.gizmoball.model.gizmo.Ball;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
@@ -321,7 +316,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
                 rotationVelocityHolder.setVisible(false);
                 linearVelocityHolder.setVisible(true);
             } else {
-                radianField.setText(Double.toString(movableGizmo.getVelocityRadian()));
+                radianField.setText(Double.toString(movableGizmo.getVelocityConstantRadian()));
 
                 rotationVelocityHolder.setVisible(true);
                 linearVelocityHolder.setVisible(false);
