@@ -293,10 +293,12 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
         Label typeLabel = (Label) namespace.get("gizmoType");
         Label gizmoIdField = (Label) namespace.get("gizmoId");
+        TextField reflectionCoefficientField = (TextField) namespace.get("reflectionCoeffField");
         VBox movableHolder = (VBox) namespace.get("movableFieldHolder");
 
         typeLabel.setText(gizmo.getType().toString());
         gizmoIdField.setText(gizmo.getId());
+        reflectionCoefficientField.setText(String.valueOf(gizmo.getReflectionCoefficient()));
 
         if (gizmo instanceof IMovable) {
             IMovable movableGizmo = (IMovable) gizmo;
