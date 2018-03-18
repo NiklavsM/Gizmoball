@@ -16,6 +16,8 @@ public class Octagon extends Gizmo implements ITrigger, ITriggerable {
         super(x, y, x + 1, y + 1, id);
         collisionTrigger = new DefaultCollisionTrigger();
         triggerable = new DefaultTriggarable();
+
+        setColor("#ffff72");
     }
 
     public Octagon(double x, double y) {

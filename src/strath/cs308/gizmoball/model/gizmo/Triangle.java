@@ -16,6 +16,8 @@ public class Triangle extends Gizmo implements ITriggerable, ITrigger {
         super(x, y, x + 1, y + 1, id);
         collisionTrigger = new DefaultCollisionTrigger();
         triggerable = new DefaultTriggarable();
+
+        setColor("#03a9f4");
     }
 
     public Triangle(double x, double y) {

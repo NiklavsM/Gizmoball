@@ -58,6 +58,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
     private TextField veloYField;
     private TextField radianField;
     private TextField reflectionCoefficientField;
+    private ColorPicker colorPicker;
 
     public EditorView(GizmoBall gizmoball) {
 
@@ -75,6 +76,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
             radianField = (TextField) namespace.get("radianVelocityField");
             veloYField = (TextField) namespace.get("yVelocityField");
             veloXField = (TextField) namespace.get("xVelocityField");
+            colorPicker = (ColorPicker) namespace.get("colorPickerPorperty");
             gravityTextField = (TextField) namespace.get("gravity");
 
             connectATextField = (TextField) namespace.get("connectBTextField");
@@ -112,7 +114,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
     }
 
 
-    private void refresh() {
+    public void refresh() {
         Platform.runLater(() -> {
             drawBackground();
             drawGizmos();
@@ -279,11 +281,13 @@ public class EditorView extends Stage implements IEditorView, Observer {
         Label typeLabel = (Label) namespace.get("gizmoType");
         Label gizmoIdField = (Label) namespace.get("gizmoId");
         reflectionCoefficientField.setOnAction(eventHandler);
+        colorPicker.setOnAction(eventHandler);
         VBox movableHolder = (VBox) namespace.get("movableFieldHolder");
 
         typeLabel.setText(gizmo.getType().toString());
         gizmoIdField.setText(gizmo.getId());
         reflectionCoefficientField.setText(String.valueOf(gizmo.getReflectionCoefficient()));
+        colorPicker.setValue(Color.web(gizmo.getColor()));
 
         if (gizmo instanceof IMovable) {
             IMovable movableGizmo = (IMovable) gizmo;
@@ -348,5 +352,16 @@ public class EditorView extends Stage implements IEditorView, Observer {
     @Override
     public double getReflectionCoefficient() {
         return Double.parseDouble(reflectionCoefficientField.getText());
+    }
+
+    @Override
+    public String getGizmoColor() {
+        Color color = colorPicker.getValue();
+
+        return String.format( "#%02X%02X%02X",
+                (int)( color.getRed() * 255 ),
+                (int)( color.getGreen() * 255 ),
+                (int)( color.getBlue() * 255 ) );
+
     }
 }

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.regex.Pattern;
 
 public abstract class Gizmo implements IGizmo {
 
@@ -23,12 +24,15 @@ public abstract class Gizmo implements IGizmo {
     protected double y2;
     private int scoreValue;
     private double reflectionCoefficient;
+    private String color;
 
     public Gizmo(double x1, double y1, double x2, double y2, String id) {
         setup(x1, y1, x2, y2);
         this.id = id;
         rotateCount = 0;
         reflectionCoefficient = 1.0;
+
+        color = "#ffffff";
     }
 
     public Gizmo(double x1, double y1, double x2, double y2) {
@@ -189,14 +193,29 @@ public abstract class Gizmo implements IGizmo {
     }
 
     @Override
-    public void setReflectionCoefficient(double coefficient)
-    {
+    public void setReflectionCoefficient(double coefficient) {
         reflectionCoefficient = coefficient;
     }
 
     @Override
-    public double getReflectionCoefficient()
-    {
+    public double getReflectionCoefficient() {
         return reflectionCoefficient;
+    }
+
+    @Override
+    public String getColor() {
+        return color;
+    }
+
+    @Override
+    public boolean setColor(String color) {
+        color = color.toLowerCase();
+        Pattern pattern = Pattern.compile("#[0-9a-f]]{6}");
+        if (pattern.matcher(color).matches()) {
+            return false;
+        }
+
+        this.color = color;
+        return true;
     }
 }

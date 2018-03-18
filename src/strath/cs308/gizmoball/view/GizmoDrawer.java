@@ -40,8 +40,10 @@ public class GizmoDrawer {
         if (isPreview) {
             gc.setFill(Color.GAINSBORO);
             gc.setStroke(Color.GAINSBORO);
-        } else
-            setGizmoColor(type);
+        } else {
+            gc.setFill(Color.web(gizmo.getColor()));
+            gc.setStroke(Color.web(gizmo.getColor()));
+        }
 
         int i = 0;
         for (Dot dot : dots) {
@@ -66,69 +68,4 @@ public class GizmoDrawer {
 
     }
 
-    private void setGizmoColor(IGizmo.Type type) { // TODO Should get color properties from the gizmo itself
-        switch (type) {
-            case BALL:
-                gc.setStroke(Color.WHITE);
-                break;
-
-            case SQUARE:
-                gc.setFill(RED);
-                break;
-
-            case ABSORBER:
-                gc.setFill(PINK);
-                break;
-
-            case CIRCLE:
-                gc.setStroke(GREEN);
-                break;
-
-            case WALLS:
-                gc.setFill(Color.BLACK);
-                break;
-
-            case TRIANGLE:
-                gc.setFill(BLUE);
-                break;
-
-            case FLIPPER:
-                gc.setStroke(ORANGE);
-                break;
-
-            case LEFT_FLIPPER:
-                gc.setStroke(ORANGE);
-                break;
-
-            case RIGHT_FLIPPER:
-                gc.setStroke(ORANGE);
-                break;
-
-            case RHOMBUS:
-                gc.setFill(YELLOW);
-                break;
-
-            case OCTAGON:
-                gc.setFill(CYAN);
-                break;
-        }
-    }
-
-    public void previewGizmo(IGizmo gizmo, double x, double y) {
-//        x = x * pxPerL;
-//        y = y* pxPerL;
-//        gc.setFill(Color.LAWNGREEN);
-//        gc.setStroke(Color.LAWNGREEN);
-//        switch (gizmo) {
-//            case SQUARE:
-//                gc.strokeLine(x, y, x+1, y);
-//                gc.strokeLine(x+1, y, x+1, y+1);
-//                gc.strokeLine(x+1, y+1, x, y+1);
-//                gc.strokeLine(x, y+1, x, y);
-//                break;
-//        }
-//
-//
-
-    }
 }

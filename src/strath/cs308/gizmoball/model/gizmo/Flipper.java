@@ -49,6 +49,8 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
         flipperSetup(x - radius, y + radius, x + radius, y + radius + 1.5);
         defaultTriggarable = new DefaultTriggarable();
         setAction(this);
+
+        setColor("#ff9800");
     }
 
     @Override
