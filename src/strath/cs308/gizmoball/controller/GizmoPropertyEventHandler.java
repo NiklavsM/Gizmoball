@@ -36,7 +36,18 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent>{
 
             case "reflectionCoeffField":
                 changeReflectionCoefficient();
+
+            case "colorPickerPorperty":
+                changeGizmoColor();
+                break;
         }
+    }
+
+    private void changeGizmoColor() {
+
+        gizmo.setColor(editorView.getGizmoColor());
+        editorView.refresh();
+
     }
 
     private void changeReflectionCoefficient() {

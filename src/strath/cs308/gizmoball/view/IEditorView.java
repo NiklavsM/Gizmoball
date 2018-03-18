@@ -46,4 +46,8 @@ public interface IEditorView {
     double getYVelocityProperty();
 
     double getReflectionCoefficient() throws NumberFormatException;
+
+    String getGizmoColor();
+
+    void refresh();
 }
