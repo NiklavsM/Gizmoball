@@ -33,6 +33,18 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent>{
             case "radianVelocityField":
                 changeMovableVelocityRadian();
                 break;
+
+            case "reflectionCoeffField":
+                changeReflectionCoefficient();
+        }
+    }
+
+    private void changeReflectionCoefficient() {
+        try {
+            gizmo.setReflectionCoefficient(editorView.getReflectionCoefficient());
+            editorView.setStatus("Gizmo reflection coefficient set!");
+        } catch (NumberFormatException e) {
+            editorView.setErrorStatus("Given reflection coefficient value is not acceptable");
         }
     }
 

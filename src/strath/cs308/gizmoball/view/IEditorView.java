@@ -48,4 +48,6 @@ public interface IEditorView {
     double getXVelocityProperty();
 
     double getYVelocityProperty();
+
+    double getReflectionCoefficient() throws NumberFormatException;
 }

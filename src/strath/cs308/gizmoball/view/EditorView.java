@@ -64,6 +64,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
     private TextField veloXField;
     private TextField veloYField;
     private TextField radianField;
+    private TextField reflectionCoefficientField;
 
     public EditorView(GizmoBall gizmoball) {
 
@@ -77,7 +78,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
             canvas = (Canvas) namespace.get("canvas");
             friction1TextField = (TextField) namespace.get("mu1");
             friction2TextField = (TextField) namespace.get("mu2");
-
+            reflectionCoefficientField = (TextField) namespace.get("reflectionCoeffField");
             radianField = (TextField) namespace.get("radianVelocityField");
             veloYField = (TextField) namespace.get("yVelocityField");
             veloXField = (TextField) namespace.get("xVelocityField");
@@ -293,10 +294,12 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
         Label typeLabel = (Label) namespace.get("gizmoType");
         Label gizmoIdField = (Label) namespace.get("gizmoId");
+        reflectionCoefficientField.setOnAction(eventHandler);
         VBox movableHolder = (VBox) namespace.get("movableFieldHolder");
 
         typeLabel.setText(gizmo.getType().toString());
         gizmoIdField.setText(gizmo.getId());
+        reflectionCoefficientField.setText(String.valueOf(gizmo.getReflectionCoefficient()));
 
         if (gizmo instanceof IMovable) {
             IMovable movableGizmo = (IMovable) gizmo;
@@ -356,5 +359,10 @@ public class EditorView extends Stage implements IEditorView, Observer {
     @Override
     public double getYVelocityProperty() {
         return Double.parseDouble(veloYField.getText());
+    }
+
+    @Override
+    public double getReflectionCoefficient() {
+        return Double.parseDouble(reflectionCoefficientField.getText());
     }
 }
