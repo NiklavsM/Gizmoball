@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameLoader;
+import strath.cs308.gizmoball.controller.History;
 import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
@@ -38,6 +39,7 @@ public class GizmoBall extends Application {
         gameModel = new GameModel();
         keyHandler = new InGameKeyEventHandler(gameModel);
         gameLoader = new GameLoader(this); //TODO
+        History.init(this);
 
         try {
             gameLoader.load(getClass().getResourceAsStream("/alternative.gizmo"));
@@ -94,14 +96,16 @@ public class GizmoBall extends Application {
     }
 
     public void setGameModel(IGameModel gameModel){
-        System.out.println("game model size " + gameModel.getGizmos().size());
+        if(gameModel != null) {
+//        System.out.println("game model size " + gameModel.getGizmos().size());
 
-        this.gameModel = gameModel;
-        //TODO add keyhandler
-        gameModel.deleteObservers();
-        this.gameModel.addObserver((Observer)currentStage);
-        this.gameModel.update();
-        System.out.println("lol");
+            this.gameModel = gameModel;
+            //TODO add keyhandler
+            gameModel.deleteObservers();
+            this.gameModel.addObserver((Observer) currentStage);
+            this.gameModel.update();
+            System.out.println("lol");
+        }
     }
 
     @Override

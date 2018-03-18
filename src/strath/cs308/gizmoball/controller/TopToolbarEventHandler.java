@@ -52,12 +52,12 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
     }
 
     private void redo() {
-        gizmoBall.setGameModel(BoardHistory.popFromUndoHistory());
+        gizmoBall.setGameModel(History.popFromUndoHistory());
         System.out.println("redo called");
     }
 
     private void undo() {
-        gizmoBall.setGameModel(BoardHistory.popFromHistory());
+        gizmoBall.setGameModel(History.popFromHistory());
         System.out.println("undo called");
     }
 
@@ -66,7 +66,7 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
     }
 
     private void clearBoard() {
-        BoardHistory.addToHistory(gameModel, gizmoBall.getKeyHandler(), gizmoBall.getGameLoader());
+        History.addToHistory(gameModel);
         gameModel.reset();
     }
 

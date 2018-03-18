@@ -1,5 +1,6 @@
 package strath.cs308.gizmoball.controller;
 
+import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
@@ -10,20 +11,25 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Stack;
 
-public class BoardHistory {
+public class History {
     private static Stack<IGameModel> history = new Stack<>();
     private static Stack<IGameModel> undoHistory = new Stack<>();
+    private static GizmoBall gizmoBall;
 
-    public static void addToHistory(IGameModel gameModel, InGameKeyEventHandler eventHandler, GameLoader gameLoader) {
-            String s = gameModel.toString() + "\n" + eventHandler.toString();
+    public static void addToHistory(IGameModel gameModel) {
+        String s = gameModel.toString() + "\n" ;//+ gizmoBall.getKeyHandler().toString();
         try {
-            history.add(gameLoader.loadIntoNewModel(new ByteArrayInputStream(s.getBytes(StandardCharsets.UTF_8))));
+            history.add(gizmoBall.getGameLoader().loadIntoNewModel(new ByteArrayInputStream(s.getBytes(StandardCharsets.UTF_8))));
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
         undoHistory.removeAllElements();
-            System.out.println("historyAdded " + history.size());
-        }
+        System.out.println("historyAdded " + history.size());
+    }
+
+    public static void init(GizmoBall gizmoBallNew) {
+        gizmoBall = gizmoBallNew;
+    }
 
 //    public static void addToHistoryGizmoAdded(IGameModel gameModel) {
 //
