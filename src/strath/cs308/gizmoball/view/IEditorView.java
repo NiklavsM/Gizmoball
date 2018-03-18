@@ -29,10 +29,6 @@ public interface IEditorView {
 
     InGameKeyEventHandler getKeyHandler();
 
-    IGizmo getSelectedGizmo();
-
-    void setSelectedGizmo(IGizmo gizmo);
-
     double getFrictionInput() throws NumberFormatException;
 
     double getGravityInput() throws NumberFormatException;

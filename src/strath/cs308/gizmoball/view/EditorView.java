@@ -46,7 +46,6 @@ public class EditorView extends Stage implements IEditorView, Observer {
     private TextField friction1TextField;
     private TextField gravityTextField;
     private TextField friction2TextField;
-    private IGizmo selectedGizmo;
     private Label statusLabel;
     private InGameKeyEventHandler keyHandler;
     private ComboBox<String> actionComboBox;
@@ -232,15 +231,6 @@ public class EditorView extends Stage implements IEditorView, Observer {
 
     public InGameKeyEventHandler getKeyHandler() {
         return keyHandler;
-    }
-
-    @Override
-    public IGizmo getSelectedGizmo() {
-        return selectedGizmo;
-    }
-
-    public void setSelectedGizmo(IGizmo gizmo) {
-        this.selectedGizmo = gizmo;
     }
 
     @Override
