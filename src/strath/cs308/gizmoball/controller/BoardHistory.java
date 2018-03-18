@@ -29,7 +29,7 @@ public class BoardHistory {
             GizmoActionPair previousState = history.pop();
             HistoryAction action = previousState.getAction();
             if (action.equals(HistoryAction.GIZMO_ADDED)) {
-                gameModel.removeGizmo(previousState.getIGizmo().getId());
+                gameModel.removeGizmo(previousState.getIGizmo());
             }
             if (action.equals(HistoryAction.GIZMO_REMOVED)) {
                 gameModel.addGizmo(previousState.getIGizmo());

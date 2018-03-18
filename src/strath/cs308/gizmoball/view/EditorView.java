@@ -44,8 +44,8 @@ public class EditorView extends Scene implements IEditorView, Observer {
     private boolean isGrided;
     private Map<String, Object> namespace;
     private TextField friction1TextField;
-    private TextField gravityTextField;
     private TextField friction2TextField;
+    private TextField gravityTextField;
     private Label statusLabel;
     private InGameKeyEventHandler keyHandler;
     private ComboBox<String> actionComboBox;
@@ -123,11 +123,11 @@ public class EditorView extends Scene implements IEditorView, Observer {
 
     }
 
-    private void updateFields() {
-        gravityTextField.setText(String.valueOf(gameModel.getGravityCoefficient()));
-        friction1TextField.setText(String.valueOf(gameModel.setFrictionM1()));
-        friction2TextField.setText(String.valueOf(gameModel.getFrictionM2()));
-    }
+//    private void updateFields() {
+//        gravityTextField.setText(String.valueOf(gameModel.getGravityCoefficient()));
+//        friction1TextField.setText(String.valueOf(gameModel.getFrictionM1()));
+//        friction2TextField.setText(String.valueOf(gameModel.getFrictionM2()));
+//    }
 
     private void drawGrid() {
 
@@ -148,7 +148,7 @@ public class EditorView extends Scene implements IEditorView, Observer {
     private void setupTextFields() {
         Platform.runLater(() -> {
             gravityTextField.setText(Double.toString(gameModel.getGravityCoefficient()));
-            friction1TextField.setText(Double.toString(gameModel.setFrictionM1()));
+            friction1TextField.setText(Double.toString(gameModel.getFrictionM1()));
             friction2TextField.setText(Double.toString(gameModel.getFrictionM2()));
         });
     }
@@ -169,6 +169,7 @@ public class EditorView extends Scene implements IEditorView, Observer {
 
             EventHandler<ActionEvent> gamePropertyEventHandler = new GamePropertyEventHandler(gameModel, this);
             friction1TextField.setOnAction(gamePropertyEventHandler);
+            friction2TextField.setOnAction(gamePropertyEventHandler);
             gravityTextField.setOnAction(gamePropertyEventHandler);
 
             EventHandler<ActionEvent> triggerPropertyEventHandler = new TriggerPropertyEventHandler(gameModel, this);
@@ -257,8 +258,13 @@ public class EditorView extends Scene implements IEditorView, Observer {
     }
 
     @Override
-    public double getFrictionInput() throws NumberFormatException {
+    public double getFriction1Input() throws NumberFormatException {
         return Double.parseDouble(friction1TextField.getText());
+    }
+
+    @Override
+    public double getFriction2Input() throws NumberFormatException {
+        return Double.parseDouble(friction2TextField.getText());
     }
 
     @Override

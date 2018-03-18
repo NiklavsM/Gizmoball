@@ -32,15 +32,13 @@ public interface IGameModel {
 
     boolean rotate(String id);
 
-    double setFrictionM1();
+    double getFrictionM1();
 
     double getFrictionM2();
 
     boolean setFrictionM2(double frictionCoefficient);
 
     boolean setFrictionM1(double frictionCoefficient);
-
-    boolean getFrictionM2(double frictionCoefficient);
 
     double getGravityCoefficient();
 

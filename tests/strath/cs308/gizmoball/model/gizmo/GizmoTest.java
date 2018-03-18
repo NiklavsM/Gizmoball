@@ -16,13 +16,15 @@ public class GizmoTest {
     @BeforeEach
     void setup() {
         model = new GameModel();
+        model.setGravityCoefficient(0);
+        model.setFrictionM1(0);
+        model.setFrictionM2(0);
     }
 
     @Test
     void testScoreAfterCircleCollision() {
         int scoreBefore = model.getScore();
-        model.getFrictionM2(0);
-        model.setGravityCoefficient(0);
+
         Ball ball = new Ball(5.5, 3.25, "ball");
         CircleGizmo circle = new CircleGizmo(7, 3, "circle");
         ball.setVelocity(1, 0);
@@ -36,8 +38,6 @@ public class GizmoTest {
 
     @Test
     void testScoreAfterAbsorbing() {
-        model.getFrictionM2(0);
-        model.setGravityCoefficient(0);
         Ball ball = new Ball(0.75, 1.5, "ball");
         Absorber absorber = new Absorber(2, 1, 3, 2, "absorber");
         ball.setVelocity(2, 0);

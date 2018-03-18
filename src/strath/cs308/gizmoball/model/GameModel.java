@@ -18,8 +18,8 @@ public class GameModel extends Observable implements IGameModel {
     private Map<String, Gizmo> gizmos;
     private Map<String, Absorber> absorberCollided;
     private int score;
-    private double frictionCoefficient;
-    private double frictionCoefficient2;
+    private double frictionCoef1;
+    private double frictionCoef2;
     private double gravityCoefficient;
 
     public GameModel() {
@@ -31,8 +31,8 @@ public class GameModel extends Observable implements IGameModel {
     private void setup() {
         gizmos.clear();
         absorberCollided.clear();
-        frictionCoefficient = 0.025;
-        frictionCoefficient2 = 0.025;
+        frictionCoef1 = 0.025;
+        frictionCoef2 = 0.025;
         gravityCoefficient = 25;
         score = 0;
         addGizmo(new Walls());
@@ -42,8 +42,10 @@ public class GameModel extends Observable implements IGameModel {
         if (gizmo == null) {
             return false;
         }
-
         if (overlaps(gizmo)) {
+            return false;
+        }
+        if(gizmos.containsKey(gizmo.getId())){
             return false;
         }
 
@@ -212,7 +214,7 @@ public class GameModel extends Observable implements IGameModel {
 
         // Vnew = Vold * (1 - mu * delta_t - mu2 * |Vold| * delta_t).
         velocityAfterFriction = new Vect(velocity.angle(),
-                velocity.length() * (1 - (frictionCoefficient * time) - (frictionCoefficient2 * velocity.length() * time))).plus(gravity);
+                velocity.length() * (1 - (frictionCoef1 * time) - (frictionCoef2 * velocity.length() * time))).plus(gravity);
         ball.setVelocity(velocityAfterFriction.x(), velocityAfterFriction.y());
     }
 
@@ -297,50 +299,31 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     @Override
-    public double setFrictionM1() {
-        return frictionCoefficient;
+    public double getFrictionM1() {
+        return frictionCoef1;
     }
 
     @Override
     public double getFrictionM2() {
-        return frictionCoefficient2;
+        return frictionCoef2;
     }
 
     @Override
-    public boolean setFrictionM2(double frictionCoefficient) {
+    public boolean setFrictionM1(double coefficient) {
 
-        if (frictionCoefficient < 0) {
+        if (coefficient >= 0) {
+            this.frictionCoef1 = coefficient;
+            return true;
+        } else {
             return false;
         }
-
-        this.frictionCoefficient2 = frictionCoefficient;
-
-        update();
-
-        return true;
-    }
-
-    @Override
-    public boolean setFrictionM1(double frictionCoefficient) {
-
-        if (frictionCoefficient < 0) {
-            return false;
-        }
-
-        this.frictionCoefficient = frictionCoefficient;
-
-        update();
-
-        return true;
     }
 
     @Override
 
-    public boolean getFrictionM2(double frictionCoefficient) {
-        if (frictionCoefficient >= 0) {
-            this.frictionCoefficient = frictionCoefficient;
-
-            update();
+    public boolean setFrictionM2(double coefficient) {
+        if (frictionCoef2 >= 0) {
+            this.frictionCoef2 = coefficient;
             return true;
         } else {
             return false;
@@ -399,7 +382,7 @@ public class GameModel extends Observable implements IGameModel {
         commands.append("\n# gravity and friction\n");
         //TODO add gravity and friciton
         commands.append(GameLoader.GRAVITY_COMMAND + " ").append(gravityCoefficient + "\n");
-        commands.append(GameLoader.FRICTION_COMMAND + " ").append(frictionCoefficient + " " + frictionCoefficient2);
+        commands.append(GameLoader.FRICTION_COMMAND + " ").append(frictionCoef1 + " " + frictionCoef2);
 
         return commands.toString();
     }

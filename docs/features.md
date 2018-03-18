@@ -22,3 +22,4 @@
 * Check for .gizmo extension
 * Can add comments to .gizmo files
 * Can move absorbers with balls in it
+* Can change colors of the gizmos

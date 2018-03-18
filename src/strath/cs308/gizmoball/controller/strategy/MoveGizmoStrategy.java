@@ -17,14 +17,12 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
     private static final String TAG = "MoveGizmoStrategy";
     private final IEditorView editorView;
     private final IGameModel gameModel;
-    private final IGizmoFactory gizmoFactory;
     private Optional<IGizmo> selectedGizmo;
 
     public MoveGizmoStrategy(IGameModel gameModel, IEditorView editorView) {
         this.gameModel = gameModel;
         this.editorView = editorView;
 
-        gizmoFactory = new GizmoFactory();
         selectedGizmo = Optional.empty();
 
         Image image = new Image("/icons/move.png"); // this should be handled in the view;

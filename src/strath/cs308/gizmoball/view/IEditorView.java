@@ -29,7 +29,9 @@ public interface IEditorView {
 
     InGameKeyEventHandler getKeyHandler();
 
-    double getFrictionInput() throws NumberFormatException;
+    double getFriction1Input() throws NumberFormatException;
+
+    double getFriction2Input() throws NumberFormatException;
 
     double getGravityInput() throws NumberFormatException;
 
