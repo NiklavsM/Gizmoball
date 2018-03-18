@@ -12,10 +12,12 @@ public class ToolModeEventHandler implements EventHandler<MouseEvent> {
 
     private final IGameModel gameModel;
     private final IEditorView editorView;
+    private final InGameKeyEventHandler keyEventHandler;
 
-    public ToolModeEventHandler(IGameModel gameModel, IEditorView editorView) {
+    public ToolModeEventHandler(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IEditorView editorView) {
         this.gameModel = gameModel;
         this.editorView = editorView;
+        this.keyEventHandler = keyEventHandler;
     }
 
     @Override
@@ -27,7 +29,7 @@ public class ToolModeEventHandler implements EventHandler<MouseEvent> {
                 break;
 
             case "rotateToolButton":
-                editorView.setCanvasMode(new RotateGizmoStrategy(gameModel, editorView));
+                editorView.setCanvasMode(new RotateGizmoStrategy(gameModel, keyEventHandler, editorView));
                 editorView.setStatus("Rotate Tool: Click a Gizmo to rotate it");
                 break;
 

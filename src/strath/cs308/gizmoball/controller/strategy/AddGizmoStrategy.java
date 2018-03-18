@@ -3,11 +3,15 @@ package strath.cs308.gizmoball.controller.strategy;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import strath.cs308.gizmoball.controller.BoardHistory;
+import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.GizmoFactory;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGizmoFactory;
+import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.view.IEditorView;
+
+import java.io.IOException;
 
 public class AddGizmoStrategy implements EventHandler<MouseEvent> {
 
@@ -16,14 +20,16 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
     private final IGameModel gameModel;
     private final IGizmoFactory gizmoFactory;
     private final IEditorView editorView;
+    private final InGameKeyEventHandler keyEventHandler;
     private double pressX, pressY;
     private double mouseX, mouseY;
     private int ballLimit;
 
-    public AddGizmoStrategy(IGameModel gameModel, IEditorView editorView, IGizmo.Type gizmoType) {
+    public AddGizmoStrategy(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IEditorView editorView, IGizmo.Type gizmoType) {
         this.gizmoType = gizmoType;
         this.gameModel = gameModel;
         this.editorView = editorView;
+        this.keyEventHandler = keyEventHandler;
         gizmoFactory = new GizmoFactory();
         ballLimit = 50;
     }
@@ -122,6 +128,13 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
             putGizmoAt(releasedX, releasedY);
         } else {
             putGizmoFromTo(pressX, pressY, releasedX, releasedY);
+        }
+
+        try
+        {
+            UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

@@ -4,15 +4,20 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import strath.cs308.gizmoball.model.IGameModel;
+import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.view.IEditorView;
 
+import java.io.FileNotFoundException;
+
 public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
+    private final InGameKeyEventHandler keyEventHandler;
     private IGameModel gameModel;
     private IEditorView editView;
 
-    public TopToolbarEventHandler(IGameModel gameModel, IEditorView editorView) {
+    public TopToolbarEventHandler(IGameModel gameModel, InGameKeyEventHandler keyEventHandler , IEditorView editorView) {
         this.gameModel = gameModel;
         this.editView = editorView;
+        this.keyEventHandler = keyEventHandler;
     }
 
     @Override
@@ -57,7 +62,15 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
     }
 
     private void undo() {
-        BoardHistory.popFromHistory(gameModel);
+//        BoardHistory.popFromHistory(gameModel);
+        try
+        {
+            gameModel.reset();
+            keyEventHandler.removeAllHandlers();
+            UndoRedo.INSTANCE.undo(gameModel, keyEventHandler);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void toggleGrid() {

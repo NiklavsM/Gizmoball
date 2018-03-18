@@ -155,15 +155,15 @@ public class EditorView extends Scene implements IEditorView, Observer {
 
     private void attachHandlers() {
         Platform.runLater(() -> {
-            EventHandler<MouseEvent> topToolbarHandler = new TopToolbarEventHandler(gameModel, this);
+            EventHandler<MouseEvent> topToolbarHandler = new TopToolbarEventHandler(gameModel, keyHandler, this);
             ((ToolBar) namespace.get("topToolbar")).lookupAll(".top-toolbar-button")
                     .forEach(node -> node.setOnMouseClicked(topToolbarHandler));
 
-            EventHandler<MouseEvent> addGizmoEventHandler = new GizmoSelectorEventHandler(gameModel, this);
+            EventHandler<MouseEvent> addGizmoEventHandler = new GizmoSelectorEventHandler(gameModel, keyHandler, this);
             root.lookupAll("#addGizmoOptions Button")
                     .forEach(node -> node.setOnMouseClicked(addGizmoEventHandler));
 
-            EventHandler<MouseEvent> toolSelectionHandler = new ToolModeEventHandler(gameModel, this);
+            EventHandler<MouseEvent> toolSelectionHandler = new ToolModeEventHandler(gameModel, keyHandler, this);
             ((GridPane) namespace.get("toolButtonHolder")).lookupAll(".tool-button")
                     .forEach(node -> node.setOnMouseClicked(toolSelectionHandler));
 

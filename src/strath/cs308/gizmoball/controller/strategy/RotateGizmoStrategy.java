@@ -4,20 +4,25 @@ import javafx.event.EventHandler;
 import javafx.scene.ImageCursor;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.IGameModel;
+import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.view.IEditorView;
 
+import java.io.IOException;
 import java.util.Optional;
 
 public class RotateGizmoStrategy implements EventHandler<MouseEvent> {
 
     private final IEditorView editorView;
     private final IGameModel gameModel;
+    private final InGameKeyEventHandler keyEventHandler;
 
-    public RotateGizmoStrategy(IGameModel gameModel, IEditorView editorView) {
+    public RotateGizmoStrategy(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IEditorView editorView) {
         this.gameModel = gameModel;
         this.editorView = editorView;
+        this.keyEventHandler = keyEventHandler;
 
         Image image = new Image("/icons/rotate.png");
         editorView.setCursor(new ImageCursor(image));
@@ -36,6 +41,19 @@ public class RotateGizmoStrategy implements EventHandler<MouseEvent> {
             gizmo.ifPresent(gizmo1 -> {
                 if (!gizmo1.getType().equals(IGizmo.Type.ABSORBER) && !gizmo1.getType().equals(IGizmo.Type.BALL)) {
                     gameModel.rotate(gizmo1.getId());
+
+
+                    try
+                    {
+                        UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
+                    } catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e)
+                    {
+                        e.printStackTrace();
+                    }
+
                 }
             });
         }
