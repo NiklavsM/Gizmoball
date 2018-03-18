@@ -418,7 +418,11 @@
                             <VBox>
                                 <Label text="%EDITOR_RIGHTBAR_PROPERTY_ID"/>
                                 <Label fx:id="gizmoId" />
-                            </VBox>       
+                            </VBox>
+                            <VBox>
+                                <Label text="%EDITOR_RIGHTBAR_PROPERTY_COLOR"/>
+                                <ColorPicker fx:id="colorPickerPorperty"/>
+                            </VBox>
                         </HBox>
 
                         <Label text="%EDITOR_RIGHTBAR_PROPERTY_REFLECTIONCOEFFICIENT" />
