@@ -236,7 +236,7 @@ public class GameModel extends Observable implements IGameModel {
                     if (time < shortestTime) {
                         shortestTime = time;
                         nextGizmo = gizmo;
-                        newVelo = Geometry.reflectRotatingWall(line, rotationCentre, angularVelo, ballCircle, ballVelocity);
+                        newVelo = Geometry.reflectRotatingWall(line, rotationCentre, angularVelo, ballCircle, ballVelocity, gizmo.getReflectionCoefficient());
                     }
                 }
                 for (Circle circle : circles) {
@@ -244,7 +244,7 @@ public class GameModel extends Observable implements IGameModel {
                     if (time < shortestTime) {
                         shortestTime = time;
                         nextGizmo = gizmo;
-                        newVelo = Geometry.reflectRotatingCircle(circle, rotationCentre, angularVelo, ballCircle, ballVelocity);
+                        newVelo = Geometry.reflectRotatingCircle(circle, rotationCentre, angularVelo, ballCircle, ballVelocity, gizmo.getReflectionCoefficient());
                     }
 
                 }
@@ -254,7 +254,7 @@ public class GameModel extends Observable implements IGameModel {
                     if (time < shortestTime) {
                         shortestTime = time;
                         nextGizmo = gizmo;
-                        newVelo = Geometry.reflectWall(line, ballVelocity, 1.0);
+                        newVelo = Geometry.reflectWall(line, ballVelocity, gizmo.getReflectionCoefficient());
                     }
                 }
                 for (Circle circle : circles) {
@@ -262,7 +262,7 @@ public class GameModel extends Observable implements IGameModel {
                     if (time < shortestTime) {
                         shortestTime = time;
                         nextGizmo = gizmo;
-                        newVelo = Geometry.reflectCircle(circle.getCenter(), ballCircle.getCenter(), ballVelocity);
+                        newVelo = Geometry.reflectCircle(circle.getCenter(), ballCircle.getCenter(), ballVelocity, gizmo.getReflectionCoefficient());
                     }
 
                 }
