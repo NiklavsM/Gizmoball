@@ -459,7 +459,12 @@
                                 <Label fx:id="gizmoId" />
                             </VBox>       
                         </HBox>
-                           
+
+                        <Label text="%EDITOR_RIGHTBAR_PROPERTY_REFLECTIONCOEFFICIENT" />
+                        <TextField fx:id="reflectionCoeffField"
+                                   styleClass="game-option-textbox"
+                                   prefWidth="60.0" />
+
                         <VBox fx:id="movableFieldHolder" 
                               spacing="5">
                             <Label text="%EDITOR_RIGHTBAR_PROPERTY_MOVEMENTTYPE" />
