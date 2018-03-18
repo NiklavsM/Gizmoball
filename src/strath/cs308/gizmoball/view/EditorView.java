@@ -19,6 +19,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -336,6 +337,15 @@ public class EditorView extends Scene implements IEditorView, Observer {
         }
     }
 
+    @Override
+    public void drawVelocityVector(double startX, double startY, double endX, double endY) {
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.setFill(Color.BLACK);
+        gc.setStroke(Color.BLACK);
+        gc.setLineWidth(2.0);
+        gc.setLineCap(StrokeLineCap.ROUND);
+        gc.strokeLine(startX, startY, startX + 100, startY + 100);
+    }
 
     @Override
     public double getRadianProperty() {

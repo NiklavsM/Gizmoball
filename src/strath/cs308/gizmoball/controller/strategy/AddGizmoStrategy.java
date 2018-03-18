@@ -106,11 +106,17 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         if (!gizmoType.equals(IGizmo.Type.BALL)) {
             this.onMouseMoved(mouseEvent);
         } else {
-            if (gameModel.getGizmoBalls().size() <= ballLimit)
+            if (gameModel.getGizmoBalls().size() <= ballLimit) {
                 putGizmoAt(mouseEvent.getX(), mouseEvent.getY());
+                //visualizeBallVelo();
+            }
             else
                 editorView.setStatus("There can be no more than " + ballLimit + " balls at once on the playing field!");
         }
+    }
+
+    private void visualizeBallVelo(double x, double y) {
+        editorView.drawVelocityVector(x, y, 1800.0, 1800.0);
     }
 
     private void onMouseReleased(MouseEvent mouseEvent) {
@@ -168,6 +174,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
     }
 
     private void putGizmoAt(double x, double y) {
+        double z = x, zz = y;
         x /= editorView.getPixelRatioFor(20.0);
         y /= editorView.getPixelRatioFor(20.0);
 
@@ -185,6 +192,8 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         if (gameModel.addGizmo(gizmo)) {
             BoardHistory.addToHistoryGizmoAdded(gizmo);
             editorView.setStatus(gizmoType + " gizmo added at position: " + x + " , " + y);
+            if (gizmoType.equals(IGizmo.Type.BALL))
+                visualizeBallVelo(z, zz);
         }
     }
 }

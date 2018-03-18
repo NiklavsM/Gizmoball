@@ -49,6 +49,8 @@ public interface IEditorView {
 
     double getReflectionCoefficient() throws NumberFormatException;
 
+    void drawVelocityVector(double startX, double startY, double endX, double endY);
+
     String getGizmoColor();
 
     void refresh();
