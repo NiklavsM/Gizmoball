@@ -47,6 +47,7 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent>{
 
         gizmo.setColor(editorView.getGizmoColor());
         editorView.refresh();
+        editorView.setStatus("Gizmo's color is changed");
 
     }
 
