@@ -12,13 +12,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.SingleSelectionModel;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -161,7 +155,7 @@ public class EditorView extends Stage implements IEditorView, Observer {
     private void attachHandlers() {
         Platform.runLater(() -> {
             EventHandler<MouseEvent> topToolbarHandler = new TopToolbarEventHandler(gameModel, this);
-            ((GridPane) namespace.get("topToolbar")).lookupAll(".top-toolbar-button")
+            ((ToolBar) namespace.get("topToolbar")).lookupAll(".top-toolbar-button")
                     .forEach(node -> node.setOnMouseClicked(topToolbarHandler));
 
             EventHandler<MouseEvent> addGizmoEventHandler = new GizmoSelectorEventHandler(gameModel, this);

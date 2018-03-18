@@ -16,23 +16,10 @@
 
     <top>
         <VBox>
-            <!-- do we need this ?
-            <MenuBar>
-                <Menu text="File"/>
-                <Menu text="Edit"/>
-                <Menu text="View"/>
-                <Menu text="Help"/>
-            </MenuBar>
-            -->
-            <ToolBar>
-                <GridPane vgap="5"
-                          hgap="16"
-                          fx:id="topToolbar"
-                          styleClass="default-padding">
 
-                    <VBox GridPane.columnIndex="0"
-                          GridPane.rowIndex="0"
-                          spacing="5"
+            <ToolBar fx:id="topToolbar" styleClass="default-padding">
+
+                    <VBox spacing="5"
                           alignment="CENTER">
                         <Button maxWidth="24"
                                 minWidth="24"
@@ -44,9 +31,7 @@
                         <Label text="%EDITOR_TOPBAR_PLAY"/>
                     </VBox>
 
-                    <VBox GridPane.columnIndex="1"
-                          GridPane.rowIndex="0"
-                          spacing="5"
+                    <VBox spacing="5"
                           alignment="CENTER">
                         <Button maxWidth="24"
                                 minWidth="24"
@@ -58,9 +43,7 @@
                         <Label text="%EDITOR_TOPBAR_LOAD"/>
                     </VBox>
 
-                    <VBox GridPane.columnIndex="2"
-                          GridPane.rowIndex="0"
-                          spacing="5"
+                    <VBox spacing="5"
                           alignment="CENTER">
                         <Button maxWidth="24"
                                 minWidth="24"
@@ -71,9 +54,7 @@
                         <Label text="%EDITOR_TOPBAR_SAVE"/>
                     </VBox>
 
-                    <VBox GridPane.columnIndex="4"
-                          GridPane.rowIndex="0"
-                          spacing="5"
+                    <VBox spacing="5"
                           alignment="CENTER">
                         <Button maxWidth="24"
                                 minWidth="24"
@@ -84,9 +65,7 @@
                         <Label text="%EDITOR_TOPBAR_SAVEAS"/>
                     </VBox>
 
-                    <VBox GridPane.columnIndex="5"
-                          GridPane.rowIndex="0"
-                          spacing="5"
+                    <VBox spacing="5"
                           alignment="CENTER">
                         <Button maxWidth="24"
                                 minWidth="24"
@@ -98,9 +77,7 @@
                         <Label text="%EDITOR_TOPBAR_CLEARBOARD"/>
                     </VBox>
 
-                    <VBox GridPane.columnIndex="6"
-                          GridPane.rowIndex="0"
-                          spacing="5"
+                    <VBox spacing="5"
                           alignment="CENTER">
                         <Button maxWidth="24"
                                 minWidth="24"
@@ -112,9 +89,7 @@
                         <Label text="%EDITOR_TOPBAR_UNDO"/>
                     </VBox>
 
-                    <VBox GridPane.columnIndex="7"
-                          GridPane.rowIndex="0"
-                          spacing="5"
+                    <VBox spacing="5"
                           alignment="CENTER">
                         <Button maxWidth="24"
                                 minWidth="24"
@@ -126,9 +101,7 @@
                         <Label text="%EDITOR_TOPBAR_REDO"/>
                     </VBox>
 
-                    <VBox GridPane.columnIndex="8"
-                          GridPane.rowIndex="0"
-                          spacing="5"
+                    <VBox spacing="5"
                           alignment="CENTER">
                         <Button maxWidth="24"
                                 minWidth="24"
@@ -140,9 +113,7 @@
                         <Label text="%EDITOR_TOPBAR_TOGGLEGRID"/>
                     </VBox>
 
-                    <VBox GridPane.columnIndex="9"
-                          GridPane.rowIndex="0"
-                          spacing="5"
+                    <VBox spacing="5"
                           alignment="CENTER">
                         <Button maxWidth="24"
                                 minWidth="24"
@@ -153,9 +124,7 @@
                         <Label text="%EDITOR_TOPBAR_CONSOLE"/>
                     </VBox>
 
-                    <VBox GridPane.columnIndex="10"
-                          GridPane.rowIndex="0"
-                          spacing="5"
+                    <VBox spacing="5"
                           alignment="CENTER">
                         <Label text="%EDITOR_TOPBAR_GRAVITY"/>
                         <TextField fx:id="gravity"
@@ -163,9 +132,7 @@
                                    prefWidth="60.0"/>
                     </VBox>
 
-                    <VBox GridPane.columnIndex="11"
-                          GridPane.rowIndex="0"
-                          spacing="5"
+                    <VBox spacing="5"
                           alignment="CENTER">
                         <Label text="%EDITOR_TOPBAR_FRICTIONMU1"/>
                         <TextField fx:id="mu1"
@@ -173,18 +140,14 @@
                                    prefWidth="60.0"/>
                     </VBox>
 
-                    <VBox GridPane.columnIndex="12"
-                                                     GridPane.rowIndex="0"
-                                                     spacing="5"
-                                                     alignment="CENTER">
+                    <VBox spacing="5"
+                          alignment="CENTER">
                     <Label text="%EDITOR_TOPBAR_FRICTIONMU2"/>
                     <TextField fx:id="mu2"
                                styleClass="game-option-textbox"
                                prefWidth="60.0"/>
                 </VBox>
-                    <VBox GridPane.columnIndex="13"
-                          GridPane.rowIndex="0"
-                          spacing="5"
+                    <VBox spacing="5"
                           alignment="CENTER">
                         <Button maxWidth="24"
                                 minWidth="24"
@@ -195,8 +158,6 @@
                         </Button>
                         <Label text="%EDITOR_SOUND_SETTINGS"/>
                     </VBox>
-
-                </GridPane>
 
 
             </ToolBar>

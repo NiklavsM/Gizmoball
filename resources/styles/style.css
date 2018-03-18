@@ -267,3 +267,7 @@ i.pause-menu-font {
 .regular-button:hover {
 
 }
+
+#topToolbar  VBox {
+    -fx-padding: 0px 5px 0px 5px;
+}
