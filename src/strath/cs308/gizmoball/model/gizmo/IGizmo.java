@@ -28,6 +28,10 @@ public interface IGizmo {
 
     double getEndY();
 
+    void setReflectionCoefficient(double coefficient);
+
+    double getReflectionCoefficient();
+
     enum Type {
         TRIANGLE("Triangle"), ABSORBER("Absorber"), SQUARE("Square"), BALL("Ball"),
         WALLS("Walls"), FLIPPER("Flipper"), CIRCLE("Circle"),

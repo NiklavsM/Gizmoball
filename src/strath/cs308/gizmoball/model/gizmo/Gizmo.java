@@ -22,11 +22,13 @@ public abstract class Gizmo implements IGizmo {
     protected double x2;
     protected double y2;
     private int scoreValue;
+    private double reflectionCoefficient;
 
     public Gizmo(double x1, double y1, double x2, double y2, String id) {
         setup(x1, y1, x2, y2);
         this.id = id;
         rotateCount = 0;
+        reflectionCoefficient = 1.0;
     }
 
     public Gizmo(double x1, double y1, double x2, double y2) {
@@ -184,5 +186,17 @@ public abstract class Gizmo implements IGizmo {
         }
 
         return getType() + " " + id + " " + x1 + " " + y1 + x2String + y2String + "\n" + rotate + "\n";
+    }
+
+    @Override
+    public void setReflectionCoefficient(double coefficient)
+    {
+        reflectionCoefficient = coefficient;
+    }
+
+    @Override
+    public double getReflectionCoefficient()
+    {
+        return reflectionCoefficient;
     }
 }
