@@ -6,6 +6,8 @@ public class Walls extends Gizmo {
 
     public Walls() {
         super(0, 0, 20, 20, "OuterWalls");
+
+        setColor("#000000");
     }
 
     @Override

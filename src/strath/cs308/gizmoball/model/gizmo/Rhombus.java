@@ -16,6 +16,8 @@ public class Rhombus extends Gizmo implements ITrigger, ITriggerable {
         super(x, y, x + 1, y + 1, id);
         collisionTrigger = new DefaultCollisionTrigger();
         triggerable = new DefaultTriggarable();
+
+        setColor("#97ede3");
     }
 
     public Rhombus(double x, double y) {
