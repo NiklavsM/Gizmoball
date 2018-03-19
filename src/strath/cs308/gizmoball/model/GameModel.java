@@ -42,7 +42,7 @@ public class GameModel extends Observable implements IGameModel {
         if (gizmo == null) {
             return false;
         }
-        if (overlaps(gizmo)) {
+        if (((Gizmo) gizmo).overlapsWithAnyGizmos(gizmos.values())) {
             return false;
 
         }
@@ -171,40 +171,12 @@ public class GameModel extends Observable implements IGameModel {
         }
         double backX = gizmo.getStartX(), backY = gizmo.getStartY();
         gizmo.move(x, y);
-        if (overlaps(gizmo)) {
+        if (((Gizmo) gizmo).overlapsWithAnyGizmos(gizmos.values())) {
             gizmo.move(backX, backY);
             return false;
         }
         update();
         return true;
-    }
-
-    private boolean overlaps(IGizmo gizmo) {
-        Gizmo tempGizmo = (Gizmo) gizmo;
-        for (Gizmo currentGizmo : gizmos.values()) {
-            if (!currentGizmo.getType().equals(IGizmo.Type.WALLS) &&
-                    tempGizmo.getStartX() < currentGizmo.getEndX() &&
-                    tempGizmo.getEndX() > currentGizmo.getStartX() &&
-                    tempGizmo.getStartY() < currentGizmo.getEndY() &&
-                    tempGizmo.getEndY() > currentGizmo.getStartY()) {
-                if (tempGizmo.equals(currentGizmo)) {
-                    continue;
-                }
-                if (tempGizmo instanceof Absorber) {
-                    if (currentGizmo instanceof Ball) {
-                        if (((Absorber) tempGizmo).hasAbsorbed((Ball) currentGizmo)) {
-                            continue;
-                        }
-                    }
-                }
-                if (tempGizmo instanceof Ball && currentGizmo instanceof Absorber) {
-                    ((Absorber) currentGizmo).absorbBall((Ball) tempGizmo);
-                    continue;
-                }
-                return true;
-            }
-        }
-        return false;
     }
 
     private void moveMovables(Double time) {
@@ -310,8 +282,11 @@ public class GameModel extends Observable implements IGameModel {
 
     @Override
     public boolean rotate(String id) {
-        IGizmo g = gizmos.get(id);
+        Gizmo g = gizmos.get(id);
         if (g == null) {
+            return false;
+        }
+        if (g.overlapsWithAnyGizmos(gizmos.values())) {
             return false;
         }
         g.rotate();

@@ -3,6 +3,7 @@ package strath.cs308.gizmoball.model.gizmo;
 import mit.physics.LineSegment;
 import strath.cs308.gizmoball.model.Dot;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -54,4 +55,5 @@ public interface IGizmo {
             return name;
         }
     }
+
 }

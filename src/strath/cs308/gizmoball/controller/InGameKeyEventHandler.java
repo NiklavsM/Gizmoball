@@ -3,7 +3,7 @@ package strath.cs308.gizmoball.controller;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 import strath.cs308.gizmoball.model.IGameModel;
-import strath.cs308.gizmoball.model.gizmo.Flipper;
+import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.util.*;
@@ -23,7 +23,7 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent>, Observer {
     }
 
     public void onKeyEventTrigger(String keyEvent, ITriggerable triggerable) {
-        if(triggerable == null) {
+        if (triggerable == null) {
             return;
         }
         if (!keyEventMap.containsKey(keyEvent)) {
@@ -65,12 +65,16 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent>, Observer {
 
         keyEventMap.get(keyEventString)
                 .forEach(triggerable -> {
-                    if (triggerable instanceof Flipper) {
-                        Flipper.Movement args = null;
+                    if (triggerable instanceof IGizmo &&
+                            (((IGizmo) triggerable).getType().equals(IGizmo.Type.LEFT_FLIPPER)
+                                    ||
+                                    ((IGizmo) triggerable).getType().equals(IGizmo.Type.RIGHT_FLIPPER)
+                            )) {
+                        String args = "";
                         if (keyEvent.getEventType().equals(KEY_PRESSED)) {
-                            args = Flipper.Movement.FORWARD;
+                            args = KEY_PRESSED.toString();
                         } else if (keyEvent.getEventType().equals(KEY_RELEASED)) {
-                            args = Flipper.Movement.BACKWARDS;
+                            args = KEY_RELEASED.toString();
                         }
                         triggerable.performAction(args);
                     } else {
