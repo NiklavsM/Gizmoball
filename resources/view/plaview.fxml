@@ -72,30 +72,31 @@
                 </center>
 
                 <right>
-                    <VBox>
 
-                        <Label styleClass="default-padding, title-font"
-                               fx:id="ballsInPlay">
-
-                            Balls in play: 0
-                        </Label>
-
-                        <Label styleClass="default-padding, title-font"
-                               fx:id="ballsAbsorbed">
-                            Balls absorbed: 0
-                        </Label>
-
+                    <VBox styleClass="foreground">
                         <Label StackPane.alignment="TOP_RIGHT"
-                               styleClass="default-padding, medium-font"
+                               styleClass="default-padding, title-font"
                                fx:id="score"
                                alignment="CENTER_RIGHT">
                             Score: 0
                         </Label>
 
 
+                        <Label styleClass="default-padding, medium-font"
+                               fx:id="ballsInPlay">
+
+                            Balls in play: 0
+                        </Label>
+
+                        <Label styleClass="default-padding, medium-font"
+                               fx:id="ballsAbsorbed">
+                            Balls absorbed: 0
+                        </Label>
+
+
                         <ToolBar maxWidth="200"
                                  styleClass="game-bar"
-                                 BorderPane.alignment="TOP_CENTER">
+                                 BorderPane.alignment="BOTTOM_CENTER">
 
                             <GridPane vgap="4"
                                       hgap="16"

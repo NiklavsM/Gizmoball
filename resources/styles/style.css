@@ -37,6 +37,10 @@ BorderPane {
     -fx-stroke: white;
 }
 
+.foreground {
+    -fx-background-color: #455A64;
+}
+
 /* FIXME: canvas Styles arne't working :( */
 Canvas {
     -fx-background-color: white;
