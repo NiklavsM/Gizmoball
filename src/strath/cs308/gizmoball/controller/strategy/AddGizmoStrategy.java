@@ -205,10 +205,10 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         if (gizmoType.equals(IGizmo.Type.ABSORBER) && y < 1) {
             editorView.setStatus("Absorbers cannot sit on the top row as ball cannot be shot out");
             return true;
-        } else if (gizmoType.equals(IGizmo.Type.LEFT_FLIPPER) && (y >= 19 || x >= 19)) {
+        } else if (gizmoType.equals(IGizmo.Type.LEFT_FLIPPER) && (y >= 19 || x >= 19 || y < 0)) {
             editorView.setStatus("This is not an allowed position for a left flipper");
             return true;
-        } else if (gizmoType.equals(IGizmo.Type.RIGHT_FLIPPER) && y >= 19) {
+        } else if (gizmoType.equals(IGizmo.Type.RIGHT_FLIPPER) && (y >= 19 || y <0)) {
             editorView.setStatus("This is not an allowed position for a right flipper");
             return true;
         }
