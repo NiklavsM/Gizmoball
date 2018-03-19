@@ -229,6 +229,10 @@ public class GameModel extends Observable implements IGameModel {
         }
         double backX = gizmo.getStartX(), backY = gizmo.getStartY();
         gizmo.move(x, y);
+        if (!isInsideWalls(gizmo)) {
+            gizmo.move(backX, backY);
+            return false;
+        }
         if (gizmo.overlapsWithAnyGizmos(getGizmos())) {
             gizmo.move(backX, backY);
             return false;
