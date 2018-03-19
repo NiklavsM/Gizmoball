@@ -126,26 +126,26 @@
 
                 <VBox spacing="5"
                       alignment="CENTER">
-                    <Label text="%EDITOR_TOPBAR_GRAVITY"/>
                     <TextField fx:id="gravity"
                                styleClass="game-option-textbox"
                                prefWidth="60.0"/>
+                    <Label text="%EDITOR_TOPBAR_GRAVITY"/>
                 </VBox>
 
                 <VBox spacing="5"
                       alignment="CENTER">
-                    <Label text="%EDITOR_TOPBAR_FRICTIONMU1"/>
                     <TextField fx:id="mu1"
                                styleClass="game-option-textbox"
                                prefWidth="60.0"/>
+                    <Label text="%EDITOR_TOPBAR_FRICTIONMU1"/>
                 </VBox>
 
                 <VBox spacing="5"
                       alignment="CENTER">
-                    <Label text="%EDITOR_TOPBAR_FRICTIONMU2"/>
                     <TextField fx:id="mu2"
                                styleClass="game-option-textbox"
                                prefWidth="60.0"/>
+                    <Label text="%EDITOR_TOPBAR_FRICTIONMU2"/>
                 </VBox>
                 <VBox spacing="5"
                       alignment="CENTER">
