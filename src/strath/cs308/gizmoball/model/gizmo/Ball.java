@@ -116,9 +116,10 @@ public class Ball extends Gizmo implements IMovable {
 
     @Override
     public String toString() {
-        String soFar = super.toString();
-        soFar = soFar.substring(0, soFar.length() - 2);
-        return soFar + " " + velocity.x() + " " + velocity.y() + "\n\n";
+        return getType() + " " + id
+                + " " + getCircle().getCenter().x() + " "
+                + getCircle().getCenter().y()
+                + " " + velocity.x() + " " + velocity.y() + "\n\n";
     }
 
     @Override

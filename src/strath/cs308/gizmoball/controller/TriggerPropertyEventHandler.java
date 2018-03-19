@@ -22,6 +22,15 @@ public class TriggerPropertyEventHandler implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         switch (((Node) actionEvent.getSource()).getId()) {
             case "connectAChangeButton":
+
+                //wait for key press
+                editorView.setOnKeyPressed(event -> {
+                    System.out.println("PRE" + event.getCode());
+                });
+
+
+//                System.out.println("A key has been pressed " + editorView.getLastKeyPressed().toString());
+
                 Logger.verbose(TAG, "Connected A button clicked");
                 break;
             case "connectBChangeButton":

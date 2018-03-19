@@ -159,10 +159,6 @@ public abstract class Gizmo implements IGizmo {
 
     @Override
     public String toString() {
-        if (getType().equals(Type.WALLS)) {
-            return "";
-        }
-
         String x2String = "", y2String = "", rotate = "";
         if (getType().equals(Type.ABSORBER)) {
             x2String = " " + x2;

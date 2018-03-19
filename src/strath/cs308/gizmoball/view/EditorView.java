@@ -1,18 +1,14 @@
 package strath.cs308.gizmoball.view;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.*;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -23,21 +19,20 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.controller.*;
-import strath.cs308.gizmoball.controller.GamePropertyEventHandler;
-import strath.cs308.gizmoball.controller.GizmoSelectorEventHandler;
-import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
-import strath.cs308.gizmoball.controller.ToolModeEventHandler;
-import strath.cs308.gizmoball.controller.TopToolbarEventHandler;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IMovable;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
+
 public class EditorView extends Scene implements IEditorView, Observer {
     private static final String TAG = "EditorView";
+    private KeyCode lastKeyPressed;
     private BorderPane root;
     private IGameModel gameModel;
     private Canvas canvas;
@@ -48,12 +43,7 @@ public class EditorView extends Scene implements IEditorView, Observer {
     private TextField gravityTextField;
     private Label statusLabel;
     private InGameKeyEventHandler keyHandler;
-    private ComboBox<String> actionComboBox;
-    private Button connectionActionButton;
-    private TextField connectATextField;
-    private TextField connectBTextField;
-    private Button connectAChangeButton;
-    private Button connectBChangeButton;
+
     private TextField veloXField;
     private TextField veloYField;
     private TextField radianField;
@@ -79,9 +69,12 @@ public class EditorView extends Scene implements IEditorView, Observer {
 
             setRoot(root);
 
+
             initialSetup();
             refresh();
 
+            setOnKeyPressed(this.keyHandler);
+            setOnKeyReleased(this.keyHandler);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -98,13 +91,7 @@ public class EditorView extends Scene implements IEditorView, Observer {
         colorPicker = (ColorPicker) namespace.get("colorPickerPorperty");
         gravityTextField = (TextField) namespace.get("gravity");
 
-        connectATextField = (TextField) namespace.get("connectBTextField");
-        connectBTextField = (TextField) namespace.get("connectBTextField");
-        connectAChangeButton = (Button) namespace.get("connectAChangeButton");
-        connectBChangeButton = (Button) namespace.get("connectBChangeButton");
-        actionComboBox = (ComboBox<String>) namespace.get("actionComboBox");
-        connectionActionButton = (Button) namespace.get("connectAction");
-
+        ConnectPanelView connectPanelView = new ConnectPanelView(gameModel, this, namespace);
         statusLabel = (Label) namespace.get("statusbar");
     }
 
@@ -171,12 +158,6 @@ public class EditorView extends Scene implements IEditorView, Observer {
             friction1TextField.setOnAction(gamePropertyEventHandler);
             friction2TextField.setOnAction(gamePropertyEventHandler);
             gravityTextField.setOnAction(gamePropertyEventHandler);
-
-            EventHandler<ActionEvent> triggerPropertyEventHandler = new TriggerPropertyEventHandler(gameModel, this);
-            connectAChangeButton.setOnAction(triggerPropertyEventHandler);
-            connectATextField.setOnAction(triggerPropertyEventHandler);
-            connectBChangeButton.setOnAction(triggerPropertyEventHandler);
-            connectBTextField.setOnAction(triggerPropertyEventHandler);
         });
     }
 
@@ -323,6 +304,11 @@ public class EditorView extends Scene implements IEditorView, Observer {
         } else {
             movableHolder.setVisible(false);
         }
+    }
+
+    @Override
+    public KeyCode getLastKeyPressed() {
+        return keyHandler.getLastKeyPress();
     }
 
     @Override

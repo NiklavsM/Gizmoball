@@ -11,6 +11,11 @@ public class Walls extends Gizmo {
     }
 
     @Override
+    public String toString() {
+        return "";
+    }
+
+    @Override
     protected void setup(double x1, double y1, double x2, double y2) {
         super.setup(x1, y1, x2, y2);
         lines.add(new LineSegment(0, 0, 0, 20));

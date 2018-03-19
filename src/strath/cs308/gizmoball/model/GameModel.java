@@ -355,6 +355,7 @@ public class GameModel extends Observable implements IGameModel {
     @Override
     public String toString() {
         StringBuilder commands = new StringBuilder();
+        commands.append("# gizmos\n");
         for (Gizmo gizmo : gizmos.values()) {
             commands.append(gizmo.toString());
         }

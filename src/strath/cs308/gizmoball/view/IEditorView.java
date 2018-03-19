@@ -2,6 +2,7 @@ package strath.cs308.gizmoball.view;
 
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
@@ -36,6 +37,8 @@ public interface IEditorView {
     double getGravityInput() throws NumberFormatException;
 
     void displayGizmoProperties(IGizmo gizmo);
+
+    KeyCode getLastKeyPressed();
 
     void previewGizmo(IGizmo gizmo, double x, double y);
 
