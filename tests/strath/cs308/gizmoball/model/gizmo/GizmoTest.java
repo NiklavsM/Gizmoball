@@ -31,7 +31,7 @@ public class GizmoTest {
         model.addGizmo(circle);
         model.tick(1);
         model.tick(1);
-        assertTrue(model.getScore() - 1 == scoreBefore, "Circle gizmo must score 1 point!");
+        assertTrue(model.getScore() - 10 == scoreBefore, "Circle gizmo must score 1 point!");
         System.out.println("x: " + ball.getX() + " y " + ball.getY());
     }
 
@@ -83,9 +83,16 @@ public class GizmoTest {
     void testUniqueIds() {
         Triangle triangle1 = new Triangle(8, 2);
         Triangle triangle2 = new Triangle(3, 13);
-        Square square = new Square(17, 5);
-
         assertTrue(!triangle1.getId().equals(triangle2.getId()) && !triangle2.getId().equals(triangle1.getId()), "Triangles with same ids!");
-        assertFalse(square.getId().equals(triangle1) || square.equals(triangle2.getId()), "Circle with null id!");
     }
+
+    @Test
+    void testOverlapping() {
+        Square square = new Square(11, 11);
+        Rhombus rhombus = new Rhombus(11, 11);
+        model.addGizmo(square);
+        assertFalse(model.addGizmo(rhombus), "A rhombus cannot be placed as there is already a gizmo in the specified location!");
+    }
+
+
 }
