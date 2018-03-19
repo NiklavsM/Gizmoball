@@ -22,7 +22,6 @@ public class GameSaver {
     public void save() throws IllegalAccessException, FileNotFoundException {
         PrintWriter printWriter = new PrintWriter(fileToSave);
         printWriter.print(gameModel.toString());
-        printWriter.println("\n\n# key bindings");
         printWriter.println(keyEventhandler);
         printWriter.close();
     }

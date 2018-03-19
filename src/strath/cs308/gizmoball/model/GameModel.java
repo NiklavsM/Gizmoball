@@ -1,6 +1,5 @@
 package strath.cs308.gizmoball.model;
 
-import com.sun.javafx.iio.ImageStorage;
 import mit.physics.Circle;
 import mit.physics.Geometry;
 import mit.physics.LineSegment;
@@ -410,7 +409,7 @@ public class GameModel extends Observable implements IGameModel {
             commands.append(gizmo.toString());
         }
 
-        commands.append("\n\n# collision triggers\n");
+        commands.append("\n# collision triggers\n");
 
         Set<ITrigger> collisionTriggers = gizmos
                 .values()

@@ -320,7 +320,7 @@ public class EditorView extends Scene implements IEditorView, Observer {
         if (gameModel.getGizmo(x, y).equals(Optional.empty())) {
             if (gizmo.getType().equals(IGizmo.Type.LEFT_FLIPPER) && isFlipperAreaOccupied(x, y))
                 return;
-            if (gizmo.getType().equals(IGizmo.Type.RIGHT_FLIPPER) && isFlipperAreaOccupied(x-1, y))
+            if (gizmo.getType().equals(IGizmo.Type.RIGHT_FLIPPER) && isFlipperAreaOccupied(x - 1, y))
                 return;
 
             GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
@@ -336,7 +336,7 @@ public class EditorView extends Scene implements IEditorView, Observer {
         for (int posX = Xcoord.intValue(); posX <= Xcoord.intValue() + 1; posX++) {
             for (int posY = Ycoord.intValue(); posY <= Ycoord.intValue() + 1; posY++) {
                 if (!gameModel.getGizmo(posX, posY).equals(Optional.empty())) {
-                    Logger.debug(TAG," x,y: "+ posX + " , "+ posY);
+                    Logger.debug(TAG, " x,y: " + posX + " , " + posY);
                     return true;
                 }
             }

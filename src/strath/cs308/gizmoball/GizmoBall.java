@@ -19,18 +19,17 @@ import java.util.Locale;
 public class GizmoBall extends Application {
 
     private static final String TAG = "GizmoBall";
+    public static Locale locale = new Locale("en");
+    private static Stage stage;
     private IGameModel gameModel;
     private InGameKeyEventHandler keyHandler;
     private GameLoader gameLoader;
-    public static Locale locale = new Locale("en");
-    private static Stage stage;
 
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-
     public void start(Stage primaryStage) throws IOException {
         primaryStage.setX(100);
 

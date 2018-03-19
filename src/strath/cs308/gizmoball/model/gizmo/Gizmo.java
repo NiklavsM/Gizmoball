@@ -159,27 +159,29 @@ public abstract class Gizmo implements IGizmo {
 
     @Override
     public String toString() {
-        String x2String = "", y2String = "", rotate = "";
+        String x2String = "";
+        String y2String = "";
+        StringBuilder rotate = new StringBuilder("\n");
         if (getType().equals(Type.ABSORBER)) {
             x2String = " " + x2;
             y2String = " " + y2;
         }
 
         for (int i = 0; i < rotateCount % 4; i++) {
-            rotate += GameLoader.ROTATE_COMMAND + " " + id + "\n";
+            rotate.append(GameLoader.ROTATE_COMMAND + " ").append(id).append("\n");
         }
 
-        return getType() + " " + id + " " + x1 + " " + y1 + x2String + y2String + "\n" + rotate + "\n";
-    }
-
-    @Override
-    public void setReflectionCoefficient(double coefficient) {
-        reflectionCoefficient = coefficient;
+        return getType() + " " + id + " " + x1 + " " + y1 + x2String + y2String + rotate;
     }
 
     @Override
     public double getReflectionCoefficient() {
         return reflectionCoefficient;
+    }
+
+    @Override
+    public void setReflectionCoefficient(double coefficient) {
+        reflectionCoefficient = coefficient;
     }
 
     @Override
@@ -203,9 +205,10 @@ public abstract class Gizmo implements IGizmo {
         if(this.equals(g)) {
             return false;
         }
-        if(g.getType().equals(Type.WALLS)) {
+        if (g.getType().equals(Type.WALLS)) {
             return false;
         }
+
       return x1 < g.getEndX() && x2 > g.getStartX() && y1 < g.getEndY() && y2 > g.getStartY();
     }
 
