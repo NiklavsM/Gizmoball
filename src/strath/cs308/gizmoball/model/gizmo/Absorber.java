@@ -57,7 +57,7 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
             ball.setX(getEndX() - radius - ((ballsAbsorbed.size() - 1) * (2 * radius)) % (x2 - x1)); // makes sure balls sit in the absorber nicely
             ball.setY(getEndY() - radius - (((ballsAbsorbed.size() - 1) / (int) ((x2 - x1) * 2)) * (2 * radius)) % (y2 - y1));
             ball.setVelocity(0, -50);
-            ball.setStopped(true);
+            ball.setIsMoving(false);
             Logger.verbose(TAG, "ball.getCircle().getCenter().y() " + ball.getCircle().getCenter().y());
         }
     }
@@ -67,7 +67,7 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
     }
 
     private void shootTheBallOut(Ball ball) {
-        ball.setStopped(false);
+        ball.setIsMoving(true);
         ball.setX(getEndX() - 0.5);
         ball.setY(getStartY() - 0.5);
     }

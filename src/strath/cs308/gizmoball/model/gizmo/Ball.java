@@ -15,7 +15,7 @@ public class Ball extends Gizmo implements IMovable {
     private Vect velocity;
     private double radius;
     private Circle circle;
-    private boolean stopped;
+    private boolean isMoving = true;
 
     public Ball(double x, double y) {
         this(x, y, generateID());
@@ -78,12 +78,22 @@ public class Ball extends Gizmo implements IMovable {
         return (getEndX() - getStartX()) / 2;
     }
 
-    public boolean isStopped() {
-        return stopped;
+    public boolean isMoving() {
+        return isMoving;
     }
 
-    void setStopped(boolean stopped) {
-        this.stopped = stopped;
+    @Override
+    public Vect getCurrentVelocity() {
+        return velocity;
+    }
+
+    @Override
+    public Circle getSpinAround() {
+        return null;
+    }
+
+    void setIsMoving(boolean isMoving) {
+        this.isMoving = isMoving;
     }
 
     private void updateCircles() {

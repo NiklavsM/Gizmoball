@@ -183,7 +183,7 @@ class GameModelTest {
         model.addGizmo(square);
         model.tick(1);
         model.tick(1);
-        assertTrue(ball.isStopped() && ball.getX() == 2.75 && ball.getY() == 1.75);
+        assertTrue(!ball.isMoving() && ball.getX() == 2.75 && ball.getY() == 1.75);
     }
 
     @Test

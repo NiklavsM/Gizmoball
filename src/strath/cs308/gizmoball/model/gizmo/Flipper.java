@@ -227,7 +227,6 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
             return;
         }
         if (args.equals("COLLISION")) {
-            //isCycle = true;
             if (movementStatus.equals(Movement.TOP)) {
                 down();
             } else {
@@ -283,6 +282,11 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
     @Override
     public String id() {
         return id;
+    }
+
+    @Override
+    public Circle getSpinAround() {
+        return startPoint;
     }
 
     @Override
