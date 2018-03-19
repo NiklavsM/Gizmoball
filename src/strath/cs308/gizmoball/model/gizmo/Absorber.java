@@ -5,7 +5,10 @@ import mit.physics.LineSegment;
 import strath.cs308.gizmoball.model.triggeringsystem.*;
 import strath.cs308.gizmoball.utils.Logger;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+import java.util.Stack;
 
 public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
 
@@ -92,7 +95,7 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
     }
 
     @Override
-    public boolean overlapsWithGizmo(Gizmo g) {
+    public boolean overlapsWithGizmo(IGizmo g) {
         if (g.getType().equals(Type.BALL)) {
             Ball b = (Ball) g;
             if (hasAbsorbed(b)) {

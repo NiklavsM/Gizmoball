@@ -13,6 +13,7 @@ import strath.cs308.gizmoball.model.gizmo.Triangle;
 import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.EditorView;
+import strath.cs308.gizmoball.view.PlayView;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -20,19 +21,17 @@ import java.util.Locale;
 public class GizmoBall extends Application {
 
     private static final String TAG = "GizmoBall";
+    public static Locale locale = new Locale("en");
+    private static Stage stage;
     private IGameModel gameModel;
     private InGameKeyEventHandler keyHandler;
     private GameLoader gameLoader;
-    public static Locale locale = new Locale("en");
-    private static Stage stage;
-    private static Scene view;
 
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-
     public void start(Stage primaryStage) throws IOException {
         primaryStage.setX(100);
 
@@ -68,15 +67,13 @@ public class GizmoBall extends Application {
         primaryStage.setMinWidth(500);
         primaryStage.setMinHeight(530);
 
-
-        primaryStage.setScene(new EditorView(gameModel, keyHandler));
+        //primaryStage.setScene(new EditorView(gameModel, keyHandler));
+        primaryStage.setScene(new PlayView(gameModel, keyHandler));
         primaryStage.show();
         stage = primaryStage;
     }
 
-
     public static void switchView(Scene view) {
-        GizmoBall.view = view;
         stage.setScene(view);
     }
 

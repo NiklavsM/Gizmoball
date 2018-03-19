@@ -1,6 +1,5 @@
 package strath.cs308.gizmoball.model;
 
-import com.sun.javafx.iio.ImageStorage;
 import mit.physics.Circle;
 import mit.physics.Geometry;
 import mit.physics.LineSegment;
@@ -49,7 +48,7 @@ public class GameModel extends Observable implements IGameModel {
             gizmos
                     .values()
                     .parallelStream()
-                    .filter(g -> g.overlapsWithGizmo((Gizmo) gizmo)
+                    .filter(g -> g.overlapsWithGizmo(gizmo)
                             && g.getType().equals(IGizmo.Type.ABSORBER))
                     .map(Absorber.class::cast)
                     .findFirst()
@@ -67,7 +66,7 @@ public class GameModel extends Observable implements IGameModel {
                 return false;
             }
 
-            if (((Gizmo) gizmo).overlapsWithAnyGizmos(gizmos
+            if (gizmo.overlapsWithAnyGizmos(gizmos
                     .values()
                     .stream()
                     .filter(g -> !g.getType().equals(IGizmo.Type.BALL))
@@ -78,7 +77,7 @@ public class GameModel extends Observable implements IGameModel {
             gizmos
                     .values()
                     .parallelStream()
-                    .filter(g -> ((Gizmo) gizmo).overlapsWithGizmo(g)
+                    .filter(g -> g.overlapsWithGizmo(g)
                             && g.getType().equals(IGizmo.Type.BALL))
                     .map(Ball.class::cast)
                     .forEach(ball -> {
@@ -86,13 +85,12 @@ public class GameModel extends Observable implements IGameModel {
                         a.absorbBall(ball);
                     });
 
-
             gizmos.put(gizmo.getId(), (Gizmo) gizmo);
             update();
             return true;
         }
 
-        if (((Gizmo) gizmo).overlapsWithAnyGizmos(gizmos.values())) {
+        if (gizmo.overlapsWithAnyGizmos(getGizmos())) {
             return false;
         }
         if (gizmos.containsKey(gizmo.getId())) {
@@ -220,7 +218,7 @@ public class GameModel extends Observable implements IGameModel {
         }
         double backX = gizmo.getStartX(), backY = gizmo.getStartY();
         gizmo.move(x, y);
-        if (((Gizmo) gizmo).overlapsWithAnyGizmos(gizmos.values())) {
+        if (gizmo.overlapsWithAnyGizmos(getGizmos())) {
             gizmo.move(backX, backY);
             return false;
         }
@@ -335,7 +333,7 @@ public class GameModel extends Observable implements IGameModel {
         if (g == null) {
             return false;
         }
-        if (g.overlapsWithAnyGizmos(gizmos.values())) {
+        if (g.overlapsWithAnyGizmos(getGizmos())) {
             return false;
         }
         g.rotate();

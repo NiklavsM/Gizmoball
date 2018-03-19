@@ -36,6 +36,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
         switch (((Node) actionEvent.getSource()).getId()) {
             case "menuBackButton":
                 playView.hidePauseMenu();
+                playView.changePlayIcon();
                 break;
 
             case "menuSaveButton":

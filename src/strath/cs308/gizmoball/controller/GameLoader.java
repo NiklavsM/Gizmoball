@@ -165,7 +165,6 @@ public class GameLoader {
                 from.registerTriggarable(to);
                 Logger.verbose(TAG, "connected " + name + " to " + name2);
             } catch (ClassCastException ex) {
-
             }
             return;
         }

@@ -4,17 +4,13 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import strath.cs308.gizmoball.model.IGameModel;
+import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.FileChooser;
 import strath.cs308.gizmoball.view.IEditorView;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
-import strath.cs308.gizmoball.model.UndoRedo;
-import strath.cs308.gizmoball.view.IEditorView;
-
 import java.io.FileNotFoundException;
 
 
@@ -24,7 +20,7 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
     private IGameModel gameModel;
     private IEditorView editView;
 
-    public TopToolbarEventHandler(IGameModel gameModel, InGameKeyEventHandler keyEventHandler , IEditorView editorView) {
+    public TopToolbarEventHandler(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IEditorView editorView) {
         this.gameModel = gameModel;
         this.editView = editorView;
         this.keyEventHandler = keyEventHandler;

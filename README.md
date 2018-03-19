@@ -12,7 +12,21 @@ CS308 Semester 2 Group Project
 
 [Testing Strategy](docs/preliminaryrelease/unit_test_strategy.md)
 
-## Build
+
+
+##Intellij Setup
+
+Mark src as Source Root
+
+Mark test as Test Root
+
+Mark resources as Resources
+ 
+Import physic-lib-1.0.jar from `/libs`
+
+Import JUnit 5
+
+## Build Documentation
 
 Markdown to PDF
 
