@@ -201,17 +201,18 @@ public abstract class Gizmo implements IGizmo {
         return true;
     }
 
-    public boolean overlapsWithGizmo(Gizmo g) {
-        if (this.equals(g)) {
+    public boolean overlapsWithGizmo(IGizmo g) {
+        if(this.equals(g)) {
             return false;
         }
         if (g.getType().equals(Type.WALLS)) {
             return false;
         }
-        return x1 < g.x2 && x2 > g.x1 && y1 < g.y2 && y2 > g.y1;
+
+      return x1 < g.getEndX() && x2 > g.getStartX() && y1 < g.getEndY() && y2 > g.getStartY();
     }
 
-    public boolean overlapsWithAnyGizmos(Collection<Gizmo> gizmos) {
+    public boolean overlapsWithAnyGizmos(Collection<IGizmo> gizmos) {
         return gizmos
                 .stream()
                 .anyMatch(this::overlapsWithGizmo);

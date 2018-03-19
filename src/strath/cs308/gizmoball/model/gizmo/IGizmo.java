@@ -3,6 +3,7 @@ package strath.cs308.gizmoball.model.gizmo;
 import mit.physics.LineSegment;
 import strath.cs308.gizmoball.model.Dot;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -35,6 +36,8 @@ public interface IGizmo {
     String getColor();
 
     boolean setColor(String color);
+
+    boolean overlapsWithAnyGizmos(Collection<IGizmo> gizmos);
 
     enum Type {
         TRIANGLE("Triangle"), ABSORBER("Absorber"), SQUARE("Square"), BALL("Ball"),

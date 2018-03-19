@@ -325,7 +325,7 @@ public class EditorView extends Scene implements IEditorView, Observer {
 
             GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
             gameModel.getGizmoBalls().forEach(e -> {
-                //System.out.println(e.getStartX() + "," + e.getStartY());
+                Logger.debug(TAG, e.getStartX() + "," + e.getStartY());
             });
             gizmoDrawer.drawGizmo(gizmo, true);
         }
