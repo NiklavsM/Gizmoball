@@ -58,9 +58,11 @@ public class GizmoBall extends Application {
 //        keyHandler.onKeyEventTrigger("key 74.0 down", t);
         //
         //
-        //
-        //
-        //
+
+        //Doesn't work in xml
+        primaryStage.setMinWidth(500);
+        primaryStage.setMinHeight(530);
+
 
         primaryStage.setScene(new PlayView(gameModel, keyHandler));
         primaryStage.show();
