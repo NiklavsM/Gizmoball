@@ -76,6 +76,7 @@
 
                         <Label styleClass="default-padding, title-font"
                                fx:id="ballsInPlay">
+
                             Balls in play: 0
                         </Label>
 
@@ -85,7 +86,7 @@
                         </Label>
 
                         <Label StackPane.alignment="TOP_RIGHT"
-                               styleClass="default-padding, title-font"
+                               styleClass="default-padding, medium-font"
                                fx:id="score"
                                alignment="CENTER_RIGHT">
                             Score: 0
