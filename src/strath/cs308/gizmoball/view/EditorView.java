@@ -13,6 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -38,6 +40,7 @@ import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 public class EditorView extends Scene implements IEditorView, Observer {
     private static final String TAG = "EditorView";
+    private KeyCode lastKeyPressed;
     private BorderPane root;
     private IGameModel gameModel;
     private Canvas canvas;
@@ -78,6 +81,14 @@ public class EditorView extends Scene implements IEditorView, Observer {
             isGrided = true;
 
             setRoot(root);
+
+            root.addEventFilter(KeyEvent.KEY_PRESSED, event->{
+                lastKeyPressed = event.getCode();
+                if (event.getCode() == KeyCode.ESCAPE) {
+                    System.out.println("Escape has been pressed");
+
+                }
+            });
 
             initialSetup();
             refresh();
@@ -325,6 +336,12 @@ public class EditorView extends Scene implements IEditorView, Observer {
         }
     }
 
+
+    @Override
+    public KeyCode getLastKeyPressed() {
+        return lastKeyPressed;
+    }
+
     @Override
     public void previewGizmo(IGizmo gizmo, double x, double y) {
         if (gameModel.getGizmo(x, y).equals(Optional.empty())) {
@@ -335,6 +352,7 @@ public class EditorView extends Scene implements IEditorView, Observer {
             gizmoDrawer.drawGizmo(gizmo, true);
         }
     }
+
 
 
     @Override
