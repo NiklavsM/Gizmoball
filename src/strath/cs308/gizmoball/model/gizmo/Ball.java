@@ -2,6 +2,7 @@ package strath.cs308.gizmoball.model.gizmo;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import javafx.util.Pair;
 import mit.physics.Angle;
 import mit.physics.Circle;
 import mit.physics.Vect;
@@ -106,6 +107,15 @@ public class Ball extends Gizmo implements IMovable {
         radius = 0.25;
         circle = new Circle(x + 0.25, y + 0.25, radius);
         circles.add(circle);
+    }
+
+    @Override
+    public boolean overlapsWithGizmo(Gizmo g) {
+        boolean r = super.overlapsWithGizmo(g);
+        if (r && g.getType().equals(IGizmo.Type.ABSORBER)) {
+            return false;
+        }
+        return r;
     }
 
     @Override
