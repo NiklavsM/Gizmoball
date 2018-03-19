@@ -152,6 +152,7 @@ public class GameModel extends Observable implements IGameModel {
                     absorberCollided.remove(ball.getId());
                 }
             }
+
             // Notify observers ... redraw updated view
             update();
 
@@ -290,6 +291,21 @@ public class GameModel extends Observable implements IGameModel {
 
     public Set<IGizmo> getGizmoBalls() {
         return new HashSet<>(getBalls());
+    }
+
+    public int[] getBallsInPlay() {
+        int[] balls = new int[2];
+        int absorbedBalls = 0;
+
+        Set<Ball> allBalls = this.getBalls();
+        for (Ball ball : allBalls) {
+            if (ball.isStopped())
+                absorbedBalls++;
+        }
+
+        balls[0] = allBalls.size() - absorbedBalls;
+        balls[1] = absorbedBalls;
+        return balls;
     }
 
     @Override

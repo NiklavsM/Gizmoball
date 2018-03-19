@@ -69,7 +69,7 @@ public class PlayView extends Scene implements IPlayView, Observer {
             e.printStackTrace();
         }
 
-
+        updateBallsInPlay();
     }
 
     private void attachEventHandlers() {
@@ -83,7 +83,6 @@ public class PlayView extends Scene implements IPlayView, Observer {
             EventHandler pauseMenuEventHandler = new PauseMenuEventHandler(gameModel, keyHandler, gameTimer, this);
             root.lookupAll("#pauseMenuItemHolder > Button")
                     .forEach(node -> ((Button) node).setOnAction(pauseMenuEventHandler));
-
 
         });
     }
@@ -116,6 +115,7 @@ public class PlayView extends Scene implements IPlayView, Observer {
         Platform.runLater(() -> {
             drawBackground();
             drawGizmos();
+            updateBallsInPlay();
             updateScore();
         });
     }
@@ -131,6 +131,15 @@ public class PlayView extends Scene implements IPlayView, Observer {
         GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
         gameModel.getGizmos().forEach(gizmo -> gizmoDrawer.drawGizmo(gizmo, false));
         gameModel.getGizmoBalls().forEach(ball -> gizmoDrawer.drawGizmo(ball, false));
+    }
+
+    private void updateBallsInPlay() {
+        int[] balls = gameModel.getBallsInPlay();
+        Label ballsInPlay = (Label) root.lookup("#ballsInPlay");
+        ballsInPlay.setText("Balls in play: " + balls[0]);
+
+        Label ballsAbsorbed = (Label) root.lookup("#ballsAbsorbed");
+        ballsAbsorbed.setText("Balls absorbed: " + balls[1]);
     }
 
     private void updateScore() {

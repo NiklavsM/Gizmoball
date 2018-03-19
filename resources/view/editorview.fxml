@@ -334,15 +334,12 @@
                                       GridPane.columnIndex="1"
                                       spacing="16"
                                       alignment="CENTER">
-                                    <Button fx:id="addLeftFlipperMode">
+                                    <Button fx:id="addRhombusMode">
                                         <graphic>
-                                            <ImageView fitWidth="10"
-                                                       fitHeight="30">
-                                                <Image url="/icons/flipper.png"/>
-                                            </ImageView>
+                                            <SVGPath content="M 15,0 L 30,15 L 15,30 L 0,15 z" fill="#00ffe2"></SVGPath>
                                         </graphic>
                                     </Button>
-                                    <Label text="%EDITOR_RIGHTBAR_LEFTFLIPPER"
+                                    <Label text="%EDITOR_RIGHTBAR_RHOMBUS"
                                            styleClass="regular-font"/>
                                 </VBox>
 
@@ -350,15 +347,12 @@
                                       GridPane.columnIndex="2"
                                       spacing="16"
                                       alignment="CENTER">
-                                    <Button fx:id="addRightFlipperMode">
+                                    <Button fx:id="addOctagonMode">
                                         <graphic>
-                                            <ImageView fitWidth="10"
-                                                       fitHeight="30">
-                                                <Image url="/icons/flipper.png"/>
-                                            </ImageView>
+                                            <SVGPath content="M 10,0 L 20,0 L 30,10 L 30,20 L 20,30 L 10,30 L 0,20 L 0,10z" fill="#f8f302"></SVGPath>
                                         </graphic>
                                     </Button>
-                                    <Label text="%EDITOR_RIGHTBAR_RIGHTFLIPPER"
+                                    <Label text="%EDITOR_RIGHTBAR_OCTAGON"
                                            styleClass="regular-font"/>
                                 </VBox>
 
@@ -379,12 +373,15 @@
                                       GridPane.columnIndex="1"
                                       spacing="16"
                                       alignment="CENTER">
-                                    <Button fx:id="addRhombusMode">
+                                    <Button fx:id="addLeftFlipperMode">
                                         <graphic>
-                                            <SVGPath content="M 15,0 L 30,15 L 15,30 L 0,15 z" fill="#00ffe2"></SVGPath>
+                                            <ImageView fitWidth="10"
+                                                       fitHeight="30">
+                                                <Image url="/icons/flipper.png"/>
+                                            </ImageView>
                                         </graphic>
                                     </Button>
-                                    <Label text="%EDITOR_RIGHTBAR_RHOMBUS"
+                                    <Label text="%EDITOR_RIGHTBAR_LEFTFLIPPER"
                                            styleClass="regular-font"/>
                                 </VBox>
 
@@ -392,12 +389,15 @@
                                       GridPane.columnIndex="2"
                                       spacing="16"
                                       alignment="CENTER">
-                                    <Button fx:id="addOctagonMode">
+                                    <Button fx:id="addRightFlipperMode">
                                         <graphic>
-                                            <SVGPath content="M 10,0 L 20,0 L 30,10 L 30,20 L 20,30 L 10,30 L 0,20 L 0,10z" fill="#f8f302"></SVGPath>
+                                            <ImageView fitWidth="10"
+                                                       fitHeight="30">
+                                                <Image url="/icons/flipper.png"/>
+                                            </ImageView>
                                         </graphic>
                                     </Button>
-                                    <Label text="%EDITOR_RIGHTBAR_OCTAGON"
+                                    <Label text="%EDITOR_RIGHTBAR_RIGHTFLIPPER"
                                            styleClass="regular-font"/>
                                 </VBox>
 
@@ -410,20 +410,23 @@
 
                     <VBox spacing="16"
                           styleClass="default-padding, GizmoPane">
-                        <HBox spacing="16"> 
-                            <VBox>
+                        <VBox spacing="16">
+
+                            <HBox>
                                 <Label text="%EDITOR_RIGHTBAR_PROPERTY_TYPE" />
                                 <Label fx:id="gizmoType" />
-                            </VBox>
-                            <VBox>
+                            </HBox>
+
+                            <HBox>
                                 <Label text="%EDITOR_RIGHTBAR_PROPERTY_ID"/>
                                 <Label fx:id="gizmoId" />
-                            </VBox>
+                            </HBox>
+
                             <VBox>
                                 <Label text="%EDITOR_RIGHTBAR_PROPERTY_COLOR"/>
                                 <ColorPicker fx:id="colorPickerPorperty"/>
                             </VBox>
-                        </HBox>
+                        </VBox>
 
                         <Label text="%EDITOR_RIGHTBAR_PROPERTY_REFLECTIONCOEFFICIENT" />
                         <TextField fx:id="reflectionCoeffField"

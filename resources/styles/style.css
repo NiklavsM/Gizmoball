@@ -35,13 +35,11 @@ MenuBar {
 BorderPane {
     -fx-background-color: #37474F;
     -fx-stroke: white;
-    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.5), 0, 0, 0, 1);
 }
 
 /* FIXME: canvas Styles arne't working :( */
 Canvas {
     -fx-background-color: white;
-    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.5), 0, 0, 0, 1);
 }
 
 .statusbar {
@@ -243,7 +241,11 @@ i.pause-menu-font {
 }
 
 .regular-font {
-    -fx-font: 14px Arial;
+     -fx-font: 14px Arial;
+ }
+
+.medium-font {
+    -fx-font: 20px Arial;
 }
 
 .card-title {
@@ -270,4 +272,10 @@ i.pause-menu-font {
 
 #topToolbar  VBox {
     -fx-padding: 0px 5px 0px 5px;
+}
+
+
+ColorPicker, ComboBox {
+    -fx-background-color: #37474F;
+    -fx-text-fill: #B0BEC5;
 }
