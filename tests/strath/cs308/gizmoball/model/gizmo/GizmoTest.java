@@ -62,13 +62,20 @@ public class GizmoTest {
     }
 
     @Test
-    void testNoIdConstructors() {
+    void testNoIdTriangle() {
         Triangle triangle = new Triangle(11, 5);
-        CircleGizmo circle = new CircleGizmo(7, 16);
-        Square square = new Square(4, 4);
-
         assertNotNull(triangle.getId(), "Triangle with null id!");
+    }
+
+    @Test
+    void testNoIdCircle() {
+        CircleGizmo circle = new CircleGizmo(7, 16);
         assertNotNull(circle.getId(), "Circle with null id!");
+    }
+
+    @Test
+    void testNoIdSquare() {
+        Square square = new Square(4, 4);
         assertNotNull(square.getId(), "Square with null id!");
     }
 
