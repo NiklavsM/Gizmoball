@@ -88,15 +88,12 @@ public class GameModel extends Observable implements IGameModel {
                         ((Absorber) gizmo).absorbBall(ball);
                     });
 
-
-
-
             gizmos.put(gizmo.getId(), (Gizmo) gizmo);
             update();
             return true;
         }
 
-        if (((Gizmo) gizmo).overlapsWithAnyGizmos(gizmos.values())) {
+        if (gizmo.overlapsWithAnyGizmos(getGizmos())) {
             return false;
         }
         if (gizmos.containsKey(gizmo.getId())) {
@@ -224,7 +221,7 @@ public class GameModel extends Observable implements IGameModel {
         }
         double backX = gizmo.getStartX(), backY = gizmo.getStartY();
         gizmo.move(x, y);
-        if (((Gizmo) gizmo).overlapsWithAnyGizmos(gizmos.values())) {
+        if (((Gizmo) gizmo).overlapsWithAnyGizmos(getGizmos())) {
             gizmo.move(backX, backY);
             return false;
         }
@@ -339,7 +336,7 @@ public class GameModel extends Observable implements IGameModel {
         if (g == null) {
             return false;
         }
-        if (g.overlapsWithAnyGizmos(gizmos.values())) {
+        if (g.overlapsWithAnyGizmos(getGizmos())) {
             return false;
         }
         g.rotate();

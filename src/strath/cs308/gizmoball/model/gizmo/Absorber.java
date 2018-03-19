@@ -90,7 +90,7 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
     }
 
     @Override
-    public boolean overlapsWithGizmo(Gizmo g) {
+    public boolean overlapsWithGizmo(IGizmo g) {
         if (g.getType().equals(Type.BALL)) {
             Ball b = (Ball) g;
             if (hasAbsorbed(b)) {

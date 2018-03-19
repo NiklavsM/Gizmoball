@@ -87,7 +87,8 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
                 for (int y = startY.intValue(); y <= endY.intValue(); y+=step) {
                     if (invalidAddition(x, y)) continue;
                     IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, x, y);
-                    editorView.previewGizmo(gizmo, x, y);
+                    if (!gizmo.overlapsWithAnyGizmos(gameModel.getGizmos()))
+                        editorView.previewGizmo(gizmo, x, y);
                 }
             }
         } else {
@@ -100,7 +101,8 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
                 gizmo = gizmoFactory.createGizmo(gizmoType, previewX, previewY);
             }
 
-            editorView.previewGizmo(gizmo, previewX, previewY);
+            if (!gizmo.overlapsWithAnyGizmos(gameModel.getGizmos()))
+                editorView.previewGizmo(gizmo, previewX, previewY);
         }
 
         mouseX = previewX;
@@ -133,7 +135,6 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         } else {
             putGizmoFromTo(pressX, pressY, releasedX, releasedY);
         }
-
     }
 
     private void putGizmoFromTo(double startX, double startY, double endX, double endY) {

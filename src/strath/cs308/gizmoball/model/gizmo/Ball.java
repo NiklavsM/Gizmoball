@@ -110,7 +110,7 @@ public class Ball extends Gizmo implements IMovable {
     }
 
     @Override
-    public boolean overlapsWithGizmo(Gizmo g) {
+    public boolean overlapsWithGizmo(IGizmo g) {
         boolean r = super.overlapsWithGizmo(g);
         if (r && g.getType().equals(IGizmo.Type.ABSORBER)) {
             return false;
