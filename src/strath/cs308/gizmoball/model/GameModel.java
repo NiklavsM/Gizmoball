@@ -49,7 +49,7 @@ public class GameModel extends Observable implements IGameModel {
             gizmos
                     .values()
                     .parallelStream()
-                    .filter(g -> g.overlapsWithGizmo((Gizmo) gizmo)
+                    .filter(g -> g.overlapsWithGizmo(gizmo)
                             && g.getType().equals(IGizmo.Type.ABSORBER))
                     .map(Absorber.class::cast)
                     .findFirst()
@@ -70,7 +70,7 @@ public class GameModel extends Observable implements IGameModel {
                 return false;
             }
 
-            if (((Gizmo) gizmo).overlapsWithAnyGizmos(gizmos
+            if (gizmo.overlapsWithAnyGizmos(gizmos
                     .values()
                     .stream()
                     .filter(g -> !g.getType().equals(IGizmo.Type.BALL))
@@ -81,7 +81,7 @@ public class GameModel extends Observable implements IGameModel {
             gizmos
                     .values()
                     .parallelStream()
-                    .filter(g -> ((Gizmo) gizmo).overlapsWithGizmo(g)
+                    .filter(g -> g.overlapsWithGizmo(g)
                             && g.getType().equals(IGizmo.Type.BALL))
                     .map(Ball.class::cast)
                     .forEach(ball -> {
@@ -221,7 +221,7 @@ public class GameModel extends Observable implements IGameModel {
         }
         double backX = gizmo.getStartX(), backY = gizmo.getStartY();
         gizmo.move(x, y);
-        if (((Gizmo) gizmo).overlapsWithAnyGizmos(getGizmos())) {
+        if (gizmo.overlapsWithAnyGizmos(getGizmos())) {
             gizmo.move(backX, backY);
             return false;
         }
