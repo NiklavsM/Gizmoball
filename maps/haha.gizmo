@@ -1,7 +1,7 @@
 # gizmos
 Ball B 15.75 16.75 0.0 -50.0
 Absorber A 3.0 16.0 16.0 17.0
-LeftFlipper LF 6.0 7.0
+RightFlipper LF 0.1 0.1
 
 # collision triggers
 Connect OuterWalls LF
