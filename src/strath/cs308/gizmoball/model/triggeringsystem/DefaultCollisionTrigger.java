@@ -13,7 +13,7 @@ public class DefaultCollisionTrigger implements ITrigger {
     @Override
     public void trigger() {
         triggerables
-                .forEach(triggerable -> triggerable.performAction("TRIGGER"));
+                .forEach(triggerable -> triggerable.performAction("COLLISION"));
     }
 
     @Override

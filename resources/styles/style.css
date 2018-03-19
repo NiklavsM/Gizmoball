@@ -37,6 +37,10 @@ BorderPane {
     -fx-stroke: white;
 }
 
+.foreground {
+    -fx-background-color: #455A64;
+}
+
 /* FIXME: canvas Styles arne't working :( */
 Canvas {
     -fx-background-color: white;
@@ -241,7 +245,11 @@ i.pause-menu-font {
 }
 
 .regular-font {
-    -fx-font: 14px Arial;
+     -fx-font: 14px Arial;
+ }
+
+.medium-font {
+    -fx-font: 20px Arial;
 }
 
 .card-title {

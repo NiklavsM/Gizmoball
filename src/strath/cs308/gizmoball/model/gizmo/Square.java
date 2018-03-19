@@ -20,6 +20,7 @@ public class Square extends Gizmo implements ITrigger, ITriggerable {
         super(x, y, x + 1, y + 1, id);
         collisionTrigger = new DefaultCollisionTrigger();
         triggerable = new DefaultTriggarable();
+        setScoreValue(10);
 
         setColor("#f44336");
     }
