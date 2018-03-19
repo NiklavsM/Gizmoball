@@ -410,20 +410,23 @@
 
                     <VBox spacing="16"
                           styleClass="default-padding, GizmoPane">
-                        <HBox spacing="16"> 
-                            <VBox>
+                        <VBox spacing="16">
+
+                            <HBox>
                                 <Label text="%EDITOR_RIGHTBAR_PROPERTY_TYPE" />
                                 <Label fx:id="gizmoType" />
-                            </VBox>
-                            <VBox>
+                            </HBox>
+
+                            <HBox>
                                 <Label text="%EDITOR_RIGHTBAR_PROPERTY_ID"/>
                                 <Label fx:id="gizmoId" />
-                            </VBox>
+                            </HBox>
+
                             <VBox>
                                 <Label text="%EDITOR_RIGHTBAR_PROPERTY_COLOR"/>
                                 <ColorPicker fx:id="colorPickerPorperty"/>
                             </VBox>
-                        </HBox>
+                        </VBox>
 
                         <Label text="%EDITOR_RIGHTBAR_PROPERTY_REFLECTIONCOEFFICIENT" />
                         <TextField fx:id="reflectionCoeffField"
