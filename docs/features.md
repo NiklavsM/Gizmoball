@@ -23,3 +23,7 @@
 * Can add comments to .gizmo files
 * Can move absorbers with balls in it
 * Can change colors of the gizmos
+
+**Misc**
+
+* single line comments in the `.gizmo` files (starts with `# `)
