@@ -18,6 +18,7 @@ public class GameModel extends Observable implements IGameModel {
     private Map<String, Gizmo> gizmos;
     private Map<String, Absorber> absorberCollided;
     private int score;
+    private int ballsInPlay;
     private double frictionCoef1;
     private double frictionCoef2;
     private double gravityCoefficient;
@@ -35,6 +36,7 @@ public class GameModel extends Observable implements IGameModel {
         frictionCoef2 = 0.025;
         gravityCoefficient = 25;
         score = 0;
+        ballsInPlay = 0;
         addGizmo(new Walls());
     }
 
@@ -151,6 +153,9 @@ public class GameModel extends Observable implements IGameModel {
                     absorberCollided.remove(ball.getId());
                 }
             }
+
+            calculateBallsInPlay();
+
             // Notify observers ... redraw updated view
             update();
 
@@ -285,6 +290,22 @@ public class GameModel extends Observable implements IGameModel {
 
     public Set<IGizmo> getGizmoBalls() {
         return new HashSet<>(getBalls());
+    }
+
+    public void calculateBallsInPlay() {
+        int absorbedBalls = 0;
+
+        Set<Ball> balls = this.getBalls();
+        for (Ball ball : balls) {
+            if (ball.isStopped())
+                absorbedBalls++;
+        }
+
+        ballsInPlay = balls.size() - absorbedBalls;
+    }
+
+    public int getBallsInPlay() {
+        return ballsInPlay;
     }
 
     @Override
