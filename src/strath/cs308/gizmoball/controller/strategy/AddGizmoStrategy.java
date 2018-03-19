@@ -150,11 +150,6 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         }
 
         if (gizmoType.equals(IGizmo.Type.ABSORBER)) {
-            if (startY < 1) {
-                editorView.setStatus("Absorbers cannot sit on the top row as ball cannot be shot out");
-                return;
-            }
-
             IGizmo gizmo = gizmoFactory.createGizmo(gizmoType
                     , startX
                     , startY
@@ -169,11 +164,11 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
             for (double row = startX; row <= endX; row++) {
                 for (double column = startY; column <= endY; column++) {
                     gizmo = gizmoFactory.createGizmo(gizmoType, row, column);
-
                     gameModel.addGizmo(gizmo);
                 }
             }
 
+            editorView.setStatus(gizmoType + " gizmos added to the board");
             UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
         }
     }

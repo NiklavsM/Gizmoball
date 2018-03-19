@@ -21,7 +21,7 @@ public class GizmoFactory implements IGizmoFactory {
             case LEFT_FLIPPER:
                 return new Flipper(x, y, Flipper.Orientation.LEFT, id);
             case RIGHT_FLIPPER:
-                return new Flipper(x, y, Flipper.Orientation.RIGHT, id); //FIXME
+                return new Flipper(x, y, Flipper.Orientation.RIGHT, id);
             case RHOMBUS:
                 return new Rhombus(x, y, id);
             case OCTAGON:
