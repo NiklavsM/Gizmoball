@@ -9,7 +9,34 @@
             stylesheets="/styles/style.css"
             minHeight="500.0" minWidth="800.0">
 
+    <top>
+        <HBox maxWidth="500"
+              minWidth="400"
+              maxHeight="75"
+              fx:id = "stats"
+              styleClass="default-padding"
+              BorderPane.alignment="BOTTOM_CENTER">
 
+            <BorderPane.margin>
+                <Insets bottom="0.0" left="5.0" right="5.0" top="50.0" />
+            </BorderPane.margin>
+
+            <Label styleClass="default-padding, title-font"
+                   fx:id="balls">
+                Balls in play: 0
+            </Label>
+
+            <Region prefHeight="75.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+            <Label StackPane.alignment="TOP_RIGHT"
+                   styleClass="default-padding, title-font"
+                   fx:id="score"
+                   alignment="CENTER_RIGHT">
+                Score: 0
+            </Label>
+
+        </HBox>
+
+    </top>
 
     <center>
         <StackPane maxHeight="500"
@@ -66,13 +93,6 @@
                     height="500"
                     fx:id="canvas"/>
 
-
-            <Label StackPane.alignment="TOP_RIGHT"
-                   styleClass="default-padding, title-font"
-                   fx:id="score">
-                Score: 0
-            </Label>
-
         </StackPane>
     </center>
 
@@ -80,6 +100,7 @@
         <ToolBar maxWidth="200"
                  styleClass="game-bar"
                  BorderPane.alignment="TOP_CENTER">
+
             <BorderPane.margin>
                 <Insets bottom="100.0" left="25.0" right="25.0" top="0.0" />
             </BorderPane.margin>
