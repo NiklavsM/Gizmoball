@@ -271,7 +271,7 @@
                                 <VBox GridPane.rowIndex="0"
                                       GridPane.columnIndex="0"
                                       spacing="16"
-                                      alignment="CENTER">f
+                                      alignment="CENTER">
                                     <Button fx:id="addRectangleMode">
                                         <graphic>
                                             <Rectangle width="25"
