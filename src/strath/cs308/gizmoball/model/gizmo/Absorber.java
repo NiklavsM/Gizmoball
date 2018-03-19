@@ -2,14 +2,10 @@ package strath.cs308.gizmoball.model.gizmo;
 
 import mit.physics.Circle;
 import mit.physics.LineSegment;
-import mit.physics.Vect;
 import strath.cs308.gizmoball.model.triggeringsystem.*;
 import strath.cs308.gizmoball.utils.Logger;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-import java.util.Stack;
+import java.util.*;
 
 public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
 
@@ -90,6 +86,17 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
     private boolean haveSpace() {
         double size = ((x2 - x1) * 2) * ((y2 - y1) * 2);
         return (size > ballsAbsorbed.size());
+    }
+
+    @Override
+    public boolean overlapsWithGizmo(Gizmo g) {
+        if (g.getType().equals(Type.BALL)) {
+            Ball b = (Ball) g;
+            if (hasAbsorbed(b)) {
+                return false;
+            }
+        }
+        return super.overlapsWithGizmo(g);
     }
 
     public Stack<Ball> getBallsAbsorbed() {

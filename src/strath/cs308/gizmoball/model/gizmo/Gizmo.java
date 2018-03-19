@@ -4,10 +4,7 @@ import mit.physics.*;
 import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.model.Dot;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.regex.Pattern;
 
@@ -217,5 +214,21 @@ public abstract class Gizmo implements IGizmo {
 
         this.color = color;
         return true;
+    }
+
+    public boolean overlapsWithGizmo(Gizmo g) {
+        if(this.equals(g)) {
+            return false;
+        }
+        if(g.getType().equals(Type.WALLS)) {
+            return false;
+        }
+      return x1 < g.x2 && x2 > g.x1 && y1 < g.y2 && y2 > g.y1;
+    }
+
+    public boolean overlapsWithAnyGizmos(Collection<Gizmo> gizmos) {
+        return gizmos
+                .stream()
+                .anyMatch(this::overlapsWithGizmo);
     }
 }

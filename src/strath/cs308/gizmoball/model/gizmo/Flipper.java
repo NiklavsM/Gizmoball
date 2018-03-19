@@ -88,7 +88,6 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
         if (orientation.equals(Orientation.RIGHT)) {
             return IGizmo.Type.RIGHT_FLIPPER;
         }
-
         if (orientation.equals(Orientation.LEFT)) {
             return IGizmo.Type.LEFT_FLIPPER;
         }
@@ -153,7 +152,7 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
 
     }
 
-    public boolean isMoving(){
+    public boolean isMoving() {
         return velocity == Vect.ZERO;
     }
 
@@ -227,8 +226,7 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
         if (args == null) {
             return;
         }
-
-        if (args.equals("TRIGGER")) {
+        if (args.equals("COLLISION")) {
             //isCycle = true;
             if (movementStatus.equals(Movement.TOP)) {
                 down();
@@ -237,19 +235,13 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
             }
             return;
         }
-
-        if (args instanceof Movement) {
-            Movement upOrDown = (Movement) args;
-            if (upOrDown.equals(Movement.FORWARD)) {
-                up();
-                return;
-            }
-            if (upOrDown.equals(Movement.BACKWARDS)) {
-                down();
-                return;
-            }
+        if (args.equals("KEY_PRESSED")) {
+            up();
+            return;
         }
-
+        if (args.equals("KEY_RELEASED")) {
+            down();
+        }
     }
 
     @Override
