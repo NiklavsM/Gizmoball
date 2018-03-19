@@ -32,6 +32,7 @@ import strath.cs308.gizmoball.controller.GizmoSelectorEventHandler;
 import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.controller.ToolModeEventHandler;
 import strath.cs308.gizmoball.controller.TopToolbarEventHandler;
+import strath.cs308.gizmoball.controller.strategy.VelocityVectorHandler;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IMovable;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
@@ -338,13 +339,17 @@ public class EditorView extends Scene implements IEditorView, Observer {
     }
 
     @Override
-    public void drawVelocityVector(double startX, double startY, double endX, double endY) {
+    public void drawVelocityVector(double startX, double startY) {
+        this.setOnMouseMoved(new VelocityVectorHandler(gameModel, this, startX, startY));
+    }
+
+    public void drawIt(double startX, double startY, double endX, double endY) {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.setFill(Color.BLACK);
         gc.setStroke(Color.BLACK);
-        gc.setLineWidth(2.0);
+        gc.setLineWidth(1.0);
         gc.setLineCap(StrokeLineCap.ROUND);
-        gc.strokeLine(startX, startY, startX + 100, startY + 100);
+        gc.strokeLine(startX, startY, endX, endY);
     }
 
     @Override

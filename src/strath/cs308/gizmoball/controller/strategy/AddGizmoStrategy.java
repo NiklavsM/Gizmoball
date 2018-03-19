@@ -116,7 +116,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
     }
 
     private void visualizeBallVelo(double x, double y) {
-        editorView.drawVelocityVector(x, y, 1800.0, 1800.0);
+        editorView.drawVelocityVector(x, y);
     }
 
     private void onMouseReleased(MouseEvent mouseEvent) {
@@ -194,6 +194,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
             editorView.setStatus(gizmoType + " gizmo added at position: " + x + " , " + y);
             if (gizmoType.equals(IGizmo.Type.BALL))
                 visualizeBallVelo(z, zz);
+
         }
     }
 }
