@@ -2,7 +2,6 @@ package strath.cs308.gizmoball.controller.strategy;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import strath.cs308.gizmoball.controller.BoardHistory;
 import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.GizmoFactory;
 import strath.cs308.gizmoball.model.IGameModel;
@@ -164,7 +163,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
                     , endY + 1);
 
             if (gameModel.addGizmo(gizmo)) {
-                BoardHistory.addToHistoryGizmoAdded(gizmo);
+                UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
             }
         } else if (!gizmoType.equals(IGizmo.Type.BALL)) {
             IGizmo gizmo;
@@ -203,7 +202,6 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
 
         IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, x, y);
         if (gameModel.addGizmo(gizmo)) {
-            BoardHistory.addToHistoryGizmoAdded(gizmo);
             editorView.setStatus(gizmoType + " gizmo added at position: " + x + " , " + y);
             UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
         }

@@ -53,7 +53,7 @@ public class GameBarEventHandler implements EventHandler<ActionEvent> {
     private void tick() {
 
         if (!gameTimer.isRunning()) {
-            gameModel.tick(Constants.TICK_TIME);
+            gameModel.tick(IGameTimer.DEFAULT_TICK_RATE);
         }
 
     }
