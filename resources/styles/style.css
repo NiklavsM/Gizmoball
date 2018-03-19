@@ -241,7 +241,11 @@ i.pause-menu-font {
 }
 
 .regular-font {
-    -fx-font: 14px Arial;
+     -fx-font: 14px Arial;
+ }
+
+.medium-font {
+    -fx-font: 20px Arial;
 }
 
 .card-title {

@@ -18,6 +18,7 @@ public class CircleGizmo extends Gizmo implements ITrigger, ITriggerable {
         rotatingPoint = circle.getCenter();
         collisionTrigger = new DefaultCollisionTrigger();
         triggerable = new DefaultTriggarable();
+        setScoreValue(10);
 
         setColor("#8bc34a");
     }

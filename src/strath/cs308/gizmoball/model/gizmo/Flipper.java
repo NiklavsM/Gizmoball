@@ -32,7 +32,7 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
         super(x, y, x + 2, y + 2, id);
 
         this.orientation = orientation;
-        setReflectionCoefficient(0.9);
+        setReflectionCoefficient(0.95);
 
         movementStatus = Movement.BOTTOM;
         movedAngle = Angle.ZERO.radians();
