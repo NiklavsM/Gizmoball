@@ -54,6 +54,8 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         double previewX = Math.floor(mouseEvent.getX() / editorView.getPixelRatioFor(20.0));
         double previewY = Math.floor(mouseEvent.getY() / editorView.getPixelRatioFor(20.0));
 
+        if (invalidAddition(previewX, previewY)) return;
+
         if (mouseX != previewX || mouseY != previewY)
             gameModel.update();
 
@@ -80,6 +82,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
 
             for (int x = startX.intValue(); x <= endX.intValue(); x++) {
                 for (int y = startY.intValue(); y <= endY.intValue(); y++) {
+                    if (invalidAddition(x, y)) continue;
                     IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, x, y);
                     editorView.previewGizmo(gizmo, x, y);
                 }
@@ -163,6 +166,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
             IGizmo gizmo;
             for (double row = startX; row <= endX; row++) {
                 for (double column = startY; column <= endY; column++) {
+                    if (invalidAddition(row, column)) continue;
                     gizmo = gizmoFactory.createGizmo(gizmoType, row, column);
                     gameModel.addGizmo(gizmo);
                 }
@@ -201,10 +205,10 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         if (gizmoType.equals(IGizmo.Type.ABSORBER) && y < 1) {
             editorView.setStatus("Absorbers cannot sit on the top row as ball cannot be shot out");
             return true;
-        } else if (gizmoType.equals(IGizmo.Type.LEFT_FLIPPER) && (y > 19 || x > 19)) {
+        } else if (gizmoType.equals(IGizmo.Type.LEFT_FLIPPER) && (y >= 19 || x >= 19)) {
             editorView.setStatus("This is not an allowed position for a left flipper");
             return true;
-        } else if (gizmoType.equals(IGizmo.Type.RIGHT_FLIPPER) && y > 19) {
+        } else if (gizmoType.equals(IGizmo.Type.RIGHT_FLIPPER) && y >= 19) {
             editorView.setStatus("This is not an allowed position for a right flipper");
             return true;
         }
