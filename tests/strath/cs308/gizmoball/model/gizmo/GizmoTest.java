@@ -94,5 +94,11 @@ public class GizmoTest {
         assertFalse(model.addGizmo(rhombus), "A rhombus cannot be placed as there is already a gizmo in the specified location!");
     }
 
-
+    @Test
+    void testOverlappingWithBall() {
+        Ball ball = new Ball(5.67, 8.88);
+        Octagon octa = new Octagon(5, 8);
+        model.addGizmo(ball);
+        assertFalse(model.addGizmo(octa), "An octagon cannot be placed as there is already a ball in the specified location!");
+    }
 }
