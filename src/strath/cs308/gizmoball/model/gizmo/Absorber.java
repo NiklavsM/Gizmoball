@@ -24,6 +24,7 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
         triggerable = new DefaultTriggarable();
         setAction(this);
         collisionTrigger = new DefaultCollisionTrigger();
+        setScoreValue(-20);
 
         setColor("#e91e63");
     }

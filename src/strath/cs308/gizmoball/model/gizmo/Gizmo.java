@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 public abstract class Gizmo implements IGizmo {
 
     protected final String id;
-    protected int rotateCount;
+    protected int rotateCount = 0;
     protected List<Circle> circles;
     protected Set<LineSegment> lines;
     protected Vect rotatingPoint;
@@ -22,17 +22,13 @@ public abstract class Gizmo implements IGizmo {
     protected double y1;
     protected double x2;
     protected double y2;
-    private int scoreValue;
-    private double reflectionCoefficient;
-    private String color;
+    private int scoreValue = 0;
+    private double reflectionCoefficient = 1;
+    private String color = "#ffffff";
 
     public Gizmo(double x1, double y1, double x2, double y2, String id) {
         setup(x1, y1, x2, y2);
         this.id = id;
-        rotateCount = 0;
-        reflectionCoefficient = 1.0;
-
-        color = "#ffffff";
     }
 
     public Gizmo(double x1, double y1, double x2, double y2) {
@@ -157,20 +153,11 @@ public abstract class Gizmo implements IGizmo {
     }
 
     public int getScoreValue() {
-        switch (this.getType()) {
-            // no points are granted for flipper collisions, ball-to-ball collisions or walls collisions
-            case RIGHT_FLIPPER:
-            case LEFT_FLIPPER:
-            case BALL:
-            case WALLS:
-                return 0;
-            // deduct 10 points when ball is absorbed
-            case ABSORBER:
-                return -20;
-            // grant 1 point if any gizmo is hit apart from the absorber
-            default:
-                return 1;
-        }
+        return scoreValue;
+    }
+
+    public void setScoreValue(int score) {
+        scoreValue = score;
     }
 
     @Override
