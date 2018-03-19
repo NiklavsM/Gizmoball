@@ -8,6 +8,7 @@ import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.controller.BoardHistory;
 import strath.cs308.gizmoball.model.IGameModel;
+import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.view.IEditorView;
 
@@ -18,12 +19,16 @@ public class RemoveGizmoStrategy implements EventHandler<MouseEvent> {
     private final IEditorView editorView;
     private final IGameModel gameModel;
 
-    public RemoveGizmoStrategy(IGameModel gameModel,  IEditorView editorView) {
+    private final InGameKeyEventHandler keyEventHandler;
+
+    public RemoveGizmoStrategy(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IEditorView editorView) {
         this.gameModel = gameModel;
         this.editorView = editorView;
 
         Image image = new Image("/icons/clear.png");
         editorView.setCursor(new ImageCursor(image));
+
+        this.keyEventHandler = keyEventHandler;
     }
 
     @Override
@@ -38,6 +43,9 @@ public class RemoveGizmoStrategy implements EventHandler<MouseEvent> {
                 BoardHistory.addToHistoryGizmoRemoved(gizmo.get());
                 gameModel.removeGizmo(gizmo.get());
                 editorView.setStatus(gizmo.get().getType() + " gizmo removed from the playing area");
+
+
+                UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
             }
         }
     }

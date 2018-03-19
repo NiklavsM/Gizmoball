@@ -146,15 +146,17 @@ public class EditorView extends Scene implements IEditorView, Observer {
             ((ToolBar) namespace.get("topToolbar")).lookupAll(".top-toolbar-button")
                     .forEach(node -> node.setOnMouseClicked(topToolbarHandler));
 
-            EventHandler<MouseEvent> addGizmoEventHandler = new GizmoSelectorEventHandler(gameModel, this);
+
+            EventHandler<MouseEvent> addGizmoEventHandler = new GizmoSelectorEventHandler(gameModel, keyHandler, this);
             root.lookupAll("#addGizmoOptions Button")
                     .forEach(node -> node.setOnMouseClicked(addGizmoEventHandler));
 
-            EventHandler<MouseEvent> toolSelectionHandler = new ToolModeEventHandler(gameModel, this);
+            EventHandler<MouseEvent> toolSelectionHandler = new ToolModeEventHandler(gameModel, keyHandler, this);
             ((GridPane) namespace.get("toolButtonHolder")).lookupAll(".tool-button")
                     .forEach(node -> node.setOnMouseClicked(toolSelectionHandler));
 
-            EventHandler<ActionEvent> gamePropertyEventHandler = new GamePropertyEventHandler(gameModel, this);
+            EventHandler<ActionEvent> gamePropertyEventHandler = new GamePropertyEventHandler(gameModel, keyHandler, this);
+
             friction1TextField.setOnAction(gamePropertyEventHandler);
             friction2TextField.setOnAction(gamePropertyEventHandler);
             gravityTextField.setOnAction(gamePropertyEventHandler);
@@ -262,7 +264,8 @@ public class EditorView extends Scene implements IEditorView, Observer {
     @Override
     public void displayGizmoProperties(IGizmo gizmo) {
         TabPane sidePane = (TabPane) namespace.get("sidePanel");
-        EventHandler eventHandler = new GizmoPropertyEventHandler(this, gizmo);
+
+        EventHandler eventHandler = new GizmoPropertyEventHandler(this, gizmo, gameModel, keyHandler);
         SingleSelectionModel<Tab> selectionModel = sidePane.getSelectionModel();
         selectionModel.select(1);
 

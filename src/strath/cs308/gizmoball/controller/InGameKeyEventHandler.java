@@ -25,13 +25,20 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent>, Observer {
     }
 
     public void onKeyEventTrigger(String keyEvent, ITriggerable triggerable) {
-        if (triggerable == null) {
+        if (triggerable == null || keyEvent == null) {
             return;
         }
         if (!keyEventMap.containsKey(keyEvent)) {
             keyEventMap.put(keyEvent, new HashSet<>());
         }
         keyEventMap.get(keyEvent).add(triggerable);
+    }
+
+    public void onKeyEventTrigger(KeyEvent keyEvent, ITriggerable triggerable) {
+        if (keyEvent == null || triggerable == null) {
+            return;
+        }
+        onKeyEventTrigger(prettify(keyEvent), triggerable);
     }
 
     private String prettify(KeyEvent event) {

@@ -4,11 +4,10 @@ import javafx.event.EventHandler;
 import javafx.scene.ImageCursor;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import strath.cs308.gizmoball.model.GizmoFactory;
+import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.IGameModel;
-import strath.cs308.gizmoball.model.IGizmoFactory;
+import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
-import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.IEditorView;
 
 import java.util.Optional;
@@ -19,9 +18,13 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
     private final IGameModel gameModel;
     private Optional<IGizmo> selectedGizmo;
 
-    public MoveGizmoStrategy(IGameModel gameModel, IEditorView editorView) {
+
+    private final InGameKeyEventHandler keyEventHandler;
+
+    public MoveGizmoStrategy(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IEditorView editorView) {
         this.gameModel = gameModel;
         this.editorView = editorView;
+        this.keyEventHandler = keyEventHandler;
 
         selectedGizmo = Optional.empty();
 
@@ -35,6 +38,9 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
         if (mouseEvent.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
             if (selectedGizmo.isPresent()) {
                 moveTo(mouseEvent);
+
+
+                UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
             } else {
                 select(mouseEvent);
             }
@@ -69,7 +75,7 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
             editorView.setStatus(selectedGizmo.get().getType() + " gizmo moved to tile " + pointX + " , " + pointY);
             selectedGizmo = Optional.empty();
         } else {
-           editorView.setStatus("Tile " + Math.floor(pointX) + " , " + Math.floor(pointY) + " is already occupied by a " + existingGizmo.get().getType() + " gizmo.");
+            editorView.setStatus("Tile " + Math.floor(pointX) + " , " + Math.floor(pointY) + " is already occupied by a " + existingGizmo.get().getType() + " gizmo.");
         }
     }
 }

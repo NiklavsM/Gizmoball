@@ -3,9 +3,11 @@ package strath.cs308.gizmoball.controller.strategy;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import strath.cs308.gizmoball.controller.BoardHistory;
+import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.GizmoFactory;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGizmoFactory;
+import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.view.IEditorView;
 
@@ -16,14 +18,16 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
     private final IGameModel gameModel;
     private final IGizmoFactory gizmoFactory;
     private final IEditorView editorView;
+    private final InGameKeyEventHandler keyEventHandler;
     private double pressX, pressY;
     private double mouseX, mouseY;
     private int ballLimit;
 
-    public AddGizmoStrategy(IGameModel gameModel, IEditorView editorView, IGizmo.Type gizmoType) {
+    public AddGizmoStrategy(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IEditorView editorView, IGizmo.Type gizmoType) {
         this.gizmoType = gizmoType;
         this.gameModel = gameModel;
         this.editorView = editorView;
+        this.keyEventHandler = keyEventHandler;
         gizmoFactory = new GizmoFactory();
         ballLimit = 50;
     }
@@ -123,6 +127,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         } else {
             putGizmoFromTo(pressX, pressY, releasedX, releasedY);
         }
+
     }
 
     private void putGizmoFromTo(double startX, double startY, double endX, double endY) {
@@ -144,7 +149,8 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
             startY = startY - endY;
         }
 
-        if (gizmoType.equals(IGizmo.Type.ABSORBER)) {
+        if (gizmoType.equals(IGizmo.Type.ABSORBER) && startY >= 1) {
+            System.out.println(startY);
             IGizmo gizmo = gizmoFactory.createGizmo(gizmoType
                     , startX
                     , startY
@@ -154,16 +160,22 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
             if (gameModel.addGizmo(gizmo)) {
                 BoardHistory.addToHistoryGizmoAdded(gizmo);
             }
-        } else if (!gizmoType.equals(IGizmo.Type.BALL)) {
+        } else {
+            editorView.setStatus("Absorbers cannot sit on the top row as ball cannot be shot out");
+            return;
+        }
+
+        if (!gizmoType.equals(IGizmo.Type.BALL)) {
             IGizmo gizmo;
             for (double row = startX; row <= endX; row++) {
                 for (double column = startY; column <= endY; column++) {
                     gizmo = gizmoFactory.createGizmo(gizmoType, row, column);
-                    if (gameModel.addGizmo(gizmo)) {
-                        BoardHistory.addToHistoryGizmoAdded(gizmo);
-                    }
+
+                    gameModel.addGizmo(gizmo);
                 }
             }
+
+            UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
         }
     }
 
@@ -185,6 +197,9 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         if (gameModel.addGizmo(gizmo)) {
             BoardHistory.addToHistoryGizmoAdded(gizmo);
             editorView.setStatus(gizmoType + " gizmo added at position: " + x + " , " + y);
+
+
+            UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
         }
     }
 }

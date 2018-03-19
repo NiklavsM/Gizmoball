@@ -3,7 +3,9 @@ package strath.cs308.gizmoball.controller;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.view.EditorView;
 
@@ -31,7 +33,11 @@ public class ConnectPanelView {
 
     private void loadUiElements() {
         connectATextField = (TextField) namespace.get("connectATextField");
+        connectATextField.setText("NONE");
+
         connectBTextField = (TextField) namespace.get("connectBTextField");
+        connectBTextField.setText("NONE");
+
         connectAChangeButton = (Button) namespace.get("connectAChangeButton");
         connectBChangeButton = (Button) namespace.get("connectBChangeButton");
         actionComboBox = (ComboBox<String>) namespace.get("actionComboBox");
@@ -41,11 +47,35 @@ public class ConnectPanelView {
     private void attachHandlers() {
         Platform.runLater(() -> {
 
-            EventHandler<ActionEvent> triggerPropertyEventHandler = new TriggerPropertyEventHandler(gameModel, editorView);
+            EventHandler<ActionEvent> triggerPropertyEventHandler = new ConnectHandler(gameModel, editorView, this);
             connectAChangeButton.setOnAction(triggerPropertyEventHandler);
             connectATextField.setOnAction(triggerPropertyEventHandler);
             connectBChangeButton.setOnAction(triggerPropertyEventHandler);
             connectBTextField.setOnAction(triggerPropertyEventHandler);
         });
+    }
+
+    public void setWaitingForKeyStatusA() {
+        String s = "Click Gizmo or Press Key";
+        connectATextField.setText(s);
+    }
+
+
+    public void setWaitingForKeyStatusB() {
+        String s = "Click Gizmo or Press Key";
+        connectBTextField.setText(s);
+    }
+
+    public void changingBStatus() {
+        String s = "Click Gizmo or Press Key";
+        connectBTextField.setText(s);
+    }
+
+    public void setConnectATextField(String text) {
+        connectATextField.setText(text);
+    }
+
+    public void setConnectBTextField(String text) {
+        connectBTextField.setText(text);
     }
 }

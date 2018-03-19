@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import strath.cs308.gizmoball.model.IGameModel;
+import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.view.IEditorView;
 
 public class GamePropertyEventHandler implements EventHandler<ActionEvent> {
@@ -11,9 +12,12 @@ public class GamePropertyEventHandler implements EventHandler<ActionEvent> {
     private IGameModel gameModel;
     private IEditorView editorView;
 
-    public GamePropertyEventHandler(IGameModel gameModel, IEditorView editView) {
+    private InGameKeyEventHandler keyEventHandler;
+
+    public GamePropertyEventHandler(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IEditorView editView) {
         this.gameModel = gameModel;
         this.editorView = editView;
+        this.keyEventHandler = keyEventHandler;
     }
 
     @Override
@@ -34,6 +38,8 @@ public class GamePropertyEventHandler implements EventHandler<ActionEvent> {
     private void changeGameGravity() {
         try {
             if (gameModel.setGravityCoefficient(editorView.getGravityInput())) {
+
+                UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
                 editorView.setStatus("Game gravity is changed to: " + editorView.getGravityInput());
             } else {
                 editorView.setErrorStatus("The given gravity value is not acceptable!");
@@ -46,6 +52,8 @@ public class GamePropertyEventHandler implements EventHandler<ActionEvent> {
     private void changeGameFriction1() {
         try {
             if (gameModel.setFrictionM1(editorView.getFriction1Input())) {
+
+                UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
                 editorView.setStatus("Game friction is changed to: " + editorView.getFriction1Input());
             } else {
                 editorView.setErrorStatus("The given friction value is not acceptable!");
@@ -58,6 +66,8 @@ public class GamePropertyEventHandler implements EventHandler<ActionEvent> {
     private void changeGameFriction2() {
         try {
             if (gameModel.setFrictionM2(editorView.getFriction2Input())) {
+
+                UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
                 editorView.setStatus("Game friction is changed to: " + editorView.getFriction2Input());
             } else {
                 editorView.setErrorStatus("The given friction value is not acceptable!");

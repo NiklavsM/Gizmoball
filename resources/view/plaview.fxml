@@ -13,7 +13,7 @@
                    maxWidth="500"
                    fx:id="stackPane">
 
-            <ToolBar maxWidth="225"
+            <ToolBar maxWidth="230"
                      minWidth="200"
                      minHeight="200"
                      maxHeight="250"

@@ -3,7 +3,6 @@ package strath.cs308.gizmoball.controller;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
-import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.controller.strategy.*;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.view.IEditorView;
@@ -13,31 +12,37 @@ public class ToolModeEventHandler implements EventHandler<MouseEvent> {
     private final IGameModel gameModel;
     private final IEditorView editorView;
 
-    public ToolModeEventHandler(IGameModel gameModel, IEditorView editorView) {
+    private final InGameKeyEventHandler keyEventHandler;
+
+    public ToolModeEventHandler(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IEditorView editorView) {
         this.gameModel = gameModel;
         this.editorView = editorView;
+        this.keyEventHandler = keyEventHandler;
     }
 
     @Override
     public void handle(MouseEvent mouseEvent) {
         switch (((Node) mouseEvent.getSource()).getId()) {
             case "removeToolButton":
-                editorView.setCanvasMode(new RemoveGizmoStrategy(gameModel, editorView));
+
+                editorView.setCanvasMode(new RemoveGizmoStrategy(gameModel, keyEventHandler, editorView));
                 editorView.setStatus("Remove Tool: Click a Gizmo to remove");
                 break;
 
             case "rotateToolButton":
-                editorView.setCanvasMode(new RotateGizmoStrategy(gameModel, editorView));
+                editorView.setCanvasMode(new RotateGizmoStrategy(gameModel, keyEventHandler, editorView));
                 editorView.setStatus("Rotate Tool: Click a Gizmo to rotate it");
                 break;
 
             case "connectToolButton":
-                editorView.setCanvasMode(new ConnectGizmoStrategy(gameModel, editorView));
+
+                editorView.setCanvasMode(new ConnectGizmoStrategy(gameModel, keyEventHandler, editorView));
                 editorView.setStatus("Connect Tool: Click on two gizmos to connect it");
                 break;
 
             case "moveToolButton":
-                editorView.setCanvasMode(new MoveGizmoStrategy(gameModel, editorView));
+
+                editorView.setCanvasMode(new MoveGizmoStrategy(gameModel, keyEventHandler, editorView));
                 editorView.setStatus("Move Tool: Click on a gizmo and then select a new location for it");
                 break;
 

@@ -8,13 +8,11 @@ import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
-import strath.cs308.gizmoball.model.gizmo.Flipper;
-import strath.cs308.gizmoball.model.gizmo.Triangle;
+import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.utils.Logger;
-import strath.cs308.gizmoball.view.EditorView;
-import strath.cs308.gizmoball.view.IEditorView;
 import strath.cs308.gizmoball.view.PlayView;
 
+import java.io.IOException;
 import java.util.Locale;
 
 public class GizmoBall extends Application {
@@ -32,7 +30,8 @@ public class GizmoBall extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+
+    public void start(Stage primaryStage) throws IOException {
         primaryStage.setX(100);
 
         gameModel = new GameModel();
@@ -42,9 +41,12 @@ public class GizmoBall extends Application {
         try {
             gameLoader.load(getClass().getResourceAsStream("/alternative.gizmo"));
         } catch (Exception e) {
-            Logger.error(TAG,"Failed to load default model");
+            Logger.error(TAG, "Failed to load default model");
             e.printStackTrace();
         }
+
+
+        UndoRedo.INSTANCE.saveState(gameModel, keyHandler);
 
         //
         // THIS IS JUST TESTING HERE

@@ -12,19 +12,22 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import strath.cs308.gizmoball.model.UndoRedo;
+import strath.cs308.gizmoball.view.IEditorView;
+
+import java.io.FileNotFoundException;
+
+
 public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
     private static final String TAG = "TopToolbarEventHandler";
+    private final InGameKeyEventHandler keyEventHandler;
     private IGameModel gameModel;
     private IEditorView editView;
-    private GameLoader gameLoader;
-    private InGameKeyEventHandler keyHandler;
 
-    public TopToolbarEventHandler(IGameModel gameModel,InGameKeyEventHandler keyHandler, IEditorView editorView) {
+    public TopToolbarEventHandler(IGameModel gameModel, InGameKeyEventHandler keyEventHandler , IEditorView editorView) {
         this.gameModel = gameModel;
         this.editView = editorView;
-        this.keyHandler = keyHandler;
-
-        gameLoader = new GameLoader(gameModel, keyHandler);
+        this.keyEventHandler = keyEventHandler;
     }
 
     @Override
@@ -65,11 +68,14 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
     }
 
     private void redo() {
-        BoardHistory.popFromUndoHistory(gameModel);
+
+        UndoRedo.INSTANCE.redo(gameModel, keyEventHandler);
+        gameModel.update();
     }
 
     private void undo() {
-        BoardHistory.popFromHistory(gameModel);
+        UndoRedo.INSTANCE.undo(gameModel, keyEventHandler);
+        gameModel.update();
     }
 
     private void toggleGrid() {
@@ -77,8 +83,9 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
     }
 
     private void clearBoard() {
-        gameModel.getGizmos().forEach(BoardHistory::addToHistoryGizmoRemoved);
+
         gameModel.reset();
+        UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
     }
 
     private void loadGame() {
@@ -91,7 +98,9 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
 
         try {
             gameModel.reset();
-            keyHandler.removeAllHandlers();
+
+            keyEventHandler.removeAllHandlers();
+            GameLoader gameLoader = new GameLoader(gameModel, keyEventHandler);
             gameLoader.load(new FileInputStream(fileToLoad));
         } catch (IllegalAccessException | FileNotFoundException e) {
             e.printStackTrace();
@@ -100,7 +109,7 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
 
     private void saveGame() {
         File fileToSave = FileChooser.getFile();
-        GameSaver gs = new GameSaver(gameModel, keyHandler, fileToSave);
+        GameSaver gs = new GameSaver(gameModel, keyEventHandler, fileToSave);
 
         if (fileToSave == null) {
             Logger.debug(TAG, "Saving file dialog cancelled");
