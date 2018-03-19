@@ -38,8 +38,19 @@ public class GameModel extends Observable implements IGameModel {
         addGizmo(new Walls());
     }
 
+    private boolean isInsideWalls(IGizmo g) {
+        return g.getStartX() >= 0
+                && g.getStartX() <= 20 - (g.getEndX() - g.getStartX())
+                && g.getStartY() >= 0
+                && g.getStartY() <= 20 - (g.getEndY() - g.getStartY());
+    }
+
     public boolean addGizmo(IGizmo gizmo) {
         if (gizmo == null) {
+            return false;
+        }
+
+        if (!(isInsideWalls(gizmo))) {
             return false;
         }
 

@@ -33,7 +33,8 @@ public class GizmoBall extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        primaryStage.setX(100);
+      try{
+           primaryStage.setX(100);
 
         gameModel = new GameModel();
         keyHandler = new InGameKeyEventHandler(gameModel);
@@ -49,20 +50,6 @@ public class GizmoBall extends Application {
 
         UndoRedo.INSTANCE.saveState(gameModel, keyHandler);
 
-        //
-        // THIS IS JUST TESTING HERE
-        //
-        Triangle t = (Triangle) gameModel.getGizmoById("T");
-        t.setAction(args -> {
-            t.rotate();
-        });
-        ((ITrigger)gameModel.getGizmoById("OuterWalls")).registerTriggarable(t);
-//        Flipper f = (Flipper) gameModel.getGizmoById("RF112");
-//        t.registerTriggarable(f);
-        keyHandler.onKeyEventTrigger("key 74.0 down", t);
-        //
-        //
-
         //Doesn't work in xml
         primaryStage.setMinWidth(500);
         primaryStage.setMinHeight(530);
@@ -71,6 +58,9 @@ public class GizmoBall extends Application {
         primaryStage.setScene(new PlayView(gameModel, keyHandler));
         primaryStage.show();
         stage = primaryStage;
+      }catch (Exception e) {
+          e.printStackTrace();
+      }
     }
 
     public static void switchView(Scene view) {
