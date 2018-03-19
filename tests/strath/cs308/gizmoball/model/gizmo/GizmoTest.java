@@ -58,7 +58,7 @@ public class GizmoTest {
 
         for (int d = 0; d < dots.size(); d++) {
             assertEquals(dots.get(d).getX(), gizmo.getDots().get(d).getX(), "After 4 rotations, the triangle's end points (X coordinate) should be exactly the same!");
-            assertEquals(gizmo.getDots().get(d).getY(), dots.get(d).getY(), "After 4 rotations, the triangle's end points (X coordinate) should be exactly the same!");
+            assertEquals(gizmo.getDots().get(d).getY(), dots.get(d).getY(), "After 4 rotations, the triangle's end points (Y coordinate) should be exactly the same!");
         }
     }
 

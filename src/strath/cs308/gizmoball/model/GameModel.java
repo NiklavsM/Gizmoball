@@ -44,8 +44,9 @@ public class GameModel extends Observable implements IGameModel {
         }
         if (overlaps(gizmo)) {
             return false;
+
         }
-        if(gizmos.containsKey(gizmo.getId())){
+        if (gizmos.containsKey(gizmo.getId())) {
             return false;
         }
 
@@ -194,6 +195,9 @@ public class GameModel extends Observable implements IGameModel {
                             continue;
                         }
                     }
+                }
+                if(tempGizmo instanceof Ball && currentGizmo instanceof Absorber){
+                    continue;
                 }
                 return true;
             }
