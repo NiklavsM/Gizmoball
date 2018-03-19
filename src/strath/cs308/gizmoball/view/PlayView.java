@@ -135,9 +135,11 @@ public class PlayView extends Scene implements IPlayView, Observer {
 
     private void updateBallsInPlay() {
         int[] balls = gameModel.getBallsInPlay();
-        Label score = (Label) root.lookup("#balls");
-        score.setText("Balls in play: " + balls[0]);
+        Label ballsInPlay = (Label) root.lookup("#ballsInPlay");
+        ballsInPlay.setText("Balls in play: " + balls[0]);
 
+        Label ballsAbsorbed = (Label) root.lookup("#ballsAbsorbed");
+        ballsAbsorbed.setText("Balls absorbed: " + balls[1]);
     }
 
     private void updateScore() {

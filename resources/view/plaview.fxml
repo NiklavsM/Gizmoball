@@ -75,8 +75,13 @@
                     <VBox>
 
                         <Label styleClass="default-padding, title-font"
-                               fx:id="balls">
+                               fx:id="ballsInPlay">
                             Balls in play: 0
+                        </Label>
+
+                        <Label styleClass="default-padding, title-font"
+                               fx:id="ballsAbsorbed">
+                            Balls absorbed: 0
                         </Label>
 
                         <Label StackPane.alignment="TOP_RIGHT"
@@ -151,6 +156,7 @@
 
                             </GridPane>
                         </ToolBar>
+
                     </VBox>
                 </right>
 

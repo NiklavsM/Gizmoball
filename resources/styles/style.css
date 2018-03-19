@@ -35,13 +35,11 @@ MenuBar {
 BorderPane {
     -fx-background-color: #37474F;
     -fx-stroke: white;
-    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.5), 0, 0, 0, 1);
 }
 
 /* FIXME: canvas Styles arne't working :( */
 Canvas {
     -fx-background-color: white;
-    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.5), 0, 0, 0, 1);
 }
 
 .statusbar {
