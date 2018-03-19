@@ -73,7 +73,9 @@
 
                 <right>
 
-                    <VBox styleClass="foreground">
+                    <VBox styleClass="foreground"
+                          minWidth="250">
+
                         <Label StackPane.alignment="TOP_RIGHT"
                                styleClass="default-padding, title-font"
                                fx:id="score"
@@ -94,7 +96,7 @@
                         </Label>
 
 
-                        <ToolBar maxWidth="200"
+                        <ToolBar
                                  styleClass="game-bar"
                                  BorderPane.alignment="BOTTOM_CENTER">
 
