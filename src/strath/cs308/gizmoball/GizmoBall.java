@@ -24,7 +24,6 @@ public class GizmoBall extends Application {
     private GameLoader gameLoader;
     public static Locale locale = new Locale("en");
     private static Stage stage;
-    private static Scene view;
 
     public static void main(String[] args) {
         launch(args);
@@ -72,9 +71,7 @@ public class GizmoBall extends Application {
         stage = primaryStage;
     }
 
-
     public static void switchView(Scene view) {
-        GizmoBall.view = view;
         stage.setScene(view);
     }
 
