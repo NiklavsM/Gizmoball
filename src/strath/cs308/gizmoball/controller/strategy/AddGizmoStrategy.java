@@ -80,8 +80,12 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
                 endY = initialY;
             }
 
-            for (int x = startX.intValue(); x <= endX.intValue(); x++) {
-                for (int y = startY.intValue(); y <= endY.intValue(); y++) {
+            int step = 1;
+            if (gizmoType.equals(IGizmo.Type.LEFT_FLIPPER) || gizmoType.equals(IGizmo.Type.RIGHT_FLIPPER))
+                step = 2;
+
+            for (int x = startX.intValue(); x <= endX.intValue(); x+=step) {
+                for (int y = startY.intValue(); y <= endY.intValue(); y+=step) {
                     if (invalidAddition(x, y)) continue;
                     IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, x, y);
                     editorView.previewGizmo(gizmo, x, y);
