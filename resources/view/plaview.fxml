@@ -97,8 +97,8 @@
 
 
                         <ToolBar
-                                 styleClass="game-bar"
-                                 BorderPane.alignment="BOTTOM_CENTER">
+                                styleClass="game-bar"
+                                BorderPane.alignment="BOTTOM_CENTER">
 
                             <GridPane vgap="4"
                                       hgap="16"

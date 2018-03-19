@@ -173,13 +173,13 @@ public abstract class Gizmo implements IGizmo {
     }
 
     @Override
-    public void setReflectionCoefficient(double coefficient) {
-        reflectionCoefficient = coefficient;
+    public double getReflectionCoefficient() {
+        return reflectionCoefficient;
     }
 
     @Override
-    public double getReflectionCoefficient() {
-        return reflectionCoefficient;
+    public void setReflectionCoefficient(double coefficient) {
+        reflectionCoefficient = coefficient;
     }
 
     @Override
@@ -200,13 +200,13 @@ public abstract class Gizmo implements IGizmo {
     }
 
     public boolean overlapsWithGizmo(Gizmo g) {
-        if(this.equals(g)) {
+        if (this.equals(g)) {
             return false;
         }
-        if(g.getType().equals(Type.WALLS)) {
+        if (g.getType().equals(Type.WALLS)) {
             return false;
         }
-      return x1 < g.x2 && x2 > g.x1 && y1 < g.y2 && y2 > g.y1;
+        return x1 < g.x2 && x2 > g.x1 && y1 < g.y2 && y2 > g.y1;
     }
 
     public boolean overlapsWithAnyGizmos(Collection<Gizmo> gizmos) {

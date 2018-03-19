@@ -16,10 +16,8 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
     private static final String TAG = "MoveGizmoStrategy";
     private final IEditorView editorView;
     private final IGameModel gameModel;
-    private Optional<IGizmo> selectedGizmo;
-
-
     private final InGameKeyEventHandler keyEventHandler;
+    private Optional<IGizmo> selectedGizmo;
 
     public MoveGizmoStrategy(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IEditorView editorView) {
         this.gameModel = gameModel;

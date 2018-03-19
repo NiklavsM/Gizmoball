@@ -1,6 +1,5 @@
 package strath.cs308.gizmoball.model;
 
-import mit.physics.Vect;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import strath.cs308.gizmoball.model.gizmo.*;

@@ -83,8 +83,8 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
             if (gizmoType.equals(IGizmo.Type.LEFT_FLIPPER) || gizmoType.equals(IGizmo.Type.RIGHT_FLIPPER))
                 step = 2;
 
-            for (int x = startX.intValue(); x <= endX.intValue(); x+=step) {
-                for (int y = startY.intValue(); y <= endY.intValue(); y+=step) {
+            for (int x = startX.intValue(); x <= endX.intValue(); x += step) {
+                for (int y = startY.intValue(); y <= endY.intValue(); y += step) {
                     if (invalidAddition(x, y)) continue;
                     IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, x, y);
                     editorView.previewGizmo(gizmo, x, y);
@@ -171,8 +171,8 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
             if (gizmoType.equals(IGizmo.Type.LEFT_FLIPPER) || gizmoType.equals(IGizmo.Type.RIGHT_FLIPPER))
                 step = 2;
 
-            for (double row = startX; row <= endX; row+=step) {
-                for (double column = startY; column <= endY; column+=step) {
+            for (double row = startX; row <= endX; row += step) {
+                for (double column = startY; column <= endY; column += step) {
                     if (invalidAddition(row, column)) continue;
                     gizmo = gizmoFactory.createGizmo(gizmoType, row, column);
                     gameModel.addGizmo(gizmo);
@@ -214,7 +214,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         } else if (gizmoType.equals(IGizmo.Type.LEFT_FLIPPER) && (y >= 19 || x >= 19 || y < 0)) {
             editorView.setStatus("This is not an allowed position for a left flipper");
             return true;
-        } else if (gizmoType.equals(IGizmo.Type.RIGHT_FLIPPER) && (y >= 19 || y <0)) {
+        } else if (gizmoType.equals(IGizmo.Type.RIGHT_FLIPPER) && (y >= 19 || y < 0)) {
             editorView.setStatus("This is not an allowed position for a right flipper");
             return true;
         }

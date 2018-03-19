@@ -1,6 +1,5 @@
 package strath.cs308.gizmoball.model;
 
-import com.sun.javafx.iio.ImageStorage;
 import mit.physics.Circle;
 import mit.physics.Geometry;
 import mit.physics.LineSegment;
@@ -87,8 +86,6 @@ public class GameModel extends Observable implements IGameModel {
                     .forEach(ball -> {
                         ((Absorber) gizmo).absorbBall(ball);
                     });
-
-
 
 
             gizmos.put(gizmo.getId(), (Gizmo) gizmo);

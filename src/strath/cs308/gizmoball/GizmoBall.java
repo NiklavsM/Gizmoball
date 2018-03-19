@@ -11,7 +11,6 @@ import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.EditorView;
-import strath.cs308.gizmoball.view.PlayView;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -19,15 +18,20 @@ import java.util.Locale;
 public class GizmoBall extends Application {
 
     private static final String TAG = "GizmoBall";
-    private IGameModel gameModel;
-    private InGameKeyEventHandler keyHandler;
-    private GameLoader gameLoader;
     public static Locale locale = new Locale("en");
     private static Stage stage;
     private static Scene view;
+    private IGameModel gameModel;
+    private InGameKeyEventHandler keyHandler;
+    private GameLoader gameLoader;
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public static void switchView(Scene view) {
+        GizmoBall.view = view;
+        stage.setScene(view);
     }
 
     @Override
@@ -70,12 +74,6 @@ public class GizmoBall extends Application {
         primaryStage.setScene(new EditorView(gameModel, keyHandler));
         primaryStage.show();
         stage = primaryStage;
-    }
-
-
-    public static void switchView(Scene view) {
-        GizmoBall.view = view;
-        stage.setScene(view);
     }
 
     @Override

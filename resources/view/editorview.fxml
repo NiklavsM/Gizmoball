@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
-<?import java.lang.*?>
+<?import java.lang.String?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx"
             stylesheets="/styles/style.css"
@@ -19,145 +19,145 @@
 
             <ToolBar fx:id="topToolbar" styleClass="default-padding">
 
-                    <VBox spacing="5"
-                          alignment="CENTER">
-                        <Button maxWidth="24"
-                                minWidth="24"
-                                minHeight="24"
-                                maxHeight="24"
-                                fx:id="topPlayButton"
-                                styleClass="play-button, regular-font, top-toolbar-button">
-                        </Button>
-                        <Label text="%EDITOR_TOPBAR_PLAY"/>
-                    </VBox>
+                <VBox spacing="5"
+                      alignment="CENTER">
+                    <Button maxWidth="24"
+                            minWidth="24"
+                            minHeight="24"
+                            maxHeight="24"
+                            fx:id="topPlayButton"
+                            styleClass="play-button, regular-font, top-toolbar-button">
+                    </Button>
+                    <Label text="%EDITOR_TOPBAR_PLAY"/>
+                </VBox>
 
-                    <VBox spacing="5"
-                          alignment="CENTER">
-                        <Button maxWidth="24"
-                                minWidth="24"
-                                minHeight="24"
-                                maxHeight="24"
-                                fx:id="topLoadButton"
-                                styleClass="load-button, regular-font, top-toolbar-button">
-                        </Button>
-                        <Label text="%EDITOR_TOPBAR_LOAD"/>
-                    </VBox>
+                <VBox spacing="5"
+                      alignment="CENTER">
+                    <Button maxWidth="24"
+                            minWidth="24"
+                            minHeight="24"
+                            maxHeight="24"
+                            fx:id="topLoadButton"
+                            styleClass="load-button, regular-font, top-toolbar-button">
+                    </Button>
+                    <Label text="%EDITOR_TOPBAR_LOAD"/>
+                </VBox>
 
-                    <VBox spacing="5"
-                          alignment="CENTER">
-                        <Button maxWidth="24"
-                                minWidth="24"
-                                minHeight="24"
-                                maxHeight="24"
-                                styleClass="save-button, regular-font, top-toolbar-button">
-                        </Button>
-                        <Label text="%EDITOR_TOPBAR_SAVE"/>
-                    </VBox>
+                <VBox spacing="5"
+                      alignment="CENTER">
+                    <Button maxWidth="24"
+                            minWidth="24"
+                            minHeight="24"
+                            maxHeight="24"
+                            styleClass="save-button, regular-font, top-toolbar-button">
+                    </Button>
+                    <Label text="%EDITOR_TOPBAR_SAVE"/>
+                </VBox>
 
-                    <VBox spacing="5"
-                          alignment="CENTER">
-                        <Button maxWidth="24"
-                                minWidth="24"
-                                minHeight="24"
-                                maxHeight="24"
-                                styleClass="saveas-button, regular-font, top-toolbar-button">
-                        </Button>
-                        <Label text="%EDITOR_TOPBAR_SAVEAS"/>
-                    </VBox>
+                <VBox spacing="5"
+                      alignment="CENTER">
+                    <Button maxWidth="24"
+                            minWidth="24"
+                            minHeight="24"
+                            maxHeight="24"
+                            styleClass="saveas-button, regular-font, top-toolbar-button">
+                    </Button>
+                    <Label text="%EDITOR_TOPBAR_SAVEAS"/>
+                </VBox>
 
-                    <VBox spacing="5"
-                          alignment="CENTER">
-                        <Button maxWidth="24"
-                                minWidth="24"
-                                minHeight="24"
-                                maxHeight="24"
-                                fx:id="topClearButton"
-                                styleClass="clear-button, regular-font, top-toolbar-button">
-                        </Button>
-                        <Label text="%EDITOR_TOPBAR_CLEARBOARD"/>
-                    </VBox>
+                <VBox spacing="5"
+                      alignment="CENTER">
+                    <Button maxWidth="24"
+                            minWidth="24"
+                            minHeight="24"
+                            maxHeight="24"
+                            fx:id="topClearButton"
+                            styleClass="clear-button, regular-font, top-toolbar-button">
+                    </Button>
+                    <Label text="%EDITOR_TOPBAR_CLEARBOARD"/>
+                </VBox>
 
-                    <VBox spacing="5"
-                          alignment="CENTER">
-                        <Button maxWidth="24"
-                                minWidth="24"
-                                minHeight="24"
-                                maxHeight="24"
-                                fx:id="undoButton"
-                                styleClass="undo-button, regular-font, top-toolbar-button">
-                        </Button>
-                        <Label text="%EDITOR_TOPBAR_UNDO"/>
-                    </VBox>
+                <VBox spacing="5"
+                      alignment="CENTER">
+                    <Button maxWidth="24"
+                            minWidth="24"
+                            minHeight="24"
+                            maxHeight="24"
+                            fx:id="undoButton"
+                            styleClass="undo-button, regular-font, top-toolbar-button">
+                    </Button>
+                    <Label text="%EDITOR_TOPBAR_UNDO"/>
+                </VBox>
 
-                    <VBox spacing="5"
-                          alignment="CENTER">
-                        <Button maxWidth="24"
-                                minWidth="24"
-                                minHeight="24"
-                                maxHeight="24"
-                                fx:id="redoButton"
-                                styleClass="redo-button, regular-font, top-toolbar-button">
-                        </Button>
-                        <Label text="%EDITOR_TOPBAR_REDO"/>
-                    </VBox>
+                <VBox spacing="5"
+                      alignment="CENTER">
+                    <Button maxWidth="24"
+                            minWidth="24"
+                            minHeight="24"
+                            maxHeight="24"
+                            fx:id="redoButton"
+                            styleClass="redo-button, regular-font, top-toolbar-button">
+                    </Button>
+                    <Label text="%EDITOR_TOPBAR_REDO"/>
+                </VBox>
 
-                    <VBox spacing="5"
-                          alignment="CENTER">
-                        <Button maxWidth="24"
-                                minWidth="24"
-                                minHeight="24"
-                                maxHeight="24"
-                                fx:id="topGridButton"
-                                styleClass="grid-button, regular-font, top-toolbar-button">
-                        </Button>
-                        <Label text="%EDITOR_TOPBAR_TOGGLEGRID"/>
-                    </VBox>
+                <VBox spacing="5"
+                      alignment="CENTER">
+                    <Button maxWidth="24"
+                            minWidth="24"
+                            minHeight="24"
+                            maxHeight="24"
+                            fx:id="topGridButton"
+                            styleClass="grid-button, regular-font, top-toolbar-button">
+                    </Button>
+                    <Label text="%EDITOR_TOPBAR_TOGGLEGRID"/>
+                </VBox>
 
-                    <VBox spacing="5"
-                          alignment="CENTER">
-                        <Button maxWidth="24"
-                                minWidth="24"
-                                minHeight="24"
-                                maxHeight="24"
-                                styleClass="console-button, regular-font, top-toolbar-button">
-                        </Button>
-                        <Label text="%EDITOR_TOPBAR_CONSOLE"/>
-                    </VBox>
+                <VBox spacing="5"
+                      alignment="CENTER">
+                    <Button maxWidth="24"
+                            minWidth="24"
+                            minHeight="24"
+                            maxHeight="24"
+                            styleClass="console-button, regular-font, top-toolbar-button">
+                    </Button>
+                    <Label text="%EDITOR_TOPBAR_CONSOLE"/>
+                </VBox>
 
-                    <VBox spacing="5"
-                          alignment="CENTER">
-                        <Label text="%EDITOR_TOPBAR_GRAVITY"/>
-                        <TextField fx:id="gravity"
-                                   styleClass="game-option-textbox"
-                                   prefWidth="60.0"/>
-                    </VBox>
+                <VBox spacing="5"
+                      alignment="CENTER">
+                    <Label text="%EDITOR_TOPBAR_GRAVITY"/>
+                    <TextField fx:id="gravity"
+                               styleClass="game-option-textbox"
+                               prefWidth="60.0"/>
+                </VBox>
 
-                    <VBox spacing="5"
-                          alignment="CENTER">
-                        <Label text="%EDITOR_TOPBAR_FRICTIONMU1"/>
-                        <TextField fx:id="mu1"
-                                   styleClass="game-option-textbox"
-                                   prefWidth="60.0"/>
-                    </VBox>
+                <VBox spacing="5"
+                      alignment="CENTER">
+                    <Label text="%EDITOR_TOPBAR_FRICTIONMU1"/>
+                    <TextField fx:id="mu1"
+                               styleClass="game-option-textbox"
+                               prefWidth="60.0"/>
+                </VBox>
 
-                    <VBox spacing="5"
-                          alignment="CENTER">
+                <VBox spacing="5"
+                      alignment="CENTER">
                     <Label text="%EDITOR_TOPBAR_FRICTIONMU2"/>
                     <TextField fx:id="mu2"
                                styleClass="game-option-textbox"
                                prefWidth="60.0"/>
                 </VBox>
-                    <VBox spacing="5"
-                          alignment="CENTER">
-                        <Button maxWidth="24"
-                                minWidth="24"
-                                minHeight="24"
-                                maxHeight="24"
-                                fx:id="soundSettingsButton"
-                                styleClass="settings-button, regular-font, top-toolbar-button">
-                        </Button>
-                        <Label text="%EDITOR_SOUND_SETTINGS"/>
-                    </VBox>
+                <VBox spacing="5"
+                      alignment="CENTER">
+                    <Button maxWidth="24"
+                            minWidth="24"
+                            minHeight="24"
+                            maxHeight="24"
+                            fx:id="soundSettingsButton"
+                            styleClass="settings-button, regular-font, top-toolbar-button">
+                    </Button>
+                    <Label text="%EDITOR_SOUND_SETTINGS"/>
+                </VBox>
 
 
             </ToolBar>
@@ -349,7 +349,9 @@
                                       alignment="CENTER">
                                     <Button fx:id="addOctagonMode">
                                         <graphic>
-                                            <SVGPath content="M 10,0 L 20,0 L 30,10 L 30,20 L 20,30 L 10,30 L 0,20 L 0,10z" fill="#f8f302"></SVGPath>
+                                            <SVGPath
+                                                    content="M 10,0 L 20,0 L 30,10 L 30,20 L 20,30 L 10,30 L 0,20 L 0,10z"
+                                                    fill="#f8f302"></SVGPath>
                                         </graphic>
                                     </Button>
                                     <Label text="%EDITOR_RIGHTBAR_OCTAGON"
@@ -413,13 +415,13 @@
                         <VBox spacing="16">
 
                             <HBox>
-                                <Label text="%EDITOR_RIGHTBAR_PROPERTY_TYPE" />
-                                <Label fx:id="gizmoType" />
+                                <Label text="%EDITOR_RIGHTBAR_PROPERTY_TYPE"/>
+                                <Label fx:id="gizmoType"/>
                             </HBox>
 
                             <HBox>
                                 <Label text="%EDITOR_RIGHTBAR_PROPERTY_ID"/>
-                                <Label fx:id="gizmoId" />
+                                <Label fx:id="gizmoId"/>
                             </HBox>
 
                             <VBox>
@@ -428,36 +430,36 @@
                             </VBox>
                         </VBox>
 
-                        <Label text="%EDITOR_RIGHTBAR_PROPERTY_REFLECTIONCOEFFICIENT" />
+                        <Label text="%EDITOR_RIGHTBAR_PROPERTY_REFLECTIONCOEFFICIENT"/>
                         <TextField fx:id="reflectionCoeffField"
                                    styleClass="game-option-textbox"
-                                   prefWidth="60.0" />
+                                   prefWidth="60.0"/>
 
-                        <VBox fx:id="movableFieldHolder" 
+                        <VBox fx:id="movableFieldHolder"
                               spacing="5">
-                            <Label text="%EDITOR_RIGHTBAR_PROPERTY_MOVEMENTTYPE" />
-                            <Label fx:id="movementType" />
+                            <Label text="%EDITOR_RIGHTBAR_PROPERTY_MOVEMENTTYPE"/>
+                            <Label fx:id="movementType"/>
                             <VBox fx:id="linearVelocityHolder">
-                                
-                                <Label text="%EDITOR_RIGHTBAR_PROPERTY_VELOCITYX" />
+
+                                <Label text="%EDITOR_RIGHTBAR_PROPERTY_VELOCITYX"/>
                                 <TextField fx:id="xVelocityField"
                                            styleClass="game-option-textbox"
-                                           prefWidth="60.0" />
-        
-                                <Label text="%EDITOR_RIGHTBAR_PROPERTY_VELOCITYY" />
+                                           prefWidth="60.0"/>
+
+                                <Label text="%EDITOR_RIGHTBAR_PROPERTY_VELOCITYY"/>
                                 <TextField fx:id="yVelocityField"
                                            styleClass="game-option-textbox"
-                                           prefWidth="60.0" />
+                                           prefWidth="60.0"/>
                             </VBox>
                             <VBox fx:id="rotationVelocityHolder">
-                                <Label text="%EDITOR_RIGHTBAR_PROPERTY_VELOCITYRAD" />
+                                <Label text="%EDITOR_RIGHTBAR_PROPERTY_VELOCITYRAD"/>
                                 <TextField fx:id="radianVelocityField"
                                            styleClass="game-option-textbox"
-                                           prefWidth="60.0" />
+                                           prefWidth="60.0"/>
                             </VBox>
 
-                       </VBox>
-                   
+                        </VBox>
+
 
                     </VBox>
 

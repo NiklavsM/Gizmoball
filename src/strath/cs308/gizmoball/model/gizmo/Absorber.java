@@ -5,7 +5,10 @@ import mit.physics.LineSegment;
 import strath.cs308.gizmoball.model.triggeringsystem.*;
 import strath.cs308.gizmoball.utils.Logger;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+import java.util.Stack;
 
 public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
 

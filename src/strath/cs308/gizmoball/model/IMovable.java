@@ -1,16 +1,8 @@
 package strath.cs308.gizmoball.model;
 
-import mit.physics.Vect;
-
 public interface IMovable {
 
-    public enum Type {
-        LINEAR, ROTATION;
-    }
-
     void move(double timeInSeconds);
-
-    void setVelocityRadian(double radian);
 
     void setVelocity(double x, double y);
 
@@ -20,5 +12,11 @@ public interface IMovable {
 
     double getVelocityRadian();
 
+    void setVelocityRadian(double radian);
+
     Type getMovementType();
+
+    public enum Type {
+        LINEAR, ROTATION;
+    }
 }

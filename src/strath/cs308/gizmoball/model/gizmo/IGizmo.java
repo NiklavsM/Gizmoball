@@ -3,7 +3,6 @@ package strath.cs308.gizmoball.model.gizmo;
 import mit.physics.LineSegment;
 import strath.cs308.gizmoball.model.Dot;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -29,9 +28,9 @@ public interface IGizmo {
 
     double getEndY();
 
-    void setReflectionCoefficient(double coefficient);
-
     double getReflectionCoefficient();
+
+    void setReflectionCoefficient(double coefficient);
 
     String getColor();
 
@@ -41,7 +40,7 @@ public interface IGizmo {
         TRIANGLE("Triangle"), ABSORBER("Absorber"), SQUARE("Square"), BALL("Ball"),
         WALLS("Walls"), FLIPPER("Flipper"), CIRCLE("Circle"),
         LEFT_FLIPPER("LeftFlipper"), RIGHT_FLIPPER("RightFlipper"),
-        RHOMBUS("Rhombus"),OCTAGON("Octagon");
+        RHOMBUS("Rhombus"), OCTAGON("Octagon");
 
         private String name;
 
