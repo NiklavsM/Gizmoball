@@ -25,6 +25,7 @@ import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IMovable;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
+import strath.cs308.gizmoball.utils.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -317,6 +318,11 @@ public class EditorView extends Scene implements IEditorView, Observer {
     @Override
     public void previewGizmo(IGizmo gizmo, double x, double y) {
         if (gameModel.getGizmo(x, y).equals(Optional.empty())) {
+            if (gizmo.getType().equals(IGizmo.Type.LEFT_FLIPPER) && isFlipperAreaOccupied(x, y))
+                return;
+            if (gizmo.getType().equals(IGizmo.Type.RIGHT_FLIPPER) && isFlipperAreaOccupied(x-1, y))
+                return;
+
             GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
             gameModel.getGizmoBalls().forEach(e -> {
                 //System.out.println(e.getStartX() + "," + e.getStartY());
@@ -325,6 +331,18 @@ public class EditorView extends Scene implements IEditorView, Observer {
         }
     }
 
+    private boolean isFlipperAreaOccupied(double x, double y) {
+        Double Xcoord = Math.floor(x), Ycoord = Math.floor(y);
+        for (int posX = Xcoord.intValue(); posX <= Xcoord.intValue() + 1; posX++) {
+            for (int posY = Ycoord.intValue(); posY <= Ycoord.intValue() + 1; posY++) {
+                if (!gameModel.getGizmo(posX, posY).equals(Optional.empty())) {
+                    Logger.debug(TAG," x,y: "+ posX + " , "+ posY);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     @Override
     public double getRadianProperty() {
