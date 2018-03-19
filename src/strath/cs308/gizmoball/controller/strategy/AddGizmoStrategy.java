@@ -182,11 +182,9 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         x /= editorView.getPixelRatioFor(20.0);
         y /= editorView.getPixelRatioFor(20.0);
 
+        if (invalidAddition(x, y)) return;
+
         if (!gizmoType.equals(IGizmo.Type.BALL)) {
-            if (gizmoType.equals(IGizmo.Type.ABSORBER) && y < 1) {
-                editorView.setStatus("Absorbers cannot sit on the top row as ball cannot be shot out");
-                return;
-            }
             x = Math.floor(x);
             y = Math.floor(y);
         } else {
@@ -200,9 +198,21 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         if (gameModel.addGizmo(gizmo)) {
             BoardHistory.addToHistoryGizmoAdded(gizmo);
             editorView.setStatus(gizmoType + " gizmo added at position: " + x + " , " + y);
-
-
             UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
         }
+    }
+
+    private boolean invalidAddition(double x, double y) {
+        if (gizmoType.equals(IGizmo.Type.ABSORBER) && y < 1) {
+            editorView.setStatus("Absorbers cannot sit on the top row as ball cannot be shot out");
+            return true;
+        } else if (gizmoType.equals(IGizmo.Type.LEFT_FLIPPER) && (y > 19 || x > 19)) {
+            editorView.setStatus("This is not an allowed position for a left flipper");
+            return true;
+        } else if (gizmoType.equals(IGizmo.Type.RIGHT_FLIPPER) && y > 19) {
+            editorView.setStatus("This is not an allowed position for a right flipper");
+            return true;
+        }
+        return false;
     }
 }
