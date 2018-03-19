@@ -1,13 +1,20 @@
 package strath.cs308.gizmoball.model.gizmo;
 
 import mit.physics.LineSegment;
+import strath.cs308.gizmoball.model.triggeringsystem.DefaultCollisionTrigger;
+import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
+import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
-public class Walls extends Gizmo {
+import java.util.Set;
+
+public class Walls extends Gizmo implements ITrigger {
+
+    private final ITrigger trigger;
 
     public Walls() {
         super(0, 0, 20, 20, "OuterWalls");
-
         setColor("#000000");
+        trigger = new DefaultCollisionTrigger();
     }
 
     @Override
@@ -32,5 +39,30 @@ public class Walls extends Gizmo {
     @Override
     public void move(double x, double y) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void trigger() {
+        trigger.trigger();
+    }
+
+    @Override
+    public void registerTriggarable(ITriggerable triggerable) {
+        trigger.registerTriggarable(triggerable);
+    }
+
+    @Override
+    public void removeTriggarable(ITriggerable triggarable) {
+        trigger.removeTriggarable(triggarable);
+    }
+
+    @Override
+    public Set<ITriggerable> getTriggerables() {
+        return trigger.getTriggerables();
+    }
+
+    @Override
+    public String id() {
+        return id;
     }
 }
