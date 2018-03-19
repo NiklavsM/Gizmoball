@@ -4,10 +4,10 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGameTimer;
 import strath.cs308.gizmoball.utils.Logger;
+import strath.cs308.gizmoball.view.FileChooser;
 import strath.cs308.gizmoball.view.IPlayView;
 
 import java.io.File;
@@ -21,7 +21,6 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
     private IGameModel gameModel;
     private GameLoader gameLoader;
     private InGameKeyEventHandler keyEventHandler;
-    private GizmoBall gizmoBall;
 
     public PauseMenuEventHandler(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IGameTimer gameTimer, IPlayView playView) {
         this.playView = playView;
@@ -70,7 +69,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
     }
 
     private void loadGame() {
-        File fileToLoad = playView.getLoadFile();
+        File fileToLoad = FileChooser.getFile();
 
         if (fileToLoad == null) {
             Logger.debug(TAG, "Loading file dialog cancelled");
@@ -81,9 +80,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
             gameModel.reset();
             keyEventHandler.removeAllHandlers();
             gameLoader.load(new FileInputStream(fileToLoad));
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
+        } catch (IllegalAccessException | FileNotFoundException e) {
             e.printStackTrace();
         } finally {
             playView.hidePauseMenu();
@@ -91,7 +88,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
     }
 
     private void saveGame() {
-        File fileToSave = playView.getLoadFile();
+        File fileToSave = FileChooser.getFile();
         GameSaver gs = new GameSaver(gameModel, keyEventHandler, fileToSave);
 
         if (fileToSave == null) {

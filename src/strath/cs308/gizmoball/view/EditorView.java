@@ -155,7 +155,7 @@ public class EditorView extends Scene implements IEditorView, Observer {
 
     private void attachHandlers() {
         Platform.runLater(() -> {
-            EventHandler<MouseEvent> topToolbarHandler = new TopToolbarEventHandler(gameModel, this);
+            EventHandler<MouseEvent> topToolbarHandler = new TopToolbarEventHandler(gameModel, keyHandler, this);
             ((ToolBar) namespace.get("topToolbar")).lookupAll(".top-toolbar-button")
                     .forEach(node -> node.setOnMouseClicked(topToolbarHandler));
 
@@ -361,10 +361,10 @@ public class EditorView extends Scene implements IEditorView, Observer {
     public String getGizmoColor() {
         Color color = colorPicker.getValue();
 
-        return String.format( "#%02X%02X%02X",
-                (int)( color.getRed() * 255 ),
-                (int)( color.getGreen() * 255 ),
-                (int)( color.getBlue() * 255 ) );
+        return String.format("#%02X%02X%02X",
+                (int) (color.getRed() * 255),
+                (int) (color.getGreen() * 255),
+                (int) (color.getBlue() * 255));
 
     }
 }

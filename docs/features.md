@@ -31,6 +31,8 @@
 * Can add comments to .gizmo files
 * Can move absorbers with balls in it
 * Can change colors of the gizmos
+* New gizmos Octagon and Rhombus
+* Can load and save brom both play view and edit mode
 
 **Misc**
 
