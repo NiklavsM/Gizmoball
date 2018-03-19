@@ -20,7 +20,6 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
     private final IGameModel gameModel;
     private Optional<IGizmo> selectedGizmo;
     private ResourceBundle dictionary;
-
     private final InGameKeyEventHandler keyEventHandler;
 
     public MoveGizmoStrategy(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IEditorView editorView) {

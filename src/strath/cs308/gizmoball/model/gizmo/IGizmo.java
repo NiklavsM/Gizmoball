@@ -37,11 +37,13 @@ public interface IGizmo {
 
     boolean setColor(String color);
 
+    boolean overlapsWithAnyGizmos(Collection<IGizmo> gizmos);
+
     enum Type {
         TRIANGLE("Triangle"), ABSORBER("Absorber"), SQUARE("Square"), BALL("Ball"),
         WALLS("Walls"), FLIPPER("Flipper"), CIRCLE("Circle"),
         LEFT_FLIPPER("LeftFlipper"), RIGHT_FLIPPER("RightFlipper"),
-        RHOMBUS("Rhombus"),OCTAGON("Octagon");
+        RHOMBUS("Rhombus"), OCTAGON("Octagon");
 
         private String name;
 

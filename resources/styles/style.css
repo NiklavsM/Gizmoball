@@ -39,6 +39,7 @@ BorderPane {
 
 .foreground {
     -fx-background-color: #455A64;
+    -fx-text-fill: #B0BEC5;
 }
 
 /* FIXME: canvas Styles arne't working :( */
@@ -245,8 +246,8 @@ i.pause-menu-font {
 }
 
 .regular-font {
-     -fx-font: 14px Arial;
- }
+    -fx-font: 14px Arial;
+}
 
 .medium-font {
     -fx-font: 20px Arial;
@@ -274,10 +275,9 @@ i.pause-menu-font {
 
 }
 
-#topToolbar  VBox {
+#topToolbar VBox {
     -fx-padding: 0px 5px 0px 5px;
 }
-
 
 ColorPicker, ComboBox {
     -fx-background-color: #37474F;

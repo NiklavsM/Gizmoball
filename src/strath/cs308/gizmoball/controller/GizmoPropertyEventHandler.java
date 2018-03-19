@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 
-
 import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IMovable;
@@ -15,7 +14,7 @@ import strath.cs308.gizmoball.view.IEditorView;
 import java.util.ResourceBundle;
 
 
-public class GizmoPropertyEventHandler implements EventHandler<ActionEvent>{
+public class GizmoPropertyEventHandler implements EventHandler<ActionEvent> {
 
     private IEditorView editorView;
     private IGizmo gizmo;
@@ -24,8 +23,7 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent>{
     private IGameModel gameModel;
     private InGameKeyEventHandler keyEventHandler;
 
-    public GizmoPropertyEventHandler(IEditorView editorView, IGizmo gizmo, IGameModel gameModel, InGameKeyEventHandler keyEventHandler)
-    {
+    public GizmoPropertyEventHandler(IEditorView editorView, IGizmo gizmo, IGameModel gameModel, InGameKeyEventHandler keyEventHandler) {
         this.editorView = editorView;
         this.gizmo = gizmo;
         this.gameModel = gameModel;

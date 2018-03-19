@@ -5,7 +5,10 @@ import mit.physics.LineSegment;
 import strath.cs308.gizmoball.model.triggeringsystem.*;
 import strath.cs308.gizmoball.utils.Logger;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+import java.util.Stack;
 
 public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
 
@@ -50,7 +53,7 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
         balls.forEach(b -> absorbBall(b));
     }
 
-    public void absorbBall(Ball ball) {
+    public boolean absorbBall(Ball ball) {
         if (haveSpace()) {
             ballsAbsorbed.add(ball);
             double radius = ball.getRadius();
@@ -59,7 +62,9 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
             ball.setVelocity(0, -50);
             ball.setStopped(true);
             Logger.verbose(TAG, "ball.getCircle().getCenter().y() " + ball.getCircle().getCenter().y());
+            return true;
         }
+        return false;
     }
 
     public boolean hasAbsorbed(Ball ball) {
@@ -90,7 +95,7 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
     }
 
     @Override
-    public boolean overlapsWithGizmo(Gizmo g) {
+    public boolean overlapsWithGizmo(IGizmo g) {
         if (g.getType().equals(Type.BALL)) {
             Ball b = (Ball) g;
             if (hasAbsorbed(b)) {

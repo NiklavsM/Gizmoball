@@ -61,7 +61,6 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
         } else {
             x = x + radius;
         }
-//        super.move(x, y + radius);
         flipperSetup(x - radius, y + radius, x + radius, y + radius + 1.5);
         int rotateCount = this.rotateCount;
         for (int i = 0; i < rotateCount; i++) {

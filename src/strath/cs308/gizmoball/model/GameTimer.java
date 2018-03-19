@@ -1,7 +1,5 @@
 package strath.cs308.gizmoball.model;
 
-import strath.cs308.gizmoball.utils.Logger;
-
 import java.util.Timer;
 import java.util.TimerTask;
 

@@ -1,18 +1,13 @@
 package strath.cs308.gizmoball.model;
 
 import strath.cs308.gizmoball.controller.GameLoader;
-import strath.cs308.gizmoball.controller.GameSaver;
 import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 
-import javax.swing.plaf.nimbus.State;
-import java.io.*;
+import java.io.ByteArrayInputStream;
 import java.util.Deque;
-import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.UUID;
 
-public enum UndoRedo
-{
+public enum UndoRedo {
     INSTANCE;
 
     private Deque<String> undoStates;
@@ -42,16 +37,14 @@ public enum UndoRedo
 
     private void loadSate(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, String state) {
         GameLoader gameLoader = new GameLoader(gameModel, keyEventHandler);
-        try
-        {
+        try {
             gameLoader.load(new ByteArrayInputStream(state.getBytes()));
-        } catch (IllegalAccessException e)
-        {
+        } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
     }
 
-    public void undo(IGameModel gameModel, InGameKeyEventHandler keyEventHandler)  {
+    public void undo(IGameModel gameModel, InGameKeyEventHandler keyEventHandler) {
 
         if (undoStates.isEmpty()) {
             return;

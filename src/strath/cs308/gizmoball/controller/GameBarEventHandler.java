@@ -41,9 +41,6 @@ public class GameBarEventHandler implements EventHandler<ActionEvent> {
                 playView.changePlayIcon();
                 break;
 
-//            case "stopButton":
-//                gameTimer.stop();
-//                break;
             case "soundButton":
                 soundSwitch();
                 break;
@@ -57,7 +54,8 @@ public class GameBarEventHandler implements EventHandler<ActionEvent> {
         }
 
     }
-    private void soundOn(boolean soundOn){
+
+    private void soundOn(boolean soundOn) {
         if (soundOn) {
             musicPlayer.musicOn();
             playView.soundOn(true);
@@ -66,6 +64,7 @@ public class GameBarEventHandler implements EventHandler<ActionEvent> {
             playView.soundOn(false);
         }
     }
+
     private void soundSwitch() {
         soundOn(!musicPlayer.isPlaying());
     }
