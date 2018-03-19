@@ -1,163 +1,95 @@
-Ball B20 18.75 16.75 0.0 0.0
-
+# gizmos
+Ball B20 19.0 17.0 0.0 0.0
 Circle C43 4.0 3.0
-
 RightFlipper RF137 13.0 7.0
-
 Circle C129 12.0 9.0
-
-Square 080075b1-3a20-4dca-93ea-6624e53e3362 2.0 13.0
-
-Square 59e0ff31-ad82-4699-8eb1-b816596fa3c5 2.0 9.0
-
 Square S82 8.0 2.0
-
 Square S42 4.0 2.0
-
-Absorber A2 16.0 19.0 20.0 20.0
-
-Square 7e1ee666-e0f5-456b-9dbc-3e8e99022ecb 2.0 8.0
-
+Rhombus 6395fda1-a75b-4213-9d72-94d5017c0bf4 15.0 13.0
+Absorber A2 17.0 19.0 20.0 20.0
 Circle C165 16.0 5.0
-
 Square S02 0.0 2.0
-
 Square S142 14.0 2.0
-
-Square 59ae1c96-7d96-495b-8f85-088164290af1 2.0 12.0
-
+Rhombus 14370c0b-d749-49a6-a542-2227a01dc4e2 17.0 13.0
 Square S182 18.0 2.0
-
+Rhombus R1 5.0 10.0
+Rhombus a3557010-54ef-4f39-8a7d-febf0439b3b6 16.0 13.0
 Circle C99 9.0 9.0
-
 Circle C54 5.0 4.0
-
+Rhombus a6b519b1-6696-4680-9dc1-222eebe953eb 13.0 13.0
 Circle C139 13.0 9.0
-
 LeftFlipper LF92 9.0 2.0
-
 Square S52 5.0 2.0
-
-Ball B3 16.75 9.75 1.0 0.0
-
-Ball B4 16.75 12.75 0.0 0.0
-
-Ball B5 16.75 13.75 0.0 0.0
-
 Circle C174 17.0 4.0
-
-Ball B6 16.75 14.75 0.0 0.0
-
 Square S12 1.0 2.0
-
-Ball B7 16.75 15.75 0.0 0.0
-
-Ball B8 16.75 16.75 0.0 0.0
-
-Ball B9 17.75 10.75 1.0 0.0
-
+Ball B7 1.0 0.5 3.0 0.0
+Ball B8 2.0 0.5 3.0 0.0
+Ball B9 3.0 0.5 1.0 0.0
 Square S132 13.0 2.0
-
+Ball B1234 11.5 9.5 0.0 0.0
 Square S172 17.0 2.0
-
 Absorber A 0.0 19.0 10.0 20.0
-
+Octagon O1 5.0 12.0
 Circle C65 6.0 5.0
-
 Circle C1110 11.0 10.0
-
 Circle C109 10.0 9.0
-
+Rhombus e819bc49-bf1d-46aa-bb60-28e86da911d1 14.0 13.0
 Square S62 6.0 2.0
-
 Square S22 2.0 2.0
-
 Triangle T 19.0 0.0
 Rotate T
-
 Circle C183 18.0 3.0
-
 LeftFlipper LF87 8.0 7.0
-
 Square S162 16.0 2.0
-
 Triangle T2 1.0 1.0
-
-Square 1a84e526-e9f0-45c3-97ac-edfdd7ce10e4 2.0 10.0
-
-Ball B10 17.75 12.75 0.0 0.0
-
-Ball B11 17.75 13.75 0.0 0.0
-
+Triangle T3 9.0 16.0
+Ball B10 4.0 0.5 3.0 0.0
+Ball B11 5.0 0.5 2.0 0.0
 Circle C76 7.0 6.0
-
-Ball B12 17.75 14.75 0.0 0.0
-
-Ball B13 17.75 15.75 0.0 0.0
-
-Ball B14 17.75 16.75 0.0 0.0
-
-Ball B15 18.75 11.75 1.0 0.0
-
-Ball B16 18.75 12.75 0.0 0.0
-
-Ball B17 18.75 13.75 0.0 0.0
-
-Ball B18 18.75 14.75 0.0 0.0
-
-Ball B19 18.75 15.75 0.0 0.0
-
-LeftFlipper f643acb3-4c3b-4ceb-9a39-01edb9e5724f 6.0 15.0
-
-Triangle 5df0ff4e-da59-4a83-8213-b497cd1e020a 9.0 12.0
-
+Ball B12 6.0 0.5 2.0 0.0
+Ball B13 7.0 0.5 2.0 0.0
+Ball B14 8.0 0.5 1.0 0.0
+Ball B15 9.0 0.5 1.0 0.0
+Ball B16 10.0 0.5 0.0 0.0
+Ball B17 19.0 14.0 0.0 0.0
+Ball B18 19.0 15.0 0.0 0.0
+Ball B19 19.0 16.0 0.0 0.0
 Square S72 7.0 2.0
-
 Circle C156 15.0 6.0
-
 Square S32 3.0 2.0
-
-Square 2020fe7f-3a29-4f39-926c-bb6b08e04479 2.0 11.0
-
 RightFlipper RF112 11.0 2.0
-
-Square 72a2143c-6822-401b-a574-e0c253cde31e 2.0 14.0
-
 Square S152 15.0 2.0
 
-
-
 # collision triggers
-Connect C65 LF87
-Connect C129 RF137
+Connect C109 LF87
+Connect C76 LF87
 Connect C1110 RF137
 Connect C1110 LF87
-Connect C76 LF87
-Connect C156 RF137
-Connect C165 RF137
-Connect C183 RF137
-Connect A2 A
-Connect A A2
 Connect C99 RF137
-Connect C174 RF137
-Connect T T
-Connect C109 LF87
+Connect C65 LF87
 Connect C43 LF87
 Connect C139 LF87
 Connect C54 LF87
+Connect C165 RF137
+Connect A2 A
+Connect C156 RF137
+Connect A A2
+Connect C174 RF137
+Connect C183 RF137
+Connect C129 RF137
 
 # gravity and friction
-
+Gravity 25.0
+Friction 0.025 0.025
 
 # key bindings
 KeyConnect key 76.0 up RF112
 KeyConnect key 76.0 up RF137
 KeyConnect key 69.0 up A2
-KeyConnect key 74.0 down T
 KeyConnect key 74.0 down A
 KeyConnect key 75.0 down LF92
 KeyConnect key 75.0 down LF87
-KeyConnect key 68.0 down RF112
+KeyConnect key 76.0 down RF112
 KeyConnect key 76.0 down RF137
 KeyConnect key 75.0 up LF92
 KeyConnect key 75.0 up LF87

@@ -159,17 +159,19 @@ public abstract class Gizmo implements IGizmo {
 
     @Override
     public String toString() {
-        String x2String = "", y2String = "", rotate = "";
+        String x2String = "";
+        String y2String = "";
+        StringBuilder rotate = new StringBuilder("\n");
         if (getType().equals(Type.ABSORBER)) {
             x2String = " " + x2;
             y2String = " " + y2;
         }
 
         for (int i = 0; i < rotateCount % 4; i++) {
-            rotate += GameLoader.ROTATE_COMMAND + " " + id + "\n";
+            rotate.append(GameLoader.ROTATE_COMMAND + " ").append(id).append("\n");
         }
 
-        return getType() + " " + id + " " + x1 + " " + y1 + x2String + y2String + "\n" + rotate + "\n";
+        return getType() + " " + id + " " + x1 + " " + y1 + x2String + y2String + rotate;
     }
 
     @Override
@@ -200,13 +202,13 @@ public abstract class Gizmo implements IGizmo {
     }
 
     public boolean overlapsWithGizmo(Gizmo g) {
-        if(this.equals(g)) {
+        if (this.equals(g)) {
             return false;
         }
-        if(g.getType().equals(Type.WALLS)) {
+        if (g.getType().equals(Type.WALLS)) {
             return false;
         }
-      return x1 < g.x2 && x2 > g.x1 && y1 < g.y2 && y2 > g.y1;
+        return x1 < g.x2 && x2 > g.x1 && y1 < g.y2 && y2 > g.y1;
     }
 
     public boolean overlapsWithAnyGizmos(Collection<Gizmo> gizmos) {

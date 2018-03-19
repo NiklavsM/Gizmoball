@@ -83,7 +83,6 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
     }
 
     private void clearBoard() {
-
         gameModel.reset();
         UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
     }
@@ -98,7 +97,6 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
 
         try {
             gameModel.reset();
-
             keyEventHandler.removeAllHandlers();
             GameLoader gameLoader = new GameLoader(gameModel, keyEventHandler);
             gameLoader.load(new FileInputStream(fileToLoad));

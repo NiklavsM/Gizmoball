@@ -53,16 +53,17 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent>, Observer {
 
     @Override
     public String toString() {
-        final String[] s = {""};
-        keyEventMap
-                .forEach(
-                        (event, trigs) ->
-                                trigs
-                                        .forEach(trig ->
-                                                s[0] += GameLoader.KEY_CONNECT_COMMAND +
-                                                        " " + event + " " + trig.id() + "\n")
-                );
-        return s[0];
+        final StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("\n# key bindings\n");
+        keyEventMap.forEach((event, trigs) -> trigs
+                .forEach(t -> stringBuilder.append(GameLoader.KEY_CONNECT_COMMAND)
+                        .append(" ")
+                        .append(event)
+                        .append(" ")
+                        .append(t.id())
+                        .append("\n"))
+        );
+        return stringBuilder.toString();
     }
 
     @Override

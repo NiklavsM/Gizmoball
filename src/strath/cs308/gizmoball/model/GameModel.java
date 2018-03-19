@@ -413,7 +413,7 @@ public class GameModel extends Observable implements IGameModel {
             commands.append(gizmo.toString());
         }
 
-        commands.append("\n\n# collision triggers\n");
+        commands.append("\n# collision triggers\n");
 
         Set<ITrigger> collisionTriggers = gizmos
                 .values()
