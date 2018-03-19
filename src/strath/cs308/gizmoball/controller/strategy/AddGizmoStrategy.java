@@ -149,8 +149,12 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
             startY = startY - endY;
         }
 
-        if (gizmoType.equals(IGizmo.Type.ABSORBER) && startY >= 1) {
-            System.out.println(startY);
+        if (gizmoType.equals(IGizmo.Type.ABSORBER)) {
+            if (startY < 1) {
+                editorView.setStatus("Absorbers cannot sit on the top row as ball cannot be shot out");
+                return;
+            }
+
             IGizmo gizmo = gizmoFactory.createGizmo(gizmoType
                     , startX
                     , startY
@@ -160,12 +164,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
             if (gameModel.addGizmo(gizmo)) {
                 BoardHistory.addToHistoryGizmoAdded(gizmo);
             }
-        } else {
-            editorView.setStatus("Absorbers cannot sit on the top row as ball cannot be shot out");
-            return;
-        }
-
-        if (!gizmoType.equals(IGizmo.Type.BALL)) {
+        } else if (!gizmoType.equals(IGizmo.Type.BALL)) {
             IGizmo gizmo;
             for (double row = startX; row <= endX; row++) {
                 for (double column = startY; column <= endY; column++) {
@@ -184,6 +183,10 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         y /= editorView.getPixelRatioFor(20.0);
 
         if (!gizmoType.equals(IGizmo.Type.BALL)) {
+            if (gizmoType.equals(IGizmo.Type.ABSORBER) && y < 1) {
+                editorView.setStatus("Absorbers cannot sit on the top row as ball cannot be shot out");
+                return;
+            }
             x = Math.floor(x);
             y = Math.floor(y);
         } else {
