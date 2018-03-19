@@ -1,14 +1,11 @@
 package strath.cs308.gizmoball.model.gizmo;
 
-import java.util.concurrent.CopyOnWriteArrayList;
-
-import javafx.util.Pair;
 import mit.physics.Angle;
 import mit.physics.Circle;
 import mit.physics.Vect;
-
 import strath.cs308.gizmoball.model.IMovable;
-import strath.cs308.gizmoball.model.gizmo.IGizmo;
+
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Ball extends Gizmo implements IMovable {
 
@@ -24,12 +21,6 @@ public class Ball extends Gizmo implements IMovable {
     public Ball(double x, double y, String id) {
         super(x - 0.25, y - 0.25, x + 0.25, y + 0.25, id);
         setVelocity(4, 4);
-    }
-
-
-    @Override
-    public void setVelocityRadian(double radian) {
-        velocity = new Vect(new Angle(radian));
     }
 
     @Override
@@ -50,6 +41,11 @@ public class Ball extends Gizmo implements IMovable {
     @Override
     public double getVelocityRadian() {
         return velocity.angle().radians();
+    }
+
+    @Override
+    public void setVelocityRadian(double radian) {
+        velocity = new Vect(new Angle(radian));
     }
 
     public Circle getCircle() {
@@ -120,7 +116,7 @@ public class Ball extends Gizmo implements IMovable {
     }
 
     @Override
-    public boolean overlapsWithGizmo(Gizmo g) {
+    public boolean overlapsWithGizmo(IGizmo g) {
         boolean r = super.overlapsWithGizmo(g);
         if (r && g.getType().equals(IGizmo.Type.ABSORBER)) {
             return false;
@@ -139,7 +135,7 @@ public class Ball extends Gizmo implements IMovable {
         return getType() + " " + id
                 + " " + getCircle().getCenter().x() + " "
                 + getCircle().getCenter().y()
-                + " " + velocity.x() + " " + velocity.y() + "\n\n";
+                + " " + velocity.x() + " " + velocity.y() + "\n";
     }
 
     @Override

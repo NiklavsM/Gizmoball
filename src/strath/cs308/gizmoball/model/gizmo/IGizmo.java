@@ -29,7 +29,7 @@ public interface IGizmo {
 
     double getEndY();
 
-    void setReflectionCoefficient(double coefficient);
+    boolean setReflectionCoefficient(double coefficient);
 
     double getReflectionCoefficient();
 
@@ -37,11 +37,13 @@ public interface IGizmo {
 
     boolean setColor(String color);
 
+    boolean overlapsWithAnyGizmos(Collection<IGizmo> gizmos);
+
     enum Type {
         TRIANGLE("Triangle"), ABSORBER("Absorber"), SQUARE("Square"), BALL("Ball"),
         WALLS("Walls"), FLIPPER("Flipper"), CIRCLE("Circle"),
         LEFT_FLIPPER("LeftFlipper"), RIGHT_FLIPPER("RightFlipper"),
-        RHOMBUS("Rhombus"),OCTAGON("Octagon"), SPINNER("Spinner");
+        RHOMBUS("Rhombus"), OCTAGON("Octagon"), SPINNER("Spinner");
 
         private String name;
 

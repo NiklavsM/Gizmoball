@@ -8,21 +8,20 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.effect.GaussianBlur;
-import javafx.scene.layout.*;
-import javafx.stage.FileChooser;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
-import javafx.stage.Stage;
 import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.controller.GameBarEventHandler;
-import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.controller.PauseMenuEventHandler;
 import strath.cs308.gizmoball.model.GameTimer;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGameTimer;
+import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Observable;
@@ -110,7 +109,7 @@ public class PlayView extends Scene implements IPlayView, Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        if(o instanceof ITriggerable) {
+        if (o instanceof ITriggerable) {
             return;
         }
         Platform.runLater(() -> {
@@ -154,21 +153,21 @@ public class PlayView extends Scene implements IPlayView, Observer {
         if (icon.getStyle().contains("stop")) {
             icon.setStyle("-fx-background-image: url('/icons/play.png')");
             icon.setTooltip(new Tooltip("Play"));
-        }
-        else {
+        } else {
             icon.setStyle("-fx-background-image: url('/icons/stop.png')");
             icon.setTooltip(new Tooltip("Stop"));
         }
     }
 
     public boolean getCloseConFormation() {
-        Alert closeConfirmation = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to quit the game?");
+        ResourceBundle dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);
+        Alert closeConfirmation = new Alert(Alert.AlertType.CONFIRMATION, dictionary.getString("INGAME_MENU_EXIT_QUESTION"));
         Button exitButton = (Button) closeConfirmation.getDialogPane().lookupButton(
                 ButtonType.OK
         );
 
-        exitButton.setText("Exit");
-        closeConfirmation.setHeaderText("Confirm Exit?");
+        exitButton.setText(dictionary.getString("INGAME_MENU_EXIT_BUTTON"));
+        closeConfirmation.setHeaderText(dictionary.getString("INGAME_MENU_EXIT_TITLE"));
         closeConfirmation.initModality(Modality.APPLICATION_MODAL);
 
         Optional<ButtonType> closeResponse = closeConfirmation.showAndWait();
@@ -177,16 +176,17 @@ public class PlayView extends Scene implements IPlayView, Observer {
 
     @Override
     public void switchToEditor() {
+        UndoRedo.INSTANCE.saveState(gameModel, keyHandler);
         gameModel.deleteObserver(this);
         GizmoBall.switchView(new EditorView(gameModel, keyHandler));
     }
 
-    public void soundOn(boolean soundOn){
+    public void soundOn(boolean soundOn) {
         Button soundButton = (Button) root.lookup("#soundButton");
         soundButton.getStyleClass().clear();
-        if(soundOn) {
+        if (soundOn) {
             soundButton.getStyleClass().add("sound-on-button");
-        }else{
+        } else {
             soundButton.getStyleClass().add("sound-off-button");
         }
 

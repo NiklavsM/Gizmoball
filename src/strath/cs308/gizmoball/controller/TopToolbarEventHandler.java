@@ -4,17 +4,13 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import strath.cs308.gizmoball.model.IGameModel;
+import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.FileChooser;
 import strath.cs308.gizmoball.view.IEditorView;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
-import strath.cs308.gizmoball.model.UndoRedo;
-import strath.cs308.gizmoball.view.IEditorView;
-
 import java.io.FileNotFoundException;
 
 
@@ -24,7 +20,7 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
     private IGameModel gameModel;
     private IEditorView editView;
 
-    public TopToolbarEventHandler(IGameModel gameModel, InGameKeyEventHandler keyEventHandler , IEditorView editorView) {
+    public TopToolbarEventHandler(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IEditorView editorView) {
         this.gameModel = gameModel;
         this.editView = editorView;
         this.keyEventHandler = keyEventHandler;
@@ -59,13 +55,16 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
             case "topGridButton":
                 toggleGrid();
                 break;
-
+            case "consoleButton":
+                openConsole();
+                break;
             case "soundSettingsButton":
-                switchToSettings();
+                openSettings();
                 break;
         }
 
     }
+
 
     private void redo() {
 
@@ -83,7 +82,6 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
     }
 
     private void clearBoard() {
-
         gameModel.reset();
         UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
     }
@@ -98,7 +96,6 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
 
         try {
             gameModel.reset();
-
             keyEventHandler.removeAllHandlers();
             GameLoader gameLoader = new GameLoader(gameModel, keyEventHandler);
             gameLoader.load(new FileInputStream(fileToLoad));
@@ -128,7 +125,12 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
         this.editView.switchToPlay();
     }
 
-    private void switchToSettings() {
-        this.editView.switchToSettings();
+    private void openSettings() {
+        this.editView.openSettings();
     }
+
+    private void openConsole() {
+        this.editView.openConsole();
+    }
+
 }

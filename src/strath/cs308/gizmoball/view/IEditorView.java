@@ -8,13 +8,14 @@ import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
 import java.io.File;
-import java.text.NumberFormat;
 
 public interface IEditorView {
 
     void switchToPlay();
 
-    void switchToSettings();
+    void openSettings();
+
+    void openConsole();
 
     void setCanvasMode(EventHandler<MouseEvent> canvasStrategy);
 

@@ -6,18 +6,19 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
-import strath.cs308.gizmoball.controller.BoardHistory;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.view.IEditorView;
 
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 public class RemoveGizmoStrategy implements EventHandler<MouseEvent> {
 
     private final IEditorView editorView;
     private final IGameModel gameModel;
+    private ResourceBundle dictionary;
 
     private final InGameKeyEventHandler keyEventHandler;
 
@@ -29,6 +30,7 @@ public class RemoveGizmoStrategy implements EventHandler<MouseEvent> {
         editorView.setCursor(new ImageCursor(image));
 
         this.keyEventHandler = keyEventHandler;
+        dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);
     }
 
     @Override
@@ -40,12 +42,12 @@ public class RemoveGizmoStrategy implements EventHandler<MouseEvent> {
 
             Optional<IGizmo> gizmo = gameModel.getGizmo(pointX, pointY);
             if (gizmo.isPresent()) {
-                BoardHistory.addToHistoryGizmoRemoved(gizmo.get());
                 gameModel.removeGizmo(gizmo.get());
-                editorView.setStatus(gizmo.get().getType() + " gizmo removed from the playing area");
-
+                editorView.setStatus(gizmo.get().getType() + dictionary.getString("EDITOR_STATUS_REMOVE_SUCCESS"));
 
                 UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
+            } else {
+                editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_REMOVE_ERROR"));
             }
         }
     }

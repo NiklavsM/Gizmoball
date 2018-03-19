@@ -1,6 +1,5 @@
 package strath.cs308.gizmoball.model;
 
-import com.sun.javafx.iio.ImageStorage;
 import mit.physics.Circle;
 import mit.physics.Geometry;
 import mit.physics.LineSegment;
@@ -39,8 +38,19 @@ public class GameModel extends Observable implements IGameModel {
         addGizmo(new Walls());
     }
 
+    private boolean isInsideWalls(IGizmo g) {
+        return g.getStartX() >= 0
+                && g.getStartX() <= 20 - (g.getEndX() - g.getStartX())
+                && g.getStartY() >= 0
+                && g.getStartY() <= 20 - (g.getEndY() - g.getStartY());
+    }
+
     public boolean addGizmo(IGizmo gizmo) {
         if (gizmo == null) {
+            return false;
+        }
+
+        if (!(isInsideWalls(gizmo))) {
             return false;
         }
 
@@ -49,14 +59,11 @@ public class GameModel extends Observable implements IGameModel {
             gizmos
                     .values()
                     .parallelStream()
-                    .filter(g -> g.overlapsWithGizmo((Gizmo) gizmo)
+                    .filter(g -> g.overlapsWithGizmo(gizmo)
                             && g.getType().equals(IGizmo.Type.ABSORBER))
                     .map(Absorber.class::cast)
                     .findFirst()
-                    .ifPresent(gizmo1 -> {
-                        gizmo1.absorbBall((Ball) gizmo);
-                        added[0] = true;
-                    });
+                    .ifPresent(gizmo1 -> added[0] = gizmo1.absorbBall((Ball) gizmo));
             if (added[0]) {
                 gizmos.put(gizmo.getId(), (Gizmo) gizmo);
                 update();
@@ -70,7 +77,7 @@ public class GameModel extends Observable implements IGameModel {
                 return false;
             }
 
-            if (((Gizmo) gizmo).overlapsWithAnyGizmos(gizmos
+            if (gizmo.overlapsWithAnyGizmos(gizmos
                     .values()
                     .stream()
                     .filter(g -> !g.getType().equals(IGizmo.Type.BALL))
@@ -81,22 +88,20 @@ public class GameModel extends Observable implements IGameModel {
             gizmos
                     .values()
                     .parallelStream()
-                    .filter(g -> ((Gizmo) gizmo).overlapsWithGizmo(g)
+                    .filter(g -> g.overlapsWithGizmo(g)
                             && g.getType().equals(IGizmo.Type.BALL))
                     .map(Ball.class::cast)
                     .forEach(ball -> {
-                        ((Absorber) gizmo).absorbBall(ball);
+                        Absorber a = (Absorber) gizmo;
+                        a.absorbBall(ball);
                     });
-
-
-
 
             gizmos.put(gizmo.getId(), (Gizmo) gizmo);
             update();
             return true;
         }
 
-        if (((Gizmo) gizmo).overlapsWithAnyGizmos(gizmos.values())) {
+        if (gizmo.overlapsWithAnyGizmos(getGizmos())) {
             return false;
         }
         if (gizmos.containsKey(gizmo.getId())) {
@@ -224,7 +229,11 @@ public class GameModel extends Observable implements IGameModel {
         }
         double backX = gizmo.getStartX(), backY = gizmo.getStartY();
         gizmo.move(x, y);
-        if (((Gizmo) gizmo).overlapsWithAnyGizmos(gizmos.values())) {
+        if (!isInsideWalls(gizmo)) {
+            gizmo.move(backX, backY);
+            return false;
+        }
+        if (gizmo.overlapsWithAnyGizmos(getGizmos())) {
             gizmo.move(backX, backY);
             return false;
         }
@@ -339,7 +348,7 @@ public class GameModel extends Observable implements IGameModel {
         if (g == null) {
             return false;
         }
-        if (g.overlapsWithAnyGizmos(gizmos.values())) {
+        if (g.overlapsWithAnyGizmos(getGizmos())) {
             return false;
         }
         g.rotate();
@@ -413,7 +422,7 @@ public class GameModel extends Observable implements IGameModel {
             commands.append(gizmo.toString());
         }
 
-        commands.append("\n\n# collision triggers\n");
+        commands.append("\n# collision triggers\n");
 
         Set<ITrigger> collisionTriggers = gizmos
                 .values()
