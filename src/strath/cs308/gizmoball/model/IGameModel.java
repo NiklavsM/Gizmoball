@@ -50,7 +50,7 @@ public interface IGameModel {
 
     int getScore();
 
-    int getBallsInPlay();
+    int[] getBallsInPlay();
 
 }
 

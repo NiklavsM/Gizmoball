@@ -293,15 +293,19 @@ public class GameModel extends Observable implements IGameModel {
         return new HashSet<>(getBalls());
     }
 
-    public int getBallsInPlay() {
+    public int[] getBallsInPlay() {
+        int[] balls = new int[2];
         int absorbedBalls = 0;
 
-        Set<Ball> balls = this.getBalls();
-        for (Ball ball : balls) {
+        Set<Ball> allBalls = this.getBalls();
+        for (Ball ball : allBalls) {
             if (ball.isStopped())
                 absorbedBalls++;
         }
-        return balls.size() - absorbedBalls;
+
+        balls[0] = allBalls.size() - absorbedBalls;
+        balls[1] = absorbedBalls;
+        return balls;
     }
 
     @Override

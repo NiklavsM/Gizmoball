@@ -84,7 +84,6 @@ public class PlayView extends Scene implements IPlayView, Observer {
             root.lookupAll("#pauseMenuItemHolder > Button")
                     .forEach(node -> ((Button) node).setOnAction(pauseMenuEventHandler));
 
-
         });
     }
 
@@ -135,9 +134,10 @@ public class PlayView extends Scene implements IPlayView, Observer {
     }
 
     private void updateBallsInPlay() {
-        System.out.println("Balls in play: "+ gameModel.getBallsInPlay());
+        int[] balls = gameModel.getBallsInPlay();
         Label score = (Label) root.lookup("#balls");
-        score.setText("Balls in play: " + gameModel.getBallsInPlay());
+        score.setText("Balls in play: " + balls[0]);
+
     }
 
     private void updateScore() {
