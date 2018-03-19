@@ -13,6 +13,7 @@
 * Nice and smooth JavaFX GUI
 * Multiple balls (limit of 50)
 * Music introduced with an option of muting it 
+* Game score and other stats
 
 
 **Editor Mode**
@@ -27,12 +28,14 @@
 * Toggle grid
 * Flexible editor
 * Properties tab for every gizmo
+* Ability to change gizmo colour
 * Check for .gizmo extension
 * Can add comments to .gizmo files
 * Can move absorbers with balls in it
 * Can change colors of the gizmos
 * New gizmos Octagon and Rhombus
-* Can load and save brom both play view and edit mode
+* Can load and save from both play view and edit mode
+* Status bar with relevant message
 
 **Misc**
 
