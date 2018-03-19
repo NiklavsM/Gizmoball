@@ -57,10 +57,16 @@ public class GizmoDrawer {
                     || type.equals(IGizmo.Type.BALL)
                     || type.equals(IGizmo.Type.FLIPPER)
                     || type.equals(IGizmo.Type.LEFT_FLIPPER)
-                    || type.equals(IGizmo.Type.RIGHT_FLIPPER)) {
+                    || type.equals(IGizmo.Type.RIGHT_FLIPPER)
+                    || type.equals(IGizmo.Type.SPINNER)) {
                 gc.setLineWidth(diameter);
                 gc.setLineCap(StrokeLineCap.ROUND);
-                gc.strokeLine(xPoints[0], yPoints[0], xPoints[i - 1], yPoints[i - 1]);
+                if(type.equals(IGizmo.Type.SPINNER) && i == 4){
+                    gc.strokeLine(xPoints[0], yPoints[0], xPoints[1], yPoints[1]);
+                    gc.strokeLine(xPoints[2], yPoints[2], xPoints[3], yPoints[3]);
+                }else {
+                    gc.strokeLine(xPoints[0], yPoints[0], xPoints[i - 1], yPoints[i - 1]);
+                }
             } else {
                 gc.fillPolygon(xPoints, yPoints, i);
             }

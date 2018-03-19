@@ -175,11 +175,11 @@ public class GameModel extends Observable implements IGameModel {
         Gizmo nextGizmo;
         List<ITrigger> triggersToTrigger = new LinkedList<>();
         Set<Ball> balls = getBalls();
-        double timeToMoveFlippers = time;
+        double timeToMoveMovables = time;
 
         for (Ball ball : balls) {
             nextGizmo = null;
-            if (ball != null && !ball.isStopped()) {
+            if (ball != null && ball.isMoving()) {
                 CollisionDetails cd = timeUntilCollision(ball);
                 double tuc = cd.getTuc();
                 if (tuc > time) {
@@ -195,7 +195,7 @@ public class GameModel extends Observable implements IGameModel {
                         triggersToTrigger.add((ITrigger) nextGizmo);
                     }
 
-                    if (nextGizmo instanceof Flipper && tuc < timeToMoveFlippers) timeToMoveFlippers = tuc;
+                    if (nextGizmo instanceof IMovable && !(nextGizmo instanceof Ball) && tuc < timeToMoveMovables) timeToMoveMovables = tuc;
 
                     score += nextGizmo.getScoreValue();
                     // don't allow negative score values
@@ -212,13 +212,13 @@ public class GameModel extends Observable implements IGameModel {
             }
 
             // Notify observers ... redraw updated view
-            update();
 
             if (nextGizmo instanceof Absorber) {
                 absorberCollided.put(ball.getId(), (Absorber) gizmos.get(nextGizmo.getId()));
             }
         }
-        moveMovables(timeToMoveFlippers);
+        moveMovables(timeToMoveMovables);
+        update();
         triggersToTrigger.forEach(ITrigger::trigger);
     }
 
@@ -269,10 +269,10 @@ public class GameModel extends Observable implements IGameModel {
         for (Gizmo gizmo : gizmos.values()) {
             Set<LineSegment> lines = gizmo.getLines();
             List<Circle> circles = gizmo.getCircles();
-            if (gizmo instanceof Flipper && !((Flipper) gizmo).isMoving()) {
-                Flipper flipper = ((Flipper) gizmo);
-                Double angularVelo = flipper.getCurrentVelocity().angle().radians();
-                Vect rotationCentre = flipper.getStartPoint().getCenter();
+            if (gizmo instanceof IMovable && !((IMovable) gizmo).isMoving()) {
+                IMovable movable = ((IMovable) gizmo);
+                Double angularVelo = movable.getCurrentVelocity().angle().radians();
+                Vect rotationCentre = movable.getSpinAround().getCenter();
                 for (LineSegment line : lines) {
                     time = Geometry.timeUntilRotatingWallCollision(line, rotationCentre, angularVelo, ballCircle, ballVelocity);
                     if (time < shortestTime) {
@@ -333,7 +333,7 @@ public class GameModel extends Observable implements IGameModel {
 
         Set<Ball> allBalls = this.getBalls();
         for (Ball ball : allBalls) {
-            if (ball.isStopped())
+            if (!ball.isMoving())
                 absorbedBalls++;
         }
 

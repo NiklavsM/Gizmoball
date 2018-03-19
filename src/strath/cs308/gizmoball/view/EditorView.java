@@ -114,12 +114,6 @@ public class EditorView extends Scene implements IEditorView, Observer {
 
     }
 
-//    private void updateFields() {
-//        gravityTextField.setText(String.valueOf(gameModel.getGravityCoefficient()));
-//        friction1TextField.setText(String.valueOf(gameModel.getFrictionM1()));
-//        friction2TextField.setText(String.valueOf(gameModel.getFrictionM2()));
-//    }
-
     private void drawGrid() {
 
         if (!isGrided) {
