@@ -168,8 +168,12 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
             }
         } else if (!gizmoType.equals(IGizmo.Type.BALL)) {
             IGizmo gizmo;
-            for (double row = startX; row <= endX; row++) {
-                for (double column = startY; column <= endY; column++) {
+            int step = 1;
+            if (gizmoType.equals(IGizmo.Type.LEFT_FLIPPER) || gizmoType.equals(IGizmo.Type.RIGHT_FLIPPER))
+                step = 2;
+
+            for (double row = startX; row <= endX; row+=step) {
+                for (double column = startY; column <= endY; column+=step) {
                     if (invalidAddition(row, column)) continue;
                     gizmo = gizmoFactory.createGizmo(gizmoType, row, column);
                     gameModel.addGizmo(gizmo);
