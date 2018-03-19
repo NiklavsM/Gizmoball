@@ -24,6 +24,7 @@ import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Optional;
@@ -144,7 +145,8 @@ public class PlayView extends Scene implements IPlayView, Observer {
 
     private void updateScore() {
         Label score = (Label) root.lookup("#score");
-        score.setText("Score: " + gameModel.getScore());
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        score.setText("Score: " + formatter.format(gameModel.getScore()));
     }
 
     public void changePlayIcon() {
