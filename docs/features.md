@@ -14,6 +14,7 @@
 
 * Preview on drag 
 * Balls get reflected if the absorber is full
+* Adding balls in absorber
 * Gizmo preview before addition to the board (if addition is possible) 
 * Visible Gizmo Drawings
 * Custom cursors
@@ -23,3 +24,7 @@
 * Can add comments to .gizmo files
 * Can move absorbers with balls in it
 * Can change colors of the gizmos
+
+**Misc**
+
+* single line comments in the `.gizmo` files (starts with `# `)
