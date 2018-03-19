@@ -20,6 +20,7 @@ import strath.cs308.gizmoball.controller.PauseMenuEventHandler;
 import strath.cs308.gizmoball.model.GameTimer;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGameTimer;
+import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.io.File;
@@ -110,7 +111,7 @@ public class PlayView extends Scene implements IPlayView, Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        if(o instanceof ITriggerable) {
+        if (o instanceof ITriggerable) {
             return;
         }
         Platform.runLater(() -> {
@@ -154,8 +155,7 @@ public class PlayView extends Scene implements IPlayView, Observer {
         if (icon.getStyle().contains("stop")) {
             icon.setStyle("-fx-background-image: url('/icons/play.png')");
             icon.setTooltip(new Tooltip("Play"));
-        }
-        else {
+        } else {
             icon.setStyle("-fx-background-image: url('/icons/stop.png')");
             icon.setTooltip(new Tooltip("Stop"));
         }
@@ -177,16 +177,17 @@ public class PlayView extends Scene implements IPlayView, Observer {
 
     @Override
     public void switchToEditor() {
+        UndoRedo.INSTANCE.saveState(gameModel, keyHandler);
         gameModel.deleteObserver(this);
         GizmoBall.switchView(new EditorView(gameModel, keyHandler));
     }
 
-    public void soundOn(boolean soundOn){
+    public void soundOn(boolean soundOn) {
         Button soundButton = (Button) root.lookup("#soundButton");
         soundButton.getStyleClass().clear();
-        if(soundOn) {
+        if (soundOn) {
             soundButton.getStyleClass().add("sound-on-button");
-        }else{
+        } else {
             soundButton.getStyleClass().add("sound-off-button");
         }
 
