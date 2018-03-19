@@ -13,7 +13,9 @@ public interface IEditorView {
 
     void switchToPlay();
 
-    void switchToSettings();
+    void openSettings();
+
+    void openConsole();
 
     void setCanvasMode(EventHandler<MouseEvent> canvasStrategy);
 

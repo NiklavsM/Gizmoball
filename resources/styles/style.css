@@ -39,6 +39,7 @@ BorderPane {
 
 .foreground {
     -fx-background-color: #455A64;
+    -fx-text-fill: #B0BEC5;
 }
 
 /* FIXME: canvas Styles arne't working :( */
