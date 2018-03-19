@@ -125,7 +125,7 @@ public class Ball extends Gizmo implements IMovable {
         return getType() + " " + id
                 + " " + getCircle().getCenter().x() + " "
                 + getCircle().getCenter().y()
-                + " " + velocity.x() + " " + velocity.y() + "\n\n";
+                + " " + velocity.x() + " " + velocity.y() + "\n";
     }
 
     @Override
