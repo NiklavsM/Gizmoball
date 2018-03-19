@@ -50,7 +50,7 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
         balls.forEach(b -> absorbBall(b));
     }
 
-    public void absorbBall(Ball ball) {
+    public boolean absorbBall(Ball ball) {
         if (haveSpace()) {
             ballsAbsorbed.add(ball);
             double radius = ball.getRadius();
@@ -59,7 +59,9 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
             ball.setVelocity(0, -50);
             ball.setStopped(true);
             Logger.verbose(TAG, "ball.getCircle().getCenter().y() " + ball.getCircle().getCenter().y());
+            return true;
         }
+        return false;
     }
 
     public boolean hasAbsorbed(Ball ball) {

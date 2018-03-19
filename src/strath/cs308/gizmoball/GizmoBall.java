@@ -9,9 +9,10 @@ import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.UndoRedo;
+import strath.cs308.gizmoball.model.gizmo.Triangle;
+import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.EditorView;
-import strath.cs308.gizmoball.view.PlayView;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -52,13 +53,14 @@ public class GizmoBall extends Application {
         //
         // THIS IS JUST TESTING HERE
         //
-//        Triangle t = (Triangle) gameModel.getGizmoById("T");
-//        t.setAction(args -> {
-//            t.rotate();
-//        });
-//        t.registerTriggarable(t);  Flipper f = (Flipper) gameModel.getGizmoById("RF112");
+        Triangle t = (Triangle) gameModel.getGizmoById("T");
+        t.setAction(args -> {
+            t.rotate();
+        });
+        ((ITrigger)gameModel.getGizmoById("OuterWalls")).registerTriggarable(t);
+//        Flipper f = (Flipper) gameModel.getGizmoById("RF112");
 //        t.registerTriggarable(f);
-//        keyHandler.onKeyEventTrigger("key 74.0 down", t);
+        keyHandler.onKeyEventTrigger("key 74.0 down", t);
         //
         //
 

@@ -100,9 +100,13 @@ public class GameLoader {
                         double keyNumber = toValidNumber(tokens.poll());
                         String keyMode = tokens.poll();
                         String name = tokens.poll();
-                        ITriggerable triggerable = (ITriggerable) gameModel.getGizmoById(name);
-                        keyHandler.onKeyEventTrigger("key " + keyNumber + " " + keyMode, triggerable);
-                        Logger.verbose(TAG, "connected " + keyNumber + " " + keyMode + " to " + name);
+                        try {
+                            ITriggerable triggerable = (ITriggerable) gameModel.getGizmoById(name);
+                            keyHandler.onKeyEventTrigger("key " + keyNumber + " " + keyMode, triggerable);
+                            Logger.verbose(TAG, "connected " + keyNumber + " " + keyMode + " to " + name);
+                        } catch (ClassCastException ex) {
+
+                        }
                         continue;
                     }
 
@@ -152,13 +156,17 @@ public class GameLoader {
         }
         if (command.equals(CONNECT_COMMAND)) {
             String name2 = tokens.poll();
-            ITrigger from = (ITrigger) gameModel.getGizmoById(name);
-            ITriggerable to = (ITriggerable) gameModel.getGizmoById(name2);
-            if(from == null || to == null) {
-                return;
+            try {
+                ITrigger from = (ITrigger) gameModel.getGizmoById(name);
+                ITriggerable to = (ITriggerable) gameModel.getGizmoById(name2);
+                if (from == null || to == null) {
+                    return;
+                }
+                from.registerTriggarable(to);
+                Logger.verbose(TAG, "connected " + name + " to " + name2);
+            } catch (ClassCastException ex) {
+
             }
-            from.registerTriggarable(to);
-            Logger.verbose(TAG, "connected " + name + " to " + name2);
             return;
         }
         if (nameCoordCoordCommands.contains(command)) {
