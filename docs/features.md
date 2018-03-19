@@ -14,7 +14,7 @@
 * Multiple balls (limit of 50)
 * Music introduced with an option of muting it 
 * Game score and other stats
-
+* 10+ multi language support
 
 **Editor Mode**
 
@@ -37,6 +37,7 @@
 * New gizmos Octagon and Rhombus
 * Can load and save from both play view and edit mode
 * Status bar with relevant message
+* Console - Let's you change the model with gizmoball commands in real time 
 
 **Misc**
 

@@ -27,8 +27,11 @@ import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 import strath.cs308.gizmoball.utils.Logger;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class EditorView extends Scene implements IEditorView, Observer {
@@ -164,8 +167,7 @@ public class EditorView extends Scene implements IEditorView, Observer {
     }
 
     @Override
-    public void switchToSettings() {
-
+    public void openSettings() {
         final Stage dialog = new Stage();
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initOwner(getWindow());
@@ -174,6 +176,51 @@ public class EditorView extends Scene implements IEditorView, Observer {
         Scene dialogScene = new Scene(dialogVbox, 300, 200);
         dialog.setScene(dialogScene);
         dialog.show();
+    }
+
+    @Override
+    public void openConsole() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/console.fxml"));
+            loader.setResources(ResourceBundle.getBundle("dictionary", GizmoBall.locale));
+            BorderPane root = loader.load();
+            Map<String, Object> namespace = loader.getNamespace();
+
+            final Stage console = new Stage();
+            console.setAlwaysOnTop(true);
+
+            TextArea consoleTextArea = (TextArea) namespace.get("consoleTextArea");
+            consoleTextArea.appendText("Gizmoball console\n");
+            TextField consoleInputTextField = (TextField) namespace.get("consoleInputTextField");
+            consoleInputTextField.requestFocus();
+
+            GameLoader gameLoader = new GameLoader(gameModel, keyHandler);
+
+            // send
+            consoleInputTextField.setOnKeyPressed(key -> {
+                if (key.getCode() == KeyCode.ENTER) {
+                    try {
+
+                        InputStream stream = new ByteArrayInputStream(consoleInputTextField.getText().getBytes(StandardCharsets.UTF_8));
+                        gameLoader.load(stream);
+
+                        consoleTextArea.appendText(consoleInputTextField.getText() + "\n");
+                        consoleInputTextField.clear();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+            Scene consoleScene = new Scene(root, 300, 200);
+            console.setScene(consoleScene);
+            console.setTitle("Console");
+
+            console.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -366,5 +413,9 @@ public class EditorView extends Scene implements IEditorView, Observer {
                 (int) (color.getGreen() * 255),
                 (int) (color.getBlue() * 255));
 
+    }
+
+    public Canvas getCanvas() {
+        return canvas;
     }
 }
