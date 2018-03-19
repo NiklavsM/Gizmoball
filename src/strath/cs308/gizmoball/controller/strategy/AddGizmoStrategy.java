@@ -2,6 +2,7 @@ package strath.cs308.gizmoball.controller.strategy;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.GizmoFactory;
 import strath.cs308.gizmoball.model.IGameModel;
@@ -9,6 +10,8 @@ import strath.cs308.gizmoball.model.IGizmoFactory;
 import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.view.IEditorView;
+
+import java.util.ResourceBundle;
 
 public class AddGizmoStrategy implements EventHandler<MouseEvent> {
 
@@ -20,6 +23,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
     private final InGameKeyEventHandler keyEventHandler;
     private double pressX, pressY;
     private double mouseX, mouseY;
+    private ResourceBundle dictionary;
     private int ballLimit;
 
     public AddGizmoStrategy(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IEditorView editorView, IGizmo.Type gizmoType) {
@@ -29,6 +33,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         this.keyEventHandler = keyEventHandler;
         gizmoFactory = new GizmoFactory();
         ballLimit = 50;
+        dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);
     }
 
     @Override
@@ -116,10 +121,12 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         if (!gizmoType.equals(IGizmo.Type.BALL)) {
             this.onMouseMoved(mouseEvent);
         } else {
-            if (gameModel.getGizmoBalls().size() <= ballLimit)
+            if (gameModel.getGizmoBalls().size() <= ballLimit){
                 putGizmoAt(mouseEvent.getX(), mouseEvent.getY());
-            else
-                editorView.setStatus("There can be no more than " + ballLimit + " balls at once on the playing field!");
+            }
+            else {
+                editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_BALLLIMIT") + ballLimit);
+            }
         }
     }
 
@@ -179,7 +186,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
                 }
             }
 
-            editorView.setStatus(gizmoType + " gizmos added to the board");
+            editorView.setStatus(gizmoType + dictionary.getString("EDITOR_STATUS_GIZMOSADDED"));
             UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
         }
     }
@@ -195,14 +202,14 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
             y = Math.floor(y);
         } else {
             if (gameModel.getGizmoBalls().size() == ballLimit) {
-                editorView.setStatus("There can be no more than " + ballLimit + " balls at once on the playing field!");
+                editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_BALLLIMIT") + ballLimit);
                 return;
             }
         }
 
         IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, x, y);
         if (gameModel.addGizmo(gizmo)) {
-            editorView.setStatus(gizmoType + " gizmo added at position: " + x + " , " + y);
+            editorView.setStatus(gizmoType + " " + dictionary.getString("EDITOR_STATUS_GIZMOADDEDAT") + x + " , " + y);
             UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
         }
     }
@@ -210,6 +217,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
     private boolean invalidAddition(double x, double y) {
         if (gizmoType.equals(IGizmo.Type.ABSORBER) && y < 1) {
             editorView.setStatus("Absorbers cannot sit on the top row as ball cannot be shot out");
+            editorView.setStatus(dictionary.getString("EDITOR_STATUS_ABSORBERATTOP_ERROR"));
             return true;
         } else if (gizmoType.equals(IGizmo.Type.LEFT_FLIPPER) && (y >= 19 || x >= 19 || y < 0)) {
             editorView.setStatus("This is not an allowed position for a left flipper");

@@ -173,8 +173,14 @@ public abstract class Gizmo implements IGizmo {
     }
 
     @Override
-    public void setReflectionCoefficient(double coefficient) {
+    public boolean setReflectionCoefficient(double coefficient) {
+
+        if (coefficient >= 0 && 1 >= coefficient) {
+            return false;
+        }
+
         reflectionCoefficient = coefficient;
+        return true;
     }
 
     @Override

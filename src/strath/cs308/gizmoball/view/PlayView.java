@@ -162,13 +162,14 @@ public class PlayView extends Scene implements IPlayView, Observer {
     }
 
     public boolean getCloseConFormation() {
-        Alert closeConfirmation = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to quit the game?");
+        ResourceBundle dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);
+        Alert closeConfirmation = new Alert(Alert.AlertType.CONFIRMATION, dictionary.getString("INGAME_MENU_EXIT_QUESTION"));
         Button exitButton = (Button) closeConfirmation.getDialogPane().lookupButton(
                 ButtonType.OK
         );
 
-        exitButton.setText("Exit");
-        closeConfirmation.setHeaderText("Confirm Exit?");
+        exitButton.setText(dictionary.getString("INGAME_MENU_EXIT_BUTTON"));
+        closeConfirmation.setHeaderText(dictionary.getString("INGAME_MENU_EXIT_TITLE"));
         closeConfirmation.initModality(Modality.APPLICATION_MODAL);
 
         Optional<ButtonType> closeResponse = closeConfirmation.showAndWait();

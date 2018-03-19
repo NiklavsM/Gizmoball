@@ -29,7 +29,7 @@ public interface IGizmo {
 
     double getEndY();
 
-    void setReflectionCoefficient(double coefficient);
+    boolean setReflectionCoefficient(double coefficient);
 
     double getReflectionCoefficient();
 

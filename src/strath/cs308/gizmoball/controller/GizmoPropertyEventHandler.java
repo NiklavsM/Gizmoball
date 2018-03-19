@@ -5,17 +5,21 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 
 
+import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IMovable;
 import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.view.IEditorView;
 
+import java.util.ResourceBundle;
+
 
 public class GizmoPropertyEventHandler implements EventHandler<ActionEvent>{
 
     private IEditorView editorView;
     private IGizmo gizmo;
+    private ResourceBundle dictionary;
 
     private IGameModel gameModel;
     private InGameKeyEventHandler keyEventHandler;
@@ -26,6 +30,7 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent>{
         this.gizmo = gizmo;
         this.gameModel = gameModel;
         this.keyEventHandler = keyEventHandler;
+        dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);
     }
 
     @Override
@@ -54,18 +59,24 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent>{
 
     private void changeGizmoColor() {
 
-        gizmo.setColor(editorView.getGizmoColor());
-        editorView.refresh();
-        editorView.setStatus("Gizmo's color is changed");
+        if (gizmo.setColor(editorView.getGizmoColor())) {
+            editorView.refresh();
+            editorView.setStatus(dictionary.getString("EDITOR_STATUS_COLORCHANGED"));
+        } else {
+            editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_COLORCHANGED_ERROR"));
+        }
 
     }
 
     private void changeReflectionCoefficient() {
         try {
-            gizmo.setReflectionCoefficient(editorView.getReflectionCoefficient());
-            editorView.setStatus("Gizmo reflection coefficient set!");
+            if (gizmo.setReflectionCoefficient(editorView.getReflectionCoefficient())) {
+                editorView.setStatus(dictionary.getString("EDITOR_STATUS_GIZMOREFLECTION_SET"));
+            } else {
+                editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_GIZMOREFLECTION_ERROR"));
+            }
         } catch (NumberFormatException e) {
-            editorView.setErrorStatus("Given reflection coefficient value is not acceptable");
+            editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_GIZMOREFLECTION_ERROR"));
         }
     }
 
@@ -75,9 +86,9 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent>{
             movableGizmo.setVelocityRadian(editorView.getRadianProperty());
 
             UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
-            editorView.setStatus("Gizmo radian velocity set!");
+            editorView.setStatus(dictionary.getString("EDITOR_STATUS_VELOCITYRADIAN_SET"));
         } catch (NumberFormatException e) {
-            editorView.setErrorStatus("Given radian value is not acceptable");
+            editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_VELOCITYRADIAN_ERROR"));
         }
     }
 
@@ -87,9 +98,9 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent>{
             movableGizmo.setVelocity(editorView.getXVelocityProperty(), movableGizmo.getVelocityY());
 
             UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
-            editorView.setStatus("Gizmo X velocity set!");
+            editorView.setStatus(dictionary.getString("EDITOR_STATUS_VELOCITYX_SET"));
         } catch (NumberFormatException e) {
-            editorView.setErrorStatus("Given X velocity value is not acceptable!");
+            editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_VELOCITYX_ERROR"));
         }
     }
 
@@ -99,9 +110,9 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent>{
             movableGizmo.setVelocity(movableGizmo.getVelocityX(), editorView.getYVelocityProperty());
 
             UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
-            editorView.setStatus("Gizmo Y velocity set!");
+            editorView.setStatus(dictionary.getString("EDITOR_STATUS_VELOCITYY_SET"));
         } catch (NumberFormatException e) {
-            editorView.setErrorStatus("Given Y velocity value is not acceptable!");
+            editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_VELOCITYY_ERROR"));
         }
     }
 }
