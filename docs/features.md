@@ -23,6 +23,7 @@
 * Adding gizmos on drag
 * Balls get reflected if the absorber is full
 * Adding balls in absorber
+* Adding absorbers on balls
 * Visible Gizmo Drawings
 * Custom cursors for different modes (add, move, connect, rotate, delete)
 * Toggle grid
