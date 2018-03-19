@@ -66,8 +66,8 @@ public class GizmoBall extends Application {
         primaryStage.setMinWidth(500);
         primaryStage.setMinHeight(530);
 
-
-        primaryStage.setScene(new EditorView(gameModel, keyHandler));
+        //primaryStage.setScene(new EditorView(gameModel, keyHandler));
+        primaryStage.setScene(new PlayView(gameModel, keyHandler));
         primaryStage.show();
         stage = primaryStage;
     }
