@@ -36,7 +36,6 @@ import java.util.*;
 
 public class EditorView extends Scene implements IEditorView, Observer {
     private static final String TAG = "EditorView";
-    private KeyCode lastKeyPressed;
     private BorderPane root;
     private IGameModel gameModel;
     private Canvas canvas;
@@ -66,13 +65,9 @@ public class EditorView extends Scene implements IEditorView, Observer {
             namespace = loader.getNamespace();
 
             loadUiElements();
-
             this.gameModel.addObserver(this);
-
             isGrided = true;
-
             setRoot(root);
-
 
             initialSetup();
             refresh();
@@ -115,13 +110,11 @@ public class EditorView extends Scene implements IEditorView, Observer {
     }
 
     private void drawGrid() {
-
         if (!isGrided) {
             return;
         }
 
         GraphicsContext graphicsContext = canvas.getGraphicsContext2D();
-
         graphicsContext.setStroke(Color.WHITE);
         graphicsContext.setLineWidth(0.25);
         for (double i = 0; i <= canvas.getWidth(); i += (canvas.getWidth() / 20.0)) {

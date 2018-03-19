@@ -64,6 +64,7 @@ public class GameModel extends Observable implements IGameModel {
                     .map(Absorber.class::cast)
                     .findFirst()
                     .ifPresent(gizmo1 -> added[0] = gizmo1.absorbBall((Ball) gizmo));
+
             if (added[0]) {
                 gizmos.put(gizmo.getId(), (Gizmo) gizmo);
                 update();

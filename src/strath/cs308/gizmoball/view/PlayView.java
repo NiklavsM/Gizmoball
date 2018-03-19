@@ -31,8 +31,6 @@ import java.util.ResourceBundle;
 
 public class PlayView extends Scene implements IPlayView, Observer {
 
-    private static final double WIDTH = 1000;
-    private static final double HEIGHT = 800;
     private IGameModel gameModel;
     private BorderPane root;
     private ToolBar pauseMenu;
