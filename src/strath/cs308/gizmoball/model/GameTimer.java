@@ -1,6 +1,5 @@
 package strath.cs308.gizmoball.model;
 
-import strath.cs308.gizmoball.controller.Constants;
 import strath.cs308.gizmoball.utils.Logger;
 
 import java.util.Timer;
@@ -32,7 +31,7 @@ public class GameTimer implements IGameTimer {
             TimerTask task = new TimerTask() {
                 @Override
                 public void run() {
-                    gameModel.tick(Constants.TICK_TIME);
+                    gameModel.tick(1.0 / refreshRate);
                 }
             };
 
