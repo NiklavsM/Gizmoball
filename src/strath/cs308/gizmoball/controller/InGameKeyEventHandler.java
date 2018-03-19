@@ -1,6 +1,7 @@
 package strath.cs308.gizmoball.controller;
 
 import javafx.event.EventHandler;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
@@ -16,6 +17,7 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent>, Observer {
     private final Map<String, Set<ITriggerable>> keyEventMap = new HashMap<>();
 
     private IGameModel gameModel;
+    private KeyCode lastKeyPress;
 
     public InGameKeyEventHandler(IGameModel gameModel) {
         this.gameModel = gameModel;
@@ -58,6 +60,8 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent>, Observer {
 
     @Override
     public void handle(KeyEvent keyEvent) {
+        lastKeyPress = keyEvent.getCode();
+
         String keyEventString = prettify(keyEvent);
         if (!keyEventMap.containsKey(keyEventString)) {
             return;
@@ -96,5 +100,9 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent>, Observer {
         if (arg instanceof ITriggerable) {
             removeTriggarable((ITriggerable) arg);
         }
+    }
+
+    public KeyCode getLastKeyPress() {
+        return lastKeyPress;
     }
 }
