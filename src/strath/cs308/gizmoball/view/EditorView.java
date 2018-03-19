@@ -374,4 +374,8 @@ public class EditorView extends Scene implements IEditorView, Observer {
                 (int) (color.getBlue() * 255));
 
     }
+
+    public Canvas getCanvas() {
+        return canvas;
+    }
 }
