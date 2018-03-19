@@ -269,7 +269,7 @@ public class GameModel extends Observable implements IGameModel {
         for (Gizmo gizmo : gizmos.values()) {
             Set<LineSegment> lines = gizmo.getLines();
             List<Circle> circles = gizmo.getCircles();
-            if (gizmo instanceof IMovable && !((IMovable) gizmo).isMoving()) {
+            if (gizmo instanceof IMovable && !((IMovable) gizmo).isMoving() && !(gizmo instanceof Ball)) {
                 IMovable movable = ((IMovable) gizmo);
                 Double angularVelo = movable.getCurrentVelocity().angle().radians();
                 Vect rotationCentre = movable.getSpinAround().getCenter();

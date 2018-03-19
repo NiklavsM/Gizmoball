@@ -216,10 +216,6 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
 
     }
 
-    public Circle getStartPoint() {
-        return startPoint;
-    }
-
     @Override
     public void doAction(Object args) {
         if (args == null) {
