@@ -30,14 +30,12 @@ public class ConnectPanelView {
     }
 
     private void loadUiElements() {
-
-        connectATextField = (TextField) namespace.get("connectBTextField");
+        connectATextField = (TextField) namespace.get("connectATextField");
         connectBTextField = (TextField) namespace.get("connectBTextField");
         connectAChangeButton = (Button) namespace.get("connectAChangeButton");
         connectBChangeButton = (Button) namespace.get("connectBChangeButton");
         actionComboBox = (ComboBox<String>) namespace.get("actionComboBox");
         connectionActionButton = (Button) namespace.get("connectAction");
-
     }
 
     private void attachHandlers() {
