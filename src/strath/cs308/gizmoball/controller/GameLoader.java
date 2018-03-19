@@ -154,6 +154,9 @@ public class GameLoader {
             String name2 = tokens.poll();
             ITrigger from = (ITrigger) gameModel.getGizmoById(name);
             ITriggerable to = (ITriggerable) gameModel.getGizmoById(name2);
+            if(from == null || to == null) {
+                return;
+            }
             from.registerTriggarable(to);
             Logger.verbose(TAG, "connected " + name + " to " + name2);
             return;
