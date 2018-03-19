@@ -175,13 +175,14 @@ public abstract class Gizmo implements IGizmo {
     }
 
     @Override
-    public double getReflectionCoefficient() {
-        return reflectionCoefficient;
-    }
+    public boolean setReflectionCoefficient(double coefficient) {
 
-    @Override
-    public void setReflectionCoefficient(double coefficient) {
+        if (coefficient >= 0 && 1 >= coefficient) {
+            return false;
+        }
+
         reflectionCoefficient = coefficient;
+        return true;
     }
 
     @Override
@@ -216,5 +217,10 @@ public abstract class Gizmo implements IGizmo {
         return gizmos
                 .stream()
                 .anyMatch(this::overlapsWithGizmo);
+    }
+
+    @Override
+    public double getReflectionCoefficient() {
+        return reflectionCoefficient;
     }
 }

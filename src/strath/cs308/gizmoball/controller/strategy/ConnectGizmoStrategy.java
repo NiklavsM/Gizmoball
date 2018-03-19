@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.scene.ImageCursor;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.UndoRedo;
@@ -14,6 +15,7 @@ import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.IEditorView;
 
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 public class ConnectGizmoStrategy implements EventHandler<MouseEvent> {
 
@@ -22,7 +24,7 @@ public class ConnectGizmoStrategy implements EventHandler<MouseEvent> {
     private final IGameModel gameModel;
     private final InGameKeyEventHandler keyEventHandler;
     private Optional<ITrigger> connectTo;
-
+    private ResourceBundle dictionary;
 
     public ConnectGizmoStrategy(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IEditorView editorView) {
         this.gameModel = gameModel;
@@ -34,46 +36,55 @@ public class ConnectGizmoStrategy implements EventHandler<MouseEvent> {
 
         Image image = new Image("/icons/connect.png");
         editorView.setCursor(new ImageCursor(image));
+
+        dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);
     }
+
 
     @Override
     public void handle(MouseEvent mouseEvent) {
         Logger.debug(TAG, "handling connections");
 
-        if (mouseEvent.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
+        if (mouseEvent.getEventType().equals(MouseEvent.MOUSE_CLICKED))
+        {
             double pointX = mouseEvent.getX() / editorView.getPixelRatioFor(20.0);
             double pointY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
 
             Optional<IGizmo> selectedGizmo = gameModel.getGizmo(pointX, pointY);
 
-            if (selectedGizmo.isPresent()) {
-                if (connectTo.isPresent()) {
+            if (selectedGizmo.isPresent())
+            {
+                if (connectTo.isPresent())
+                {
                     connectGizmos(selectedGizmo.get());
 
 
                     UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
-                } else {
+                } else
+                {
                     saveSelectedTarget(selectedGizmo);
                 }
             }
         }
-
     }
 
-    private void saveSelectedTarget(Optional<IGizmo> gizmo) {
+    private void saveSelectedTarget (Optional < IGizmo > gizmo) {
         if (gizmo.get() instanceof ITrigger) {
             connectTo = Optional.of((ITrigger) gizmo.get());
         } else {
-            editorView.setErrorStatus("This gizmo is not a trigger");
+            editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_CONNECT_NOTTRIGGER_ERROR"));
         }
     }
 
-    private void connectGizmos(IGizmo gizmo) {
+    private void connectGizmos (IGizmo gizmo){
         if (gizmo instanceof ITriggerable) {
             connectTo.get().registerTriggarable((ITriggerable) gizmo);
             connectTo = Optional.empty();
+            editorView.setStatus(dictionary.getString("EDITOR_STATUS_CONNECT_SUCCESS"));
         } else {
-            editorView.setErrorStatus("The selected gizmo is not triggerable");
+            editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_CONNECT_NOTTRIGGERABLE_ERROR"));
         }
+
     }
+
 }

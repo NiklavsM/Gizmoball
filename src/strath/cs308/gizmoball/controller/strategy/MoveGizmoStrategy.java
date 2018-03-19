@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.scene.ImageCursor;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.UndoRedo;
@@ -11,19 +12,22 @@ import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.view.IEditorView;
 
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
     private static final String TAG = "MoveGizmoStrategy";
     private final IEditorView editorView;
     private final IGameModel gameModel;
-    private final InGameKeyEventHandler keyEventHandler;
     private Optional<IGizmo> selectedGizmo;
+    private ResourceBundle dictionary;
+    private final InGameKeyEventHandler keyEventHandler;
 
     public MoveGizmoStrategy(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IEditorView editorView) {
         this.gameModel = gameModel;
         this.editorView = editorView;
         this.keyEventHandler = keyEventHandler;
 
+        dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);
         selectedGizmo = Optional.empty();
 
         Image image = new Image("/icons/move.png"); // this should be handled in the view;
@@ -52,9 +56,9 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
 
         selectedGizmo = gameModel.getGizmo(pointX, pointY);
         if (!selectedGizmo.isPresent())
-            editorView.setStatus("No gizmo selected");
+            editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_MOVE_NOSELECTED"));
         else
-            editorView.setStatus("Choose a new location for this gizmo");
+            editorView.setStatus(dictionary.getString("EDITOR_STATUS_MOVE_CHOOSELOC"));
     }
 
     private void moveTo(MouseEvent mouseEvent) {
@@ -70,10 +74,10 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
 
             if (!gameModel.move(selectedGizmo.get(), pointX, pointY))
                 return;
-            editorView.setStatus(selectedGizmo.get().getType() + " gizmo moved to tile " + pointX + " , " + pointY);
+            editorView.setStatus(selectedGizmo.get().getType() + " " + dictionary.getString("EDITOR_STATUS_MOVE_MOVEDTO") + " " + pointX + " , " + pointY);
             selectedGizmo = Optional.empty();
         } else {
-            editorView.setStatus("Tile " + Math.floor(pointX) + " , " + Math.floor(pointY) + " is already occupied by a " + existingGizmo.get().getType() + " gizmo.");
+            editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_MOVE_ERROR"));
         }
     }
 }

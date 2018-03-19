@@ -1,6 +1,15 @@
 package strath.cs308.gizmoball.model;
 
+import mit.physics.Circle;
+import mit.physics.Vect;
+
 public interface IMovable {
+
+    boolean isMoving();
+
+    Vect getCurrentVelocity();
+
+    Circle getSpinAround();
 
     void move(double timeInSeconds);
 
@@ -16,7 +25,7 @@ public interface IMovable {
 
     Type getMovementType();
 
-    public enum Type {
+    enum Type {
         LINEAR, ROTATION;
     }
 }

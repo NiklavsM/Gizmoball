@@ -134,16 +134,16 @@ public class PlayView extends Scene implements IPlayView, Observer {
     private void updateBallsInPlay() {
         int[] balls = gameModel.getBallsInPlay();
         Label ballsInPlay = (Label) root.lookup("#ballsInPlay");
-        ballsInPlay.setText("Balls in play: " + balls[0]);
+        ballsInPlay.setText(String.valueOf(balls[0]));
 
         Label ballsAbsorbed = (Label) root.lookup("#ballsAbsorbed");
-        ballsAbsorbed.setText("Balls absorbed: " + balls[1]);
+        ballsAbsorbed.setText(String.valueOf(balls[1]));
     }
 
     private void updateScore() {
         Label score = (Label) root.lookup("#score");
         DecimalFormat formatter = new DecimalFormat("#,###");
-        score.setText("Score: " + formatter.format(gameModel.getScore()));
+        score.setText(formatter.format(gameModel.getScore()));
     }
 
     public void changePlayIcon() {
@@ -158,13 +158,14 @@ public class PlayView extends Scene implements IPlayView, Observer {
     }
 
     public boolean getCloseConFormation() {
-        Alert closeConfirmation = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to quit the game?");
+        ResourceBundle dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);
+        Alert closeConfirmation = new Alert(Alert.AlertType.CONFIRMATION, dictionary.getString("INGAME_MENU_EXIT_QUESTION"));
         Button exitButton = (Button) closeConfirmation.getDialogPane().lookupButton(
                 ButtonType.OK
         );
 
-        exitButton.setText("Exit");
-        closeConfirmation.setHeaderText("Confirm Exit?");
+        exitButton.setText(dictionary.getString("INGAME_MENU_EXIT_BUTTON"));
+        closeConfirmation.setHeaderText(dictionary.getString("INGAME_MENU_EXIT_TITLE"));
         closeConfirmation.initModality(Modality.APPLICATION_MODAL);
 
         Optional<ButtonType> closeResponse = closeConfirmation.showAndWait();

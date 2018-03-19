@@ -76,25 +76,33 @@
                     <VBox styleClass="foreground"
                           minWidth="250">
 
-                        <Label StackPane.alignment="TOP_RIGHT"
-                               styleClass="default-padding, title-font"
-                               fx:id="score"
-                               alignment="CENTER_RIGHT">
-                            Score: 0
-                        </Label>
+                        <HBox>
+                            <Label StackPane.alignment="TOP_RIGHT"
+                                   styleClass="default-padding, title-font"
+                                   text="%INGAME_PLAY_SCORE"
+                                   alignment="CENTER_RIGHT" />
+                            <Label StackPane.alignment="TOP_RIGHT"
+                                   styleClass="default-padding, title-font"
+                                   fx:id="score"
+                                   text="0"
+                                   alignment="CENTER_RIGHT" />
+                        </HBox>
+
+                        <HBox>
+                            <Label styleClass="default-padding, medium-font"
+                                   text="%INGAME_PLAY_BALLSINPLAY" />
+                            <Label styleClass="default-padding, medium-font"
+                                   fx:id="ballsInPlay" />
+                        </HBox>
 
 
-                        <Label styleClass="default-padding, medium-font"
-                               fx:id="ballsInPlay">
-
-                            Balls in play: 0
-                        </Label>
-
-                        <Label styleClass="default-padding, medium-font"
-                               fx:id="ballsAbsorbed">
-                            Balls absorbed: 0
-                        </Label>
-
+                        <HBox>
+                            <Label styleClass="default-padding, medium-font"
+                                   text="%INGAME_PLAY_BALLSABSORBED" />
+                            <Label styleClass="default-padding, medium-font"
+                                   text="0"
+                                   fx:id="ballsAbsorbed" />
+                        </HBox>
 
                         <ToolBar
                                 styleClass="game-bar"
