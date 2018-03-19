@@ -76,7 +76,7 @@
                     <VBox styleClass="foreground"
                           minWidth="250">
 
-                        <VBox>
+                        <HBox>
                             <Label StackPane.alignment="TOP_RIGHT"
                                    styleClass="default-padding, title-font"
                                    text="%INGAME_PLAY_SCORE"
@@ -86,23 +86,23 @@
                                    fx:id="score"
                                    text="0"
                                    alignment="CENTER_RIGHT" />
-                        </VBox>
+                        </HBox>
 
-                        <VBox>
+                        <HBox>
                             <Label styleClass="default-padding, medium-font"
                                    text="%INGAME_PLAY_BALLSINPLAY" />
                             <Label styleClass="default-padding, medium-font"
                                    fx:id="ballsInPlay" />
-                        </VBox>
+                        </HBox>
 
 
-                        <VBox>
+                        <HBox>
                             <Label styleClass="default-padding, medium-font"
                                    text="%INGAME_PLAY_BALLSABSORBED" />
                             <Label styleClass="default-padding, medium-font"
                                    text="0"
                                    fx:id="ballsAbsorbed" />
-                        </VBox>
+                        </HBox>
 
                         <ToolBar
                                 styleClass="game-bar"
