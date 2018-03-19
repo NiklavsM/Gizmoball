@@ -56,6 +56,7 @@ public class GameModel extends Observable implements IGameModel {
                         gizmo1.absorbBall((Ball) gizmo);
                         added[0] = true;
                     });
+
             if (added[0]) {
                 gizmos.put(gizmo.getId(), (Gizmo) gizmo);
                 update();
