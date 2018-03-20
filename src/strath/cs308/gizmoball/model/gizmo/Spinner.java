@@ -53,7 +53,7 @@ public class Spinner extends Gizmo implements IMovable {
 
         spinAroundPoint = new Circle(x1 + 1, y1 + 1, 0);
 
-        setColor("#5ddf22");
+        setColor("#B388FF");
 
     }
 
