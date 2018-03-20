@@ -16,16 +16,16 @@ import static strath.cs308.gizmoball.model.gizmo.IGizmo.Type.*;
 
 public class GameLoader {
 
-    public static final String ROTATE_COMMAND = "Rotate";
-    public static final String KEY_CONNECT_COMMAND = "KeyConnect";
-    public static final String CONNECT_COMMAND = "Connect";
-    public static final String GRAVITY_COMMAND = "Gravity";
-    public static final String FRICTION_COMMAND = "Friction";
-    public static final String DELETE_COMMAND = "Delete";
-    public static final String MOVE_COMMAND = "Move";
+    public static final String ROTATE_COMMAND = "rotate";
+    public static final String KEY_CONNECT_COMMAND = "keyconnect";
+    public static final String CONNECT_COMMAND = "connect";
+    public static final String GRAVITY_COMMAND = "gravity";
+    public static final String FRICTION_COMMAND = "friction";
+    public static final String DELETE_COMMAND = "delete";
+    public static final String MOVE_COMMAND = "move";
     public static final String WALLS_NAME = "OuterWalls";
-    public static final String COLOR_COMMAND = "Color";
-    public static final String CLEARBOARD_COMMAND = "ClearBoard";
+    public static final String COLOR_COMMAND = "color";
+    public static final String CLEARBOARD_COMMAND = "clearboard";
     private static final String TAG = "GameLoader";
     private final IGizmoFactory gizmoFactory;
     private final IGameModel gameModel;
@@ -41,16 +41,16 @@ public class GameLoader {
         gizmoFactory = new GizmoFactory();
 
         gizmoCommandToEnum = new HashMap<>();
-        gizmoCommandToEnum.put("Circle", CIRCLE);
-        gizmoCommandToEnum.put("Square", SQUARE);
-        gizmoCommandToEnum.put("Triangle", TRIANGLE);
-        gizmoCommandToEnum.put("LeftFlipper", LEFT_FLIPPER);
-        gizmoCommandToEnum.put("RightFlipper", RIGHT_FLIPPER);
-        gizmoCommandToEnum.put("Ball", BALL);
-        gizmoCommandToEnum.put("Absorber", ABSORBER);
-        gizmoCommandToEnum.put("Rhombus", RHOMBUS);
-        gizmoCommandToEnum.put("Octagon", OCTAGON);
-        gizmoCommandToEnum.put("Spinner", SPINNER);
+        gizmoCommandToEnum.put("circle", CIRCLE);
+        gizmoCommandToEnum.put("square", SQUARE);
+        gizmoCommandToEnum.put("triangle", TRIANGLE);
+        gizmoCommandToEnum.put("leftflipper", LEFT_FLIPPER);
+        gizmoCommandToEnum.put("rightflipper", RIGHT_FLIPPER);
+        gizmoCommandToEnum.put("ball", BALL);
+        gizmoCommandToEnum.put("absorber", ABSORBER);
+        gizmoCommandToEnum.put("rhombus", RHOMBUS);
+        gizmoCommandToEnum.put("octagon", OCTAGON);
+        gizmoCommandToEnum.put("spinner", SPINNER);
 
         gizmoCreationCommands = gizmoCommandToEnum.keySet();
 
@@ -65,10 +65,9 @@ public class GameLoader {
         nameCoordCoordCommands.add(MOVE_COMMAND);
 
         gizmoCreationCommandsAdvanced = new HashSet<>();
-        gizmoCreationCommandsAdvanced.add("Absorber");
-        gizmoCreationCommandsAdvanced.add("Ball");
+        gizmoCreationCommandsAdvanced.add("absorber");
+        gizmoCreationCommandsAdvanced.add("ball");
 
-        //lowercase all commands
     }
 
     public void load(InputStream source) throws IllegalAccessException {
@@ -89,7 +88,7 @@ public class GameLoader {
                 }
 
                 tokens = Arrays.stream(line.split("\\s+")).collect(Collectors.toCollection(LinkedList::new));
-                command = tokens.poll();
+                command = tokens.poll().toLowerCase();
 
                 if (command.equals("#")) {
                     // comments basically
@@ -98,6 +97,7 @@ public class GameLoader {
 
                 if (command.equals(CLEARBOARD_COMMAND)) {
                     gameModel.reset();
+                    Logger.verbose(TAG, "board cleared");
                     continue;
                 }
 
