@@ -53,6 +53,11 @@ public class EditorView extends Scene implements IEditorView, Observer {
     private TextField reflectionCoefficientField;
     private ColorPicker colorPicker;
 
+    //TODO clear command in the language
+    //TODO save state more often
+    //TODO fix undo balls
+    //TODO start fucking actions
+
     public EditorView(IGameModel gameModel) {
         super(new Pane());
         this.gameModel = gameModel;

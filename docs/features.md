@@ -73,10 +73,14 @@
 
 ### Language extension
 * `Color` `<id>` `<hexcolor>`
+* `ClearMap` to clear the map
+* lowercase commands
 
 ### Console
 * Let's you change the model with gizmoball commands in real time 
 * Uses Gizmoball syntax
+* clear command
+* prompt
 
 ### Connection
 * Easy gizmo key connection interface

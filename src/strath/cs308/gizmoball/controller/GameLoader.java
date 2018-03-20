@@ -25,6 +25,7 @@ public class GameLoader {
     public static final String MOVE_COMMAND = "Move";
     public static final String WALLS_NAME = "OuterWalls";
     public static final String COLOR_COMMAND = "Color";
+    public static final String CLEARBOARD_COMMAND = "ClearBoard";
     private static final String TAG = "GameLoader";
     private final IGizmoFactory gizmoFactory;
     private final IGameModel gameModel;
@@ -66,6 +67,8 @@ public class GameLoader {
         gizmoCreationCommandsAdvanced = new HashSet<>();
         gizmoCreationCommandsAdvanced.add("Absorber");
         gizmoCreationCommandsAdvanced.add("Ball");
+
+        //lowercase all commands
     }
 
     public void load(InputStream source) throws IllegalAccessException {
@@ -90,6 +93,11 @@ public class GameLoader {
 
                 if (command.equals("#")) {
                     // comments basically
+                    continue;
+                }
+
+                if (command.equals(CLEARBOARD_COMMAND)) {
+                    gameModel.reset();
                     continue;
                 }
 
