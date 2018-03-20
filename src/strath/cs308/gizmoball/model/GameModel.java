@@ -21,10 +21,12 @@ public class GameModel extends Observable implements IGameModel {
     private double frictionCoef1;
     private double frictionCoef2;
     private double gravityCoefficient;
+    private Map<String, Double> movableCollisionTime;
 
     public GameModel() {
         gizmos = new ConcurrentHashMap<>();
         absorberCollided = new ConcurrentHashMap<>();
+        movableCollisionTime = new ConcurrentHashMap<>();
         setup();
     }
 
@@ -176,7 +178,7 @@ public class GameModel extends Observable implements IGameModel {
         Gizmo nextGizmo;
         List<ITrigger> triggersToTrigger = new LinkedList<>();
         Set<Ball> balls = getBalls();
-        double timeToMoveMovables = time;
+        movableCollisionTime.clear();
 
         for (Ball ball : balls) {
             nextGizmo = null;
@@ -200,8 +202,16 @@ public class GameModel extends Observable implements IGameModel {
                         ((ITriggerable) nextGizmo).performAction("collusion");
                     }
 
-                    if (nextGizmo instanceof IMovable && !(nextGizmo instanceof Ball) && tuc < timeToMoveMovables)
-                        timeToMoveMovables = tuc;
+                    if (nextGizmo instanceof IMovable && !(nextGizmo instanceof Ball)) {
+                        if (!movableCollisionTime.containsKey(nextGizmo.getId())) {
+                            movableCollisionTime.put(nextGizmo.getId(), tuc);
+                        } else {
+                            if (movableCollisionTime.get(nextGizmo.getId()) > tuc) {
+                                movableCollisionTime.put(nextGizmo.getId(), tuc);
+                            }
+                        }
+                    }
+
 
                     score += nextGizmo.getScoreValue();
                     // don't allow negative score values
@@ -223,7 +233,7 @@ public class GameModel extends Observable implements IGameModel {
                 absorberCollided.put(ball.getId(), (Absorber) gizmos.get(nextGizmo.getId()));
             }
         }
-        moveMovables(timeToMoveMovables);
+        moveMovables(time);
         update();
     }
 
@@ -250,7 +260,9 @@ public class GameModel extends Observable implements IGameModel {
         gizmos.values()
                 .stream()
                 .filter(gizmo -> gizmo instanceof IMovable && !(gizmo instanceof Ball))
-                .forEach(gizmo -> ((IMovable) gizmo).move(time));
+                .forEach(gizmo ->
+                        ((IMovable) gizmo).move(movableCollisionTime.getOrDefault(gizmo.getId(), time))
+                );
     }
 
     private void applyForces(Vect velocity, double time, Ball ball) {
@@ -274,7 +286,7 @@ public class GameModel extends Observable implements IGameModel {
         for (Gizmo gizmo : gizmos.values()) {
             Set<LineSegment> lines = gizmo.getLines();
             List<Circle> circles = gizmo.getCircles();
-            if (gizmo instanceof IMovable && !((IMovable) gizmo).isMoving() && !(gizmo instanceof Ball)) {
+            if (gizmo instanceof IMovable && ((IMovable) gizmo).isMoving() && !(gizmo instanceof Ball)) {
                 IMovable movable = ((IMovable) gizmo);
                 Double angularVelo = movable.getCurrentVelocity().angle().radians();
                 Vect rotationCentre = movable.getSpinAround().getCenter();

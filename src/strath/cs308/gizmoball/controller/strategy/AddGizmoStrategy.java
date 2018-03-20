@@ -30,7 +30,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         this.gameModel = gameModel;
         this.editorView = editorView;
         gizmoFactory = new GizmoFactory();
-        ballLimit = 50;
+        ballLimit = 200;
         dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);
     }
 
