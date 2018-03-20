@@ -403,6 +403,21 @@
                                     <Label text="%EDITOR_RIGHTBAR_RIGHTFLIPPER"
                                            styleClass="regular-font"/>
                                 </VBox>
+                                <VBox GridPane.rowIndex="3"
+                                      GridPane.columnIndex="0"
+                                      spacing="16"
+                                      alignment="CENTER">
+                                    <Button fx:id="addSpinnerMode">
+                                        <graphic>
+                                            <ImageView fitWidth="46"
+                                                       fitHeight="46">
+                                                <Image url="/icons/spinner.png"/>
+                                            </ImageView>
+                                        </graphic>
+                                    </Button>
+                                    <Label text="%EDITOR_RIGHTBAR_SPINNER"
+                                           styleClass="regular-font"/>
+                                </VBox>
 
                             </GridPane>
                         </ScrollPane>

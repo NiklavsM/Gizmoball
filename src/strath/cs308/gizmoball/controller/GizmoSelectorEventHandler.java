@@ -60,6 +60,10 @@ public class GizmoSelectorEventHandler implements EventHandler<MouseEvent> {
             case "addOctagonMode":
                 editorView.setCanvasMode(new AddGizmoStrategy(gameModel, keyEventHandler, editorView, IGizmo.Type.OCTAGON));
                 break;
+
+            case "addSpinnerMode":
+                editorView.setCanvasMode(new AddGizmoStrategy(gameModel, keyEventHandler, editorView, IGizmo.Type.SPINNER));
+                break;
         }
     }
 }

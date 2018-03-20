@@ -23,9 +23,6 @@ public class GizmoBall extends Application {
     private static final String TAG = "GizmoBall";
     public static Locale locale = new Locale("en");
     private static Stage stage;
-    private IGameModel gameModel;
-    private InGameKeyEventHandler keyHandler;
-    private GameLoader gameLoader;
 
     public static void main(String[] args) {
         launch(args);
@@ -33,34 +30,34 @@ public class GizmoBall extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-      try{
-           primaryStage.setX(100);
-
-        gameModel = new GameModel();
-        keyHandler = new InGameKeyEventHandler(gameModel);
-        gameLoader = new GameLoader(gameModel, keyHandler);
-
         try {
-            gameLoader.load(getClass().getResourceAsStream("/alternative.gizmo"));
+            primaryStage.setX(100);
+
+            IGameModel gameModel = new GameModel();
+            InGameKeyEventHandler keyHandler = new InGameKeyEventHandler(gameModel);
+            GameLoader gameLoader = new GameLoader(gameModel, keyHandler);
+
+            try {
+                gameLoader.load(getClass().getResourceAsStream("/empty.gizmo"));
+            } catch (Exception e) {
+                Logger.error(TAG, "Failed to load default model");
+                e.printStackTrace();
+            }
+
+
+            UndoRedo.INSTANCE.saveState(gameModel, keyHandler);
+
+            //Doesn't work in xml
+            primaryStage.setMinWidth(500);
+            primaryStage.setMinHeight(530);
+
+            //primaryStage.setScene(new EditorView(gameModel, keyHandler));
+            primaryStage.setScene(new PlayView(gameModel, keyHandler));
+            primaryStage.show();
+            stage = primaryStage;
         } catch (Exception e) {
-            Logger.error(TAG, "Failed to load default model");
             e.printStackTrace();
         }
-
-
-        UndoRedo.INSTANCE.saveState(gameModel, keyHandler);
-
-        //Doesn't work in xml
-        primaryStage.setMinWidth(500);
-        primaryStage.setMinHeight(530);
-
-        //primaryStage.setScene(new EditorView(gameModel, keyHandler));
-        primaryStage.setScene(new PlayView(gameModel, keyHandler));
-        primaryStage.show();
-        stage = primaryStage;
-      }catch (Exception e) {
-          e.printStackTrace();
-      }
     }
 
     public static void switchView(Scene view) {
