@@ -235,6 +235,7 @@ public class GameModel extends Observable implements IGameModel {
             // Notify observers ... redraw updated view
             if (nextGizmo instanceof Absorber) {
                 absorberCollided.put(ball.getId(), (Absorber) gizmos.get(nextGizmo.getId()));
+                totalBallsAbsorbed++;
             }
         }
         moveMovables(time);
@@ -360,7 +361,6 @@ public class GameModel extends Observable implements IGameModel {
                 absorbedBalls++;
         }
 
-        totalBallsAbsorbed += absorbedBalls;
         balls[0] = allBalls.size() - absorbedBalls;
         balls[1] = absorbedBalls;
         return balls;
