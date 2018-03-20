@@ -411,7 +411,7 @@
                                         <graphic>
                                             <ImageView fitWidth="46"
                                                        fitHeight="46">
-                                                <!--<Image url="/icons/spinner.png"/>-->
+                                                <Image url="/icons/spinner.png"/>
                                             </ImageView>
                                         </graphic>
                                     </Button>
