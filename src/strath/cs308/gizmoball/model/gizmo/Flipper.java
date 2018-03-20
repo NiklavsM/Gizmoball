@@ -159,7 +159,7 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
     }
 
     public boolean isMoving() {
-        return velocity == Vect.ZERO;
+        return velocity != Vect.ZERO;
     }
 
     public Vect getCurrentVelocity() {
