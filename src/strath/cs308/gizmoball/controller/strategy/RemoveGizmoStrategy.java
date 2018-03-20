@@ -24,7 +24,7 @@ public class RemoveGizmoStrategy implements EventHandler<MouseEvent> {
         this.gameModel = gameModel;
         this.editorView = editorView;
 
-        Image image = new Image("/icons/clear.png");
+        Image image = new Image("/icons/removeCursor.png");
         editorView.setCursor(new ImageCursor(image));
 
         dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);

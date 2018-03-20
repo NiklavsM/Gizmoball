@@ -28,7 +28,7 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
         dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);
         selectedGizmo = Optional.empty();
 
-        Image image = new Image("/icons/move.png"); // this should be handled in the view;
+        Image image = new Image("/icons/moveCursor.png"); // this should be handled in the view;
         editorView.setCursor(new ImageCursor(image));
     }
 

@@ -52,5 +52,7 @@ public interface IGameModel {
 
     int[] getBallsInPlay();
 
+    int[] getTotalStatistics();
+
 }
 

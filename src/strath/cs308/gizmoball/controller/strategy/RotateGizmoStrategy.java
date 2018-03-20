@@ -26,7 +26,7 @@ public class RotateGizmoStrategy implements EventHandler<MouseEvent> {
 
         dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);
 
-        Image image = new Image("/icons/rotate.png");
+        Image image = new Image("/icons/rotateCursor.png");
         editorView.setCursor(new ImageCursor(image));
     }
 

@@ -6,22 +6,13 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameLoader;
-import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.UndoRedo;
-import strath.cs308.gizmoball.model.gizmo.Gizmo;
-import strath.cs308.gizmoball.model.gizmo.Triangle;
-import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 import strath.cs308.gizmoball.utils.Logger;
-import strath.cs308.gizmoball.view.EditorView;
 import strath.cs308.gizmoball.view.PlayView;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.net.URL;
 import java.util.Locale;
 
 public class GizmoBall extends Application {
@@ -61,7 +52,7 @@ public class GizmoBall extends Application {
             primaryStage.show();
             stage = primaryStage;
             setIcon();
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
