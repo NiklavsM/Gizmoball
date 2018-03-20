@@ -107,6 +107,24 @@
                                    fx:id="ballsAbsorbed" />
                         </HBox>
 
+                        <HBox>
+                            <Label styleClass="default-padding, medium-font"
+                                   text="%INGAME_PLAY_TOTALCOLLISIONS" />
+
+                            <Label styleClass="default-padding, medium-font"
+                                   text="0"
+                                   fx:id="totalCollisions" />
+                        </HBox>
+
+                        <HBox>
+                            <Label styleClass="default-padding, medium-font"
+                                   text="%INGAME_PLAY_TOTALBALLSABSORBED" />
+
+                            <Label styleClass="default-padding, medium-font"
+                                   text="0"
+                                   fx:id="totalAbsorbed" />
+                        </HBox>
+
                         <ToolBar
                                 styleClass="game-bar"
                                 BorderPane.alignment="BOTTOM_CENTER">

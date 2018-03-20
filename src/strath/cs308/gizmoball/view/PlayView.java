@@ -112,8 +112,9 @@ public class PlayView extends Scene implements IPlayView, Observer {
         Platform.runLater(() -> {
             drawBackground();
             drawGizmos();
-            updateBallsInPlay();
             updateScore();
+            updateBallsInPlay();
+            updateTotals();
         });
     }
 
@@ -129,6 +130,12 @@ public class PlayView extends Scene implements IPlayView, Observer {
         gameModel.getGizmoBalls().forEach(ball -> gizmoDrawer.drawGizmo(ball, false));
     }
 
+    private void updateScore() {
+        Label score = (Label) root.lookup("#score");
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        score.setText(formatter.format(gameModel.getScore()));
+    }
+
     private void updateBallsInPlay() {
         int[] balls = gameModel.getBallsInPlay();
         Label ballsInPlay = (Label) root.lookup("#ballsInPlay");
@@ -138,10 +145,13 @@ public class PlayView extends Scene implements IPlayView, Observer {
         ballsAbsorbed.setText(String.valueOf(balls[1]));
     }
 
-    private void updateScore() {
-        Label score = (Label) root.lookup("#score");
-        DecimalFormat formatter = new DecimalFormat("#,###");
-        score.setText(formatter.format(gameModel.getScore()));
+    private void updateTotals() {
+        int[] total = gameModel.getTotalStatistics();
+        Label totalCollisions = (Label) root.lookup("#totalCollisions");
+        totalCollisions.setText(String.valueOf(total[0]));
+
+        Label totalBallsAbsorbed = (Label) root.lookup("#totalAbsorbed");
+        totalBallsAbsorbed.setText(String.valueOf(total[1]));
     }
 
     public void changePlayIcon() {
