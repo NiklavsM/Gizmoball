@@ -103,6 +103,7 @@ public class GameLoader {
                         String name = tokens.poll();
                         try {
                             ITriggerable triggerable = (ITriggerable) gameModel.getGizmoById(name);
+                            triggerable.addActionTrigger("key " + keyNumber + " " + keyMode);
                             keyHandler.onKeyEventTrigger("key " + keyNumber + " " + keyMode, triggerable);
                             Logger.verbose(TAG, "connected " + keyNumber + " " + keyMode + " to " + name);
                         } catch (ClassCastException ex) {
