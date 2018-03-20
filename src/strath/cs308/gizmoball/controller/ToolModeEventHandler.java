@@ -15,12 +15,10 @@ public class ToolModeEventHandler implements EventHandler<MouseEvent> {
     private final IGameModel gameModel;
     private final IEditorView editorView;
     private final ResourceBundle dictionary;
-    private final InGameKeyEventHandler keyEventHandler;
 
-    public ToolModeEventHandler(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IEditorView editorView) {
+    public ToolModeEventHandler(IGameModel gameModel, IEditorView editorView) {
         this.gameModel = gameModel;
         this.editorView = editorView;
-        this.keyEventHandler = keyEventHandler;
 
         dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);
     }
@@ -30,24 +28,24 @@ public class ToolModeEventHandler implements EventHandler<MouseEvent> {
         switch (((Node) mouseEvent.getSource()).getId()) {
             case "removeToolButton":
 
-                editorView.setCanvasMode(new RemoveGizmoStrategy(gameModel, keyEventHandler, editorView));
+                editorView.setCanvasMode(new RemoveGizmoStrategy(gameModel, editorView));
                 editorView.setStatus(dictionary.getString("EDITOR_STATUS_REMOVETOOL"));
                 break;
 
             case "rotateToolButton":
-                editorView.setCanvasMode(new RotateGizmoStrategy(gameModel, keyEventHandler, editorView));
+                editorView.setCanvasMode(new RotateGizmoStrategy(gameModel, editorView));
                 editorView.setStatus(dictionary.getString("EDITOR_STATUS_ROTATETOOL"));
                 break;
 
             case "connectToolButton":
 
-                editorView.setCanvasMode(new ConnectGizmoStrategy(gameModel, keyEventHandler, editorView));
+                editorView.setCanvasMode(new ConnectGizmoStrategy(gameModel, editorView));
                 editorView.setStatus(dictionary.getString("EDITOR_STATUS_CONNECTTOOL"));
                 break;
 
             case "moveToolButton":
 
-                editorView.setCanvasMode(new MoveGizmoStrategy(gameModel, keyEventHandler, editorView));
+                editorView.setCanvasMode(new MoveGizmoStrategy(gameModel, editorView));
                 editorView.setStatus(dictionary.getString("EDITOR_STATUS_MOVETOOL"));
                 break;
 

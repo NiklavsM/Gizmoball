@@ -18,13 +18,11 @@ public class RotateGizmoStrategy implements EventHandler<MouseEvent> {
 
     private final IEditorView editorView;
     private final IGameModel gameModel;
-    private final InGameKeyEventHandler keyEventHandler;
     private ResourceBundle dictionary;
 
-    public RotateGizmoStrategy(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IEditorView editorView) {
+    public RotateGizmoStrategy(IGameModel gameModel, IEditorView editorView) {
         this.gameModel = gameModel;
         this.editorView = editorView;
-        this.keyEventHandler = keyEventHandler;
 
         dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);
 
@@ -46,7 +44,7 @@ public class RotateGizmoStrategy implements EventHandler<MouseEvent> {
                 if (!gizmo1.getType().equals(IGizmo.Type.ABSORBER) && !gizmo1.getType().equals(IGizmo.Type.BALL)) {
                     gameModel.rotate(gizmo1.getId());
 
-                    UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
+                    UndoRedo.INSTANCE.saveState(gameModel);
                 }
             });
 
@@ -54,7 +52,7 @@ public class RotateGizmoStrategy implements EventHandler<MouseEvent> {
                 if (!gizmo.get().getType().equals(IGizmo.Type.ABSORBER) && !gizmo.get().getType().equals(IGizmo.Type.BALL)) {
                     gameModel.rotate(gizmo.get().getId());
 
-                    UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
+                    UndoRedo.INSTANCE.saveState(gameModel);
                     editorView.setStatus(dictionary.getString("EDITOR_STATUS_ROTATE_SUCCESS"));
                 } else {
                     editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_ROTATE_WRONGGIZMO"));

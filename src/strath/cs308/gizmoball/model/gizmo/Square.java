@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class Square extends Gizmo implements ITrigger, ITriggerable {
 
-    private final DefaultCollisionTrigger collisionTrigger;
+    private final DefaultTrigger collisionTrigger;
     private final DefaultTriggarable triggerable;
 
     public Square(double x, double y) {
@@ -18,7 +18,7 @@ public class Square extends Gizmo implements ITrigger, ITriggerable {
 
     public Square(double x, double y, String id) {
         super(x, y, x + 1, y + 1, id);
-        collisionTrigger = new DefaultCollisionTrigger();
+        collisionTrigger = new DefaultTrigger();
         triggerable = new DefaultTriggarable();
         setScoreValue(10);
 
@@ -87,6 +87,16 @@ public class Square extends Gizmo implements ITrigger, ITriggerable {
     @Override
     public boolean addAvailableAction(IAction action) {
         return triggerable.addAvailableAction(action);
+    }
+
+    @Override
+    public boolean addActionTrigger(String trigger) {
+        return triggerable.addActionTrigger(trigger);
+    }
+
+    @Override
+    public boolean removeActionTrigger(String trigger) {
+        return triggerable.removeActionTrigger(trigger);
     }
 
     @Override

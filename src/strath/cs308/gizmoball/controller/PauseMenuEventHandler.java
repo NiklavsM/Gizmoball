@@ -19,16 +19,11 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
     private IPlayView playView;
     private IGameTimer gameTimer;
     private IGameModel gameModel;
-    private GameLoader gameLoader;
-    private InGameKeyEventHandler keyEventHandler;
 
-    public PauseMenuEventHandler(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IGameTimer gameTimer, IPlayView playView) {
+    public PauseMenuEventHandler(IGameModel gameModel, IGameTimer gameTimer, IPlayView playView) {
         this.playView = playView;
         this.gameTimer = gameTimer;
         this.gameModel = gameModel;
-        this.keyEventHandler = keyEventHandler;
-
-        gameLoader = new GameLoader(gameModel, keyEventHandler);
     }
 
     @Override
@@ -79,7 +74,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
 
         try {
             gameModel.reset();
-            keyEventHandler.removeAllHandlers();
+            GameLoader gameLoader = new GameLoader(gameModel);
             gameLoader.load(new FileInputStream(fileToLoad));
         } catch (IllegalAccessException | FileNotFoundException e) {
             e.printStackTrace();
@@ -90,7 +85,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
 
     private void saveGame() {
         File fileToSave = FileChooser.getFile();
-        GameSaver gs = new GameSaver(gameModel, keyEventHandler, fileToSave);
+        GameSaver gs = new GameSaver(gameModel, fileToSave);
 
         if (fileToSave == null) {
             Logger.debug(TAG, "Saving file dialog cancelled");

@@ -34,25 +34,24 @@ public class GizmoBall extends Application {
             primaryStage.setX(100);
 
             IGameModel gameModel = new GameModel();
-            InGameKeyEventHandler keyHandler = new InGameKeyEventHandler(gameModel);
-            GameLoader gameLoader = new GameLoader(gameModel, keyHandler);
+            GameLoader gameLoader = new GameLoader(gameModel);
 
             try {
-                gameLoader.load(getClass().getResourceAsStream("/alternative.gizmo"));
+                gameLoader.load(getClass().getResourceAsStream("/default.gizmo"));
             } catch (Exception e) {
                 Logger.error(TAG, "Failed to load default model");
                 e.printStackTrace();
             }
 
 
-            UndoRedo.INSTANCE.saveState(gameModel, keyHandler);
+            UndoRedo.INSTANCE.saveState(gameModel);
 
             //Doesn't work in xml
             primaryStage.setMinWidth(500);
             primaryStage.setMinHeight(530);
 
             //primaryStage.setScene(new EditorView(gameModel, keyHandler));
-            primaryStage.setScene(new PlayView(gameModel, keyHandler));
+            primaryStage.setScene(new PlayView(gameModel));
             primaryStage.show();
             stage = primaryStage;
         } catch (Exception e) {

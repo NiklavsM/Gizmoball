@@ -20,17 +20,15 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
     private final IGameModel gameModel;
     private final IGizmoFactory gizmoFactory;
     private final IEditorView editorView;
-    private final InGameKeyEventHandler keyEventHandler;
     private double pressX, pressY;
     private double mouseX, mouseY;
     private ResourceBundle dictionary;
     private int ballLimit;
 
-    public AddGizmoStrategy(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IEditorView editorView, IGizmo.Type gizmoType) {
+    public AddGizmoStrategy(IGameModel gameModel, IEditorView editorView, IGizmo.Type gizmoType) {
         this.gizmoType = gizmoType;
         this.gameModel = gameModel;
         this.editorView = editorView;
-        this.keyEventHandler = keyEventHandler;
         gizmoFactory = new GizmoFactory();
         ballLimit = 50;
         dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);
@@ -171,7 +169,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
                     , endY + 1);
 
             if (gameModel.addGizmo(gizmo)) {
-                UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
+                UndoRedo.INSTANCE.saveState(gameModel);
             }
         } else if (!gizmoType.equals(IGizmo.Type.BALL)) {
             IGizmo gizmo;
@@ -188,7 +186,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
             }
 
             editorView.setStatus(gizmoType + dictionary.getString("EDITOR_STATUS_GIZMOSADDED"));
-            UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
+            UndoRedo.INSTANCE.saveState(gameModel);
         }
     }
 
@@ -211,7 +209,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, x, y);
         if (gameModel.addGizmo(gizmo)) {
             editorView.setStatus(gizmoType + " " + dictionary.getString("EDITOR_STATUS_GIZMOADDEDAT") + x + " , " + y);
-            UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
+            UndoRedo.INSTANCE.saveState(gameModel);
         }
     }
 

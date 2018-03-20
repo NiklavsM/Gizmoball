@@ -29,8 +29,6 @@ public interface IEditorView {
 
     void setErrorStatus(String message);
 
-    InGameKeyEventHandler getKeyHandler();
-
     double getFriction1Input() throws NumberFormatException;
 
     double getFriction2Input() throws NumberFormatException;
@@ -38,8 +36,6 @@ public interface IEditorView {
     double getGravityInput() throws NumberFormatException;
 
     void displayGizmoProperties(IGizmo gizmo);
-
-    KeyCode getLastKeyPressed();
 
     void previewGizmo(IGizmo gizmo, double x, double y);
 

@@ -21,13 +21,11 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent> {
     private ResourceBundle dictionary;
 
     private IGameModel gameModel;
-    private InGameKeyEventHandler keyEventHandler;
 
-    public GizmoPropertyEventHandler(IEditorView editorView, IGizmo gizmo, IGameModel gameModel, InGameKeyEventHandler keyEventHandler) {
+    public GizmoPropertyEventHandler(IEditorView editorView, IGizmo gizmo, IGameModel gameModel) {
         this.editorView = editorView;
         this.gizmo = gizmo;
         this.gameModel = gameModel;
-        this.keyEventHandler = keyEventHandler;
         dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);
     }
 
@@ -83,7 +81,7 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent> {
         try {
             movableGizmo.setVelocityRadian(editorView.getRadianProperty());
 
-            UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
+            UndoRedo.INSTANCE.saveState(gameModel);
             editorView.setStatus(dictionary.getString("EDITOR_STATUS_VELOCITYRADIAN_SET"));
         } catch (NumberFormatException e) {
             editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_VELOCITYRADIAN_ERROR"));
@@ -95,7 +93,7 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent> {
         try {
             movableGizmo.setVelocity(editorView.getXVelocityProperty(), movableGizmo.getVelocityY());
 
-            UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
+            UndoRedo.INSTANCE.saveState(gameModel);
             editorView.setStatus(dictionary.getString("EDITOR_STATUS_VELOCITYX_SET"));
         } catch (NumberFormatException e) {
             editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_VELOCITYX_ERROR"));
@@ -107,7 +105,7 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent> {
         try {
             movableGizmo.setVelocity(movableGizmo.getVelocityX(), editorView.getYVelocityProperty());
 
-            UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
+            UndoRedo.INSTANCE.saveState(gameModel);
             editorView.setStatus(dictionary.getString("EDITOR_STATUS_VELOCITYY_SET"));
         } catch (NumberFormatException e) {
             editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_VELOCITYY_ERROR"));

@@ -10,11 +10,11 @@ import java.util.Set;
 public class Triangle extends Gizmo implements ITriggerable, ITrigger {
 
     private final DefaultTriggarable triggerable;
-    private final DefaultCollisionTrigger collisionTrigger;
+    private final DefaultTrigger collisionTrigger;
 
     public Triangle(double x, double y, String id) {
         super(x, y, x + 1, y + 1, id);
-        collisionTrigger = new DefaultCollisionTrigger();
+        collisionTrigger = new DefaultTrigger();
         triggerable = new DefaultTriggarable();
 
         setColor("#03a9f4");
@@ -50,7 +50,6 @@ public class Triangle extends Gizmo implements ITriggerable, ITrigger {
     public void registerTriggarable(ITriggerable triggerTarget) {
         collisionTrigger.registerTriggarable(triggerTarget);
     }
-
     @Override
     public void removeTriggarable(ITriggerable trigger) {
         collisionTrigger.removeTriggarable(trigger);
@@ -84,6 +83,16 @@ public class Triangle extends Gizmo implements ITriggerable, ITrigger {
     @Override
     public boolean addAvailableAction(IAction action) {
         return triggerable.addAvailableAction(action);
+    }
+
+    @Override
+    public boolean addActionTrigger(String trigger) {
+        return triggerable.addActionTrigger(trigger);
+    }
+
+    @Override
+    public boolean removeActionTrigger(String trigger) {
+        return triggerable.removeActionTrigger(trigger);
     }
 
     @Override
