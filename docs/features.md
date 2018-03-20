@@ -71,6 +71,9 @@
 * Single line comments in the `.gizmo` files (starts with `# `)
 * `.gizmo` extension file automatically handled
 
+### Language extension
+* `Color` `<id>` `<hexcolor>`
+
 ### Console
 * Let's you change the model with gizmoball commands in real time 
 * Uses Gizmoball syntax

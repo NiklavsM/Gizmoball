@@ -172,7 +172,9 @@ public abstract class Gizmo implements IGizmo {
             rotate.append(GameLoader.ROTATE_COMMAND + " ").append(id).append("\n");
         }
 
-        return getType() + " " + id + " " + x1 + " " + y1 + x2String + y2String + rotate;
+        String color = GameLoader.COLOR_COMMAND + " " + id + " " + getColor() + "\n";
+
+        return getType() + " " + id + " " + x1 + " " + y1 + x2String + y2String + rotate + color;
     }
 
     @Override
