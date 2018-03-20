@@ -84,6 +84,16 @@ public class CircleGizmo extends Gizmo implements ITrigger, ITriggerable {
     }
 
     @Override
+    public boolean addActionTrigger(String trigger) {
+        return triggerable.addActionTrigger(trigger);
+    }
+
+    @Override
+    public boolean removeActionTrigger(String trigger) {
+        return triggerable.removeActionTrigger(trigger);
+    }
+
+    @Override
     public String id() {
         return id;
     }

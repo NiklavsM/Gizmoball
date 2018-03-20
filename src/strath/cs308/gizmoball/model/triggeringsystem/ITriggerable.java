@@ -14,5 +14,9 @@ public interface ITriggerable {
 
     boolean addAvailableAction(IAction action);
 
+    boolean addActionTrigger(String trigger);
+
+    boolean removeActionTrigger(String trigger);
+
     String id();
 }

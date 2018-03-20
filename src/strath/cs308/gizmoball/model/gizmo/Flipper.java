@@ -280,6 +280,16 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
     }
 
     @Override
+    public boolean addActionTrigger(String trigger) {
+        return defaultTriggarable.addActionTrigger(trigger);
+    }
+
+    @Override
+    public boolean removeActionTrigger(String trigger) {
+        return defaultTriggarable.removeActionTrigger(trigger);
+    }
+
+    @Override
     public String id() {
         return id;
     }

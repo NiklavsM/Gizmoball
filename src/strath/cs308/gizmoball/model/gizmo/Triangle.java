@@ -50,7 +50,6 @@ public class Triangle extends Gizmo implements ITriggerable, ITrigger {
     public void registerTriggarable(ITriggerable triggerTarget) {
         collisionTrigger.registerTriggarable(triggerTarget);
     }
-
     @Override
     public void removeTriggarable(ITriggerable trigger) {
         collisionTrigger.removeTriggarable(trigger);
@@ -84,6 +83,16 @@ public class Triangle extends Gizmo implements ITriggerable, ITrigger {
     @Override
     public boolean addAvailableAction(IAction action) {
         return triggerable.addAvailableAction(action);
+    }
+
+    @Override
+    public boolean addActionTrigger(String trigger) {
+        return triggerable.addActionTrigger(trigger);
+    }
+
+    @Override
+    public boolean removeActionTrigger(String trigger) {
+        return triggerable.removeActionTrigger(trigger);
     }
 
     @Override
