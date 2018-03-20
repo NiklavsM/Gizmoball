@@ -22,7 +22,7 @@ public class SelectGizmoEventHandler extends Observable implements EventHandler<
         this.gameModel = gameModel;
         this.editorView = editorView;
 
-        Image image = new Image("/icons/cursor.png");
+        Image image = new Image("/icons/selectCursor.png");
         editorView.setCursor(new ImageCursor(image));
     }
 

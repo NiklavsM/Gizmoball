@@ -30,7 +30,7 @@ public class ConnectGizmoStrategy implements EventHandler<MouseEvent> {
 
         this.connectTo = Optional.empty();
 
-        Image image = new Image("/icons/connect.png");
+        Image image = new Image("/icons/connectCursor.png");
         editorView.setCursor(new ImageCursor(image));
 
         dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);

@@ -5,14 +5,10 @@ import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameLoader;
-import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.UndoRedo;
-import strath.cs308.gizmoball.model.gizmo.Triangle;
-import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 import strath.cs308.gizmoball.utils.Logger;
-import strath.cs308.gizmoball.view.EditorView;
 import strath.cs308.gizmoball.view.PlayView;
 
 import java.io.IOException;
