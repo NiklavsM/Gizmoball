@@ -3,6 +3,9 @@ package strath.cs308.gizmoball.view;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Point3D;
+import javafx.scene.Camera;
+import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -11,6 +14,8 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.transform.Rotate;
+import javafx.scene.transform.Shear;
 import javafx.stage.Modality;
 import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.controller.GameBarEventHandler;
@@ -50,6 +55,8 @@ public class PlayView extends Scene implements IPlayView, Observer {
             stackPane = (StackPane) root.lookup("#stackPane");
             canvas = (Canvas) root.lookup("#canvas");
 
+            toggle3D();
+
             drawBackground();
             drawGizmos();
 
@@ -67,6 +74,20 @@ public class PlayView extends Scene implements IPlayView, Observer {
         }
 
         updateBallsInPlay();
+    }
+
+    private PerspectiveCamera toggle3D() {
+        PerspectiveCamera camera = new PerspectiveCamera();
+        canvas.setWidth(500);
+        canvas.setHeight(500);
+        canvas.setRotationAxis(Rotate.X_AXIS);
+        canvas.setRotate(-50);
+//            canvas.setScaleX(1.5);
+//            canvas.setScaleY(1.5);
+
+        this.setCamera(camera);
+
+        return camera;
     }
 
     private void attachEventHandlers() {

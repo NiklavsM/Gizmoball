@@ -2,6 +2,7 @@ package strath.cs308.gizmoball.view;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.StrokeLineCap;
@@ -30,6 +31,10 @@ public class GizmoDrawer {
     }
 
     public void drawGizmo(IGizmo gizmo, boolean isPreview) {
+//        if ()
+        Color b = Color.rgb(84, 110, 122);
+        gc.setEffect(new DropShadow(5, 5, 5, b));
+
         gc.setFill(Color.BLACK);
         List<Dot> dots = gizmo.getDots();
         double diameter = 0;
@@ -61,16 +66,17 @@ public class GizmoDrawer {
                     || type.equals(IGizmo.Type.SPINNER)) {
                 gc.setLineWidth(diameter);
                 gc.setLineCap(StrokeLineCap.ROUND);
-                if(type.equals(IGizmo.Type.SPINNER) && i == 4){
+                if (type.equals(IGizmo.Type.SPINNER) && i == 4) {
                     gc.strokeLine(xPoints[0], yPoints[0], xPoints[1], yPoints[1]);
                     gc.strokeLine(xPoints[2], yPoints[2], xPoints[3], yPoints[3]);
-                }else {
+                } else {
                     gc.strokeLine(xPoints[0], yPoints[0], xPoints[i - 1], yPoints[i - 1]);
                 }
             } else {
                 gc.fillPolygon(xPoints, yPoints, i);
             }
         }
+
 
     }
 
