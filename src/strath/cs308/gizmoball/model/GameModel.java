@@ -150,6 +150,16 @@ public class GameModel extends Observable implements IGameModel {
         return false;
     }
 
+    @Override
+    public boolean setGizmoColor(IGizmo gizmo, String color) {
+        boolean r = gizmo.setColor(color);
+        if (r) {
+            update();
+            return r;
+        }
+        return false;
+    }
+
     public Set<IGizmo> getGizmos() {
         return new HashSet<>(gizmos.values());
     }

@@ -22,6 +22,8 @@ public interface IGameModel {
 
     boolean removeGizmo(IGizmo gizmo);
 
+    boolean setGizmoColor(IGizmo gizmo, String color);
+
     void tick(double time);
 
     boolean move(IGizmo gizmo, double x, double y);

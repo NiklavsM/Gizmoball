@@ -1,11 +1,17 @@
 package strath.cs308.gizmoball.model.gizmo;
 
+import mit.physics.Vect;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import strath.cs308.gizmoball.model.Dot;
 import strath.cs308.gizmoball.model.GameModel;
+import strath.cs308.gizmoball.model.triggeringsystem.IAction;
+import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -100,5 +106,50 @@ public class GizmoTest {
         Octagon octa = new Octagon(5, 8);
         model.addGizmo(ball);
         assertFalse(model.addGizmo(octa), "An octagon cannot be placed as there is already a ball in the specified location!");
+    }
+
+    @Test
+    void testOctagonType() {
+        Octagon octa = new Octagon(3, 18);
+        assertEquals(octa.getType(), IGizmo.Type.OCTAGON, "Type should be OCTAGON!");
+    }
+
+    @Test
+    void testOctagonTriggerable() {
+        Octagon octa = new Octagon(6, 1);
+        octa.addActionTrigger("trigger1");
+        assertTrue(octa.getTriggers().contains("trigger1"), "The octagon should contain the newly added trigger!");
+    }
+
+    @Test
+    void testSpinnerRotatingPoint() {
+        Spinner spinner = new Spinner(12, 12);
+        assertEquals(spinner.getSpinAround().getCenter(), new Vect(13.0, 13.0));
+    }
+
+    @Test
+    void testLeftFlipperType() {
+        Flipper lf = new Flipper(8, 9, Flipper.Orientation.LEFT);
+        assertEquals(lf.getType(), IGizmo.Type.LEFT_FLIPPER, "Type should be LEFT FLIPPER!");
+    }
+
+    @Test
+    void testRightFlipperType() {
+        Flipper rf = new Flipper(14, 2, Flipper.Orientation.RIGHT, "Right");
+        assertEquals(rf.getType(), IGizmo.Type.RIGHT_FLIPPER, "Type should be RIGHT FLIPPER!");
+    }
+
+    @Test
+    void testLeftFlipperIllegalAddition() {
+        Flipper lf = new Flipper(19, 7, Flipper.Orientation.LEFT);
+        assertFalse(model.addGizmo(lf));
+        assertEquals(lf.getType(), IGizmo.Type.LEFT_FLIPPER, "A left flipper cannot be located next to the right wall!");
+    }
+
+    @Test
+    void testRightFlipperIllegalAddition() {
+        Flipper rf = new Flipper(16, 19, Flipper.Orientation.RIGHT);
+        assertFalse(model.addGizmo(rf));
+        assertEquals(rf.getType(), IGizmo.Type.RIGHT_FLIPPER, "A right flipper cannot be sitting at the last row as it requires a 2x2 grid!");
     }
 }
