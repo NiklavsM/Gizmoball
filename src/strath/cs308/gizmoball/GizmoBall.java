@@ -6,9 +6,11 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameLoader;
+import strath.cs308.gizmoball.controller.actions.*;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.UndoRedo;
+import strath.cs308.gizmoball.model.gizmo.Triangle;
 import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.PlayView;
 
@@ -39,6 +41,13 @@ public class GizmoBall extends Application {
                 Logger.error(TAG, "Failed to load default model");
                 e.printStackTrace();
             }
+
+            Triangle t = (Triangle) gameModel.getGizmoById("T");
+//            t.setAction(new RotateAction(gameModel, t));
+//            t.setAction(new ChangeToARandomColor(gameModel, t, "#ffffff", "#000000", "#f32", t.getColor(), "#755785", "#f1f3f3"));
+//            t.setAction(new RemoveGizmoAction(gameModel, gameModel.getGizmoById("RF112")));
+            t.setAction(new DestroyerGizmoAction(gameModel));
+            System.out.println(t.getCurrentAction());
 
             UndoRedo.INSTANCE.saveState(gameModel);
 
