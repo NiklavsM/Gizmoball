@@ -188,24 +188,4 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
         return id;
     }
 
-    @Override
-    public String toString()
-    {
-        StringBuilder builder = new StringBuilder();
-        builder.append(super.toString());
-
-        triggerable.getTriggers().forEach(s -> {
-            if (s.contains("key")) {
-                builder.append("\n ")
-                        .append(GameLoader.KEY_CONNECT_COMMAND)
-                        .append(" ")
-                        .append(s)
-                        .append(" ")
-                        .append(getId())
-                        .append("\n");
-            }
-        });
-
-        return builder.toString();
-    }
 }

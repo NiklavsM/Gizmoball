@@ -37,7 +37,7 @@ public class GizmoBall extends Application {
             GameLoader gameLoader = new GameLoader(gameModel);
 
             try {
-                gameLoader.load(getClass().getResourceAsStream("/default.gizmo"));
+                gameLoader.load(getClass().getResourceAsStream("/alternative.gizmo"));
             } catch (Exception e) {
                 Logger.error(TAG, "Failed to load default model");
                 e.printStackTrace();

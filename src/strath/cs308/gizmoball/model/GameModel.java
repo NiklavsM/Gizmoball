@@ -457,6 +457,24 @@ public class GameModel extends Observable implements IGameModel {
             }
         }
 
+        commands.append("\n# key triggers\n");
+
+        gizmos
+                .values()
+                .stream()
+                .filter(ITriggerable.class::isInstance)
+                .map(ITriggerable.class::cast)
+                .forEach(triggerable -> triggerable.getTriggers()
+                        .stream()
+                        .filter(trigger -> trigger.contains("key"))
+                        .forEach(keyTrigger -> commands
+                                .append(GameLoader.KEY_CONNECT_COMMAND)
+                                .append(" ")
+                                .append(keyTrigger)
+                                .append(" ")
+                                .append(triggerable.id())
+                                .append("\n")));
+
 
         commands.append("\n# gravity and friction\n");
         //TODO add gravity and friciton

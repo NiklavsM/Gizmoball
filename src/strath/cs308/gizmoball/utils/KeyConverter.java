@@ -16,5 +16,4 @@ public class KeyConverter {
         }
         return "key " + event.getCode().impl_getCode() + ".0 " + type;
     }
-
 }
