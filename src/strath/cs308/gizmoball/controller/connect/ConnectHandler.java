@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
@@ -21,7 +22,7 @@ public class ConnectHandler implements EventHandler<ActionEvent> {
     private IGameModel gameModel;
     private EditorView editorView;
     private ConnectPanelView connectPanelView;
-    private String key;
+    private KeyEvent keyEvent;
 
     public ConnectHandler(IGameModel gameModel, EditorView editorView, ConnectPanelView connectPanelView) {
         this.gameModel = gameModel;
@@ -50,7 +51,7 @@ public class ConnectHandler implements EventHandler<ActionEvent> {
     }
 
     private void connectionA() {
-        //wait for key press
+        //wait for keyEvent press
         connectPanelView.setWaitingForKeyStatusA();
 
         editorView.setOnKeyPressed(event -> {
@@ -60,32 +61,31 @@ public class ConnectHandler implements EventHandler<ActionEvent> {
             System.out.println("Character entered " + c);
             System.out.println("Code " + (int) c);
 
+            keyEvent = event;
             System.out.println(KeyConverter.prettify(event));
 
             cancelListening();
         });
 
-        canvas.setOnMouseClicked(event -> {
-            Optional<IGizmo> gizmo = findGizmo(event);
-            gizmo.ifPresent(g -> {
-                System.out.println(g);
-
-                cancelListening();
-            });
-        });
+//        canvas.setOnMouseClicked(event -> {
+//            Optional<IGizmo> gizmo = findGizmo(event);
+//            gizmo.ifPresent(g -> {
+//                System.out.println(g);
+//
+//                cancelListening();
+//            });
+//        });
     }
 
     private void connectionB() {
 
-        //wait for key press
+        //wait for keyEvent press
         connectPanelView.setWaitingForKeyStatusB();
         editorView.setOnKeyPressed(event -> {
             System.out.println("PRE " + event.getCode());
 
             connectPanelView.setConnectBTextField("KEY " + event.getCode().toString());
 
-            key = KeyConverter.prettify(event);
-            System.out.println("Pretty " + key);
             cancelListening();
         });
 
@@ -99,10 +99,14 @@ public class ConnectHandler implements EventHandler<ActionEvent> {
 
                     connectPanelView.setConnectBTextField("Gizmo " + g);
 
-                    System.out.println("Key: " + key);
-                    ITriggerable g1 = (ITriggerable) g;
-                    g1.addActionTrigger(key);
+                    String keyStr = KeyConverter.getKeyCode(keyEvent);
 
+                    System.out.println("Key: " + keyStr);
+                    ITriggerable g1 = (ITriggerable) g;
+
+                    System.out.println("Key string " + keyStr);
+                    g1.addActionTrigger("key " + keyEvent.getCode().impl_getCode() + ".0 down");
+                    g1.addActionTrigger("key " + keyEvent.getCode().impl_getCode() + ".0 up");
 
                 } else {
 //                            editorView.setStatus()

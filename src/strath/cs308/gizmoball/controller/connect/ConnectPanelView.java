@@ -56,7 +56,7 @@ public class ConnectPanelView {
     }
 
     public void setWaitingForKeyStatusA() {
-        String s = "Click Gizmo or Press Key";
+        String s = "Press a Key";
         connectATextField.setText(s);
     }
 
