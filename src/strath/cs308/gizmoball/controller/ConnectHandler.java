@@ -6,6 +6,9 @@ import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
+import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
+import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
+import strath.cs308.gizmoball.utils.KeyConverter;
 import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.EditorView;
 
@@ -17,6 +20,7 @@ public class ConnectHandler implements EventHandler<ActionEvent> {
     private IGameModel gameModel;
     private EditorView editorView;
     private ConnectPanelView connectPanelView;
+    private String key;
 
     public ConnectHandler(IGameModel gameModel, EditorView editorView, ConnectPanelView connectPanelView) {
         this.gameModel = gameModel;
@@ -37,6 +41,13 @@ public class ConnectHandler implements EventHandler<ActionEvent> {
                 editorView.setOnKeyPressed(event -> {
                     connectPanelView.setConnectATextField("KEY " + event.getCode().toString());
 
+                    char c = event.getCode().toString().toCharArray()[0];
+                    System.out.println("Character entered " + c);
+                    System.out.println("Code " + (int)  c);
+
+                    System.out.println(KeyConverter.prettify(event));
+
+
                     editorView.setOnKeyPressed(null);
                     canvas.setOnMouseClicked(null);
                 });
@@ -53,6 +64,8 @@ public class ConnectHandler implements EventHandler<ActionEvent> {
                         canvas.setOnMouseClicked(null);
                     });
                 });
+
+
 
 //                Triangle t = (Triangle) gameModel.getGizmoById("T");
 //                t.setAction(args -> {
@@ -72,8 +85,10 @@ public class ConnectHandler implements EventHandler<ActionEvent> {
                 //wait for key press
                 editorView.setOnKeyPressed(event -> {
                     System.out.println("PRE " + event.getCode());
+
                     connectPanelView.setConnectBTextField("KEY " + event.getCode().toString());
 
+                    key = KeyConverter.prettify(event);
                     editorView.setOnKeyPressed(null);
                     canvas.setOnMouseClicked(null);
                 });
@@ -86,6 +101,8 @@ public class ConnectHandler implements EventHandler<ActionEvent> {
                     gizmo.ifPresent(g -> {
                         System.out.println(g);
                         connectPanelView.setConnectBTextField("Gizmo " + g);
+
+                        ((ITriggerable) g).addActionTrigger(key);
 
                         editorView.setOnKeyPressed(null);
                         canvas.setOnMouseClicked(null);

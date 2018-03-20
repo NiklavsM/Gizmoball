@@ -10,6 +10,7 @@ import java.util.*;
 
 import static javafx.scene.input.KeyEvent.KEY_PRESSED;
 import static javafx.scene.input.KeyEvent.KEY_RELEASED;
+import static strath.cs308.gizmoball.utils.KeyConverter.prettify;
 
 public class InGameKeyEventHandler implements EventHandler<KeyEvent> {
 
@@ -17,16 +18,6 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent> {
 
     public InGameKeyEventHandler(IGameModel gameModel) {
         this.gameModel = gameModel;
-    }
-
-    private String prettify(KeyEvent event) {
-        String type = "";
-        if (event.getEventType().equals(KEY_PRESSED)) {
-            type = "down";
-        } else if (event.getEventType().equals(KEY_RELEASED)) {
-            type = "up";
-        }
-        return "key " + event.getCode().impl_getCode() + ".0 " + type;
     }
 
     @Override

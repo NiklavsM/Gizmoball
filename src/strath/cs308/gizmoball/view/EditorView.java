@@ -309,7 +309,7 @@ public class EditorView extends Scene implements IEditorView, Observer {
 
         if (gizmo instanceof IMovable) {
             IMovable movableGizmo = (IMovable) gizmo;
-            movableHolder.setVisible(true);
+            movableHolder.setDisable(false);
             veloXField.setOnAction(eventHandler);
             veloYField.setOnAction(eventHandler);
             radianField.setOnAction(eventHandler);
@@ -322,17 +322,17 @@ public class EditorView extends Scene implements IEditorView, Observer {
                 veloXField.setText(Double.toString(movableGizmo.getVelocityX()));
                 veloYField.setText(Double.toString(movableGizmo.getVelocityY()));
 
-                rotationVelocityHolder.setVisible(false);
-                linearVelocityHolder.setVisible(true);
+                rotationVelocityHolder.setDisable(true);
+                linearVelocityHolder.setDisable(false);
             } else {
                 radianField.setText(Double.toString(movableGizmo.getVelocityRadian()));
 
-                rotationVelocityHolder.setVisible(true);
-                linearVelocityHolder.setVisible(false);
+                rotationVelocityHolder.setDisable(false);
+                linearVelocityHolder.setDisable(true);
             }
 
         } else {
-            movableHolder.setVisible(false);
+            movableHolder.setDisable(true);
         }
     }
 

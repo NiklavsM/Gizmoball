@@ -179,6 +179,11 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
     }
 
     @Override
+    public Set<String> getTriggers() {
+        return triggerable.getTriggers();
+    }
+
+    @Override
     public String id() {
         return id;
     }

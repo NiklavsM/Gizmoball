@@ -9,6 +9,7 @@ import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 
 public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
@@ -261,9 +262,9 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
             String event = (String) args;
             if (defaultTriggarable.getTriggers().contains(event)) {
                 if (event.contains("up")) {
-                    doAction("KEY_PRESSED");
-                } else if (event.contains("down")) {
                     doAction("KEY_RELEASED");
+                } else if (event.contains("down")) {
+                    doAction("KEY_PRESSED");
                 } else {
                    doAction(event);
                 }
@@ -299,6 +300,11 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
     @Override
     public boolean removeActionTrigger(String trigger) {
         return defaultTriggarable.removeActionTrigger(trigger);
+    }
+
+    @Override
+    public Set<String> getTriggers() {
+        return defaultTriggarable.getTriggers();
     }
 
     @Override
