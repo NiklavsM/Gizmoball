@@ -177,8 +177,11 @@ public class GameModel extends Observable implements IGameModel {
     public void tick(double time) {
         Gizmo nextGizmo;
         List<ITrigger> triggersToTrigger = new LinkedList<>();
+        List<ITriggerable> triggerOnCollision = new LinkedList<>();
         Set<Ball> balls = getBalls();
         movableCollisionTime.clear();
+        triggersToTrigger.clear();
+        triggerOnCollision.clear();
 
         for (Ball ball : balls) {
             nextGizmo = null;
@@ -195,11 +198,11 @@ public class GameModel extends Observable implements IGameModel {
                     nextGizmo = cd.getGizmo();
 
                     if (nextGizmo instanceof ITrigger) {
-                        ((ITrigger) nextGizmo).trigger();
+                        triggersToTrigger.add((ITrigger) nextGizmo);
                     }
 
                     if (nextGizmo instanceof ITriggerable) {
-                        ((ITriggerable) nextGizmo).performAction("collusion");
+                        triggerOnCollision.add((ITriggerable) nextGizmo);
                     }
 
                     if (nextGizmo instanceof IMovable && !(nextGizmo instanceof Ball)) {
@@ -211,7 +214,6 @@ public class GameModel extends Observable implements IGameModel {
                             }
                         }
                     }
-
 
                     score += nextGizmo.getScoreValue();
                     // don't allow negative score values
@@ -228,12 +230,13 @@ public class GameModel extends Observable implements IGameModel {
             }
 
             // Notify observers ... redraw updated view
-
             if (nextGizmo instanceof Absorber) {
                 absorberCollided.put(ball.getId(), (Absorber) gizmos.get(nextGizmo.getId()));
             }
         }
         moveMovables(time);
+        triggersToTrigger.forEach(ITrigger::trigger);
+        triggerOnCollision.forEach(collidedWith -> collidedWith.performAction("collusion"));
         update();
     }
 
