@@ -154,9 +154,9 @@ public class PlayView extends Scene implements IPlayView, Observer {
         totalBallsAbsorbed.setText(String.valueOf(total[1]));
     }
 
-    public void changePlayIcon() {
+    public void changePlayIcon(boolean isRunning) {
         Button icon = (Button) root.lookup("#playButton");
-        if (icon.getStyle().contains("stop")) {
+        if (!isRunning) {
             icon.setStyle("-fx-background-image: url('/icons/play.png')");
             icon.setTooltip(new Tooltip("Play"));
         } else {

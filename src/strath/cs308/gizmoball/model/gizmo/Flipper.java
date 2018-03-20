@@ -99,7 +99,7 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
     @Override
     public void move(double time) {
         if (!velocity.equals(Vect.ZERO)) {
-            double rotationRadian = velocity.angle().radians() * time;
+            double rotationRadian = getCurrentRadianVelocity() * time;
 //            double rotationRadian = 0.31416666666;
 //            rotationRadian *= orientation.getMult();
 //            if (movementStatus.equals(Movement.FORWARD)) {
@@ -162,8 +162,8 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
         return velocity != Vect.ZERO;
     }
 
-    public Vect getCurrentVelocity() {
-        return velocity;
+    public Double getCurrentRadianVelocity() {
+        return velocity.angle().radians()*1080/360*2;
     }
 
     @Override

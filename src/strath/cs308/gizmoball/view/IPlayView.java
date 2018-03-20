@@ -12,5 +12,5 @@ public interface IPlayView {
 
     void soundOn(boolean soundOn);
 
-    void changePlayIcon();
+    void changePlayIcon(boolean isPlaying);
 }

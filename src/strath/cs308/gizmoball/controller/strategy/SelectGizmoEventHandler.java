@@ -21,7 +21,6 @@ public class SelectGizmoEventHandler extends Observable implements EventHandler<
     public SelectGizmoEventHandler(IGameModel gameModel, IEditorView editorView) {
         this.gameModel = gameModel;
         this.editorView = editorView;
-
         Image image = new Image("/icons/selectCursor.png");
         editorView.setCursor(new ImageCursor(image));
     }
@@ -29,7 +28,6 @@ public class SelectGizmoEventHandler extends Observable implements EventHandler<
     @Override
     public void handle(MouseEvent mouseEvent) {
         if (mouseEvent.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
-
             double pointX = mouseEvent.getX() / editorView.getPixelRatioFor(20.0);
             double pointY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
 
@@ -40,9 +38,6 @@ public class SelectGizmoEventHandler extends Observable implements EventHandler<
                 setChanged();
                 notifyObservers();
             });
-
-            Logger.debug(TAG, "A gizmo has been selected");
         }
-
     }
 }

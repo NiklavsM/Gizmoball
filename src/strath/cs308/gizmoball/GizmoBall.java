@@ -4,11 +4,19 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameLoader;
+import strath.cs308.gizmoball.controller.actions.*;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.UndoRedo;
+import strath.cs308.gizmoball.model.gizmo.IGizmo;
+import strath.cs308.gizmoball.model.gizmo.Octagon;
+import strath.cs308.gizmoball.model.gizmo.Square;
+import strath.cs308.gizmoball.model.gizmo.Triangle;
+import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
+import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.EditorView;
 import strath.cs308.gizmoball.view.LauncherView;
@@ -40,6 +48,14 @@ public class GizmoBall extends Application {
                 Logger.error(TAG, "Failed to load default model");
                 e.printStackTrace();
             }
+
+            gameModel.getGizmos().stream()
+                    .filter(g -> (g instanceof Square) || (g instanceof Circle) || (g instanceof Octagon) || (g instanceof Triangle))
+                    .map(ITriggerable.class::cast)
+                    .forEach(triggerable -> {
+                        ((ITrigger) triggerable).registerTriggerable(triggerable);
+                        triggerable.setAction(new ChangeToARandomColor(gameModel, (IGizmo) triggerable, "#000000", "#ffffff", "#f12"));
+                    });
 
             UndoRedo.INSTANCE.saveState(gameModel);
 

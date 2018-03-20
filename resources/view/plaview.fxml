@@ -3,6 +3,7 @@
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx"
             stylesheets="/styles/style.css"
@@ -76,6 +77,10 @@
                     <VBox styleClass="foreground"
                           minWidth="250">
 
+                        <BorderPane.margin>
+                            <Insets left="5.0" />
+                        </BorderPane.margin>
+
                         <HBox>
                             <Label StackPane.alignment="TOP_RIGHT"
                                    styleClass="default-padding, title-font"
@@ -125,15 +130,13 @@
                                    fx:id="totalAbsorbed" />
                         </HBox>
 
-                        <ToolBar
-                                styleClass="game-bar"
-                                BorderPane.alignment="BOTTOM_CENTER">
+                        <ToolBar styleClass="game-bar"
+                                 BorderPane.alignment="BOTTOM_CENTER">
 
                             <GridPane vgap="4"
                                       hgap="16"
                                       fx:id="gameMenu"
                                       styleClass="default-padding">
-
 
                                 <Button GridPane.rowIndex="0"
                                         GridPane.columnIndex="0"

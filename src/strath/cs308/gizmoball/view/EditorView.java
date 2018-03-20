@@ -24,6 +24,7 @@ import strath.cs308.gizmoball.controller.*;
 import strath.cs308.gizmoball.controller.connect.ConnectPanelView;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IMovable;
+import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
@@ -180,22 +181,28 @@ public class EditorView extends Scene implements IEditorView, Observer {
             console.setAlwaysOnTop(true);
 
             TextArea consoleTextArea = (TextArea) namespace.get("consoleTextArea");
-            consoleTextArea.appendText("Gizmoball console\n");
+            consoleTextArea.appendText("gizmoball> Gizmoball console\n");
             TextField consoleInputTextField = (TextField) namespace.get("consoleInputTextField");
             consoleInputTextField.requestFocus();
 
-            GameLoader gameLoader = new GameLoader(gameModel);
 
             // send
             consoleInputTextField.setOnKeyPressed(key -> {
                 if (key.getCode() == KeyCode.ENTER) {
                     try {
 
+                        if (consoleInputTextField.getText().equals("clear")) {
+                            consoleTextArea.clear();
+                            consoleInputTextField.clear();
+                            return;
+                        }
+                        GameLoader gameLoader = new GameLoader(gameModel);
                         InputStream stream = new ByteArrayInputStream(consoleInputTextField.getText().getBytes(StandardCharsets.UTF_8));
                         gameLoader.load(stream);
 
-                        consoleTextArea.appendText(consoleInputTextField.getText() + "\n");
+                        consoleTextArea.appendText("gizmoball> " + consoleInputTextField.getText() + "\n");
                         consoleInputTextField.clear();
+                        UndoRedo.INSTANCE.saveState(gameModel);
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }
@@ -204,7 +211,7 @@ public class EditorView extends Scene implements IEditorView, Observer {
 
             Scene consoleScene = new Scene(root, 300, 200);
             console.setScene(consoleScene);
-            console.setTitle("Console");
+            console.setTitle("Gizmoball Console");
 
             console.show();
 
@@ -243,6 +250,7 @@ public class EditorView extends Scene implements IEditorView, Observer {
 
     @Override
     public void setStatus(String message) {
+        statusLabel.getStyleClass().removeAll();
         statusLabel.getStyleClass().remove("error-label");
         statusLabel.setText(message);
     }
@@ -281,6 +289,7 @@ public class EditorView extends Scene implements IEditorView, Observer {
 
     @Override
     public void setErrorStatus(String message) {
+        statusLabel.getStyleClass().removeAll();
         statusLabel.getStyleClass().add("error-label");
         statusLabel.setText(message);
     }

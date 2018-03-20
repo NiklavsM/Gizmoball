@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class GameModel extends Observable implements IGameModel {
 
     private Map<String, Gizmo> gizmos;
-    private Map<String, Absorber> absorberCollided;
+    private Map<Absorber, Ball> absorberCollided;
     private int score;
     private int totalCollisions;
     private int totalBallsAbsorbed;
@@ -34,7 +34,6 @@ public class GameModel extends Observable implements IGameModel {
 
     private void setup() {
         gizmos.clear();
-        absorberCollided.clear();
         frictionCoef1 = 0.025;
         frictionCoef2 = 0.025;
         gravityCoefficient = 25;
@@ -150,6 +149,16 @@ public class GameModel extends Observable implements IGameModel {
         return false;
     }
 
+    @Override
+    public boolean setGizmoColor(IGizmo gizmo, String color) {
+        boolean r = gizmo.setColor(color);
+        if (r) {
+            update();
+            return r;
+        }
+        return false;
+    }
+
     public Set<IGizmo> getGizmos() {
         return new HashSet<>(gizmos.values());
     }
@@ -185,6 +194,12 @@ public class GameModel extends Observable implements IGameModel {
         triggersToTrigger.clear();
         triggerOnCollision.clear();
 
+        absorberCollided.forEach((absorber, ball) -> {
+            absorber.absorbBall(ball);
+            absorber.performAction("collision");
+            absorber.trigger();
+        });
+        absorberCollided.clear();
         for (Ball ball : balls) {
             nextGizmo = null;
             if (ball != null && ball.isMoving()) {
@@ -226,22 +241,25 @@ public class GameModel extends Observable implements IGameModel {
                     // Post collision forces
                     applyForces(cd.getVelo(), tuc, ball);
                 }
-                if (absorberCollided.containsKey(ball.getId())) {
-                    absorberCollided.get(ball.getId()).absorbBall(ball);
-                    absorberCollided.remove(ball.getId());
+                if (nextGizmo instanceof Absorber) {
+                    absorberCollided.put((Absorber) nextGizmo, ball);
+                    totalBallsAbsorbed++;
                 }
-            }
-
-            // Notify observers ... redraw updated view
-            if (nextGizmo instanceof Absorber) {
-                absorberCollided.put(ball.getId(), (Absorber) gizmos.get(nextGizmo.getId()));
-                totalBallsAbsorbed++;
             }
         }
         moveMovables(time);
-        triggersToTrigger.forEach(ITrigger::trigger);
-        triggerOnCollision.forEach(collidedWith -> collidedWith.performAction("collision"));
+        triggersToTrigger.forEach(triggers -> {
+            if (!(triggers instanceof Absorber)) {
+                triggers.trigger();
+            }
+        });
+        triggerOnCollision.forEach(collidedWith -> {
+            if (!(collidedWith instanceof Absorber)) {
+                collidedWith.performAction("collision");
+            }
+        });
         update();
+
     }
 
     @Override
@@ -295,7 +313,7 @@ public class GameModel extends Observable implements IGameModel {
             List<Circle> circles = gizmo.getCircles();
             if (gizmo instanceof IMovable && ((IMovable) gizmo).isMoving() && !(gizmo instanceof Ball)) {
                 IMovable movable = ((IMovable) gizmo);
-                Double angularVelo = movable.getCurrentVelocity().angle().radians();
+                Double angularVelo = movable.getCurrentRadianVelocity();
                 Vect rotationCentre = movable.getSpinAround().getCenter();
                 for (LineSegment line : lines) {
                     time = Geometry.timeUntilRotatingWallCollision(line, rotationCentre, angularVelo, ballCircle, ballVelocity);

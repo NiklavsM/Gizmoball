@@ -7,7 +7,7 @@ public interface IMovable {
 
     boolean isMoving();
 
-    Vect getCurrentVelocity();
+    Double getCurrentRadianVelocity();
 
     Circle getSpinAround();
 
