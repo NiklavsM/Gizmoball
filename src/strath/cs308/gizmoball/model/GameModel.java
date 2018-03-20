@@ -129,8 +129,6 @@ public class GameModel extends Observable implements IGameModel {
                         .filter(ITrigger.class::isInstance)
                         .map(ITrigger.class::cast)
                         .forEach(trig -> trig.removeTriggarable((ITriggerable) gizmo));
-                setChanged();
-                notifyObservers(gizmo);
             }
             gizmos.remove(id);
             update();

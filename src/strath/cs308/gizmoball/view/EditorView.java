@@ -101,8 +101,8 @@ public class EditorView extends Scene implements IEditorView, Observer {
             drawBackground();
             drawGizmos();
             drawGrid();
+            setupTextFields();
         });
-
     }
 
     private void drawGrid() {
@@ -249,9 +249,6 @@ public class EditorView extends Scene implements IEditorView, Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        if (o instanceof ITriggerable) {
-            return;
-        }
         refresh();
     }
 
