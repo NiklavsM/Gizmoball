@@ -27,46 +27,37 @@ public class ConnectGizmoStrategy implements EventHandler<MouseEvent> {
     public ConnectGizmoStrategy(IGameModel gameModel, IEditorView editorView) {
         this.gameModel = gameModel;
         this.editorView = editorView;
-
         this.connectTo = Optional.empty();
 
         Image image = new Image("/icons/connectCursor.png");
         editorView.setCursor(new ImageCursor(image));
-
         dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);
     }
 
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-        Logger.debug(TAG, "handling connections");
-
-        if (mouseEvent.getEventType().equals(MouseEvent.MOUSE_CLICKED))
-        {
+        if (mouseEvent.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
             double pointX = mouseEvent.getX() / editorView.getPixelRatioFor(20.0);
             double pointY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
 
             Optional<IGizmo> selectedGizmo = gameModel.getGizmo(pointX, pointY);
 
-            if (selectedGizmo.isPresent())
-            {
-                if (connectTo.isPresent())
-                {
+            if (selectedGizmo.isPresent()) {
+                if (connectTo.isPresent()) {
                     connectGizmos(selectedGizmo.get());
-
-
                     UndoRedo.INSTANCE.saveState(gameModel);
                 } else
-                {
                     saveSelectedTarget(selectedGizmo);
-                }
             }
         }
     }
 
+
     private void saveSelectedTarget (Optional < IGizmo > gizmo) {
         if (gizmo.get() instanceof ITrigger) {
             connectTo = Optional.of((ITrigger) gizmo.get());
+            editorView.setStatus(dictionary.getString("EDITOR_STATUS_CONNECT_FIRST_SELECTED"));
         } else {
             editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_CONNECT_NOTTRIGGER_ERROR"));
         }

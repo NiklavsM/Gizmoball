@@ -23,29 +23,25 @@ public class RemoveGizmoStrategy implements EventHandler<MouseEvent> {
     public RemoveGizmoStrategy(IGameModel gameModel, IEditorView editorView) {
         this.gameModel = gameModel;
         this.editorView = editorView;
-
         Image image = new Image("/icons/removeCursor.png");
         editorView.setCursor(new ImageCursor(image));
-
         dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);
     }
 
     @Override
     public void handle(MouseEvent mouseEvent) {
         if (mouseEvent.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
-
             double pointX = mouseEvent.getX() / editorView.getPixelRatioFor(20.0);
             double pointY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
 
             Optional<IGizmo> gizmo = gameModel.getGizmo(pointX, pointY);
+
             if (gizmo.isPresent()) {
                 gameModel.removeGizmo(gizmo.get());
                 editorView.setStatus(gizmo.get().getType() + " " + dictionary.getString("EDITOR_STATUS_REMOVE_SUCCESS"));
-
                 UndoRedo.INSTANCE.saveState(gameModel);
-            } else {
+            } else
                 editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_REMOVE_ERROR"));
-            }
         }
     }
 }
