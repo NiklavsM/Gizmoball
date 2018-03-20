@@ -18,6 +18,7 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
     private static final String TAG = "TopToolbarEventHandler";
     private IGameModel gameModel;
     private IEditorView editView;
+    private File currentFile;
 
     public TopToolbarEventHandler(IGameModel gameModel, IEditorView editorView) {
         this.gameModel = gameModel;
@@ -37,15 +38,21 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
                 break;
 
             case "topSaveButton":
-                saveGame();
+                save();
+                break;
+
+            case "topSaveAsButton":
+                saveAs();
                 break;
 
             case "topClearButton":
                 clearBoard();
                 break;
+
             case "undoButton":
                 undo();
                 break;
+
             case "redoButton":
                 redo();
                 break;
@@ -53,9 +60,11 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
             case "topGridButton":
                 toggleGrid();
                 break;
+
             case "consoleButton":
                 openConsole();
                 break;
+
             case "soundSettingsButton":
                 openSettings();
                 break;
@@ -65,7 +74,6 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
 
 
     private void redo() {
-
         UndoRedo.INSTANCE.redo(gameModel);
         gameModel.update();
     }
@@ -101,12 +109,20 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
         }
     }
 
-    private void saveGame() {
-        File fileToSave = FileChooser.showOpenDialog();
-        GameSaver gs = new GameSaver(gameModel, fileToSave);
-
-        if (fileToSave == null) {
+    private void saveAs() {
+        File file = FileChooser.showSaveDialog();
+        if (file == null) {
             Logger.debug(TAG, "Saving file dialog cancelled");
+            return;
+        }
+        currentFile = file;
+        save();
+    }
+
+    private void save() {
+        GameSaver gs = new GameSaver(gameModel, currentFile);
+        if (currentFile == null) {
+            saveAs();
             return;
         }
 
@@ -115,7 +131,6 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
         } catch (IllegalAccessException | FileNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
     private void switchToPlayMode() {
