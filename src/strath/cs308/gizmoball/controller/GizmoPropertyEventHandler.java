@@ -54,9 +54,7 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent> {
     }
 
     private void changeGizmoColor() {
-
-        if (gizmo.setColor(editorView.getGizmoColor())) {
-            editorView.refresh();
+        if (gameModel.setGizmoColor(gizmo, editorView.getGizmoColor())) {
             editorView.setStatus(dictionary.getString("EDITOR_STATUS_COLORCHANGED"));
         } else {
             editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_COLORCHANGED_ERROR"));
