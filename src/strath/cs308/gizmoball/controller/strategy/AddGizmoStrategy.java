@@ -185,7 +185,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
                 }
             }
 
-            editorView.setStatus(gizmoType + dictionary.getString("EDITOR_STATUS_GIZMOSADDED"));
+            editorView.setStatus(gizmoType + " " + dictionary.getString("EDITOR_STATUS_GIZMOSADDED"));
             UndoRedo.INSTANCE.saveState(gameModel);
         }
     }

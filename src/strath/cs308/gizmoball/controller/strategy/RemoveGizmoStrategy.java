@@ -40,7 +40,7 @@ public class RemoveGizmoStrategy implements EventHandler<MouseEvent> {
             Optional<IGizmo> gizmo = gameModel.getGizmo(pointX, pointY);
             if (gizmo.isPresent()) {
                 gameModel.removeGizmo(gizmo.get());
-                editorView.setStatus(gizmo.get().getType() + dictionary.getString("EDITOR_STATUS_REMOVE_SUCCESS"));
+                editorView.setStatus(gizmo.get().getType() + " " + dictionary.getString("EDITOR_STATUS_REMOVE_SUCCESS"));
 
                 UndoRedo.INSTANCE.saveState(gameModel);
             } else {

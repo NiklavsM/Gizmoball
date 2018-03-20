@@ -345,9 +345,6 @@ public class EditorView extends Scene implements IEditorView, Observer {
                 return;
 
             GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
-            gameModel.getGizmoBalls().forEach(e -> {
-                Logger.debug(TAG, e.getStartX() + "," + e.getStartY());
-            });
             gizmoDrawer.drawGizmo(gizmo, true);
         }
     }
@@ -356,10 +353,8 @@ public class EditorView extends Scene implements IEditorView, Observer {
         Double Xcoord = Math.floor(x), Ycoord = Math.floor(y);
         for (int posX = Xcoord.intValue(); posX <= Xcoord.intValue() + 1; posX++) {
             for (int posY = Ycoord.intValue(); posY <= Ycoord.intValue() + 1; posY++) {
-                if (!gameModel.getGizmo(posX, posY).equals(Optional.empty())) {
-                    Logger.debug(TAG, " x,y: " + posX + " , " + posY);
+                if (!gameModel.getGizmo(posX, posY).equals(Optional.empty()))
                     return true;
-                }
             }
         }
         return false;
