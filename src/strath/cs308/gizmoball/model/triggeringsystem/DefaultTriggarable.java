@@ -22,10 +22,14 @@ public class DefaultTriggarable implements ITriggerable {
 
     @Override
     public void performAction(Object args) {
-        if (action == null) {
-            return;
+
+        if (action != null) {
+            if (args instanceof String) {
+                String event = (String) args;
+                action.doAction(event);
+            }
         }
-        action.doAction(args);
+
     }
 
     @Override

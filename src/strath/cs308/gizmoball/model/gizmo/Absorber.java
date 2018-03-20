@@ -15,7 +15,7 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
 
     private static final String TAG = "Absorber";
     private final DefaultTriggarable triggerable;
-    private final DefaultCollisionTrigger collisionTrigger;
+    private final DefaultTrigger collisionTrigger;
     private Stack<Ball> ballsAbsorbed;
 
     public Absorber(double x1, double y1, double x2, double y2, String id) {
@@ -23,7 +23,7 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
         ballsAbsorbed = new Stack<>();
         triggerable = new DefaultTriggarable();
         setAction(this);
-        collisionTrigger = new DefaultCollisionTrigger();
+        collisionTrigger = new DefaultTrigger();
         setScoreValue(-100);
 
         setColor("#e91e63");

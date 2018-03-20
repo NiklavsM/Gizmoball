@@ -10,11 +10,11 @@ import java.util.Set;
 public class Triangle extends Gizmo implements ITriggerable, ITrigger {
 
     private final DefaultTriggarable triggerable;
-    private final DefaultCollisionTrigger collisionTrigger;
+    private final DefaultTrigger collisionTrigger;
 
     public Triangle(double x, double y, String id) {
         super(x, y, x + 1, y + 1, id);
-        collisionTrigger = new DefaultCollisionTrigger();
+        collisionTrigger = new DefaultTrigger();
         triggerable = new DefaultTriggarable();
 
         setColor("#03a9f4");

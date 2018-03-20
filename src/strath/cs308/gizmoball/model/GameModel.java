@@ -193,7 +193,11 @@ public class GameModel extends Observable implements IGameModel {
                     nextGizmo = cd.getGizmo();
 
                     if (nextGizmo instanceof ITrigger) {
-                        triggersToTrigger.add((ITrigger) nextGizmo);
+                        ((ITrigger) nextGizmo).trigger();
+                    }
+
+                    if (nextGizmo instanceof ITriggerable) {
+                        ((ITriggerable) nextGizmo).performAction("collusion");
                     }
 
                     if (nextGizmo instanceof IMovable && !(nextGizmo instanceof Ball) && tuc < timeToMoveMovables)
@@ -221,7 +225,6 @@ public class GameModel extends Observable implements IGameModel {
         }
         moveMovables(timeToMoveMovables);
         update();
-        triggersToTrigger.forEach(ITrigger::trigger);
     }
 
     @Override

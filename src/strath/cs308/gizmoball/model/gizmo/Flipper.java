@@ -227,7 +227,7 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
         if (args == null) {
             return;
         }
-        if (args.equals("COLLISION")) {
+        if (args.equals("trigger")) {
             if (movementStatus.equals(Movement.TOP)) {
                 down();
             } else {
@@ -261,11 +261,11 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
             String event = (String) args;
             if (defaultTriggarable.getTriggers().contains(event)) {
                 if (event.contains("up")) {
-                    down();
-                }
-
-                if (event.contains("down")) {
-                    up();
+                    doAction("KEY_PRESSED");
+                } else if (event.contains("down")) {
+                    doAction("KEY_RELEASED");
+                } else {
+                   doAction(event);
                 }
             }
         }

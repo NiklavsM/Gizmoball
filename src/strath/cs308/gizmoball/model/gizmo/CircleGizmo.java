@@ -9,14 +9,14 @@ import java.util.Set;
 public class CircleGizmo extends Gizmo implements ITrigger, ITriggerable {
 
     private final DefaultTriggarable triggerable;
-    private final DefaultCollisionTrigger collisionTrigger;
+    private final DefaultTrigger collisionTrigger;
 
     public CircleGizmo(double x, double y, String id) {
         super(x, y, x + 1, y + 1, id);
 
         Circle circle = new Circle(x + 0.5, y + 0.5, 0.5);
         rotatingPoint = circle.getCenter();
-        collisionTrigger = new DefaultCollisionTrigger();
+        collisionTrigger = new DefaultTrigger();
         triggerable = new DefaultTriggarable();
         setScoreValue(10);
 
