@@ -47,8 +47,8 @@ public class GizmoBall extends Application {
             UndoRedo.INSTANCE.saveState(gameModel);
 
             //Doesn't work in xml
-            primaryStage.setMinWidth(500);
-            primaryStage.setMinHeight(530);
+            primaryStage.setMinWidth(750);
+            primaryStage.setMinHeight(600);
 
             //primaryStage.setScene(new EditorView(gameModel, keyHandler));
             primaryStage.setScene(new PlayView(gameModel));
