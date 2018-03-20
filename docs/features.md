@@ -22,7 +22,7 @@
 **Editor Mode**
 
 * Gizmo preview before addition to the board (if addition is possible) 
-* Preview on drag 
+* Preview on drag
 * Adding gizmos on drag
 * Balls get reflected if the absorber is full
 * Adding balls in absorber

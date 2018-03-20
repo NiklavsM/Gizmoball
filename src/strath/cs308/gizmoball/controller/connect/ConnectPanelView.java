@@ -62,7 +62,7 @@ public class ConnectPanelView {
 
 
     public void setWaitingForKeyStatusB() {
-        String s = "Click Gizmo or Press Key";
+        String s = "Click on a Gizmo";
         connectBTextField.setText(s);
     }
 
