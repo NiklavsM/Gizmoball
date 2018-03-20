@@ -1,48 +1,76 @@
 # Gizmoball Features
 
-## Extra Features
-
-**Play Mode**
+## Play Mode
 
 * Scoring system implemented - gizmo collisions grant points
  (flippers, balls and walls collisions don't), absorbed balls deduct points
 * Side panel with dynamic game statistics - balls in play; balls absorbed
 * In-game menu with only the most useful buttons
-* Pause menu
+* Pause menu with translucent background
 * Game animation stop and blur on background when pause menu is invoked 
-* Nice and smooth JavaFX GUI
+* Nice and smooth JavaFX GUI (60 FPS)
 * Multiple balls (limit of 50)
 * Music introduced with an option of muting it 
 * Game score and other stats
-* 10+ multi language support
-* Spinner Gizmmo
+* Supports 10+ language
+* Balls get reflected if the absorber is full
+* Spinner Gizmmo (Rotates continually)
 * Rhombius Gizmo
 * Octagon Gizmo 
 
-**Editor Mode**
+## Editor Mode
 
-* Gizmo preview before addition to the board (if addition is possible) 
-* Preview on drag
-* Adding gizmos on drag
-* Balls get reflected if the absorber is full
-* Adding balls in absorber
-* Adding absorbers on balls
+### Editing
 * Visible Gizmo Drawings
-* Custom cursors for different modes (add, move, connect, rotate, delete)
-* Toggle grid
-* Flexible editor
+* Status bar with relevant message
+* Toggle grid on and off
+
+### Modes
+* Custom cursor tool for each mode
+
+**Add tool**
+
+* Allows you to add a gizmo to the map
+* Click and drag in any direction to fill space with gizmos
+* Gizmo preview before addition to the board (if addition is possible) 
+* Gizmo Preview on drag
+* Can add balls to absorber
+* Adding absorbers on balls
+
+**Move tool**
+* Allows you to move a gizmo to any free position
+* Can move absorbers with balls in it
+
+**Connect tool**
+* Allows you to connect two gizmos together
+
+**Rotate tool**
+* Rotates a gizmo by 90 degrees
+
+**Delete tool**
+* Remove the select gizmo from the map
+
+**Connect tool**
+* Easy gizmo key connection interface
+
+### Properties
 * Properties tab for every gizmo
 * Ability to change gizmo colour
+
+### Undo and Redo
+* Undo changes made
+* Redo changes made
+
+### Saving and Loading
 * Check for .gizmo extension
 * Can add comments to .gizmo files
-* Can move absorbers with balls in it
-* Can change colors of the gizmos
-* New gizmos Octagon and Rhombus
 * Can load and save from both play view and edit mode
-* Status bar with relevant message
-* Console - Let's you change the model with gizmoball commands in real time 
+* Single line comments in the `.gizmo` files (starts with `# `)
+
+### Console
+* Let's you change the model with gizmoball commands in real time 
+* Uses Gizmoball syntax
+
+### Connection
+* Easy gizmo key connection interface
 * Connect a key to a gizmo
-
-**Misc**
-
-* single line comments in the `.gizmo` files (starts with `# `)
