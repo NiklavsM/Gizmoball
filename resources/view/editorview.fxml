@@ -390,7 +390,7 @@
                                 </VBox>
 
                                 <VBox GridPane.rowIndex="2"
-                                      GridPane.columnIndex="1"
+                                      GridPane.columnIndex="0"
                                       spacing="16"
                                       alignment="CENTER">
                                     <Button fx:id="addLeftFlipperMode">
@@ -406,7 +406,7 @@
                                 </VBox>
 
                                 <VBox GridPane.rowIndex="2"
-                                      GridPane.columnIndex="2"
+                                      GridPane.columnIndex="1"
                                       spacing="16"
                                       alignment="CENTER">
                                     <Button fx:id="addRightFlipperMode">
