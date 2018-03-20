@@ -197,6 +197,7 @@ public class GameModel extends Observable implements IGameModel {
         absorberCollided.forEach((absorber, ball) -> {
             absorber.absorbBall(ball);
             absorber.performAction("collision");
+            absorber.trigger();
         });
         absorberCollided.clear();
         for (Ball ball : balls) {
@@ -247,9 +248,13 @@ public class GameModel extends Observable implements IGameModel {
             }
         }
         moveMovables(time);
-        triggersToTrigger.forEach(ITrigger::trigger);
+        triggersToTrigger.forEach(triggers -> {
+            if (!(triggers instanceof Absorber)) {
+                triggers.trigger();
+            }
+        });
         triggerOnCollision.forEach(collidedWith -> {
-            if (!(collidedWith instanceof Absorber)){
+            if (!(collidedWith instanceof Absorber)) {
                 collidedWith.performAction("collision");
             }
         });
