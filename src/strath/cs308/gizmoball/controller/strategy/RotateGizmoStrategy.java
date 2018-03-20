@@ -33,20 +33,12 @@ public class RotateGizmoStrategy implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent mouseEvent) {
 
-        if (mouseEvent.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
+        if (mouseEvent.getEventType().equals(MouseEvent.MOUSE_RELEASED)) {
 
             double pointX = mouseEvent.getX() / editorView.getPixelRatioFor(20.0);
             double pointY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
 
             Optional<IGizmo> gizmo = gameModel.getGizmo(pointX, pointY);
-
-            gizmo.ifPresent(gizmo1 -> {
-                if (!gizmo1.getType().equals(IGizmo.Type.ABSORBER) && !gizmo1.getType().equals(IGizmo.Type.BALL)) {
-                    gameModel.rotate(gizmo1.getId());
-
-                    UndoRedo.INSTANCE.saveState(gameModel);
-                }
-            });
 
             if (gizmo.isPresent()) {
                 if (!gizmo.get().getType().equals(IGizmo.Type.ABSORBER) && !gizmo.get().getType().equals(IGizmo.Type.BALL)) {
