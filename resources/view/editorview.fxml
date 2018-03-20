@@ -261,6 +261,7 @@
                           styleClass="default-padding, GizmoPane">
                         <Label text="%EDITOR_RIGHTBAR_TAB_GIZMO"
                                styleClass="card-title"/>
+
                         <ScrollPane maxHeight="300">
                             <GridPane hgap="16"
                                       vgap="16"
@@ -308,7 +309,7 @@
 
                                             <!--<ImageView fitHeight="25"-->
                                             <!--fitWidth="25">-->
-                                            <!--<Image url="/icons/tri.png" />-->
+                                            <!--<Image url="/icons/triangle.png" />-->
                                             <!--</ImageView>-->
                                         </graphic>
                                     </Button>
@@ -367,7 +368,7 @@
                                         <graphic>
                                             <ImageView fitWidth="46"
                                                        fitHeight="46">
-                                                <Image url="/icons/spinner.png"/>
+                                                <Image url="/icons/gizmo/spinner.png"/>
                                             </ImageView>
                                         </graphic>
                                     </Button>
@@ -396,7 +397,7 @@
                                         <graphic>
                                             <ImageView fitWidth="10"
                                                        fitHeight="40">
-                                                <Image url="/icons/flipper.png"/>
+                                                <Image url="/icons/gizmo/flipper.png"/>
                                             </ImageView>
                                         </graphic>
                                     </Button>
@@ -412,14 +413,13 @@
                                         <graphic>
                                             <ImageView fitWidth="10"
                                                        fitHeight="40">
-                                                <Image url="/icons/flipper.png"/>
+                                                <Image url="/icons/gizmo/flipper.png"/>
                                             </ImageView>
                                         </graphic>
                                     </Button>
                                     <Label text="%EDITOR_RIGHTBAR_RIGHTFLIPPER"
                                            styleClass="regular-font"/>
                                 </VBox>
-
 
                             </GridPane>
                         </ScrollPane>
@@ -477,7 +477,6 @@
                             </VBox>
 
                         </VBox>
-
 
                     </VBox>
 
