@@ -32,6 +32,7 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable {
         super(x1, y1, x1 + 2, y1 + 2, id);
 
         velocity = new Vect( Angle.DEG_180);
+        velocity = new Vect(new Angle(velocity.angle().radians() * -1));
         setReflectionCoefficient(0.9);
     }
 
@@ -107,8 +108,8 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable {
         return rotated;
     }
 
-    public Vect getCurrentVelocity() {
-        return velocity;
+    public Double getCurrentRadianVelocity() {
+        return velocity.angle().radians();
     }
 
     @Override

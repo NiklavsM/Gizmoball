@@ -79,8 +79,8 @@ public class Ball extends Gizmo implements IMovable {
     }
 
     @Override
-    public Vect getCurrentVelocity() {
-        return velocity;
+    public Double getCurrentRadianVelocity() {
+        return velocity.angle().radians();
     }
 
     @Override
