@@ -4,8 +4,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import strath.cs308.gizmoball.model.Dot;
 import strath.cs308.gizmoball.model.GameModel;
+import strath.cs308.gizmoball.model.triggeringsystem.IAction;
+import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -100,5 +103,18 @@ public class GizmoTest {
         Octagon octa = new Octagon(5, 8);
         model.addGizmo(ball);
         assertFalse(model.addGizmo(octa), "An octagon cannot be placed as there is already a ball in the specified location!");
+    }
+
+    @Test
+    void testOctagonType() {
+        Octagon octa = new Octagon(3, 18);
+        assertEquals(octa.getType(), IGizmo.Type.OCTAGON, "Type should be OCTAGON!");
+    }
+
+    @Test
+    void testOctagonTriggerable() {
+        Octagon octa = new Octagon(6, 1);
+        octa.addActionTrigger("trigger1");
+        assertTrue(octa.getTriggers().contains("trigger1"), "The octagon should contain the newly added trigger!");
     }
 }
