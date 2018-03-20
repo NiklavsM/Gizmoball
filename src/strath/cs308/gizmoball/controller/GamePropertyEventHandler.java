@@ -15,12 +15,10 @@ public class GamePropertyEventHandler implements EventHandler<ActionEvent> {
     private IGameModel gameModel;
     private IEditorView editorView;
     private ResourceBundle dictionary;
-    private InGameKeyEventHandler keyEventHandler;
 
-    public GamePropertyEventHandler(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IEditorView editView) {
+    public GamePropertyEventHandler(IGameModel gameModel, IEditorView editView) {
         this.gameModel = gameModel;
         this.editorView = editView;
-        this.keyEventHandler = keyEventHandler;
         dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);
     }
 
@@ -43,7 +41,7 @@ public class GamePropertyEventHandler implements EventHandler<ActionEvent> {
         try {
             if (gameModel.setGravityCoefficient(editorView.getGravityInput())) {
 
-                UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
+                UndoRedo.INSTANCE.saveState(gameModel);
                 editorView.setStatus(dictionary.getString("EDITOR_STATUS_GRAVITY_SET") + editorView.getGravityInput());
             } else {
                 editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_GRAVITY_ERROR"));
@@ -57,7 +55,7 @@ public class GamePropertyEventHandler implements EventHandler<ActionEvent> {
         try {
             if (gameModel.setFrictionM1(editorView.getFriction1Input())) {
 
-                UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
+                UndoRedo.INSTANCE.saveState(gameModel);
                 editorView.setStatus(dictionary.getString("EDITOR_STATUS_FRICTION1_SET") + editorView.getFriction1Input());
             } else {
                 editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_FRICTION1_ERROR"));
@@ -71,7 +69,7 @@ public class GamePropertyEventHandler implements EventHandler<ActionEvent> {
         try {
             if (gameModel.setFrictionM2(editorView.getFriction2Input())) {
 
-                UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
+                UndoRedo.INSTANCE.saveState(gameModel);
                 editorView.setStatus(dictionary.getString("EDITOR_STATUS_FRICTION2_SET") + editorView.getFriction2Input());
             } else {
                 editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_FRICTION2_ERROR"));

@@ -20,12 +20,10 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
     private final IGameModel gameModel;
     private Optional<IGizmo> selectedGizmo;
     private ResourceBundle dictionary;
-    private final InGameKeyEventHandler keyEventHandler;
 
-    public MoveGizmoStrategy(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IEditorView editorView) {
+    public MoveGizmoStrategy(IGameModel gameModel, IEditorView editorView) {
         this.gameModel = gameModel;
         this.editorView = editorView;
-        this.keyEventHandler = keyEventHandler;
 
         dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);
         selectedGizmo = Optional.empty();
@@ -42,7 +40,7 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
                 moveTo(mouseEvent);
 
 
-                UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
+                UndoRedo.INSTANCE.saveState(gameModel);
             } else {
                 select(mouseEvent);
             }

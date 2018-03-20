@@ -1,7 +1,7 @@
 package strath.cs308.gizmoball.model.gizmo;
 
 import mit.physics.LineSegment;
-import strath.cs308.gizmoball.model.triggeringsystem.DefaultCollisionTrigger;
+import strath.cs308.gizmoball.model.triggeringsystem.DefaultTrigger;
 import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
@@ -14,7 +14,7 @@ public class Walls extends Gizmo implements ITrigger {
     public Walls() {
         super(0, 0, 20, 20, "OuterWalls");
         setColor("#000000");
-        trigger = new DefaultCollisionTrigger();
+        trigger = new DefaultTrigger();
     }
 
     @Override

@@ -2,6 +2,7 @@ package strath.cs308.gizmoball.model.gizmo;
 
 import mit.physics.Circle;
 import mit.physics.LineSegment;
+import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.model.triggeringsystem.*;
 import strath.cs308.gizmoball.utils.Logger;
 
@@ -14,7 +15,7 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
 
     private static final String TAG = "Absorber";
     private final DefaultTriggarable triggerable;
-    private final DefaultCollisionTrigger collisionTrigger;
+    private final DefaultTrigger collisionTrigger;
     private Stack<Ball> ballsAbsorbed;
 
     public Absorber(double x1, double y1, double x2, double y2, String id) {
@@ -22,7 +23,7 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
         ballsAbsorbed = new Stack<>();
         triggerable = new DefaultTriggarable();
         setAction(this);
-        collisionTrigger = new DefaultCollisionTrigger();
+        collisionTrigger = new DefaultTrigger();
         setScoreValue(-100);
 
         setColor("#e91e63");
@@ -136,7 +137,15 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
 
     @Override
     public void performAction(Object args) {
-        triggerable.performAction(args);
+//        triggerable.performAction(args);
+        System.out.println(args);
+        triggerable.getTriggers()
+                .parallelStream()
+                .forEach(s -> {
+                    if (s.equals(args)) {
+                        triggerable.getCurrentAction().doAction(null);
+                    }
+                });
     }
 
     @Override
@@ -160,7 +169,38 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
     }
 
     @Override
+    public boolean addActionTrigger(String trigger) {
+        return triggerable.addActionTrigger(trigger);
+    }
+
+    @Override
+    public boolean removeActionTrigger(String trigger) {
+        return triggerable.removeActionTrigger(trigger);
+    }
+
+    @Override
     public String id() {
         return id;
+    }
+
+    @Override
+    public String toString()
+    {
+        StringBuilder builder = new StringBuilder();
+        builder.append(super.toString());
+
+        triggerable.getTriggers().forEach(s -> {
+            if (s.contains("key")) {
+                builder.append("\n ")
+                        .append(GameLoader.KEY_CONNECT_COMMAND)
+                        .append(" ")
+                        .append(s)
+                        .append(" ")
+                        .append(getId())
+                        .append("\n");
+            }
+        });
+
+        return builder.toString();
     }
 }
