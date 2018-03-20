@@ -25,7 +25,7 @@ public class GameLoader {
     public static final String MOVE_COMMAND = "move";
     public static final String WALLS_NAME = "OuterWalls";
     public static final String COLOR_COMMAND = "color";
-    public static final String CLEARBOARD_COMMAND = "clearboard";
+    public static final String CLEARBOARD_COMMAND = "clearmap";
     private static final String TAG = "GameLoader";
     private final IGizmoFactory gizmoFactory;
     private final IGameModel gameModel;

@@ -80,8 +80,7 @@
 ### Console
 * Let's you change the model with gizmoball commands in real time 
 * Uses Gizmoball syntax
-* clear command
-* prompt
+* clearscreen command
 
 ### Connection
 * Easy gizmo key connection interface
