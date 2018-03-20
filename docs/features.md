@@ -18,6 +18,7 @@
 * Rhombius Gizmo
 * Octagon Gizmo 
 * Save and Save as
+* Game icon
 
 ## Editor Mode
 
