@@ -100,6 +100,11 @@ public class Square extends Gizmo implements ITrigger, ITriggerable {
     }
 
     @Override
+    public Set<String> getTriggers() {
+        return triggerable.getTriggers();
+    }
+
+    @Override
     public String id() {
         return id;
     }

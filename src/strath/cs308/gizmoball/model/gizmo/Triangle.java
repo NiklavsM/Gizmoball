@@ -96,6 +96,11 @@ public class Triangle extends Gizmo implements ITriggerable, ITrigger {
     }
 
     @Override
+    public Set<String> getTriggers() {
+        return triggerable.getTriggers();
+    }
+
+    @Override
     public String id() {
         return id;
     }
