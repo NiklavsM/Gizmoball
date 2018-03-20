@@ -17,7 +17,7 @@ import java.util.Locale;
 public class GizmoBall extends Application {
 
     private static final String TAG = "GizmoBall";
-    public static Locale locale = new Locale("en");
+    public static Locale locale = new Locale("bg");
     private static Stage stage;
 
     public static void main(String[] args) {
