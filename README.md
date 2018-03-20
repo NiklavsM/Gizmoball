@@ -12,9 +12,10 @@ CS308 Semester 2 Group Project
 
 [Testing Strategy](docs/preliminaryrelease/unit_test_strategy.md)
 
+[Features](docs/features.md)
 
 
-## Intellij Setup
+## IntelliJ Setup
 
 Mark src as Source Root
 
