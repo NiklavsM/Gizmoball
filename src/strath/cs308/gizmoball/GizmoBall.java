@@ -10,7 +10,8 @@ import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.utils.Logger;
-import strath.cs308.gizmoball.view.PlayView;
+import strath.cs308.gizmoball.view.EditorView;
+import strath.cs308.gizmoball.view.LauncherView;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -48,7 +49,7 @@ public class GizmoBall extends Application {
             primaryStage.setMinHeight(600);
 
             //primaryStage.setScene(new EditorView(gameModel, keyHandler));
-            primaryStage.setScene(new PlayView(gameModel));
+            primaryStage.setScene(new LauncherView(gameModel));
             primaryStage.show();
             stage = primaryStage;
             setIcon();

@@ -283,3 +283,15 @@ ColorPicker, ComboBox {
     -fx-background-color: #37474F;
     -fx-text-fill: #B0BEC5;
 }
+
+
+/* Launcher */
+
+
+.game-title {
+    -fx-font: 60px Arial;
+}
+
+.title-box {
+    -fx-padding: 24px;
+}
