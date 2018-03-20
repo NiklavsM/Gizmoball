@@ -89,7 +89,7 @@ public class GameModel extends Observable implements IGameModel {
             gizmos
                     .values()
                     .parallelStream()
-                    .filter(g -> g.overlapsWithGizmo(g)
+                    .filter(g -> ((Gizmo) gizmo).overlapsWithGizmo(g)
                             && g.getType().equals(IGizmo.Type.BALL))
                     .map(Ball.class::cast)
                     .forEach(ball -> {
