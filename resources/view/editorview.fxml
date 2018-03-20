@@ -261,10 +261,10 @@
                           styleClass="default-padding, GizmoPane">
                         <Label text="%EDITOR_RIGHTBAR_TAB_GIZMO"
                                styleClass="card-title"/>
-                        <ScrollPane maxHeight="250">
+                        <ScrollPane maxHeight="300">
                             <GridPane hgap="16"
                                       vgap="16"
-                                      maxHeight="100"
+                                      maxHeight="200"
                                       minWidth="200"
                                       fx:id="addGizmoOptions"
                                       alignment="CENTER">
@@ -316,8 +316,8 @@
                                            styleClass="regular-font"/>
                                 </VBox>
 
-                                <VBox GridPane.rowIndex="1"
-                                      GridPane.columnIndex="0"
+                                <VBox GridPane.rowIndex="0"
+                                      GridPane.columnIndex="3"
                                       spacing="16"
                                       alignment="CENTER">
                                     <Button fx:id="addAbsorberMode">
@@ -332,7 +332,7 @@
                                 </VBox>
 
                                 <VBox GridPane.rowIndex="1"
-                                      GridPane.columnIndex="1"
+                                      GridPane.columnIndex="0"
                                       spacing="16"
                                       alignment="CENTER">
                                     <Button fx:id="addRhombusMode">
@@ -345,7 +345,7 @@
                                 </VBox>
 
                                 <VBox GridPane.rowIndex="1"
-                                      GridPane.columnIndex="2"
+                                      GridPane.columnIndex="1"
                                       spacing="16"
                                       alignment="CENTER">
                                     <Button fx:id="addOctagonMode">
@@ -359,8 +359,24 @@
                                            styleClass="regular-font"/>
                                 </VBox>
 
-                                <VBox GridPane.rowIndex="2"
-                                      GridPane.columnIndex="0"
+                                <VBox GridPane.rowIndex="1"
+                                      GridPane.columnIndex="2"
+                                      spacing="16"
+                                      alignment="CENTER">
+                                    <Button fx:id="addSpinnerMode">
+                                        <graphic>
+                                            <ImageView fitWidth="46"
+                                                       fitHeight="46">
+                                                <Image url="/icons/spinner.png"/>
+                                            </ImageView>
+                                        </graphic>
+                                    </Button>
+                                    <Label text="%EDITOR_RIGHTBAR_SPINNER"
+                                           styleClass="regular-font"/>
+                                </VBox>
+
+                                <VBox GridPane.rowIndex="1"
+                                      GridPane.columnIndex="3"
                                       spacing="16"
                                       alignment="CENTER">
                                     <Button fx:id="addBallMode">
@@ -379,7 +395,7 @@
                                     <Button fx:id="addLeftFlipperMode">
                                         <graphic>
                                             <ImageView fitWidth="10"
-                                                       fitHeight="30">
+                                                       fitHeight="40">
                                                 <Image url="/icons/flipper.png"/>
                                             </ImageView>
                                         </graphic>
@@ -395,7 +411,7 @@
                                     <Button fx:id="addRightFlipperMode">
                                         <graphic>
                                             <ImageView fitWidth="10"
-                                                       fitHeight="30">
+                                                       fitHeight="40">
                                                 <Image url="/icons/flipper.png"/>
                                             </ImageView>
                                         </graphic>
@@ -403,21 +419,7 @@
                                     <Label text="%EDITOR_RIGHTBAR_RIGHTFLIPPER"
                                            styleClass="regular-font"/>
                                 </VBox>
-                                <VBox GridPane.rowIndex="3"
-                                      GridPane.columnIndex="0"
-                                      spacing="16"
-                                      alignment="CENTER">
-                                    <Button fx:id="addSpinnerMode">
-                                        <graphic>
-                                            <ImageView fitWidth="46"
-                                                       fitHeight="46">
-                                                <!--<Image url="/icons/spinner.png"/>-->
-                                            </ImageView>
-                                        </graphic>
-                                    </Button>
-                                    <Label text="%EDITOR_RIGHTBAR_SPINNER"
-                                           styleClass="regular-font"/>
-                                </VBox>
+
 
                             </GridPane>
                         </ScrollPane>
