@@ -22,7 +22,6 @@ public class GizmoSelectorEventHandler implements EventHandler<MouseEvent> {
     public void handle(MouseEvent mouseEvent) {
         switch (((Node) mouseEvent.getSource()).getId()) {
             case "addTriangleMode":
-
                 editorView.setCanvasMode(new AddGizmoStrategy(gameModel, editorView, IGizmo.Type.TRIANGLE));
                 break;
 

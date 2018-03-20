@@ -26,8 +26,8 @@ public class ToolModeEventHandler implements EventHandler<MouseEvent> {
     @Override
     public void handle(MouseEvent mouseEvent) {
         switch (((Node) mouseEvent.getSource()).getId()) {
-            case "removeToolButton":
 
+            case "removeToolButton":
                 editorView.setCanvasMode(new RemoveGizmoStrategy(gameModel, editorView));
                 editorView.setStatus(dictionary.getString("EDITOR_STATUS_REMOVETOOL"));
                 break;
@@ -38,13 +38,11 @@ public class ToolModeEventHandler implements EventHandler<MouseEvent> {
                 break;
 
             case "connectToolButton":
-
                 editorView.setCanvasMode(new ConnectGizmoStrategy(gameModel, editorView));
                 editorView.setStatus(dictionary.getString("EDITOR_STATUS_CONNECTTOOL"));
                 break;
 
             case "moveToolButton":
-
                 editorView.setCanvasMode(new MoveGizmoStrategy(gameModel, editorView));
                 editorView.setStatus(dictionary.getString("EDITOR_STATUS_MOVETOOL"));
                 break;
