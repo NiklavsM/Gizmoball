@@ -16,14 +16,16 @@ import static strath.cs308.gizmoball.model.gizmo.IGizmo.Type.*;
 
 public class GameLoader {
 
-    public static final String ROTATE_COMMAND = "Rotate";
-    public static final String KEY_CONNECT_COMMAND = "KeyConnect";
-    public static final String CONNECT_COMMAND = "Connect";
-    public static final String GRAVITY_COMMAND = "Gravity";
-    public static final String FRICTION_COMMAND = "Friction";
-    public static final String DELETE_COMMAND = "Delete";
-    public static final String MOVE_COMMAND = "Move";
+    public static final String ROTATE_COMMAND = "rotate";
+    public static final String KEY_CONNECT_COMMAND = "keyconnect";
+    public static final String CONNECT_COMMAND = "connect";
+    public static final String GRAVITY_COMMAND = "gravity";
+    public static final String FRICTION_COMMAND = "friction";
+    public static final String DELETE_COMMAND = "delete";
+    public static final String MOVE_COMMAND = "move";
     public static final String WALLS_NAME = "OuterWalls";
+    public static final String COLOR_COMMAND = "color";
+    public static final String CLEARBOARD_COMMAND = "clearmap";
     private static final String TAG = "GameLoader";
     private final IGizmoFactory gizmoFactory;
     private final IGameModel gameModel;
@@ -39,16 +41,16 @@ public class GameLoader {
         gizmoFactory = new GizmoFactory();
 
         gizmoCommandToEnum = new HashMap<>();
-        gizmoCommandToEnum.put("Circle", CIRCLE);
-        gizmoCommandToEnum.put("Square", SQUARE);
-        gizmoCommandToEnum.put("Triangle", TRIANGLE);
-        gizmoCommandToEnum.put("LeftFlipper", LEFT_FLIPPER);
-        gizmoCommandToEnum.put("RightFlipper", RIGHT_FLIPPER);
-        gizmoCommandToEnum.put("Ball", BALL);
-        gizmoCommandToEnum.put("Absorber", ABSORBER);
-        gizmoCommandToEnum.put("Rhombus", RHOMBUS);
-        gizmoCommandToEnum.put("Octagon", OCTAGON);
-        gizmoCommandToEnum.put("Spinner", SPINNER);
+        gizmoCommandToEnum.put("circle", CIRCLE);
+        gizmoCommandToEnum.put("square", SQUARE);
+        gizmoCommandToEnum.put("triangle", TRIANGLE);
+        gizmoCommandToEnum.put("leftflipper", LEFT_FLIPPER);
+        gizmoCommandToEnum.put("rightflipper", RIGHT_FLIPPER);
+        gizmoCommandToEnum.put("ball", BALL);
+        gizmoCommandToEnum.put("absorber", ABSORBER);
+        gizmoCommandToEnum.put("rhombus", RHOMBUS);
+        gizmoCommandToEnum.put("octagon", OCTAGON);
+        gizmoCommandToEnum.put("spinner", SPINNER);
 
         gizmoCreationCommands = gizmoCommandToEnum.keySet();
 
@@ -57,13 +59,15 @@ public class GameLoader {
         nameCommands.add(DELETE_COMMAND);
         nameCommands.add(MOVE_COMMAND);
         nameCommands.add(ROTATE_COMMAND);
+        nameCommands.add(COLOR_COMMAND);
 
         nameCoordCoordCommands = new HashSet<>(gizmoCreationCommands);
         nameCoordCoordCommands.add(MOVE_COMMAND);
 
         gizmoCreationCommandsAdvanced = new HashSet<>();
-        gizmoCreationCommandsAdvanced.add("Absorber");
-        gizmoCreationCommandsAdvanced.add("Ball");
+        gizmoCreationCommandsAdvanced.add("absorber");
+        gizmoCreationCommandsAdvanced.add("ball");
+
     }
 
     public void load(InputStream source) throws IllegalAccessException {
@@ -84,10 +88,16 @@ public class GameLoader {
                 }
 
                 tokens = Arrays.stream(line.split("\\s+")).collect(Collectors.toCollection(LinkedList::new));
-                command = tokens.poll();
+                command = tokens.poll().toLowerCase();
 
                 if (command.equals("#")) {
                     // comments basically
+                    continue;
+                }
+
+                if (command.equals(CLEARBOARD_COMMAND)) {
+                    gameModel.reset();
+                    Logger.verbose(TAG, "board cleared");
                     continue;
                 }
 
@@ -143,6 +153,18 @@ public class GameLoader {
     }
 
     private void nameCommands(String command, String name, Queue<String> tokens) {
+        if (command.equals(COLOR_COMMAND)) {
+            IGizmo g = gameModel.getGizmoById(name);
+            if (g != null) {
+                String color = tokens.poll();
+                if (gameModel.setGizmoColor(g, color)) {
+                    Logger.verbose(TAG, name + " color set");
+                } else {
+                    Logger.verbose(TAG, color + " not a color");
+                }
+            }
+            return;
+        }
         if (command.equals(DELETE_COMMAND)) {
             gameModel.removeGizmo(name);
             return;
@@ -173,8 +195,8 @@ public class GameLoader {
 
     private void nameCoordCoordCommands(String command, String name, double x, double y, Queue<String> tokens) {
         if (command.equals(MOVE_COMMAND)) {
-            gameModel.getGizmoById(name).move(x, y);
-            //TODO check if occupied
+            IGizmo g = gameModel.getGizmoById(name);
+            gameModel.move(g, x, y);
             Logger.verbose(TAG, "moved" + name + " to " + x + ", " + y);
         }
         if (gizmoCreationCommands.contains(command)) {
