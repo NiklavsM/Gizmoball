@@ -6,7 +6,7 @@ public interface IPlayView {
 
     void hidePauseMenu();
 
-    boolean getCloseConFormation();
+    boolean getCloseConfirmation();
 
     void switchToEditor();
 
