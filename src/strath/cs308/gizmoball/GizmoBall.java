@@ -47,6 +47,7 @@ public class GizmoBall extends Application {
             UndoRedo.INSTANCE.saveState(gameModel);
 
             //Doesn't work in xml
+            primaryStage.setTitle("Gizmoball");
             primaryStage.setMinWidth(750);
             primaryStage.setMinHeight(600);
 
