@@ -6,6 +6,7 @@ import strath.cs308.gizmoball.model.Dot;
 
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public abstract class Gizmo implements IGizmo {
@@ -192,9 +193,13 @@ public abstract class Gizmo implements IGizmo {
 
     @Override
     public boolean setColor(String color) {
+        if (color == null) {
+            return false;
+        }
         color = color.toLowerCase();
-        Pattern pattern = Pattern.compile("#[0-9a-f]]{6}");
-        if (pattern.matcher(color).matches()) {
+        Pattern pattern = Pattern.compile("^#(?:[0-9a-fA-F]{3}){1,2}$");
+        Matcher m = pattern.matcher(color);
+        if (!m.matches()) {
             return false;
         }
 
@@ -203,14 +208,14 @@ public abstract class Gizmo implements IGizmo {
     }
 
     public boolean overlapsWithGizmo(IGizmo g) {
-        if(this.equals(g)) {
+        if (this.equals(g)) {
             return false;
         }
         if (g.getType().equals(Type.WALLS)) {
             return false;
         }
 
-      return x1 < g.getEndX() && x2 > g.getStartX() && y1 < g.getEndY() && y2 > g.getStartY();
+        return x1 < g.getEndX() && x2 > g.getStartX() && y1 < g.getEndY() && y2 > g.getStartY();
     }
 
     public boolean overlapsWithAnyGizmos(Collection<IGizmo> gizmos) {

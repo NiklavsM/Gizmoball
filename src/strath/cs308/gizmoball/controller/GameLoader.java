@@ -24,6 +24,7 @@ public class GameLoader {
     public static final String DELETE_COMMAND = "Delete";
     public static final String MOVE_COMMAND = "Move";
     public static final String WALLS_NAME = "OuterWalls";
+    public static final String COLOR_COMMAND = "Color";
     private static final String TAG = "GameLoader";
     private final IGizmoFactory gizmoFactory;
     private final IGameModel gameModel;
@@ -57,6 +58,7 @@ public class GameLoader {
         nameCommands.add(DELETE_COMMAND);
         nameCommands.add(MOVE_COMMAND);
         nameCommands.add(ROTATE_COMMAND);
+        nameCommands.add(COLOR_COMMAND);
 
         nameCoordCoordCommands = new HashSet<>(gizmoCreationCommands);
         nameCoordCoordCommands.add(MOVE_COMMAND);
@@ -143,6 +145,18 @@ public class GameLoader {
     }
 
     private void nameCommands(String command, String name, Queue<String> tokens) {
+        if (command.equals(COLOR_COMMAND)) {
+            IGizmo g = gameModel.getGizmoById(name);
+            if (g != null) {
+                String color = tokens.poll();
+                if (gameModel.setGizmoColor(g, color)) {
+                    Logger.verbose(TAG, name + " color set");
+                } else {
+                    Logger.verbose(TAG, color + " not a color");
+                }
+            }
+            return;
+        }
         if (command.equals(DELETE_COMMAND)) {
             gameModel.removeGizmo(name);
             return;
@@ -173,8 +187,8 @@ public class GameLoader {
 
     private void nameCoordCoordCommands(String command, String name, double x, double y, Queue<String> tokens) {
         if (command.equals(MOVE_COMMAND)) {
-            gameModel.getGizmoById(name).move(x, y);
-            //TODO check if occupied
+            IGizmo g = gameModel.getGizmoById(name);
+            gameModel.move(g, x, y);
             Logger.verbose(TAG, "moved" + name + " to " + x + ", " + y);
         }
         if (gizmoCreationCommands.contains(command)) {
