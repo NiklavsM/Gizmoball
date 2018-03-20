@@ -104,7 +104,6 @@ public class GameLoader {
                             triggerable.addActionTrigger("key " + keyNumber + " " + keyMode);
                             Logger.verbose(TAG, "connected " + keyNumber + " " + keyMode + " to " + name);
                         } catch (ClassCastException ex) {
-                            ex.printStackTrace();
                         }
                         continue;
                     }
@@ -161,7 +160,7 @@ public class GameLoader {
                 if (from == null || to == null) {
                     return;
                 }
-                from.registerTriggarable(to);
+                from.registerTriggerable(to);
                 Logger.verbose(TAG, "connected " + name + " to " + name2);
             } catch (ClassCastException ex) {
             }

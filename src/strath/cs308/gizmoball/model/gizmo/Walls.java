@@ -47,8 +47,8 @@ public class Walls extends Gizmo implements ITrigger {
     }
 
     @Override
-    public void registerTriggarable(ITriggerable triggerable) {
-        trigger.registerTriggarable(triggerable);
+    public void registerTriggerable(ITriggerable triggerable) {
+        trigger.registerTriggerable(triggerable);
     }
 
     @Override

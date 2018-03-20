@@ -6,19 +6,26 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-public class GameSaver {
+public enum GameSaver {
+    INSTANCE;
 
-    private IGameModel gameModel;
-    private File fileToSave;
+    private File currentFile = null;
 
-    public GameSaver(IGameModel gameModel, File fileToSave) {
-        this.gameModel = gameModel;
-        this.fileToSave = fileToSave;
-    }
-
-    public void save() throws IllegalAccessException, FileNotFoundException {
-        PrintWriter printWriter = new PrintWriter(fileToSave);
+    public void save(IGameModel gameModel) throws IllegalAccessException, FileNotFoundException {
+        PrintWriter printWriter = new PrintWriter(currentFile);
         printWriter.print(gameModel.toString());
         printWriter.close();
+    }
+
+    public File getCurrentFile() {
+        return currentFile;
+    }
+
+    public boolean hasCurrentFile() {
+        return currentFile != null;
+    }
+
+    public void setCurrentFile(File currentFile) {
+        this.currentFile = currentFile;
     }
 }

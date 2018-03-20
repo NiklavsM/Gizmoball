@@ -37,15 +37,21 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
                 break;
 
             case "topSaveButton":
-                saveGame();
+                save();
+                break;
+
+            case "topSaveAsButton":
+                saveAs();
                 break;
 
             case "topClearButton":
                 clearBoard();
                 break;
+
             case "undoButton":
                 undo();
                 break;
+
             case "redoButton":
                 redo();
                 break;
@@ -53,9 +59,11 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
             case "topGridButton":
                 toggleGrid();
                 break;
+
             case "consoleButton":
                 openConsole();
                 break;
+
             case "soundSettingsButton":
                 openSettings();
                 break;
@@ -65,7 +73,6 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
 
 
     private void redo() {
-
         UndoRedo.INSTANCE.redo(gameModel);
         gameModel.update();
     }
@@ -85,7 +92,7 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
     }
 
     private void loadGame() {
-        File fileToLoad = FileChooser.getFile();
+        File fileToLoad = FileChooser.showOpenDialog();
 
         if (fileToLoad == null) {
             Logger.debug(TAG, "Loading file dialog cancelled");
@@ -101,21 +108,27 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
         }
     }
 
-    private void saveGame() {
-        File fileToSave = FileChooser.getFile();
-        GameSaver gs = new GameSaver(gameModel, fileToSave);
-
-        if (fileToSave == null) {
+    private void saveAs() {
+        File file = FileChooser.showSaveDialog();
+        if (file == null) {
             Logger.debug(TAG, "Saving file dialog cancelled");
+            return;
+        }
+        GameSaver.INSTANCE.setCurrentFile(file);
+        save();
+    }
+
+    private void save() {
+        if (!GameSaver.INSTANCE.hasCurrentFile()) {
+            saveAs();
             return;
         }
 
         try {
-            gs.save();
+            GameSaver.INSTANCE.save(gameModel);
         } catch (IllegalAccessException | FileNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
     private void switchToPlayMode() {

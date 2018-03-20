@@ -14,7 +14,7 @@ CS308 Semester 2 Group Project
 
 
 
-##Intellij Setup
+## Intellij Setup
 
 Mark src as Source Root
 

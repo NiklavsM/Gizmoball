@@ -14,7 +14,10 @@ public class KeyConverter {
         } else if (event.getEventType().equals(KEY_RELEASED)) {
             type = "up";
         }
-        return "key " + event.getCode().impl_getCode() + ".0 " + type;
+        return getKeyCode(event) + type;
     }
 
+    public static String getKeyCode(KeyEvent event) {
+        return "key " + event.getCode().impl_getCode() + ".0 ";
+    }
 }

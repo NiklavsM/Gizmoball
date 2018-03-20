@@ -2,7 +2,6 @@ package strath.cs308.gizmoball.model.gizmo;
 
 import mit.physics.Circle;
 import mit.physics.LineSegment;
-import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.model.triggeringsystem.*;
 import strath.cs308.gizmoball.utils.Logger;
 
@@ -121,8 +120,8 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
     }
 
     @Override
-    public void registerTriggarable(ITriggerable triggerTarget) {
-        collisionTrigger.registerTriggarable(triggerTarget);
+    public void registerTriggerable(ITriggerable triggerTarget) {
+        collisionTrigger.registerTriggerable(triggerTarget);
     }
 
     @Override
@@ -188,24 +187,4 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
         return id;
     }
 
-    @Override
-    public String toString()
-    {
-        StringBuilder builder = new StringBuilder();
-        builder.append(super.toString());
-
-        triggerable.getTriggers().forEach(s -> {
-            if (s.contains("key")) {
-                builder.append("\n ")
-                        .append(GameLoader.KEY_CONNECT_COMMAND)
-                        .append(" ")
-                        .append(s)
-                        .append(" ")
-                        .append(getId())
-                        .append("\n");
-            }
-        });
-
-        return builder.toString();
-    }
 }

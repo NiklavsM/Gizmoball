@@ -1,4 +1,4 @@
-package strath.cs308.gizmoball.controller;
+package strath.cs308.gizmoball.controller.connect;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -56,13 +56,13 @@ public class ConnectPanelView {
     }
 
     public void setWaitingForKeyStatusA() {
-        String s = "Click Gizmo or Press Key";
+        String s = "Press a Key";
         connectATextField.setText(s);
     }
 
 
     public void setWaitingForKeyStatusB() {
-        String s = "Click Gizmo or Press Key";
+        String s = "Click on a Gizmo";
         connectBTextField.setText(s);
     }
 

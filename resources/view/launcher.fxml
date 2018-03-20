@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx"
+            stylesheets="/styles/style.css"
+            minHeight="500.0" minWidth="800.0">
+
+    <center>
+        <StackPane maxHeight="500"
+                   maxWidth="500"
+                   fx:id="stackPane">
+
+            <ToolBar maxWidth="230"
+                     minWidth="200"
+                     minHeight="200"
+                     maxHeight="250"
+                     fx:id="pauseMenu"
+                     styleClass="no-padding">
+
+                <GridPane hgap="16"
+                          vgap="15"
+                          alignment="CENTER"
+                          fx:id="pauseMenuItemHolder"
+                          styleClass="no-padding">
+
+                    <Button text="%PAUSE_MENU_BACK"
+                            GridPane.columnIndex="0"
+                            GridPane.rowIndex="0"
+                            fx:id="menuBackButton"
+                            styleClass="back-button, pause-menu-item-padding, pause-menu-font"/>
+
+                    <Button text="%PAUSE_MENU_SAVE"
+                            GridPane.columnIndex="0"
+                            GridPane.rowIndex="1"
+                            fx:id="menuSaveButton"
+                            styleClass="save-progress-button, pause-menu-item-padding, pause-menu-font"/>
+
+                    <Button text="%PAUSE_MENU_LOAD"
+                            GridPane.columnIndex="0"
+                            GridPane.rowIndex="2"
+                            fx:id="menuLoadButton"
+                            styleClass="load-game-button, pause-menu-item-padding, pause-menu-font"/>
+
+                    <Button text="%PAUSE_MENU_EDITOR"
+                            GridPane.columnIndex="0"
+                            GridPane.rowIndex="3"
+                            fx:id="menuEditorButton"
+                            styleClass="to-editor-button, pause-menu-item-padding, pause-menu-font"/>
+
+                    <Button text="%PAUSE_MENU_EXIT"
+                            GridPane.columnIndex="0"
+                            GridPane.rowIndex="4"
+                            fx:id="menuExitButton"
+                            styleClass="exit-game-button, pause-menu-item-padding, pause-menu-font"/>
+
+                </GridPane>
+            </ToolBar>
+
+            <BorderPane xmlns:fx="http://javafx.com/fxml"
+                        xmlns="http://javafx.com/javafx"
+                        stylesheets="/styles/style.css"
+                        minHeight="500.0">
+
+                <center>
+
+                    <Canvas width="500"
+                            height="500"
+                            fx:id="canvas"/>
+                </center>
+
+                <right>
+
+                    <VBox styleClass="foreground"
+                          minWidth="250">
+
+                        <HBox>
+                            <Label StackPane.alignment="TOP_RIGHT"
+                                   styleClass="default-padding, title-font"
+                                   text="%INGAME_PLAY_SCORE"
+                                   alignment="CENTER_RIGHT" />
+                            <Label StackPane.alignment="TOP_RIGHT"
+                                   styleClass="default-padding, title-font"
+                                   fx:id="score"
+                                   text="0"
+                                   alignment="CENTER_RIGHT" />
+                        </HBox>
+
+                        <HBox>
+                            <Label styleClass="default-padding, medium-font"
+                                   text="%INGAME_PLAY_BALLSINPLAY" />
+                            <Label styleClass="default-padding, medium-font"
+                                   fx:id="ballsInPlay" />
+                        </HBox>
+
+
+                        <HBox>
+                            <Label styleClass="default-padding, medium-font"
+                                   text="%INGAME_PLAY_BALLSABSORBED" />
+                            <Label styleClass="default-padding, medium-font"
+                                   text="0"
+                                   fx:id="ballsAbsorbed" />
+                        </HBox>
+
+                        <ToolBar
+                                styleClass="game-bar"
+                                BorderPane.alignment="BOTTOM_CENTER">
+
+                            <GridPane vgap="4"
+                                      hgap="16"
+                                      fx:id="gameMenu"
+                                      styleClass="default-padding">
+
+
+                                <Button GridPane.rowIndex="0"
+                                        GridPane.columnIndex="0"
+                                        minWidth="24"
+                                        minHeight="24"
+                                        maxWidth="24"
+                                        maxHeight="24"
+                                        fx:id="playButton"
+                                        styleClass="play-button">
+                                    <tooltip>
+                                        <Tooltip text="%INGAME_MENU_PLAY"/>
+                                    </tooltip>
+                                </Button>
+
+                                <Button GridPane.rowIndex="0"
+                                        GridPane.columnIndex="1"
+                                        minWidth="24"
+                                        minHeight="24"
+                                        maxWidth="24"
+                                        maxHeight="24"
+                                        fx:id="tickButton"
+                                        styleClass="tick-button">
+                                    <tooltip>
+                                        <Tooltip text="%INGAME_MENU_TICK"/>
+                                    </tooltip>
+                                </Button>
+
+                                <Button GridPane.rowIndex="0"
+                                        GridPane.columnIndex="2"
+                                        minWidth="24"
+                                        minHeight="24"
+                                        maxWidth="24"
+                                        maxHeight="24"
+                                        fx:id="menuButton"
+                                        styleClass="pause-screen-button">
+                                    <tooltip>
+                                        <Tooltip text="%INGAME_MENU_MENU"/>
+                                    </tooltip>
+                                </Button>
+
+                                <Button GridPane.rowIndex="0"
+                                        GridPane.columnIndex="3"
+                                        minWidth="24"
+                                        minHeight="24"
+                                        maxWidth="24"
+                                        maxHeight="24"
+                                        fx:id="soundButton"
+                                        styleClass="sound-off-button">
+                                    <tooltip>
+                                        <Tooltip text="%INGAME_MENU_MUSIC"/>
+                                    </tooltip>
+                                </Button>
+
+                            </GridPane>
+                        </ToolBar>
+
+                    </VBox>
+                </right>
+
+            </BorderPane>
+
+        </StackPane>
+    </center>
+</BorderPane>

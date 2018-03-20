@@ -65,7 +65,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
     }
 
     private void loadGame() {
-        File fileToLoad = FileChooser.getFile();
+        File fileToLoad = FileChooser.showOpenDialog();
 
         if (fileToLoad == null) {
             Logger.debug(TAG, "Loading file dialog cancelled");
@@ -84,22 +84,21 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
     }
 
     private void saveGame() {
-        File fileToSave = FileChooser.getFile();
-        GameSaver gs = new GameSaver(gameModel, fileToSave);
-
-        if (fileToSave == null) {
-            Logger.debug(TAG, "Saving file dialog cancelled");
-            return;
+        if (!GameSaver.INSTANCE.hasCurrentFile()) {
+            File file = FileChooser.showSaveDialog();
+            if (file != null) {
+                GameSaver.INSTANCE.setCurrentFile(file);
+            } else {
+                return;
+            }
         }
-
         try {
-            gs.save();
+            GameSaver.INSTANCE.save(gameModel);
         } catch (IllegalAccessException | FileNotFoundException e) {
             e.printStackTrace();
         } finally {
             playView.hidePauseMenu();
         }
-
     }
 
 }

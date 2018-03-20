@@ -49,6 +49,7 @@
                             minWidth="24"
                             minHeight="24"
                             maxHeight="24"
+                            fx:id="topSaveButton"
                             styleClass="save-button, regular-font, top-toolbar-button">
                     </Button>
                     <Label text="%EDITOR_TOPBAR_SAVE"/>
@@ -60,6 +61,7 @@
                             minWidth="24"
                             minHeight="24"
                             maxHeight="24"
+                            fx:id="topSaveAsButton"
                             styleClass="saveas-button, regular-font, top-toolbar-button">
                     </Button>
                     <Label text="%EDITOR_TOPBAR_SAVEAS"/>

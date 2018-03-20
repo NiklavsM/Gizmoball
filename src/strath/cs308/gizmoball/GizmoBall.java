@@ -37,7 +37,7 @@ public class GizmoBall extends Application {
             GameLoader gameLoader = new GameLoader(gameModel);
 
             try {
-                gameLoader.load(getClass().getResourceAsStream("/default.gizmo"));
+                gameLoader.load(getClass().getResourceAsStream("/alternative.gizmo"));
             } catch (Exception e) {
                 Logger.error(TAG, "Failed to load default model");
                 e.printStackTrace();
@@ -47,6 +47,7 @@ public class GizmoBall extends Application {
             UndoRedo.INSTANCE.saveState(gameModel);
 
             //Doesn't work in xml
+            primaryStage.setTitle("Gizmoball");
             primaryStage.setMinWidth(750);
             primaryStage.setMinHeight(600);
 

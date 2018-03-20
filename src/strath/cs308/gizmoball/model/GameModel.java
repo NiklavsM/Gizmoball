@@ -129,8 +129,6 @@ public class GameModel extends Observable implements IGameModel {
                         .filter(ITrigger.class::isInstance)
                         .map(ITrigger.class::cast)
                         .forEach(trig -> trig.removeTriggarable((ITriggerable) gizmo));
-                setChanged();
-                notifyObservers(gizmo);
             }
             gizmos.remove(id);
             update();
@@ -236,7 +234,7 @@ public class GameModel extends Observable implements IGameModel {
         }
         moveMovables(time);
         triggersToTrigger.forEach(ITrigger::trigger);
-        triggerOnCollision.forEach(collidedWith -> collidedWith.performAction("collusion"));
+        triggerOnCollision.forEach(collidedWith -> collidedWith.performAction("collision"));
         update();
     }
 
@@ -456,6 +454,24 @@ public class GameModel extends Observable implements IGameModel {
                 commands.append(GameLoader.CONNECT_COMMAND + " ").append(trigger.id()).append(" ").append(triggerable.id()).append("\n");
             }
         }
+
+        commands.append("\n# key triggers\n");
+
+        gizmos
+                .values()
+                .stream()
+                .filter(ITriggerable.class::isInstance)
+                .map(ITriggerable.class::cast)
+                .forEach(triggerable -> triggerable.getTriggers()
+                        .stream()
+                        .filter(trigger -> trigger.contains("key"))
+                        .forEach(keyTrigger -> commands
+                                .append(GameLoader.KEY_CONNECT_COMMAND)
+                                .append(" ")
+                                .append(keyTrigger)
+                                .append(" ")
+                                .append(triggerable.id())
+                                .append("\n")));
 
 
         commands.append("\n# gravity and friction\n");
