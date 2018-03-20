@@ -29,9 +29,7 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent> {
                 .parallelStream()
                 .filter(ITriggerable.class::isInstance)
                 .map(ITriggerable.class::cast)
-                .forEach(iTriggerable -> {
-                    iTriggerable.performAction(keyEventString);
-                } );
+                .forEach(iTriggerable -> iTriggerable.performAction(keyEventString));
     }
 
 }
