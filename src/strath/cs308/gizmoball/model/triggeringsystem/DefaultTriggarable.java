@@ -11,6 +11,9 @@ public class DefaultTriggarable implements ITriggerable {
     public DefaultTriggarable() {
         availableActions = new LinkedList<>();
         triggers = new HashSet<>();
+
+        addActionTrigger("collusion");
+        addActionTrigger("trigger");
     }
 
     @Override
