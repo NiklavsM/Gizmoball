@@ -125,7 +125,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
                 putGizmoAt(mouseEvent.getX(), mouseEvent.getY());
             }
             else {
-                editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_BALLLIMIT") + ballLimit);
+                editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_BALLLIMIT") + " " + ballLimit);
             }
         }
     }
@@ -201,7 +201,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
             y = Math.floor(y);
         } else {
             if (gameModel.getGizmoBalls().size() == ballLimit) {
-                editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_BALLLIMIT") + ballLimit);
+                editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_BALLLIMIT") + " " + ballLimit);
                 return;
             }
         }

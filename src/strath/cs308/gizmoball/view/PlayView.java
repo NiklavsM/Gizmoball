@@ -121,7 +121,6 @@ public class PlayView extends Scene implements IPlayView, Observer {
         GraphicsContext graphics = canvas.getGraphicsContext2D();
         graphics.setFill(GizmoDrawer.DEEP_BLUE);
         graphics.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-
     }
 
     private void drawGizmos() {
