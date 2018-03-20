@@ -18,7 +18,6 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
     private static final String TAG = "TopToolbarEventHandler";
     private IGameModel gameModel;
     private IEditorView editView;
-    private File currentFile;
 
     public TopToolbarEventHandler(IGameModel gameModel, IEditorView editorView) {
         this.gameModel = gameModel;
@@ -115,19 +114,18 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
             Logger.debug(TAG, "Saving file dialog cancelled");
             return;
         }
-        currentFile = file;
+        GameSaver.INSTANCE.setCurrentFile(file);
         save();
     }
 
     private void save() {
-        GameSaver gs = new GameSaver(gameModel, currentFile);
-        if (currentFile == null) {
+        if (!GameSaver.INSTANCE.hasCurrentFile()) {
             saveAs();
             return;
         }
 
         try {
-            gs.save();
+            GameSaver.INSTANCE.save(gameModel);
         } catch (IllegalAccessException | FileNotFoundException e) {
             e.printStackTrace();
         }
