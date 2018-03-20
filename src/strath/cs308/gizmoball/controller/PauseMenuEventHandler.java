@@ -79,7 +79,6 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
 
         try {
             gameModel.reset();
-            keyEventHandler.removeAllHandlers();
             gameLoader.load(new FileInputStream(fileToLoad));
         } catch (IllegalAccessException | FileNotFoundException e) {
             e.printStackTrace();

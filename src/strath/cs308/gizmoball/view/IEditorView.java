@@ -39,8 +39,6 @@ public interface IEditorView {
 
     void displayGizmoProperties(IGizmo gizmo);
 
-    KeyCode getLastKeyPressed();
-
     void previewGizmo(IGizmo gizmo, double x, double y);
 
     void setCursor(Cursor cursor);

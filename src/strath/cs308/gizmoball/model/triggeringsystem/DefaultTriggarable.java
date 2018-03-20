@@ -16,6 +16,10 @@ public class DefaultTriggarable implements ITriggerable {
         addActionTrigger("trigger");
     }
 
+    public Set<String> getTriggers() {
+        return triggers;
+    }
+
     @Override
     public void performAction(Object args) {
         if (action == null) {

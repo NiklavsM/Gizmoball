@@ -1,5 +1,6 @@
 package strath.cs308.gizmoball.model.gizmo;
 
+import javafx.scene.layout.Pane;
 import mit.physics.*;
 import strath.cs308.gizmoball.model.IMovable;
 import strath.cs308.gizmoball.model.triggeringsystem.DefaultTriggarable;
@@ -256,7 +257,18 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
 
     @Override
     public void performAction(Object args) {
-        defaultTriggarable.performAction(args);
+        if (args instanceof String) {
+            String event = (String) args;
+            if (defaultTriggarable.getTriggers().contains(event)) {
+                if (event.contains("up")) {
+                    down();
+                }
+
+                if (event.contains("down")) {
+                    up();
+                }
+            }
+        }
     }
 
     @Override

@@ -4,7 +4,6 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import strath.cs308.gizmoball.model.IGameModel;
-import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.util.*;
@@ -17,28 +16,10 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent>, Observer {
     private final Map<String, Set<ITriggerable>> keyEventMap = new HashMap<>();
 
     private IGameModel gameModel;
-    private KeyCode lastKeyPress;
 
     public InGameKeyEventHandler(IGameModel gameModel) {
         this.gameModel = gameModel;
         gameModel.addObserver(this);
-    }
-
-    public void onKeyEventTrigger(String keyEvent, ITriggerable triggerable) {
-        if (triggerable == null || keyEvent == null) {
-            return;
-        }
-        if (!keyEventMap.containsKey(keyEvent)) {
-            keyEventMap.put(keyEvent, new HashSet<>());
-        }
-        keyEventMap.get(keyEvent).add(triggerable);
-    }
-
-    public void onKeyEventTrigger(KeyEvent keyEvent, ITriggerable triggerable) {
-        if (keyEvent == null || triggerable == null) {
-            return;
-        }
-        onKeyEventTrigger(prettify(keyEvent), triggerable);
     }
 
     private String prettify(KeyEvent event) {
@@ -68,39 +49,20 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent>, Observer {
 
     @Override
     public void handle(KeyEvent keyEvent) {
-        lastKeyPress = keyEvent.getCode();
 
         String keyEventString = prettify(keyEvent);
-        if (!keyEventMap.containsKey(keyEventString)) {
-            return;
-        }
 
-        keyEventMap.get(keyEventString)
-                .forEach(triggerable -> {
-                    if (triggerable instanceof IGizmo &&
-                            (((IGizmo) triggerable).getType().equals(IGizmo.Type.LEFT_FLIPPER)
-                                    ||
-                                    ((IGizmo) triggerable).getType().equals(IGizmo.Type.RIGHT_FLIPPER)
-                            )) {
-                        String args = "";
-                        if (keyEvent.getEventType().equals(KEY_PRESSED)) {
-                            args = KEY_PRESSED.toString();
-                        } else if (keyEvent.getEventType().equals(KEY_RELEASED)) {
-                            args = KEY_RELEASED.toString();
-                        }
-                        triggerable.performAction(args);
-                    } else {
-                        triggerable.performAction(null);
-                    }
-                });
+        gameModel.getGizmos()
+                .parallelStream()
+                .filter(ITriggerable.class::isInstance)
+                .map(ITriggerable.class::cast)
+                .forEach(iTriggerable -> {
+                    iTriggerable.performAction(keyEventString);
+                } );
     }
 
     public void removeTriggarable(ITriggerable triggerable) {
         keyEventMap.values().forEach(set -> set.remove(triggerable));
-    }
-
-    public void removeAllHandlers() {
-        keyEventMap.clear();
     }
 
     @Override
@@ -110,7 +72,4 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent>, Observer {
         }
     }
 
-    public KeyCode getLastKeyPress() {
-        return lastKeyPress;
-    }
 }

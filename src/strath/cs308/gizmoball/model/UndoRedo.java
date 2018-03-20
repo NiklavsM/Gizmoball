@@ -54,7 +54,6 @@ public enum UndoRedo {
         currentState = undoStates.removeFirst();
 
         gameModel.reset();
-        keyEventHandler.removeAllHandlers();
         loadSate(gameModel, keyEventHandler, currentState);
     }
 
@@ -67,7 +66,6 @@ public enum UndoRedo {
         currentState = redoStates.removeLast();
 
         gameModel.reset();
-        keyEventHandler.removeAllHandlers();
         loadSate(gameModel, keyEventHandler, currentState);
     }
 }

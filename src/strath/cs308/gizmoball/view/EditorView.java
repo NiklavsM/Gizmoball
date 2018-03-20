@@ -345,11 +345,6 @@ public class EditorView extends Scene implements IEditorView, Observer {
     }
 
     @Override
-    public KeyCode getLastKeyPressed() {
-        return keyHandler.getLastKeyPress();
-    }
-
-    @Override
     public void previewGizmo(IGizmo gizmo, double x, double y) {
         if (gameModel.getGizmo(x, y).equals(Optional.empty())) {
             if (gizmo.getType().equals(IGizmo.Type.LEFT_FLIPPER) && isFlipperAreaOccupied(x, y))

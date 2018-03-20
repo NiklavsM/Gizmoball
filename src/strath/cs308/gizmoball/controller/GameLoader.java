@@ -27,7 +27,6 @@ public class GameLoader {
     private static final String TAG = "GameLoader";
     private final IGizmoFactory gizmoFactory;
     private final IGameModel gameModel;
-    private InGameKeyEventHandler keyHandler;
 
     private Set<String> gizmoCreationCommands;
     private Set<String> nameCoordCoordCommands;
@@ -37,7 +36,6 @@ public class GameLoader {
 
     public GameLoader(IGameModel gameModel, InGameKeyEventHandler keyHandler) {
         this.gameModel = gameModel;
-        this.keyHandler = keyHandler;
         gizmoFactory = new GizmoFactory();
 
         gizmoCommandToEnum = new HashMap<>();
@@ -104,7 +102,6 @@ public class GameLoader {
                         try {
                             ITriggerable triggerable = (ITriggerable) gameModel.getGizmoById(name);
                             triggerable.addActionTrigger("key " + keyNumber + " " + keyMode);
-                            keyHandler.onKeyEventTrigger("key " + keyNumber + " " + keyMode, triggerable);
                             Logger.verbose(TAG, "connected " + keyNumber + " " + keyMode + " to " + name);
                         } catch (ClassCastException ex) {
 
