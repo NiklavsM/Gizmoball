@@ -22,17 +22,14 @@ public class ConnectGizmoStrategy implements EventHandler<MouseEvent> {
     private static final String TAG = "ConnectGizmoStrategy";
     private final IEditorView editorView;
     private final IGameModel gameModel;
-    private final InGameKeyEventHandler keyEventHandler;
     private Optional<ITrigger> connectTo;
     private ResourceBundle dictionary;
 
-    public ConnectGizmoStrategy(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IEditorView editorView) {
+    public ConnectGizmoStrategy(IGameModel gameModel, IEditorView editorView) {
         this.gameModel = gameModel;
         this.editorView = editorView;
 
         this.connectTo = Optional.empty();
-
-        this.keyEventHandler = keyEventHandler;
 
         Image image = new Image("/icons/connect.png");
         editorView.setCursor(new ImageCursor(image));
@@ -59,7 +56,7 @@ public class ConnectGizmoStrategy implements EventHandler<MouseEvent> {
                     connectGizmos(selectedGizmo.get());
 
 
-                    UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
+                    UndoRedo.INSTANCE.saveState(gameModel);
                 } else
                 {
                     saveSelectedTarget(selectedGizmo);

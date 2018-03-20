@@ -1,5 +1,6 @@
 package strath.cs308.gizmoball.model.gizmo;
 
+import javafx.scene.layout.Pane;
 import mit.physics.*;
 import strath.cs308.gizmoball.model.IMovable;
 import strath.cs308.gizmoball.model.triggeringsystem.DefaultTriggarable;
@@ -226,7 +227,7 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
         if (args == null) {
             return;
         }
-        if (args.equals("COLLISION")) {
+        if (args.equals("trigger")) {
             if (movementStatus.equals(Movement.TOP)) {
                 down();
             } else {
@@ -256,7 +257,18 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
 
     @Override
     public void performAction(Object args) {
-        defaultTriggarable.performAction(args);
+        if (args instanceof String) {
+            String event = (String) args;
+            if (defaultTriggarable.getTriggers().contains(event)) {
+                if (event.contains("up")) {
+                    doAction("KEY_PRESSED");
+                } else if (event.contains("down")) {
+                    doAction("KEY_RELEASED");
+                } else {
+                   doAction(event);
+                }
+            }
+        }
     }
 
     @Override
@@ -277,6 +289,16 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
     @Override
     public boolean addAvailableAction(IAction action) {
         return defaultTriggarable.addAvailableAction(action);
+    }
+
+    @Override
+    public boolean addActionTrigger(String trigger) {
+        return defaultTriggarable.addActionTrigger(trigger);
+    }
+
+    @Override
+    public boolean removeActionTrigger(String trigger) {
+        return defaultTriggarable.removeActionTrigger(trigger);
     }
 
     @Override
