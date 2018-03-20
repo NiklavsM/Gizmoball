@@ -81,6 +81,7 @@
                                    styleClass="default-padding, title-font"
                                    text="%INGAME_PLAY_SCORE"
                                    alignment="CENTER_RIGHT" />
+
                             <Label StackPane.alignment="TOP_RIGHT"
                                    styleClass="default-padding, title-font"
                                    fx:id="score"
@@ -91,6 +92,7 @@
                         <HBox>
                             <Label styleClass="default-padding, medium-font"
                                    text="%INGAME_PLAY_BALLSINPLAY" />
+
                             <Label styleClass="default-padding, medium-font"
                                    fx:id="ballsInPlay" />
                         </HBox>
@@ -99,6 +101,7 @@
                         <HBox>
                             <Label styleClass="default-padding, medium-font"
                                    text="%INGAME_PLAY_BALLSABSORBED" />
+
                             <Label styleClass="default-padding, medium-font"
                                    text="0"
                                    fx:id="ballsAbsorbed" />

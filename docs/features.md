@@ -17,6 +17,7 @@
 * Spinner Gizmmo (Rotates continually)
 * Rhombius Gizmo
 * Octagon Gizmo 
+* Save and Save as
 
 ## Editor Mode
 
@@ -65,7 +66,10 @@
 * Check for .gizmo extension
 * Can add comments to .gizmo files
 * Can load and save from both play view and edit mode
+* Save as
+* Save
 * Single line comments in the `.gizmo` files (starts with `# `)
+* `.gizmo` extension file automatically handled
 
 ### Console
 * Let's you change the model with gizmoball commands in real time 
