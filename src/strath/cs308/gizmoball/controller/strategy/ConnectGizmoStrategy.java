@@ -49,7 +49,8 @@ public class ConnectGizmoStrategy implements EventHandler<MouseEvent> {
                     UndoRedo.INSTANCE.saveState(gameModel);
                 } else
                     saveSelectedTarget(selectedGizmo);
-            }
+            } else
+                editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_MOVE_NOSELECTED"));
         }
     }
 
@@ -58,9 +59,8 @@ public class ConnectGizmoStrategy implements EventHandler<MouseEvent> {
         if (gizmo.get() instanceof ITrigger) {
             connectTo = Optional.of((ITrigger) gizmo.get());
             editorView.setStatus(dictionary.getString("EDITOR_STATUS_CONNECT_FIRST_SELECTED"));
-        } else {
+        } else
             editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_CONNECT_NOTTRIGGER_ERROR"));
-        }
     }
 
     private void connectGizmos (IGizmo gizmo){
@@ -68,10 +68,7 @@ public class ConnectGizmoStrategy implements EventHandler<MouseEvent> {
             connectTo.get().registerTriggerable((ITriggerable) gizmo);
             connectTo = Optional.empty();
             editorView.setStatus(dictionary.getString("EDITOR_STATUS_CONNECT_SUCCESS"));
-        } else {
+        } else
             editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_CONNECT_NOTTRIGGERABLE_ERROR"));
-        }
-
     }
-
 }

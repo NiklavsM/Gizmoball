@@ -250,6 +250,7 @@ public class EditorView extends Scene implements IEditorView, Observer {
 
     @Override
     public void setStatus(String message) {
+        statusLabel.getStyleClass().removeAll();
         statusLabel.getStyleClass().remove("error-label");
         statusLabel.setText(message);
     }
@@ -288,6 +289,7 @@ public class EditorView extends Scene implements IEditorView, Observer {
 
     @Override
     public void setErrorStatus(String message) {
+        statusLabel.getStyleClass().removeAll();
         statusLabel.getStyleClass().add("error-label");
         statusLabel.setText(message);
     }
