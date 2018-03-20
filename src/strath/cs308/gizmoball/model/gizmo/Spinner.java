@@ -23,7 +23,7 @@ public class Spinner extends Gizmo implements IMovable {
     public Spinner(double x1, double y1, String id) {
         super(x1, y1, x1 + 2, y1 + 2, id);
 
-        velocity = new Vect(1, 1);
+        velocity = new Vect( Angle.DEG_180);
     }
 
     @Override

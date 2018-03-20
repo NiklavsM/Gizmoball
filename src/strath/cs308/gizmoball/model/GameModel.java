@@ -196,7 +196,8 @@ public class GameModel extends Observable implements IGameModel {
                         triggersToTrigger.add((ITrigger) nextGizmo);
                     }
 
-                    if (nextGizmo instanceof IMovable && !(nextGizmo instanceof Ball) && tuc < timeToMoveMovables) timeToMoveMovables = tuc;
+                    if (nextGizmo instanceof IMovable && !(nextGizmo instanceof Ball) && tuc < timeToMoveMovables)
+                        timeToMoveMovables = tuc;
 
                     score += nextGizmo.getScoreValue();
                     // don't allow negative score values
