@@ -262,9 +262,9 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
             String event = (String) args;
             if (defaultTriggarable.getTriggers().contains(event)) {
                 if (event.contains("up")) {
-                    doAction("KEY_PRESSED");
-                } else if (event.contains("down")) {
                     doAction("KEY_RELEASED");
+                } else if (event.contains("down")) {
+                    doAction("KEY_PRESSED");
                 } else {
                    doAction(event);
                 }
