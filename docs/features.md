@@ -18,6 +18,7 @@
 * Spinner Gizmmo
 * Rhombius Gizmo
 * Octagon Gizmo 
+* Save and Save as
 
 **Editor Mode**
 
@@ -42,7 +43,9 @@
 * Status bar with relevant message
 * Console - Let's you change the model with gizmoball commands in real time 
 * Connect a key to a gizmo
+* Save and Save as
 
 **Misc**
 
 * single line comments in the `.gizmo` files (starts with `# `)
+* `.gizmo` extension file automatically handled
