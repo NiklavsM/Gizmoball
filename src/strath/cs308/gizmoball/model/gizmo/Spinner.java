@@ -2,8 +2,16 @@ package strath.cs308.gizmoball.model.gizmo;
 
 import mit.physics.*;
 import strath.cs308.gizmoball.model.IMovable;
+import strath.cs308.gizmoball.model.triggeringsystem.DefaultTriggarable;
+import strath.cs308.gizmoball.model.triggeringsystem.IAction;
+import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
-public class Spinner extends Gizmo implements IMovable {
+import java.util.List;
+import java.util.Set;
+
+public class Spinner extends Gizmo implements IMovable, ITriggerable {
+
+    private final DefaultTriggarable triggerable = new DefaultTriggarable();
 
     private Vect velocity;
     private Circle spinAroundPoint;
@@ -141,5 +149,50 @@ public class Spinner extends Gizmo implements IMovable {
     @Override
     public IGizmo.Type getType() {
         return IGizmo.Type.SPINNER;
+    }
+
+    @Override
+    public void performAction(Object args) {
+        velocity = new Vect(new Angle(velocity.angle().radians() * -1));
+    }
+
+    @Override
+    public void setAction(IAction triggerAction) {
+        triggerable.setAction(triggerAction);
+    }
+
+    @Override
+    public IAction getCurrentAction() {
+        return triggerable.getCurrentAction();
+    }
+
+    @Override
+    public List<IAction> getAvailableActions() {
+        return triggerable.getAvailableActions();
+    }
+
+    @Override
+    public boolean addAvailableAction(IAction action) {
+        return triggerable.addAvailableAction(action);
+    }
+
+    @Override
+    public boolean addActionTrigger(String trigger) {
+        return triggerable.addActionTrigger(trigger);
+    }
+
+    @Override
+    public boolean removeActionTrigger(String trigger) {
+        return triggerable.removeActionTrigger(trigger);
+    }
+
+    @Override
+    public Set<String> getTriggers() {
+        return triggerable.getTriggers();
+    }
+
+    @Override
+    public String id() {
+        return null;
     }
 }
