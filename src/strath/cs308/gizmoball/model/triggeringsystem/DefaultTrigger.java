@@ -17,7 +17,7 @@ public class DefaultTrigger implements ITrigger {
     }
 
     @Override
-    public void registerTriggarable(ITriggerable triggerTarget) {
+    public void registerTriggerable(ITriggerable triggerTarget) {
         triggerables.add(triggerTarget);
     }
 

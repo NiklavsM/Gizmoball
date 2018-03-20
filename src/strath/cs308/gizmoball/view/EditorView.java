@@ -21,11 +21,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.controller.*;
+import strath.cs308.gizmoball.controller.connect.ConnectPanelView;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IMovable;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
-import strath.cs308.gizmoball.utils.Logger;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;

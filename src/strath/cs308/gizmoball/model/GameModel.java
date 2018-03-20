@@ -236,7 +236,7 @@ public class GameModel extends Observable implements IGameModel {
         }
         moveMovables(time);
         triggersToTrigger.forEach(ITrigger::trigger);
-        triggerOnCollision.forEach(collidedWith -> collidedWith.performAction("collusion"));
+        triggerOnCollision.forEach(collidedWith -> collidedWith.performAction("collision"));
         update();
     }
 
