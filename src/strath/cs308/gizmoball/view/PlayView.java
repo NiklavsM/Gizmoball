@@ -36,11 +36,9 @@ public class PlayView extends Scene implements IPlayView, Observer {
     private ToolBar pauseMenu;
     private StackPane stackPane;
     private Canvas canvas;
-    private InGameKeyEventHandler keyHandler;
 
-    public PlayView(IGameModel gameModel, InGameKeyEventHandler keyEventHandler) {
+    public PlayView(IGameModel gameModel) {
         super(new Pane());
-        this.keyHandler = keyEventHandler;
         this.gameModel = gameModel;
 
         try {
@@ -58,8 +56,9 @@ public class PlayView extends Scene implements IPlayView, Observer {
             pauseMenu.toBack();
             gameModel.addObserver(this);
 
-            setOnKeyPressed(this.keyHandler);
-            setOnKeyReleased(this.keyHandler);
+            EventHandler keyHandler = new InGameKeyEventHandler(gameModel);
+            setOnKeyPressed(keyHandler);
+            setOnKeyReleased(keyHandler);
             setRoot(root);
 
             Platform.runLater(this::attachEventHandlers);
@@ -78,7 +77,7 @@ public class PlayView extends Scene implements IPlayView, Observer {
             root.lookupAll("#gameMenu > Button")
                     .forEach(node -> ((Button) node).setOnAction(gameBarEventHandler));
 
-            EventHandler pauseMenuEventHandler = new PauseMenuEventHandler(gameModel, keyHandler, gameTimer, this);
+            EventHandler pauseMenuEventHandler = new PauseMenuEventHandler(gameModel, gameTimer, this);
             root.lookupAll("#pauseMenuItemHolder > Button")
                     .forEach(node -> ((Button) node).setOnAction(pauseMenuEventHandler));
 
@@ -174,9 +173,9 @@ public class PlayView extends Scene implements IPlayView, Observer {
 
     @Override
     public void switchToEditor() {
-        UndoRedo.INSTANCE.saveState(gameModel, keyHandler);
+        UndoRedo.INSTANCE.saveState(gameModel);
         gameModel.deleteObserver(this);
-        GizmoBall.switchView(new EditorView(gameModel, keyHandler));
+        GizmoBall.switchView(new EditorView(gameModel));
     }
 
     public void soundOn(boolean soundOn) {

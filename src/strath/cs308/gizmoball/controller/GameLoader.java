@@ -34,7 +34,7 @@ public class GameLoader {
     private Set<String> nameCommands;
     private Map<String, IGizmo.Type> gizmoCommandToEnum;
 
-    public GameLoader(IGameModel gameModel, InGameKeyEventHandler keyHandler) {
+    public GameLoader(IGameModel gameModel) {
         this.gameModel = gameModel;
         gizmoFactory = new GizmoFactory();
 

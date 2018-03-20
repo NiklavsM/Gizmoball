@@ -29,8 +29,6 @@ public interface IEditorView {
 
     void setErrorStatus(String message);
 
-    InGameKeyEventHandler getKeyHandler();
-
     double getFriction1Input() throws NumberFormatException;
 
     double getFriction2Input() throws NumberFormatException;

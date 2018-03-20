@@ -16,14 +16,12 @@ import java.io.FileNotFoundException;
 
 public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
     private static final String TAG = "TopToolbarEventHandler";
-    private final InGameKeyEventHandler keyEventHandler;
     private IGameModel gameModel;
     private IEditorView editView;
 
-    public TopToolbarEventHandler(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, IEditorView editorView) {
+    public TopToolbarEventHandler(IGameModel gameModel, IEditorView editorView) {
         this.gameModel = gameModel;
         this.editView = editorView;
-        this.keyEventHandler = keyEventHandler;
     }
 
     @Override
@@ -68,12 +66,12 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
 
     private void redo() {
 
-        UndoRedo.INSTANCE.redo(gameModel, keyEventHandler);
+        UndoRedo.INSTANCE.redo(gameModel);
         gameModel.update();
     }
 
     private void undo() {
-        UndoRedo.INSTANCE.undo(gameModel, keyEventHandler);
+        UndoRedo.INSTANCE.undo(gameModel);
         gameModel.update();
     }
 
@@ -83,7 +81,7 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
 
     private void clearBoard() {
         gameModel.reset();
-        UndoRedo.INSTANCE.saveState(gameModel, keyEventHandler);
+        UndoRedo.INSTANCE.saveState(gameModel);
     }
 
     private void loadGame() {
@@ -96,7 +94,7 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
 
         try {
             gameModel.reset();
-            GameLoader gameLoader = new GameLoader(gameModel, keyEventHandler);
+            GameLoader gameLoader = new GameLoader(gameModel);
             gameLoader.load(new FileInputStream(fileToLoad));
         } catch (IllegalAccessException | FileNotFoundException e) {
             e.printStackTrace();
@@ -105,7 +103,7 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
 
     private void saveGame() {
         File fileToSave = FileChooser.getFile();
-        GameSaver gs = new GameSaver(gameModel, keyEventHandler, fileToSave);
+        GameSaver gs = new GameSaver(gameModel, fileToSave);
 
         if (fileToSave == null) {
             Logger.debug(TAG, "Saving file dialog cancelled");

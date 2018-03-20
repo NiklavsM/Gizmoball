@@ -11,7 +11,7 @@ import java.util.*;
 import static javafx.scene.input.KeyEvent.KEY_PRESSED;
 import static javafx.scene.input.KeyEvent.KEY_RELEASED;
 
-public class InGameKeyEventHandler implements EventHandler<KeyEvent>, Observer {
+public class InGameKeyEventHandler implements EventHandler<KeyEvent> {
 
     private final Map<String, Set<ITriggerable>> keyEventMap = new HashMap<>();
 
@@ -19,7 +19,6 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent>, Observer {
 
     public InGameKeyEventHandler(IGameModel gameModel) {
         this.gameModel = gameModel;
-        gameModel.addObserver(this);
     }
 
     private String prettify(KeyEvent event) {
@@ -30,21 +29,6 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent>, Observer {
             type = "up";
         }
         return "key " + event.getCode().impl_getCode() + ".0 " + type;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("\n# key bindings\n");
-        keyEventMap.forEach((event, trigs) -> trigs
-                .forEach(t -> stringBuilder.append(GameLoader.KEY_CONNECT_COMMAND)
-                        .append(" ")
-                        .append(event)
-                        .append(" ")
-                        .append(t.id())
-                        .append("\n"))
-        );
-        return stringBuilder.toString();
     }
 
     @Override
@@ -59,17 +43,6 @@ public class InGameKeyEventHandler implements EventHandler<KeyEvent>, Observer {
                 .forEach(iTriggerable -> {
                     iTriggerable.performAction(keyEventString);
                 } );
-    }
-
-    public void removeTriggarable(ITriggerable triggerable) {
-        keyEventMap.values().forEach(set -> set.remove(triggerable));
-    }
-
-    @Override
-    public void update(java.util.Observable o, Object arg) {
-        if (arg instanceof ITriggerable) {
-            removeTriggarable((ITriggerable) arg);
-        }
     }
 
 }

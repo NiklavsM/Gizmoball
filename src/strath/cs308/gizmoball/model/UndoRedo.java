@@ -20,13 +20,9 @@ public enum UndoRedo {
     }
 
 
-    public void saveState(IGameModel gameModel, InGameKeyEventHandler keyEventHandler) {
+    public void saveState(IGameModel gameModel) {
 
-        StringBuilder builder = new StringBuilder();
-        builder.append(gameModel.toString())
-                .append(keyEventHandler.toString());
-
-        String state = builder.toString();
+        String state = gameModel.toString();
 
         if (currentState != null) {
             undoStates.addFirst(currentState);
@@ -35,8 +31,8 @@ public enum UndoRedo {
         redoStates.clear();
     }
 
-    private void loadSate(IGameModel gameModel, InGameKeyEventHandler keyEventHandler, String state) {
-        GameLoader gameLoader = new GameLoader(gameModel, keyEventHandler);
+    private void loadSate(IGameModel gameModel, String state) {
+        GameLoader gameLoader = new GameLoader(gameModel);
         try {
             gameLoader.load(new ByteArrayInputStream(state.getBytes()));
         } catch (IllegalAccessException e) {
@@ -44,7 +40,7 @@ public enum UndoRedo {
         }
     }
 
-    public void undo(IGameModel gameModel, InGameKeyEventHandler keyEventHandler) {
+    public void undo(IGameModel gameModel) {
 
         if (undoStates.isEmpty()) {
             return;
@@ -54,10 +50,10 @@ public enum UndoRedo {
         currentState = undoStates.removeFirst();
 
         gameModel.reset();
-        loadSate(gameModel, keyEventHandler, currentState);
+        loadSate(gameModel, currentState);
     }
 
-    public void redo(IGameModel gameModel, InGameKeyEventHandler keyEventHandler) {
+    public void redo(IGameModel gameModel) {
         if (redoStates.isEmpty()) {
             return;
         }
@@ -66,6 +62,6 @@ public enum UndoRedo {
         currentState = redoStates.removeLast();
 
         gameModel.reset();
-        loadSate(gameModel, keyEventHandler, currentState);
+        loadSate(gameModel, currentState);
     }
 }
