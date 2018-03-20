@@ -4,13 +4,19 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.controller.actions.*;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.UndoRedo;
+import strath.cs308.gizmoball.model.gizmo.IGizmo;
+import strath.cs308.gizmoball.model.gizmo.Octagon;
+import strath.cs308.gizmoball.model.gizmo.Square;
 import strath.cs308.gizmoball.model.gizmo.Triangle;
+import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
+import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.PlayView;
 
@@ -42,12 +48,13 @@ public class GizmoBall extends Application {
                 e.printStackTrace();
             }
 
-            Triangle t = (Triangle) gameModel.getGizmoById("T");
-//            t.setAction(new RotateAction(gameModel, t));
-//            t.setAction(new ChangeToARandomColor(gameModel, t, "#ffffff", "#000000", "#f32", t.getColor(), "#755785", "#f1f3f3"));
-//            t.setAction(new RemoveGizmoAction(gameModel, gameModel.getGizmoById("RF112")));
-            t.setAction(new DestroyerGizmoAction(gameModel));
-            System.out.println(t.getCurrentAction());
+            gameModel.getGizmos().stream()
+                    .filter(g -> (g instanceof Square) || (g instanceof Circle) || (g instanceof Octagon) || (g instanceof Triangle))
+                    .map(ITriggerable.class::cast)
+                    .forEach(triggerable -> {
+                        ((ITrigger) triggerable).registerTriggerable(triggerable);
+                        triggerable.setAction(new ChangeToARandomColor(gameModel, (IGizmo) triggerable, "#000000", "#ffffff", "#f12"));
+                    });
 
             UndoRedo.INSTANCE.saveState(gameModel);
 
