@@ -58,8 +58,8 @@ public class Octagon extends Gizmo implements ITrigger, ITriggerable {
     }
 
     @Override
-    public void registerTriggarable(ITriggerable triggerTarget) {
-        collisionTrigger.registerTriggarable(triggerTarget);
+    public void registerTriggerable(ITriggerable triggerTarget) {
+        collisionTrigger.registerTriggerable(triggerTarget);
     }
 
     @Override

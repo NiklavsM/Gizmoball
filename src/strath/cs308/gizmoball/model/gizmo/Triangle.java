@@ -47,8 +47,8 @@ public class Triangle extends Gizmo implements ITriggerable, ITrigger {
     }
 
     @Override
-    public void registerTriggarable(ITriggerable triggerTarget) {
-        collisionTrigger.registerTriggarable(triggerTarget);
+    public void registerTriggerable(ITriggerable triggerTarget) {
+        collisionTrigger.registerTriggerable(triggerTarget);
     }
     @Override
     public void removeTriggarable(ITriggerable trigger) {

@@ -12,7 +12,7 @@ public class DefaultTriggarable implements ITriggerable {
         availableActions = new LinkedList<>();
         triggers = new HashSet<>();
 
-        addActionTrigger("collusion");
+        addActionTrigger("collision");
         addActionTrigger("trigger");
     }
 

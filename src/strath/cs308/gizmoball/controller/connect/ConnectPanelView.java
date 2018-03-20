@@ -1,4 +1,4 @@
-package strath.cs308.gizmoball.controller;
+package strath.cs308.gizmoball.controller.connect;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

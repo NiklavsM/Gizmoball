@@ -6,7 +6,7 @@ public interface ITrigger {
 
     void trigger();
 
-    void registerTriggarable(ITriggerable triggerable);
+    void registerTriggerable(ITriggerable triggerable);
 
     void removeTriggarable(ITriggerable triggerable);
 

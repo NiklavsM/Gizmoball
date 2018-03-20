@@ -161,7 +161,7 @@ public class GameLoader {
                 if (from == null || to == null) {
                     return;
                 }
-                from.registerTriggarable(to);
+                from.registerTriggerable(to);
                 Logger.verbose(TAG, "connected " + name + " to " + name2);
             } catch (ClassCastException ex) {
             }
