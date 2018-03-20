@@ -18,6 +18,8 @@ public class GameModel extends Observable implements IGameModel {
     private Map<String, Gizmo> gizmos;
     private Map<String, Absorber> absorberCollided;
     private int score;
+    private int totalCollisions;
+    private int totalBallsAbsorbed;
     private double frictionCoef1;
     private double frictionCoef2;
     private double gravityCoefficient;
@@ -37,6 +39,8 @@ public class GameModel extends Observable implements IGameModel {
         frictionCoef2 = 0.025;
         gravityCoefficient = 25;
         score = 0;
+        totalCollisions = 0;
+        totalBallsAbsorbed = 0;
         addGizmo(new Walls());
     }
 
@@ -187,13 +191,14 @@ public class GameModel extends Observable implements IGameModel {
                 CollisionDetails cd = timeUntilCollision(ball);
                 double tuc = cd.getTuc();
                 if (tuc > time) {
-                    // No collision ...
+                    // No collision
                     ball.move(time);
                     applyForces(new Vect(ball.getVelocityX(), ball.getVelocityY()), time, ball);
 
                 } else {
-                    // We've got a collision in tuc
+                    // We have a collision
                     nextGizmo = cd.getGizmo();
+                    totalCollisions++;
 
                     if (nextGizmo instanceof ITrigger) {
                         triggersToTrigger.add((ITrigger) nextGizmo);
@@ -218,7 +223,7 @@ public class GameModel extends Observable implements IGameModel {
                     if (score < 0) score = 0;
 
                     ball.move(tuc);
-                    // Post collision velocity ...
+                    // Post collision forces
                     applyForces(cd.getVelo(), tuc, ball);
                 }
                 if (absorberCollided.containsKey(ball.getId())) {
@@ -355,9 +360,14 @@ public class GameModel extends Observable implements IGameModel {
                 absorbedBalls++;
         }
 
+        totalBallsAbsorbed += absorbedBalls;
         balls[0] = allBalls.size() - absorbedBalls;
         balls[1] = absorbedBalls;
         return balls;
+    }
+
+    public int[] getTotalStatistics() {
+        return new int[]{totalCollisions, totalBallsAbsorbed};
     }
 
     @Override
