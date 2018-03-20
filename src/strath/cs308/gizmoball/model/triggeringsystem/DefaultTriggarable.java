@@ -26,7 +26,9 @@ public class DefaultTriggarable implements ITriggerable {
         if (action != null) {
             if (args instanceof String) {
                 String event = (String) args;
-                action.doAction(event);
+                if (triggers.contains(event)) {
+                    action.doAction(event);
+                }
             }
         }
 

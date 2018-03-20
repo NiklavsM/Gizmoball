@@ -13,8 +13,6 @@ import static javafx.scene.input.KeyEvent.KEY_RELEASED;
 
 public class InGameKeyEventHandler implements EventHandler<KeyEvent> {
 
-    private final Map<String, Set<ITriggerable>> keyEventMap = new HashMap<>();
-
     private IGameModel gameModel;
 
     public InGameKeyEventHandler(IGameModel gameModel) {
