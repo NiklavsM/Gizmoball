@@ -58,7 +58,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
     }
 
     private void exitGame() {
-        if (playView.getCloseConFormation()) {
+        if (playView.getCloseConfirmation()) {
             Platform.exit();
             System.exit(0);
         }
