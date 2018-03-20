@@ -24,6 +24,7 @@ import strath.cs308.gizmoball.controller.*;
 import strath.cs308.gizmoball.controller.connect.ConnectPanelView;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IMovable;
+import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
@@ -196,6 +197,7 @@ public class EditorView extends Scene implements IEditorView, Observer {
 
                         consoleTextArea.appendText(consoleInputTextField.getText() + "\n");
                         consoleInputTextField.clear();
+                        UndoRedo.INSTANCE.saveState(gameModel);
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }
