@@ -6,14 +6,13 @@ import strath.cs308.gizmoball.model.triggeringsystem.DefaultTriggarable;
 import strath.cs308.gizmoball.model.triggeringsystem.IAction;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
-import java.util.List;
 import java.util.Set;
 
-public class Spinner extends Gizmo implements IMovable, ITriggerable {
+public class Spinner extends Gizmo implements IMovable, ITriggerable, IAction {
 
     private final DefaultTriggarable triggerable = new DefaultTriggarable();
 
-    private Vect velocity;
+    private double velocity;
     private Circle spinAroundPoint;
     private Circle point1;
     private Circle point2;
@@ -31,9 +30,12 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable {
     public Spinner(double x1, double y1, String id) {
         super(x1, y1, x1 + 2, y1 + 2, id);
 
-        velocity = new Vect(Angle.DEG_180);
-        velocity = new Vect(new Angle(velocity.angle().radians() * -1));
+        velocity = 3.14 * -1;
         setReflectionCoefficient(0.9);
+
+
+        setAction(this);
+        addActionTrigger("collision");
     }
 
     @Override
@@ -41,20 +43,20 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable {
         super.setup(x1, y1, x2, y2);
 
         double radius = 0.25;
-        connector1 = new LineSegment(x1 + radius * 2, y1 + 0.75, x2 - radius * 2, y1 + 0.75);
-        connector2 = new LineSegment(x1 + radius * 2, y1 + 1.25, x2 - radius * 2, y1 + 1.25);
-        connector3 = new LineSegment(x1 + 0.75, y1 + radius * 2, x1 + 0.75, y2 - radius * 2);
-        connector4 = new LineSegment(x1 + 1.25, y1 + radius * 2, x1 + 1.25, y2 - radius * 2);
+        connector1 = new LineSegment(x1 + radius*2, y1 + 0.75, x2 - radius*2, y1 + 0.75);
+        connector2 = new LineSegment(x1 + radius*2, y1 + 1.25, x2 - radius*2, y1 + 1.25);
+        connector3 = new LineSegment(x1 + 0.75, y1 + radius*2, x1 + 0.75, y2 - radius*2);
+        connector4 = new LineSegment(x1 + 1.25, y1 + radius*2, x1 + 1.25, y2 - radius*2);
 
         lines.add(connector1);
         lines.add(connector2);
         lines.add(connector3);
         lines.add(connector4);
 
-        point1 = new Circle(x1 + radius * 2, y1 + 1, radius);
-        point2 = new Circle(x2 - radius * 2, y1 + 1, radius);
-        point3 = new Circle(x1 + 1, y1 + radius * 2, radius);
-        point4 = new Circle(x1 + 1, y2 - radius * 2, radius);
+        point1 = new Circle(x1 + radius*2, y1 + 1, radius);
+        point2 = new Circle(x2 - radius*2, y1 + 1, radius);
+        point3 = new Circle(x1 + 1, y1 + radius*2, radius);
+        point4 = new Circle(x1 + 1, y2 - radius*2, radius);
 
         circles.add(point1);
         circles.add(point2);
@@ -69,14 +71,14 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable {
 
     @Override
     public boolean isMoving() {
-        return velocity != Vect.ZERO;
+        return velocity > 0;
     }
 
     @Override
     public void move(double time) {
 
 
-        double rotationRadian = velocity.angle().radians() * time;
+        double rotationRadian = velocity * time;
         Angle rotationAngle = new Angle(rotationRadian);
 
         circles.clear();
@@ -109,42 +111,50 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable {
     }
 
     public Double getCurrentRadianVelocity() {
-        return velocity.angle().radians();
+        return velocity;
     }
 
     @Override
-    public Circle getSpinAround() {
-        return spinAroundPoint;
+    public double getSpinAroundX() {
+        return spinAroundPoint.getCenter().x();
     }
 
     @Override
-    public void setVelocity(double x, double y) {
-
-    }
-
-    @Override
-    public double getVelocityX() {
-        return 0;
-    }
-
-    @Override
-    public double getVelocityY() {
-        return 0;
-    }
-
-    @Override
-    public double getVelocityRadian() {
-        return 0;
+    public double getSpinAroundY() {
+        return spinAroundPoint.getCenter().y();
     }
 
     @Override
     public void setVelocityRadian(double radian) {
+        velocity = radian;
+    }
 
+    @Override
+    public void setVelocity(double x, double y) {
+        Vect temp = new Vect(x, y);
+        velocity = temp.angle().radians();
+    }
+
+    @Override
+    public double getVelocityX() {
+        Vect temp = new Vect(new Angle(velocity));
+        return temp.x();
+    }
+
+    @Override
+    public double getVelocityY() {
+        Vect temp = new Vect(new Angle(velocity));
+        return temp.y();
+    }
+
+    @Override
+    public double getVelocityRadian() {
+        return velocity;
     }
 
     @Override
     public IMovable.Type getMovementType() {
-        return null;
+        return IMovable.Type.ROTATION;
     }
 
     @Override
@@ -154,7 +164,7 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable {
 
     @Override
     public void performAction(Object args) {
-        velocity = new Vect(new Angle(velocity.angle().radians() * -1));
+        triggerable.performAction(args);
     }
 
     @Override
@@ -168,13 +178,8 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable {
     }
 
     @Override
-    public List<IAction> getAvailableActions() {
+    public Set<String> getAvailableActions() {
         return triggerable.getAvailableActions();
-    }
-
-    @Override
-    public boolean addAvailableAction(IAction action) {
-        return triggerable.addAvailableAction(action);
     }
 
     @Override
@@ -194,6 +199,27 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable {
 
     @Override
     public String id() {
-        return null;
+        return getId();
+    }
+
+    @Override
+    public void doAction(Object args)
+    {
+        velocity *= -1;
+    }
+
+    @Override
+    public boolean addAvailableAction(String actionName, IAction action) {
+        return triggerable.addAvailableAction(actionName, action);
+    }
+
+    @Override
+    public boolean setAction(String actionName) {
+        return triggerable.setAction(actionName);
+    }
+
+    @Override
+    public String getCurrentActionName() {
+        return triggerable.getCurrentActionName();
     }
 }

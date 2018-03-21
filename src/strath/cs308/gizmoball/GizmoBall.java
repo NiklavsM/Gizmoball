@@ -5,17 +5,16 @@ import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import strath.cs308.gizmoball.controller.GameLoader;
-import strath.cs308.gizmoball.controller.actions.ChangeToARandomColor;
+import strath.cs308.gizmoball.controller.file.GameLoader;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.model.gizmo.*;
 import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
+import strath.cs308.gizmoball.model.triggeringsystem.actions.ChangeToARandomColor;
 import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.utils.Settings;
-import strath.cs308.gizmoball.view.EditorView;
 import strath.cs308.gizmoball.view.LauncherView;
 
 
@@ -32,16 +31,6 @@ public class GizmoBall extends Application {
         launch(args);
     }
 
-    private static void setIcon() {
-        Image image = new Image("images/icon.png");
-        stage.getIcons().add(image);
-
-    }
-
-    public static void switchView(Scene view) {
-        setIcon();
-        stage.setScene(view);
-    }
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -52,7 +41,7 @@ public class GizmoBall extends Application {
             GameLoader gameLoader = new GameLoader(gameModel);
 
             try {
-                gameLoader.load(getClass().getResourceAsStream("/alternative.gizmo"));
+                gameLoader.load(getClass().getResourceAsStream("/default.gizmo"));
             } catch (Exception e) {
                 Logger.error(TAG, "Failed to load default model");
                 e.printStackTrace();
@@ -79,7 +68,6 @@ public class GizmoBall extends Application {
 //            ((Triangle) gameModel.getGizmoById("T")).setAction(new GoToJailAction(gameModel));
 
             UndoRedo.INSTANCE.saveState(gameModel);
-//            setIcon(); //FIXME stopped working :(
 
 
             //Doesn't work in xml
@@ -88,9 +76,11 @@ public class GizmoBall extends Application {
             primaryStage.setMinHeight(600);
 
             //primaryStage.setScene(new EditorView(gameModel, keyHandler));
-            primaryStage.setScene(new EditorView(gameModel));
+            primaryStage.setScene(new LauncherView(gameModel));
             primaryStage.show();
             stage = primaryStage;
+
+            setIcon();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -98,6 +88,16 @@ public class GizmoBall extends Application {
             e.printStackTrace();
         }
 
+    }
+
+    private void setIcon() {
+        Image image = new Image("images/icon.png");
+        stage.getIcons().add(image);
+
+    }
+
+    public static void switchView(Scene view) {
+        stage.setScene(view);
     }
 
     private void loadSettings() throws IOException {

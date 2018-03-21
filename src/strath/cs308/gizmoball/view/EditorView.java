@@ -16,12 +16,15 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.GizmoBall;
-import strath.cs308.gizmoball.controller.*;
-import strath.cs308.gizmoball.controller.connect.ConnectPanelView;
+import strath.cs308.gizmoball.controller.editor.actionbar.GamePropertyEventHandler;
+import strath.cs308.gizmoball.controller.editor.actionbar.TopToolbarEventHandler;
+import strath.cs308.gizmoball.controller.editor.pane.GizmoPropertyEventHandler;
+import strath.cs308.gizmoball.controller.editor.pane.GizmoSelectorEventHandler;
+import strath.cs308.gizmoball.controller.editor.toolbar.ToolModeEventHandler;
+import strath.cs308.gizmoball.controller.file.GameLoader;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IMovable;
 import strath.cs308.gizmoball.model.UndoRedo;
@@ -35,6 +38,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class EditorView extends Scene implements IEditorView, Observer {
+
     private static final String TAG = "EditorView";
     private BorderPane root;
     private IGameModel gameModel;
@@ -190,9 +194,17 @@ public class EditorView extends Scene implements IEditorView, Observer {
                 if (key.getCode() == KeyCode.ENTER) {
                     try {
 
-                        if (consoleInputTextField.getText().equals("clear")) {
+                        if (consoleInputTextField.getText().trim().toLowerCase().equals("clear")) {
                             consoleTextArea.clear();
                             consoleInputTextField.clear();
+                            return;
+                        }
+                        if (consoleInputTextField.getText().trim().toLowerCase().equals("undo")) {
+                            UndoRedo.INSTANCE.undo(gameModel);
+                            return;
+                        }
+                        if (consoleInputTextField.getText().trim().toLowerCase().equals("redo")) {
+                            UndoRedo.INSTANCE.redo(gameModel);
                             return;
                         }
                         GameLoader gameLoader = new GameLoader(gameModel);
@@ -234,11 +246,15 @@ public class EditorView extends Scene implements IEditorView, Observer {
     }
 
     @Override
-    public File getLoadFile() {
+    public File getSelectedLoadFile() {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Gizmoball loading file");
-        fileChooser.setInitialFileName("New Gizmo");
-        return fileChooser.showOpenDialog(null);
+        return fileChooser.showOpenDialog();
+    }
+
+    @Override
+    public File getSelectedSaveFile(){
+        FileChooser fileChooser = new FileChooser();
+        return fileChooser.showSaveDialog();
     }
 
     @Override
@@ -343,26 +359,8 @@ public class EditorView extends Scene implements IEditorView, Observer {
 
     @Override
     public void previewGizmo(IGizmo gizmo, double x, double y) {
-        if (gameModel.getGizmo(x, y).equals(Optional.empty())) {
-            if (gizmo.getType().equals(IGizmo.Type.LEFT_FLIPPER) && isFlipperAreaOccupied(x, y))
-                return;
-            if (gizmo.getType().equals(IGizmo.Type.RIGHT_FLIPPER) && isFlipperAreaOccupied(x - 1, y))
-                return;
-
             GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
             gizmoDrawer.drawGizmo(gizmo, true);
-        }
-    }
-
-    private boolean isFlipperAreaOccupied(double x, double y) {
-        Double Xcoord = Math.floor(x), Ycoord = Math.floor(y);
-        for (int posX = Xcoord.intValue(); posX <= Xcoord.intValue() + 1; posX++) {
-            for (int posY = Ycoord.intValue(); posY <= Ycoord.intValue() + 1; posY++) {
-                if (!gameModel.getGizmo(posX, posY).equals(Optional.empty()))
-                    return true;
-            }
-        }
-        return false;
     }
 
     @Override

@@ -33,11 +33,6 @@ public class GizmoDrawer {
 
     public void drawGizmo(IGizmo gizmo, boolean isPreview) {
 
-        if ("true".equals(Settings.getProperty("shadows"))) {
-            Color b = Color.rgb(84, 110, 122);
-            gc.setEffect(new DropShadow(5, 5, 5, b));
-        }
-
 
         gc.setFill(Color.BLACK);
         List<Dot> dots = gizmo.getDots();
@@ -52,6 +47,8 @@ public class GizmoDrawer {
         } else {
             gc.setFill(Color.web(gizmo.getColor()));
             gc.setStroke(Color.web(gizmo.getColor()));
+
+
         }
 
         int i = 0;
@@ -68,6 +65,11 @@ public class GizmoDrawer {
                     || type.equals(IGizmo.Type.LEFT_FLIPPER)
                     || type.equals(IGizmo.Type.RIGHT_FLIPPER)
                     || type.equals(IGizmo.Type.SPINNER)) {
+
+                if (!isPreview && "true".equals(Settings.getProperty("shadowsEnabled"))) {
+                    enableShadow();
+                }
+
                 gc.setLineWidth(diameter);
                 gc.setLineCap(StrokeLineCap.ROUND);
                 if (type.equals(IGizmo.Type.SPINNER) && i == 4) {
@@ -81,6 +83,15 @@ public class GizmoDrawer {
             }
         }
 
+
+        gc.setEffect(null);
+
+
+    }
+
+    private void enableShadow() {
+        Color b = Color.rgb(0, 0, 0, 0.25);
+        gc.setEffect(new DropShadow(5, 7, 7, b));
 
     }
 

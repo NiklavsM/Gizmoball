@@ -4,7 +4,7 @@ import mit.physics.Circle;
 import mit.physics.Geometry;
 import mit.physics.LineSegment;
 import mit.physics.Vect;
-import strath.cs308.gizmoball.controller.GameLoader;
+import strath.cs308.gizmoball.controller.file.GameLoader;
 import strath.cs308.gizmoball.model.gizmo.*;
 import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
@@ -116,6 +116,52 @@ public class GameModel extends Observable implements IGameModel {
 
         gizmos.put(gizmo.getId(), (Gizmo) gizmo);
         update();
+        return true;
+    }
+
+    @Override
+    public boolean isGizmoAddable(IGizmo gizmo)
+    {
+        if (gizmo == null) {
+            return false;
+        }
+
+        if (!(isInsideWalls(gizmo))) {
+            return false;
+        }
+
+        if (gizmos.containsKey(gizmo.getId())) {
+                return false;
+        }
+
+        if (gizmo.getType().equals(IGizmo.Type.BALL)) {
+            if (gizmos.values()
+                    .parallelStream()
+                    .filter(g -> g.overlapsWithGizmo(gizmo)
+                            && g.getType().equals(IGizmo.Type.ABSORBER))
+                    .map(Absorber.class::cast)
+                    .findFirst()
+                    .isPresent()) {
+                return true;
+            }
+        }
+
+        if (gizmo.getType().equals(IGizmo.Type.ABSORBER)) {
+
+            return !gizmo.overlapsWithAnyGizmos(gizmos
+                    .values()
+                    .stream()
+                    .filter(g -> !g.getType().equals(IGizmo.Type.BALL))
+                    .collect(Collectors.toSet()));
+        }
+
+        if (gizmo.overlapsWithAnyGizmos(getGizmos())) {
+            return false;
+        }
+        if (gizmos.containsKey(gizmo.getId())) {
+            return false;
+        }
+
         return true;
     }
 
@@ -267,36 +313,26 @@ public class GameModel extends Observable implements IGameModel {
         if (gizmo == null) {
             return false;
         }
-        double backX = gizmo.getStartX(), backY = gizmo.getStartY();
+
+        GizmoFactory gizmoFactory = new GizmoFactory();
+        Gizmo temp;
+        try {
+            temp = (Gizmo) gizmoFactory.createGizmo(gizmo.getType(), gizmo.getStartX(), gizmo.getStartY(), gizmo.getEndX(), gizmo.getEndY());
+        } catch (IllegalArgumentException e) {
+            temp = (Gizmo) gizmoFactory.createGizmo(gizmo.getType(), gizmo.getStartX(), gizmo.getStartY());
+        }
+
+
+        removeGizmo(gizmo.getId());
+        temp.move(x, y);
+        if (!isGizmoAddable(temp)) {
+            addGizmo(gizmo);
+            return false;
+        }
+
         gizmo.move(x, y);
-        if (!isInsideWalls(gizmo)) {
-            gizmo.move(backX, backY);
-            return false;
-        }
+        addGizmo(gizmo);
 
-        //fixme move ball in absorber would be nice, and absorber over balls just like add.
-        //fixme high speed of the flippers?
-//        if (gizmo.getType().equals(IGizmo.Type.BALL)) {
-//            final boolean[] added = {false};
-//            gizmos
-//                    .values()
-//                    .parallelStream()
-//                    .filter(g -> g.overlapsWithGizmo(gizmo)
-//                            && g.getType().equals(IGizmo.Type.ABSORBER))
-//                    .map(Absorber.class::cast)
-//                    .findFirst()
-//                    .ifPresent(absorber -> added[0] = absorber.absorbBall((Ball) gizmo));
-//
-//            if (added[0]) {
-//                update();
-//                return true;
-//            }
-//        }
-
-        if (gizmo.overlapsWithAnyGizmos(getGizmos())) {
-            gizmo.move(backX, backY);
-            return false;
-        }
         update();
         return true;
     }
@@ -331,10 +367,10 @@ public class GameModel extends Observable implements IGameModel {
         for (Gizmo gizmo : gizmos.values()) {
             Set<LineSegment> lines = gizmo.getLines();
             List<Circle> circles = gizmo.getCircles();
-            if (gizmo instanceof IMovable && ((IMovable) gizmo).isMoving() && !(gizmo instanceof Ball)) {
+            if (gizmo instanceof IMovable && ((IMovable) gizmo).isMoving() && ((IMovable) gizmo).getMovementType().equals(IMovable.Type.ROTATION) && !(gizmo instanceof Ball)) {
                 IMovable movable = ((IMovable) gizmo);
                 Double angularVelo = movable.getCurrentRadianVelocity();
-                Vect rotationCentre = movable.getSpinAround().getCenter();
+                Vect rotationCentre = new Vect(movable.getSpinAroundX(), movable.getSpinAroundY());
                 for (LineSegment line : lines) {
                     time = Geometry.timeUntilRotatingWallCollision(line, rotationCentre, angularVelo, ballCircle, ballVelocity);
                     if (time < shortestTime) {

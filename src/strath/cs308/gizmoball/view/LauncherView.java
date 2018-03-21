@@ -1,36 +1,28 @@
 package strath.cs308.gizmoball.view;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.RegularExpression;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
-import javafx.scene.control.ToolBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import strath.cs308.gizmoball.GizmoBall;
-import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
+import strath.cs308.gizmoball.controller.LauncherEventHandler;
 import strath.cs308.gizmoball.model.IGameModel;
-import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
-import java.util.regex.Pattern;
 
 public class LauncherView extends Scene implements ILauncherView, Observer {
 
     private static final String TAG = "LauncherView";
     private IGameModel gameModel;
     private BorderPane root;
-    private ToolBar pauseMenu;
-    private StackPane stackPane;
-    private Canvas canvas;
 
     public LauncherView(IGameModel gameModel) {
         super(new Pane());
@@ -41,16 +33,6 @@ public class LauncherView extends Scene implements ILauncherView, Observer {
             loader.setResources(ResourceBundle.getBundle("dictionary", GizmoBall.locale));
             root = loader.load();
 
-            pauseMenu = (ToolBar) root.lookup("#pauseMenu");
-            stackPane = (StackPane) root.lookup("#stackPane");
-            canvas = (Canvas) root.lookup("#canvas");
-
-//            pauseMenu.toBack();
-//            gameModel.addObserver(this);
-
-//            EventHandler keyHandler = new InGameKeyEventHandler(gameModel);
-//            setOnKeyPressed(keyHandler);
-//            setOnKeyReleased(keyHandler);
             setRoot(root);
 
             Platform.runLater(this::attachEventHandlers);
@@ -61,15 +43,10 @@ public class LauncherView extends Scene implements ILauncherView, Observer {
 
     private void attachEventHandlers() {
         Platform.runLater(() -> {
-//            IGameTimer gameTimer = new GameTimer(gameModel);
-//            EventHandler gameBarEventHandler = new GameBarEventHandler(gameModel, gameTimer, this);
-//
-//            root.lookupAll("#gameMenu > Button")
-//                    .forEach(node -> ((Button) node).setOnAction(gameBarEventHandler));
-//
-//            EventHandler pauseMenuEventHandler = new PauseMenuEventHandler(gameModel, gameTimer, this);
-//            root.lookupAll("#pauseMenuItemHolder > Button")
-//                    .forEach(node -> ((Button) node).setOnAction(pauseMenuEventHandler));
+            EventHandler<ActionEvent> launcherEventHandler = new LauncherEventHandler(gameModel, this);
+
+            root.lookupAll("#launcherVbox > Button")
+                    .forEach(node -> ((Button) node).setOnAction(launcherEventHandler));
 
         });
     }
@@ -90,26 +67,15 @@ public class LauncherView extends Scene implements ILauncherView, Observer {
 
     @Override
     public void switchToPlay() {
-        UndoRedo.INSTANCE.saveState(gameModel);
-        gameModel.deleteObserver(this);
-        GizmoBall.switchView(new EditorView(gameModel));
-    }
-
-    @Override
-    public void switchToEditor() {
-        UndoRedo.INSTANCE.saveState(gameModel);
         gameModel.deleteObserver(this);
         GizmoBall.switchView(new PlayView(gameModel));
     }
 
-    public void soundOn(boolean soundOn) {
-        Button soundButton = (Button) root.lookup("#soundButton");
-        soundButton.getStyleClass().clear();
-        if (soundOn) {
-            soundButton.getStyleClass().add("sound-on-button");
-        } else {
-            soundButton.getStyleClass().add("sound-off-button");
-        }
+    @Override
+    public void switchToEditor() {
+        gameModel.deleteObserver(this);
+        GizmoBall.switchView(new EditorView(gameModel));
     }
+
 
 }

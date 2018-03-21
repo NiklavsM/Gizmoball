@@ -7,15 +7,13 @@ import java.util.ResourceBundle;
 
 import static javafx.stage.FileChooser.ExtensionFilter;
 
-public enum FileChooser {
-    INSTANCE;
-
+public class FileChooser {
     private final ResourceBundle dictionary;
     private final javafx.stage.FileChooser fileChooser;
     private final ExtensionFilter gizmoFilter;
     private final ExtensionFilter allFilter;
 
-    FileChooser() {
+    public FileChooser() {
         fileChooser = new javafx.stage.FileChooser();
         gizmoFilter =
                 new ExtensionFilter("GIZMO (*.gizmo)", "*.gizmo");
