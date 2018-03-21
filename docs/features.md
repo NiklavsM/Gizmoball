@@ -94,3 +94,6 @@
 * Settings (Lanauage, volume)
 * Game Launcher
 * Custom gizmo actions
+
+## WTF
+* jail action
