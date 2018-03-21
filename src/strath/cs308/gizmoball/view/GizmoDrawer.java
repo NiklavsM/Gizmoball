@@ -14,14 +14,8 @@ import java.util.List;
 
 public class GizmoDrawer {
 
-    public static final Paint RED = Color.rgb(244, 67, 54);
-    public static final Paint PINK = Color.rgb(233, 30, 99);
-    public static final Paint GREEN = Color.rgb(139, 195, 74);
-    public static final Paint BLUE = Color.rgb(3, 169, 244);
-    public static final Paint ORANGE = Color.rgb(255, 152, 0);
-    public static final Paint DEEP_BLUE = Color.rgb(84, 110, 122);
-    public static final Paint YELLOW = Color.rgb(255, 255, 23);
-    public static final Paint CYAN = Color.rgb(0, 255, 226);
+
+    static final Paint DEEP_BLUE = Color.rgb(84, 110, 122);
 
     private final double pxPerL;
     private GraphicsContext gc;
@@ -31,7 +25,7 @@ public class GizmoDrawer {
         gc = canvas.getGraphicsContext2D();
     }
 
-    public void drawGizmo(IGizmo gizmo, boolean isPreview) {
+    void drawGizmo(IGizmo gizmo, boolean isPreview) {
 
 
         gc.setFill(Color.BLACK);
