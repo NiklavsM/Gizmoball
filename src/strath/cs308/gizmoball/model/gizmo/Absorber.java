@@ -50,7 +50,7 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
         super.move(x, y);
         List<Ball> balls = new LinkedList<>(ballsAbsorbed);
         ballsAbsorbed.clear();
-        balls.forEach(b -> absorbBall(b));
+        balls.forEach(this::absorbBall);
     }
 
     public boolean absorbBall(Ball ball) {
@@ -67,7 +67,7 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
         return false;
     }
 
-    public boolean hasAbsorbed(Ball ball) {
+    private boolean hasAbsorbed(Ball ball) {
         return ballsAbsorbed.contains(ball);
     }
 
@@ -136,15 +136,17 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
 
     @Override
     public void performAction(Object args) {
-//        triggerable.performAction(args);
+       // triggerable.performAction(args);
         System.out.println(args);
-        triggerable.getTriggers()
-                .parallelStream()
-                .forEach(s -> {
-                    if (s.equals(args)) {
-                        triggerable.getCurrentAction().doAction(null);
-                    }
-                });
+        if(!args.equals("collision")) {
+            triggerable.getTriggers()
+                    .parallelStream()
+                    .forEach(s -> {
+                        if (s.equals(args)) {
+                            triggerable.getCurrentAction().doAction(null);
+                        }
+                    });
+        }
     }
 
     @Override

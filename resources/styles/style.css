@@ -26,6 +26,10 @@ Label, .menu .label {
     -fx-text-fill: #cc0000;
 }
 
+.info-label {
+    -fx-text-fill: #ffffff;
+}
+
 MenuBar {
     -fx-background-color: #455A64;
     -fx-border-width: 0px 0px 2px 0px;

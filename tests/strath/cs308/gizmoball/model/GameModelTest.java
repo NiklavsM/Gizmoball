@@ -246,7 +246,6 @@ class GameModelTest {
 
     }
 
-
     private boolean checkIsFreshModel(GameModel model) {
         if (model.getGizmos().size() != 1) return false; //just walls
         if (model.getFrictionM1() != 0.025) return false;

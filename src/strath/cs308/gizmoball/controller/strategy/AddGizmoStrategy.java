@@ -83,7 +83,7 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
             }
 
             int step = 1;
-            if (gizmoType.equals(IGizmo.Type.LEFT_FLIPPER) || gizmoType.equals(IGizmo.Type.RIGHT_FLIPPER))
+            if (gizmoType.equals(IGizmo.Type.LEFT_FLIPPER) || gizmoType.equals(IGizmo.Type.RIGHT_FLIPPER) || gizmoType.equals(IGizmo.Type.SPINNER))
                 step = 2;
 
             for (int x = startX.intValue(); x <= endX.intValue(); x += step) {

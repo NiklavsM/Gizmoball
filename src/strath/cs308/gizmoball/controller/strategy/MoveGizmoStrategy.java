@@ -24,28 +24,22 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
     public MoveGizmoStrategy(IGameModel gameModel, IEditorView editorView) {
         this.gameModel = gameModel;
         this.editorView = editorView;
-
-        dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);
         selectedGizmo = Optional.empty();
 
         Image image = new Image("/icons/moveCursor.png"); // this should be handled in the view;
         editorView.setCursor(new ImageCursor(image));
+        dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);
     }
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-
         if (mouseEvent.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
             if (selectedGizmo.isPresent()) {
                 moveTo(mouseEvent);
-
-
                 UndoRedo.INSTANCE.saveState(gameModel);
-            } else {
+            } else
                 select(mouseEvent);
-            }
         }
-
     }
 
     private void select(MouseEvent mouseEvent) {
@@ -64,6 +58,7 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
         double pointY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
 
         Optional<IGizmo> existingGizmo = gameModel.getGizmo(pointX, pointY);
+
         if (!existingGizmo.isPresent()) {
             if (!selectedGizmo.get().getType().equals(IGizmo.Type.BALL)) {
                 pointX = Math.floor(pointX);
