@@ -21,6 +21,7 @@
 * Game icon
 * 3D 
 * Shadows
+* Game Launcher
 
 ## Editor Mode
 
@@ -109,10 +110,6 @@
 * Enable/Disable shadows
 
 ## Coming Soon (Almost done)
-
-
-* Settings (Lanauage, volume)
-* Game Launcher
 * Custom gizmo actions
 
 ## WTF
