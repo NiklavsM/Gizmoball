@@ -1,10 +1,10 @@
-package strath.cs308.gizmoball.controller;
+package strath.cs308.gizmoball.controller.editor.toolbar;
 
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import strath.cs308.gizmoball.GizmoBall;
-import strath.cs308.gizmoball.controller.strategy.*;
+import strath.cs308.gizmoball.controller.editor.toolbar.strategy.*;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.view.IEditorView;
 

@@ -1,4 +1,4 @@
-package strath.cs308.gizmoball.controller.connect;
+package strath.cs308.gizmoball.controller.editor.pane;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,6 +11,7 @@ import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 import strath.cs308.gizmoball.utils.KeyConverter;
 import strath.cs308.gizmoball.utils.Logger;
+import strath.cs308.gizmoball.view.ConnectPanelView;
 import strath.cs308.gizmoball.view.EditorView;
 
 import java.util.Optional;

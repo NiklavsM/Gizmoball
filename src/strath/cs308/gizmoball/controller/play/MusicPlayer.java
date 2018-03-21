@@ -1,4 +1,4 @@
-package strath.cs308.gizmoball.controller;
+package strath.cs308.gizmoball.controller.play;
 
 import javax.sound.sampled.*;
 import java.io.IOException;

@@ -1,7 +1,7 @@
 package strath.cs308.gizmoball.model.gizmo;
 
 import mit.physics.*;
-import strath.cs308.gizmoball.controller.GameLoader;
+import strath.cs308.gizmoball.controller.file.GameLoader;
 import strath.cs308.gizmoball.model.Dot;
 
 import java.util.*;

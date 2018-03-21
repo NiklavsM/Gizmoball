@@ -1,6 +1,6 @@
 package strath.cs308.gizmoball.controller.actions;
 
-import strath.cs308.gizmoball.controller.GameLoader;
+import strath.cs308.gizmoball.controller.file.GameLoader;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.model.gizmo.Ball;

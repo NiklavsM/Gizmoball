@@ -1,4 +1,4 @@
-package strath.cs308.gizmoball.controller;
+package strath.cs308.gizmoball.controller.play;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;

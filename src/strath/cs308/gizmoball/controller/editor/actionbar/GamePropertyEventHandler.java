@@ -1,4 +1,4 @@
-package strath.cs308.gizmoball.controller;
+package strath.cs308.gizmoball.controller.editor.actionbar;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

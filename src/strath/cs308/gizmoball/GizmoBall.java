@@ -5,7 +5,7 @@ import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import strath.cs308.gizmoball.controller.GameLoader;
+import strath.cs308.gizmoball.controller.file.GameLoader;
 import strath.cs308.gizmoball.controller.actions.ChangeToARandomColor;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
@@ -16,7 +16,6 @@ import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.utils.Settings;
 import strath.cs308.gizmoball.view.EditorView;
-import strath.cs308.gizmoball.view.LauncherView;
 
 
 import java.io.IOException;

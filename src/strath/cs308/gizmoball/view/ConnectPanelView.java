@@ -1,4 +1,4 @@
-package strath.cs308.gizmoball.controller.connect;
+package strath.cs308.gizmoball.view;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -6,8 +6,8 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import strath.cs308.gizmoball.controller.editor.pane.ConnectHandler;
 import strath.cs308.gizmoball.model.IGameModel;
-import strath.cs308.gizmoball.view.EditorView;
 
 import java.util.Map;
 

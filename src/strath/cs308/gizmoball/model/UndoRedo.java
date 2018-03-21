@@ -1,6 +1,6 @@
 package strath.cs308.gizmoball.model;
 
-import strath.cs308.gizmoball.controller.GameLoader;
+import strath.cs308.gizmoball.controller.file.GameLoader;
 
 import java.io.ByteArrayInputStream;
 import java.util.Deque;

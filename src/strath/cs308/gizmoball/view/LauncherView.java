@@ -1,8 +1,6 @@
 package strath.cs308.gizmoball.view;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.RegularExpression;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -12,7 +10,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import strath.cs308.gizmoball.GizmoBall;
-import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
@@ -21,7 +18,6 @@ import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
-import java.util.regex.Pattern;
 
 public class LauncherView extends Scene implements ILauncherView, Observer {
 
