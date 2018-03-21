@@ -8,11 +8,11 @@ import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.util.Set;
 
-public class Spinner extends Gizmo implements IMovable, ITriggerable, IAction {
+public class Spinner extends Gizmo implements IMovable, ITriggerable {
 
     private final DefaultTriggarable triggerable = new DefaultTriggarable();
 
-    private double velocity;
+    private Vect velocity;
     private Circle spinAroundPoint;
     private Circle point1;
     private Circle point2;
@@ -29,10 +29,10 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable, IAction {
 
     public Spinner(double x1, double y1, String id) {
         super(x1, y1, x1 + 2, y1 + 2, id);
-        velocity = 3.14 * -1;
+
+        velocity = new Vect( Angle.DEG_180);
+        velocity = new Vect(new Angle(velocity.angle().radians() * -1));
         setReflectionCoefficient(0.9);
-        setAction(this);
-        addActionTrigger("collision");
     }
 
     @Override
@@ -61,18 +61,21 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable, IAction {
         circles.add(point4);
 
         spinAroundPoint = new Circle(x1 + 1, y1 + 1, 0);
+
         setColor("#B388FF");
+
     }
 
     @Override
     public boolean isMoving() {
-        return velocity > 0;
+        return velocity != Vect.ZERO;
     }
 
     @Override
     public void move(double time) {
 
-        double rotationRadian = velocity * time;
+
+        double rotationRadian = velocity.angle().radians() * time;
         Angle rotationAngle = new Angle(rotationRadian);
 
         circles.clear();
@@ -105,45 +108,48 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable, IAction {
     }
 
     public Double getCurrentRadianVelocity() {
-        return velocity;
+        return velocity.angle().radians();
     }
 
     @Override
-    public double getSpinAroundX() {
-        return spinAroundPoint.getCenter().x();
+    public double getSpinAroundX()
+    {
+        return 0;
     }
 
     @Override
-    public double getSpinAroundY() {
-        return spinAroundPoint.getCenter().y();
+    public double getSpinAroundY()
+    {
+        return 0;
+    }
+
+    public Circle getSpinAround() {
+        return spinAroundPoint;
     }
 
     @Override
     public void setVelocityRadian(double radian) {
-        velocity = radian;
+
     }
 
     @Override
     public void setVelocity(double x, double y) {
-        Vect temp = new Vect(x, y);
-        velocity = temp.angle().radians();
+
     }
 
     @Override
     public double getVelocityX() {
-        Vect temp = new Vect(new Angle(velocity));
-        return temp.x();
+        return 0;
     }
 
     @Override
     public double getVelocityY() {
-        Vect temp = new Vect(new Angle(velocity));
-        return temp.y();
+        return 0;
     }
 
     @Override
     public double getVelocityRadian() {
-        return velocity;
+        return 0;
     }
 
     @Override
@@ -158,9 +164,7 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable, IAction {
 
     @Override
     public void performAction(Object args) {
-        if(!args.equals("collision")) {
-            triggerable.performAction(args);
-        }
+        velocity = new Vect(new Angle(velocity.angle().radians() * -1));
     }
 
     @Override
@@ -176,6 +180,29 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable, IAction {
     @Override
     public Set<String> getAvailableActions() {
         return triggerable.getAvailableActions();
+    }
+
+    @Override
+    public boolean addAvailableAction(String actionName, IAction action)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean setAction(String actionName)
+    {
+        return false;
+    }
+
+    @Override
+    public String getCurrentActionName()
+    {
+        return null;
+    }
+
+    public boolean addAvailableAction(IAction action) {
+//        return triggerable.addAvailableAction(action);
+        return true;
     }
 
     @Override
@@ -195,27 +222,7 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable, IAction {
 
     @Override
     public String id() {
-        return getId();
-    }
-
-    @Override
-    public void doAction(Object args)
-    {
-        velocity *= -1;
-    }
-
-    @Override
-    public boolean addAvailableAction(String actionName, IAction action) {
-        return triggerable.addAvailableAction(actionName, action);
-    }
-
-    @Override
-    public boolean setAction(String actionName) {
-        return triggerable.setAction(actionName);
-    }
-
-    @Override
-    public String getCurrentActionName() {
-        return triggerable.getCurrentActionName();
+        return null;
     }
 }
+

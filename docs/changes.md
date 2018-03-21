@@ -17,4 +17,11 @@ Utils package added for utlilti classes
 
 * LaunchEventHandler for handling the events of the launch screen
 * SelectGizmoEventHandler strategy added for loading in gizmo properties
-* ConnectHandler added for handling the events 
+* ConnectHandler added for handling the events form the connection tab in edtor mode
+
+## Model
+* UndoRedo class added for hadling model history for editor view
+* DefaultTrigger and DefaultTrigarable classes added for composition in classes to provide the general baisck impelemntation for ITriggerbale ITrigger Method 
+* Octagon, Rhombus, Spinner classes added as they represnetik the new custom gizmos we added
+* AbstractGizmoAction Action representation
+* ChangeColorAction, CHangeToARandomColor, DestroyerGizmoAction, GoToJailAction, PlaySoundAction, RemoveGizmoAction, RotateAction, TimedColorChange, This classes are predefined actions for gizmos which could be set to activate on trigger.

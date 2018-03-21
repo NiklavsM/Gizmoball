@@ -42,15 +42,15 @@
             </Button>
 
 
-            <Button fx:id="settingsButton"
-                    text="Settings"
-                    styleClass="title-font, top-toolbar-button, launcher-button">
-            </Button>
+            <!--<Button fx:id="settingsButton"-->
+                    <!--text="Settings"-->
+                    <!--styleClass="title-font, top-toolbar-button, launcher-button">-->
+            <!--</Button>-->
 
-            <Button fx:id="creditsButton"
-                    text="Credits"
-                    styleClass="title-font, top-toolbar-button, launcher-button">
-            </Button>
+            <!--<Button fx:id="creditsButton"-->
+                    <!--text="Credits"-->
+                    <!--styleClass="title-font, top-toolbar-button, launcher-button">-->
+            <!--</Button>-->
         </VBox>
     </center>
 
