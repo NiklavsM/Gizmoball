@@ -11,6 +11,7 @@ import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 import strath.cs308.gizmoball.utils.KeyConverter;
 import strath.cs308.gizmoball.utils.Logger;
+import strath.cs308.gizmoball.view.ConnectPanelView;
 import strath.cs308.gizmoball.view.EditorView;
 
 import java.util.Optional;
@@ -110,7 +111,7 @@ public class ConnectHandler implements EventHandler<ActionEvent> {
 
                 } else {
 //                            editorView.setStatus()
-                    Logger.verbose(TAG, "The Gizmo you are trying to connect can not be triggered");
+                    Logger.verbose(TAG, "The Gizmo you are trying to panel can not be triggered");
 
                 }
 

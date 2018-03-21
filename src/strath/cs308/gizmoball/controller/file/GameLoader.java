@@ -1,4 +1,4 @@
-package strath.cs308.gizmoball.controller;
+package strath.cs308.gizmoball.controller.file;
 
 import strath.cs308.gizmoball.model.GizmoFactory;
 import strath.cs308.gizmoball.model.IGameModel;
@@ -18,7 +18,7 @@ public class GameLoader {
 
     public static final String ROTATE_COMMAND = "rotate";
     public static final String KEY_CONNECT_COMMAND = "keyconnect";
-    public static final String CONNECT_COMMAND = "connect";
+    public static final String CONNECT_COMMAND = "panel";
     public static final String GRAVITY_COMMAND = "gravity";
     public static final String FRICTION_COMMAND = "friction";
     public static final String DELETE_COMMAND = "delete";

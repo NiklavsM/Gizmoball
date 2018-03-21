@@ -1,8 +1,10 @@
-package strath.cs308.gizmoball.controller;
+package strath.cs308.gizmoball.controller.editor.panel;
 
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
+import strath.cs308.gizmoball.controller.file.GameLoader;
+import strath.cs308.gizmoball.controller.file.GameSaver;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.utils.Logger;
