@@ -11,5 +11,4 @@ public interface IGizmoFactory {
     IGizmo createGizmo(IGizmo.Type type, double x1, double y1, double x2, double y2, String id);
 
     IGizmo createGizmo(IGizmo.Type type, double x1, double y1, double x2, double y2);
-
 }

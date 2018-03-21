@@ -18,7 +18,6 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent> {
     private IEditorView editorView;
     private IGizmo gizmo;
     private ResourceBundle dictionary;
-
     private IGameModel gameModel;
 
     public GizmoPropertyEventHandler(IEditorView editorView, IGizmo gizmo, IGameModel gameModel) {
@@ -58,7 +57,6 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent> {
         } else {
             editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_COLORCHANGED_ERROR"));
         }
-
     }
 
     private void changeReflectionCoefficient() {
@@ -77,7 +75,6 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent> {
         IMovable movableGizmo = (IMovable) gizmo;
         try {
             movableGizmo.setVelocityRadian(editorView.getRadianProperty());
-
             UndoRedo.INSTANCE.saveState(gameModel);
             editorView.setStatus(dictionary.getString("EDITOR_STATUS_VELOCITYRADIAN_SET"));
         } catch (NumberFormatException e) {
@@ -89,7 +86,6 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent> {
         IMovable movableGizmo = (IMovable) gizmo;
         try {
             movableGizmo.setVelocity(editorView.getXVelocityProperty(), movableGizmo.getVelocityY());
-
             UndoRedo.INSTANCE.saveState(gameModel);
             editorView.setStatus(dictionary.getString("EDITOR_STATUS_VELOCITYX_SET"));
         } catch (NumberFormatException e) {
@@ -101,7 +97,6 @@ public class GizmoPropertyEventHandler implements EventHandler<ActionEvent> {
         IMovable movableGizmo = (IMovable) gizmo;
         try {
             movableGizmo.setVelocity(movableGizmo.getVelocityX(), editorView.getYVelocityProperty());
-
             UndoRedo.INSTANCE.saveState(gameModel);
             editorView.setStatus(dictionary.getString("EDITOR_STATUS_VELOCITYY_SET"));
         } catch (NumberFormatException e) {

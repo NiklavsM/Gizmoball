@@ -33,7 +33,6 @@ public class GameTimer implements IGameTimer {
                 }
             };
 
-
             this.timer = new Timer();
             this.timer.schedule(task, 0, (long) (1000 / refreshRate));
         }

@@ -162,5 +162,4 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
     private void openConsole() {
         this.editView.openConsole();
     }
-
 }

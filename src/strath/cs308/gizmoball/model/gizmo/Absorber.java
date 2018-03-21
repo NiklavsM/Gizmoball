@@ -24,7 +24,6 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
         setAction(this);
         collisionTrigger = new DefaultTrigger();
         setScoreValue(-100);
-
         setColor("#e91e63");
     }
 
@@ -61,7 +60,6 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
             ball.setY(getEndY() - radius - (((ballsAbsorbed.size() - 1) / (int) ((x2 - x1) * 2)) * (2 * radius)) % (y2 - y1));
             ball.setVelocity(0, -50);
             ball.setIsMoving(false);
-            Logger.verbose(TAG, "ball.getCircle().getCenter().y() " + ball.getCircle().getCenter().y());
             return true;
         }
         return false;

@@ -19,7 +19,6 @@ public class ToolModeEventHandler implements EventHandler<MouseEvent> {
     public ToolModeEventHandler(IGameModel gameModel, IEditorView editorView) {
         this.gameModel = gameModel;
         this.editorView = editorView;
-
         dictionary = ResourceBundle.getBundle("dictionary", GizmoBall.locale);
     }
 
@@ -51,7 +50,7 @@ public class ToolModeEventHandler implements EventHandler<MouseEvent> {
                 editorView.setCanvasMode(new SelectGizmoEventHandler(gameModel, editorView));
                 editorView.setStatus(dictionary.getString("EDITOR_STATUS_SELECTTOOL"));
                 break;
-
+                
         }
     }
 }

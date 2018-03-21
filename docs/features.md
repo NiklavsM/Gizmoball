@@ -15,7 +15,7 @@
 * Supports 10+ language
 * Balls get reflected if the absorber is full
 * Spinner Gizmmo (Rotates continually)
-* Rhombius Gizmo
+* Rhombus Gizmo
 * Octagon Gizmo 
 * Save and Save as
 * Game icon

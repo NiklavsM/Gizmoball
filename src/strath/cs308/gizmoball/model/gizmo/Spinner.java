@@ -29,11 +29,8 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable, IAction {
 
     public Spinner(double x1, double y1, String id) {
         super(x1, y1, x1 + 2, y1 + 2, id);
-
         velocity = 3.14 * -1;
         setReflectionCoefficient(0.9);
-
-
         setAction(this);
         addActionTrigger("collision");
     }
@@ -64,9 +61,7 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable, IAction {
         circles.add(point4);
 
         spinAroundPoint = new Circle(x1 + 1, y1 + 1, 0);
-
         setColor("#B388FF");
-
     }
 
     @Override
@@ -76,7 +71,6 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable, IAction {
 
     @Override
     public void move(double time) {
-
 
         double rotationRadian = velocity * time;
         Angle rotationAngle = new Angle(rotationRadian);

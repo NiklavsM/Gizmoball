@@ -83,10 +83,7 @@ public class GizmoDrawer {
             }
         }
 
-
         gc.setEffect(null);
-
-
     }
 
     private void enableShadow() {

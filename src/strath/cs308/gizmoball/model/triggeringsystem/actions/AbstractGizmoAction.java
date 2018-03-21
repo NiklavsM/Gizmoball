@@ -13,5 +13,4 @@ public abstract class AbstractGizmoAction implements IAction {
         this.gameModel = gameModel;
         this.gizmo = gizmo;
     }
-
 }
