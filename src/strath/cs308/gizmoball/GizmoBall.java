@@ -69,7 +69,6 @@ public class GizmoBall extends Application {
 
             UndoRedo.INSTANCE.saveState(gameModel);
 
-
             //Doesn't work in xml
             primaryStage.setTitle("Gizmoball");
             primaryStage.setMinWidth(750);
@@ -93,7 +92,6 @@ public class GizmoBall extends Application {
     private void setIcon() {
         Image image = new Image("images/icon.png");
         stage.getIcons().add(image);
-
     }
 
     public static void switchView(Scene view) {
@@ -116,5 +114,4 @@ public class GizmoBall extends Application {
         Platform.exit();
         System.exit(0);
     }
-
 }

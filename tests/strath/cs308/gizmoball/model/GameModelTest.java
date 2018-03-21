@@ -154,22 +154,21 @@ class GameModelTest {
         model.addGizmo(square);
         model.tick(1);
         model.tick(1);
-        assertEquals(0.75, ball.getX());
-        System.out.println("x: " + ball.getX() + " y " + ball.getY());
+        assertEquals(0.80, ball.getX(), "Ball X should have increased by 0.05 after two ticks and collision with square!");
+
     }
 
     @Test
     void tick_tickAndBallCollidesWithCircle() {
         model.setGravityCoefficient(0);
-        Ball ball = new Ball(0.75, 1.5, "ball1");
-        CircleGizmo circle = new CircleGizmo(2, 1, "circle1");
+        Ball ball = new Ball(11.25, 8.5, "ball1");
+        CircleGizmo circle = new CircleGizmo(12.5, 8, "circle1");
         ball.setVelocity(1, 0);
         model.addGizmo(ball);
         model.addGizmo(circle);
         model.tick(1);
         model.tick(1);
-        assertEquals(0.75, ball.getX());
-        System.out.println("x: " + ball.getX() + " y " + ball.getY());
+        assertEquals(11.30, ball.getX(), "Ball X should have increased by 0.05 after two ticks and collision with circle!");
     }
 
     @Test
@@ -195,8 +194,7 @@ class GameModelTest {
         model.addGizmo(flipper);
         model.tick(1);
         model.tick(1);
-        assertEquals(0.75, ball.getX());
-        System.out.println("x: " + ball.getX() + " y " + ball.getY());
+        assertTrue(ball.getX() > 0.75, "Ball X should have changed!");
     }
 
     @Test
@@ -205,13 +203,13 @@ class GameModelTest {
         Ball ball = new Ball(0.75, 1.5, "ball1");
         Flipper flipper = new Flipper(2, 1, Flipper.Orientation.LEFT, "flipper1");
         ball.setVelocity(1, 0);
+        double oldVeloX = ball.getVelocityX();
         model.addGizmo(ball);
         model.addGizmo(flipper);
         flipper.doAction(Flipper.Movement.FORWARD);
         model.tick(1);
         model.tick(1);
-        assertTrue(ball.getX() > 1.816 && ball.getX() < 1.817);
-        System.out.println("x: " + ball.getX() + " y " + ball.getY());
+        assertNotEquals(ball.getVelocityX(), oldVeloX, "Ball velocity should have changed after collision with moving flipper!");
     }
 
     @Test
@@ -225,8 +223,7 @@ class GameModelTest {
         model.tick(1);
         model.tick(1);
         model.tick(1);
-        assertEquals(2.25, ball.getX());
-        System.out.println("x: " + ball.getX() + " y " + ball.getY());
+        assertFalse(ball.getX() < 1.75, "Ball X should not be smaller than the original value!");
     }
 
     @Test
@@ -241,9 +238,7 @@ class GameModelTest {
         model.rotate("triangle1");
         model.tick(1);
         model.tick(1);
-        assertEquals(0.75, ball.getX());
-        System.out.println("x: " + ball.getX() + " y " + ball.getY());
-
+        assertEquals(0.8, ball.getX(), "Ball X should have increased by 0.05 after two ticks and collision with 3xRotated triangle!");
     }
 
     private boolean checkIsFreshModel(GameModel model) {

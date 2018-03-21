@@ -6,7 +6,6 @@ import strath.cs308.gizmoball.model.triggeringsystem.DefaultTriggarable;
 import strath.cs308.gizmoball.model.triggeringsystem.IAction;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
-import java.util.List;
 import java.util.Set;
 
 public class Spinner extends Gizmo implements IMovable, ITriggerable, IAction {
@@ -30,11 +29,8 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable, IAction {
 
     public Spinner(double x1, double y1, String id) {
         super(x1, y1, x1 + 2, y1 + 2, id);
-
         velocity = 3.14 * -1;
         setReflectionCoefficient(0.9);
-
-
         setAction(this);
         addActionTrigger("collision");
     }
@@ -65,9 +61,7 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable, IAction {
         circles.add(point4);
 
         spinAroundPoint = new Circle(x1 + 1, y1 + 1, 0);
-
         setColor("#B388FF");
-
     }
 
     @Override
@@ -77,7 +71,6 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable, IAction {
 
     @Override
     public void move(double time) {
-
 
         double rotationRadian = velocity * time;
         Angle rotationAngle = new Angle(rotationRadian);
@@ -165,7 +158,9 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable, IAction {
 
     @Override
     public void performAction(Object args) {
-        triggerable.performAction(args);
+        if(!args.equals("collision")) {
+            triggerable.performAction(args);
+        }
     }
 
     @Override
@@ -179,13 +174,8 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable, IAction {
     }
 
     @Override
-    public List<IAction> getAvailableActions() {
+    public Set<String> getAvailableActions() {
         return triggerable.getAvailableActions();
-    }
-
-    @Override
-    public boolean addAvailableAction(IAction action) {
-        return triggerable.addAvailableAction(action);
     }
 
     @Override
@@ -212,5 +202,20 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable, IAction {
     public void doAction(Object args)
     {
         velocity *= -1;
+    }
+
+    @Override
+    public boolean addAvailableAction(String actionName, IAction action) {
+        return triggerable.addAvailableAction(actionName, action);
+    }
+
+    @Override
+    public boolean setAction(String actionName) {
+        return triggerable.setAction(actionName);
+    }
+
+    @Override
+    public String getCurrentActionName() {
+        return triggerable.getCurrentActionName();
     }
 }

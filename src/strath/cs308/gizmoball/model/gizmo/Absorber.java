@@ -24,7 +24,6 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
         setAction(this);
         collisionTrigger = new DefaultTrigger();
         setScoreValue(-100);
-
         setColor("#e91e63");
     }
 
@@ -61,7 +60,6 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
             ball.setY(getEndY() - radius - (((ballsAbsorbed.size() - 1) / (int) ((x2 - x1) * 2)) * (2 * radius)) % (y2 - y1));
             ball.setVelocity(0, -50);
             ball.setIsMoving(false);
-            Logger.verbose(TAG, "ball.getCircle().getCenter().y() " + ball.getCircle().getCenter().y());
             return true;
         }
         return false;
@@ -160,13 +158,8 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
     }
 
     @Override
-    public List<IAction> getAvailableActions() {
+    public Set<String> getAvailableActions() {
         return triggerable.getAvailableActions();
-    }
-
-    @Override
-    public boolean addAvailableAction(IAction action) {
-        return triggerable.addAvailableAction(action);
     }
 
     @Override
@@ -187,6 +180,21 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
     @Override
     public String id() {
         return id;
+    }
+
+    @Override
+    public boolean addAvailableAction(String actionName, IAction action) {
+        return triggerable.addAvailableAction(actionName, action);
+    }
+
+    @Override
+    public boolean setAction(String actionName) {
+        return triggerable.setAction(actionName);
+    }
+
+    @Override
+    public String getCurrentActionName() {
+        return triggerable.getCurrentActionName();
     }
 
 }

@@ -18,7 +18,6 @@ public enum UndoRedo {
         redoStates = new LinkedList<>();
     }
 
-
     public void saveState(IGameModel gameModel) {
 
         String state = gameModel.toString();

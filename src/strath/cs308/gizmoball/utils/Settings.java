@@ -16,7 +16,6 @@ public class Settings {
 
     static {
         settingsProperties = new Properties();
-        reloadSettings();
 
         if (!PATH.exists()) {
             PATH.mkdirs();
@@ -24,10 +23,9 @@ public class Settings {
 
         if (!SETTINGS_FILE.exists()) {
             try {
-
                 settingsProperties.setProperty("language", "en");
                 settingsProperties.setProperty("3dEnabled", "false");
-                settingsProperties.setProperty("shadows", "false");
+                settingsProperties.setProperty("shadowsEnabled", "true");
 
                 settingsProperties.storeToXML(new FileOutputStream(SETTINGS_FILE), "");
 
@@ -40,22 +38,24 @@ public class Settings {
             }
         }
 
-
+        reloadSettings();
         Logger.debug(TAG, "Language: " + settingsProperties.getProperty("language"));
         Logger.debug(TAG, "3dEnabled: " + settingsProperties.getProperty("3dEnabled"));
-        Logger.debug(TAG, "shadows: " + settingsProperties.getProperty("shadows"));
-
+        Logger.debug(TAG, "shadowsEnabled: " + settingsProperties.getProperty("shadowsEnabled"));
     }
 
     public static String getProperty(String property) {
-        return settingsProperties.getProperty("language");
+        return settingsProperties.getProperty(property);
+    }
+
+    public static void setProperty(String key, String value) {
+        settingsProperties.setProperty(key, value);
     }
 
     public static void reloadSettings() {
         try {
             // Save
             settingsProperties.loadFromXML(new FileInputStream(Settings.SETTINGS_FILE));
-
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -66,7 +66,6 @@ public class Settings {
         try {
             // Save
             settingsProperties.storeToXML(new FileOutputStream(SETTINGS_FILE), "");
-
 
         } catch (IOException e) {
             e.printStackTrace();

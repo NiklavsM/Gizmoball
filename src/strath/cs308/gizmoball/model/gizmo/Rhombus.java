@@ -4,7 +4,6 @@ import mit.physics.Circle;
 import mit.physics.LineSegment;
 import strath.cs308.gizmoball.model.triggeringsystem.*;
 
-import java.util.List;
 import java.util.Set;
 
 public class Rhombus extends Gizmo implements ITrigger, ITriggerable {
@@ -17,7 +16,6 @@ public class Rhombus extends Gizmo implements ITrigger, ITriggerable {
         collisionTrigger = new DefaultTrigger();
         triggerable = new DefaultTriggarable();
         setScoreValue(10);
-
         setColor("#97ede3");
     }
 
@@ -80,13 +78,8 @@ public class Rhombus extends Gizmo implements ITrigger, ITriggerable {
     }
 
     @Override
-    public List<IAction> getAvailableActions() {
+    public Set<String> getAvailableActions() {
         return triggerable.getAvailableActions();
-    }
-
-    @Override
-    public boolean addAvailableAction(IAction action) {
-        return triggerable.addAvailableAction(action);
     }
 
     @Override
@@ -107,5 +100,20 @@ public class Rhombus extends Gizmo implements ITrigger, ITriggerable {
     @Override
     public String id() {
         return id;
+    }
+
+    @Override
+    public boolean addAvailableAction(String actionName, IAction action) {
+        return triggerable.addAvailableAction(actionName, action);
+    }
+
+    @Override
+    public boolean setAction(String actionName) {
+        return triggerable.setAction(actionName);
+    }
+
+    @Override
+    public String getCurrentActionName() {
+        return triggerable.getCurrentActionName();
     }
 }

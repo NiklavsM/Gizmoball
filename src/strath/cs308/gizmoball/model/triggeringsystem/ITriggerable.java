@@ -1,6 +1,5 @@
 package strath.cs308.gizmoball.model.triggeringsystem;
 
-import java.util.List;
 import java.util.Set;
 
 public interface ITriggerable {
@@ -11,9 +10,13 @@ public interface ITriggerable {
 
     IAction getCurrentAction();
 
-    List<IAction> getAvailableActions();
+    Set<String> getAvailableActions();
 
-    boolean addAvailableAction(IAction action);
+    boolean addAvailableAction(String actionName, IAction action);
+
+    boolean setAction(String actionName);
+
+    String getCurrentActionName();
 
     boolean addActionTrigger(String trigger);
 

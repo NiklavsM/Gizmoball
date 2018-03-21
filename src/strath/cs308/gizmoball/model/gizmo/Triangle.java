@@ -4,7 +4,6 @@ import mit.physics.Circle;
 import mit.physics.LineSegment;
 import strath.cs308.gizmoball.model.triggeringsystem.*;
 
-import java.util.List;
 import java.util.Set;
 
 public class Triangle extends Gizmo implements ITriggerable, ITrigger {
@@ -16,7 +15,6 @@ public class Triangle extends Gizmo implements ITriggerable, ITrigger {
         super(x, y, x + 1, y + 1, id);
         collisionTrigger = new DefaultTrigger();
         triggerable = new DefaultTriggarable();
-
         setColor("#03a9f4");
     }
 
@@ -77,13 +75,8 @@ public class Triangle extends Gizmo implements ITriggerable, ITrigger {
     }
 
     @Override
-    public List<IAction> getAvailableActions() {
+    public Set<String> getAvailableActions() {
         return triggerable.getAvailableActions();
-    }
-
-    @Override
-    public boolean addAvailableAction(IAction action) {
-        return triggerable.addAvailableAction(action);
     }
 
     @Override
@@ -104,6 +97,21 @@ public class Triangle extends Gizmo implements ITriggerable, ITrigger {
     @Override
     public String id() {
         return id;
+    }
+
+    @Override
+    public boolean addAvailableAction(String actionName, IAction action) {
+        return triggerable.addAvailableAction(actionName, action);
+    }
+
+    @Override
+    public boolean setAction(String actionName) {
+        return triggerable.setAction(actionName);
+    }
+
+    @Override
+    public String getCurrentActionName() {
+        return triggerable.getCurrentActionName();
     }
 
 }

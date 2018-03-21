@@ -1,6 +1,5 @@
 package strath.cs308.gizmoball.model.gizmo;
 
-import javafx.scene.layout.Pane;
 import mit.physics.*;
 import strath.cs308.gizmoball.model.IMovable;
 import strath.cs308.gizmoball.model.triggeringsystem.DefaultTriggarable;
@@ -8,13 +7,12 @@ import strath.cs308.gizmoball.model.triggeringsystem.IAction;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 
 public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
 
-    private final DefaultTriggarable defaultTriggarable;
+    private  DefaultTriggarable triggerable;
     private final double radius = 0.25;
     private Circle startPoint;
     private Circle endPoint;
@@ -49,7 +47,7 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
         }
 
         flipperSetup(x - radius, y + radius, x + radius, y + radius + 1.5);
-        defaultTriggarable = new DefaultTriggarable();
+        triggerable = new DefaultTriggarable();
         setAction(this);
 
         setColor("#ff9800");
@@ -272,7 +270,7 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
     public void performAction(Object args) {
         if (args instanceof String) {
             String event = (String) args;
-            if (defaultTriggarable.getTriggers().contains(event)) {
+            if (triggerable.getTriggers().contains(event)) {
                 if (event.contains("up")) {
                     doAction("KEY_RELEASED");
                 } else if (event.contains("down")) {
@@ -286,37 +284,32 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
 
     @Override
     public void setAction(IAction triggerAction) {
-        defaultTriggarable.setAction(triggerAction);
+        triggerable.setAction(triggerAction);
     }
 
     @Override
     public IAction getCurrentAction() {
-        return defaultTriggarable.getCurrentAction();
+        return triggerable.getCurrentAction();
     }
 
     @Override
-    public List<IAction> getAvailableActions() {
-        return defaultTriggarable.getAvailableActions();
-    }
-
-    @Override
-    public boolean addAvailableAction(IAction action) {
-        return defaultTriggarable.addAvailableAction(action);
+    public Set<String> getAvailableActions() {
+        return triggerable.getAvailableActions();
     }
 
     @Override
     public boolean addActionTrigger(String trigger) {
-        return defaultTriggarable.addActionTrigger(trigger);
+        return triggerable.addActionTrigger(trigger);
     }
 
     @Override
     public boolean removeActionTrigger(String trigger) {
-        return defaultTriggarable.removeActionTrigger(trigger);
+        return triggerable.removeActionTrigger(trigger);
     }
 
     @Override
     public Set<String> getTriggers() {
-        return defaultTriggarable.getTriggers();
+        return triggerable.getTriggers();
     }
 
     @Override
@@ -349,5 +342,20 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
         public double getMult() {
             return mult;
         }
+    }
+
+    @Override
+    public boolean addAvailableAction(String actionName, IAction action) {
+        return triggerable.addAvailableAction(actionName, action);
+    }
+
+    @Override
+    public boolean setAction(String actionName) {
+        return triggerable.setAction(actionName);
+    }
+
+    @Override
+    public String getCurrentActionName() {
+        return triggerable.getCurrentActionName();
     }
 }

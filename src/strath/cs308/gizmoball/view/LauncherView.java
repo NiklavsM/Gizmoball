@@ -5,16 +5,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
-import javafx.scene.control.ToolBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.controller.LauncherEventHandler;
 import strath.cs308.gizmoball.model.IGameModel;
-import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.io.IOException;
@@ -50,11 +46,7 @@ public class LauncherView extends Scene implements ILauncherView, Observer {
             EventHandler<ActionEvent> launcherEventHandler = new LauncherEventHandler(gameModel, this);
 
             root.lookupAll("#launcherVbox > Button")
-                    .forEach(node -> {
-                        ((Button) node).setOnAction(launcherEventHandler);
-                        System.out.println("FOUND ONE");
-                    });
-
+                    .forEach(node -> ((Button) node).setOnAction(launcherEventHandler));
         });
     }
 
@@ -74,26 +66,15 @@ public class LauncherView extends Scene implements ILauncherView, Observer {
 
     @Override
     public void switchToPlay() {
-        UndoRedo.INSTANCE.saveState(gameModel);
         gameModel.deleteObserver(this);
         GizmoBall.switchView(new PlayView(gameModel));
     }
 
     @Override
     public void switchToEditor() {
-        UndoRedo.INSTANCE.saveState(gameModel);
         gameModel.deleteObserver(this);
         GizmoBall.switchView(new EditorView(gameModel));
     }
 
-    public void soundOn(boolean soundOn) {
-        Button soundButton = (Button) root.lookup("#soundButton");
-        soundButton.getStyleClass().clear();
-        if (soundOn) {
-            soundButton.getStyleClass().add("sound-on-button");
-        } else {
-            soundButton.getStyleClass().add("sound-off-button");
-        }
-    }
 
 }

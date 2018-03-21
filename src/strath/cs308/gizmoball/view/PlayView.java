@@ -60,7 +60,6 @@ public class PlayView extends Scene implements IPlayView, Observer {
                 toggle3D();
             }
 
-
             drawBackground();
             drawGizmos();
 
