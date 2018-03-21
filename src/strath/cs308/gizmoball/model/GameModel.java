@@ -273,6 +273,26 @@ public class GameModel extends Observable implements IGameModel {
             gizmo.move(backX, backY);
             return false;
         }
+
+        //fixme move ball in absorber would be nice, and absorber over balls just like add.
+        //fixme high speed of the flippers?
+//        if (gizmo.getType().equals(IGizmo.Type.BALL)) {
+//            final boolean[] added = {false};
+//            gizmos
+//                    .values()
+//                    .parallelStream()
+//                    .filter(g -> g.overlapsWithGizmo(gizmo)
+//                            && g.getType().equals(IGizmo.Type.ABSORBER))
+//                    .map(Absorber.class::cast)
+//                    .findFirst()
+//                    .ifPresent(absorber -> added[0] = absorber.absorbBall((Ball) gizmo));
+//
+//            if (added[0]) {
+//                update();
+//                return true;
+//            }
+//        }
+
         if (gizmo.overlapsWithAnyGizmos(getGizmos())) {
             gizmo.move(backX, backY);
             return false;

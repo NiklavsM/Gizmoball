@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.controller.actions.ChangeToARandomColor;
+import strath.cs308.gizmoball.controller.actions.GoToJailAction;
 import strath.cs308.gizmoball.controller.actions.TimedColorChange;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
@@ -77,6 +78,8 @@ public class GizmoBall extends Application {
                                 , "#a4b5c2", "#dd22aa", "#124312", "#aabb21"));
 //                        triggerable.setAction(new TimedColorChange(gameModel, (IGizmo) triggerable, "#ffffff", 3500));
                     });
+
+//            ((Triangle) gameModel.getGizmoById("T")).setAction(new GoToJailAction(gameModel));
 
             UndoRedo.INSTANCE.saveState(gameModel);
 //            setIcon(); //FIXME stopped working :(
