@@ -86,7 +86,7 @@
 
 * ```Undo``` - Undo previous exation
 * ```Redo```
-* ```Clear``` - Clear screen
+* ```ClearMap``` - Clear map
 * ```Color <id> <hex value``` - Chnage Gizmo colour
 * ```Rhombus <id> <position x> <position y>``` - Create Rhombus Gizmo
 * ```Spinner <id> <position x> <position y>```  - Create Spinner Gizmo
