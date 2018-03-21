@@ -153,6 +153,14 @@ Button:hover {
     -fx-background-image: url("/icons/console.png");
 }
 
+.shadow-button {
+    -fx-background-image: url("/icons/shadow.png");
+}
+
+.threed-button {
+    -fx-background-image: url("/icons/3d.png");
+}
+
 .settings-button {
     -fx-background-image: url("/icons/settings.png");
 }

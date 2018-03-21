@@ -8,6 +8,7 @@ import strath.cs308.gizmoball.controller.file.GameSaver;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.utils.Logger;
+import strath.cs308.gizmoball.utils.Settings;
 import strath.cs308.gizmoball.view.FileChooser;
 import strath.cs308.gizmoball.view.IEditorView;
 
@@ -68,6 +69,23 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
 
             case "soundSettingsButton":
                 openSettings();
+                break;
+
+            case "shadowButton":
+                if ("false".equals(Settings.getProperty("shadowsEnabled"))) {
+                    Settings.setProperty("shadowsEnabled", "true");
+                } else {
+                    Settings.setProperty("shadowsEnabled", "false");
+                }
+
+                break;
+
+            case "3dModeButton":
+                if ("false".equals(Settings.getProperty("3dEnabled"))) {
+                    Settings.setProperty("3dEnabled", "true");
+                } else {
+                    Settings.setProperty("3dEnabled", "false");
+                }
                 break;
         }
 
