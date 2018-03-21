@@ -76,7 +76,7 @@ public class PlayView extends Scene implements IPlayView, Observer {
             e.printStackTrace();
         }
 
-        updateBallsInPlay();
+        updateStats();
     }
 
     private void toggle3D() {
@@ -141,8 +141,7 @@ public class PlayView extends Scene implements IPlayView, Observer {
             drawBackground();
             drawGizmos();
             updateScore();
-            updateBallsInPlay();
-            updateTotals();
+            updateStats();
         });
     }
 
@@ -164,22 +163,16 @@ public class PlayView extends Scene implements IPlayView, Observer {
         score.setText(formatter.format(gameModel.getScore()));
     }
 
-    private void updateBallsInPlay() {
-        int[] balls = gameModel.getBallsInPlay();
+    private void updateStats() {
+        int[] stats = gameModel.getStatistics();
         Label ballsInPlay = (Label) root.lookup("#ballsInPlay");
-        ballsInPlay.setText(String.valueOf(balls[0]));
+        ballsInPlay.setText(String.valueOf(stats[0]));
 
         Label ballsAbsorbed = (Label) root.lookup("#ballsAbsorbed");
-        ballsAbsorbed.setText(String.valueOf(balls[1]));
-    }
+        ballsAbsorbed.setText(String.valueOf(stats[1]));
 
-    private void updateTotals() {
-        int[] total = gameModel.getTotalStatistics();
         Label totalCollisions = (Label) root.lookup("#totalCollisions");
-        totalCollisions.setText(String.valueOf(total[0]));
-
-        Label totalBallsAbsorbed = (Label) root.lookup("#totalAbsorbed");
-        totalBallsAbsorbed.setText(String.valueOf(total[1]));
+        totalCollisions.setText(String.valueOf(stats[2]));
     }
 
     public void changePlayIcon(boolean isRunning) {
