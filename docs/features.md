@@ -77,8 +77,6 @@
 * lowercase commands
 
 **New Commands**
-* ```Undo``` - Undo previous exation
-* ```Redo```
 * ```ClearMap``` - Clear map
 * ```Color <id> <hexcolor>``` - Change Gizmo colour
 * ```Rhombus <id> <position x> <position y>``` - Create Rhombus Gizmo
@@ -88,7 +86,11 @@
 ### Console
 * Let's you change the model with gizmoball commands in real time 
 * Uses Gizmoball syntax
-* clearscreen command
+* `clear`command for clearing the console
+* `undo` the previous command
+* `redo` the previous command
+* works while playing
+
 
 
 ### Connection

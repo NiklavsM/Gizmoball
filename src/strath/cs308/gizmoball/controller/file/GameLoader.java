@@ -113,7 +113,7 @@ public class GameLoader {
                             ITriggerable triggerable = (ITriggerable) gameModel.getGizmoById(name);
                             triggerable.addActionTrigger("key " + keyNumber + " " + keyMode);
                             Logger.verbose(TAG, "connected " + keyNumber + " " + keyMode + " to " + name);
-                        } catch (ClassCastException ex) {
+                        } catch (ClassCastException | NullPointerException ex) {
                         }
                         continue;
                     }
@@ -184,7 +184,7 @@ public class GameLoader {
                 }
                 from.registerTriggerable(to);
                 Logger.verbose(TAG, "connected " + name + " to " + name2);
-            } catch (ClassCastException ex) {
+            } catch (ClassCastException | NullPointerException ex) {
             }
             return;
         }

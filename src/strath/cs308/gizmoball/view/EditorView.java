@@ -39,6 +39,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class EditorView extends Scene implements IEditorView, Observer {
+
     private static final String TAG = "EditorView";
     private BorderPane root;
     private IGameModel gameModel;
@@ -194,9 +195,17 @@ public class EditorView extends Scene implements IEditorView, Observer {
                 if (key.getCode() == KeyCode.ENTER) {
                     try {
 
-                        if (consoleInputTextField.getText().equals("clear")) {
+                        if (consoleInputTextField.getText().trim().toLowerCase().equals("clear")) {
                             consoleTextArea.clear();
                             consoleInputTextField.clear();
+                            return;
+                        }
+                        if (consoleInputTextField.getText().trim().toLowerCase().equals("undo")) {
+                            UndoRedo.INSTANCE.undo(gameModel);
+                            return;
+                        }
+                        if (consoleInputTextField.getText().trim().toLowerCase().equals("redo")) {
+                            UndoRedo.INSTANCE.redo(gameModel);
                             return;
                         }
                         GameLoader gameLoader = new GameLoader(gameModel);
