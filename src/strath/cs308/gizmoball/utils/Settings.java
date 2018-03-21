@@ -1,6 +1,7 @@
 package strath.cs308.gizmoball.utils;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -8,22 +9,26 @@ import java.util.Properties;
 public class Settings {
 
     private static final String TAG = "Settings";
-    public static File PATH = new File(System.getProperty("user.home") + "/Documents/Gizmoball/");
-    public static File SETTINGS_FILE = new File(PATH, "settings.xml");
+    public static final File PATH = new File(System.getProperty("user.home") + "/Documents/Gizmoball/");
+    public static final File SETTINGS_FILE = new File(PATH, "settings.xml");
+    private static final Properties settingsProperties;
+
 
     static {
-        if(!PATH.exists()) {
+        settingsProperties = new Properties();
+        reloadSettings();
+
+        if (!PATH.exists()) {
             PATH.mkdirs();
         }
 
-        if(!SETTINGS_FILE.exists()){
+        if (!SETTINGS_FILE.exists()) {
             try {
 
-                Properties settings = new Properties();
-                settings.setProperty("language", "en");
-                settings.setProperty("3dEnabled", "false");
+                settingsProperties.setProperty("language", "en");
+                settingsProperties.setProperty("3dEnabled", "false");
 
-                settings.storeToXML(new FileOutputStream(SETTINGS_FILE), "");
+                settingsProperties.storeToXML(new FileOutputStream(SETTINGS_FILE), "");
 
 
                 if (SETTINGS_FILE.createNewFile()) {
@@ -36,5 +41,29 @@ public class Settings {
         }
     }
 
+    public static String getProperty(String property) {
+        return settingsProperties.getProperty("language");
+    }
 
+    public static void reloadSettings() {
+        try {
+            // Save
+            settingsProperties.loadFromXML(new FileInputStream(Settings.SETTINGS_FILE));
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void saveSettings() {
+        try {
+            // Save
+            settingsProperties.storeToXML(new FileOutputStream(SETTINGS_FILE), "");
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

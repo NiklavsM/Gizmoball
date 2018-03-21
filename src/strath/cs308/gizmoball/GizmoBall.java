@@ -31,7 +31,6 @@ public class GizmoBall extends Application {
     private static final String TAG = "GizmoBall";
     public static Locale locale = new Locale("en");
     private static Stage stage;
-    private Properties settingsProperties;
 
     public static void main(String[] args) {
         launch(args);
@@ -65,7 +64,7 @@ public class GizmoBall extends Application {
 
 
             UndoRedo.INSTANCE.saveState(gameModel);
-//            setIcon(); //FIX stopped working :(
+//            setIcon(); //FIX stopped working :( add
 
             //Doesn't work in xml
             primaryStage.setTitle("Gizmoball");
@@ -86,11 +85,12 @@ public class GizmoBall extends Application {
     }
 
     private void loadSettings() throws IOException {
-        settingsProperties = new Properties();
-        settingsProperties.loadFromXML(new FileInputStream(Settings.SETTINGS_FILE));
 
-        String language = settingsProperties.getProperty("language");
+        Settings.reloadSettings();
+
+        String language = Settings.getProperty("language");
         locale = new Locale(language);
+
         Logger.debug(TAG, "Language set to : " + language);
     }
 
