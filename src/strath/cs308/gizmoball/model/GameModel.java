@@ -367,10 +367,10 @@ public class GameModel extends Observable implements IGameModel {
         for (Gizmo gizmo : gizmos.values()) {
             Set<LineSegment> lines = gizmo.getLines();
             List<Circle> circles = gizmo.getCircles();
-            if (gizmo instanceof IMovable && ((IMovable) gizmo).isMoving() && !(gizmo instanceof Ball)) {
+            if (gizmo instanceof IMovable && ((IMovable) gizmo).isMoving() && ((IMovable) gizmo).getMovementType().equals(IMovable.Type.ROTATION) && !(gizmo instanceof Ball)) {
                 IMovable movable = ((IMovable) gizmo);
                 Double angularVelo = movable.getCurrentRadianVelocity();
-                Vect rotationCentre = movable.getSpinAround().getCenter();
+                Vect rotationCentre = new Vect(movable.getSpinAroundX(), movable.getSpinAroundY());
                 for (LineSegment line : lines) {
                     time = Geometry.timeUntilRotatingWallCollision(line, rotationCentre, angularVelo, ballCircle, ballVelocity);
                     if (time < shortestTime) {

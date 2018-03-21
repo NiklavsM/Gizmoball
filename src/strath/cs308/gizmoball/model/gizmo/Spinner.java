@@ -9,11 +9,11 @@ import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 import java.util.List;
 import java.util.Set;
 
-public class Spinner extends Gizmo implements IMovable, ITriggerable {
+public class Spinner extends Gizmo implements IMovable, ITriggerable, IAction {
 
     private final DefaultTriggarable triggerable = new DefaultTriggarable();
 
-    private Vect velocity;
+    private double velocity;
     private Circle spinAroundPoint;
     private Circle point1;
     private Circle point2;
@@ -31,9 +31,12 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable {
     public Spinner(double x1, double y1, String id) {
         super(x1, y1, x1 + 2, y1 + 2, id);
 
-        velocity = new Vect( Angle.DEG_180);
-        velocity = new Vect(new Angle(velocity.angle().radians() * -1));
+        velocity = 3.14 * -1;
         setReflectionCoefficient(0.9);
+
+
+        setAction(this);
+        addActionTrigger("collision");
     }
 
     @Override
@@ -69,14 +72,14 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable {
 
     @Override
     public boolean isMoving() {
-        return velocity != Vect.ZERO;
+        return velocity > 0;
     }
 
     @Override
     public void move(double time) {
 
 
-        double rotationRadian = velocity.angle().radians() * time;
+        double rotationRadian = velocity * time;
         Angle rotationAngle = new Angle(rotationRadian);
 
         circles.clear();
@@ -109,37 +112,45 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable {
     }
 
     public Double getCurrentRadianVelocity() {
-        return velocity.angle().radians();
+        return velocity;
     }
 
     @Override
-    public Circle getSpinAround() {
-        return spinAroundPoint;
+    public double getSpinAroundX() {
+        return spinAroundPoint.getCenter().x();
+    }
+
+    @Override
+    public double getSpinAroundY() {
+        return spinAroundPoint.getCenter().y();
     }
 
     @Override
     public void setVelocityRadian(double radian) {
-
+        velocity = radian;
     }
 
     @Override
     public void setVelocity(double x, double y) {
-
+        Vect temp = new Vect(x, y);
+        velocity = temp.angle().radians();
     }
 
     @Override
     public double getVelocityX() {
-        return 0;
+        Vect temp = new Vect(new Angle(velocity));
+        return temp.x();
     }
 
     @Override
     public double getVelocityY() {
-        return 0;
+        Vect temp = new Vect(new Angle(velocity));
+        return temp.y();
     }
 
     @Override
     public double getVelocityRadian() {
-        return 0;
+        return velocity;
     }
 
     @Override
@@ -154,7 +165,7 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable {
 
     @Override
     public void performAction(Object args) {
-        velocity = new Vect(new Angle(velocity.angle().radians() * -1));
+        triggerable.performAction(args);
     }
 
     @Override
@@ -194,6 +205,12 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable {
 
     @Override
     public String id() {
-        return null;
+        return getId();
+    }
+
+    @Override
+    public void doAction(Object args)
+    {
+        velocity *= -1;
     }
 }
