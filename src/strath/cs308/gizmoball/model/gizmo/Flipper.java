@@ -161,7 +161,7 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
     }
 
     public Double getCurrentRadianVelocity() {
-        return velocity.angle().radians()*1080/360*2;
+        return velocity.angle().radians();
     }
 
     @Override
