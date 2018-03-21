@@ -158,7 +158,9 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable, IAction {
 
     @Override
     public void performAction(Object args) {
-        triggerable.performAction(args);
+        if(!args.equals("collision")) {
+            triggerable.performAction(args);
+        }
     }
 
     @Override
