@@ -1,18 +1,17 @@
 package strath.cs308.gizmoball.model.triggeringsystem;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import strath.cs308.gizmoball.model.triggeringsystem.actions.GoToJailAction;
+
+import java.util.*;
 
 public class DefaultTriggarable implements ITriggerable {
 
-    private final List<IAction> availableActions;
+    private final Map<String, IAction> availableActions;
     private final Set<String> triggers;
     private IAction action;
 
     public DefaultTriggarable() {
-        availableActions = new LinkedList<>();
+        availableActions = new HashMap<>();
         triggers = new HashSet<>();
 
         addActionTrigger("collision");
@@ -47,17 +46,34 @@ public class DefaultTriggarable implements ITriggerable {
     }
 
     @Override
-    public List<IAction> getAvailableActions() {
-        return availableActions;
+    public Set<String> getAvailableActions() {
+        return availableActions.keySet();
     }
 
     @Override
-    public boolean addAvailableAction(IAction action) {
-        if (availableActions.contains(action)) {
+    public boolean addAvailableAction(String actionName, IAction action) {
+        if (availableActions.containsKey(actionName)) {
             return false;
         }
-        availableActions.add(action);
+        if (action == null) {
+            return false;
+        }
+        availableActions.put(actionName, action);
         return true;
+    }
+
+    @Override
+    public boolean setAction(String actionName) {
+        if (!availableActions.containsKey(actionName)) {
+            return false;
+        }
+        action = availableActions.get(actionName);
+        return true;
+    }
+
+    @Override
+    public String getCurrentActionName() {
+        return "unknown";
     }
 
     @Override
