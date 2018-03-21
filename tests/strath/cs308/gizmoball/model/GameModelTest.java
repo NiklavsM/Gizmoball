@@ -241,6 +241,55 @@ class GameModelTest {
         assertEquals(0.8, ball.getX(), "Ball X should have increased by 0.05 after two ticks and collision with 3xRotated triangle!");
     }
 
+    @Test
+    void testGizmoFactorySpinner() {
+        GizmoFactory factory = new GizmoFactory();
+        IGizmo spinner = factory.createGizmo(IGizmo.Type.SPINNER, 5, 16);
+        assertEquals(spinner.getStartY(), 16, "Factory should have created a spinner with a startY = 16!");
+    }
+
+    @Test
+    void testGizmoFactoryTriangle() {
+        GizmoFactory factory = new GizmoFactory();
+        IGizmo triangle = factory.createGizmo(IGizmo.Type.TRIANGLE, 9, 10);
+        assertEquals(triangle.getType(), IGizmo.Type.TRIANGLE, "Factory should have created a gizmo of type triangle!");
+    }
+
+    @Test
+    void testGizmoFactoryAbsorber()  {
+        GizmoFactory factory = new GizmoFactory();
+        IGizmo absorber = factory.createGizmo(IGizmo.Type.ABSORBER, 9, 10, 13, 11);
+        assertEquals(absorber.getEndX(), 13, "Absorber's end X should be 13!");
+    }
+
+    @Test
+    void testGizmoFactoryAbsorberTwoParameters()  {
+        GizmoFactory factory = new GizmoFactory();
+        IGizmo absorber = factory.createGizmo(IGizmo.Type.ABSORBER, 9, 10);
+        assertEquals(absorber.getEndX(), 10, "Absorber's end X should be 1 larger than its start X!");
+    }
+
+    @Test
+    void testUndoAddition() {
+        UndoRedo changes = UndoRedo.INSTANCE;
+        GameModel oldModel = model;
+        Square square = new Square(2, 1, "square1");
+        model.addGizmo(square);
+        changes.undo(model);
+        assertEquals(oldModel, model, "After undoing the change model should be the same!");
+    }
+
+    @Test
+    void testRedoAddition() {
+        UndoRedo changes = UndoRedo.INSTANCE;
+        Flipper rf = new Flipper(3, 3, Flipper.Orientation.RIGHT, "rightF");
+        model.addGizmo(rf);
+        int oldNumOfGizmos = model.getGizmos().size();
+        changes.undo(model);
+        changes.redo(model);
+        assertEquals(oldNumOfGizmos, model.getGizmos().size(), "After redoing the number of gizmos in the model should be the same as before!");
+    }
+
     private boolean checkIsFreshModel(GameModel model) {
         if (model.getGizmos().size() != 1) return false; //just walls
         if (model.getFrictionM1() != 0.025) return false;
