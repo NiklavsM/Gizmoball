@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameLoader;
-import strath.cs308.gizmoball.controller.actions.*;
+import strath.cs308.gizmoball.controller.actions.ChangeToARandomColor;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.UndoRedo;
@@ -20,14 +20,17 @@ import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.PlayView;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Properties;
 
 public class GizmoBall extends Application {
 
     private static final String TAG = "GizmoBall";
     public static Locale locale = new Locale("en");
     private static Stage stage;
+    private Properties settingsProperties;
 
     public static void main(String[] args) {
         launch(args);
@@ -48,6 +51,8 @@ public class GizmoBall extends Application {
                 e.printStackTrace();
             }
 
+            loadSettings();
+
             gameModel.getGizmos().stream()
                     .filter(g -> (g instanceof Square) || (g instanceof Circle) || (g instanceof Octagon) || (g instanceof Triangle))
                     .map(ITriggerable.class::cast)
@@ -56,7 +61,9 @@ public class GizmoBall extends Application {
                         triggerable.setAction(new ChangeToARandomColor(gameModel, (IGizmo) triggerable, "#000000", "#ffffff", "#f12"));
                     });
 
+
             UndoRedo.INSTANCE.saveState(gameModel);
+//            setIcon(); //FIX stopped working :(
 
             //Doesn't work in xml
             primaryStage.setTitle("Gizmoball");
@@ -67,16 +74,28 @@ public class GizmoBall extends Application {
             primaryStage.setScene(new PlayView(gameModel));
             primaryStage.show();
             stage = primaryStage;
-            setIcon();
 
+        } catch (IOException e) {
+            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+    private void loadSettings() throws IOException {
+        //            Properties settings = new Properties();
+//            settings.setProperty("language", "en");
+//            settings.storeToXML(new FileOutputStream("resources/settings.xml"), "");
+        settingsProperties = new Properties();
+        settingsProperties.loadFromXML(new FileInputStream("resources/settings.xml"));
+        locale = new Locale(settingsProperties.getProperty("language"));
     }
 
     private static void setIcon() {
-        Image image = new Image("/images/icon.png");
+        Image image = new Image("images/icon.png");
         stage.getIcons().add(image);
+
 //        Application.getApplication().setDockIconImage(new ImageIcon("Football.png").getImage());
 
     }
