@@ -55,14 +55,14 @@
 
                     <Button text="%PAUSE_MENU_EXIT"
                             GridPane.columnIndex="0"
-                            GridPane.rowIndex="5"
+                            GridPane.rowIndex="4"
                             fx:id="menuExitButton"
                             styleClass="exit-game-button, pause-menu-item-padding, pause-menu-font"/>
 
 
                     <ComboBox fx:id="languageChooser"
                               GridPane.columnIndex="0"
-                              GridPane.rowIndex="4"
+                              GridPane.rowIndex="5"
                               styleClass="pause-menu-item-padding, pause-menu-font"
                               prefWidth="100.0">
                         <items>

@@ -7,11 +7,14 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import strath.cs308.gizmoball.controller.editor.ActionComboboxChangeListener;
 import strath.cs308.gizmoball.controller.editor.pane.ConnectHandler;
 import strath.cs308.gizmoball.model.IGameModel;
+import strath.cs308.gizmoball.model.gizmo.IGizmo;
+import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
+import strath.cs308.gizmoball.model.triggeringsystem.actions.GoToJailAction;
 
 import java.util.Map;
+import java.util.Set;
 
 public class ConnectPanelView {
 
@@ -25,6 +28,7 @@ public class ConnectPanelView {
     private EditorView editorView;
     private Map<String, Object> namespace;
     private Button applyButton;
+    private IGizmo selectedGizmo;
 
     public ConnectPanelView(IGameModel gameModel, EditorView editorView, Map<String, Object> namespace) {
         this.gameModel = gameModel;
@@ -58,8 +62,6 @@ public class ConnectPanelView {
             connectBChangeButton.setOnAction(triggerPropertyEventHandler);
             connectBTextField.setOnAction(triggerPropertyEventHandler);
 
-            ChangeListener<String> actionComboboxChangeListener =  new ActionComboboxChangeListener();
-
             actionComboBox.setOnAction(triggerPropertyEventHandler);
 
 //            actionComboBox.
@@ -82,11 +84,27 @@ public class ConnectPanelView {
         connectBTextField.setText(s);
     }
 
+    private String getSelectedAction() {
+        return (String) actionComboBox.getSelectionModel().getSelectedItem();
+    }
     public void setConnectATextField(String text) {
         connectATextField.setText(text);
     }
 
     public void setConnectBTextField(String text) {
         connectBTextField.setText(text);
+    }
+
+    public void reloadActionComboBox() {
+        ((ITriggerable) gameModel.getGizmoById("T")).addAvailableAction("goToJail", new GoToJailAction(gameModel));
+        ((ITriggerable) selectedGizmo).setAction("goToJail");
+
+        Set<String> availableActions = ((ITriggerable) selectedGizmo).getAvailableActions();
+
+        actionComboBox.getItems().addAll(availableActions);
+    }
+
+    public void setSelectedGizmo(IGizmo selectedGizmo) {
+        this.selectedGizmo = selectedGizmo;
     }
 }

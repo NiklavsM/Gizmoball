@@ -532,21 +532,21 @@
                             Change
                         </Button>
 
-                        <Label text="Action"/>
-                        <ComboBox fx:id="actionComboBox" id="actionComboBox" prefWidth="100.0">
-                            <items>
-                                <FXCollections fx:factory="observableArrayList">
-                                    <String fx:value="Change Colour"/>
-                                    <String fx:value="Shoot ball"/>
-                                    <String fx:value="Rotate"/>
-                                </FXCollections>
-                            </items>
-                        </ComboBox>
+                        <!--<Label text="Action"/>-->
+                        <!--<ComboBox fx:id="actionComboBox" id="actionComboBox" prefWidth="100.0">-->
+                            <!--<items>-->
+                                <!--<FXCollections fx:factory="observableArrayList">-->
+                                    <!--<String fx:value="Change Colour"/>-->
+                                    <!--<String fx:value="Shoot ball"/>-->
+                                    <!--<String fx:value="Rotate"/>-->
+                                <!--</FXCollections>-->
+                            <!--</items>-->
+                        <!--</ComboBox>-->
 
-                        <Button fx:id="applyButton"
-                                styleClass="regular-button, regular-font, top-toolbar-button">
-                            Apply
-                        </Button>
+                        <!--<Button fx:id="applyButton"-->
+                                <!--styleClass="regular-button, regular-font, top-toolbar-button">-->
+                            <!--Apply-->
+                        <!--</Button>-->
 
                     </VBox>
 
