@@ -99,6 +99,7 @@
 * Saves game settings in an XML file in user home directory
 * Automatically creates directory in user_home/Documents/Gizmoball if it doesn't exists
 * Edit settings through GUI
+* Enable/Disable shadows
 
 ## Coming Soon (Almost done)
 

@@ -31,7 +31,6 @@ public class Settings {
 
                 settingsProperties.storeToXML(new FileOutputStream(SETTINGS_FILE), "");
 
-
                 if (SETTINGS_FILE.createNewFile()) {
                     Logger.debug(TAG, "New settings file successfuly created");
                 }
@@ -40,6 +39,12 @@ public class Settings {
                 e.printStackTrace();
             }
         }
+
+
+        Logger.debug(TAG, "Language: " + settingsProperties.getProperty("language"));
+        Logger.debug(TAG, "3dEnabled: " + settingsProperties.getProperty("3dEnabled"));
+        Logger.debug(TAG, "shadows: " + settingsProperties.getProperty("shadows"));
+
     }
 
     public static String getProperty(String property) {
