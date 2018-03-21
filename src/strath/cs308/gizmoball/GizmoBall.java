@@ -21,10 +21,8 @@ import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.utils.Settings;
 import strath.cs308.gizmoball.view.PlayView;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Locale;
-import java.util.Properties;
 
 public class GizmoBall extends Application {
 
@@ -98,8 +96,6 @@ public class GizmoBall extends Application {
         Image image = new Image("images/icon.png");
         stage.getIcons().add(image);
 
-//        Application.getApplication().setDockIconImage(new ImageIcon("Football.png").getImage());
-
     }
 
     public static void switchView(Scene view) {
@@ -109,6 +105,7 @@ public class GizmoBall extends Application {
 
     @Override
     public void stop() {
+        Settings.saveSettings();
         Platform.exit();
         System.exit(0);
     }

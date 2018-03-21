@@ -27,6 +27,7 @@ public class Settings {
 
                 settingsProperties.setProperty("language", "en");
                 settingsProperties.setProperty("3dEnabled", "false");
+                settingsProperties.setProperty("shadows", "false");
 
                 settingsProperties.storeToXML(new FileOutputStream(SETTINGS_FILE), "");
 

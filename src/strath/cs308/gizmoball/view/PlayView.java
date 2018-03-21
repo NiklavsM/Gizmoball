@@ -10,10 +10,12 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Shear;
 import javafx.stage.Modality;
@@ -26,6 +28,7 @@ import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGameTimer;
 import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
+import strath.cs308.gizmoball.utils.Settings;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -55,7 +58,10 @@ public class PlayView extends Scene implements IPlayView, Observer {
             stackPane = (StackPane) root.lookup("#stackPane");
             canvas = (Canvas) root.lookup("#canvas");
 
-            toggle3D();
+            if ("true".equals(Settings.getProperty("3dMode"))) {
+                toggle3D();
+            }
+
 
             drawBackground();
             drawGizmos();
@@ -76,7 +82,7 @@ public class PlayView extends Scene implements IPlayView, Observer {
         updateBallsInPlay();
     }
 
-    private PerspectiveCamera toggle3D() {
+    private void toggle3D() {
         PerspectiveCamera camera = new PerspectiveCamera();
         canvas.setWidth(500);
         canvas.setHeight(500);
@@ -86,8 +92,6 @@ public class PlayView extends Scene implements IPlayView, Observer {
 //            canvas.setScaleY(1.5);
 
         this.setCamera(camera);
-
-        return camera;
     }
 
     private void attachEventHandlers() {

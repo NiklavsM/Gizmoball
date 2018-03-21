@@ -8,6 +8,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.StrokeLineCap;
 import strath.cs308.gizmoball.model.Dot;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
+import strath.cs308.gizmoball.utils.Settings;
 
 import java.util.List;
 
@@ -31,9 +32,12 @@ public class GizmoDrawer {
     }
 
     public void drawGizmo(IGizmo gizmo, boolean isPreview) {
-//        if ()
-        Color b = Color.rgb(84, 110, 122);
-        gc.setEffect(new DropShadow(5, 5, 5, b));
+
+        if ("true".equals(Settings.getProperty("shadows"))) {
+            Color b = Color.rgb(84, 110, 122);
+            gc.setEffect(new DropShadow(5, 5, 5, b));
+        }
+
 
         gc.setFill(Color.BLACK);
         List<Dot> dots = gizmo.getDots();
