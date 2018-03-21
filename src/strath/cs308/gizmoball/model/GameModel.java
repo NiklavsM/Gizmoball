@@ -322,12 +322,14 @@ public class GameModel extends Observable implements IGameModel {
             temp = (Gizmo) gizmoFactory.createGizmo(gizmo.getType(), gizmo.getStartX(), gizmo.getStartY());
         }
 
+
+        removeGizmo(gizmo.getId());
         temp.move(x, y);
         if (!isGizmoAddable(temp)) {
+            addGizmo(gizmo);
             return false;
         }
 
-        gizmos.remove(gizmo);
         gizmo.move(x, y);
         addGizmo(gizmo);
 
