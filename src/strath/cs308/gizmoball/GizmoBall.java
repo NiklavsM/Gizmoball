@@ -4,17 +4,14 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.controller.actions.ChangeToARandomColor;
+import strath.cs308.gizmoball.controller.actions.TimedColorChange;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.UndoRedo;
-import strath.cs308.gizmoball.model.gizmo.IGizmo;
-import strath.cs308.gizmoball.model.gizmo.Octagon;
-import strath.cs308.gizmoball.model.gizmo.Square;
-import strath.cs308.gizmoball.model.gizmo.Triangle;
+import strath.cs308.gizmoball.model.gizmo.*;
 import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 import strath.cs308.gizmoball.utils.Logger;
@@ -36,6 +33,19 @@ public class GizmoBall extends Application {
         launch(args);
     }
 
+    private static void setIcon() {
+        Image image = new Image("images/icon.png");
+        stage.getIcons().add(image);
+
+//        Application.getApplication().setDockIconImage(new ImageIcon("Football.png").getImage());
+
+    }
+
+    public static void switchView(Scene view) {
+        setIcon();
+        stage.setScene(view);
+    }
+
     @Override
     public void start(Stage primaryStage) throws IOException {
         try {
@@ -54,16 +64,22 @@ public class GizmoBall extends Application {
             loadSettings();
 
             gameModel.getGizmos().stream()
-                    .filter(g -> (g instanceof Square) || (g instanceof Circle) || (g instanceof Octagon) || (g instanceof Triangle))
+                    .filter(g -> (g instanceof Square) ||
+                            (g instanceof CircleGizmo) || (g instanceof Octagon) ||
+                            (g instanceof Triangle) ||
+                            (g instanceof Rhombus)
+                    )
                     .map(ITriggerable.class::cast)
                     .forEach(triggerable -> {
                         ((ITrigger) triggerable).registerTriggerable(triggerable);
-                        triggerable.setAction(new ChangeToARandomColor(gameModel, (IGizmo) triggerable, "#000000", "#ffffff", "#f12"));
+                        triggerable.setAction(new ChangeToARandomColor(gameModel, (IGizmo) triggerable,
+                                "#000000", "#ffffff", "#f12"
+                                , "#a4b5c2", "#dd22aa", "#124312", "#aabb21"));
+//                        triggerable.setAction(new TimedColorChange(gameModel, (IGizmo) triggerable, "#ffffff", 3500));
                     });
 
-
             UndoRedo.INSTANCE.saveState(gameModel);
-//            setIcon(); //FIX stopped working :(
+//            setIcon(); //FIXME stopped working :(
 
             //Doesn't work in xml
             primaryStage.setTitle("Gizmoball");
@@ -90,19 +106,6 @@ public class GizmoBall extends Application {
         settingsProperties = new Properties();
         settingsProperties.loadFromXML(new FileInputStream("resources/settings.xml"));
         locale = new Locale(settingsProperties.getProperty("language"));
-    }
-
-    private static void setIcon() {
-        Image image = new Image("images/icon.png");
-        stage.getIcons().add(image);
-
-//        Application.getApplication().setDockIconImage(new ImageIcon("Football.png").getImage());
-
-    }
-
-    public static void switchView(Scene view) {
-        setIcon();
-        stage.setScene(view);
     }
 
     @Override
