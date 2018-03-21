@@ -204,5 +204,4 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
             UndoRedo.INSTANCE.saveState(gameModel);
         }
     }
-
 }

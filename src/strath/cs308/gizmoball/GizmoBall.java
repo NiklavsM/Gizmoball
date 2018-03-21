@@ -51,26 +51,6 @@ public class GizmoBall extends Application {
 
             loadSettings();
 
-            ((ITriggerable) gameModel.getGizmoById("T")).addAvailableAction("goToJail", new GoToJailAction(gameModel));
-            ((ITriggerable) gameModel.getGizmoById("T")).setAction("goToJail");
-
-            gameModel.getGizmos().stream()
-                    .filter(g -> (g instanceof Square) ||
-                            (g instanceof CircleGizmo) || (g instanceof Octagon) ||
-                            (g instanceof Triangle) ||
-                            (g instanceof Rhombus)
-                    )
-                    .map(ITriggerable.class::cast)
-                    .forEach(triggerable -> {
-                        ((ITrigger) triggerable).registerTriggerable(triggerable);
-                        triggerable.setAction(new ChangeToARandomColor(gameModel, (IGizmo) triggerable,
-                                "#000000", "#ffffff", "#f12"
-                                , "#a4b5c2", "#dd22aa", "#124312", "#aabb21"));
-//                        triggerable.setAction(new TimedColorChange(gameModel, (IGizmo) triggerable, "#ffffff", 3500));
-                    });
-
-//            ((Triangle) gameModel.getGizmoById("T")).setAction(new GoToJailAction(gameModel));
-
             UndoRedo.INSTANCE.saveState(gameModel);
 
             //Doesn't work in xml

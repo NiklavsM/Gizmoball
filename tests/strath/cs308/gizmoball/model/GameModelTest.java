@@ -270,6 +270,22 @@ class GameModelTest {
     }
 
     @Test
+    void testGizmoFactoryAbsorberFourParameters()  {
+        GizmoFactory factory = new GizmoFactory();
+        IGizmo absorber = factory.createGizmo(IGizmo.Type.ABSORBER, 0, 18, 19, 19);
+        String color = "#000000";
+        absorber.setColor(color);
+        assertEquals(absorber.getColor(), color, "The factory should have created a black absorber!");
+    }
+
+    @Test
+    void testGizmoFactoryBall()  {
+        GizmoFactory factory = new GizmoFactory();
+        IGizmo ball = factory.createGizmo(IGizmo.Type.BALL, 5.5, 5.5, 6.0, 6.0);
+        assertEquals(ball.getStartX(), ball.getStartY(), "The factory should have created a ball with startX = startY!");
+    }
+
+    @Test
     void testUndoAddition() {
         UndoRedo changes = UndoRedo.INSTANCE;
         GameModel oldModel = model;
@@ -288,6 +304,57 @@ class GameModelTest {
         changes.undo(model);
         changes.redo(model);
         assertEquals(oldNumOfGizmos, model.getGizmos().size(), "After redoing the number of gizmos in the model should be the same as before!");
+    }
+
+    @Test
+    void testStartGameTimer() {
+        GameTimer timer = new GameTimer(model);
+        timer.start();
+        assertTrue(timer.isRunning(), "Timer should be running!");
+    }
+
+    @Test
+    void testStopGameTimer() {
+        GameTimer timer = new GameTimer(model);
+        timer.start();
+        timer.stop();
+        assertFalse(timer.isRunning(), "Timer should be stopped!");
+    }
+
+    @Test
+    void testIsFlipeprAddable() {
+        Flipper flipper = new Flipper(4, 8, Flipper.Orientation.LEFT);
+        assertTrue(model.isGizmoAddable(flipper), "Flipper should be addable!");
+    }
+
+    @Test
+    void testIsSpinnerAddable() {
+        Rhombus rhombus = new Rhombus(5,5);
+        if (model.isGizmoAddable(rhombus))
+            model.addGizmo(rhombus);
+        Spinner spinner = new Spinner(4, 4);
+        assertFalse(model.isGizmoAddable(spinner), "Spinner should not be addable as the space is not free!");
+    }
+
+    @Test
+    void testIsBallAddable() {
+        Ball ball = new Ball(1,2);
+        assertTrue(model.isGizmoAddable(ball), "Ball should be addable!");
+    }
+
+    @Test
+    void testIsAbsorberAddable() {
+       Absorber abs = new Absorber(4, 6, 8, 7);
+       assertTrue(model.isGizmoAddable(abs), "Abbsorber should be addable!");
+    }
+
+    @Test
+    void testIsFlipeprMovable() {
+        Flipper flipper = new Flipper(4, 8, Flipper.Orientation.RIGHT, "rightF");
+        model.addGizmo(flipper);
+        flipper.rotate();
+        flipper.move(0.5);
+        assertEquals(model.getGizmoById("rightF"), flipper, "Flipper should be okay in model after rotating and moving!");
     }
 
     private boolean checkIsFreshModel(GameModel model) {

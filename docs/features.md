@@ -89,7 +89,6 @@
 * ```Octagon <id> <position x> <position y>``` - Create Octagon Gizmo
 
 ### Console
-### Console3d
 * Let's you change the model with gizmoball commands in real time 
 * Uses Gizmoball syntax
 * `clear`command for clearing the console
@@ -108,9 +107,3 @@
 * Automatically creates directory in user_home/Documents/Gizmoball if it doesn't exists
 * Edit settings through GUI
 * Enable/Disable shadows
-
-## Coming Soon (Almost done)
-* Custom gizmo actions
-
-## WTF
-* jail action
