@@ -4,6 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx"
             stylesheets="/styles/style.css"
@@ -17,7 +19,7 @@
             <ToolBar maxWidth="230"
                      minWidth="200"
                      minHeight="200"
-                     maxHeight="250"
+                     maxHeight="300"
                      fx:id="pauseMenu"
                      styleClass="no-padding">
 
@@ -51,9 +53,27 @@
                             fx:id="menuEditorButton"
                             styleClass="to-editor-button, pause-menu-item-padding, pause-menu-font"/>
 
+                    <ComboBox fx:id="languageChooser"
+                              GridPane.columnIndex="0"
+                              GridPane.rowIndex="4"
+                              styleClass="pause-menu-item-padding, pause-menu-font"
+                              prefWidth="100.0">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="en"/>
+                                <String fx:value="hu"/>
+                                <String fx:value="ro"/>
+                                <String fx:value="gb"/>
+                                <String fx:value="ru"/>
+                                <String fx:value="nl"/>
+                                <String fx:value="lv"/>
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+
                     <Button text="%PAUSE_MENU_EXIT"
                             GridPane.columnIndex="0"
-                            GridPane.rowIndex="4"
+                            GridPane.rowIndex="5"
                             fx:id="menuExitButton"
                             styleClass="exit-game-button, pause-menu-item-padding, pause-menu-font"/>
 

@@ -8,7 +8,9 @@ public interface IMovable {
 
     Double getCurrentRadianVelocity();
 
-    Circle getSpinAround();
+    double getSpinAroundX();
+
+    double getSpinAroundY();
 
     void move(double timeInSeconds);
 

@@ -16,7 +16,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.GizmoBall;
@@ -247,11 +246,15 @@ public class EditorView extends Scene implements IEditorView, Observer {
     }
 
     @Override
-    public File getLoadFile() {
+    public File getSelectedLoadFile() {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Gizmoball loading file");
-        fileChooser.setInitialFileName("New Gizmo");
-        return fileChooser.showOpenDialog(null);
+        return fileChooser.showOpenDialog();
+    }
+
+    @Override
+    public File getSelectedSaveFile(){
+        FileChooser fileChooser = new FileChooser();
+        return fileChooser.showSaveDialog();
     }
 
     @Override
@@ -356,26 +359,8 @@ public class EditorView extends Scene implements IEditorView, Observer {
 
     @Override
     public void previewGizmo(IGizmo gizmo, double x, double y) {
-        if (gameModel.getGizmo(x, y).equals(Optional.empty())) {
-            if (gizmo.getType().equals(IGizmo.Type.LEFT_FLIPPER) && isFlipperAreaOccupied(x, y))
-                return;
-            if (gizmo.getType().equals(IGizmo.Type.RIGHT_FLIPPER) && isFlipperAreaOccupied(x - 1, y))
-                return;
-
             GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
             gizmoDrawer.drawGizmo(gizmo, true);
-        }
-    }
-
-    private boolean isFlipperAreaOccupied(double x, double y) {
-        Double Xcoord = Math.floor(x), Ycoord = Math.floor(y);
-        for (int posX = Xcoord.intValue(); posX <= Xcoord.intValue() + 1; posX++) {
-            for (int posY = Ycoord.intValue(); posY <= Ycoord.intValue() + 1; posY++) {
-                if (!gameModel.getGizmo(posX, posY).equals(Optional.empty()))
-                    return true;
-            }
-        }
-        return false;
     }
 
     @Override

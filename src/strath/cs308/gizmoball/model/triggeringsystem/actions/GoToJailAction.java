@@ -1,4 +1,4 @@
-package strath.cs308.gizmoball.controller.actions;
+package strath.cs308.gizmoball.model.triggeringsystem.actions;
 
 import strath.cs308.gizmoball.controller.file.GameLoader;
 import strath.cs308.gizmoball.model.IGameModel;
