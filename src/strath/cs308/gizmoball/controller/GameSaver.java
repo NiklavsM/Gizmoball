@@ -21,11 +21,11 @@ public enum GameSaver {
         return currentFile;
     }
 
-    public boolean hasCurrentFile() {
-        return currentFile != null;
-    }
-
     public void setCurrentFile(File currentFile) {
         this.currentFile = currentFile;
+    }
+
+    public boolean hasCurrentFile() {
+        return currentFile != null;
     }
 }

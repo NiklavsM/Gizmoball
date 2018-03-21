@@ -10,6 +10,6 @@ public class RemoveGizmoAction extends AbstractGizmoAction {
 
     @Override
     public void doAction(Object args) {
-       gameModel.removeGizmo(gizmo);
+        gameModel.removeGizmo(gizmo);
     }
 }

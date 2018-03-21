@@ -26,7 +26,6 @@ import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IMovable;
 import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
-import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;

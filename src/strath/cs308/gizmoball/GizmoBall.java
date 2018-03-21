@@ -7,8 +7,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameLoader;
 import strath.cs308.gizmoball.controller.actions.ChangeToARandomColor;
-import strath.cs308.gizmoball.controller.actions.GoToJailAction;
-import strath.cs308.gizmoball.controller.actions.TimedColorChange;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.UndoRedo;
@@ -16,19 +14,17 @@ import strath.cs308.gizmoball.model.gizmo.*;
 import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 import strath.cs308.gizmoball.utils.Logger;
+import strath.cs308.gizmoball.utils.Settings;
 import strath.cs308.gizmoball.view.PlayView;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Locale;
-import java.util.Properties;
 
 public class GizmoBall extends Application {
 
     private static final String TAG = "GizmoBall";
     public static Locale locale = new Locale("en");
     private static Stage stage;
-    private Properties settingsProperties;
 
     public static void main(String[] args) {
         launch(args);
@@ -37,8 +33,6 @@ public class GizmoBall extends Application {
     private static void setIcon() {
         Image image = new Image("images/icon.png");
         stage.getIcons().add(image);
-
-//        Application.getApplication().setDockIconImage(new ImageIcon("Football.png").getImage());
 
     }
 
@@ -62,6 +56,7 @@ public class GizmoBall extends Application {
                 e.printStackTrace();
             }
 
+
             loadSettings();
 
             gameModel.getGizmos().stream()
@@ -84,6 +79,7 @@ public class GizmoBall extends Application {
             UndoRedo.INSTANCE.saveState(gameModel);
 //            setIcon(); //FIXME stopped working :(
 
+
             //Doesn't work in xml
             primaryStage.setTitle("Gizmoball");
             primaryStage.setMinWidth(750);
@@ -103,16 +99,18 @@ public class GizmoBall extends Application {
     }
 
     private void loadSettings() throws IOException {
-        //            Properties settings = new Properties();
-//            settings.setProperty("language", "en");
-//            settings.storeToXML(new FileOutputStream("resources/settings.xml"), "");
-        settingsProperties = new Properties();
-        settingsProperties.loadFromXML(new FileInputStream("resources/settings.xml"));
-        locale = new Locale(settingsProperties.getProperty("language"));
+
+        Settings.reloadSettings();
+
+        String language = Settings.getProperty("language");
+        locale = new Locale(language);
+
+        Logger.debug(TAG, "Language set to : " + language);
     }
 
     @Override
     public void stop() {
+        Settings.saveSettings();
         Platform.exit();
         System.exit(0);
     }

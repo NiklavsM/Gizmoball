@@ -6,7 +6,6 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
-import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.IEditorView;
 
 import java.util.Observable;

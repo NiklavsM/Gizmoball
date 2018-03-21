@@ -1,7 +1,6 @@
 package strath.cs308.gizmoball.model;
 
 import mit.physics.Circle;
-import mit.physics.Vect;
 
 public interface IMovable {
 

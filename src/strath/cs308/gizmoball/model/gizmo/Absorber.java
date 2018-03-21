@@ -136,9 +136,9 @@ public class Absorber extends Gizmo implements IAction, ITriggerable, ITrigger {
 
     @Override
     public void performAction(Object args) {
-       // triggerable.performAction(args);
+        // triggerable.performAction(args);
         System.out.println(args);
-        if(!args.equals("collision")) {
+        if (!args.equals("collision")) {
             triggerable.getTriggers()
                     .parallelStream()
                     .forEach(s -> {
