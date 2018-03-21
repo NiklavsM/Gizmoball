@@ -73,24 +73,23 @@
 * `.gizmo` extension file automatically handled
 
 ### Language extension
-* `Color` `<id>` `<hexcolor>`
-* `ClearMap` to clear the map
+
 * lowercase commands
+
+**New Commands**
+* ```Undo``` - Undo previous exation
+* ```Redo```
+* ```ClearMap``` - Clear map
+* ```Color <id> <hexcolor>``` - Change Gizmo colour
+* ```Rhombus <id> <position x> <position y>``` - Create Rhombus Gizmo
+* ```Spinner <id> <position x> <position y>```  - Create Spinner Gizmo
+* ```Octagon <id> <position x> <position y>``` - Create Octagon Gizmo
 
 ### Console
 * Let's you change the model with gizmoball commands in real time 
 * Uses Gizmoball syntax
 * clearscreen command
 
-**New Commands**
-
-* ```Undo``` - Undo previous exation
-* ```Redo```
-* ```ClearMap``` - Clear map
-* ```Color <id> <hex value``` - Chnage Gizmo colour
-* ```Rhombus <id> <position x> <position y>``` - Create Rhombus Gizmo
-* ```Spinner <id> <position x> <position y>```  - Create Spinner Gizmo
-* ```Octagon <id> <position x> <position y>``` - Create Octagon Gizmo
 
 ### Connection
 * Easy gizmo key connection interface
