@@ -321,6 +321,33 @@ class GameModelTest {
         assertFalse(timer.isRunning(), "Timer should be stopped!");
     }
 
+    @Test
+    void testIsFlipeprAddable() {
+        Flipper flipper = new Flipper(4, 8, Flipper.Orientation.LEFT);
+        assertTrue(model.isGizmoAddable(flipper), "Flipper should be addable!");
+    }
+
+    @Test
+    void testIsSpinnerAddable() {
+        Rhombus rhombus = new Rhombus(5,5);
+        if (model.isGizmoAddable(rhombus))
+            model.addGizmo(rhombus);
+        Spinner spinner = new Spinner(4, 4);
+        assertFalse(model.isGizmoAddable(spinner), "Spinner should not be addable as the space is not free!");
+    }
+
+    @Test
+    void testIsBallAddable() {
+        Ball ball = new Ball(1,2);
+        assertTrue(model.isGizmoAddable(ball), "Ball should be addable!");
+    }
+
+    @Test
+    void testIsAbsorberAddable() {
+       Absorber abs = new Absorber(4, 6, 8, 7);
+       assertTrue(model.isGizmoAddable(abs), "Abbsorber should be addable!");
+    }
+
     private boolean checkIsFreshModel(GameModel model) {
         if (model.getGizmos().size() != 1) return false; //just walls
         if (model.getFrictionM1() != 0.025) return false;

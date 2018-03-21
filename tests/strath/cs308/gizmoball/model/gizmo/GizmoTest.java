@@ -124,8 +124,7 @@ public class GizmoTest {
     @Test
     void testSpinnerRotatingPoint() {
         Spinner spinner = new Spinner(12, 12);
-//        assertEquals(spinner.getSpinAround().getCenter(), new Vect(13.0, 13.0));
-        assertEquals(new Vect(spinner.getSpinAroundX(), spinner.getSpinAroundY()), new Vect(13.0, 13.0));
+        assertEquals(spinner.getEndX(), spinner.getStartX() + 2);
     }
 
     @Test
