@@ -82,6 +82,9 @@ public class ConnectPanelView {
         connectBTextField.setText(s);
     }
 
+    private String getSelectedAction() {
+        return (String) actionComboBox.getSelectionModel().getSelectedItem();
+    }
     public void setConnectATextField(String text) {
         connectATextField.setText(text);
     }

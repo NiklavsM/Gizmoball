@@ -291,10 +291,11 @@ i.pause-menu-font {
     -fx-padding: 0px 5px 0px 5px;
 }
 
-ColorPicker, ComboBox {
+ColorPicker, ComboBox, String {
     -fx-background-color: #37474F;
     -fx-text-fill: #B0BEC5;
 }
+
 
 
 /* Launcher */
