@@ -18,6 +18,7 @@ import strath.cs308.gizmoball.model.gizmo.Triangle;
 import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 import strath.cs308.gizmoball.utils.Logger;
+import strath.cs308.gizmoball.utils.Settings;
 import strath.cs308.gizmoball.view.PlayView;
 
 import java.io.FileInputStream;
@@ -50,6 +51,7 @@ public class GizmoBall extends Application {
                 Logger.error(TAG, "Failed to load default model");
                 e.printStackTrace();
             }
+
 
             loadSettings();
 
@@ -84,12 +86,12 @@ public class GizmoBall extends Application {
     }
 
     private void loadSettings() throws IOException {
-        //            Properties settings = new Properties();
-//            settings.setProperty("language", "en");
-//            settings.storeToXML(new FileOutputStream("resources/settings.xml"), "");
         settingsProperties = new Properties();
-        settingsProperties.loadFromXML(new FileInputStream("resources/settings.xml"));
-        locale = new Locale(settingsProperties.getProperty("language"));
+        settingsProperties.loadFromXML(new FileInputStream(Settings.SETTINGS_FILE));
+
+        String language = settingsProperties.getProperty("language");
+        locale = new Locale(language);
+        Logger.debug(TAG, "Language set to : " + language);
     }
 
     private static void setIcon() {
