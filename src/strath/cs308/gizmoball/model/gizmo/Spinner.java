@@ -144,7 +144,7 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable {
 
     @Override
     public IMovable.Type getMovementType() {
-        return null;
+        return IMovable.Type.ROTATION;
     }
 
     @Override
