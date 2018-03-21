@@ -17,4 +17,4 @@ Utils package added for utlilti classes
 
 * LaunchEventHandler for handling the events of the launch screen
 * SelectGizmoEventHandler strategy added for loading in gizmo properties
-* ConnectHandler added for handling the events 
+* ConnectHandler added for handling the events  
