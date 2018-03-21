@@ -48,9 +48,13 @@ public class Settings {
     }
 
     public static String getProperty(String property) {
-        return settingsProperties.getProperty("language");
+        return settingsProperties.getProperty(property);
     }
 
+    public static void setProperty(String key, String value) {
+        settingsProperties.setProperty(key, value);
+
+    }
     public static void reloadSettings() {
         try {
             // Save
@@ -72,4 +76,6 @@ public class Settings {
             e.printStackTrace();
         }
     }
+
+
 }
