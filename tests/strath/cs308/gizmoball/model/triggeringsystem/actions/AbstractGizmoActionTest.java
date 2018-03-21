@@ -23,6 +23,7 @@ class AbstractGizmoActionTest {
     void testActionChangeColor() {
         IAction changeColor = new ChangeColorAction(model, square, "#ffffff");
         square.setAction(changeColor);
+        changeColor.doAction(square);
         assertEquals(square.getCurrentAction(), changeColor, "Square's action should be change color!");
     }
 
@@ -45,9 +46,32 @@ class AbstractGizmoActionTest {
     void testDestroyerAction() {
         IAction destroy = new DestroyerGizmoAction(model);
         square.setAction(destroy);
-        destroy.doAction(square);
         assertEquals(square.getCurrentAction(), destroy, "Square's action should be destroy!");
     }
 
+    @Test
+    void testPlaySoundAction() {
+        IAction sound = new PlaySoundAction();
+        square.setAction(sound);
+        sound.doAction(square);
+        assertEquals(square.getCurrentAction(), sound, "Square's action should be the sound action!");
+    }
 
+    @Test
+    void testRemoveGizmoAction() {
+        IAction remove = new RemoveGizmoAction(model, square);
+        model.addGizmo(square);
+        square.setAction(remove);
+        remove.doAction(model);
+        assertEquals(square.getCurrentAction(), remove, "Square's action should be remove!");
+    }
+
+    @Test
+    void testTimedColorChange() {
+        IAction timedChange = new TimedColorChange(model, square, "#000000", 2);
+        model.addGizmo(square);
+        square.setAction(timedChange);
+        timedChange.doAction("Colors");
+        assertEquals(square.getCurrentAction(), timedChange, "Square's action should be a timed color change!");
+    }
 }
