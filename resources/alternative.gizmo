@@ -41,8 +41,6 @@ Circle C165 16 5
 Circle C174 17 4
 Circle C183 18 3
 
-Ball B1234 11.5 9.5 0.0 0.0
-
 LeftFlipper LF92 9 2
 KeyConnect key 75 down LF92
 KeyConnect key 75 up LF92
