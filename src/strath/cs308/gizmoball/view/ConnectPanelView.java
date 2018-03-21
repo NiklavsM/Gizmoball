@@ -47,7 +47,6 @@ public class ConnectPanelView {
 
         connectAChangeButton = (Button) namespace.get("connectAChangeButton");
         connectBChangeButton = (Button) namespace.get("connectBChangeButton");
-        actionComboBox = (ComboBox<String>) namespace.get("actionComboBox");
         connectionActionButton = (Button) namespace.get("connectAction");
 
         applyButton = (Button) namespace.get("applyButton");
@@ -61,10 +60,6 @@ public class ConnectPanelView {
             connectATextField.setOnAction(triggerPropertyEventHandler);
             connectBChangeButton.setOnAction(triggerPropertyEventHandler);
             connectBTextField.setOnAction(triggerPropertyEventHandler);
-
-            actionComboBox.setOnAction(triggerPropertyEventHandler);
-
-//            actionComboBox.
         });
     }
 
@@ -84,9 +79,6 @@ public class ConnectPanelView {
         connectBTextField.setText(s);
     }
 
-    private String getSelectedAction() {
-        return (String) actionComboBox.getSelectionModel().getSelectedItem();
-    }
     public void setConnectATextField(String text) {
         connectATextField.setText(text);
     }
