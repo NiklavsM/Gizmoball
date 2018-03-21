@@ -46,6 +46,8 @@ markdown-toc -i file.md
 pandoc preliminarydesign.md -o preliminarydesign.pdf --from markdown --template eisvogel --listings
 ```
 
+Please find all the written up submission parts in the docs folder.
+
 ## Group Members
 
 Bence Sebestyen @xsb15143
