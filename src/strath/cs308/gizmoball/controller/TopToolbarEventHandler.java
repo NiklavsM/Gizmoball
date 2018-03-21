@@ -92,7 +92,7 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
     }
 
     private void loadGame() {
-        File fileToLoad = FileChooser.INSTANCE.showOpenDialog();
+        File fileToLoad = editView.getSelectedLoadFile();
 
         if (fileToLoad == null) {
             Logger.debug(TAG, "Loading file dialog cancelled");
@@ -109,7 +109,7 @@ public class TopToolbarEventHandler implements EventHandler<MouseEvent> {
     }
 
     private void saveAs() {
-        File file = FileChooser.INSTANCE.showSaveDialog();
+        File file = editView.getSelectedSaveFile();
         if (file == null) {
             Logger.debug(TAG, "Saving file dialog cancelled");
             return;

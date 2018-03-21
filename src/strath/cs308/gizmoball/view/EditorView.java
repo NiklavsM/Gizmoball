@@ -16,7 +16,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.GizmoBall;
@@ -235,11 +234,15 @@ public class EditorView extends Scene implements IEditorView, Observer {
     }
 
     @Override
-    public File getLoadFile() {
+    public File getSelectedLoadFile() {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Gizmoball loading file");
-        fileChooser.setInitialFileName("New Gizmo");
-        return fileChooser.showOpenDialog(null);
+        return fileChooser.showOpenDialog();
+    }
+
+    @Override
+    public File getSelectedSaveFile(){
+        FileChooser fileChooser = new FileChooser();
+        return fileChooser.showSaveDialog();
     }
 
     @Override

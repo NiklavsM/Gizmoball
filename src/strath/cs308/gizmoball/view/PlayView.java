@@ -22,6 +22,7 @@ import strath.cs308.gizmoball.model.IGameTimer;
 import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Observable;
@@ -163,6 +164,18 @@ public class PlayView extends Scene implements IPlayView, Observer {
             icon.setStyle("-fx-background-image: url('/icons/stop.png')");
             icon.setTooltip(new Tooltip("Stop"));
         }
+    }
+
+    @Override
+    public File getSelectedLoadFile() {
+        FileChooser fileChooser = new FileChooser();
+        return fileChooser.showOpenDialog();
+    }
+
+    @Override
+    public File getSelectedSaveFile() {
+        FileChooser fileChooser = new FileChooser();
+        return fileChooser.showSaveDialog();
     }
 
     public boolean getCloseConfirmation() {

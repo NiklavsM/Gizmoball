@@ -65,7 +65,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
     }
 
     private void loadGame() {
-        File fileToLoad = FileChooser.INSTANCE.showOpenDialog();
+        File fileToLoad = playView.getSelectedLoadFile();
 
         if (fileToLoad == null) {
             Logger.debug(TAG, "Loading file dialog cancelled");
@@ -85,7 +85,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
 
     private void saveGame() {
         if (!GameSaver.INSTANCE.hasCurrentFile()) {
-            File file = FileChooser.INSTANCE.showSaveDialog();
+            File file = playView.getSelectedSaveFile();
             if (file != null) {
                 GameSaver.INSTANCE.setCurrentFile(file);
             } else {
