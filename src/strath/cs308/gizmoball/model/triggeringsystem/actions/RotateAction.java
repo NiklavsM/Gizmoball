@@ -1,10 +1,7 @@
-package strath.cs308.gizmoball.controller.actions;
+package strath.cs308.gizmoball.model.triggeringsystem.actions;
 
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
-import strath.cs308.gizmoball.model.triggeringsystem.IAction;
-
-import javax.swing.*;
 
 public class RotateAction extends AbstractGizmoAction{
 
