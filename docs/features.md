@@ -9,7 +9,7 @@
 * Pause menu with translucent background
 * Game animation stop and blur on background when pause menu is invoked 
 * Nice and smooth JavaFX GUI (60 FPS)
-* Multiple balls (limit of 50)
+* Multiple balls (limit of 200)
 * Music introduced with an option of muting it 
 * Game score and other stats
 * Supports 10+ language
