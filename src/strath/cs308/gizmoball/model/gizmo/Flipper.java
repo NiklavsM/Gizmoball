@@ -38,7 +38,6 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
         movedAngle = Angle.ZERO.radians();
 
         velocityConstant = 18.85;
-//        velocityConstant = 3.14;
         velocity = 0;
 
         if (orientation == Orientation.RIGHT) {
@@ -53,7 +52,6 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
 
         addActionTrigger("key 65.0 down");
         addActionTrigger("key 65.0 up");
-
         setColor("#ff9800");
     }
 

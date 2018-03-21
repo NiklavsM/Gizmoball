@@ -47,7 +47,6 @@ public class LauncherView extends Scene implements ILauncherView, Observer {
 
             root.lookupAll("#launcherVbox > Button")
                     .forEach(node -> ((Button) node).setOnAction(launcherEventHandler));
-
         });
     }
 

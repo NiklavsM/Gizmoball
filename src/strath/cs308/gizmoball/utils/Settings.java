@@ -23,7 +23,6 @@ public class Settings {
 
         if (!SETTINGS_FILE.exists()) {
             try {
-
                 settingsProperties.setProperty("language", "en");
                 settingsProperties.setProperty("3dEnabled", "false");
                 settingsProperties.setProperty("shadowsEnabled", "true");
@@ -39,12 +38,10 @@ public class Settings {
             }
         }
 
-
         reloadSettings();
         Logger.debug(TAG, "Language: " + settingsProperties.getProperty("language"));
         Logger.debug(TAG, "3dEnabled: " + settingsProperties.getProperty("3dEnabled"));
         Logger.debug(TAG, "shadowsEnabled: " + settingsProperties.getProperty("shadowsEnabled"));
-
     }
 
     public static String getProperty(String property) {
@@ -53,15 +50,12 @@ public class Settings {
 
     public static void setProperty(String key, String value) {
         settingsProperties.setProperty(key, value);
-
-        Logger.debug(TAG, "Property: " + key + " set to : " + value);
-
     }
+
     public static void reloadSettings() {
         try {
             // Save
             settingsProperties.loadFromXML(new FileInputStream(Settings.SETTINGS_FILE));
-
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -73,11 +67,8 @@ public class Settings {
             // Save
             settingsProperties.storeToXML(new FileOutputStream(SETTINGS_FILE), "");
 
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-
 }

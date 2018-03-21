@@ -14,7 +14,6 @@ public class LauncherEventHandler implements EventHandler<ActionEvent> {
 
     public LauncherEventHandler(IGameModel gameModel, LauncherView launcherView) {
         this.gameModel = gameModel;
-
         this.launcherView = launcherView;
     }
 
