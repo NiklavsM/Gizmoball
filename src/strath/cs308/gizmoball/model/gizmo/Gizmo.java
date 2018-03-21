@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 public abstract class Gizmo implements IGizmo {
 
     protected final String id;
-    protected int rotateCount = 0;
+    protected int rotateCount;
     protected List<Circle> circles;
     protected Set<LineSegment> lines;
     protected Vect rotatingPoint;
@@ -20,13 +20,18 @@ public abstract class Gizmo implements IGizmo {
     protected double y1;
     protected double x2;
     protected double y2;
-    private int scoreValue = 0;
-    private double reflectionCoefficient = 1;
-    private String color = "#ffffff";
+    private int scoreValue;
+    private double reflectionCoefficient;
+    private String color;
 
     public Gizmo(double x1, double y1, double x2, double y2, String id) {
         setup(x1, y1, x2, y2);
         this.id = id;
+
+        color = "#ffffff";
+        reflectionCoefficient = 1;
+        scoreValue = 0;
+        rotateCount = 0;
     }
 
     public Gizmo(double x1, double y1, double x2, double y2) {
