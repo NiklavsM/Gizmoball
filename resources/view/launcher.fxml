@@ -30,8 +30,7 @@
 
 
     <center>
-
-        <VBox fx:id="launcherVbox">
+        <VBox fx:id="launcherVbox" alignment="CENTER">
             <Button fx:id="playButton"
                     text="Play"
                     styleClass="title-font, top-toolbar-button, launcher-button">
