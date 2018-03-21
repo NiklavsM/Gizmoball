@@ -53,6 +53,13 @@
                             fx:id="menuEditorButton"
                             styleClass="to-editor-button, pause-menu-item-padding, pause-menu-font"/>
 
+                    <Button text="%PAUSE_MENU_EXIT"
+                            GridPane.columnIndex="0"
+                            GridPane.rowIndex="5"
+                            fx:id="menuExitButton"
+                            styleClass="exit-game-button, pause-menu-item-padding, pause-menu-font"/>
+
+
                     <ComboBox fx:id="languageChooser"
                               GridPane.columnIndex="0"
                               GridPane.rowIndex="4"
@@ -70,12 +77,6 @@
                             </FXCollections>
                         </items>
                     </ComboBox>
-
-                    <Button text="%PAUSE_MENU_EXIT"
-                            GridPane.columnIndex="0"
-                            GridPane.rowIndex="5"
-                            fx:id="menuExitButton"
-                            styleClass="exit-game-button, pause-menu-item-padding, pause-menu-font"/>
 
                 </GridPane>
             </ToolBar>

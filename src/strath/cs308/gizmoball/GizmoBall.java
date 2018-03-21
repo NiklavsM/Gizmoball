@@ -13,6 +13,7 @@ import strath.cs308.gizmoball.model.gizmo.*;
 import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 import strath.cs308.gizmoball.model.triggeringsystem.actions.ChangeToARandomColor;
+import strath.cs308.gizmoball.model.triggeringsystem.actions.GoToJailAction;
 import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.utils.Settings;
 import strath.cs308.gizmoball.view.LauncherView;
@@ -49,6 +50,9 @@ public class GizmoBall extends Application {
 
 
             loadSettings();
+
+            ((ITriggerable) gameModel.getGizmoById("T")).addAvailableAction("goToJail", new GoToJailAction(gameModel));
+            ((ITriggerable) gameModel.getGizmoById("T")).setAction("goToJail");
 
             gameModel.getGizmos().stream()
                     .filter(g -> (g instanceof Square) ||

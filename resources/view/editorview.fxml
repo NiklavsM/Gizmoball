@@ -3,8 +3,7 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import java.lang.String?>
@@ -149,17 +148,6 @@
                                styleClass="game-option-textbox"
                                prefWidth="60.0"/>
                     <Label text="%EDITOR_TOPBAR_FRICTIONMU2"/>
-                </VBox>
-                <VBox spacing="5"
-                      alignment="CENTER">
-                    <Button maxWidth="24"
-                            minWidth="24"
-                            minHeight="24"
-                            maxHeight="24"
-                            fx:id="soundSettingsButton"
-                            styleClass="settings-button, regular-font, top-toolbar-button">
-                    </Button>
-                    <Label text="%EDITOR_SOUND_SETTINGS"/>
                 </VBox>
 
                 <VBox spacing="5"
@@ -450,60 +438,65 @@
                         </ScrollPane>
                     </VBox>
                 </Tab>
+
                 <Tab closable="false"
                      text="%EDITOR_RIGHTBAR_TAB_PROPERTIES">
 
-                    <VBox spacing="16"
-                          styleClass="default-padding, GizmoPane">
-                        <VBox spacing="16">
+                    <ScrollPane maxHeight="300" prefWidth="400 ">
+                        <VBox spacing="16"
+                              minWidth="200"
+                              styleClass="default-padding, GizmoPane">
 
-                            <HBox>
-                                <Label text="%EDITOR_RIGHTBAR_PROPERTY_TYPE"/>
-                                <Label fx:id="gizmoType"/>
-                            </HBox>
+                            <VBox spacing="16">
 
-                            <HBox>
-                                <Label text="%EDITOR_RIGHTBAR_PROPERTY_ID"/>
-                                <Label fx:id="gizmoId"/>
-                            </HBox>
+                                <HBox>
+                                    <Label text="%EDITOR_RIGHTBAR_PROPERTY_TYPE"/>
+                                    <Label fx:id="gizmoType"/>
+                                </HBox>
 
-                            <VBox>
-                                <Label text="%EDITOR_RIGHTBAR_PROPERTY_COLOR"/>
-                                <ColorPicker fx:id="colorPickerPorperty"/>
+                                <HBox>
+                                    <Label text="%EDITOR_RIGHTBAR_PROPERTY_ID"/>
+                                    <Label fx:id="gizmoId"/>
+                                </HBox>
+
+                                <VBox>
+                                    <Label text="%EDITOR_RIGHTBAR_PROPERTY_COLOR"/>
+                                    <ColorPicker fx:id="colorPickerPorperty"/>
+                                </VBox>
+                            </VBox>
+
+                            <Label text="%EDITOR_RIGHTBAR_PROPERTY_REFLECTIONCOEFFICIENT"/>
+                            <TextField fx:id="reflectionCoeffField"
+                                       styleClass="game-option-textbox"
+                                       prefWidth="60.0"/>
+
+                            <VBox fx:id="movableFieldHolder"
+                                  spacing="5">
+                                <Label text="%EDITOR_RIGHTBAR_PROPERTY_MOVEMENTTYPE"/>
+                                <Label fx:id="movementType"/>
+                                <VBox fx:id="linearVelocityHolder">
+
+                                    <Label text="%EDITOR_RIGHTBAR_PROPERTY_VELOCITYX"/>
+                                    <TextField fx:id="xVelocityField"
+                                               styleClass="game-option-textbox"
+                                               prefWidth="60.0"/>
+
+                                    <Label text="%EDITOR_RIGHTBAR_PROPERTY_VELOCITYY"/>
+                                    <TextField fx:id="yVelocityField"
+                                               styleClass="game-option-textbox"
+                                               prefWidth="60.0"/>
+                                </VBox>
+                                <VBox fx:id="rotationVelocityHolder">
+                                    <Label text="%EDITOR_RIGHTBAR_PROPERTY_VELOCITYRAD"/>
+                                    <TextField fx:id="radianVelocityField"
+                                               styleClass="game-option-textbox"
+                                               prefWidth="60.0"/>
+                                </VBox>
+
                             </VBox>
                         </VBox>
+                    </ScrollPane>
 
-                        <Label text="%EDITOR_RIGHTBAR_PROPERTY_REFLECTIONCOEFFICIENT"/>
-                        <TextField fx:id="reflectionCoeffField"
-                                   styleClass="game-option-textbox"
-                                   prefWidth="60.0"/>
-
-                        <VBox fx:id="movableFieldHolder"
-                              spacing="5">
-                            <Label text="%EDITOR_RIGHTBAR_PROPERTY_MOVEMENTTYPE"/>
-                            <Label fx:id="movementType"/>
-                            <VBox fx:id="linearVelocityHolder">
-
-                                <Label text="%EDITOR_RIGHTBAR_PROPERTY_VELOCITYX"/>
-                                <TextField fx:id="xVelocityField"
-                                           styleClass="game-option-textbox"
-                                           prefWidth="60.0"/>
-
-                                <Label text="%EDITOR_RIGHTBAR_PROPERTY_VELOCITYY"/>
-                                <TextField fx:id="yVelocityField"
-                                           styleClass="game-option-textbox"
-                                           prefWidth="60.0"/>
-                            </VBox>
-                            <VBox fx:id="rotationVelocityHolder">
-                                <Label text="%EDITOR_RIGHTBAR_PROPERTY_VELOCITYRAD"/>
-                                <TextField fx:id="radianVelocityField"
-                                           styleClass="game-option-textbox"
-                                           prefWidth="60.0"/>
-                            </VBox>
-
-                        </VBox>
-
-                    </VBox>
 
                 </Tab>
             </TabPane>
@@ -511,13 +504,13 @@
             <TabPane>
 
                 <Tab closable="false"
-                     text="Connection">
+                     text="Connect Key">
 
 
                     <VBox spacing="16"
                           styleClass="default-padding, GizmoPane">
 
-                        <Label text="Connection A"/>
+                        <Label text="Key"/>
                         <TextField fx:id="connectATextField" styleClass="game-option-textbox" minWidth="60.0"
                                    editable="false">
                             Click Gizmo or Press key
@@ -528,7 +521,7 @@
                             Change
                         </Button>
 
-                        <Label text="Connection B"/>
+                        <Label text="Gizmo"/>
                         <TextField fx:id="connectBTextField" styleClass="game-option-textbox" prefWidth="60.0"
                                    editable="false">
                             Click Gizmo or Press key
@@ -549,9 +542,60 @@
                                 </FXCollections>
                             </items>
                         </ComboBox>
+
+                        <Button fx:id="applyButton"
+                                styleClass="regular-button, regular-font, top-toolbar-button">
+                            Apply
+                        </Button>
+
                     </VBox>
 
+
                 </Tab>
+
+
+                <!--<Tab closable="false"-->
+                <!--text="Connect Action">-->
+
+
+                <!--<VBox spacing="16"-->
+                <!--styleClass="default-padding, GizmoPane">-->
+
+                <!--<Label text="Connection A"/>-->
+                <!--<TextField fx:id="connectATextField1" styleClass="game-option-textbox" minWidth="60.0"-->
+                <!--editable="false">-->
+                <!--Click Gizmo or Press key-->
+                <!--</TextField>-->
+
+                <!--<Button fx:id="connectAChangeButton1"-->
+                <!--styleClass="regular-button, regular-font, top-toolbar-button">-->
+                <!--Change-->
+                <!--</Button>-->
+
+                <!--<Label text="Connection B"/>-->
+                <!--<TextField fx:id="connectBTextField1" styleClass="game-option-textbox" prefWidth="60.0"-->
+                <!--editable="false">-->
+                <!--Click Gizmo or Press key-->
+                <!--</TextField>-->
+
+                <!--<Button fx:id="connectBChangeButton1"-->
+                <!--styleClass="regular-button, regular-font, top-toolbar-button">-->
+                <!--Change-->
+                <!--</Button>-->
+
+                <!--<Label text="Action"/>-->
+                <!--<ComboBox fx:id="actionComboBox1" id="actionComboBox" prefWidth="100.0">-->
+                <!--<items>-->
+                <!--<FXCollections fx:factory="observableArrayList">-->
+                <!--<String fx:value="Change Colour"/>-->
+                <!--<String fx:value="Shoot ball"/>-->
+                <!--<String fx:value="Rotate"/>-->
+                <!--</FXCollections>-->
+                <!--</items>-->
+                <!--</ComboBox>-->
+                <!--</VBox>-->
+
+                <!--</Tab>-->
 
             </TabPane>
         </VBox>
