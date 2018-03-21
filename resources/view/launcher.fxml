@@ -31,26 +31,26 @@
 
     <center>
 
-        <VBox>
+        <VBox fx:id="launcherVbox">
             <Button fx:id="playButton"
                     text="Play"
-                    styleClass="title-font, top-toolbar-button">
+                    styleClass="title-font, top-toolbar-button, launcher-button">
             </Button>
 
             <Button fx:id="editorButton"
                     text="Editor"
-                    styleClass="title-font, top-toolbar-button">
+                    styleClass="title-font, top-toolbar-button, launcher-button">
             </Button>
 
 
-            <Button fx:id="SettingsButton"
+            <Button fx:id="settingsButton"
                     text="Settings"
-                    styleClass="title-font, top-toolbar-button">
+                    styleClass="title-font, top-toolbar-button, launcher-button">
             </Button>
 
             <Button fx:id="creditsButton"
                     text="Credits"
-                    styleClass="title-font, top-toolbar-button">
+                    styleClass="title-font, top-toolbar-button, launcher-button">
             </Button>
         </VBox>
     </center>

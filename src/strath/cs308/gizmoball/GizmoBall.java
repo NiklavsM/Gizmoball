@@ -16,6 +16,7 @@ import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.utils.Settings;
 import strath.cs308.gizmoball.view.EditorView;
+import strath.cs308.gizmoball.view.LauncherView;
 
 
 import java.io.IOException;
@@ -87,7 +88,7 @@ public class GizmoBall extends Application {
             primaryStage.setMinHeight(600);
 
             //primaryStage.setScene(new EditorView(gameModel, keyHandler));
-            primaryStage.setScene(new EditorView(gameModel));
+            primaryStage.setScene(new LauncherView(gameModel));
             primaryStage.show();
             stage = primaryStage;
 
