@@ -348,6 +348,15 @@ class GameModelTest {
        assertTrue(model.isGizmoAddable(abs), "Abbsorber should be addable!");
     }
 
+    @Test
+    void testIsFlipeprMovable() {
+        Flipper flipper = new Flipper(4, 8, Flipper.Orientation.RIGHT, "rightF");
+        model.addGizmo(flipper);
+        flipper.rotate();
+        flipper.move(0.5);
+        assertEquals(model.getGizmoById("rightF"), flipper, "Flipper should be okay in model after rotating and moving!");
+    }
+
     private boolean checkIsFreshModel(GameModel model) {
         if (model.getGizmos().size() != 1) return false; //just walls
         if (model.getFrictionM1() != 0.025) return false;
