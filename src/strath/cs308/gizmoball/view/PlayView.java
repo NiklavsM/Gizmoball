@@ -85,8 +85,8 @@ public class PlayView extends Scene implements IPlayView, Observer {
         canvas.setHeight(500);
         canvas.setRotationAxis(Rotate.X_AXIS);
         canvas.setRotate(-50);
-//            canvas.setScaleX(1.5);
-//            canvas.setScaleY(1.5);
+        canvas.setScaleX(1.5);
+        canvas.setScaleY(1.5);
 
         this.setCamera(camera);
     }

@@ -46,6 +46,10 @@ public class ConnectHandler implements EventHandler<ActionEvent> {
             case "connectBChangeButton":
                 connectionB();
                 break;
+
+            case "actionComboBox":
+                connectPanelView.reloadActionComboBox();
+                break;
             case "applyButton":
 
                 String keyStr = KeyConverter.getKeyCode(keyEvent);
@@ -84,6 +88,8 @@ public class ConnectHandler implements EventHandler<ActionEvent> {
             gizmo.ifPresent(g -> {
 
                 if (g instanceof ITriggerable) {
+
+                    connectPanelView.setSelectedGizmo(g);
                     connectPanelView.setConnectBTextField("Gizmo " + g);
 
                     String keyStr = KeyConverter.getKeyCode(keyEvent);
@@ -94,6 +100,8 @@ public class ConnectHandler implements EventHandler<ActionEvent> {
                     System.out.println("Key string " + keyStr);
                     g1.addActionTrigger("key " + keyEvent.getCode().impl_getCode() + ".0 down");
                     g1.addActionTrigger("key " + keyEvent.getCode().impl_getCode() + ".0 up");
+
+
 
                 } else {
                     editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_CONNECT_NOTTRIGGERABLE_ERROR"));
