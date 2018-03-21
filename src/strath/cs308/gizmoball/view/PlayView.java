@@ -56,7 +56,7 @@ public class PlayView extends Scene implements IPlayView, Observer {
             canvas = (Canvas) root.lookup("#canvas");
             languageSelector = (ComboBox) namespace.get("languageChooser");
 
-            if ("true".equals(Settings.getProperty("3dMode"))) {
+            if ("true".equals(Settings.getProperty("3dEnabled"))) {
                 toggle3D();
             }
 

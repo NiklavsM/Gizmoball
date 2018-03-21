@@ -77,6 +77,10 @@ public class GameModel extends Observable implements IGameModel {
 
         if (gizmo.getType().equals(IGizmo.Type.ABSORBER)) {
 
+            if (gizmo.getStartY() == 0) {
+                return false;
+            }
+
             if (gizmos.containsKey(gizmo.getId())) {
                 return false;
             }
@@ -145,6 +149,10 @@ public class GameModel extends Observable implements IGameModel {
         }
 
         if (gizmo.getType().equals(IGizmo.Type.ABSORBER)) {
+
+            if (gizmo.getStartY() == 0 ) {
+                return false;
+            }
 
             return !gizmo.overlapsWithAnyGizmos(gizmos
                     .values()
