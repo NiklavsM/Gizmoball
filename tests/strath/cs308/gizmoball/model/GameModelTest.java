@@ -270,6 +270,22 @@ class GameModelTest {
     }
 
     @Test
+    void testGizmoFactoryAbsorberFourParameters()  {
+        GizmoFactory factory = new GizmoFactory();
+        IGizmo absorber = factory.createGizmo(IGizmo.Type.ABSORBER, 0, 18, 19, 19);
+        String color = "#000000";
+        absorber.setColor(color);
+        assertEquals(absorber.getColor(), color, "The factory should have created a black absorber!");
+    }
+
+    @Test
+    void testGizmoFactoryBall()  {
+        GizmoFactory factory = new GizmoFactory();
+        IGizmo ball = factory.createGizmo(IGizmo.Type.BALL, 5.5, 5.5, 6.0, 6.0);
+        assertEquals(ball.getStartX(), ball.getStartY(), "The factory should have created a ball with startX = startY!");
+    }
+
+    @Test
     void testUndoAddition() {
         UndoRedo changes = UndoRedo.INSTANCE;
         GameModel oldModel = model;
@@ -288,6 +304,21 @@ class GameModelTest {
         changes.undo(model);
         changes.redo(model);
         assertEquals(oldNumOfGizmos, model.getGizmos().size(), "After redoing the number of gizmos in the model should be the same as before!");
+    }
+
+    @Test
+    void testStartGameTimer() {
+        GameTimer timer = new GameTimer(model);
+        timer.start();
+        assertTrue(timer.isRunning(), "Timer should be running!");
+    }
+
+    @Test
+    void testStopGameTimer() {
+        GameTimer timer = new GameTimer(model);
+        timer.start();
+        timer.stop();
+        assertFalse(timer.isRunning(), "Timer should be stopped!");
     }
 
     private boolean checkIsFreshModel(GameModel model) {
