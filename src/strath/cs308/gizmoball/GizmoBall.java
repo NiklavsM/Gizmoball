@@ -32,16 +32,6 @@ public class GizmoBall extends Application {
         launch(args);
     }
 
-    private static void setIcon() {
-        Image image = new Image("images/icon.png");
-        stage.getIcons().add(image);
-
-    }
-
-    public static void switchView(Scene view) {
-        setIcon();
-        stage.setScene(view);
-    }
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -79,7 +69,6 @@ public class GizmoBall extends Application {
 //            ((Triangle) gameModel.getGizmoById("T")).setAction(new GoToJailAction(gameModel));
 
             UndoRedo.INSTANCE.saveState(gameModel);
-//            setIcon(); //FIXME stopped working :(
 
 
             //Doesn't work in xml
@@ -92,12 +81,24 @@ public class GizmoBall extends Application {
             primaryStage.show();
             stage = primaryStage;
 
+            setIcon();
+
         } catch (IOException e) {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    private void setIcon() {
+        Image image = new Image("images/icon.png");
+        stage.getIcons().add(image);
+
+    }
+
+    public static void switchView(Scene view) {
+        stage.setScene(view);
     }
 
     private void loadSettings() throws IOException {
