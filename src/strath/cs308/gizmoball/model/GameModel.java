@@ -313,36 +313,24 @@ public class GameModel extends Observable implements IGameModel {
         if (gizmo == null) {
             return false;
         }
-        double backX = gizmo.getStartX(), backY = gizmo.getStartY();
+
+        GizmoFactory gizmoFactory = new GizmoFactory();
+        Gizmo temp;
+        try {
+            temp = (Gizmo) gizmoFactory.createGizmo(gizmo.getType(), gizmo.getStartX(), gizmo.getStartY(), gizmo.getEndX(), gizmo.getEndY());
+        } catch (IllegalArgumentException e) {
+            temp = (Gizmo) gizmoFactory.createGizmo(gizmo.getType(), gizmo.getStartX(), gizmo.getStartY());
+        }
+
+        temp.move(x, y);
+        if (!isGizmoAddable(temp)) {
+            return false;
+        }
+
+        gizmos.remove(gizmo);
         gizmo.move(x, y);
-        if (!isInsideWalls(gizmo)) {
-            gizmo.move(backX, backY);
-            return false;
-        }
+        addGizmo(gizmo);
 
-        //fixme move ball in absorber would be nice, and absorber over balls just like add.
-        //fixme high speed of the flippers?
-//        if (gizmo.getType().equals(IGizmo.Type.BALL)) {
-//            final boolean[] added = {false};
-//            gizmos
-//                    .values()
-//                    .parallelStream()
-//                    .filter(g -> g.overlapsWithGizmo(gizmo)
-//                            && g.getType().equals(IGizmo.Type.ABSORBER))
-//                    .map(Absorber.class::cast)
-//                    .findFirst()
-//                    .ifPresent(absorber -> added[0] = absorber.absorbBall((Ball) gizmo));
-//
-//            if (added[0]) {
-//                update();
-//                return true;
-//            }
-//        }
-
-        if (gizmo.overlapsWithAnyGizmos(getGizmos())) {
-            gizmo.move(backX, backY);
-            return false;
-        }
         update();
         return true;
     }
