@@ -85,3 +85,12 @@
 ### Connection
 * Easy gizmo key connection interface
 * Connect a key to a gizmo
+
+
+
+## Coming Soon (Almost done)
+
+* 3D Mode (Toggle on and off)
+* Settings (Lanauage, volume)
+* Game Launcher
+* Custom gizmo actions
