@@ -120,6 +120,52 @@ public class GameModel extends Observable implements IGameModel {
     }
 
     @Override
+    public boolean isGizmoAddable(IGizmo gizmo)
+    {
+        if (gizmo == null) {
+            return false;
+        }
+
+        if (!(isInsideWalls(gizmo))) {
+            return false;
+        }
+
+        if (gizmos.containsKey(gizmo.getId())) {
+                return false;
+        }
+
+        if (gizmo.getType().equals(IGizmo.Type.BALL)) {
+            if (gizmos.values()
+                    .parallelStream()
+                    .filter(g -> g.overlapsWithGizmo(gizmo)
+                            && g.getType().equals(IGizmo.Type.ABSORBER))
+                    .map(Absorber.class::cast)
+                    .findFirst()
+                    .isPresent()) {
+                return true;
+            }
+        }
+
+        if (gizmo.getType().equals(IGizmo.Type.ABSORBER)) {
+
+            return !gizmo.overlapsWithAnyGizmos(gizmos
+                    .values()
+                    .stream()
+                    .filter(g -> !g.getType().equals(IGizmo.Type.BALL))
+                    .collect(Collectors.toSet()));
+        }
+
+        if (gizmo.overlapsWithAnyGizmos(getGizmos())) {
+            return false;
+        }
+        if (gizmos.containsKey(gizmo.getId())) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
     public boolean removeGizmo(String id) {
         Gizmo gizmo = gizmos.get(id);
         if (gizmo != null) {

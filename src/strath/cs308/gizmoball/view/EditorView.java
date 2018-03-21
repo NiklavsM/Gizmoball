@@ -347,26 +347,8 @@ public class EditorView extends Scene implements IEditorView, Observer {
 
     @Override
     public void previewGizmo(IGizmo gizmo, double x, double y) {
-        if (gameModel.getGizmo(x, y).equals(Optional.empty())) {
-            if (gizmo.getType().equals(IGizmo.Type.LEFT_FLIPPER) && isFlipperAreaOccupied(x, y))
-                return;
-            if (gizmo.getType().equals(IGizmo.Type.RIGHT_FLIPPER) && isFlipperAreaOccupied(x - 1, y))
-                return;
-
             GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
             gizmoDrawer.drawGizmo(gizmo, true);
-        }
-    }
-
-    private boolean isFlipperAreaOccupied(double x, double y) {
-        Double Xcoord = Math.floor(x), Ycoord = Math.floor(y);
-        for (int posX = Xcoord.intValue(); posX <= Xcoord.intValue() + 1; posX++) {
-            for (int posY = Ycoord.intValue(); posY <= Ycoord.intValue() + 1; posY++) {
-                if (!gameModel.getGizmo(posX, posY).equals(Optional.empty()))
-                    return true;
-            }
-        }
-        return false;
     }
 
     @Override

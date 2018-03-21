@@ -56,8 +56,6 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         double previewX = Math.floor(mouseEvent.getX() / editorView.getPixelRatioFor(20.0));
         double previewY = Math.floor(mouseEvent.getY() / editorView.getPixelRatioFor(20.0));
 
-        if (invalidAddition(previewX, previewY)) return;
-
         if (mouseX != previewX || mouseY != previewY)
             gameModel.update();
 
@@ -82,15 +80,14 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
                 endY = initialY;
             }
 
-            int step = 1;
-            if (gizmoType.equals(IGizmo.Type.LEFT_FLIPPER) || gizmoType.equals(IGizmo.Type.RIGHT_FLIPPER) || gizmoType.equals(IGizmo.Type.SPINNER))
-                step = 2;
+
+            IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, 0, 0);
+            int step = (int) (gizmo.getEndX() - gizmo.getStartX());
 
             for (int x = startX.intValue(); x <= endX.intValue(); x += step) {
                 for (int y = startY.intValue(); y <= endY.intValue(); y += step) {
-                    if (invalidAddition(x, y)) continue;
-                    IGizmo gizmo = gizmoFactory.createGizmo(gizmoType, x, y);
-                    if (!gizmo.overlapsWithAnyGizmos(gameModel.getGizmos()))
+                    gizmo = gizmoFactory.createGizmo(gizmoType, x, y);
+                    if (gameModel.isGizmoAddable(gizmo))
                         editorView.previewGizmo(gizmo, x, y);
                 }
             }
@@ -179,7 +176,6 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
 
             for (double row = startX; row <= endX; row += step) {
                 for (double column = startY; column <= endY; column += step) {
-                    if (invalidAddition(row, column)) continue;
                     gizmo = gizmoFactory.createGizmo(gizmoType, row, column);
                     gameModel.addGizmo(gizmo);
                 }
@@ -193,8 +189,6 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
     private void putGizmoAt(double x, double y) {
         x /= editorView.getPixelRatioFor(20.0);
         y /= editorView.getPixelRatioFor(20.0);
-
-        if (invalidAddition(x, y)) return;
 
         if (!gizmoType.equals(IGizmo.Type.BALL)) {
             x = Math.floor(x);
@@ -213,18 +207,4 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         }
     }
 
-    private boolean invalidAddition(double x, double y) {
-        if (gizmoType.equals(IGizmo.Type.ABSORBER) && y < 1) {
-            editorView.setStatus("Absorbers cannot sit on the top row as ball cannot be shot out");
-            editorView.setStatus(dictionary.getString("EDITOR_STATUS_ABSORBERATTOP_ERROR"));
-            return true;
-        } else if (gizmoType.equals(IGizmo.Type.LEFT_FLIPPER) && (y >= 19 || x >= 19 || y < 0)) {
-            editorView.setStatus("This is not an allowed position for a left flipper");
-            return true;
-        } else if (gizmoType.equals(IGizmo.Type.RIGHT_FLIPPER) && (y >= 19 || y < 0)) {
-            editorView.setStatus("This is not an allowed position for a right flipper");
-            return true;
-        }
-        return false;
-    }
 }

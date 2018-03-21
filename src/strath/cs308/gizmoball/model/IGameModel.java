@@ -18,6 +18,8 @@ public interface IGameModel {
 
     boolean addGizmo(IGizmo gizmo);
 
+    boolean isGizmoAddable(IGizmo gizmo);
+
     boolean removeGizmo(String id);
 
     boolean removeGizmo(IGizmo gizmo);
