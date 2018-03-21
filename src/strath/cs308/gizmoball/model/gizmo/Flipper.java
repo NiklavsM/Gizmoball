@@ -12,14 +12,14 @@ import java.util.Set;
 
 public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
 
-    private final DefaultTriggarable triggerable;
+    private  DefaultTriggarable triggerable;
     private final double radius = 0.25;
     private Circle startPoint;
     private Circle endPoint;
     private LineSegment connector1;
     private LineSegment connector2;
-    private double velocity;
-    private double velocityConstant;
+    private Vect velocity;
+    private Vect velocityConstant;
     private double movedAngle;
     private Movement movementStatus;
     private Orientation orientation;
@@ -37,8 +37,8 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
         movementStatus = Movement.BOTTOM;
         movedAngle = Angle.ZERO.radians();
 
-        velocityConstant = 18.85;
-        velocity = 0;
+        velocityConstant = new Vect(Angle.DEG_180);
+        velocity = Vect.ZERO;
 
         if (orientation == Orientation.RIGHT) {
             x = (x + 2) - radius;
@@ -50,8 +50,6 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
         triggerable = new DefaultTriggarable();
         setAction(this);
 
-        addActionTrigger("key 65.0 down");
-        addActionTrigger("key 65.0 up");
         setColor("#ff9800");
     }
 
@@ -98,9 +96,13 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
 
     @Override
     public void move(double time) {
-        if (isMoving()) {
-
-            double rotationRadian = velocity * time;
+        if (!velocity.equals(Vect.ZERO)) {
+            double rotationRadian = getCurrentRadianVelocity() * time;
+//            double rotationRadian = 0.31416666666;
+//            rotationRadian *= orientation.getMult();
+//            if (movementStatus.equals(Movement.FORWARD)) {
+//                rotationRadian *= -1;
+//            }
 
             if ((Math.abs(rotationRadian) + movedAngle) > Angle.DEG_90.radians()) {
                 rotationRadian = (Angle.DEG_90.radians() - movedAngle) * orientation.getMult();
@@ -139,13 +141,13 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
 
                 if (movementStatus.equals(Movement.FORWARD)) {
                     movementStatus = Movement.TOP;
-                    velocity = 0;
+                    velocity = Vect.ZERO;
                     movedAngle = Angle.ZERO.radians();
                 }
 
                 if (movementStatus.equals(Movement.BACKWARDS)) {
                     movementStatus = Movement.BOTTOM;
-                    velocity = 0;
+                    velocity = Vect.ZERO;
                     movedAngle = Angle.ZERO.radians();
                 }
 
@@ -155,63 +157,62 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
     }
 
     public boolean isMoving() {
-        return movementStatus.equals(Movement.FORWARD) || movementStatus.equals(Movement.BACKWARDS);
+        return velocity != Vect.ZERO;
     }
 
     public Double getCurrentRadianVelocity() {
-        return velocity;
+        return velocity.angle().radians()*1080/360*2;
     }
 
     @Override
-    public double getSpinAroundX() {
-        return startPoint.getCenter().x();
+    public double getSpinAroundX()
+    {
+        return getSpinAround().getCenter().x();
     }
 
     @Override
-    public double getSpinAroundY() {
-        return startPoint.getCenter().x();
+    public double getSpinAroundY()
+    {
+        return getSpinAround().getCenter().y();
     }
 
     @Override
     public void setVelocity(double x, double y) {
-        Vect temp = new Vect(x, y);
-        velocityConstant = temp.angle().radians();
+        velocityConstant = new Vect(x, y);
     }
 
     @Override
     public double getVelocityX() {
-        Vect temp = new Vect(new Angle(velocityConstant));
-        return temp.x();
+        return velocityConstant.x();
     }
 
     @Override
     public double getVelocityY() {
-        Vect vect = new Vect(new Angle(velocityConstant));
-        return vect.y();
+        return velocityConstant.y();
     }
 
     @Override
     public double getVelocityRadian() {
-        return velocityConstant;
+        return velocityConstant.angle().radians();
     }
 
     @Override
     public void setVelocityRadian(double radian) {
-        velocityConstant = radian;
+        velocityConstant = new Vect(new Angle(radian));
     }
 
     private void up() {
         if (movementStatus == Movement.BACKWARDS) {
             movementStatus = Movement.FORWARD;
             movedAngle = Angle.DEG_90.radians() - movedAngle;
-            velocity = velocityConstant * -1 * orientation.getMult();
+            velocity = new Vect(new Angle(velocityConstant.angle().radians() * -1 * orientation.getMult()));
             return;
         }
 
         if (movementStatus.equals(Movement.BOTTOM)) {
             movedAngle = Angle.ZERO.radians();
             movementStatus = Movement.FORWARD;
-            velocity = velocityConstant * -1 * orientation.getMult();
+            velocity = new Vect(new Angle(velocityConstant.angle().radians() * -1 * orientation.getMult()));
         }
 
     }
@@ -220,14 +221,14 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
         if (movementStatus.equals(Movement.TOP)) {
             movementStatus = Movement.BACKWARDS;
             movedAngle = Angle.ZERO.radians();
-            velocity = velocityConstant * orientation.getMult();
+            velocity = new Vect(new Angle(Angle.DEG_180.radians() * orientation.getMult()));
             return;
         }
 
         if (movementStatus == Movement.FORWARD) {
             movementStatus = Movement.BACKWARDS;
             movedAngle = Angle.DEG_90.radians() - movedAngle;
-            velocity = velocityConstant * orientation.getMult();
+            velocity = new Vect(new Angle(Angle.DEG_180.radians() * orientation.getMult()));
         }
 
     }
@@ -314,6 +315,10 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
     @Override
     public String id() {
         return id;
+    }
+    
+    public Circle getSpinAround() {
+        return startPoint;
     }
 
     @Override
