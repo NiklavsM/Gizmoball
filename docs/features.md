@@ -82,11 +82,24 @@
 * Uses Gizmoball syntax
 * clearscreen command
 
+**New Commands**
+
+* ```Undo``` - Undo previous exation
+* ```Redo```
+* ```Clear``` - Clear screen
+* ```Color <id> <hex value``` - Chnage Gizmo colour
+* ```Rhombus <id> <position x> <position y>``` - Create Rhombus Gizmo
+* ```Spinner <id> <position x> <position y>```  - Create Spinner Gizmo
+* ```Octagon <id> <position x> <position y>``` - Create Octagon Gizmo
+
 ### Connection
 * Easy gizmo key connection interface
 * Connect a key to a gizmo
 
-
+## Settings
+* Saves game settings in an XML file in user home directory
+* Automatically creates directory in user_home/Documents/Gizmoball if it doesn't exists
+* Edit settings through GUI
 
 ## Coming Soon (Almost done)
 
