@@ -11,7 +11,6 @@ import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 import strath.cs308.gizmoball.utils.KeyConverter;
-import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.view.ConnectPanelView;
 import strath.cs308.gizmoball.view.EditorView;
 
@@ -27,6 +26,7 @@ public class ConnectHandler implements EventHandler<ActionEvent> {
     private ConnectPanelView connectPanelView;
     private KeyEvent keyEvent;
     private ResourceBundle dictionary;
+    private IGizmo gizmo;
 
     public ConnectHandler(IGameModel gameModel, EditorView editorView, ConnectPanelView connectPanelView) {
         this.gameModel = gameModel;
@@ -46,7 +46,13 @@ public class ConnectHandler implements EventHandler<ActionEvent> {
             case "connectBChangeButton":
                 connectionB();
                 break;
-            case "mu2":
+            case "applyButton":
+
+                String keyStr = KeyConverter.getKeyCode(keyEvent);
+                ITriggerable g1 = (ITriggerable) gizmo;
+                g1.addActionTrigger("key " + keyEvent.getCode().impl_getCode() + ".0 down");
+                g1.addActionTrigger("key " + keyEvent.getCode().impl_getCode() + ".0 up");
+
                 break;
         }
     }
@@ -79,11 +85,7 @@ public class ConnectHandler implements EventHandler<ActionEvent> {
 
                 if (g instanceof ITriggerable) {
                     connectPanelView.setConnectBTextField("Gizmo " + g);
-                    String keyStr = KeyConverter.getKeyCode(keyEvent);
-                    ITriggerable g1 = (ITriggerable) g;
-                    g1.addActionTrigger("key " + keyEvent.getCode().impl_getCode() + ".0 down");
-                    g1.addActionTrigger("key " + keyEvent.getCode().impl_getCode() + ".0 up");
-
+                    this.gizmo = g;
                 } else {
                     editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_CONNECT_NOTTRIGGERABLE_ERROR"));
                 }

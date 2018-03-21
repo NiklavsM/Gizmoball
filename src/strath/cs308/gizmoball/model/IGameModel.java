@@ -54,8 +54,6 @@ public interface IGameModel {
 
     int getScore();
 
-    int[] getBallsInPlay();
-
-    int[] getTotalStatistics();
+    int[] getStatistics();
 }
 

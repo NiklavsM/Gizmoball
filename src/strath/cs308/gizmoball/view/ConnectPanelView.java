@@ -1,11 +1,13 @@
 package strath.cs308.gizmoball.view;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import strath.cs308.gizmoball.controller.editor.ActionComboboxChangeListener;
 import strath.cs308.gizmoball.controller.editor.pane.ConnectHandler;
 import strath.cs308.gizmoball.model.IGameModel;
 
@@ -22,6 +24,7 @@ public class ConnectPanelView {
     private IGameModel gameModel;
     private EditorView editorView;
     private Map<String, Object> namespace;
+    private Button applyButton;
 
     public ConnectPanelView(IGameModel gameModel, EditorView editorView, Map<String, Object> namespace) {
         this.gameModel = gameModel;
@@ -42,6 +45,8 @@ public class ConnectPanelView {
         connectBChangeButton = (Button) namespace.get("connectBChangeButton");
         actionComboBox = (ComboBox<String>) namespace.get("actionComboBox");
         connectionActionButton = (Button) namespace.get("connectAction");
+
+        applyButton = (Button) namespace.get("applyButton");
     }
 
     private void attachHandlers() {
@@ -52,6 +57,12 @@ public class ConnectPanelView {
             connectATextField.setOnAction(triggerPropertyEventHandler);
             connectBChangeButton.setOnAction(triggerPropertyEventHandler);
             connectBTextField.setOnAction(triggerPropertyEventHandler);
+
+            ChangeListener<String> actionComboboxChangeListener =  new ActionComboboxChangeListener();
+
+            actionComboBox.setOnAction(triggerPropertyEventHandler);
+
+//            actionComboBox.
         });
     }
 

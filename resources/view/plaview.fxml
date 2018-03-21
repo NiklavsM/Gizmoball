@@ -53,6 +53,13 @@
                             fx:id="menuEditorButton"
                             styleClass="to-editor-button, pause-menu-item-padding, pause-menu-font"/>
 
+                    <Button text="%PAUSE_MENU_EXIT"
+                            GridPane.columnIndex="0"
+                            GridPane.rowIndex="5"
+                            fx:id="menuExitButton"
+                            styleClass="exit-game-button, pause-menu-item-padding, pause-menu-font"/>
+
+
                     <ComboBox fx:id="languageChooser"
                               GridPane.columnIndex="0"
                               GridPane.rowIndex="4"
@@ -70,12 +77,6 @@
                             </FXCollections>
                         </items>
                     </ComboBox>
-
-                    <Button text="%PAUSE_MENU_EXIT"
-                            GridPane.columnIndex="0"
-                            GridPane.rowIndex="5"
-                            fx:id="menuExitButton"
-                            styleClass="exit-game-button, pause-menu-item-padding, pause-menu-font"/>
 
                 </GridPane>
             </ToolBar>
@@ -141,14 +142,6 @@
                                    fx:id="totalCollisions" />
                         </HBox>
 
-                        <HBox>
-                            <Label styleClass="default-padding, medium-font"
-                                   text="%INGAME_PLAY_TOTALBALLSABSORBED" />
-
-                            <Label styleClass="default-padding, medium-font"
-                                   text="0"
-                                   fx:id="totalAbsorbed" />
-                        </HBox>
 
                         <ToolBar styleClass="game-bar"
                                  BorderPane.alignment="BOTTOM_CENTER">
