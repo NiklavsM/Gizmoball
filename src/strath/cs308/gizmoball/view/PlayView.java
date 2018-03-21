@@ -1,6 +1,7 @@
 package strath.cs308.gizmoball.view;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -25,18 +26,17 @@ import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class PlayView extends Scene implements IPlayView, Observer {
 
+    private Map<String, Object> namespace;
     private IGameModel gameModel;
     private BorderPane root;
     private ToolBar pauseMenu;
     private StackPane stackPane;
     private Canvas canvas;
+    private ComboBox languageSelector;
 
     public PlayView(IGameModel gameModel) {
         super(new Pane());
@@ -46,10 +46,12 @@ public class PlayView extends Scene implements IPlayView, Observer {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/plaview.fxml"));
             loader.setResources(ResourceBundle.getBundle("dictionary", GizmoBall.locale));
             root = loader.load();
+            namespace = loader.getNamespace();
 
             pauseMenu = (ToolBar) root.lookup("#pauseMenu");
             stackPane = (StackPane) root.lookup("#stackPane");
             canvas = (Canvas) root.lookup("#canvas");
+            languageSelector = (ComboBox) namespace.get("languageChooser");
 
             drawBackground();
             drawGizmos();
@@ -78,11 +80,17 @@ public class PlayView extends Scene implements IPlayView, Observer {
             root.lookupAll("#gameMenu > Button")
                     .forEach(node -> ((Button) node).setOnAction(gameBarEventHandler));
 
-            EventHandler pauseMenuEventHandler = new PauseMenuEventHandler(gameModel, gameTimer, this);
+            EventHandler<ActionEvent> pauseMenuEventHandler = new PauseMenuEventHandler(gameModel, gameTimer, this);
             root.lookupAll("#pauseMenuItemHolder > Button")
                     .forEach(node -> ((Button) node).setOnAction(pauseMenuEventHandler));
 
+            languageSelector.setOnAction(pauseMenuEventHandler);
         });
+    }
+
+    @Override
+    public String getSelectedLanguage() {
+        return (String) languageSelector.getSelectionModel().getSelectedItem();
     }
 
     @Override
@@ -176,6 +184,12 @@ public class PlayView extends Scene implements IPlayView, Observer {
     public File getSelectedSaveFile() {
         FileChooser fileChooser = new FileChooser();
         return fileChooser.showSaveDialog();
+    }
+
+    @Override
+    public void reload() {
+        gameModel.deleteObserver(this);
+        GizmoBall.switchView(new PlayView(gameModel));
     }
 
     public boolean getCloseConfirmation() {

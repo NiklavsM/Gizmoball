@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGameTimer;
 import strath.cs308.gizmoball.utils.Logger;
@@ -13,6 +14,7 @@ import strath.cs308.gizmoball.view.IPlayView;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Locale;
 
 public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
     private static final String TAG = "PauseMenuEventHandler";
@@ -49,7 +51,16 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
             case "menuEditorButton":
                 openEditor();
                 break;
+
+            case "languageChooser":
+                changeLanguage();
+                break;
         }
+    }
+
+    private void changeLanguage() {
+        GizmoBall.locale = new Locale(playView.getSelectedLanguage());
+        playView.reload();
     }
 
     private void openEditor() {

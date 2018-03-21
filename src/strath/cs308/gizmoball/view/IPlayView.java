@@ -19,4 +19,8 @@ public interface IPlayView {
     File getSelectedLoadFile();
 
     File getSelectedSaveFile();
+
+    void reload();
+
+    String getSelectedLanguage();
 }
