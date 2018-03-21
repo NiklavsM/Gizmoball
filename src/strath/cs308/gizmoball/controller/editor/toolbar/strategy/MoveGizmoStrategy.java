@@ -56,20 +56,17 @@ public class MoveGizmoStrategy implements EventHandler<MouseEvent> {
         double pointX = mouseEvent.getX() / editorView.getPixelRatioFor(20.0);
         double pointY = mouseEvent.getY() / editorView.getPixelRatioFor(20.0);
 
-        Optional<IGizmo> existingGizmo = gameModel.getGizmo(pointX, pointY);
 
-        if (!existingGizmo.isPresent()) {
-            if (!selectedGizmo.get().getType().equals(IGizmo.Type.BALL)) {
-                pointX = Math.floor(pointX);
-                pointY = Math.floor(pointY);
-            }
+        if (!selectedGizmo.get().getType().equals(IGizmo.Type.BALL)) {
+            pointX = Math.floor(pointX);
+            pointY = Math.floor(pointY);
+        }
 
-            if (!gameModel.move(selectedGizmo.get(), pointX, pointY))
-                return;
+        if (gameModel.move(selectedGizmo.get(), pointX, pointY)) {
             editorView.setStatus(selectedGizmo.get().getType() + " " + dictionary.getString("EDITOR_STATUS_MOVE_MOVEDTO") + " " + pointX + " , " + pointY);
             selectedGizmo = Optional.empty();
         } else {
-            editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_MOVE_ERROR"));
+           editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_MOVE_ERROR"));
         }
     }
 }

@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.controller.file.GameLoader;
 import strath.cs308.gizmoball.controller.file.GameSaver;
 import strath.cs308.gizmoball.model.IGameModel;
@@ -15,6 +16,7 @@ import strath.cs308.gizmoball.view.IPlayView;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Locale;
 
 public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
     private static final String TAG = "PauseMenuEventHandler";
@@ -51,7 +53,16 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
             case "menuEditorButton":
                 openEditor();
                 break;
+
+            case "languageChooser":
+                changeLanguage();
+                break;
         }
+    }
+
+    private void changeLanguage() {
+        GizmoBall.locale = new Locale(playView.getSelectedLanguage());
+        playView.reload();
     }
 
     private void openEditor() {
@@ -67,7 +78,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
     }
 
     private void loadGame() {
-        File fileToLoad = FileChooser.INSTANCE.showOpenDialog();
+        File fileToLoad = playView.getSelectedLoadFile();
 
         if (fileToLoad == null) {
             Logger.debug(TAG, "Loading file dialog cancelled");
@@ -87,7 +98,7 @@ public class PauseMenuEventHandler implements EventHandler<ActionEvent> {
 
     private void saveGame() {
         if (!GameSaver.INSTANCE.hasCurrentFile()) {
-            File file = FileChooser.INSTANCE.showSaveDialog();
+            File file = playView.getSelectedSaveFile();
             if (file != null) {
                 GameSaver.INSTANCE.setCurrentFile(file);
             } else {

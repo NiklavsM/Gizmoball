@@ -19,7 +19,9 @@ public interface IEditorView {
 
     double getPixelRatioFor(double valueToCompare);
 
-    File getLoadFile();
+    File getSelectedLoadFile();
+
+    File getSelectedSaveFile();
 
     void toggleGrid();
 

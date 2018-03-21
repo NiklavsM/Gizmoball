@@ -6,16 +6,15 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.file.GameLoader;
-import strath.cs308.gizmoball.controller.actions.ChangeToARandomColor;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.UndoRedo;
 import strath.cs308.gizmoball.model.gizmo.*;
 import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
+import strath.cs308.gizmoball.model.triggeringsystem.actions.ChangeToARandomColor;
 import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.utils.Settings;
-import strath.cs308.gizmoball.view.EditorView;
 import strath.cs308.gizmoball.view.LauncherView;
 
 
@@ -42,7 +41,7 @@ public class GizmoBall extends Application {
             GameLoader gameLoader = new GameLoader(gameModel);
 
             try {
-                gameLoader.load(getClass().getResourceAsStream("/alternative.gizmo"));
+                gameLoader.load(getClass().getResourceAsStream("/default.gizmo"));
             } catch (Exception e) {
                 Logger.error(TAG, "Failed to load default model");
                 e.printStackTrace();

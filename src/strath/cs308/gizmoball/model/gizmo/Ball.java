@@ -84,8 +84,13 @@ public class Ball extends Gizmo implements IMovable {
     }
 
     @Override
-    public Circle getSpinAround() {
-        return null;
+    public double getSpinAroundX() {
+        return circle.getCenter().x();
+    }
+
+    @Override
+    public double getSpinAroundY() {
+        return circle.getCenter().y();
     }
 
     void setIsMoving(boolean isMoving) {

@@ -1,5 +1,7 @@
 package strath.cs308.gizmoball.view;
 
+import java.io.File;
+
 public interface IPlayView {
 
     void showPauseMenu();
@@ -13,4 +15,12 @@ public interface IPlayView {
     void soundOn(boolean soundOn);
 
     void changePlayIcon(boolean isPlaying);
+
+    File getSelectedLoadFile();
+
+    File getSelectedSaveFile();
+
+    void reload();
+
+    String getSelectedLanguage();
 }
