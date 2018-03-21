@@ -200,10 +200,14 @@ public class EditorView extends Scene implements IEditorView, Observer {
                             return;
                         }
                         if (consoleInputTextField.getText().trim().toLowerCase().equals("undo")) {
+                            consoleTextArea.appendText("gizmoball> undo\n");
+                            consoleInputTextField.clear();
                             UndoRedo.INSTANCE.undo(gameModel);
                             return;
                         }
                         if (consoleInputTextField.getText().trim().toLowerCase().equals("redo")) {
+                            consoleTextArea.appendText("gizmoball> redo\n");
+                            consoleInputTextField.clear();
                             UndoRedo.INSTANCE.redo(gameModel);
                             return;
                         }
@@ -252,7 +256,7 @@ public class EditorView extends Scene implements IEditorView, Observer {
     }
 
     @Override
-    public File getSelectedSaveFile(){
+    public File getSelectedSaveFile() {
         FileChooser fileChooser = new FileChooser();
         return fileChooser.showSaveDialog();
     }
@@ -359,8 +363,8 @@ public class EditorView extends Scene implements IEditorView, Observer {
 
     @Override
     public void previewGizmo(IGizmo gizmo, double x, double y) {
-            GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
-            gizmoDrawer.drawGizmo(gizmo, true);
+        GizmoDrawer gizmoDrawer = new GizmoDrawer(canvas);
+        gizmoDrawer.drawGizmo(gizmo, true);
     }
 
     @Override
