@@ -162,6 +162,29 @@
                     <Label text="%EDITOR_SOUND_SETTINGS"/>
                 </VBox>
 
+                <VBox spacing="5"
+                      alignment="CENTER">
+                    <Button maxWidth="24"
+                            minWidth="24"
+                            minHeight="24"
+                            maxHeight="24"
+                            fx:id="shadowButton"
+                            styleClass="shadow-button, regular-font, top-toolbar-button">
+                    </Button>
+                    <Label text="%EDITOR_TOGGLE_SHADOW"/>
+                </VBox>
+
+                <VBox spacing="5"
+                      alignment="CENTER">
+                    <Button maxWidth="24"
+                            minWidth="24"
+                            minHeight="24"
+                            maxHeight="24"
+                            fx:id="3dModeButton"
+                            styleClass="threed-button, regular-font, top-toolbar-button">
+                    </Button>
+                    <Label text="%EDITOR_3D_MODE"/>
+                </VBox>
 
             </ToolBar>
         </VBox>

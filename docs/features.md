@@ -19,6 +19,8 @@
 * Octagon Gizmo 
 * Save and Save as
 * Game icon
+* 3D 
+* Shadows
 
 ## Editor Mode
 
@@ -58,6 +60,8 @@
 ### Properties
 * Properties tab for every gizmo
 * Ability to change gizmo colour
+* 3D Mode (Toggle on and off)
+* Shadows (Toggle on and off)
 
 ### Undo and Redo
 * Undo changes made
@@ -84,6 +88,7 @@
 * ```Octagon <id> <position x> <position y>``` - Create Octagon Gizmo
 
 ### Console
+### Console3d
 * Let's you change the model with gizmoball commands in real time 
 * Uses Gizmoball syntax
 * `clear`command for clearing the console
@@ -105,7 +110,7 @@
 
 ## Coming Soon (Almost done)
 
-* 3D Mode (Toggle on and off)
+
 * Settings (Lanauage, volume)
 * Game Launcher
 * Custom gizmo actions
