@@ -89,7 +89,6 @@
 * ```Octagon <id> <position x> <position y>``` - Create Octagon Gizmo
 
 ### Console
-### Console3d
 * Let's you change the model with gizmoball commands in real time 
 * Uses Gizmoball syntax
 * `clear`command for clearing the console
