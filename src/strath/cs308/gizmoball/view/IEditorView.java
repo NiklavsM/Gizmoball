@@ -2,9 +2,7 @@ package strath.cs308.gizmoball.view;
 
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
-import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.gizmo.IGizmo;
 
 import java.io.File;

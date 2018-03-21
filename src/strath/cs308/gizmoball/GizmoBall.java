@@ -4,22 +4,19 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import strath.cs308.gizmoball.controller.GameLoader;
-import strath.cs308.gizmoball.controller.actions.*;
+import strath.cs308.gizmoball.controller.actions.ChangeToARandomColor;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.UndoRedo;
-import strath.cs308.gizmoball.model.gizmo.IGizmo;
-import strath.cs308.gizmoball.model.gizmo.Octagon;
-import strath.cs308.gizmoball.model.gizmo.Square;
-import strath.cs308.gizmoball.model.gizmo.Triangle;
+import strath.cs308.gizmoball.model.gizmo.*;
 import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
 import strath.cs308.gizmoball.utils.Logger;
-import strath.cs308.gizmoball.view.EditorView;
+import strath.cs308.gizmoball.utils.Settings;
 import strath.cs308.gizmoball.view.LauncherView;
+
 
 import java.io.IOException;
 import java.util.Locale;
@@ -32,6 +29,17 @@ public class GizmoBall extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    private static void setIcon() {
+        Image image = new Image("images/icon.png");
+        stage.getIcons().add(image);
+
+    }
+
+    public static void switchView(Scene view) {
+        setIcon();
+        stage.setScene(view);
     }
 
     @Override
@@ -49,15 +57,29 @@ public class GizmoBall extends Application {
                 e.printStackTrace();
             }
 
+
+            loadSettings();
+
             gameModel.getGizmos().stream()
-                    .filter(g -> (g instanceof Square) || (g instanceof Circle) || (g instanceof Octagon) || (g instanceof Triangle))
+                    .filter(g -> (g instanceof Square) ||
+                            (g instanceof CircleGizmo) || (g instanceof Octagon) ||
+                            (g instanceof Triangle) ||
+                            (g instanceof Rhombus)
+                    )
                     .map(ITriggerable.class::cast)
                     .forEach(triggerable -> {
                         ((ITrigger) triggerable).registerTriggerable(triggerable);
-                        triggerable.setAction(new ChangeToARandomColor(gameModel, (IGizmo) triggerable, "#000000", "#ffffff", "#f12"));
+                        triggerable.setAction(new ChangeToARandomColor(gameModel, (IGizmo) triggerable,
+                                "#000000", "#ffffff", "#f12"
+                                , "#a4b5c2", "#dd22aa", "#124312", "#aabb21"));
+//                        triggerable.setAction(new TimedColorChange(gameModel, (IGizmo) triggerable, "#ffffff", 3500));
                     });
 
+//            ((Triangle) gameModel.getGizmoById("T")).setAction(new GoToJailAction(gameModel));
+
             UndoRedo.INSTANCE.saveState(gameModel);
+//            setIcon(); //FIXME stopped working :(
+
 
             //Doesn't work in xml
             primaryStage.setTitle("Gizmoball");
@@ -68,27 +90,28 @@ public class GizmoBall extends Application {
             primaryStage.setScene(new LauncherView(gameModel));
             primaryStage.show();
             stage = primaryStage;
-            setIcon();
 
+        } catch (IOException e) {
+            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private static void setIcon() {
-        Image image = new Image("/images/icon.png");
-        stage.getIcons().add(image);
-//        Application.getApplication().setDockIconImage(new ImageIcon("Football.png").getImage());
 
     }
 
-    public static void switchView(Scene view) {
-        setIcon();
-        stage.setScene(view);
+    private void loadSettings() throws IOException {
+
+        Settings.reloadSettings();
+
+        String language = Settings.getProperty("language");
+        locale = new Locale(language);
+
+        Logger.debug(TAG, "Language set to : " + language);
     }
 
     @Override
     public void stop() {
+        Settings.saveSettings();
         Platform.exit();
         System.exit(0);
     }

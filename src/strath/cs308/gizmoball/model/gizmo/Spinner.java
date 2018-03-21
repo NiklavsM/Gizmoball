@@ -31,7 +31,7 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable {
     public Spinner(double x1, double y1, String id) {
         super(x1, y1, x1 + 2, y1 + 2, id);
 
-        velocity = new Vect( Angle.DEG_180);
+        velocity = new Vect(Angle.DEG_180);
         velocity = new Vect(new Angle(velocity.angle().radians() * -1));
         setReflectionCoefficient(0.9);
     }
@@ -41,20 +41,20 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable {
         super.setup(x1, y1, x2, y2);
 
         double radius = 0.25;
-        connector1 = new LineSegment(x1 + radius*2, y1 + 0.75, x2 - radius*2, y1 + 0.75);
-        connector2 = new LineSegment(x1 + radius*2, y1 + 1.25, x2 - radius*2, y1 + 1.25);
-        connector3 = new LineSegment(x1 + 0.75, y1 + radius*2, x1 + 0.75, y2 - radius*2);
-        connector4 = new LineSegment(x1 + 1.25, y1 + radius*2, x1 + 1.25, y2 - radius*2);
+        connector1 = new LineSegment(x1 + radius * 2, y1 + 0.75, x2 - radius * 2, y1 + 0.75);
+        connector2 = new LineSegment(x1 + radius * 2, y1 + 1.25, x2 - radius * 2, y1 + 1.25);
+        connector3 = new LineSegment(x1 + 0.75, y1 + radius * 2, x1 + 0.75, y2 - radius * 2);
+        connector4 = new LineSegment(x1 + 1.25, y1 + radius * 2, x1 + 1.25, y2 - radius * 2);
 
         lines.add(connector1);
         lines.add(connector2);
         lines.add(connector3);
         lines.add(connector4);
 
-        point1 = new Circle(x1 + radius*2, y1 + 1, radius);
-        point2 = new Circle(x2 - radius*2, y1 + 1, radius);
-        point3 = new Circle(x1 + 1, y1 + radius*2, radius);
-        point4 = new Circle(x1 + 1, y2 - radius*2, radius);
+        point1 = new Circle(x1 + radius * 2, y1 + 1, radius);
+        point2 = new Circle(x2 - radius * 2, y1 + 1, radius);
+        point3 = new Circle(x1 + 1, y1 + radius * 2, radius);
+        point4 = new Circle(x1 + 1, y2 - radius * 2, radius);
 
         circles.add(point1);
         circles.add(point2);
@@ -118,11 +118,6 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable {
     }
 
     @Override
-    public void setVelocityRadian(double radian) {
-
-    }
-
-    @Override
     public void setVelocity(double x, double y) {
 
     }
@@ -140,6 +135,11 @@ public class Spinner extends Gizmo implements IMovable, ITriggerable {
     @Override
     public double getVelocityRadian() {
         return 0;
+    }
+
+    @Override
+    public void setVelocityRadian(double radian) {
+
     }
 
     @Override

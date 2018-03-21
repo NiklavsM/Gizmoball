@@ -1,0 +1,80 @@
+# gizmos
+Square da98738f-5c1f-4175-8977-ea2c2c1f16f5 7.0 8.0
+color da98738f-5c1f-4175-8977-ea2c2c1f16f5 #f44336
+Square b713a496-4547-4e84-b4df-f5bc044f4ad3 7.0 12.0
+color b713a496-4547-4e84-b4df-f5bc044f4ad3 #f44336
+Square ef390429-b52c-4e8b-af66-9b0f76dcf1bc 11.0 14.0
+color ef390429-b52c-4e8b-af66-9b0f76dcf1bc #f44336
+LeftFlipper l1 13.0 8.0
+color l1 #ff9800
+Square ce3af9cf-ac22-487a-84fa-e8f762612330 8.0 8.0
+color ce3af9cf-ac22-487a-84fa-e8f762612330 #f44336
+Square 831f49e2-838c-4bfd-a18f-274dd395ae70 11.0 8.0
+color 831f49e2-838c-4bfd-a18f-274dd395ae70 #f44336
+Square dd10ed5d-6593-46d5-b6e5-5808100b4df5 7.0 11.0
+color dd10ed5d-6593-46d5-b6e5-5808100b4df5 #f44336
+RightFlipper r2 5.0 10.0
+color r2 #b3e6e6
+RightFlipper r1 5.0 8.0
+color r1 #ff9800
+Square f2b20050-60df-45b5-bc21-01d119577f02 10.0 14.0
+color f2b20050-60df-45b5-bc21-01d119577f02 #f44336
+Square c7dc35a5-c88f-4b4a-bf4d-3814411706d3 12.0 13.0
+color c7dc35a5-c88f-4b4a-bf4d-3814411706d3 #f44336
+Square c1 9.0 8.0
+color c1 #f44336
+Square c2 12.0 8.0
+color c2 #f44336
+Square c3 10.0 8.0
+color c3 #f44336
+Square 6f117be6-2a02-46cc-acda-70a1b28deca1 7.0 10.0
+color 6f117be6-2a02-46cc-acda-70a1b28deca1 #f44336
+LeftFlipper l2 13.0 10.0
+color l2 #b3e6e6
+Square 2ee804d0-557a-4b71-be2b-af5fe209669c 7.0 9.0
+color 2ee804d0-557a-4b71-be2b-af5fe209669c #f44336
+Spinner S1 16.0 1.0
+color S1 #b388ff
+Spinner S2 13.0 1.0
+color S2 #b388ff
+Spinner S3 10.0 1.0
+color S3 #b388ff
+Spinner S4 4.0 1.0
+color S4 #b388ff
+Ball B 10.12 11.08 0.0 0.0
+Spinner S5 7.0 1.0
+color S5 #b388ff
+Square b98cdd1d-f458-486e-ab61-c61b7debf6d0 12.0 11.0
+color b98cdd1d-f458-486e-ab61-c61b7debf6d0 #f44336
+Spinner S6 1.0 1.0
+color S6 #b388ff
+Square d99611b2-6384-48d8-b57f-b2f14f49b0dc 7.0 14.0
+color d99611b2-6384-48d8-b57f-b2f14f49b0dc #f44336
+Square defade12-ad96-47ec-9d8e-1b1b104f62cf 7.0 13.0
+color defade12-ad96-47ec-9d8e-1b1b104f62cf #f44336
+Square 817f0ca5-1f85-498e-8e1e-f53ab8cd06df 12.0 10.0
+color 817f0ca5-1f85-498e-8e1e-f53ab8cd06df #f44336
+Octagon 3461dad9-7fe7-4491-a77d-767fd4cca6f0 9.0 15.0
+color 3461dad9-7fe7-4491-a77d-767fd4cca6f0 #ffff72
+Square c3c29925-06f7-4ecd-9eca-4638c799f39b 12.0 12.0
+color c3c29925-06f7-4ecd-9eca-4638c799f39b #f44336
+Square 9ad5ac43-2336-4744-b367-4bdf4f811d4b 8.0 14.0
+color 9ad5ac43-2336-4744-b367-4bdf4f811d4b #f44336
+Square 68933af5-bd77-4f6a-885b-21bb8bff95e8 12.0 9.0
+color 68933af5-bd77-4f6a-885b-21bb8bff95e8 #f44336
+Spinner 9cb31905-ac3d-45f1-83ad-0858022a4514 9.0 16.0
+color 9cb31905-ac3d-45f1-83ad-0858022a4514 #1a4d1a
+Octagon 19826b2c-841a-45b6-a17b-948b6be79be4 10.0 15.0
+color 19826b2c-841a-45b6-a17b-948b6be79be4 #ffff72
+Square d16eceff-ecf3-44bc-be16-5cf49d664b48 12.0 14.0
+color d16eceff-ecf3-44bc-be16-5cf49d664b48 #f44336
+Square b996d8b7-d158-491c-a0a8-8d32d7669e36 9.0 14.0
+color b996d8b7-d158-491c-a0a8-8d32d7669e36 #f44336
+
+# collision triggers
+
+# key triggers
+
+# gravity and friction
+gravity 0.0
+friction 0.0 0.0

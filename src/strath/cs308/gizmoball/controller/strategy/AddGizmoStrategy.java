@@ -3,7 +3,6 @@ package strath.cs308.gizmoball.controller.strategy;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import strath.cs308.gizmoball.GizmoBall;
-import strath.cs308.gizmoball.controller.InGameKeyEventHandler;
 import strath.cs308.gizmoball.model.GizmoFactory;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IGizmoFactory;
@@ -121,10 +120,9 @@ public class AddGizmoStrategy implements EventHandler<MouseEvent> {
         if (!gizmoType.equals(IGizmo.Type.BALL)) {
             this.onMouseMoved(mouseEvent);
         } else {
-            if (gameModel.getGizmoBalls().size() <= ballLimit){
+            if (gameModel.getGizmoBalls().size() <= ballLimit) {
                 putGizmoAt(mouseEvent.getX(), mouseEvent.getY());
-            }
-            else {
+            } else {
                 editorView.setErrorStatus(dictionary.getString("EDITOR_STATUS_BALLLIMIT") + " " + ballLimit);
             }
         }

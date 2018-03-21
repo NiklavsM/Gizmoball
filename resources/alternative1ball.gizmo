@@ -1,0 +1,150 @@
+# gizmos
+Ball B20 19.13 18.21 0.16731003513791504 9.215107177120917
+Absorber A 0.0 19.0 10.0 20.0
+color A #e91e63
+Octagon O1 5.0 12.0
+color O1 #ffff72
+Circle C43 4.0 3.0
+color C43 #8bc34a
+Circle C65 6.0 5.0
+color C65 #8bc34a
+RightFlipper RF137 13.0 7.0
+color RF137 #ff9800
+Circle C1110 11.0 10.0
+color C1110 #8bc34a
+Circle C109 10.0 9.0
+color C109 #8bc34a
+Circle C129 12.0 9.0
+color C129 #8bc34a
+Square S82 8.0 2.0
+color S82 #f44336
+Square S62 6.0 2.0
+color S62 #f44336
+Square S42 4.0 2.0
+color S42 #f44336
+Absorber A2 17.0 19.0 20.0 20.0
+color A2 #e91e63
+Circle C165 16.0 5.0
+color C165 #8bc34a
+Square S22 2.0 2.0
+color S22 #f44336
+Square S02 0.0 2.0
+color S02 #f44336
+Triangle T 19.0 0.0
+rotate T
+color T #03a9f4
+Circle C183 18.0 3.0
+color C183 #8bc34a
+Square S142 14.0 2.0
+color S142 #f44336
+LeftFlipper LF87 8.0 7.0
+color LF87 #ff9800
+Square S162 16.0 2.0
+color S162 #f44336
+Square S182 18.0 2.0
+color S182 #f44336
+Triangle T2 1.0 1.0
+color T2 #03a9f4
+Rhombus R1 5.0 10.0
+color R1 #97ede3
+Triangle T3 9.0 16.0
+color T3 #03a9f4
+Circle C99 9.0 9.0
+color C99 #8bc34a
+Circle C54 5.0 4.0
+color C54 #8bc34a
+Circle C76 7.0 6.0
+color C76 #8bc34a
+Circle C139 13.0 9.0
+color C139 #8bc34a
+Square S72 7.0 2.0
+color S72 #f44336
+LeftFlipper LF92 9.0 2.0
+color LF92 #ff9800
+Circle C156 15.0 6.0
+color C156 #8bc34a
+Square S52 5.0 2.0
+color S52 #f44336
+Square S32 3.0 2.0
+color S32 #f44336
+Circle C174 17.0 4.0
+color C174 #8bc34a
+Square S12 1.0 2.0
+color S12 #f44336
+Spinner SP1 7.0 12.0
+color SP1 #b388ff
+RightFlipper RF112 11.0 2.0
+color RF112 #ff9800
+Square S132 13.0 2.0
+color S132 #f44336
+Square S152 15.0 2.0
+color S152 #f44336
+Square S172 17.0 2.0
+color S172 #f44336
+
+# collision triggers
+connect S162 S162
+connect R1 R1
+connect A A2
+connect S72 S72
+connect S182 S182
+connect C109 LF87
+connect C109 C109
+connect S152 S152
+connect C76 LF87
+connect C76 C76
+connect C1110 RF137
+connect C1110 LF87
+connect C1110 C1110
+connect C99 RF137
+connect C99 C99
+connect C65 LF87
+connect C65 C65
+connect S142 S142
+connect S12 S12
+connect S62 S62
+connect S132 S132
+connect T2 T2
+connect C43 LF87
+connect C43 C43
+connect S52 S52
+connect C139 LF87
+connect C139 C139
+connect C54 LF87
+connect C54 C54
+connect C165 RF137
+connect C165 C165
+connect S172 S172
+connect S82 S82
+connect C156 RF137
+connect C156 C156
+connect S42 S42
+connect T3 T3
+connect T T
+connect S32 S32
+connect S02 S02
+connect S22 S22
+connect A2 A
+connect C174 RF137
+connect C174 C174
+connect O1 O1
+connect C183 RF137
+connect C183 C183
+connect C129 RF137
+connect C129 C129
+
+# key triggers
+keyconnect key 74.0 down A
+keyconnect key 76.0 up RF137
+keyconnect key 76.0 down RF137
+keyconnect key 69.0 up A2
+keyconnect key 75.0 down LF87
+keyconnect key 75.0 up LF87
+keyconnect key 75.0 down LF92
+keyconnect key 75.0 up LF92
+keyconnect key 76.0 up RF112
+keyconnect key 76.0 down RF112
+
+# gravity and friction
+gravity 25.0
+friction 0.025 0.025

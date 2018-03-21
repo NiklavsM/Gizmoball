@@ -3,7 +3,6 @@ package strath.cs308.gizmoball.controller;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-
 import strath.cs308.gizmoball.GizmoBall;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.IMovable;

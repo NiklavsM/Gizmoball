@@ -5,7 +5,7 @@ import strath.cs308.gizmoball.GizmoBall;
 import java.io.File;
 import java.util.ResourceBundle;
 
-import static javafx.stage.FileChooser.*;
+import static javafx.stage.FileChooser.ExtensionFilter;
 
 public enum FileChooser {
     INSTANCE;

@@ -10,19 +10,19 @@ public class Logger {
 
     public static void verbose(String tag, String message) {
         if (level >= VERBOSE) {
-            System.out.println(tag + ": " + message);
+            System.out.println("VERBOSE " + tag + ": " + message);
         }
     }
 
     public static void debug(String tag, String message) {
         if (level >= DEBUG) {
-            System.out.println(tag + ": " + message);
+            System.out.println("DEBUG " + tag + ": " + message);
         }
     }
 
     public static void error(String tag, String message) {
         if (level != DISABLED) {
-            System.err.println(tag + ": " + message);
+            System.err.println("ERROR " + tag + ": " + message);
         }
     }
 

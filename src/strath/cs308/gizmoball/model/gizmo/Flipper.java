@@ -1,6 +1,5 @@
 package strath.cs308.gizmoball.model.gizmo;
 
-import javafx.scene.layout.Pane;
 import mit.physics.*;
 import strath.cs308.gizmoball.model.IMovable;
 import strath.cs308.gizmoball.model.triggeringsystem.DefaultTriggarable;
@@ -163,7 +162,7 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
     }
 
     public Double getCurrentRadianVelocity() {
-        return velocity.angle().radians()*1080/360*2;
+        return velocity.angle().radians() * 1080 / 360 * 2;
     }
 
     @Override
@@ -266,7 +265,7 @@ public class Flipper extends Gizmo implements IMovable, IAction, ITriggerable {
                 } else if (event.contains("down")) {
                     doAction("KEY_PRESSED");
                 } else {
-                   doAction(event);
+                    doAction(event);
                 }
             }
         }
