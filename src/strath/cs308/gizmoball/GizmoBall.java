@@ -9,10 +9,7 @@ import strath.cs308.gizmoball.controller.file.GameLoader;
 import strath.cs308.gizmoball.model.GameModel;
 import strath.cs308.gizmoball.model.IGameModel;
 import strath.cs308.gizmoball.model.UndoRedo;
-import strath.cs308.gizmoball.model.gizmo.*;
-import strath.cs308.gizmoball.model.triggeringsystem.ITrigger;
 import strath.cs308.gizmoball.model.triggeringsystem.ITriggerable;
-import strath.cs308.gizmoball.model.triggeringsystem.actions.ChangeToARandomColor;
 import strath.cs308.gizmoball.model.triggeringsystem.actions.GoToJailAction;
 import strath.cs308.gizmoball.utils.Logger;
 import strath.cs308.gizmoball.utils.Settings;
@@ -48,6 +45,17 @@ public class GizmoBall extends Application {
                 e.printStackTrace();
             }
 
+//            gameModel.getGizmos().stream()
+//                    .filter(g -> (g instanceof Square) || (g instanceof Circle) || (g instanceof Octagon) || (g instanceof Triangle))
+//                    .map(ITriggerable.class::cast)
+//                    .forEach(triggerable -> {
+//                        ((ITrigger) triggerable).registerTriggerable(triggerable);
+//                        triggerable.setAction(new ChangeToARandomColor(gameModel, (IGizmo) triggerable, "#000000", "#ffffff", "#f12"));
+//                    });
+//
+//
+
+            ((ITriggerable) gameModel.getGizmoById("853191b3-6b1b-41f7-a047-739e41c82243")).setAction(new GoToJailAction(gameModel));
 
             loadSettings();
 

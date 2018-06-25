@@ -1,70 +1,277 @@
+# gizmos
+Square 63806e3c-c3b7-4b78-83ba-02f65637c568 5.0 7.0
+color 63806e3c-c3b7-4b78-83ba-02f65637c568 #99b3ff
+Triangle 853191b3-6b1b-41f7-a047-739e41c82243 19.0 0.0
+rotate 853191b3-6b1b-41f7-a047-739e41c82243
+color 853191b3-6b1b-41f7-a047-739e41c82243 #ff6666
+Triangle 647d4762-ccbf-47ed-a682-af21538479ac 8.0 12.0
+rotate 647d4762-ccbf-47ed-a682-af21538479ac
+rotate 647d4762-ccbf-47ed-a682-af21538479ac
+rotate 647d4762-ccbf-47ed-a682-af21538479ac
+color 647d4762-ccbf-47ed-a682-af21538479ac #03a9f4
+Square bfa84c68-7bf7-4586-9edf-499efcd9295b 6.0 6.0
+color bfa84c68-7bf7-4586-9edf-499efcd9295b #8099ff
+Square a6283c1d-fc58-4ae0-b648-511715ff54ae 12.0 1.0
+color a6283c1d-fc58-4ae0-b648-511715ff54ae #ffff80
+Square 5a177809-3517-4a81-8c62-f1852c947f6f 9.0 2.0
+color 5a177809-3517-4a81-8c62-f1852c947f6f #cccc33
+Ball 3aa120a7-4738-4db6-b011-6362d60c9c9f 19.75 19.75 0.0 -50.0
+Ball c97ebb6f-e0d1-4ae0-9536-b47cd343be87 2.75 10.75 0.0 -50.0
+Octagon d8276484-4804-4cea-aa4b-b5a48348f877 10.0 9.0
+color d8276484-4804-4cea-aa4b-b5a48348f877 #996699
+Triangle 905be0a0-4f06-4503-afd7-148f72e6fe29 5.0 15.0
+rotate 905be0a0-4f06-4503-afd7-148f72e6fe29
+color 905be0a0-4f06-4503-afd7-148f72e6fe29 #03a9f4
+Square 1d187ac4-8cad-41c7-8eb4-06bedbb033a1 18.0 12.0
+color 1d187ac4-8cad-41c7-8eb4-06bedbb033a1 #4d1a4d
+RightFlipper 474d80b6-043f-4453-9474-e65bd2984d52 15.0 11.0
+color 474d80b6-043f-4453-9474-e65bd2984d52 #996699
+Square 43e415a8-7155-4901-846c-91a69372e8f2 5.0 14.0
+color 43e415a8-7155-4901-846c-91a69372e8f2 #4d66cc
+Octagon 792261f7-af25-4db9-9ea0-49d4c89e315c 9.0 8.0
+color 792261f7-af25-4db9-9ea0-49d4c89e315c #cc99cc
+Square d2e54a3e-d199-4fe5-9562-ddc55f636ae4 8.0 13.0
+color d2e54a3e-d199-4fe5-9562-ddc55f636ae4 #4d66cc
+Triangle d3a2df8e-6be2-438e-9378-aa53954de3a0 5.0 8.0
+color d3a2df8e-6be2-438e-9378-aa53954de3a0 #03a9f4
+Absorber bfefb63d-eaec-4447-b281-422609ec6bb4 0.0 10.0 3.0 11.0
+color bfefb63d-eaec-4447-b281-422609ec6bb4 #e91e63
+Square 21389d0a-c742-4cde-a9d6-e7ae54d4da4e 5.0 13.0
+color 21389d0a-c742-4cde-a9d6-e7ae54d4da4e #4d66cc
+Circle 2eba49fb-1ca1-434d-b47f-f9f9aae28ba6 9.0 4.0
+color 2eba49fb-1ca1-434d-b47f-f9f9aae28ba6 #e6e64d
+Square d1f578e3-4965-42b0-a630-3982f8faf1b8 18.0 8.0
+color d1f578e3-4965-42b0-a630-3982f8faf1b8 #cc3333
+Square 8512cfe3-5323-4f7e-9df1-79e9f5baaed2 18.0 10.0
+color 8512cfe3-5323-4f7e-9df1-79e9f5baaed2 #990000
+Square 69746d8e-c031-44b2-8cb6-046de3a81c52 18.0 15.0
+color 69746d8e-c031-44b2-8cb6-046de3a81c52 #b380b3
+Square 3dcf07fa-461f-4b4d-860c-f7d4e5e633a6 18.0 11.0
+color 3dcf07fa-461f-4b4d-860c-f7d4e5e633a6 #4d001a
+Absorber 7a5596fa-5267-4970-9bf0-59152df8a88e 0.0 19.0 20.0 20.0
+color 7a5596fa-5267-4970-9bf0-59152df8a88e #4d8080
+Square eacdc89e-0199-4725-b976-00288d52c9d2 12.0 2.0
+color eacdc89e-0199-4725-b976-00288d52c9d2 #ffff66
+Triangle 1127d7aa-3bae-4713-b626-959f808be189 6.0 5.0
+rotate 1127d7aa-3bae-4713-b626-959f808be189
+rotate 1127d7aa-3bae-4713-b626-959f808be189
+rotate 1127d7aa-3bae-4713-b626-959f808be189
+color 1127d7aa-3bae-4713-b626-959f808be189 #03a9f4
+Triangle 3003a404-653d-43af-ba69-3119c5ad0ce2 16.0 10.0
+rotate 3003a404-653d-43af-ba69-3119c5ad0ce2
+color 3003a404-653d-43af-ba69-3119c5ad0ce2 #ff8080
+Square 509ede95-b505-4297-b23f-0427e8919eb3 18.0 7.0
+color 509ede95-b505-4297-b23f-0427e8919eb3 #e64d4d
+Square d4f8f783-3de0-4ea4-9fab-af70cf14eee3 18.0 3.0
+color d4f8f783-3de0-4ea4-9fab-af70cf14eee3 #ffb3b3
+Spinner bc906bba-747d-40a6-b34b-a9bb082ad08c 0.0 1.0
+color bc906bba-747d-40a6-b34b-a9bb082ad08c #e6b3e6
+Triangle 5bde12da-7434-4cd3-807c-2b21b120482c 8.0 8.0
+rotate 5bde12da-7434-4cd3-807c-2b21b120482c
+color 5bde12da-7434-4cd3-807c-2b21b120482c #03a9f4
+Square 3712663a-a8fc-4c16-b62a-9bf79e4974f9 7.0 15.0
+color 3712663a-a8fc-4c16-b62a-9bf79e4974f9 #4d66cc
+Square 9b98216d-c662-4cc5-b8d5-33938e606c24 18.0 14.0
+color 9b98216d-c662-4cc5-b8d5-33938e606c24 #804d80
+Ball eda4ff02-8a45-44cf-944f-b8cae550acae 2.25 10.75 0.0 -50.0
+Square fdcb5b9d-6bac-4ec8-8daa-fba6fad1369b 14.0 6.0
+color fdcb5b9d-6bac-4ec8-8daa-fba6fad1369b #99b3ff
+Triangle bce38aa8-b5c6-41b5-84d8-e4acb905e8b2 15.0 9.0
+rotate bce38aa8-b5c6-41b5-84d8-e4acb905e8b2
+color bce38aa8-b5c6-41b5-84d8-e4acb905e8b2 #ff6666
+Square c2318464-0563-4768-a111-e1ab17a7c772 5.0 5.0
+color c2318464-0563-4768-a111-e1ab17a7c772 #8099ff
+Square e64d79d7-e590-4d33-bd21-07f6544a770b 18.0 6.0
+color e64d79d7-e590-4d33-bd21-07f6544a770b #ff6666
+Ball 02268250-0a53-45b6-9a76-340298e95947 19.25 19.75 0.0 -50.0
+Ball 7c64972c-cb53-4a9d-881e-e274437c1d78 10.463018487653036 2.675282238128092 0.8339335147347807 1.9861776484238371
+Triangle 50b1b248-e14f-439d-89c8-2d9491e9b245 9.0 3.0
+rotate 50b1b248-e14f-439d-89c8-2d9491e9b245
+color 50b1b248-e14f-439d-89c8-2d9491e9b245 #e6e64d
+Triangle bb0ac4e2-a676-47a1-992c-d22eab95b9d4 2.0 4.0
+color bb0ac4e2-a676-47a1-992c-d22eab95b9d4 #ffff4d
+Triangle 2628bf17-0734-49b6-9105-1341dec1590f 0.0 0.0
+color 2628bf17-0734-49b6-9105-1341dec1590f #ffffcc
+Square 3af93c05-f0bc-4fd8-9cde-a8a24c031f02 14.0 16.0
+color 3af93c05-f0bc-4fd8-9cde-a8a24c031f02 #b36680
+Triangle 672483a0-a5a6-4a31-a64d-d59fd5544ba8 5.0 12.0
+rotate 672483a0-a5a6-4a31-a64d-d59fd5544ba8
+rotate 672483a0-a5a6-4a31-a64d-d59fd5544ba8
+color 672483a0-a5a6-4a31-a64d-d59fd5544ba8 #03a9f4
+Ball d2e525de-a1d4-42a9-adfa-a74c3e6e8051 17.75 16.75 0.0 -50.0
+Triangle da6c7a35-f2cc-4ef8-ae50-87b821b6a221 7.0 6.0
+rotate da6c7a35-f2cc-4ef8-ae50-87b821b6a221
+rotate da6c7a35-f2cc-4ef8-ae50-87b821b6a221
+rotate da6c7a35-f2cc-4ef8-ae50-87b821b6a221
+color da6c7a35-f2cc-4ef8-ae50-87b821b6a221 #03a9f4
+Ball 691adb55-0194-4761-bc2b-1e0d54adb8cb 18.75 19.75 0.0 -50.0
+Square 51c17218-561c-4b7c-848a-917194a47f11 16.0 8.0
+color 51c17218-561c-4b7c-848a-917194a47f11 #e64d4d
+Square 8194a463-f0f3-4c5c-a315-54c56d831b57 6.0 15.0
+color 8194a463-f0f3-4c5c-a315-54c56d831b57 #4d66cc
+Square d1f44bde-8156-4e4a-98e6-6c0f8813fd2d 6.0 7.0
+color d1f44bde-8156-4e4a-98e6-6c0f8813fd2d #99b3ff
+Triangle 80787493-6b4c-4d43-bdd8-c5a506d3da90 8.0 7.0
+rotate 80787493-6b4c-4d43-bdd8-c5a506d3da90
+rotate 80787493-6b4c-4d43-bdd8-c5a506d3da90
+rotate 80787493-6b4c-4d43-bdd8-c5a506d3da90
+color 80787493-6b4c-4d43-bdd8-c5a506d3da90 #03a9f4
+Square 5dade287-cf3f-4425-92d7-769df870ac8b 16.0 9.0
+color 5dade287-cf3f-4425-92d7-769df870ac8b #f44336
+Circle 8ee60947-9abd-4449-84d8-e6e5c3b24597 16.0 17.0
+color 8ee60947-9abd-4449-84d8-e6e5c3b24597 #996699
+Square 64172823-eec6-4774-873e-4acfffe497b2 17.0 4.0
+color 64172823-eec6-4774-873e-4acfffe497b2 #99b3ff
+Square d13b6d99-8a4c-468f-a3f8-26d8f12d44fb 15.0 5.0
+color d13b6d99-8a4c-468f-a3f8-26d8f12d44fb #99b3ff
+Square c3aed56e-72e9-4a1d-8fe9-ed9d7e4bbe44 6.0 12.0
+color c3aed56e-72e9-4a1d-8fe9-ed9d7e4bbe44 #4d66cc
+Square 6949b9ca-7b46-46da-a7ca-51998207158a 5.0 6.0
+color 6949b9ca-7b46-46da-a7ca-51998207158a #99b3ff
+Ball 8184fd1a-f01b-42d3-8a4d-f100f29f83dd 17.75 16.25 0.0 -50.0
+Spinner f3b9d7e5-df82-43ca-8e83-eaba204da187 6.0 13.0
+color f3b9d7e5-df82-43ca-8e83-eaba204da187 #8066cc
+Circle 6020ce2a-4481-40d0-99d7-5e8449e77aee 1.0 4.0
+color 6020ce2a-4481-40d0-99d7-5e8449e77aee #ffff66
+RightFlipper 707b9775-76c6-4ef3-9cd5-3bbfec99c930 10.0 3.0
+rotate 707b9775-76c6-4ef3-9cd5-3bbfec99c930
+rotate 707b9775-76c6-4ef3-9cd5-3bbfec99c930
+rotate 707b9775-76c6-4ef3-9cd5-3bbfec99c930
+color 707b9775-76c6-4ef3-9cd5-3bbfec99c930 #ff9800
+Triangle 6b2bf0c7-93c0-440f-b1c9-d5dc9707f49c 12.0 3.0
+color 6b2bf0c7-93c0-440f-b1c9-d5dc9707f49c #cccc33
+Ball 5eaaefde-dfa0-47b0-8fe4-2651efd38058 18.25 19.75 0.0 -50.0
+Square 5fed8885-b1b8-4fce-9321-21a0cb551702 7.0 12.0
+color 5fed8885-b1b8-4fce-9321-21a0cb551702 #4d66cc
+Triangle 73095634-1e27-439d-8a93-221f68fdc10a 17.0 2.0
+rotate 73095634-1e27-439d-8a93-221f68fdc10a
+rotate 73095634-1e27-439d-8a93-221f68fdc10a
+color 73095634-1e27-439d-8a93-221f68fdc10a #03a9f4
+Triangle 3c7c236c-5e65-4042-b8b2-87c26d9295f7 18.0 2.0
+rotate 3c7c236c-5e65-4042-b8b2-87c26d9295f7
+rotate 3c7c236c-5e65-4042-b8b2-87c26d9295f7
+rotate 3c7c236c-5e65-4042-b8b2-87c26d9295f7
+color 3c7c236c-5e65-4042-b8b2-87c26d9295f7 #ffcccc
+Absorber 073e8a5f-fe9e-494a-bbd7-c6580e4f8aeb 17.0 16.0 18.0 17.0
+color 073e8a5f-fe9e-494a-bbd7-c6580e4f8aeb #e91e63
+Octagon 162143f7-1f2a-42cb-8e41-03ecdf15631c 11.0 10.0
+color 162143f7-1f2a-42cb-8e41-03ecdf15631c #804d80
+Triangle caf6e2d2-a690-4131-a860-34265cc4632f 16.0 7.0
+rotate caf6e2d2-a690-4131-a860-34265cc4632f
+rotate caf6e2d2-a690-4131-a860-34265cc4632f
+color caf6e2d2-a690-4131-a860-34265cc4632f #ff8080
+Square 84a84515-c209-4f5c-93de-42667752bbdf 18.0 9.0
+color 84a84515-c209-4f5c-93de-42667752bbdf #b31a1a
+RightFlipper bd91a2af-ad85-4027-9d33-8cf2ecf167c1 6.0 10.0
+rotate bd91a2af-ad85-4027-9d33-8cf2ecf167c1
+rotate bd91a2af-ad85-4027-9d33-8cf2ecf167c1
+rotate bd91a2af-ad85-4027-9d33-8cf2ecf167c1
+color bd91a2af-ad85-4027-9d33-8cf2ecf167c1 #1a3399
+Octagon d10f3be0-9152-4d6a-aa12-bf56caaf03a5 7.0 8.0
+color d10f3be0-9152-4d6a-aa12-bf56caaf03a5 #1a3399
+Rhombus b990b2ef-cf35-49ee-b8e2-6ca46676843b 0.0 3.0
+color b990b2ef-cf35-49ee-b8e2-6ca46676843b #e6e64d
+Rhombus ee94bef7-6189-4edc-ab74-c6db6f1887d3 2.0 0.0
+color ee94bef7-6189-4edc-ab74-c6db6f1887d3 #ffff4d
+Square 430ec2cb-152d-48cf-9274-8d22cca03d93 18.0 4.0
+color 430ec2cb-152d-48cf-9274-8d22cca03d93 #ff9999
+Triangle 971f4bb5-e698-48f5-b2a4-7d712ab6ca34 16.0 5.0
+color 971f4bb5-e698-48f5-b2a4-7d712ab6ca34 #03a9f4
+Triangle d65275ba-5a90-440b-86f5-2a0424c0a411 5.0 10.0
+rotate d65275ba-5a90-440b-86f5-2a0424c0a411
+rotate d65275ba-5a90-440b-86f5-2a0424c0a411
+color d65275ba-5a90-440b-86f5-2a0424c0a411 #03a9f4
+Octagon 9d913c47-2078-416d-9229-f06deb2cb6c7 6.0 8.0
+color 9d913c47-2078-416d-9229-f06deb2cb6c7 #1a3399
+Square 509564ef-cc25-495d-88e1-dc639d40a84f 16.0 4.0
+color 509564ef-cc25-495d-88e1-dc639d40a84f #8099ff
+Triangle 959957d7-81dd-403e-8498-2d01746d2e27 14.0 5.0
+rotate 959957d7-81dd-403e-8498-2d01746d2e27
+rotate 959957d7-81dd-403e-8498-2d01746d2e27
+color 959957d7-81dd-403e-8498-2d01746d2e27 #03a9f4
+LeftFlipper 4e8ed4eb-0ef4-4f6b-b734-97d43fd74fb2 12.0 11.0
+color 4e8ed4eb-0ef4-4f6b-b734-97d43fd74fb2 #4d1a4d
+Triangle 2af615da-0fe5-446e-ad52-57d540f35037 8.0 15.0
+color 2af615da-0fe5-446e-ad52-57d540f35037 #03a9f4
+Square 51a77eb0-cdea-4e06-b0b1-41c5fedf0ebf 9.0 1.0
+color 51a77eb0-cdea-4e06-b0b1-41c5fedf0ebf #ffff99
+Square 8759af79-ab78-4694-bfa9-e8e1a3efaa79 18.0 16.0
+color 8759af79-ab78-4694-bfa9-e8e1a3efaa79 #e6b3e6
+Triangle 5b97d7fc-82c5-4ee8-b7cd-4fc63f51d513 15.0 8.0
+rotate 5b97d7fc-82c5-4ee8-b7cd-4fc63f51d513
+rotate 5b97d7fc-82c5-4ee8-b7cd-4fc63f51d513
+color 5b97d7fc-82c5-4ee8-b7cd-4fc63f51d513 #e64d4d
+Triangle 86fbfe0b-9f61-4f92-bd23-256fb9df80d9 17.0 5.0
+rotate 86fbfe0b-9f61-4f92-bd23-256fb9df80d9
+color 86fbfe0b-9f61-4f92-bd23-256fb9df80d9 #03a9f4
+Ball e6bf0cb1-9b8b-4b77-abdf-5e86d3ac7c59 13.609305533642868 14.105326075941374 -2.5274452373761562 -3.199163000465962
+Square 78a95869-05d3-418e-be58-56a04dde0a75 18.0 13.0
+color 78a95869-05d3-418e-be58-56a04dde0a75 #663366
+Ball 85ee565c-63db-4f36-a452-d5efda91487d 3.72 3.68 0.0 0.0
+Square cb65ef1b-4304-43ec-b697-f6d9a042e561 8.0 14.0
+color cb65ef1b-4304-43ec-b697-f6d9a042e561 #4d66cc
+Ball 17e4c207-591a-49dd-9a21-7ace1c01e478 17.25 16.25 0.0 -50.0
+Rhombus faa2cf92-ca73-4b43-bc52-6c0c9be711d5 2.0 1.0
+color faa2cf92-ca73-4b43-bc52-6c0c9be711d5 #ffff4d
+Square 0cb6d1a6-0eb2-4601-908d-efc57b456de1 18.0 5.0
+color 0cb6d1a6-0eb2-4601-908d-efc57b456de1 #ff8080
+Triangle d0a85f10-6ccb-4026-b7dc-8f35a8ccd0a5 13.0 6.0
+rotate d0a85f10-6ccb-4026-b7dc-8f35a8ccd0a5
+rotate d0a85f10-6ccb-4026-b7dc-8f35a8ccd0a5
+color d0a85f10-6ccb-4026-b7dc-8f35a8ccd0a5 #03a9f4
+Triangle 268dc965-5303-46cc-928c-ec3613a1385e 3.0 10.0
+color 268dc965-5303-46cc-928c-ec3613a1385e #03a9f4
+Rhombus 9871a035-cb51-46f9-9e14-a653d44cd721 2.0 2.0
+color 9871a035-cb51-46f9-9e14-a653d44cd721 #ffff66
+Rhombus daa45312-e729-489b-82d4-fc75e90f4542 1.0 3.0
+color daa45312-e729-489b-82d4-fc75e90f4542 #e6e64d
+Ball 9ac8effe-df4e-4c79-9eec-336a024ece14 17.25 16.75 0.0 -50.0
+Rhombus 44c036ee-11ea-4590-8df3-d3253d8e3877 2.0 3.0
+color 44c036ee-11ea-4590-8df3-d3253d8e3877 #e6e64d
+Triangle 798d8f9c-3837-4bc8-8388-62f3f389ddae 5.0 4.0
+rotate 798d8f9c-3837-4bc8-8388-62f3f389ddae
+rotate 798d8f9c-3837-4bc8-8388-62f3f389ddae
+rotate 798d8f9c-3837-4bc8-8388-62f3f389ddae
+color 798d8f9c-3837-4bc8-8388-62f3f389ddae #03a9f4
+Ball e004a580-7439-48b7-984e-e641a5407ee8 17.75 19.75 0.0 -50.0
+Square 2ef6cef8-b8eb-48fb-9605-79ceff85a092 17.0 3.0
+color 2ef6cef8-b8eb-48fb-9605-79ceff85a092 #8099ff
+Square 054ba281-d896-42df-b6e3-0e2307f3eed2 15.0 16.0
+color 054ba281-d896-42df-b6e3-0e2307f3eed2 #b380b3
+Triangle ad978459-1e09-4b9d-a443-39875cf481d1 8.0 10.0
+rotate ad978459-1e09-4b9d-a443-39875cf481d1
+rotate ad978459-1e09-4b9d-a443-39875cf481d1
+rotate ad978459-1e09-4b9d-a443-39875cf481d1
+color ad978459-1e09-4b9d-a443-39875cf481d1 #8099ff
+Triangle 34f7a31c-0a42-43de-ba08-f9d75e9569df 16.0 3.0
+rotate 34f7a31c-0a42-43de-ba08-f9d75e9569df
+rotate 34f7a31c-0a42-43de-ba08-f9d75e9569df
+color 34f7a31c-0a42-43de-ba08-f9d75e9569df #03a9f4
+Triangle 955bd0a4-3cc9-4b01-a386-79e026390cda 15.0 4.0
+rotate 955bd0a4-3cc9-4b01-a386-79e026390cda
+rotate 955bd0a4-3cc9-4b01-a386-79e026390cda
+color 955bd0a4-3cc9-4b01-a386-79e026390cda #03a9f4
+Ball 1f49f075-8d40-49c5-8d5e-73fa415cc77f 1.75 10.75 0.0 -50.0
+Triangle addc2dc4-f5a6-4e3f-8248-e1c010bea0fd 15.0 6.0
+color addc2dc4-f5a6-4e3f-8248-e1c010bea0fd #03a9f4
+Square d9d1ab90-e93f-4d5e-a28e-bd32c966a74a 7.0 7.0
+color d9d1ab90-e93f-4d5e-a28e-bd32c966a74a #8099ff
+Ball 1d3f2980-91f2-4dd1-b1a3-53a624396779 11.314669983027379 2.6084224143186554 1.5799841471675622 1.2297285729369054
 
+# collision triggers
 
+# key triggers
+keyconnect key 93.0 down 474d80b6-043f-4453-9474-e65bd2984d52
+keyconnect key 93.0 up 474d80b6-043f-4453-9474-e65bd2984d52
+keyconnect key 88.0 up bfefb63d-eaec-4447-b281-422609ec6bb4
+keyconnect key 88.0 down bfefb63d-eaec-4447-b281-422609ec6bb4
+keyconnect key 69.0 down 7a5596fa-5267-4970-9bf0-59152df8a88e
+keyconnect key 69.0 up 7a5596fa-5267-4970-9bf0-59152df8a88e
+keyconnect key 61.0 down bd91a2af-ad85-4027-9d33-8cf2ecf167c1
+keyconnect key 61.0 up bd91a2af-ad85-4027-9d33-8cf2ecf167c1
+keyconnect key 91.0 down 4e8ed4eb-0ef4-4f6b-b734-97d43fd74fb2
+keyconnect key 91.0 up 4e8ed4eb-0ef4-4f6b-b734-97d43fd74fb2
 
-Triangle T 19 0
-Rotate T
-
-Triangle T2 1 1
-
-Square S02 0 2
-Square S12 1 2
-Square S22 2 2
-Square S32 3 2
-Square S42 4 2
-Square S52 5 2
-Square S62 6 2
-Square S72 7 2
-Square S82 8 2
-Square S132 13 2
-Square S142 14 2
-Square S152 15 2
-Square S162 16 2
-Square S172 17 2
-Square S182 18 2
-
-Circle C43 4 3
-Circle C54 5 4
-Circle C65 6 5
-Circle C76 7 6
-Circle C99 9 9
-Circle C109 10 9
-Circle C1110 11 10
-Circle C129 12 9
-Circle C139 13 9
-Circle C156 15 6
-Circle C165 16 5
-Circle C174 17 4
-Circle C183 18 3
-
-LeftFlipper LF92 9 2
-KeyConnect key 32 down LF92
-KeyConnect key 32 up LF92
-RightFlipper RF112 11 2
-KeyConnect key 32 down RF112
-KeyConnect key 32 up RF112
-LeftFlipper LF87 8 7
-KeyConnect key 81 down LF87
-KeyConnect key 81 up LF87
-Connect C43 LF87
-Connect C54 LF87
-Connect C65 LF87
-Connect C76 LF87
-Connect C109 LF87
-Connect C1110 LF87
-Connect C139 LF87
-
-RightFlipper RF137 13 7
-KeyConnect key 87 down RF137
-KeyConnect key 87 up RF137
-Connect C99 RF137
-Connect C1110 RF137
-Connect C129 RF137
-Connect C156 RF137
-Connect C165 RF137
-Connect C174 RF137
-Connect C183 RF137
-Absorber A 0 19 20 20
-KeyConnect key 127 down A
-Connect A A
-Ball B 1.0 11.0 0.0 0.0
-
+# gravity and friction
+gravity 20.0
+friction 0.025 0.025

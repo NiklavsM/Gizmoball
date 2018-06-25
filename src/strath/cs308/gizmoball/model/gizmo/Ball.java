@@ -20,7 +20,7 @@ public class Ball extends Gizmo implements IMovable {
 
     public Ball(double x, double y, String id) {
         super(x - 0.25, y - 0.25, x + 0.25, y + 0.25, id);
-        setVelocity(4, 4);
+        setVelocity(0, 0);
     }
 
     @Override

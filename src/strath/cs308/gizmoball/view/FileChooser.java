@@ -29,7 +29,7 @@ public class FileChooser {
         if (!fileChooser.getExtensionFilters().contains(allFilter)) {
             fileChooser.getExtensionFilters().add(allFilter);
         }
-        return addExtension(fileChooser.showOpenDialog(null));
+        return fileChooser.showOpenDialog(null);
     }
 
     public File showSaveDialog() {
